@@ -9,4 +9,5 @@ target 'BuXiaoSheng' do
     pod 'AFNetworking', '~> 3.1.0'
     pod 'SDAutoLayout'
     pod 'Addition'
+    pod 'Reachability'
 end

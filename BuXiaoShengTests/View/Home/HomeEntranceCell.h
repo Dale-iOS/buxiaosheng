@@ -10,4 +10,7 @@
 
 @interface HomeEntranceCell : UICollectionViewCell
 
+@property (nonatomic, weak) UIImageView *iconImageView;
+@property (nonatomic, weak) UILabel *titileLabel;
+
 @end

@@ -10,8 +10,6 @@
 #import "SDAutoLayout.h"
 @interface HomeEntranceCell ()
 
-@property (nonatomic, weak) UIImageView *iconImageView;
-@property (nonatomic, weak) UILabel *titileLabel;
 
 @end
 
@@ -21,7 +19,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
+        [self.contentView addSubview:self.iconImageView];
+        [self.contentView addSubview:self.titileLabel];
+        [self setupUI];
     }
     return self;
 }
@@ -30,7 +30,10 @@
 {
     if (!iconImageView) {
         UIImageView *imageView = [[UIImageView alloc]init];
-        [self addSubview:(iconImageView = imageView)];
+        imageView.image = IMAGE(@"sale");
+        imageView.backgroundColor = [UIColor clearColor];
+        imageView.frame = CGRectMake(0, 0, 50, 50);
+        [self.contentView addSubview:(iconImageView = imageView)];
     }
     return iconImageView;
 }
@@ -39,25 +42,31 @@
 {
     if (!titileLabel) {
         UILabel *label = [[UILabel alloc]init];
-        [self addSubview:(titileLabel = label)];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor clearColor];
+        label.text = @"阿四季豆阿萨德";
+        [self.contentView addSubview:(titileLabel = label)];
     }
     return titileLabel;
 }
 
 - (void)setupUI
 {
-    
+    iconImageView.image = IMAGE(@"sale");
+    iconImageView.sd_layout
+    .leftSpaceToView(self.contentView, 22)
+    .topSpaceToView(self.contentView, 0)
+    .widthIs(50)
+    .heightIs(50);
+
+    titileLabel.text = @"销售";
+    titileLabel.sd_layout
+    .centerXEqualToView(iconImageView)
+    .topSpaceToView(iconImageView, 10)
+    .widthIs(30)
+    .heightIs(15);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @end

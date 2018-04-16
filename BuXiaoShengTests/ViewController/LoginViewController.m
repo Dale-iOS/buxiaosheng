@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+//#import "SaleViewController.h"
 
 @interface LoginViewController ()
 
@@ -117,6 +118,10 @@
     HomeViewController *vc = [[HomeViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     //    [self presentViewController:vc animated:YES completion:nil];
+    
+//    SaleViewController *vc1 = [[SaleViewController alloc]init];
+//    [self.navigationController pushViewController:vc1 animated:YES];
+    
 }
 
 //无论是UITextField还是UITextView弹出来的键盘，点击空白处都会取消。
