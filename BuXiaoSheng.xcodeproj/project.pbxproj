@@ -97,6 +97,7 @@
 		34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACAA208453D30005BF77 /* ShipmentOrderViewController.m */; };
 		34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBAC9B208450980005BF77 /* WaitOutOrderViewController.m */; };
 		34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */; };
+		34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +266,8 @@
 		34EBACAA208453D30005BF77 /* ShipmentOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShipmentOrderViewController.m; sourceTree = "<group>"; };
 		34EBACAD20847AC70005BF77 /* VisitRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisitRecordViewController.h; sourceTree = "<group>"; };
 		34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitRecordViewController.m; sourceTree = "<group>"; };
+		34EBACB02084A5070005BF77 /* OrderListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
+		34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
@@ -558,6 +561,8 @@
 				34A0EDA020809F1800659190 /* TextInputTextView.m */,
 				345E7482208368A6004B49B3 /* OrderTableViewCell.h */,
 				345E7483208368A6004B49B3 /* OrderTableViewCell.m */,
+				34EBACB02084A5070005BF77 /* OrderListTableViewCell.h */,
+				34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -881,6 +886,7 @@
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
+				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,

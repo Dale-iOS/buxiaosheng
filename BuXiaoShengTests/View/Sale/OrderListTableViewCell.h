@@ -1,17 +1,14 @@
 //
-//  OrderTableViewCell.h
+//  OrderListTableViewCell.h
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/15.
+//  Created by 罗镇浩 on 2018/4/16.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OrderTableViewCell : UITableViewCell
-
-///白色底图
-@property (nonatomic, strong)UIView *bgView;
+@interface OrderListTableViewCell : UITableViewCell
 
 ///头像
 @property (nonatomic, strong)UIImageView *iconImageView;
@@ -39,6 +36,5 @@
 
 ///配送信息
 @property (nonatomic, strong)UILabel *distributionLabel;
-
 
 @end

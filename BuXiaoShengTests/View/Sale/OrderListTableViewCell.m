@@ -1,15 +1,16 @@
 //
-//  OrderTableViewCell.m
+//  OrderListTableViewCell.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/15.
+//  Created by 罗镇浩 on 2018/4/16.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import "OrderTableViewCell.h"
+#import "OrderListTableViewCell.h"
 
-@implementation OrderTableViewCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,stateLabel,distributionLabel;
+@implementation OrderListTableViewCell
+@synthesize iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,stateLabel,distributionLabel;
+
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -18,7 +19,7 @@
         
         self.selectionStyle = UITableViewCellAccessoryNone;
         
-        self.backgroundColor = LZHBackgroundColor;
+        self.backgroundColor = [UIColor whiteColor];
         
         [self setSDlayout];
         
@@ -27,25 +28,13 @@
 }
 
 #pragma mark ------- lazy loding --------
-- (UIView *)bgView
-{
-    if (!bgView)
-    {
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor whiteColor];
-        view.layer.cornerRadius = 5.0f;
-        [contentView addSubview:(bgView = view)];
-    }
-    return bgView;
-}
-
 - (UIImageView *)iconImageView
 {
     if (!iconImageView)
     {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.image = IMAGE(@"ordericon");
-        [self.bgView addSubview:(iconImageView = imageView)];
+        [contentView addSubview:(iconImageView = imageView)];
     }
     return iconImageView;
 }
@@ -58,7 +47,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithR:51.0f/255.0f G:51.0f/255.0f B:51.0f/255.0f A:1.0f];
-        [self.bgView addSubview:(companyLabel = label)];
+        [contentView addSubview:(companyLabel = label)];
     }
     return companyLabel;
 }
@@ -71,7 +60,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [self.bgView addSubview:(nameLabel = label)];
+        [contentView addSubview:(nameLabel = label)];
     }
     return nameLabel;
 }
@@ -84,7 +73,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [self.bgView addSubview:(demandLabel = label)];
+        [contentView addSubview:(demandLabel = label)];
     }
     return demandLabel;
 }
@@ -98,7 +87,7 @@
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         label.hidden = YES;
-        [self.bgView addSubview:(OutNumLabel = label)];
+        [contentView addSubview:(OutNumLabel = label)];
     }
     return OutNumLabel;
 }
@@ -111,7 +100,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [self.bgView addSubview:(priceLabel = label)];
+        [contentView addSubview:(priceLabel = label)];
     }
     return priceLabel;
 }
@@ -124,7 +113,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [self.bgView addSubview:(timeLabel = label)];
+        [contentView addSubview:(timeLabel = label)];
     }
     return timeLabel;
 }
@@ -139,7 +128,7 @@
         label.textColor = [UIColor whiteColor];
         label.font = FONT(12);
         label.layer.cornerRadius = 5.0f;
-        [self.bgView addSubview:(stateLabel = label)];
+        [contentView addSubview:(stateLabel = label)];
     }
     return stateLabel;
 }
@@ -154,7 +143,7 @@
         label.textColor = [UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
         label.backgroundColor =[UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:0.2f];
         label.layer.cornerRadius = 2.0f;
-        [self.bgView addSubview:(distributionLabel = label)];
+        [contentView addSubview:(distributionLabel = label)];
     }
     return distributionLabel;
 }
@@ -162,23 +151,18 @@
 ///自动布局
 - (void)setSDlayout
 {
-    self.bgView.sd_layout
-    .topSpaceToView(contentView, 5)
-    .leftSpaceToView(contentView, 8)
-    .widthIs(APPWidth -16)
-    .heightIs(110);
-    
+
     self.iconImageView.sd_layout
-    .leftSpaceToView(self.bgView, 15)
-    .topSpaceToView(self.bgView, 35)
+    .leftSpaceToView(contentView, 15)
+    .topSpaceToView(contentView, 35)
     .widthIs(40)
     .heightIs(40);
     
     self.companyLabel.text = @"广州佛山染织厂";
     self.companyLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
-    .topSpaceToView(self.bgView, 20)
-//    .widthIs(300)
+    .topSpaceToView(contentView, 20)
+    //    .widthIs(300)
     .heightIs(15);
     [self.companyLabel setSingleLineAutoResizeWithMaxWidth:300];
     
@@ -212,7 +196,7 @@
     
     self.timeLabel.text = @"2018-4-3  13:14";
     self.timeLabel.sd_layout
-    .rightSpaceToView(self.bgView, 15)
+    .rightSpaceToView(contentView, 15)
     .topSpaceToView(self.nameLabel, 10)
     .heightIs(13);
     [self.timeLabel setSingleLineAutoResizeWithMaxWidth:200];
@@ -225,8 +209,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-   
+    
+    
 }
 
 @end
+

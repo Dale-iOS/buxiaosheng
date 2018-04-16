@@ -29,6 +29,9 @@
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkView;
 
+///提交按钮
+@property (nonatomic, strong) UIButton *commitBtn;
+
 
 @end
 
@@ -49,7 +52,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight -44-64)];
         tableView.tableView.allowsSelection = YES;
         tableView.backgroundColor = [UIColor grayColor];
         [self.view addSubview:(mainTabelView = tableView)];
@@ -128,10 +131,22 @@
     [self setSectionTwo];
     
     self.mainTabelView.dataSoure = self.datasource;
-
+    
+    self.commitBtn = [UIButton new];
+    self.commitBtn.frame = CGRectMake(0, APPHeight -44, APPWidth, 44);
+    self.commitBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    [self.commitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [self.commitBtn addTarget:self action:@selector(commitBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    self.commitBtn.titleLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:self.commitBtn];
 }
 
 
+#pragma mark ------ 点击事件 --------
+- (void)commitBtnOnClickAction
+{
+    NSLog(@"commitBtnOnClickAction");
+}
 
 - (void)backMethod {
     [self.navigationController popViewControllerAnimated:YES];
