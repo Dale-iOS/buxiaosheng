@@ -1,0 +1,6 @@
+framework module Pods_BuXiaoSheng {
+  umbrella header "Pods-BuXiaoSheng-umbrella.h"
+
+  export *
+  module * { export * }
+}
