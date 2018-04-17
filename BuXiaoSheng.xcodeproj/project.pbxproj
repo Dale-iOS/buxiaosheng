@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */; };
+		3411F2A72085C3B800C448FD /* ResponsibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A62085C3B800C448FD /* ResponsibleViewController.m */; };
+		3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */; };
+		3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */; };
+		3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */; };
+		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
 		343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C62081A0C800447992 /* UIView+SGPagingView.m */; };
 		343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C82081A0C800447992 /* SGPageContentScrollView.m */; };
 		343008D32081A0C800447992 /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C92081A0C800447992 /* SGPageContentView.m */; };
@@ -119,6 +125,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientManagerViewController.h; sourceTree = "<group>"; };
+		3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientManagerViewController.m; sourceTree = "<group>"; };
+		3411F2A52085C3B800C448FD /* ResponsibleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResponsibleViewController.h; sourceTree = "<group>"; };
+		3411F2A62085C3B800C448FD /* ResponsibleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResponsibleViewController.m; sourceTree = "<group>"; };
+		3411F2A82085C50700C448FD /* ClientManagerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientManagerTableViewCell.h; sourceTree = "<group>"; };
+		3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientManagerTableViewCell.m; sourceTree = "<group>"; };
+		3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllCompanyViewController.h; sourceTree = "<group>"; };
+		3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllCompanyViewController.m; sourceTree = "<group>"; };
+		3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoneManagerViewController.h; sourceTree = "<group>"; };
+		3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoneManagerViewController.m; sourceTree = "<group>"; };
+		3411F2B12085CEF700C448FD /* FreezeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreezeViewController.h; sourceTree = "<group>"; };
+		3411F2B22085CEF700C448FD /* FreezeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreezeViewController.m; sourceTree = "<group>"; };
 		343008C32081A0BA00447992 /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
 		343008C52081A0C800447992 /* UIView+SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGPagingView.h"; sourceTree = "<group>"; };
 		343008C62081A0C800447992 /* UIView+SGPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGPagingView.m"; sourceTree = "<group>"; };
@@ -388,6 +406,16 @@
 				34EBACA7208451C40005BF77 /* DeliveryOrderViewController.m */,
 				34EBACAD20847AC70005BF77 /* VisitRecordViewController.h */,
 				34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */,
+				3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */,
+				3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */,
+				3411F2A52085C3B800C448FD /* ResponsibleViewController.h */,
+				3411F2A62085C3B800C448FD /* ResponsibleViewController.m */,
+				3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */,
+				3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */,
+				3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */,
+				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
+				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
+				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
 			);
 			path = sale;
 			sourceTree = "<group>";
@@ -563,6 +591,8 @@
 				345E7483208368A6004B49B3 /* OrderTableViewCell.m */,
 				34EBACB02084A5070005BF77 /* OrderListTableViewCell.h */,
 				34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */,
+				3411F2A82085C50700C448FD /* ClientManagerTableViewCell.h */,
+				3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -877,6 +907,7 @@
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
+				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
 				34B873222081EEEC00B05EBF /* AABar.m in Sources */,
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
@@ -886,11 +917,13 @@
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
+				3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */,
 				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				343008D42081A0C800447992 /* SGPageTitleView.m in Sources */,
+				3411F2A72085C3B800C448FD /* ResponsibleViewController.m in Sources */,
 				34A0EDA120809F1800659190 /* TextInputTextView.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
@@ -898,6 +931,7 @@
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
 				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
+				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
@@ -907,8 +941,10 @@
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
+				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
+				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
 				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,

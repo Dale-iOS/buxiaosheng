@@ -21,5 +21,6 @@
 
 // 统一返回按钮
 + (UIBarButtonItem*)navLeftBackBtn:(id)_target action:(SEL)selector;
-
+//创建navigation 右按钮是图片的
++ (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector image:(UIImage *)image;
 @end

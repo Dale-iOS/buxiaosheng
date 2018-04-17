@@ -29,6 +29,7 @@
    
     self.navigationItem.titleView = [Utility navTitleView:@"订单跟踪"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toSearch) image:IMAGE(@"search")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setSgPageTitleView];
@@ -82,5 +83,11 @@
 - (void)backMethod {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)toSearch
+{
+    
+}
+
 
 @end

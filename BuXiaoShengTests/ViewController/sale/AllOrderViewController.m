@@ -9,11 +9,13 @@
 #import "AllOrderViewController.h"
 #import "OrderTableViewCell.h"
 
+
 @interface AllOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
     UITableView *_tableView;
+    UIView *_rightHeadView;
 }
 @end
 
@@ -31,9 +33,40 @@
     _headerView.backgroundColor = [UIColor whiteColor];
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.backgroundColor = [UIColor clearColor];
-    _timeLabel.frame = CGRectMake(0, 0, 64, 14);
+    _timeLabel.frame = CGRectMake(15, 12, APPWidth/2, 14);
     _timeLabel.text = @"2018-4-3";
-    _timeLabel.textColor = [UIColor redColor];
+    _timeLabel.font = FONT(13);
+    _timeLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    [_headerView addSubview:_timeLabel];
+    
+    _rightHeadView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth/2, 0, APPWidth/2, 34)];
+    _rightHeadView.backgroundColor = [UIColor clearColor];
+    [_headerView addSubview:_rightHeadView];
+    
+    //筛选图标
+    UIImageView *screenImageView = [[UIImageView alloc]init];
+    screenImageView.image = IMAGE(@"screen");
+    screenImageView.backgroundColor = [UIColor clearColor];
+    [_rightHeadView addSubview:screenImageView];
+    screenImageView.sd_layout
+    .rightSpaceToView(_rightHeadView, 15)
+    .centerYEqualToView(_rightHeadView)
+    .widthIs(14)
+    .heightIs(12);
+    
+    //筛选文字
+    UILabel *screenLabel = [[UILabel alloc]init];
+    screenLabel.font = FONT(13);
+    screenLabel.text = @"筛选";
+    screenLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    [_rightHeadView addSubview:screenLabel];
+    screenLabel.sd_layout
+    .rightSpaceToView(screenImageView, 4)
+    .centerYEqualToView(_rightHeadView)
+    .widthIs(28)
+    .heightIs(14);
+    
+    
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;

@@ -11,6 +11,7 @@
 #import "SalesDemandViewController.h"
 #import "OrderTrackingViewController.h"
 #import "VisitRecordViewController.h"
+#import "ClientManagerViewController.h"
 
 @interface SaleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -85,6 +86,11 @@
     else if (indexPath.row == 2)
     {
         VisitRecordViewController *vc = [[VisitRecordViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 3)
+    {
+        ClientManagerViewController *vc = [[ClientManagerViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

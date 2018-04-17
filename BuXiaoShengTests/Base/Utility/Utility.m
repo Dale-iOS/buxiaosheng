@@ -61,4 +61,27 @@
     return left_btn;
 }
 
+
+//!!!!: 右按钮是图片的
+/**
+ *  右按钮是图片的
+ *
+ *  @param _target  对象
+ *  @param selector 方法
+ *  @param image    图片
+ *
+ *  @return
+ */
++ (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector image:(UIImage *)image
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    btn.backgroundColor = [UIColor greenColor];
+    btn.frame = CGRectMake(0, 0, 25, 44);
+    [btn setImage:image forState:UIControlStateNormal];
+    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+    [btn addTarget:_target action:selector forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    return item;
+}
+
 @end
