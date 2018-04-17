@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setupUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -37,6 +39,11 @@
     }
     
     self.view.frame = rect;
+}
+
+- (void)setupUI
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
