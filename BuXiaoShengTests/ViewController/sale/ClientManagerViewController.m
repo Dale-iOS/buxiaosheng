@@ -13,6 +13,7 @@
 #import "NoneManagerViewController.h"
 #import "FreezeViewController.h"
 
+#import "DrawerAddressViewController.h"
 
 @interface ClientManagerViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 {
@@ -97,8 +98,11 @@
     
     _headView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame)+5, APPWidth, 34)];
     _headView.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    _headView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesOnClick)];
+    [_headView addGestureRecognizer:tapGes];
     [self.view addSubview:_headView];
-    
+    NSLog(@"%f",_headLabel.right);
     UILabel *label = [[UILabel alloc]init];
     label.text = @"筛选";
     label.font = FONT(13);
@@ -160,6 +164,24 @@
 
 - (void)backMethod {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+// 导航栏左边按钮的点击事件
+- (void)tapGesOnClick
+{
+    // 自己随心所欲创建的一个控制器
+    DrawerAddressViewController *vc = [[DrawerAddressViewController alloc] init];
+    
+    vc.drawerType = DrawerDefaultRight;
+    
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
+    conf.maskAlpha = 0.1;
+    
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
 }
 
 #pragma mark ----- pageTitleViewdelegate -----

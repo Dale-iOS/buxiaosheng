@@ -13,6 +13,7 @@
 		3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */; };
 		3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */; };
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
+		3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B52086026600C448FD /* DrawerAddressViewController.m */; };
 		343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C62081A0C800447992 /* UIView+SGPagingView.m */; };
 		343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C82081A0C800447992 /* SGPageContentScrollView.m */; };
 		343008D32081A0C800447992 /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C92081A0C800447992 /* SGPageContentView.m */; };
@@ -137,6 +138,8 @@
 		3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoneManagerViewController.m; sourceTree = "<group>"; };
 		3411F2B12085CEF700C448FD /* FreezeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreezeViewController.h; sourceTree = "<group>"; };
 		3411F2B22085CEF700C448FD /* FreezeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreezeViewController.m; sourceTree = "<group>"; };
+		3411F2B42086026600C448FD /* DrawerAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerAddressViewController.h; sourceTree = "<group>"; };
+		3411F2B52086026600C448FD /* DrawerAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerAddressViewController.m; sourceTree = "<group>"; };
 		343008C32081A0BA00447992 /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
 		343008C52081A0C800447992 /* UIView+SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGPagingView.h"; sourceTree = "<group>"; };
 		343008C62081A0C800447992 /* UIView+SGPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGPagingView.m"; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
 				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
 				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
+				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
+				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
 			);
 			path = sale;
 			sourceTree = "<group>";
@@ -856,6 +861,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Addition/Addition.framework",
+				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
@@ -866,6 +872,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Addition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -938,6 +945,7 @@
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
+				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
@@ -1161,6 +1169,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
 		};
@@ -1178,6 +1187,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
 		};

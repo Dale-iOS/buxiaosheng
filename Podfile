@@ -2,6 +2,9 @@ platform :ios, '9.0'
 
 
 target 'BuXiaoSheng' do
+
+inhibit_all_warnings!
+
     use_frameworks!
     pod 'Masonry'
     pod 'MJRefresh'
@@ -10,4 +13,5 @@ target 'BuXiaoSheng' do
     pod 'SDAutoLayout'
     pod 'Addition'
     pod 'Reachability'
+    pod 'CWLateralSlide'
 end

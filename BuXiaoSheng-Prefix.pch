@@ -19,6 +19,7 @@
 #import <Addition/AdditionFrameworks.h>
 #import "AAGlobalMacro.h"
 #import "Utility.h"
+#import "CWLateralSlide-umbrella.h"
 //#import "AdditionFrameworks.h"
 #endif /* BuXiaoSheng_Prefix_pch */
 
