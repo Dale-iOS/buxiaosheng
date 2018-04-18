@@ -23,6 +23,9 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - Addition
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - Reachability
   - SDAutoLayout
   - SDWebImage (~> 3.8.2)
+  - YYKit
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -44,6 +48,7 @@ SPEC REPOS:
     - Reachability
     - SDAutoLayout
     - SDWebImage
+    - YYKit
 
 SPEC CHECKSUMS:
   Addition: 559c3a36779eac921f986824f7f135edd41c55ae
@@ -54,7 +59,8 @@ SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: c67026a2211bb4ac93d7ed63fc0bca4f26062993
+PODFILE CHECKSUM: 30bacfe78fa6eacf5925a8e98b32472d1fea25b7
 
 COCOAPODS: 1.5.0

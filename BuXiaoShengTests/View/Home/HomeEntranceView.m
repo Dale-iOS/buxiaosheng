@@ -10,6 +10,7 @@
 #import "HomeEntranceCell.h"
 #import "SaleViewController.h"
 #import "SalesDemandViewController.h"
+#import "FinancialViewController.h"
 
 
 
@@ -41,7 +42,7 @@
     [collectionView registerClass:[HomeEntranceCell class] forCellWithReuseIdentifier:@"cellid"];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    collectionView.backgroundColor = [UIColor yellowColor];
+    collectionView.backgroundColor = [UIColor whiteColor];
     
     [self addSubview:collectionView];
 
@@ -50,14 +51,41 @@
 //一组返回item数量
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellid";
     HomeEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-//    cell.iconImageView.image = IMAGE(@"sele");
+    
+    
+    switch (indexPath.row) {
+        case 0:
+        {
+            cell.iconImageView.image = IMAGE(@"sale");
+        }
+            break;
+        case 1:
+        {
+            cell.iconImageView.image = IMAGE(@"financial");
+            cell.titileLabel.text = @"财务";
+        }
+            break;
+        case 2:
+        {
+            cell.iconImageView.image = IMAGE(@"warehouse");
+            cell.titileLabel.text = @"仓库";
+        }
+            break;
+//        case 3:
+//        {
+//            cell.iconImageView.image = IMAGE(@"sale");
+//        }
+//            break;
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -72,7 +100,7 @@
     }
     else if (indexPath.row == 1)
     {
-        SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
+        FinancialViewController *vc = [[FinancialViewController alloc]init];
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }
     
@@ -81,7 +109,7 @@
 //设置itme大小
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(50, 50);
+    return CGSizeMake((APPWidth -3*50) /2 +20, 60);
 }
 
 //设置每个item的边距

@@ -14,6 +14,7 @@
 		3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */; };
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
 		3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B52086026600C448FD /* DrawerAddressViewController.m */; };
+		342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AF9392086F21C0043EA2E /* FinancialViewController.m */; };
 		343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C62081A0C800447992 /* UIView+SGPagingView.m */; };
 		343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C82081A0C800447992 /* SGPageContentScrollView.m */; };
 		343008D32081A0C800447992 /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C92081A0C800447992 /* SGPageContentView.m */; };
@@ -26,6 +27,9 @@
 		343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008DE2081ACC500447992 /* NowQuarterViewController.m */; };
 		343008E42081ACF400447992 /* NowDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008D82081AC9700447992 /* NowDayViewController.m */; };
 		343008E52081ACF900447992 /* NowMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008DB2081ACA500447992 /* NowMonthViewController.m */; };
+		3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 344080282087364300FD36B8 /* YANFlowLayout.m */; };
+		3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802A2087364300FD36B8 /* YANScrollMenu.m */; };
+		3440802F2087367F00FD36B8 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802D2087367F00FD36B8 /* DataSource.m */; };
 		345E74762082FFCD004B49B3 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E74752082FFCD004B49B3 /* Utility.m */; };
 		345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E747B20835B5F004B49B3 /* OrderTrackingViewController.m */; };
 		345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E747B20835B5F004B49B3 /* OrderTrackingViewController.m */; };
@@ -140,6 +144,8 @@
 		3411F2B22085CEF700C448FD /* FreezeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreezeViewController.m; sourceTree = "<group>"; };
 		3411F2B42086026600C448FD /* DrawerAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerAddressViewController.h; sourceTree = "<group>"; };
 		3411F2B52086026600C448FD /* DrawerAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerAddressViewController.m; sourceTree = "<group>"; };
+		342AF9382086F21C0043EA2E /* FinancialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewController.h; sourceTree = "<group>"; };
+		342AF9392086F21C0043EA2E /* FinancialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewController.m; sourceTree = "<group>"; };
 		343008C32081A0BA00447992 /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
 		343008C52081A0C800447992 /* UIView+SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGPagingView.h"; sourceTree = "<group>"; };
 		343008C62081A0C800447992 /* UIView+SGPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGPagingView.m"; sourceTree = "<group>"; };
@@ -159,6 +165,12 @@
 		343008DE2081ACC500447992 /* NowQuarterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowQuarterViewController.m; sourceTree = "<group>"; };
 		343008E02081ACDB00447992 /* NowYearViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowYearViewController.h; sourceTree = "<group>"; };
 		343008E12081ACDB00447992 /* NowYearViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowYearViewController.m; sourceTree = "<group>"; };
+		344080272087364300FD36B8 /* YANFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YANFlowLayout.h; sourceTree = "<group>"; };
+		344080282087364300FD36B8 /* YANFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YANFlowLayout.m; sourceTree = "<group>"; };
+		344080292087364300FD36B8 /* YANScrollMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YANScrollMenu.h; sourceTree = "<group>"; };
+		3440802A2087364300FD36B8 /* YANScrollMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YANScrollMenu.m; sourceTree = "<group>"; };
+		3440802D2087367F00FD36B8 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		3440802E2087367F00FD36B8 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		345E74742082FFCD004B49B3 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		345E74752082FFCD004B49B3 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		345E747A20835B5F004B49B3 /* OrderTrackingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderTrackingViewController.h; sourceTree = "<group>"; };
@@ -320,9 +332,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		342AF9372086F2070043EA2E /* financial */ = {
+			isa = PBXGroup;
+			children = (
+				342AF9382086F21C0043EA2E /* FinancialViewController.h */,
+				342AF9392086F21C0043EA2E /* FinancialViewController.m */,
+			);
+			path = financial;
+			sourceTree = "<group>";
+		};
 		343008C12081A03C00447992 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				344080262087362500FD36B8 /* YANScrollMenu */,
 				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
 			);
@@ -386,6 +408,19 @@
 				343008E12081ACDB00447992 /* NowYearViewController.m */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		344080262087362500FD36B8 /* YANScrollMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3440802E2087367F00FD36B8 /* DataSource.h */,
+				3440802D2087367F00FD36B8 /* DataSource.m */,
+				344080272087364300FD36B8 /* YANFlowLayout.h */,
+				344080282087364300FD36B8 /* YANFlowLayout.m */,
+				344080292087364300FD36B8 /* YANScrollMenu.h */,
+				3440802A2087364300FD36B8 /* YANScrollMenu.m */,
+			);
+			path = YANScrollMenu;
 			sourceTree = "<group>";
 		};
 		347D64C9207F05ED00407FC4 /* sale */ = {
@@ -509,6 +544,7 @@
 		34A92B45207DE91300572648 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				342AF9372086F2070043EA2E /* financial */,
 				347D64C9207F05ED00407FC4 /* sale */,
 				343008D62081AC3D00447992 /* Home */,
 				34A92B59207DEEEB00572648 /* LoginViewController.h */,
@@ -867,6 +903,7 @@
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -878,6 +915,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -909,6 +947,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
@@ -924,6 +963,7 @@
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
+				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
 				3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */,
 				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
@@ -963,12 +1003,14 @@
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
+				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
+				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,

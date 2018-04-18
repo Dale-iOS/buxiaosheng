@@ -30,7 +30,7 @@
 {
     if (!iconImageView) {
         UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.image = IMAGE(@"sale");
+//        imageView.image = IMAGE(@"sale");
         imageView.backgroundColor = [UIColor clearColor];
         imageView.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:(iconImageView = imageView)];
@@ -54,7 +54,7 @@
 
 - (void)setupUI
 {
-    iconImageView.image = IMAGE(@"sale");
+//    iconImageView.image = IMAGE(@"sale");
     iconImageView.sd_layout
     .leftSpaceToView(self.contentView, 22)
     .topSpaceToView(self.contentView, 0)
