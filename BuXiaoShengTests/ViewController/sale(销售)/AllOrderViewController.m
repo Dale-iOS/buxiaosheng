@@ -66,7 +66,15 @@
     .widthIs(28)
     .heightIs(14);
     
-    
+    UIButton *screenBtn = [UIButton new];
+    screenBtn.backgroundColor = [UIColor clearColor];
+    [screenBtn addTarget:self action:@selector(screenBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [_rightHeadView addSubview:screenBtn];
+    screenBtn.sd_layout
+    .leftEqualToView(screenLabel)
+    .rightSpaceToView(_rightHeadView, 0)
+    .topSpaceToView(_rightHeadView, 0)
+    .bottomSpaceToView(_rightHeadView, 0);
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;
@@ -107,6 +115,11 @@
         
     }
     return cell;
+}
+
+- (void)screenBtnClick
+{
+    NSLog(@"点击了筛选时间");
 }
 
 - (void)didReceiveMemoryWarning {

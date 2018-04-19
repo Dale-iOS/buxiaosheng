@@ -39,7 +39,7 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"订单跟踪"];
+    self.navigationItem.titleView = [Utility navTitleView:@"客户管理"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     
     UIButton *addBtn = [UIButton new];

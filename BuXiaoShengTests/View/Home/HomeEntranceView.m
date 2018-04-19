@@ -11,7 +11,7 @@
 #import "SaleViewController.h"
 #import "SalesDemandViewController.h"
 #import "FinancialViewController.h"
-
+#import "FinancialHomeViewController.h"
 
 
 @interface HomeEntranceView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -100,11 +100,16 @@
     }
     else if (indexPath.row == 1)
     {
-        FinancialViewController *vc = [[FinancialViewController alloc]init];
-        [[self viewController].navigationController pushViewController:vc animated:YES];
+//        FinancialViewController *vc = [[FinancialViewController alloc]init];
+//        [[self viewController].navigationController pushViewController:vc animated:YES];
+        
+        FinancialHomeViewController *vc1 = [[FinancialHomeViewController alloc]init];
+        [[self viewController].navigationController pushViewController:vc1 animated:YES];
     }
     
 }
+
+
 
 //设置itme大小
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
