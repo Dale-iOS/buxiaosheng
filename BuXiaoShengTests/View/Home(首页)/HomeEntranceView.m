@@ -100,11 +100,11 @@
     }
     else if (indexPath.row == 1)
     {
-//        FinancialViewController *vc = [[FinancialViewController alloc]init];
-//        [[self viewController].navigationController pushViewController:vc animated:YES];
+        FinancialViewController *vc = [[FinancialViewController alloc]init];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
         
-        FinancialHomeViewController *vc1 = [[FinancialHomeViewController alloc]init];
-        [[self viewController].navigationController pushViewController:vc1 animated:YES];
+//        FinancialHomeViewController *vc1 = [[FinancialHomeViewController alloc]init];
+//        [[self viewController].navigationController pushViewController:vc1 animated:YES];
     }
     
 }

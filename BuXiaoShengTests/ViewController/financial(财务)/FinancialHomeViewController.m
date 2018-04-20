@@ -9,6 +9,8 @@
 #import "FinancialHomeViewController.h"
 #import "LZHHomeMenuCell.h"
 #import "GetPlistArray.h"
+#import "PagingTableViewCell.h"
+#import "IncomeViewController.h"
 
 @interface FinancialHomeViewController ()<UITableViewDelegate,UITableViewDataSource,LZHHomeMenuCellDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -25,6 +27,10 @@
 
 - (void)setupUI
 {
+    self.navigationItem.titleView = [Utility navTitleView:@"财务"];
+    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -50,8 +56,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 180;
+    if (indexPath.section == 0) {
+        return 220;
+    }
+    else if (indexPath.section == 1)
+    {
+        return 225;
     }
     else
     {
@@ -65,14 +75,26 @@
         
         LZHHomeMenuCell *cell = [LZHHomeMenuCell cellWithTableView:tableView menuArray:self.menuArray];
         cell.delegate = self;
+//        cell.backgroundColor = [UIColor redColor];
         return cell;
-    }else
+    }else if (indexPath.section == 1)
+    {
+        PagingTableViewCell *cell = [[PagingTableViewCell alloc]init];
+        return cell;
+        
+    }
+    
+    else
     {
         static NSString *cellID = @"cellID";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+            
         }
+        
+//        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        
         return cell;
     }
     
@@ -83,6 +105,15 @@
   
 }
 
+- (void)didClickBankBgViewInCell:(UITableViewCell *)cell
+{
+    NSLog(@"点击了更多详情");
+}
+
+- (void)backMethod
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

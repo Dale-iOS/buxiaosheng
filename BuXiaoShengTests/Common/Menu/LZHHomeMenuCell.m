@@ -101,6 +101,66 @@
         _pageControl.pageIndicatorTintColor = [UIColor grayColor];
         [self addSubview:_pageControl];
         
+        //财务首页 现金银行
+        UIView *bankBgView = [[UIView alloc]init];
+//        bankBgView.backgroundColor = [UIColor yellowColor];
+        UITapGestureRecognizer *bankTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bankTapClick)];
+        [bankBgView addGestureRecognizer:bankTap];
+        
+        [self addSubview:bankBgView];
+        
+        UIImageView *bankImageView = [[UIImageView alloc]init];
+        bankImageView.image = IMAGE(@"cashbank");
+        [bankBgView addSubview:bankImageView];
+        
+        UILabel *bankLabel = [[UILabel alloc]init];
+        bankLabel.text = @"现金银行";
+        bankLabel.font = FONT(14);
+        bankLabel.textColor = CD_Text33;
+        [bankBgView addSubview:bankLabel];
+        
+        UIImageView *rightarrowIMV = [[UIImageView alloc]init];;
+        rightarrowIMV.image = IMAGE(@"rightarrow");
+        [bankBgView addSubview:rightarrowIMV];
+        
+        UILabel *moreLabel = [[UILabel alloc]init];
+        moreLabel.text = @"查看详情 ";
+        moreLabel.textColor = CD_Text99;
+        moreLabel.font = FONT(12);
+        moreLabel.textAlignment = NSTextAlignmentRight;
+        [bankBgView addSubview:moreLabel];
+        
+        
+        
+        bankBgView.sd_layout
+        .leftSpaceToView(self, 0)
+        .topSpaceToView(scrollView, 0)
+        .widthIs(APPWidth)
+        .heightIs(40);
+        
+        bankImageView.sd_layout
+        .centerYEqualToView(bankBgView)
+        .leftSpaceToView(bankBgView, 15)
+        .widthIs(19)
+        .heightIs(15);
+        
+        bankLabel.sd_layout
+        .leftSpaceToView(bankImageView, 10)
+        .centerYEqualToView(bankBgView)
+        .widthIs(60)
+        .heightIs(15);
+        
+        rightarrowIMV.sd_layout
+        .rightSpaceToView(bankBgView, 15)
+        .centerYEqualToView(bankBgView)
+        .widthIs(8)
+        .heightIs(14);
+        
+        moreLabel.sd_layout
+        .rightSpaceToView(rightarrowIMV, 10)
+        .centerYEqualToView(bankBgView)
+        .widthIs(60)
+        .heightIs(13);
     }
     return  self;
 }
@@ -121,5 +181,15 @@
         [self.delegate homeMenuCellClick:(NSInteger)sender.view.tag];
     }
 }
+
+//点击了银行那里的更多详情
+- (void)bankTapClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickBankBgViewInCell:)]) {
+        
+        [self.delegate didClickBankBgViewInCell:self];
+    }
+}
+
 
 @end

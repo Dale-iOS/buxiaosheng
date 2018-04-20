@@ -1,19 +1,14 @@
 //
-//  HomeEntranceCell.m
-//  BuXiaoShengTests
+//  FinancialCollectionViewCell.m
+//  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/11.
+//  Created by 罗镇浩 on 2018/4/20.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import "HomeEntranceCell.h"
-#import "SDAutoLayout.h"
-@interface HomeEntranceCell ()
+#import "FinancialCollectionViewCell.h"
 
-
-@end
-
-@implementation HomeEntranceCell
+@implementation FinancialCollectionViewCell
 @synthesize iconImageView,titileLabel;
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -30,7 +25,7 @@
 {
     if (!iconImageView) {
         UIImageView *imageView = [[UIImageView alloc]init];
-//        imageView.image = IMAGE(@"sale");
+        //        imageView.image = IMAGE(@"sale");
         imageView.backgroundColor = [UIColor clearColor];
         imageView.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:(iconImageView = imageView)];
@@ -54,18 +49,18 @@
 
 - (void)setupUI
 {
-//    iconImageView.image = IMAGE(@"sale");
+    //    iconImageView.image = IMAGE(@"sale");
     iconImageView.sd_layout
     .leftSpaceToView(self.contentView, 22)
     .topSpaceToView(self.contentView, 0)
     .widthIs(50)
     .heightIs(50);
-
+    
     titileLabel.text = @"销售";
     titileLabel.sd_layout
     .centerXEqualToView(iconImageView)
     .topSpaceToView(iconImageView, 10)
-    .widthIs(30)
+    .widthIs(72)
     .heightIs(15);
 }
 

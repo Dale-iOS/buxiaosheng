@@ -15,12 +15,16 @@
 #import "NowMonthViewController.h"
 #import "NowQuarterViewController.h"
 #import "NowYearViewController.h"
+#import "FinancialCollectionViewCell.h"
+#import "IncomeViewController.h"
 
-@interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate>
+@interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
+
+@property (nonatomic, strong) UICollectionView *collectView;
 
 @end
 
@@ -51,6 +55,116 @@
     return mainTabelView;
 }
 
+- (void)setCollectionView
+{
+    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
+    flow.itemSize = CGSizeMake(APPWidth /4, 100);
+    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20, APPWidth, 200) collectionViewLayout:flow];
+    
+    [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
+    self.collectView.delegate = self;
+    self.collectView.dataSource = self;
+    self.collectView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.collectView];
+}
+
+//一组返回item数量
+- (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"cellid";
+    //    HomeEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
+    
+    FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    
+   
+    
+    if (indexPath.row == 0) {
+        
+        cell.iconImageView.image = IMAGE(@"sale");
+        //    cell.backgroundColor = [UIColor redColor];
+//        cell.iconImageView.backgroundColor = [UIColor whiteColor];
+    }
+    else if (indexPath.row == 1)
+    {
+        cell.iconImageView.image = IMAGE(@"spending");
+        cell.titileLabel.text = @"支出";
+    }
+    else if (indexPath.row == 2)
+    {
+        cell.iconImageView.image = IMAGE(@"audit");
+        cell.titileLabel.text = @"审批";
+    }
+    else if (indexPath.row == 3)
+    {
+        cell.iconImageView.image = IMAGE(@"payment");
+        cell.titileLabel.text = @"付款单";
+    }
+    else if (indexPath.row == 4)
+    {
+        cell.iconImageView.image = IMAGE(@"bankdetail");
+        cell.titileLabel.text = @"银行明细";
+    }
+    else if (indexPath.row == 5)
+    {
+        cell.iconImageView.image = IMAGE(@"banktransfer");
+        cell.titileLabel.text = @"银行互转";
+    }
+    else if (indexPath.row == 6)
+    {
+        cell.iconImageView.image = IMAGE(@"customerarrears");
+        cell.titileLabel.text = @"客户欠款单";
+    }
+    else if (indexPath.row == 7)
+    {
+        cell.iconImageView.image = IMAGE(@"clientreconciliation");
+        cell.titileLabel.text = @"客户对账表";
+    }
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"点击了 %ld",(long)indexPath.row);
+    
+    if (indexPath.row == 0) {
+
+        IncomeViewController *vc = [[IncomeViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 1)
+    {
+
+    }
+    else if (indexPath.row == 2)
+    {
+
+    }
+    else if (indexPath.row == 3)
+    {
+       
+    }
+}
+
+//设置itme大小
+-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(APPWidth /5, 80);
+}
+
+//设置每个item的边距
+-(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(1, 1, 1, 1);
+}
+
 - (void)setupUI
 {
     self.datasource = [NSMutableArray array];
@@ -66,6 +180,19 @@
 
 - (void)setSectionOne
 {
+    
+    [self setCollectionView];
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.collectView];
+    item.canSelected = YES;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+    
+    
 }
 
 - (void)setSectionTwo

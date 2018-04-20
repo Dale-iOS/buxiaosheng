@@ -11,6 +11,7 @@
 @protocol LZHHomeMenuCellDelegate <NSObject>
 @optional
 - (void)homeMenuCellClick:(long)Sender;
+- (void)didClickBankBgViewInCell:(UITableViewCell *)cell;
 @end
 
 @interface LZHHomeMenuCell : UITableViewCell
