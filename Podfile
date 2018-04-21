@@ -15,4 +15,5 @@ inhibit_all_warnings!
     pod 'Reachability'
     pod 'CWLateralSlide'
     pod 'YYKit'
+    pod 'pop'
 end

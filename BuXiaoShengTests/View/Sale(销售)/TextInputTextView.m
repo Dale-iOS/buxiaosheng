@@ -21,6 +21,10 @@
     
     if (self) {
         
+        [self addSubview:titleLabel];
+        [self addSubview:textView];
+        
+        [self setupSDlayout];
     }
     return self;
 }
@@ -30,7 +34,7 @@
     if (!titleLabel) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.frame = CGRectMake(15, 15, 90, 15);
+//        label.frame = CGRectMake(15, 15, 90, 15);
         label.font = FONT(14);
         label.textColor = CD_Text33;
         [self addSubview:(titleLabel = label)];
@@ -43,7 +47,7 @@
     if (!textView) {
         
         UITextView *textV = [[UITextView alloc]init];
-        textV.frame = CGRectMake(120, 7, APPWidth -120 -15, 60);
+//        textV.frame = CGRectMake(120, 7, APPWidth -120 -15, 60);
         textV.font = FONT(14);
         textV.placeholderColor = CD_textCC;
         [self addSubview:(textView = textV)];
@@ -51,5 +55,21 @@
     return textView;
 }
 
+//自动布局
+- (void)setupSDlayout
+{
+    self.titleLabel.sd_layout
+    .leftSpaceToView(self, 15)
+    .topSpaceToView(self, 15)
+    .widthIs(90)
+    .heightIs(15);
+    
+    self.textView.sd_layout
+    .leftSpaceToView(self, 120)
+    .topSpaceToView(self, 7)
+    .widthIs(APPWidth -120 -15)
+    .heightIs(60);
+    
+}
 
 @end

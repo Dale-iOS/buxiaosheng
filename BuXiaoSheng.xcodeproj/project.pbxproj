@@ -114,6 +114,27 @@
 		34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873082081EEEC00B05EBF /* AAChartModel.m */; };
 		34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730A2081EEEC00B05EBF /* AAOptions.m */; };
 		34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730B2081EEEC00B05EBF /* AASeriesElement.m */; };
+		34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */; };
+		34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */; };
+		34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */; };
+		34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B9D208B1F010048CFE1 /* LGAlertViewWindowContainer.m */; };
+		34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B9E208B1F010048CFE1 /* LGAlertViewHelper.m */; };
+		34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BA2208B1F010048CFE1 /* LGAlertViewCell.m */; };
+		34EA5BB4208B1F010048CFE1 /* LGAlertViewWindowsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BA3208B1F010048CFE1 /* LGAlertViewWindowsObserver.m */; };
+		34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BA5208B1F010048CFE1 /* LGAlertViewShadowView.m */; };
+		34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BA6208B1F010048CFE1 /* LGAlertViewButtonProperties.m */; };
+		34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BA8208B1F010048CFE1 /* LGAlertViewController.m */; };
+		34EA5BB8208B1F010048CFE1 /* LGAlertViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BAC208B1F010048CFE1 /* LGAlertViewButton.m */; };
+		34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BAD208B1F010048CFE1 /* LGAlertView.m */; };
+		34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BAE208B1F010048CFE1 /* UIWindow+LGAlertView.m */; };
+		34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BBB208B276A0048CFE1 /* NSObject+Category.m */; };
+		34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BBD208B276B0048CFE1 /* NSArray+Category.m */; };
+		34EA5BC9208B276C0048CFE1 /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BBF208B276B0048CFE1 /* UIColor+Extensions.m */; };
+		34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BC1208B276B0048CFE1 /* NSDate+Calendar.m */; };
+		34EA5BCB208B276C0048CFE1 /* LXDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BC3208B276B0048CFE1 /* LXDatePickerViewController.m */; };
+		34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BC5208B276B0048CFE1 /* UIView+Extensions.m */; };
+		34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BCD208B383B0048CFE1 /* UIView+LLXAlertPop.m */; };
+		34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5BD1208B40870048CFE1 /* SpendingViewController.m */; };
 		34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBAC982084506B0005BF77 /* AllOrderViewController.m */; };
 		34EBAC9C208450980005BF77 /* WaitOutOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBAC9B208450980005BF77 /* WaitOutOrderViewController.m */; };
 		34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACA1208450D10005BF77 /* DidOutOrderViewController.m */; };
@@ -320,6 +341,49 @@
 		34B8730B2081EEEC00B05EBF /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
 		34B8730C2081EEEC00B05EBF /* AAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartView.h; sourceTree = "<group>"; };
 		34B8730D2081EEEC00B05EBF /* AAChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartModel.h; sourceTree = "<group>"; };
+		34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrearsNameTextInputCell.h; sourceTree = "<group>"; };
+		34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrearsNameTextInputCell.m; sourceTree = "<group>"; };
+		34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewTextField.m; sourceTree = "<group>"; };
+		34EA5B97208B1F010048CFE1 /* LGAlertViewWindowsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewWindowsObserver.h; sourceTree = "<group>"; };
+		34EA5B98208B1F010048CFE1 /* LGAlertViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewCell.h; sourceTree = "<group>"; };
+		34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewWindow.m; sourceTree = "<group>"; };
+		34EA5B9A208B1F010048CFE1 /* LGAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewController.h; sourceTree = "<group>"; };
+		34EA5B9B208B1F010048CFE1 /* LGAlertViewButtonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewButtonProperties.h; sourceTree = "<group>"; };
+		34EA5B9C208B1F010048CFE1 /* LGAlertViewShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewShadowView.h; sourceTree = "<group>"; };
+		34EA5B9D208B1F010048CFE1 /* LGAlertViewWindowContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewWindowContainer.m; sourceTree = "<group>"; };
+		34EA5B9E208B1F010048CFE1 /* LGAlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewHelper.m; sourceTree = "<group>"; };
+		34EA5B9F208B1F010048CFE1 /* UIWindow+LGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LGAlertView.h"; sourceTree = "<group>"; };
+		34EA5BA0208B1F010048CFE1 /* LGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertView.h; sourceTree = "<group>"; };
+		34EA5BA1208B1F010048CFE1 /* LGAlertViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewButton.h; sourceTree = "<group>"; };
+		34EA5BA2208B1F010048CFE1 /* LGAlertViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewCell.m; sourceTree = "<group>"; };
+		34EA5BA3208B1F010048CFE1 /* LGAlertViewWindowsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewWindowsObserver.m; sourceTree = "<group>"; };
+		34EA5BA4208B1F010048CFE1 /* LGAlertViewTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewTextField.h; sourceTree = "<group>"; };
+		34EA5BA5208B1F010048CFE1 /* LGAlertViewShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewShadowView.m; sourceTree = "<group>"; };
+		34EA5BA6208B1F010048CFE1 /* LGAlertViewButtonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewButtonProperties.m; sourceTree = "<group>"; };
+		34EA5BA7208B1F010048CFE1 /* LGAlertViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewWindow.h; sourceTree = "<group>"; };
+		34EA5BA8208B1F010048CFE1 /* LGAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewController.m; sourceTree = "<group>"; };
+		34EA5BA9208B1F010048CFE1 /* LGAlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewHelper.h; sourceTree = "<group>"; };
+		34EA5BAA208B1F010048CFE1 /* LGAlertViewShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewShared.h; sourceTree = "<group>"; };
+		34EA5BAB208B1F010048CFE1 /* LGAlertViewWindowContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewWindowContainer.h; sourceTree = "<group>"; };
+		34EA5BAC208B1F010048CFE1 /* LGAlertViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewButton.m; sourceTree = "<group>"; };
+		34EA5BAD208B1F010048CFE1 /* LGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertView.m; sourceTree = "<group>"; };
+		34EA5BAE208B1F010048CFE1 /* UIWindow+LGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LGAlertView.m"; sourceTree = "<group>"; };
+		34EA5BBB208B276A0048CFE1 /* NSObject+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Category.m"; sourceTree = "<group>"; };
+		34EA5BBC208B276B0048CFE1 /* NSDate+Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Calendar.h"; sourceTree = "<group>"; };
+		34EA5BBD208B276B0048CFE1 /* NSArray+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Category.m"; sourceTree = "<group>"; };
+		34EA5BBE208B276B0048CFE1 /* LXDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDatePickerViewController.h; sourceTree = "<group>"; };
+		34EA5BBF208B276B0048CFE1 /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
+		34EA5BC0208B276B0048CFE1 /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
+		34EA5BC1208B276B0048CFE1 /* NSDate+Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Calendar.m"; sourceTree = "<group>"; };
+		34EA5BC2208B276B0048CFE1 /* UIView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
+		34EA5BC3208B276B0048CFE1 /* LXDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDatePickerViewController.m; sourceTree = "<group>"; };
+		34EA5BC4208B276B0048CFE1 /* NSArray+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Category.h"; sourceTree = "<group>"; };
+		34EA5BC5208B276B0048CFE1 /* UIView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extensions.m"; sourceTree = "<group>"; };
+		34EA5BC6208B276B0048CFE1 /* NSObject+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Category.h"; sourceTree = "<group>"; };
+		34EA5BCD208B383B0048CFE1 /* UIView+LLXAlertPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLXAlertPop.m"; sourceTree = "<group>"; };
+		34EA5BCE208B383B0048CFE1 /* UIView+LLXAlertPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LLXAlertPop.h"; sourceTree = "<group>"; };
+		34EA5BD0208B40870048CFE1 /* SpendingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpendingViewController.h; sourceTree = "<group>"; };
+		34EA5BD1208B40870048CFE1 /* SpendingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpendingViewController.m; sourceTree = "<group>"; };
 		34EBAC972084506B0005BF77 /* AllOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllOrderViewController.h; sourceTree = "<group>"; };
 		34EBAC982084506B0005BF77 /* AllOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllOrderViewController.m; sourceTree = "<group>"; };
 		34EBAC9A208450980005BF77 /* WaitOutOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitOutOrderViewController.h; sourceTree = "<group>"; };
@@ -374,6 +438,8 @@
 				349C096120887E7200D2AC38 /* FinancialHomeViewController.m */,
 				34528E922089E18C004CD04B /* IncomeViewController.h */,
 				34528E932089E18C004CD04B /* IncomeViewController.m */,
+				34EA5BD0208B40870048CFE1 /* SpendingViewController.h */,
+				34EA5BD1208B40870048CFE1 /* SpendingViewController.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -381,6 +447,7 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				34EA5B95208B1F010048CFE1 /* LGAlertView */,
 				344080262087362500FD36B8 /* YANScrollMenu */,
 				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
@@ -465,6 +532,8 @@
 			children = (
 				34528E962089EDB2004CD04B /* FinancialCollectionViewCell.h */,
 				34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */,
+				34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */,
+				34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -537,6 +606,20 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				34EA5BCE208B383B0048CFE1 /* UIView+LLXAlertPop.h */,
+				34EA5BCD208B383B0048CFE1 /* UIView+LLXAlertPop.m */,
+				34EA5BBE208B276B0048CFE1 /* LXDatePickerViewController.h */,
+				34EA5BC3208B276B0048CFE1 /* LXDatePickerViewController.m */,
+				34EA5BC4208B276B0048CFE1 /* NSArray+Category.h */,
+				34EA5BBD208B276B0048CFE1 /* NSArray+Category.m */,
+				34EA5BBC208B276B0048CFE1 /* NSDate+Calendar.h */,
+				34EA5BC1208B276B0048CFE1 /* NSDate+Calendar.m */,
+				34EA5BC6208B276B0048CFE1 /* NSObject+Category.h */,
+				34EA5BBB208B276A0048CFE1 /* NSObject+Category.m */,
+				34EA5BC0208B276B0048CFE1 /* UIColor+Extensions.h */,
+				34EA5BBF208B276B0048CFE1 /* UIColor+Extensions.m */,
+				34EA5BC2208B276B0048CFE1 /* UIView+Extensions.h */,
+				34EA5BC5208B276B0048CFE1 /* UIView+Extensions.m */,
 				34A0ED9A20809E9700659190 /* UITextView+Placeholder.h */,
 				34A0ED9920809E9700659190 /* UITextView+Placeholder.m */,
 			);
@@ -811,6 +894,38 @@
 			path = AAChartConfiger;
 			sourceTree = "<group>";
 		};
+		34EA5B95208B1F010048CFE1 /* LGAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */,
+				34EA5B97208B1F010048CFE1 /* LGAlertViewWindowsObserver.h */,
+				34EA5B98208B1F010048CFE1 /* LGAlertViewCell.h */,
+				34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */,
+				34EA5B9A208B1F010048CFE1 /* LGAlertViewController.h */,
+				34EA5B9B208B1F010048CFE1 /* LGAlertViewButtonProperties.h */,
+				34EA5B9C208B1F010048CFE1 /* LGAlertViewShadowView.h */,
+				34EA5B9D208B1F010048CFE1 /* LGAlertViewWindowContainer.m */,
+				34EA5B9E208B1F010048CFE1 /* LGAlertViewHelper.m */,
+				34EA5B9F208B1F010048CFE1 /* UIWindow+LGAlertView.h */,
+				34EA5BA0208B1F010048CFE1 /* LGAlertView.h */,
+				34EA5BA1208B1F010048CFE1 /* LGAlertViewButton.h */,
+				34EA5BA2208B1F010048CFE1 /* LGAlertViewCell.m */,
+				34EA5BA3208B1F010048CFE1 /* LGAlertViewWindowsObserver.m */,
+				34EA5BA4208B1F010048CFE1 /* LGAlertViewTextField.h */,
+				34EA5BA5208B1F010048CFE1 /* LGAlertViewShadowView.m */,
+				34EA5BA6208B1F010048CFE1 /* LGAlertViewButtonProperties.m */,
+				34EA5BA7208B1F010048CFE1 /* LGAlertViewWindow.h */,
+				34EA5BA8208B1F010048CFE1 /* LGAlertViewController.m */,
+				34EA5BA9208B1F010048CFE1 /* LGAlertViewHelper.h */,
+				34EA5BAA208B1F010048CFE1 /* LGAlertViewShared.h */,
+				34EA5BAB208B1F010048CFE1 /* LGAlertViewWindowContainer.h */,
+				34EA5BAC208B1F010048CFE1 /* LGAlertViewButton.m */,
+				34EA5BAD208B1F010048CFE1 /* LGAlertView.m */,
+				34EA5BAE208B1F010048CFE1 /* UIWindow+LGAlertView.m */,
+			);
+			path = LGAlertView;
+			sourceTree = "<group>";
+		};
 		4617F059D04BB6C0063A464F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,6 +1102,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -999,6 +1115,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1032,8 +1149,14 @@
 			files = (
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
+				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
+				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
+				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
+				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
+				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
+				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
@@ -1046,7 +1169,10 @@
 				345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */,
 				343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */,
+				34EA5BB8208B1F010048CFE1 /* LGAlertViewButton.m in Sources */,
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
+				34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */,
+				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
 				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
@@ -1055,17 +1181,23 @@
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
+				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
+				34EA5BCB208B276C0048CFE1 /* LXDatePickerViewController.m in Sources */,
 				343008D42081A0C800447992 /* SGPageTitleView.m in Sources */,
 				3411F2A72085C3B800C448FD /* ResponsibleViewController.m in Sources */,
 				34A0EDA120809F1800659190 /* TextInputTextView.m in Sources */,
+				34EA5BB4208B1F010048CFE1 /* LGAlertViewWindowsObserver.m in Sources */,
+				34EA5BC9208B276C0048CFE1 /* UIColor+Extensions.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
 				349C096220887E7200D2AC38 /* FinancialHomeViewController.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
+				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
 				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
+				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
@@ -1083,6 +1215,7 @@
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
 				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
+				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
@@ -1090,11 +1223,13 @@
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
+				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
+				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
@@ -1105,13 +1240,16 @@
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
+				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
 				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,
 				34B873242081EEEC00B05EBF /* AAArea.m in Sources */,
+				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
+				34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
 #import "NowYearViewController.h"
 #import "FinancialCollectionViewCell.h"
 #import "IncomeViewController.h"
+#import "SpendingViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -141,7 +142,8 @@
     }
     else if (indexPath.row == 1)
     {
-
+        SpendingViewController *vc = [[SpendingViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 2)
     {
