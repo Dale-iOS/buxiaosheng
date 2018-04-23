@@ -85,7 +85,7 @@
     self.titleLabel.sd_layout
     .leftSpaceToView(self, 15)
     .topSpaceToView(self, 20)
-    .widthIs(29)
+    .widthIs(50)
     .heightIs(15);
     
     self.beforeLabel.sd_layout

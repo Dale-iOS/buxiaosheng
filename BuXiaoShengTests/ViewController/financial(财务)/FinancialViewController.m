@@ -18,6 +18,9 @@
 #import "FinancialCollectionViewCell.h"
 #import "IncomeViewController.h"
 #import "SpendingViewController.h"
+#import "AuditViewController.h"
+#import "PaymentOrderViewController.h"
+#import "BankDetailViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -137,21 +140,33 @@
     
     if (indexPath.row == 0) {
 
+        //销售
         IncomeViewController *vc = [[IncomeViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 1)
     {
+        //支出
         SpendingViewController *vc = [[SpendingViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 2)
     {
-
+        //审批
+        AuditViewController *vc = [[AuditViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 3)
     {
-       
+       //审批
+        PaymentOrderViewController *vc = [[PaymentOrderViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 4)
+    {
+        //银行明细
+        BankDetailViewController *vc = [[BankDetailViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

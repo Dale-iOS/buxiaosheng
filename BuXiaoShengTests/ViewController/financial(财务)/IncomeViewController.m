@@ -12,10 +12,9 @@
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
 #import "ArrearsNameTextInputCell.h"
-#import "LGAlertView.h"
 #import "UIView+LLXAlertPop.h"
 
-@interface IncomeViewController ()<LZHTableViewDelegate,LGAlertViewDelegate>
+@interface IncomeViewController ()<LZHTableViewDelegate>
 {
     UILabel *lab;
 }
@@ -43,7 +42,7 @@
 @property (nonatomic, strong) UIView *headerView1;
 ///灰色背景条2
 @property (nonatomic, strong) UIView *headerView2;
-///下一步按钮
+///保存按钮
 @property (nonatomic, strong) UIButton *saveBtn;
 
 
@@ -105,7 +104,7 @@
     [self setSectionOne];
     self.mainTabelView.dataSoure = self.datasource;
     
-    //下一步按钮
+    //保存按钮
     self.saveBtn = [UIButton new];
     self.saveBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
     self.saveBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];

@@ -29,6 +29,9 @@
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 
+///保存按钮
+@property (nonatomic, strong) UIButton *saveBtn;
+
 @end
 
 @implementation SpendingViewController
@@ -71,6 +74,17 @@
     [self setSectionTwo];
     [self setSectionThree];
     self.mainTabelView.dataSoure = self.datasource;
+    
+    //保存按钮
+    self.saveBtn = [UIButton new];
+    self.saveBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
+    self.saveBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    [self.saveBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [self.saveBtn addTarget:self action:@selector(saveBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    //    self.nextBtn.titleLabel.text = @"下一步";
+    self.saveBtn.titleLabel.textColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.saveBtn];
     
 }
 
@@ -141,7 +155,11 @@
     
     
 }
-
+#pragma mark -------- 点击事件 ----------
+- (void)saveBtnOnClickAction
+{
+    NSLog(@"点击了 提交 按钮");
+}
 - (void)toList
 {
     NSLog(@"点击了列表图标");

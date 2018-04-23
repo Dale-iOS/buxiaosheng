@@ -11,8 +11,6 @@
 #import "SaleViewController.h"
 #import "SalesDemandViewController.h"
 #import "FinancialViewController.h"
-#import "FinancialHomeViewController.h"
-
 
 @interface HomeEntranceView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -103,8 +101,6 @@
         FinancialViewController *vc = [[FinancialViewController alloc]init];
         [[self viewController].navigationController pushViewController:vc animated:YES];
         
-//        FinancialHomeViewController *vc1 = [[FinancialHomeViewController alloc]init];
-//        [[self viewController].navigationController pushViewController:vc1 animated:YES];
     }
     
 }

@@ -16,4 +16,5 @@ inhibit_all_warnings!
     pod 'CWLateralSlide'
     pod 'YYKit'
     pod 'pop'
+    pod 'EasyNavigation'
 end

@@ -53,7 +53,10 @@
 #define CD_Text                         UIColorFromRGB(0x000000)
 //#define CD_Text33                       UIColorFromRGB(0x333333)
 #define CD_Text33                       [UIColor colorWithHexString:@"#333333"]
-#define CD_Text66                       UIColorFromRGB(0x666666)
+//#define CD_Text66                       UIColorFromRGB(0x666666)
+
+#define CD_Text66                       [UIColor colorWithHexString:@"#666666"]
+
 //#define CD_Text99                       UIColorFromRGB(0x999999)
 #define CD_Text99                       [UIColor colorWithHexString:@"#999999"]
 #define CD_textCC                       [UIColor colorWithHexString:@"#cccccc"]

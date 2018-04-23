@@ -35,6 +35,23 @@
     return lab;
 }
 
++ (UIView *)navWhiteTitleView:(NSString *)_title
+{
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    lab.backgroundColor = [UIColor clearColor];
+    //lab.backgroundColor = [UIColor redColor];
+    
+    //lab.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+    
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.font = [UIFont boldSystemFontOfSize:17];
+    lab.textColor = [UIColor whiteColor];
+    // lab.alpha=0.5;
+    
+    lab.text = _title;
+    return lab;
+}
+
 //!!!!: 通用navigation 返回按钮
 /**
  *    @brief    通用navigation 返回按钮
@@ -83,5 +100,17 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;
 }
+
++(UIImage*) createImageWithColor:(UIColor*) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}  
 
 @end

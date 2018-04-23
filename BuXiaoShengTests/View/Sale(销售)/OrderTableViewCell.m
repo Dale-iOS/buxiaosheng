@@ -159,11 +159,11 @@
     return distributionLabel;
 }
 
-///自动布局
+//自动布局
 - (void)setSDlayout
 {
     self.bgView.sd_layout
-    .topSpaceToView(contentView, 5)
+    .topSpaceToView(contentView, 10)
     .leftSpaceToView(contentView, 8)
     .widthIs(APPWidth -16)
     .heightIs(110);

@@ -14,6 +14,7 @@
 
 //创建navigation title
 + (UIView *)navTitleView:(NSString *)_title;
++ (UIView *)navWhiteTitleView:(NSString *)_title;
 
 //+ (UIView *)navTitleView2:(NSString *)_title;
 //
@@ -23,4 +24,6 @@
 + (UIBarButtonItem*)navLeftBackBtn:(id)_target action:(SEL)selector;
 //创建navigation 右按钮是图片的
 + (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector image:(UIImage *)image;
+//颜色转换图片
++(UIImage*) createImageWithColor:(UIColor*) color;
 @end

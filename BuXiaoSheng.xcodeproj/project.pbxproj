@@ -41,13 +41,20 @@
 		34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EBD207F404200710F91 /* DemandListTableViewCell.m */; };
 		34602EC2207F69C800710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
 		34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
+		346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */; };
+		346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ACC208D7DAE00F4B054 /* AuditViewController.m */; };
+		346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ACF208D96F800F4B054 /* PaymentOrderViewController.m */; };
+		346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD2208D97B900F4B054 /* SupplierViewController.m */; };
+		346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD5208D97DC00F4B054 /* ProducersViewController.m */; };
+		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
+		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
+		346B6ADF208DDDCA00F4B054 /* bankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */; };
 		347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */; };
 		349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095E208872C900D2AC38 /* LZHHomeMenuCell.m */; };
-		349C096220887E7200D2AC38 /* FinancialHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C096120887E7200D2AC38 /* FinancialHomeViewController.m */; };
 		349C09662088900100D2AC38 /* GetPlistArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C09652088900100D2AC38 /* GetPlistArray.m */; };
 		349C096D208890BE00D2AC38 /* citydict.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349C0967208890BD00D2AC38 /* citydict.plist */; };
 		349C096E208890BE00D2AC38 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349C0968208890BD00D2AC38 /* city.plist */; };
@@ -221,6 +228,22 @@
 		34602EBD207F404200710F91 /* DemandListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemandListTableViewCell.m; sourceTree = "<group>"; };
 		34602EC0207F69C800710F91 /* TextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
 		34602EC1207F69C800710F91 /* TextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
+		346B6AC8208D7A3F00F4B054 /* AuditTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditTableViewCell.h; sourceTree = "<group>"; };
+		346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditTableViewCell.m; sourceTree = "<group>"; };
+		346B6ACB208D7DAE00F4B054 /* AuditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditViewController.h; sourceTree = "<group>"; };
+		346B6ACC208D7DAE00F4B054 /* AuditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditViewController.m; sourceTree = "<group>"; };
+		346B6ACE208D96F800F4B054 /* PaymentOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentOrderViewController.h; sourceTree = "<group>"; };
+		346B6ACF208D96F800F4B054 /* PaymentOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentOrderViewController.m; sourceTree = "<group>"; };
+		346B6AD1208D97B900F4B054 /* SupplierViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplierViewController.h; sourceTree = "<group>"; };
+		346B6AD2208D97B900F4B054 /* SupplierViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplierViewController.m; sourceTree = "<group>"; };
+		346B6AD4208D97DC00F4B054 /* ProducersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducersViewController.h; sourceTree = "<group>"; };
+		346B6AD5208D97DC00F4B054 /* ProducersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducersViewController.m; sourceTree = "<group>"; };
+		346B6AD7208D981700F4B054 /* ProcessorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessorsViewController.h; sourceTree = "<group>"; };
+		346B6AD8208D981700F4B054 /* ProcessorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessorsViewController.m; sourceTree = "<group>"; };
+		346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailViewController.h; sourceTree = "<group>"; };
+		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
+		346B6ADD208DDDCA00F4B054 /* bankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bankTableViewCell.h; sourceTree = "<group>"; };
+		346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bankTableViewCell.m; sourceTree = "<group>"; };
 		347D64CA207F062500407FC4 /* SalesDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandViewController.h; sourceTree = "<group>"; };
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
@@ -229,8 +252,6 @@
 		349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHMenuBtnView.m; sourceTree = "<group>"; };
 		349C095D208872C900D2AC38 /* LZHHomeMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHHomeMenuCell.h; sourceTree = "<group>"; };
 		349C095E208872C900D2AC38 /* LZHHomeMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHHomeMenuCell.m; sourceTree = "<group>"; };
-		349C096020887E7200D2AC38 /* FinancialHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialHomeViewController.h; sourceTree = "<group>"; };
-		349C096120887E7200D2AC38 /* FinancialHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialHomeViewController.m; sourceTree = "<group>"; };
 		349C09642088900100D2AC38 /* GetPlistArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetPlistArray.h; sourceTree = "<group>"; };
 		349C09652088900100D2AC38 /* GetPlistArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPlistArray.m; sourceTree = "<group>"; };
 		349C0967208890BD00D2AC38 /* citydict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydict.plist; sourceTree = "<group>"; };
@@ -434,12 +455,22 @@
 			children = (
 				342AF9382086F21C0043EA2E /* FinancialViewController.h */,
 				342AF9392086F21C0043EA2E /* FinancialViewController.m */,
-				349C096020887E7200D2AC38 /* FinancialHomeViewController.h */,
-				349C096120887E7200D2AC38 /* FinancialHomeViewController.m */,
 				34528E922089E18C004CD04B /* IncomeViewController.h */,
 				34528E932089E18C004CD04B /* IncomeViewController.m */,
 				34EA5BD0208B40870048CFE1 /* SpendingViewController.h */,
 				34EA5BD1208B40870048CFE1 /* SpendingViewController.m */,
+				346B6ACB208D7DAE00F4B054 /* AuditViewController.h */,
+				346B6ACC208D7DAE00F4B054 /* AuditViewController.m */,
+				346B6ACE208D96F800F4B054 /* PaymentOrderViewController.h */,
+				346B6ACF208D96F800F4B054 /* PaymentOrderViewController.m */,
+				346B6AD1208D97B900F4B054 /* SupplierViewController.h */,
+				346B6AD2208D97B900F4B054 /* SupplierViewController.m */,
+				346B6AD4208D97DC00F4B054 /* ProducersViewController.h */,
+				346B6AD5208D97DC00F4B054 /* ProducersViewController.m */,
+				346B6AD7208D981700F4B054 /* ProcessorsViewController.h */,
+				346B6AD8208D981700F4B054 /* ProcessorsViewController.m */,
+				346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */,
+				346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -534,6 +565,10 @@
 				34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */,
 				34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */,
 				34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */,
+				346B6AC8208D7A3F00F4B054 /* AuditTableViewCell.h */,
+				346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */,
+				346B6ADD208DDDCA00F4B054 /* bankTableViewCell.h */,
+				346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -1096,6 +1131,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Addition/Addition.framework",
 				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyNavigation/EasyNavigation.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
@@ -1109,6 +1145,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Addition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyNavigation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -1156,7 +1193,9 @@
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
+				346B6ADF208DDDCA00F4B054 /* bankTableViewCell.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
+				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
@@ -1172,6 +1211,7 @@
 				34EA5BB8208B1F010048CFE1 /* LGAlertViewButton.m in Sources */,
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
 				34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */,
+				346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */,
 				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
@@ -1180,6 +1220,7 @@
 				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
+				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
 				34EA5BCB208B276C0048CFE1 /* LXDatePickerViewController.m in Sources */,
@@ -1190,7 +1231,7 @@
 				34EA5BC9208B276C0048CFE1 /* UIColor+Extensions.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
-				349C096220887E7200D2AC38 /* FinancialHomeViewController.m in Sources */,
+				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
@@ -1208,6 +1249,7 @@
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
+				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
@@ -1221,6 +1263,7 @@
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
+				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
@@ -1229,6 +1272,7 @@
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
+				346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */,
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
