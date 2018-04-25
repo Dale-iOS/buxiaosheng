@@ -21,6 +21,7 @@
 #import "AuditViewController.h"
 #import "PaymentOrderViewController.h"
 #import "BankDetailViewController.h"
+#import "BankDetailListViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -166,6 +167,11 @@
     {
         //银行明细
         BankDetailViewController *vc = [[BankDetailViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 5)
+    {
+        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

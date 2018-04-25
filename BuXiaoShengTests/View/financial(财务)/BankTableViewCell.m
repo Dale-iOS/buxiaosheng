@@ -1,15 +1,15 @@
 //
-//  bankTableViewCell.m
+//  BankTableViewCell.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/23.
+//  Created by 罗镇浩 on 2018/4/24.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import "bankTableViewCell.h"
+#import "BankTableViewCell.h"
 
-@implementation bankTableViewCell
-@synthesize bgView,iconImageView,titleLabel,lastLabel,addLabel,totalLabel,bottomBgView;
+@implementation BankTableViewCell
+@synthesize bgView,cornerWhiteBgView,iconImageView,titleLabel,lastLabel,addLabel,totalLabel,bottomBgView;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -18,16 +18,12 @@
         
         self.selectionStyle = UITableViewCellAccessoryNone;
         
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         
         [self setSDlayout];
         
     }
     return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
 }
 
 - (UIView *)bgView
@@ -40,6 +36,18 @@
         [contentView addSubview:(bgView = view)];
     }
     return bgView;
+}
+
+- (UIView *)cornerWhiteBgView
+{
+    if (cornerWhiteBgView == nil) {
+        
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = [UIColor whiteColor];
+        //        view.layer.cornerRadius = 5.0f;
+        [contentView addSubview:(cornerWhiteBgView = view)];
+    }
+    return cornerWhiteBgView;
 }
 
 - (UIImageView *)iconImageView
@@ -60,7 +68,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.text = @"中国工商银行";
         label.textAlignment = NSTextAlignmentLeft;
-        label.font = FONT(14);
+        label.font = [UIFont boldSystemFontOfSize:14];
         label.textColor = CD_Text33;
         [contentView addSubview:(titleLabel = label)];
     }
@@ -76,7 +84,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
-        [contentView addSubview:(titleLabel = label)];
+        [contentView addSubview:(lastLabel = label)];
     }
     return lastLabel;
 }
@@ -100,7 +108,7 @@
     if (totalLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"2454545.00";
+        label.text = @"累计：2454545.00";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -111,10 +119,10 @@
 
 - (UIView *)bottomBgView
 {
-    if (bottomBgView == nil )
-    {
+    if (bottomBgView == nil) {
+        
         UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor clearColor];
+        view.backgroundColor = [UIColor redColor];
         [contentView addSubview:(bottomBgView = view)];
     }
     return bottomBgView;
@@ -123,18 +131,68 @@
 - (void)setSDlayout
 {
     self.bgView.sd_layout
-    .topSpaceToView(contentView, 0)
+    .topSpaceToView(contentView, 5)
     .leftSpaceToView(contentView, 0)
     .widthIs(APPWidth -30)
-    .heightIs(123);
+    .heightIs(133);
     
+    //    self.bottomBgView.sd_layout
+    //    .bottomSpaceToView(self.bgView, -10)
+    //    .leftSpaceToView(contentView, 0)
+    //    .widthIs(APPWidth -30)
+    //    .heightIs(10);
+    
+    //    self.cornerWhiteBgView.sd_layout
+    //    .topSpaceToView(self.bgView, 0)
+    //    .leftSpaceToView(self.bgView, 0)
+    //    .widthIs(APPWidth -30)
+    //    .heightIs(10);
+    
+    self.iconImageView.sd_layout
+    .leftSpaceToView(contentView, 15)
+    //    .centerYEqualToView(self.bgView)
+    .topSpaceToView(contentView, 40)
+    .widthIs(40)
+    .heightIs(40);
+    
+    self.titleLabel.sd_layout
+    .leftSpaceToView(self.iconImageView, 15)
+    .topSpaceToView(self.contentView, 20)
+    .widthIs(250)
+    .heightIs(15);
+    
+    self.lastLabel.sd_layout
+    .leftEqualToView(self.titleLabel)
+    .topSpaceToView(self.titleLabel, 15)
+    .widthIs(300)
+    .heightIs(13);
+    
+    self.addLabel.sd_layout
+    .leftEqualToView(self.titleLabel)
+    .topSpaceToView(self.lastLabel, 10)
+    .widthIs(300)
+    .heightIs(13);
+    
+    self.totalLabel.sd_layout
+    .leftEqualToView(self.titleLabel)
+    .topSpaceToView(self.addLabel, 10)
+    .widthIs(300)
+    .heightIs(13);
+    
+    
+    
+}
 
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    
 }
 
 @end

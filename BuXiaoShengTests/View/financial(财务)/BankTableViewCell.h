@@ -1,17 +1,20 @@
 //
-//  bankTableViewCell.h
+//  BankTableViewCell.h
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/23.
+//  Created by 罗镇浩 on 2018/4/24.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface bankTableViewCell : UITableViewCell
+@interface BankTableViewCell : UITableViewCell
+
+///底图
+@property (nonatomic, strong) UIView *bgView;
 
 ///圆角背景
-@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIView *cornerWhiteBgView;
 
 ///头像
 @property (nonatomic, strong) UIImageView *iconImageView;

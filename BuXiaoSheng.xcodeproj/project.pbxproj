@@ -30,6 +30,12 @@
 		3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 344080282087364300FD36B8 /* YANFlowLayout.m */; };
 		3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802A2087364300FD36B8 /* YANScrollMenu.m */; };
 		3440802F2087367F00FD36B8 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802D2087367F00FD36B8 /* DataSource.m */; };
+		344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2295208EDEDB009ADA33 /* BankConversionViewController.m */; };
+		344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2298208F09F4009ADA33 /* BankConversionCell.m */; };
+		344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F229B208F0A64009ADA33 /* BankTableViewCell.m */; };
+		344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F229E208F2569009ADA33 /* BankDetailListViewController.m */; };
+		344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */; };
+		344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */; };
 		34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E902089CA9F004CD04B /* PagingTableViewCell.m */; };
 		34528E942089E18C004CD04B /* IncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E932089E18C004CD04B /* IncomeViewController.m */; };
 		34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */; };
@@ -48,7 +54,6 @@
 		346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD5208D97DC00F4B054 /* ProducersViewController.m */; };
 		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
-		346B6ADF208DDDCA00F4B054 /* bankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */; };
 		347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
@@ -212,6 +217,18 @@
 		3440802A2087364300FD36B8 /* YANScrollMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YANScrollMenu.m; sourceTree = "<group>"; };
 		3440802D2087367F00FD36B8 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		3440802E2087367F00FD36B8 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		344F2294208EDEDB009ADA33 /* BankConversionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionViewController.h; sourceTree = "<group>"; };
+		344F2295208EDEDB009ADA33 /* BankConversionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankConversionViewController.m; sourceTree = "<group>"; };
+		344F2297208F09F4009ADA33 /* BankConversionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionCell.h; sourceTree = "<group>"; };
+		344F2298208F09F4009ADA33 /* BankConversionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankConversionCell.m; sourceTree = "<group>"; };
+		344F229A208F0A64009ADA33 /* BankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankTableViewCell.h; sourceTree = "<group>"; };
+		344F229B208F0A64009ADA33 /* BankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankTableViewCell.m; sourceTree = "<group>"; };
+		344F229D208F2569009ADA33 /* BankDetailListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailListViewController.h; sourceTree = "<group>"; };
+		344F229E208F2569009ADA33 /* BankDetailListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailListViewController.m; sourceTree = "<group>"; };
+		344F22A0208F25C1009ADA33 /* BankDetailListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailListTableViewCell.h; sourceTree = "<group>"; };
+		344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailListTableViewCell.m; sourceTree = "<group>"; };
+		344F22A3208F403D009ADA33 /* DocumentBankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentBankDetailViewController.h; sourceTree = "<group>"; };
+		344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentBankDetailViewController.m; sourceTree = "<group>"; };
 		34528E8F2089CA9F004CD04B /* PagingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagingTableViewCell.h; sourceTree = "<group>"; };
 		34528E902089CA9F004CD04B /* PagingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagingTableViewCell.m; sourceTree = "<group>"; };
 		34528E922089E18C004CD04B /* IncomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeViewController.h; sourceTree = "<group>"; };
@@ -242,8 +259,6 @@
 		346B6AD8208D981700F4B054 /* ProcessorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessorsViewController.m; sourceTree = "<group>"; };
 		346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailViewController.h; sourceTree = "<group>"; };
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
-		346B6ADD208DDDCA00F4B054 /* bankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bankTableViewCell.h; sourceTree = "<group>"; };
-		346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bankTableViewCell.m; sourceTree = "<group>"; };
 		347D64CA207F062500407FC4 /* SalesDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandViewController.h; sourceTree = "<group>"; };
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
@@ -471,6 +486,12 @@
 				346B6AD8208D981700F4B054 /* ProcessorsViewController.m */,
 				346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */,
 				346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */,
+				344F2294208EDEDB009ADA33 /* BankConversionViewController.h */,
+				344F2295208EDEDB009ADA33 /* BankConversionViewController.m */,
+				344F229D208F2569009ADA33 /* BankDetailListViewController.h */,
+				344F229E208F2569009ADA33 /* BankDetailListViewController.m */,
+				344F22A3208F403D009ADA33 /* DocumentBankDetailViewController.h */,
+				344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -567,8 +588,12 @@
 				34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */,
 				346B6AC8208D7A3F00F4B054 /* AuditTableViewCell.h */,
 				346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */,
-				346B6ADD208DDDCA00F4B054 /* bankTableViewCell.h */,
-				346B6ADE208DDDCA00F4B054 /* bankTableViewCell.m */,
+				344F229A208F0A64009ADA33 /* BankTableViewCell.h */,
+				344F229B208F0A64009ADA33 /* BankTableViewCell.m */,
+				344F2297208F09F4009ADA33 /* BankConversionCell.h */,
+				344F2298208F09F4009ADA33 /* BankConversionCell.m */,
+				344F22A0208F25C1009ADA33 /* BankDetailListTableViewCell.h */,
+				344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -1193,11 +1218,11 @@
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
-				346B6ADF208DDDCA00F4B054 /* bankTableViewCell.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
+				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				34528E942089E18C004CD04B /* IncomeViewController.m in Sources */,
@@ -1242,12 +1267,14 @@
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
+				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
+				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
@@ -1260,6 +1287,7 @@
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,
+				344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
@@ -1270,6 +1298,7 @@
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
+				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
 				346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */,
@@ -1283,6 +1312,7 @@
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
+				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
 				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,
