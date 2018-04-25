@@ -15,6 +15,11 @@
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
 		3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B52086026600C448FD /* DrawerAddressViewController.m */; };
 		342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AF9392086F21C0043EA2E /* FinancialViewController.m */; };
+		342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D95192090374C0018B363 /* CustomerArrearsViewController.m */; };
+		342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */; };
+		342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951F209063970018B363 /* CustomerReconciliationViewController.m */; };
+		342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */; };
+		342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D9525209076ED0018B363 /* ReconciliationDetailViewController.m */; };
 		343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C62081A0C800447992 /* UIView+SGPagingView.m */; };
 		343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C82081A0C800447992 /* SGPageContentScrollView.m */; };
 		343008D32081A0C800447992 /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008C92081A0C800447992 /* SGPageContentView.m */; };
@@ -192,6 +197,16 @@
 		3411F2B52086026600C448FD /* DrawerAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerAddressViewController.m; sourceTree = "<group>"; };
 		342AF9382086F21C0043EA2E /* FinancialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewController.h; sourceTree = "<group>"; };
 		342AF9392086F21C0043EA2E /* FinancialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewController.m; sourceTree = "<group>"; };
+		342D95182090374C0018B363 /* CustomerArrearsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsViewController.h; sourceTree = "<group>"; };
+		342D95192090374C0018B363 /* CustomerArrearsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerArrearsViewController.m; sourceTree = "<group>"; };
+		342D951B209057DE0018B363 /* CustomerArrearsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsTableViewCell.h; sourceTree = "<group>"; };
+		342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerArrearsTableViewCell.m; sourceTree = "<group>"; };
+		342D951E209063970018B363 /* CustomerReconciliationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerReconciliationViewController.h; sourceTree = "<group>"; };
+		342D951F209063970018B363 /* CustomerReconciliationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerReconciliationViewController.m; sourceTree = "<group>"; };
+		342D95212090642C0018B363 /* CustomerReconciliationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerReconciliationTableViewCell.h; sourceTree = "<group>"; };
+		342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerReconciliationTableViewCell.m; sourceTree = "<group>"; };
+		342D9524209076ED0018B363 /* ReconciliationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReconciliationDetailViewController.h; sourceTree = "<group>"; };
+		342D9525209076ED0018B363 /* ReconciliationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReconciliationDetailViewController.m; sourceTree = "<group>"; };
 		343008C32081A0BA00447992 /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
 		343008C52081A0C800447992 /* UIView+SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGPagingView.h"; sourceTree = "<group>"; };
 		343008C62081A0C800447992 /* UIView+SGPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGPagingView.m"; sourceTree = "<group>"; };
@@ -492,6 +507,12 @@
 				344F229E208F2569009ADA33 /* BankDetailListViewController.m */,
 				344F22A3208F403D009ADA33 /* DocumentBankDetailViewController.h */,
 				344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */,
+				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
+				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
+				342D951E209063970018B363 /* CustomerReconciliationViewController.h */,
+				342D951F209063970018B363 /* CustomerReconciliationViewController.m */,
+				342D9524209076ED0018B363 /* ReconciliationDetailViewController.h */,
+				342D9525209076ED0018B363 /* ReconciliationDetailViewController.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -594,6 +615,10 @@
 				344F2298208F09F4009ADA33 /* BankConversionCell.m */,
 				344F22A0208F25C1009ADA33 /* BankDetailListTableViewCell.h */,
 				344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */,
+				342D951B209057DE0018B363 /* CustomerArrearsTableViewCell.h */,
+				342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */,
+				342D95212090642C0018B363 /* CustomerReconciliationTableViewCell.h */,
+				342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */,
 			);
 			path = "financial(财务)";
 			sourceTree = "<group>";
@@ -1214,6 +1239,8 @@
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
+				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
+				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
@@ -1275,6 +1302,7 @@
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
+				342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
@@ -1308,7 +1336,9 @@
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
+				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
+				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,

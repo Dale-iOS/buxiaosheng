@@ -22,6 +22,8 @@
 #import "PaymentOrderViewController.h"
 #import "BankDetailViewController.h"
 #import "BankDetailListViewController.h"
+#import "CustomerArrearsViewController.h"
+#import "CustomerReconciliationViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -124,7 +126,7 @@
     else if (indexPath.row == 6)
     {
         cell.iconImageView.image = IMAGE(@"customerarrears");
-        cell.titileLabel.text = @"客户欠款单";
+        cell.titileLabel.text = @"客户欠款表";
     }
     else if (indexPath.row == 7)
     {
@@ -172,6 +174,18 @@
     else if (indexPath.row == 5)
     {
         BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 6)
+    {
+        //客户欠款表
+        CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 7)
+    {
+//        客户对账
+        CustomerReconciliationViewController *vc = [[CustomerReconciliationViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
