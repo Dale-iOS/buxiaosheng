@@ -115,42 +115,42 @@
     
     
     //单据来源
-    self.sourceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.sourceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.sourceCell.lineView.hidden = YES;
     self.sourceCell.titleLabel.text = @"单据来源";
     self.sourceCell.contentTF.text = @"客户收据单";
     self.sourceCell.userInteractionEnabled = NO;
     
     //单号
-    self.orderNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.orderNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.orderNumCell.lineView.hidden = YES;
     self.orderNumCell.titleLabel.text = @"单号";
     self.orderNumCell.contentTF.text = @"fasdnja";
     self.orderNumCell.userInteractionEnabled = NO;
     
     //品名
-    self.nameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.nameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.nameCell.lineView.hidden = YES;
     self.nameCell.titleLabel.text = @"品名";
     self.nameCell.contentTF.text = @"缕空皮章仔";
     self.nameCell.userInteractionEnabled = NO;
     
     //数量
-    self.numCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.numCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.numCell.lineView.hidden = YES;
     self.numCell.titleLabel.text = @"数量";
     self.numCell.contentTF.text = @"45461";
     self.numCell.userInteractionEnabled = NO;
     
     //单价
-    self.unitCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.unitCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.unitCell.lineView.hidden = YES;
     self.unitCell.titleLabel.text = @"结算单位";
     self.unitCell.contentTF.text = @"片";
     self.unitCell.userInteractionEnabled = NO;
     
     //单价
-    self.unitPriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.unitPriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.unitPriceCell.lineView.hidden = YES;
     self.unitPriceCell.titleLabel.text = @"单价";
     self.unitPriceCell.contentTF.text = @"15";
@@ -158,7 +158,7 @@
     
 
     //应收账款
-    self.shouldCollectCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.shouldCollectCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.shouldCollectCell.lineView.hidden = YES;
     self.shouldCollectCell.titleLabel.text = @"应收账款";
     self.shouldCollectCell.contentTF.text = @"56000.00";
@@ -166,7 +166,7 @@
     self.shouldCollectCell.userInteractionEnabled = NO;
     
     //金额
-    self.priceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.priceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.priceCell.lineView.hidden = YES;
     self.priceCell.titleLabel.text = @"金额";
     self.priceCell.contentTF.text = @"450.00";
@@ -174,17 +174,19 @@
     self.priceCell.userInteractionEnabled = NO;
     
     //已收账款
-    self.didCollectCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.didCollectCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.didCollectCell.lineView.hidden = YES;
     self.didCollectCell.titleLabel.text = @"已收账款";
     self.didCollectCell.contentTF.text = @"23000.00";
+    self.didCollectCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
     self.didCollectCell.userInteractionEnabled = NO;
     
     //累计欠款
-    self.totailArrearsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.totailArrearsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
     self.totailArrearsCell.lineView.hidden = YES;
     self.totailArrearsCell.titleLabel.text = @"已收账款";
     self.totailArrearsCell.contentTF.text = @"23000.00";
+    self.totailArrearsCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
     self.totailArrearsCell.userInteractionEnabled = NO;
     
     //摘要

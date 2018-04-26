@@ -35,6 +35,12 @@
 		3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 344080282087364300FD36B8 /* YANFlowLayout.m */; };
 		3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802A2087364300FD36B8 /* YANScrollMenu.m */; };
 		3440802F2087367F00FD36B8 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802D2087367F00FD36B8 /* DataSource.m */; };
+		34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */; };
+		34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */; };
+		34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF32091A76200BDB309 /* ClientNeedsViewController.m */; };
+		34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF62091A7A600BDB309 /* BaseViewController.m */; };
+		34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF92091B16C00BDB309 /* OutboundViewController.m */; };
+		34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */; };
 		344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2295208EDEDB009ADA33 /* BankConversionViewController.m */; };
 		344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2298208F09F4009ADA33 /* BankConversionCell.m */; };
 		344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F229B208F0A64009ADA33 /* BankTableViewCell.m */; };
@@ -232,6 +238,18 @@
 		3440802A2087364300FD36B8 /* YANScrollMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YANScrollMenu.m; sourceTree = "<group>"; };
 		3440802D2087367F00FD36B8 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		3440802E2087367F00FD36B8 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouseHomeViewController.h; sourceTree = "<group>"; };
+		34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouseHomeViewController.m; sourceTree = "<group>"; };
+		34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouserTableViewCell.h; sourceTree = "<group>"; };
+		34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouserTableViewCell.m; sourceTree = "<group>"; };
+		34494DF22091A76200BDB309 /* ClientNeedsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientNeedsViewController.h; sourceTree = "<group>"; };
+		34494DF32091A76200BDB309 /* ClientNeedsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientNeedsViewController.m; sourceTree = "<group>"; };
+		34494DF52091A7A600BDB309 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		34494DF62091A7A600BDB309 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		34494DF82091B16C00BDB309 /* OutboundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutboundViewController.h; sourceTree = "<group>"; };
+		34494DF92091B16C00BDB309 /* OutboundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutboundViewController.m; sourceTree = "<group>"; };
+		34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignDeliveryViewController.h; sourceTree = "<group>"; };
+		34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignDeliveryViewController.m; sourceTree = "<group>"; };
 		344F2294208EDEDB009ADA33 /* BankConversionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionViewController.h; sourceTree = "<group>"; };
 		344F2295208EDEDB009ADA33 /* BankConversionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankConversionViewController.m; sourceTree = "<group>"; };
 		344F2297208F09F4009ADA33 /* BankConversionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionCell.h; sourceTree = "<group>"; };
@@ -600,6 +618,30 @@
 			path = YANScrollMenu;
 			sourceTree = "<group>";
 		};
+		34494DEA2091725800BDB309 /* warehouse(仓库) */ = {
+			isa = PBXGroup;
+			children = (
+				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
+				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
+				34494DF22091A76200BDB309 /* ClientNeedsViewController.h */,
+				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
+				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
+				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
+				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
+				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
+			);
+			path = "warehouse(仓库)";
+			sourceTree = "<group>";
+		};
+		34494DEE20917A0F00BDB309 /* warehouse(仓库) */ = {
+			isa = PBXGroup;
+			children = (
+				34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */,
+				34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */,
+			);
+			path = "warehouse(仓库)";
+			sourceTree = "<group>";
+		};
 		34528E952089E816004CD04B /* financial(财务) */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +829,7 @@
 		34A92B45207DE91300572648 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				34494DEA2091725800BDB309 /* warehouse(仓库) */,
 				342AF9372086F2070043EA2E /* financial(财务) */,
 				347D64C9207F05ED00407FC4 /* sale(销售) */,
 				343008D62081AC3D00447992 /* Home(首页) */,
@@ -799,6 +842,7 @@
 		34A92B46207DE93600572648 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				34494DEE20917A0F00BDB309 /* warehouse(仓库) */,
 				34528E952089E816004CD04B /* financial(财务) */,
 				34A92B55207DEE4300572648 /* Sale(销售) */,
 				34A92B54207DEDEE00572648 /* Home(首页) */,
@@ -828,6 +872,8 @@
 				34A0ED872080865A00659190 /* Utility */,
 				34A0ED542080827C00659190 /* Category */,
 				34A92B4A207DE9F700572648 /* Define */,
+				34494DF52091A7A600BDB309 /* BaseViewController.h */,
+				34494DF62091A7A600BDB309 /* BaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1241,6 +1287,7 @@
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
 				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
 				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,
+				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
@@ -1250,9 +1297,11 @@
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
+				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				34528E942089E18C004CD04B /* IncomeViewController.m in Sources */,
+				34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */,
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
 				34B873222081EEEC00B05EBF /* AABar.m in Sources */,
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
@@ -1286,9 +1335,11 @@
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
+				34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */,
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
 				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
+				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
@@ -1340,6 +1391,7 @@
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
+				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,

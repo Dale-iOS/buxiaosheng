@@ -8,13 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AuditTableViewCellDelegate <NSObject>
+
+- (void)didClickYesBtnInCell:(UITableViewCell *)cell;
+- (void)didClickNoBtnInCell:(UITableViewCell *)cell;
+
+@end
+
 @interface AuditTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<AuditTableViewCellDelegate> delegate;
 
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;
 
 ///头像
 @property (nonatomic, strong) UIImageView *iconImageView;
+
+///头像名字
+@property (nonatomic, strong) UILabel *iconNameLabel;
 
 ///标题
 @property (nonatomic, strong) UILabel *titleLabel;

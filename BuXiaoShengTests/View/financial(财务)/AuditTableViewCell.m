@@ -9,7 +9,7 @@
 #import "AuditTableViewCell.h"
 
 @implementation AuditTableViewCell
-@synthesize bgView,iconImageView,titleLabel,stateLabel,subLabel,priceLabel,lineView,timeLabel,yesBtn,noBtn,NumLabel;
+@synthesize bgView,iconImageView,iconNameLabel,titleLabel,stateLabel,subLabel,priceLabel,lineView,timeLabel,yesBtn,noBtn,NumLabel;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -50,6 +50,21 @@
     }
     return iconImageView;
 }
+
+- (UILabel *)iconNameLabel
+{
+    if (iconNameLabel == nil)
+    {
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"周鹏 ";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(12);
+        label.textColor = [UIColor whiteColor];
+        [self.iconImageView addSubview:(iconNameLabel = label)];
+    }
+    return iconNameLabel;
+}
+
 
 - (UILabel *)titleLabel
 {
@@ -161,6 +176,7 @@
         [btn setBackgroundColor:[UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f]];
         [btn setTitle:@"同意" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(yesBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:(yesBtn = btn)];
     }
     return yesBtn;
@@ -179,6 +195,7 @@
         [btn setTitle:@"拒绝" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(noBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:(noBtn = btn)];
     }
     return noBtn;
@@ -198,6 +215,12 @@
     .topSpaceToView(self.bgView, 28)
     .widthIs(40)
     .heightIs(40);
+    
+    self.iconNameLabel.sd_layout
+    .centerXEqualToView(self.iconImageView)
+    .centerYEqualToView(self.iconImageView)
+    .widthIs(40)
+    .heightIs(14);
     
     self.titleLabel.sd_layout
     .topSpaceToView(self.bgView, 20)
@@ -252,6 +275,21 @@
     .topSpaceToView(self.priceLabel, 10)
     .widthIs(250)
     .heightIs(13);
+}
+
+- (void)yesBtnClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickYesBtnInCell:)]) {
+        [self.delegate didClickYesBtnInCell:self];
+    }
+}
+
+- (void)noBtnClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickNoBtnInCell:)])
+    {
+        [self.delegate didClickNoBtnInCell:self];
+    }
 }
 
 - (void)awakeFromNib {

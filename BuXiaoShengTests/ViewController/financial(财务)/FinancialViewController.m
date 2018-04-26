@@ -291,14 +291,16 @@
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
 }
 
+- (void)backMethod
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
 }
 
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+ 
 
 @end

@@ -11,6 +11,7 @@
 #import "SaleViewController.h"
 #import "SalesDemandViewController.h"
 #import "FinancialViewController.h"
+#import "WarehouseHomeViewController.h"
 
 @interface HomeEntranceView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -101,6 +102,11 @@
         FinancialViewController *vc = [[FinancialViewController alloc]init];
         [[self viewController].navigationController pushViewController:vc animated:YES];
         
+    }
+    else if (indexPath.row == 2)
+    {
+        WarehouseHomeViewController *vc = [[WarehouseHomeViewController alloc]init];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
     }
     
 }
