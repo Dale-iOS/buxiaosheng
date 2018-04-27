@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  指派送货
 
 #import "AssignDeliveryViewController.h"
 
@@ -39,8 +39,7 @@
     
     self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
-    
-    
+
     [self initData];
     
     [self setupChildViews];

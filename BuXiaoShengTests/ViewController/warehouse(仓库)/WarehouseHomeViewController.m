@@ -12,7 +12,9 @@
 #import "WarehouserTableViewCell.h"
 #import "ClientNeedsViewController.h"
 #import "OutboundViewController.h"
+#import "WithSingleViewControllerViewController.h"
 #import "AssignDeliveryViewController.h"
+#import "DyeingDemandViewController.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 
@@ -143,18 +145,18 @@
         AssignDeliveryViewController *vc = [[AssignDeliveryViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-//    else if (indexPath.row == 3)
-//    {
-//        //库存
-//        PaymentOrderViewController *vc = [[PaymentOrderViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-//    else if (indexPath.row == 4)
-//    {
-//        //染指需求
-//        BankDetailViewController *vc = [[BankDetailViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    else if (indexPath.row == 3)
+    {
+        //库存
+        WithSingleViewControllerViewController *vc = [[WithSingleViewControllerViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 4)
+    {
+        //染指需求
+        DyeingDemandViewController *vc = [[DyeingDemandViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 //    else if (indexPath.row == 5)
 //    {
     //

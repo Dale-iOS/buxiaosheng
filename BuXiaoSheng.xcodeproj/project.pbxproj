@@ -137,6 +137,14 @@
 		34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873082081EEEC00B05EBF /* AAChartModel.m */; };
 		34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730A2081EEEC00B05EBF /* AAOptions.m */; };
 		34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730B2081EEEC00B05EBF /* AASeriesElement.m */; };
+		34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */; };
+		34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AF2092C61A009E7589 /* DyeingViewController.m */; };
+		34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B22092C7F1009E7589 /* ProcessViewController.m */; };
+		34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */; };
+		34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B82092FC73009E7589 /* HRTableViewOne.m */; };
+		34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B92092FC73009E7589 /* HRTabView.m */; };
+		34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */; };
+		34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25C1209308A8009E7589 /* SegmentDyeingView.m */; };
 		34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */; };
 		34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */; };
 		34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */; };
@@ -410,6 +418,22 @@
 		34B8730B2081EEEC00B05EBF /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
 		34B8730C2081EEEC00B05EBF /* AAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartView.h; sourceTree = "<group>"; };
 		34B8730D2081EEEC00B05EBF /* AAChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartModel.h; sourceTree = "<group>"; };
+		34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithSingleViewControllerViewController.h; sourceTree = "<group>"; };
+		34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithSingleViewControllerViewController.m; sourceTree = "<group>"; };
+		34DE25AE2092C61A009E7589 /* DyeingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeingViewController.h; sourceTree = "<group>"; };
+		34DE25AF2092C61A009E7589 /* DyeingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyeingViewController.m; sourceTree = "<group>"; };
+		34DE25B12092C7F1009E7589 /* ProcessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
+		34DE25B22092C7F1009E7589 /* ProcessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
+		34DE25B42092CB83009E7589 /* DyeingDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeingDemandViewController.h; sourceTree = "<group>"; };
+		34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyeingDemandViewController.m; sourceTree = "<group>"; };
+		34DE25B72092FC72009E7589 /* HRTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRTabView.h; sourceTree = "<group>"; };
+		34DE25B82092FC73009E7589 /* HRTableViewOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRTableViewOne.m; sourceTree = "<group>"; };
+		34DE25B92092FC73009E7589 /* HRTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRTabView.m; sourceTree = "<group>"; };
+		34DE25BA2092FC73009E7589 /* HRTableViewOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRTableViewOne.h; sourceTree = "<group>"; };
+		34DE25BD2092FE0E009E7589 /* SegmentDyeingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentDyeingViewController.h; sourceTree = "<group>"; };
+		34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingViewController.m; sourceTree = "<group>"; };
+		34DE25C0209308A8009E7589 /* SegmentDyeingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentDyeingView.h; sourceTree = "<group>"; };
+		34DE25C1209308A8009E7589 /* SegmentDyeingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingView.m; sourceTree = "<group>"; };
 		34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrearsNameTextInputCell.h; sourceTree = "<group>"; };
 		34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrearsNameTextInputCell.m; sourceTree = "<group>"; };
 		34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewTextField.m; sourceTree = "<group>"; };
@@ -629,6 +653,16 @@
 				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
 				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
 				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
+				34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */,
+				34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */,
+				34DE25AE2092C61A009E7589 /* DyeingViewController.h */,
+				34DE25AF2092C61A009E7589 /* DyeingViewController.m */,
+				34DE25B12092C7F1009E7589 /* ProcessViewController.h */,
+				34DE25B22092C7F1009E7589 /* ProcessViewController.m */,
+				34DE25B42092CB83009E7589 /* DyeingDemandViewController.h */,
+				34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */,
+				34DE25BD2092FE0E009E7589 /* SegmentDyeingViewController.h */,
+				34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */,
 			);
 			path = "warehouse(仓库)";
 			sourceTree = "<group>";
@@ -638,6 +672,8 @@
 			children = (
 				34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */,
 				34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */,
+				34DE25C0209308A8009E7589 /* SegmentDyeingView.h */,
+				34DE25C1209308A8009E7589 /* SegmentDyeingView.m */,
 			);
 			path = "warehouse(仓库)";
 			sourceTree = "<group>";
@@ -718,6 +754,10 @@
 		349C096320888EFD00D2AC38 /* 假的 */ = {
 			isa = PBXGroup;
 			children = (
+				34DE25BA2092FC73009E7589 /* HRTableViewOne.h */,
+				34DE25B82092FC73009E7589 /* HRTableViewOne.m */,
+				34DE25B72092FC72009E7589 /* HRTabView.h */,
+				34DE25B92092FC73009E7589 /* HRTabView.m */,
 				349C0968208890BD00D2AC38 /* city.plist */,
 				349C0969208890BD00D2AC38 /* citydata.plist */,
 				349C0967208890BD00D2AC38 /* citydict.plist */,
@@ -1288,6 +1328,7 @@
 				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
 				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
+				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
@@ -1314,6 +1355,7 @@
 				34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */,
 				346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */,
 				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
+				34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
 				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
@@ -1348,8 +1390,10 @@
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
+				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
+				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
@@ -1359,6 +1403,7 @@
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
+				34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
@@ -1390,10 +1435,12 @@
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
+				34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */,
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
+				34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
@@ -1402,6 +1449,7 @@
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
+				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
