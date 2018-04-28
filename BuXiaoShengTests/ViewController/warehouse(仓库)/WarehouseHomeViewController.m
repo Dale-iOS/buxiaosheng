@@ -15,6 +15,7 @@
 #import "WithSingleViewControllerViewController.h"
 #import "AssignDeliveryViewController.h"
 #import "DyeingDemandViewController.h"
+#import "StockTrackingViewController.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 
@@ -169,12 +170,12 @@
 //        CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
-//    else if (indexPath.row == 7)
-//    {
-//        //采购加工
-//        CustomerReconciliationViewController *vc = [[CustomerReconciliationViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    else if (indexPath.row == 7)
+    {
+        //备货跟踪
+        StockTrackingViewController *vc = [[StockTrackingViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

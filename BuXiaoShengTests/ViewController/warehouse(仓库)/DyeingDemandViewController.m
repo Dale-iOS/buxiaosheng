@@ -12,6 +12,7 @@
 
 #import "SegmentDyeingViewController.h"
 #import "SegmentDyeingView.h"
+#import "SegmentProcessView.h"
 
 @interface DyeingDemandViewController ()<UIScrollViewDelegate>
 
@@ -77,9 +78,9 @@
 - (void)settingScrollView{
     
 //    HRTabView *tableView = [[HRTabView alloc] initWithFrame:CGRectMake(self.view.width,64, self.view.width, self.view.height-64-49)];
-    HRTableViewOne *tableViewOne = [[HRTableViewOne alloc] initWithFrame:CGRectMake(0,0, self.view.width, self.view.height-64-49)];
+    SegmentDyeingView *dyeingView = [[SegmentDyeingView alloc] initWithFrame:CGRectMake(0,0, self.view.width, self.view.height-64-49)];
     
-    SegmentDyeingView *dyeingView = [[SegmentDyeingView alloc]initWithFrame:CGRectMake(self.view.width,0, self.view.width, self.view.height-64-49)];
+    SegmentProcessView *processView = [[SegmentProcessView alloc]initWithFrame:CGRectMake(self.view.width,0, self.view.width, self.view.height-64-49)];
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64+40, self.view.width, self.view.height)];
     
@@ -96,7 +97,7 @@
     
     [self.view addSubview:scrollView];
     [scrollView addSubview:dyeingView];
-    [scrollView addSubview:tableViewOne];
+    [scrollView addSubview:processView];
     _scrollView = scrollView;
     
 }

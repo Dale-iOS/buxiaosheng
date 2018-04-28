@@ -1,18 +1,18 @@
 //
-//  SegmentDyeingView.m
+//  SegmentProcessView.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/27.
+//  Created by 罗镇浩 on 2018/4/28.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  织造（分段选择器）
+//  染色(分段选择器)
 
-#import "SegmentDyeingView.h"
+#import "SegmentProcessView.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "UITextView+Placeholder.h"
 #import "TextInputTextView.h"
 
-@interface SegmentDyeingView ()<LZHTableViewDelegate>
+@interface SegmentProcessView ()<LZHTableViewDelegate>
 
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -45,7 +45,7 @@
 @property (nonatomic, strong) UIButton *saveBtn;
 @end
 
-@implementation SegmentDyeingView
+@implementation SegmentProcessView
 @synthesize mainTabelView;
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -144,7 +144,7 @@
     .centerYEqualToView(oneView)
     .heightIs(13);
     
-//    计划产成品
+    //    计划产成品
     self.titleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.titleCell.rightArrowImageVIew.hidden = NO;
     self.titleCell.titleLabel.text = @"计划产成品";
@@ -160,12 +160,12 @@
     self.UnitCell.titleLabel.text = @"单位";
     self.UnitCell.contentTF.placeholder = @"公斤";
     
-//    条数
+    //    条数
     self.lineNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.lineNumCell.titleLabel.text = @"条数";
     self.lineNumCell.contentTF.placeholder = @"请输入数量条数";
     
-//    数量
+    //    数量
     self.numCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.numCell.titleLabel.text = @"数量";
     self.numCell.contentTF.placeholder = @"请输入数量";

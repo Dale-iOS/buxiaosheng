@@ -16,6 +16,7 @@
 #import "NowQuarterViewController.h"
 #import "NowYearViewController.h"
 #import "AAChartKit.h"
+#import "SetHomeViewController.h"
 
 @interface HomeViewController ()<LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -50,6 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.titleView = [Utility navTitleView:@"龙纺布行"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"homesetup")];
+
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
     
@@ -84,11 +88,11 @@
         [headerView addSubview:titleLabel];
         
         //导航栏右上角设置按钮
-        UIButton *setupBtn = [UIButton new];
-        setupBtn.frame = CGRectMake(self.view.frame.size.width -15-20, 15, 20, 20);
-        [setupBtn setBackgroundImage:[UIImage imageNamed:@"homesetup"] forState:UIControlStateNormal];
-        [setupBtn addTarget:self action:@selector(setupBtnOnClickAciont) forControlEvents:UIControlEventTouchUpInside];
-        [headerView addSubview:setupBtn];
+//        UIButton *setupBtn = [UIButton new];
+//        setupBtn.frame = CGRectMake(self.view.frame.size.width -15-20, 15, 20, 20);
+//        [setupBtn setBackgroundImage:[UIImage imageNamed:@"homesetup"] forState:UIControlStateNormal];
+//        [setupBtn addTarget:self action:@selector(setupBtnOnClickAciont) forControlEvents:UIControlEventTouchUpInside];
+//        [headerView addSubview:setupBtn];
         
         //阴影
         CAGradientLayer *layer = [CAGradientLayer layer];
@@ -257,9 +261,10 @@
 
 
 #pragma mark -------- 点击事件 -----------
-- (void)setupBtnOnClickAciont
+- (void)navigationSetupClick
 {
-    NSLog(@"点击了右上角的设置按钮");
+    SetHomeViewController *vc = [[SetHomeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //点击销售入口按钮
