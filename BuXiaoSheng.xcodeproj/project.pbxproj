@@ -142,6 +142,8 @@
 		34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873082081EEEC00B05EBF /* AAChartModel.m */; };
 		34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730A2081EEEC00B05EBF /* AAOptions.m */; };
 		34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730B2081EEEC00B05EBF /* AASeriesElement.m */; };
+		34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */; };
+		34BF66F22095CF22003768D2 /* SetWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */; };
 		34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */; };
 		34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AF2092C61A009E7589 /* DyeingViewController.m */; };
 		34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B22092C7F1009E7589 /* ProcessViewController.m */; };
@@ -433,6 +435,10 @@
 		34B8730B2081EEEC00B05EBF /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
 		34B8730C2081EEEC00B05EBF /* AAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartView.h; sourceTree = "<group>"; };
 		34B8730D2081EEEC00B05EBF /* AAChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartModel.h; sourceTree = "<group>"; };
+		34BF66ED2095C8F6003768D2 /* AddBranchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBranchViewController.h; sourceTree = "<group>"; };
+		34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBranchViewController.m; sourceTree = "<group>"; };
+		34BF66F02095CF22003768D2 /* SetWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetWarehouseViewController.h; sourceTree = "<group>"; };
+		34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetWarehouseViewController.m; sourceTree = "<group>"; };
 		34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithSingleViewControllerViewController.h; sourceTree = "<group>"; };
 		34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithSingleViewControllerViewController.m; sourceTree = "<group>"; };
 		34DE25AE2092C61A009E7589 /* DyeingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeingViewController.h; sourceTree = "<group>"; };
@@ -649,6 +655,10 @@
 			children = (
 				343747F4209460F600C64F4C /* SetHomeViewController.h */,
 				343747F5209460F600C64F4C /* SetHomeViewController.m */,
+				34BF66ED2095C8F6003768D2 /* AddBranchViewController.h */,
+				34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */,
+				34BF66F02095CF22003768D2 /* SetWarehouseViewController.h */,
+				34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1456,6 +1466,7 @@
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,
+				34BF66F22095CF22003768D2 /* SetWarehouseViewController.m in Sources */,
 				344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
@@ -1471,6 +1482,7 @@
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
 				346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */,
+				34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */,
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,

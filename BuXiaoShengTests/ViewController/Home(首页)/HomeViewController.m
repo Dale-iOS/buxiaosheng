@@ -18,6 +18,7 @@
 #import "AAChartKit.h"
 #import "SetHomeViewController.h"
 
+
 @interface HomeViewController ()<LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;

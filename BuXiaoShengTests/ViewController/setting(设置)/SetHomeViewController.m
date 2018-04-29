@@ -9,6 +9,8 @@
 #import "SetHomeViewController.h"
 #import "SettingCell.h"
 #import "LZHTableView.h"
+#import "AddBranchViewController.h"
+
 
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -34,6 +36,8 @@
 @property (nonatomic, strong) SettingCell *companyCell;
 ///配方
 @property (nonatomic, strong) SettingCell *recipeCell;
+///切换用户按钮
+@property (nonatomic, strong) UIButton *changeUserBtn;
 
 @end
 
@@ -44,6 +48,8 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"设置"];
+    
+    [self setupUI];
 }
 
 - (LZHTableView *)mainTabelView
@@ -68,21 +74,216 @@
     
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
-    //    [self setupSectionOne];
+    [self setupSectionOne];
     [self setupSectionTwo];
-    //    [self setSectionThree];
+    [self setupSectionThree];
     self.mainTabelView.dataSoure = self.datasource;
+    
+    self.changeUserBtn = [UIButton new];
+    [self.changeUserBtn setTitle:@"切换用户" forState:UIControlStateNormal];
+    [self.changeUserBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+    self.changeUserBtn.titleLabel.font = FONT(14);
+    [self.changeUserBtn setBackgroundColor:[UIColor whiteColor]];
+    self.changeUserBtn.frame = CGRectMake(0, APPHeight -49, APPWidth, 49);
+    [self.changeUserBtn addTarget:self action:@selector(changeUserBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.changeUserBtn];
     
 }
 
+- (void)setupSectionOne
+{
+//    UIView *remarkView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 69)];
+//    remarkView.backgroundColor = LZHBackgroundColor;
+
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    //店铺
+    self.storeCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.storeCell.iconImageView.image = IMAGE(@"store");
+    self.storeCell.titleLabel.text = @"店铺";
+    UITapGestureRecognizer *storeCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(storeCellTapAction)];
+    [self.storeCell addGestureRecognizer:storeCellTap];
+    
+    //仓库
+    self.warehouseCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.warehouseCell.iconImageView.image = IMAGE(@"warehouse1");
+    self.warehouseCell.titleLabel.text = @"仓库";
+    UITapGestureRecognizer *warehouseCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(warehouseCellTapAction)];
+    [self.warehouseCell addGestureRecognizer:warehouseCellTap];
+    
+    
+    //现金银行
+    self.bankCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.bankCell.iconImageView.image = IMAGE(@"bank");
+    self.bankCell.titleLabel.text = @"现金银行";
+    UITapGestureRecognizer *bankCellCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bankCellTapAction)];
+    [self.bankCell addGestureRecognizer:bankCellCellTap];
+    
+    
+    
+    //审批人管理
+    self.auditManagerCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.auditManagerCell.iconImageView.image = IMAGE(@"auditManager");
+    self.auditManagerCell.titleLabel.text = @"审批人管理";
+    UITapGestureRecognizer *auditManagerCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(auditManagerCellTapAction)];
+    [self.auditManagerCell addGestureRecognizer:auditManagerCellTap];
+    
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.storeCell,self.warehouseCell,self.bankCell,self.auditManagerCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+    
+}
+
+
 - (void)setupSectionTwo
 {
-    UIView *remarkView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 69)];
-    remarkView.backgroundColor = LZHBackgroundColor;
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
     
-    self.storeCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.storeCell.ti
+    //科目
+    self.subjectCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.subjectCell.iconImageView.image = IMAGE(@"subject");
+    self.subjectCell.titleLabel.text = @"科目";
+    UITapGestureRecognizer *subjectCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subjectCellTapAction)];
+    [self.subjectCell addGestureRecognizer:subjectCellTap];
+    
+    
+    //组织架构
+    self.organizationCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.organizationCell.iconImageView.image = IMAGE(@"organization");
+    self.organizationCell.titleLabel.text = @"组织架构";
+    UITapGestureRecognizer *organizationCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(organizationCellTapAction)];
+    [self.organizationCell addGestureRecognizer:organizationCellTap];
+    
+    
+    //产品资料
+    self.productCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.productCell.iconImageView.image = IMAGE(@"product");
+    self.productCell.titleLabel.text = @"产品资料";
+    UITapGestureRecognizer *productCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(productCellTapAction)];
+    [self.productCell addGestureRecognizer:productCellTap];
+    
+    
+    //客户
+    self.clientCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.clientCell.iconImageView.image = IMAGE(@"client");
+    self.clientCell.titleLabel.text = @"客户";
+    UITapGestureRecognizer *clientCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clientCellTapAction)];
+    [self.clientCell addGestureRecognizer:clientCellTap];
+    
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.subjectCell,self.organizationCell,self.productCell,self.clientCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
 }
+
+- (void)setupSectionThree
+{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    //厂商
+    self.companyCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.companyCell.iconImageView.image = IMAGE(@"company");
+    self.companyCell.titleLabel.text = @"厂商";
+    UITapGestureRecognizer *companyCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(companyCellTapAction)];
+    [self.companyCell addGestureRecognizer:companyCellTap];
+    
+    //配方表
+    self.recipeCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.recipeCell.iconImageView.image = IMAGE(@"recipe");
+    self.recipeCell.titleLabel.text = @"配方表";
+    UITapGestureRecognizer *recipeCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recipeCellTapAction)];
+    [self.recipeCell addGestureRecognizer:recipeCellTap];
+    
+    
+   
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.companyCell,self.recipeCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
+
+#pragma mark ------ 点击事件 --------
+//店铺
+- (void)storeCellTapAction
+{
+    NSLog(@"storeCellTapAction");
+    
+    AddBranchViewController *vc = [[AddBranchViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//仓库
+- (void)warehouseCellTapAction
+{
+    NSLog(@"warehouseCellTapAction");
+}
+
+//现金银行
+- (void)bankCellTapAction
+{
+    NSLog(@"bankCellTapAction");
+}
+
+//审批人管理
+- (void)auditManagerCellTapAction
+{
+    NSLog(@"auditManagerCellTapAction");
+}
+
+//科目
+- (void)subjectCellTapAction
+{
+    NSLog(@"subjectCellTapAction");
+}
+
+//组织架构
+- (void)organizationCellTapAction
+{
+    NSLog(@"organizationCellTapAction");
+}
+
+//产品资料
+- (void)productCellTapAction
+{
+    NSLog(@"productCellTapAction");
+}
+
+//客户
+- (void)clientCellTapAction
+{
+    NSLog(@"clientCellTapAction");
+}
+
+//厂商
+- (void)companyCellTapAction
+{
+    NSLog(@"companyCellTapAction");
+}
+
+//配方表
+- (void)recipeCellTapAction
+{
+    NSLog(@"recipeCellTapAction");
+}
+
+
+//切换用户
+- (void)changeUserBtnClick
+{
+    NSLog(@"点击了 切换用户 按钮");
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
