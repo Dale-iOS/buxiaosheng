@@ -1,22 +1,22 @@
 //
-//  SetWarehouseViewController.m
+//  CashBankViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/29.
+//  Created by 罗镇浩 on 2018/5/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  仓库页面
+//  现金银行页面
 
-#import "SetWarehouseViewController.h"
-#import "AddWarehouseViewController.h"
+#import "CashBankViewController.h"
+#import "CashBankTableViewCell.h"
+#import "AddBankViewController.h"
 
+@interface CashBankViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface SetWarehouseViewController ()<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong)UITableView *tableView;
 
 @end
 
-@implementation SetWarehouseViewController
+@implementation CashBankViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +26,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"仓库"];
+    self.navigationItem.titleView = [Utility navTitleView:@"现金银行"];
     
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"add1")];
     
@@ -34,11 +34,11 @@
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    //隐藏分割线
+    self.tableView.separatorStyle = NO;
 
-    
-    [self.view addSubview:_tableView];
+    [self.view addSubview:self.tableView];
 }
-
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -53,42 +53,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 85;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"Cellid";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"CashBankTableViewCell";
+    CashBankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = @"大龙纺";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [[CashBankTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         
     }
     return cell;
 }
 
-//点击cell触发此方法
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
-}
-
-
-
-
 - (void)navigationAddClick
 {
     NSLog(@"点击了添加");
     
-    AddWarehouseViewController *vc = [[AddWarehouseViewController alloc]init];
+    AddBankViewController *vc = [[AddBankViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

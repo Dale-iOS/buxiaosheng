@@ -15,6 +15,14 @@
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
 		3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B52086026600C448FD /* DrawerAddressViewController.m */; };
 		342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AF9392086F21C0043EA2E /* FinancialViewController.m */; };
+		342CF64E20995F82007C329D /* AddWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF64D20995F82007C329D /* AddWarehouseViewController.m */; };
+		342CF65120996579007C329D /* ModifyWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65020996579007C329D /* ModifyWarehouseViewController.m */; };
+		342CF6542099688F007C329D /* CashBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6532099688F007C329D /* CashBankViewController.m */; };
+		342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65620996AAC007C329D /* CashBankTableViewCell.m */; };
+		342CF65A209970D7007C329D /* AddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF659209970D7007C329D /* AddBankViewController.m */; };
+		342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65C209998A9007C329D /* AuditManagerViewController.m */; };
+		342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65F20999990007C329D /* AuditManagerTableViewCell.m */; };
+		342CF6632099B603007C329D /* SubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6622099B603007C329D /* SubjectViewController.m */; };
 		342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D95192090374C0018B363 /* CustomerArrearsViewController.m */; };
 		342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */; };
 		342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951F209063970018B363 /* CustomerReconciliationViewController.m */; };
@@ -218,6 +226,22 @@
 		3411F2B52086026600C448FD /* DrawerAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerAddressViewController.m; sourceTree = "<group>"; };
 		342AF9382086F21C0043EA2E /* FinancialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewController.h; sourceTree = "<group>"; };
 		342AF9392086F21C0043EA2E /* FinancialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewController.m; sourceTree = "<group>"; };
+		342CF64C20995F82007C329D /* AddWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWarehouseViewController.h; sourceTree = "<group>"; };
+		342CF64D20995F82007C329D /* AddWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWarehouseViewController.m; sourceTree = "<group>"; };
+		342CF64F20996579007C329D /* ModifyWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyWarehouseViewController.h; sourceTree = "<group>"; };
+		342CF65020996579007C329D /* ModifyWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyWarehouseViewController.m; sourceTree = "<group>"; };
+		342CF6522099688F007C329D /* CashBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashBankViewController.h; sourceTree = "<group>"; };
+		342CF6532099688F007C329D /* CashBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashBankViewController.m; sourceTree = "<group>"; };
+		342CF65520996AAC007C329D /* CashBankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashBankTableViewCell.h; sourceTree = "<group>"; };
+		342CF65620996AAC007C329D /* CashBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashBankTableViewCell.m; sourceTree = "<group>"; };
+		342CF658209970D7007C329D /* AddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBankViewController.h; sourceTree = "<group>"; };
+		342CF659209970D7007C329D /* AddBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBankViewController.m; sourceTree = "<group>"; };
+		342CF65B209998A9007C329D /* AuditManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditManagerViewController.h; sourceTree = "<group>"; };
+		342CF65C209998A9007C329D /* AuditManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditManagerViewController.m; sourceTree = "<group>"; };
+		342CF65E20999990007C329D /* AuditManagerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditManagerTableViewCell.h; sourceTree = "<group>"; };
+		342CF65F20999990007C329D /* AuditManagerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditManagerTableViewCell.m; sourceTree = "<group>"; };
+		342CF6612099B603007C329D /* SubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectViewController.h; sourceTree = "<group>"; };
+		342CF6622099B603007C329D /* SubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubjectViewController.m; sourceTree = "<group>"; };
 		342D95182090374C0018B363 /* CustomerArrearsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsViewController.h; sourceTree = "<group>"; };
 		342D95192090374C0018B363 /* CustomerArrearsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerArrearsViewController.m; sourceTree = "<group>"; };
 		342D951B209057DE0018B363 /* CustomerArrearsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsTableViewCell.h; sourceTree = "<group>"; };
@@ -659,6 +683,18 @@
 				34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */,
 				34BF66F02095CF22003768D2 /* SetWarehouseViewController.h */,
 				34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */,
+				342CF64C20995F82007C329D /* AddWarehouseViewController.h */,
+				342CF64D20995F82007C329D /* AddWarehouseViewController.m */,
+				342CF64F20996579007C329D /* ModifyWarehouseViewController.h */,
+				342CF65020996579007C329D /* ModifyWarehouseViewController.m */,
+				342CF6522099688F007C329D /* CashBankViewController.h */,
+				342CF6532099688F007C329D /* CashBankViewController.m */,
+				342CF658209970D7007C329D /* AddBankViewController.h */,
+				342CF659209970D7007C329D /* AddBankViewController.m */,
+				342CF65B209998A9007C329D /* AuditManagerViewController.h */,
+				342CF65C209998A9007C329D /* AuditManagerViewController.m */,
+				342CF6612099B603007C329D /* SubjectViewController.h */,
+				342CF6622099B603007C329D /* SubjectViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -668,6 +704,10 @@
 			children = (
 				343747FB2094640500C64F4C /* SettingCell.h */,
 				343747FC2094640500C64F4C /* SettingCell.m */,
+				342CF65520996AAC007C329D /* CashBankTableViewCell.h */,
+				342CF65620996AAC007C329D /* CashBankTableViewCell.m */,
+				342CF65E20999990007C329D /* AuditManagerTableViewCell.h */,
+				342CF65F20999990007C329D /* AuditManagerTableViewCell.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1389,6 +1429,7 @@
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
+				342CF65120996579007C329D /* ModifyWarehouseViewController.m in Sources */,
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
@@ -1415,6 +1456,7 @@
 				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
+				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
@@ -1440,10 +1482,12 @@
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
+				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
+				342CF65A209970D7007C329D /* AddBankViewController.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
@@ -1459,9 +1503,11 @@
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
 				34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */,
+				342CF64E20995F82007C329D /* AddWarehouseViewController.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
+				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
 				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
@@ -1486,6 +1532,7 @@
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
+				342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
@@ -1493,6 +1540,7 @@
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
 				34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */,
+				342CF6632099B603007C329D /* SubjectViewController.m in Sources */,
 				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,

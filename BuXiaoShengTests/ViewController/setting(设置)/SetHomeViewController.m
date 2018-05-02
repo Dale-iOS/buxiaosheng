@@ -10,7 +10,10 @@
 #import "SettingCell.h"
 #import "LZHTableView.h"
 #import "AddBranchViewController.h"
-
+#import "SetWarehouseViewController.h"
+#import "CashBankViewController.h"
+#import "AuditManagerViewController.h"
+#import "SubjectViewController.h"
 
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -226,24 +229,36 @@
 - (void)warehouseCellTapAction
 {
     NSLog(@"warehouseCellTapAction");
+    
+    SetWarehouseViewController *vc = [[SetWarehouseViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //现金银行
 - (void)bankCellTapAction
 {
     NSLog(@"bankCellTapAction");
+    
+    CashBankViewController *vc = [[CashBankViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //审批人管理
 - (void)auditManagerCellTapAction
 {
     NSLog(@"auditManagerCellTapAction");
+    
+    AuditManagerViewController *vc = [[AuditManagerViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //科目
 - (void)subjectCellTapAction
 {
     NSLog(@"subjectCellTapAction");
+    
+    SubjectViewController *vc = [[SubjectViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //组织架构
