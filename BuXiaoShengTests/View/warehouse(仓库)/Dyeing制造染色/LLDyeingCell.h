@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LLDyeingCell : UITableViewCell
-
+@property (nonatomic,strong) UITextField * textField;
+@property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,strong) NSArray <NSDictionary*>* datas;
 @end

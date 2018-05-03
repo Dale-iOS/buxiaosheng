@@ -266,10 +266,11 @@
 		B50505EA209AB2DA00CE7E4D /* XLForm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B50505A0209AB2DA00CE7E4D /* XLForm.bundle */; };
 		B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */; };
 		B5050669209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */; };
-		B505066C209ABEAC00CE7E4D /* LLDyeingCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066B209ABEAC00CE7E4D /* LLDyeingCollectionCell.m */; };
-		B505066D209ABEAC00CE7E4D /* LLDyeingCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066B209ABEAC00CE7E4D /* LLDyeingCollectionCell.m */; };
+		B505066C209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */; };
+		B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */; };
 		B5050670209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
 		B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
+		B5050674209AE17000CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -701,10 +702,12 @@
 		B50505A0209AB2DA00CE7E4D /* XLForm.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XLForm.bundle; sourceTree = "<group>"; };
 		B5050666209ABE2300CE7E4D /* LLDyeingSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingSectionView.h; sourceTree = "<group>"; };
 		B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingSectionView.m; sourceTree = "<group>"; };
-		B505066A209ABEAC00CE7E4D /* LLDyeingCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionCell.h; sourceTree = "<group>"; };
-		B505066B209ABEAC00CE7E4D /* LLDyeingCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionCell.m; sourceTree = "<group>"; };
+		B505066A209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionContainerCell.h; sourceTree = "<group>"; };
+		B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionContainerCell.m; sourceTree = "<group>"; };
 		B505066E209ABEE200CE7E4D /* LLDyeingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCell.h; sourceTree = "<group>"; };
 		B505066F209ABEE200CE7E4D /* LLDyeingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCell.m; sourceTree = "<group>"; };
+		B5050672209AE17000CE7E4D /* LLDyeingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionViewCell.h; sourceTree = "<group>"; };
+		B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1523,10 +1526,12 @@
 			children = (
 				B5050666209ABE2300CE7E4D /* LLDyeingSectionView.h */,
 				B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */,
-				B505066A209ABEAC00CE7E4D /* LLDyeingCollectionCell.h */,
-				B505066B209ABEAC00CE7E4D /* LLDyeingCollectionCell.m */,
+				B505066A209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.h */,
+				B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */,
 				B505066E209ABEE200CE7E4D /* LLDyeingCell.h */,
 				B505066F209ABEE200CE7E4D /* LLDyeingCell.m */,
+				B5050672209AE17000CE7E4D /* LLDyeingCollectionViewCell.h */,
+				B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */,
 			);
 			path = "Dyeing制造染色";
 			sourceTree = "<group>";
@@ -1771,7 +1776,7 @@
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				34528E942089E18C004CD04B /* IncomeViewController.m in Sources */,
 				34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */,
-				B505066C209ABEAC00CE7E4D /* LLDyeingCollectionCell.m in Sources */,
+				B505066C209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
 				B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
 				34B873222081EEEC00B05EBF /* AABar.m in Sources */,
@@ -1957,7 +1962,7 @@
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
-				B505066D209ABEAC00CE7E4D /* LLDyeingCollectionCell.m in Sources */,
+				B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
 				347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */,
 				B50505E6209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
@@ -1986,6 +1991,7 @@
 				B50505A6209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
+				B5050674209AE17000CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505BE209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
 				B50505D6209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34602EC2207F69C800710F91 /* TextInputCell.m in Sources */,

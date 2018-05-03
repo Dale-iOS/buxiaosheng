@@ -7,10 +7,12 @@
 //  织造染色页面
 
 #import "DyeingViewController.h"
-#import "XLForm.h"
-
+#import "LLDyeingSectionView.h"
+#import "LLDyeingCell.h"
 @interface DyeingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
+
+@property (nonatomic,strong) NSArray <NSDictionary*> * fristRowsInSectionData;
 @end
 
 @implementation DyeingViewController
@@ -34,17 +36,24 @@
     return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    if (section == 0) {
+        return self.fristRowsInSectionData.count;
+    }
+    return self.fristRowsInSectionData.count;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), 200)];
+    LLDyeingSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLDyeingSectionView"];
+    return sectionView;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [UIView new];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    
+    LLDyeingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLDyeingCell"];
+    cell.datas = self.fristRowsInSectionData;
+    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -52,7 +61,7 @@
     return 44;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
+    return 75;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001;
@@ -66,9 +75,27 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        [_tableView registerClass:[LLDyeingSectionView class] forHeaderFooterViewReuseIdentifier:@"LLDyeingSectionView"];
+        [_tableView registerClass:[LLDyeingCell class] forCellReuseIdentifier:@"LLDyeingCell"];
     }
     return _tableView;
+}
+
+-(NSArray *)fristRowsInSectionData {
+    if (!_fristRowsInSectionData) {
+        ///注: 所表type 0 代表文字黑   1 代表文字灰色 2 代表文字红色
+        _fristRowsInSectionData = @[
+                                    @{@"key":@"结算单位",@"type":@"0",@"value":@""},
+                                    @{@"key":@"批号",@"type":@"0",@"value":@""},
+                                    @{@"key":@"货架",@"type":@"0",@"value":@""},
+                                    @{@"key":@"单价",@"type":@"0",@"value":@"10"},
+                                    @{@"key":@"出库数量",@"type":@"1",@"value":@"2800"},
+                                    @{@"key":@"标签数量",@"type":@"0",@"value":@"2900"},
+                                    @{@"key":@"结算数量",@"type":@"0",@"value":@"3000"},
+                                    @{@"key":@"本单应收金额",@"type":@"2",@"value":@"25689.00"},
+                                    ];
+    }
+    return _fristRowsInSectionData;
 }
 
 
