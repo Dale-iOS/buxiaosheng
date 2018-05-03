@@ -112,6 +112,7 @@
     if (section == 0||section == 1) {
         LLDyeingSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLDyeingSectionView"];
         sectionView.section = section;
+        sectionView.foldingBtn.selected = _folding[section];
         sectionView.delegate = self;
         return sectionView;
     }
@@ -190,7 +191,6 @@
 
 -(void)sectionViewDelegate:(LLDyeingSectionView *)sectionView {
     _folding[sectionView.section] = ! _folding[sectionView.section];
-    sectionView.foldingBtn.selected  =  _folding[sectionView.section];
     [UIView animateWithDuration:0.0 animations:^{
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
     }];
