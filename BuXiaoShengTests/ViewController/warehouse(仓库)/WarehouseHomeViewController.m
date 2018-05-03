@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"财务"];
+    self.navigationItem.titleView = [Utility navTitleView:@"仓库"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -97,7 +97,7 @@
     }
     else if (indexPath.row == 3)
     {
-        cell.iconImageView.image = IMAGE(@"warehouse1");
+        cell.iconImageView.image = IMAGE(@"warehouse11");
         cell.titileLabel.text = @"库存";
     }
     else if (indexPath.row == 4)
