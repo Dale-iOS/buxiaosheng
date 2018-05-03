@@ -192,7 +192,7 @@
     _folding[sectionView.section] = ! _folding[sectionView.section];
     sectionView.foldingBtn.selected  =  _folding[sectionView.section];
     [UIView animateWithDuration:0.0 animations:^{
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
     }];
     
     
