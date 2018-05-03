@@ -82,6 +82,7 @@
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
+		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */; };
 		349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095E208872C900D2AC38 /* LZHHomeMenuCell.m */; };
 		349C09662088900100D2AC38 /* GetPlistArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C09652088900100D2AC38 /* GetPlistArray.m */; };
@@ -425,6 +426,8 @@
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
+		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
+		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
 		349C095A2088725A00D2AC38 /* LZHMenuBtnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHMenuBtnView.h; sourceTree = "<group>"; };
 		349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHMenuBtnView.m; sourceTree = "<group>"; };
 		349C095D208872C900D2AC38 /* LZHHomeMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHHomeMenuCell.h; sourceTree = "<group>"; };
@@ -873,6 +876,8 @@
 				342CF65620996AAC007C329D /* CashBankTableViewCell.m */,
 				342CF65E20999990007C329D /* AuditManagerTableViewCell.h */,
 				342CF65F20999990007C329D /* AuditManagerTableViewCell.m */,
+				348DB848209ABFC100CD36CD /* DefaultBankCell.h */,
+				348DB849209ABFC100CD36CD /* DefaultBankCell.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1755,6 +1760,7 @@
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
+				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,

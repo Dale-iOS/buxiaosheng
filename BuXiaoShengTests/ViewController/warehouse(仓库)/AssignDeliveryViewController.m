@@ -40,9 +40,9 @@
     self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
 
-    [self initData];
+//    [self initData];
     
-    [self setupChildViews];
+//    [self setupChildViews];
 }
 
 #pragma mark - private
