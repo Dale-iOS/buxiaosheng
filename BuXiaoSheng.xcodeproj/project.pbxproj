@@ -83,6 +83,9 @@
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
+		348DB84D209AE38400CD36CD /* AddSubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84C209AE38400CD36CD /* AddSubjectViewController.m */; };
+		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
+		348DB853209AE44F00CD36CD /* AddPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB852209AE44F00CD36CD /* AddPeopleViewController.m */; };
 		349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */; };
 		349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095E208872C900D2AC38 /* LZHHomeMenuCell.m */; };
 		349C09662088900100D2AC38 /* GetPlistArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C09652088900100D2AC38 /* GetPlistArray.m */; };
@@ -429,6 +432,12 @@
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
+		348DB84B209AE38400CD36CD /* AddSubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSubjectViewController.h; sourceTree = "<group>"; };
+		348DB84C209AE38400CD36CD /* AddSubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSubjectViewController.m; sourceTree = "<group>"; };
+		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
+		348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifySubjectViewController.m; sourceTree = "<group>"; };
+		348DB851209AE44F00CD36CD /* AddPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPeopleViewController.h; sourceTree = "<group>"; };
+		348DB852209AE44F00CD36CD /* AddPeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPeopleViewController.m; sourceTree = "<group>"; };
 		349C095A2088725A00D2AC38 /* LZHMenuBtnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHMenuBtnView.h; sourceTree = "<group>"; };
 		349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHMenuBtnView.m; sourceTree = "<group>"; };
 		349C095D208872C900D2AC38 /* LZHHomeMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHHomeMenuCell.h; sourceTree = "<group>"; };
@@ -866,6 +875,12 @@
 				342CF65C209998A9007C329D /* AuditManagerViewController.m */,
 				342CF6612099B603007C329D /* SubjectViewController.h */,
 				342CF6622099B603007C329D /* SubjectViewController.m */,
+				348DB84B209AE38400CD36CD /* AddSubjectViewController.h */,
+				348DB84C209AE38400CD36CD /* AddSubjectViewController.m */,
+				348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */,
+				348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */,
+				348DB851209AE44F00CD36CD /* AddPeopleViewController.h */,
+				348DB852209AE44F00CD36CD /* AddPeopleViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1766,8 +1781,10 @@
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
+				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
+				348DB84D209AE38400CD36CD /* AddSubjectViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
 				342CF65120996579007C329D /* ModifyWarehouseViewController.m in Sources */,
@@ -1838,6 +1855,7 @@
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				B50505A9209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,
 				B50505D9209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
+				348DB853209AE44F00CD36CD /* AddPeopleViewController.m in Sources */,
 				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,

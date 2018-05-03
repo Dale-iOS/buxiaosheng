@@ -9,9 +9,11 @@
 #import "AddBankViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
+#import "DefaultBankCell.h"
 
 @interface AddBankViewController ()<LZHTableViewDelegate>
 
+@property (nonatomic,assign)BOOL isdefault;
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 
@@ -25,6 +27,8 @@
 @property (nonatomic, strong) TextInputCell *belongStoreCell;
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
+///设为默认
+@property (nonatomic, strong) DefaultBankCell *defaultCell;
 
 @end
 
@@ -69,6 +73,7 @@
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
     [self setupSectionOne];
+    [self setSectionTwo];
     self.mainTabelView.dataSoure = self.datasource;
 }
 
@@ -109,9 +114,41 @@
     [self.datasource addObject:item];
 }
 
+- (void)setSectionTwo
+{
+    self.defaultCell = [[DefaultBankCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.defaultCell.selectImageView.image = IMAGE(@"noSelect");
+    _isdefault = NO;
+    UITapGestureRecognizer *defaultCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(defaultCellAction)];
+    [self.defaultCell addGestureRecognizer:defaultCellTap];
+ 
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.defaultCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
 - (void)saveBtnClick
 {
     NSLog(@"saveBtnClick");
+}
+
+- (void)defaultCellAction
+{
+    NSLog(@"defaultCellAction");
+    
+    _isdefault = !_isdefault;
+    
+    if (!_isdefault) {
+        self.defaultCell.selectImageView.image = IMAGE(@"noSelect");
+    }else
+    {
+        self.defaultCell.selectImageView.image = IMAGE(@"yesSelect");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
