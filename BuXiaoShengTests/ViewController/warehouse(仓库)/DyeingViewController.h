@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XLFormViewController.h"
 
-@interface DyeingViewController : XLFormViewController
+#import "BaseViewController.h"
+@interface DyeingViewController : BaseViewController
 
 @end
