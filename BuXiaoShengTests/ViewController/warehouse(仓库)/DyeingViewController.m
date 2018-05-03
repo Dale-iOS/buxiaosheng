@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"织造染色"];
+    self.navigationItem.titleView = [Utility navTitleView:@"采购收货"];
 }
 
 - (void)didReceiveMemoryWarning {
