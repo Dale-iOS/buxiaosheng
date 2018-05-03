@@ -7,10 +7,10 @@
 //
 
 #import "LLDyeingCollectionContainerCell.h"
-
-@interface LLDyeingCollectionCell()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+#import "LLDyeingCollectionViewCell.h"
+@interface LLDyeingCollectionContainerCell()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @end
-@implementation LLDyeingCollectionCell
+@implementation LLDyeingCollectionContainerCell
 {
     UILabel * _codeLable;
     UIButton * _addBtn;
@@ -29,7 +29,7 @@
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        [self setupUI];
     }
     return self;
 }
@@ -53,9 +53,9 @@
     }];
     
     UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
-    layout.itemSize = CGSizeMake(50, 50);
-    layout.minimumLineSpacing = 15;
-    layout.minimumInteritemSpacing = 15;
+    layout.itemSize = CGSizeMake(20, 20);
+    layout.minimumLineSpacing = 10;
+    layout.minimumInteritemSpacing = 10;
     _leftCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [_leftCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     _leftCollectionView.backgroundColor = [UIColor whiteColor];
@@ -63,10 +63,10 @@
     _leftCollectionView.delegate = self;
     _leftCollectionView.dataSource = self;
     [_leftCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView);
+        make.left.equalTo(self.contentView).offset(15);
         make.top.equalTo(_addBtn.mas_bottom).offset(15);
-        make.bottom.equalTo(self.contentView).offset(25);
-        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2);
+        make.bottom.equalTo(self.contentView).offset(-25);
+        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-18);
     }];
     
     _rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -76,10 +76,10 @@
     _rightCollectionView.dataSource = self;
     [_rightCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     [_rightCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-15);;
         make.top.equalTo(_addBtn.mas_bottom).offset(15);
-        make.bottom.equalTo(self.contentView).offset(25);
-        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2);
+        make.bottom.equalTo(self.contentView).offset(-25);
+        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-18);
     }];
 }
 
@@ -89,7 +89,7 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    
+    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 

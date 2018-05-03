@@ -273,7 +273,8 @@
 		B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */; };
 		B5050670209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
 		B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
-		B5050674209AE17000CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */; };
+		B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
+		B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -715,8 +716,8 @@
 		B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionContainerCell.m; sourceTree = "<group>"; };
 		B505066E209ABEE200CE7E4D /* LLDyeingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCell.h; sourceTree = "<group>"; };
 		B505066F209ABEE200CE7E4D /* LLDyeingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCell.m; sourceTree = "<group>"; };
-		B5050672209AE17000CE7E4D /* LLDyeingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionViewCell.h; sourceTree = "<group>"; };
-		B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
+		B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionViewCell.h; sourceTree = "<group>"; };
+		B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1545,8 +1546,8 @@
 				B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */,
 				B505066E209ABEE200CE7E4D /* LLDyeingCell.h */,
 				B505066F209ABEE200CE7E4D /* LLDyeingCell.m */,
-				B5050672209AE17000CE7E4D /* LLDyeingCollectionViewCell.h */,
-				B5050673209AE17000CE7E4D /* LLDyeingCollectionViewCell.m */,
+				B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */,
+				B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */,
 			);
 			path = "Dyeing制造染色";
 			sourceTree = "<group>";
@@ -1922,6 +1923,7 @@
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
+				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
@@ -2009,7 +2011,7 @@
 				B50505A6209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
-				B5050674209AE17000CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
+				B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505BE209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
 				B50505D6209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34602EC2207F69C800710F91 /* TextInputCell.m in Sources */,

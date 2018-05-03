@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLDyeingCollectionCell : UITableViewCell
+@interface LLDyeingCollectionContainerCell : UITableViewCell
 
 @end

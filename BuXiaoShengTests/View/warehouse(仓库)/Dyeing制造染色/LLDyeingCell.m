@@ -26,12 +26,12 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath {
     _indexPath = indexPath;
-    _leftLable.text = [self.datas[indexPath.row] objectForKey:@"key"];
+    _leftLable.text = [self.datas[indexPath.row-1] objectForKey:@"key"];
      self.accessoryType = UITableViewCellAccessoryNone;
-    if ([self.datas[indexPath.row][@"value"]isEqualToString:@""]) {
+    if ([self.datas[indexPath.row-1][@"value"]isEqualToString:@""]) {
         self.textField.hidden = false;
         _rightLable.hidden = true;
-        switch (indexPath.row) {
+        switch (indexPath.row-1) {
             case 0:
                 self.textField.placeholder = @"请选择结算单位";
                 self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -48,12 +48,12 @@
     }else {
         self.textField.hidden = true;
         _rightLable.hidden = false;
-        _rightLable.text = self.datas[indexPath.row][@"value"];
-        if ([self.datas[indexPath.row][@"type"]isEqualToString:@"1"]) {
+        _rightLable.text = self.datas[indexPath.row-1][@"value"];
+        if ([self.datas[indexPath.row-1][@"type"]isEqualToString:@"1"]) {
             _rightLable.textColor = [UIColor colorWithHexString:@"#cccccc"];
-        }else if ([self.datas[indexPath.row][@"type"]isEqualToString:@"2"]){
+        }else if ([self.datas[indexPath.row-1][@"type"]isEqualToString:@"2"]){
              _rightLable.textColor = [UIColor redColor];
-        }else if ([self.datas[indexPath.row][@"type"]isEqualToString:@"0"]) {
+        }else if ([self.datas[indexPath.row-1][@"type"]isEqualToString:@"0"]) {
              _rightLable.textColor = [UIColor colorWithHexString:@"#333333"];
         }
     }

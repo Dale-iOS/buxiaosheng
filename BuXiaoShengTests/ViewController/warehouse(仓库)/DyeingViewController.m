@@ -9,6 +9,7 @@
 #import "DyeingViewController.h"
 #import "LLDyeingSectionView.h"
 #import "LLDyeingCell.h"
+#import "LLDyeingCollectionContainerCell.h"
 @interface DyeingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 
@@ -37,9 +38,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.fristRowsInSectionData.count;
+        return self.fristRowsInSectionData.count+1;
     }
-    return self.fristRowsInSectionData.count;
+    return self.fristRowsInSectionData.count+1;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     LLDyeingSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLDyeingSectionView"];
@@ -50,14 +51,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            LLDyeingCollectionContainerCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLDyeingCollectionContainerCell"];
+            return cell;
+        }
+        LLDyeingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLDyeingCell"];
+        cell.datas = self.fristRowsInSectionData;
+        cell.indexPath = indexPath;
+        return cell;
+    }
+    return [UITableViewCell new];
     
-    LLDyeingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLDyeingCell"];
-    cell.datas = self.fristRowsInSectionData;
-    cell.indexPath = indexPath;
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 200;
+        }
+         return 44;
+    }
     return 44;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -77,6 +91,7 @@
         [self.view addSubview:_tableView];
         [_tableView registerClass:[LLDyeingSectionView class] forHeaderFooterViewReuseIdentifier:@"LLDyeingSectionView"];
         [_tableView registerClass:[LLDyeingCell class] forCellReuseIdentifier:@"LLDyeingCell"];
+        [_tableView registerClass:[LLDyeingCollectionContainerCell class] forCellReuseIdentifier:@"LLDyeingCollectionContainerCell"];
     }
     return _tableView;
 }
