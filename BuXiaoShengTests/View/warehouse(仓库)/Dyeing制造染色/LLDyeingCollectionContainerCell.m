@@ -53,11 +53,11 @@
     }];
     
     UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
-    layout.itemSize = CGSizeMake(20, 20);
-    layout.minimumLineSpacing = 10;
-    layout.minimumInteritemSpacing = 10;
+    layout.itemSize = CGSizeMake(25, 20);
+    layout.minimumLineSpacing = 5;
+    layout.minimumInteritemSpacing = 5;
     _leftCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    [_leftCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [_leftCollectionView registerClass:[LLDyeingCollectionViewCell class] forCellWithReuseIdentifier:@"LLleftDyeingCollectionViewCell"];
     _leftCollectionView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_leftCollectionView];
     _leftCollectionView.delegate = self;
@@ -66,7 +66,7 @@
         make.left.equalTo(self.contentView).offset(15);
         make.top.equalTo(_addBtn.mas_bottom).offset(15);
         make.bottom.equalTo(self.contentView).offset(-25);
-        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-18);
+        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-25);
     }];
     
     _rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -74,12 +74,12 @@
     [self.contentView addSubview:_rightCollectionView];
     _rightCollectionView.delegate = self;
     _rightCollectionView.dataSource = self;
-    [_rightCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [_rightCollectionView registerClass:[LLDyeingCollectionViewCell class] forCellWithReuseIdentifier:@"LLRightDyeingCollectionViewCell"];
     [_rightCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-15);;
         make.top.equalTo(_addBtn.mas_bottom).offset(15);
         make.bottom.equalTo(self.contentView).offset(-25);
-        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-18);
+        make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-25);
     }];
 }
 
@@ -88,9 +88,24 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    if (collectionView == _leftCollectionView) {
+        LLDyeingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLleftDyeingCollectionViewCell" forIndexPath:indexPath];
+        return cell;
+    }
+    LLDyeingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLRightDyeingCollectionViewCell" forIndexPath:indexPath];
     return cell;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if (collectionView == _leftCollectionView) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"点击左边%zd",indexPath.row] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil] show];
+    }else {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"点击右边%zd",indexPath.row] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil] show];
+    }
+#pragma clang diagnostic pop
+    
+    
 }
 
 @end

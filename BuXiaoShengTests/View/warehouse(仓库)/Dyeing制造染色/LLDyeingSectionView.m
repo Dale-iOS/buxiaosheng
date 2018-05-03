@@ -10,6 +10,7 @@
 
 @implementation LLDyeingSectionView
 {
+    UIView * _bgView;
     UILabel * _goodsLable;//品名
     UILabel * _goodsColorLable;//品名颜色
     UILabel * _productNameLable;//供应商品名
@@ -25,6 +26,15 @@
 }
 
 -(void)setupUI{
+    
+    _bgView = [UIView new];
+    _bgView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.contentView addSubview:_bgView];
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.contentView);
+        make.height.mas_equalTo(20);
+    }];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     _goodsLable = [UILabel new];
     [self.contentView addSubview:_goodsLable];
     _goodsLable.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -32,7 +42,7 @@
     _goodsLable.font = [UIFont systemFontOfSize:14];
     [_goodsLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
-        make.top.equalTo(self.contentView).offset(15);
+        make.top.equalTo(_bgView.mas_bottom).offset(15);
     }];
     
     _goodsColorLable = [UILabel new];
@@ -52,7 +62,7 @@
     _productNameLable.font = [UIFont systemFontOfSize:14];
     [_productNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_goodsLable.mas_right).offset(6);
-        make.top.equalTo(self.contentView).offset(15);
+        make.top.equalTo(_bgView.mas_bottom).offset(15);
     }];
     
     _productColorLable = [UILabel new];
@@ -72,7 +82,7 @@
     _countLable.font = [UIFont systemFontOfSize:14];
     [_countLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_productNameLable.mas_right).offset(6);
-        make.top.equalTo(self.contentView).offset(15);
+        make.top.equalTo(_bgView.mas_bottom).offset(15);
     }];
     
     _foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
