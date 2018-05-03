@@ -10,7 +10,7 @@
 #import "LLDyeingSectionView.h"
 #import "LLDyeingCell.h"
 #import "LLDyeingCollectionContainerCell.h"
-@interface DyeingViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface DyeingViewController ()<UITableViewDelegate,UITableViewDataSource,sectionViewDelegate>
 @property (nonatomic,strong) UITableView * tableView;
 
 @property (nonatomic,strong) NSArray <NSDictionary*> * fristRowsInSectionData;
@@ -19,16 +19,26 @@
 @property (nonatomic,strong) NSArray <NSDictionary*> * threeRowsInSectionData;
 
 @property (nonatomic,strong) NSArray <NSDictionary*> * fourRowsInSectionData;
+
+@property (nonatomic,strong) UILabel * totalNumberLable;
+@property (nonatomic,strong) UILabel * totalCountLable;
+
+
 @end
 
 @implementation DyeingViewController
-
+{
+    BOOL _folding[2];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"织造染色"];
+    UIView * bottomView = [self setupBottomView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(64);
+        make.bottom.equalTo(bottomView.mas_top);
     }];
     
 }
@@ -37,15 +47,60 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(UIView *)setupBottomView {
+    UIView * bottomView = [UIView new];
+    [self.view addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(50);
+    }];
+    self.totalNumberLable = [UILabel new];
+    [bottomView addSubview:self.totalNumberLable];
+    self.totalNumberLable.text = @"总数量: 8487484949";
+    self.totalNumberLable.textColor = [UIColor colorWithHexString:@"#333333"];
+    self.totalNumberLable.font = [UIFont systemFontOfSize:14];
+    [self.totalNumberLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomView).offset(15);
+        make.top.equalTo(bottomView).offset(10);
+    }];
+    
+    self.totalCountLable = [UILabel new];
+    [bottomView addSubview:self.totalCountLable];
+    self.totalCountLable.text = @"总条数: 8487484949";
+    self.totalCountLable.textColor = [UIColor colorWithHexString:@"#333333"];
+    self.totalCountLable.font = [UIFont systemFontOfSize:14];
+    [self.totalCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomView).offset(15);
+        make.top.equalTo(self.totalNumberLable.mas_bottom).offset(2);
+    }];
+    
+    UIButton * determineBtn = [UIButton new];
+    [determineBtn setTitle:@"确  定" forState:UIControlStateNormal];
+    determineBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [determineBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [determineBtn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
+    [bottomView addSubview:determineBtn];
+    [determineBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.bottom.equalTo(bottomView);
+        make.width.mas_equalTo(100);
+    }];
+    return bottomView;
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.fristRowsInSectionData.count+1;
+        if (_folding[section] == true) {
+            return self.fristRowsInSectionData.count+1;
+        }
+        return 0;
     }else if (section == 1) {
-         return self.secondRowsInSectionData.count+1;
+        if (_folding[section] == true) {
+            return self.secondRowsInSectionData.count+1;
+        }
+        return 0;
     }else if (section == 2) {
         return self.threeRowsInSectionData.count;
     }else if (section == 3) {
@@ -56,6 +111,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0||section == 1) {
         LLDyeingSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLDyeingSectionView"];
+        sectionView.section = section;
+        sectionView.delegate = self;
         return sectionView;
     }
     UIView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"sectionView"];
@@ -118,8 +175,12 @@
     return 44;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0 || section == 1) {
+    if (section == 0)  {
+        
          return 75+20;
+       
+    }else if (section == 1) {
+        return 75+20;
     }
     return 20;
 }
@@ -127,11 +188,17 @@
     return 0.001;
 }
 
--(UIView *)setupBottomView {
-    UIView * bottomView = [UIView new];
+-(void)sectionViewDelegate:(LLDyeingSectionView *)sectionView {
+    _folding[sectionView.section] = ! _folding[sectionView.section];
+    sectionView.foldingBtn.selected  =  _folding[sectionView.section];
+    [UIView animateWithDuration:0.0 animations:^{
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
     
-    return bottomView;
+    
 }
+
+
 
  /// MARK: ---- 懒加载
 -(UITableView *)tableView {

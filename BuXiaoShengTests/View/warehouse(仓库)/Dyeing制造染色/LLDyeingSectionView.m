@@ -16,7 +16,7 @@
     UILabel * _productNameLable;//供应商品名
     UILabel * _productColorLable;//供应商颜色
     UILabel * _countLable;//条数
-    UIButton * _foldingBtn;//折叠按钮
+    //UIButton * _foldingBtn;//折叠按钮
 }
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
@@ -87,6 +87,7 @@
     
     _foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_foldingBtn];
+    [_foldingBtn addTarget:self action:@selector(foldingBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal];
     [_foldingBtn setTitle:@"展开    " forState:UIControlStateSelected];
     [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
@@ -103,6 +104,12 @@
     _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     
     _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+}
+
+-(void)foldingBtnClick {
+    if ([self.delegate respondsToSelector:@selector(sectionViewDelegate:)]) {
+        [self.delegate sectionViewDelegate:self];
+    }
 }
 
 @end
