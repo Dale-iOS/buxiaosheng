@@ -14,6 +14,7 @@
 #import "CashBankViewController.h"
 #import "AuditManagerViewController.h"
 #import "SubjectViewController.h"
+#import "OrganizationViewController.h"
 
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -265,6 +266,9 @@
 - (void)organizationCellTapAction
 {
     NSLog(@"organizationCellTapAction");
+    
+    OrganizationViewController *vc = [[OrganizationViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //产品资料

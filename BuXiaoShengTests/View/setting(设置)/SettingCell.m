@@ -75,8 +75,8 @@
 {
     self.iconImageView.sd_layout
     .leftSpaceToView(self, 15)
-    .widthIs(18)
-    .heightIs(15)
+    .widthIs(19)
+    .heightIs(19)
     .centerYEqualToView(self);
     
     self.titleLabel.sd_layout

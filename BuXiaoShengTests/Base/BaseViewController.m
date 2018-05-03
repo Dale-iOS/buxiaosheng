@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = LZHBackgroundColor;
 }
 
 - (void)didReceiveMemoryWarning {

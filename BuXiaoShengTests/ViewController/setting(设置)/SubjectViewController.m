@@ -8,6 +8,7 @@
 
 #import "SubjectViewController.h"
 #import "CashBankTableViewCell.h"
+#import "AddSubjectViewController.h"
 
 typedef BOOL(^RunLoopBlock)(void);
 
@@ -25,6 +26,8 @@ typedef BOOL(^RunLoopBlock)(void);
     [super viewDidLoad];
     
      self.navigationItem.titleView = [Utility navTitleView:@"科目"];
+    
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"add1")];
  
     //初始化变量
     [self initVar];
@@ -172,6 +175,12 @@ static void Callback(CFRunLoopObserverRef observer,CFRunLoopActivity activity,vo
     cell.layer.shadowOffset = CGSizeMake(0, 0);
     [UIView commitAnimations];
     
+}
+
+- (void)navigationAddClick
+{
+    AddSubjectViewController *vc = [[AddSubjectViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

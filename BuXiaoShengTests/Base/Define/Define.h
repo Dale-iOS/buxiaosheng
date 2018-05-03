@@ -63,7 +63,7 @@
 
 #define RGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0f]
 
-#define LZHBackgroundColor             [UIColor colorWithHexString:@"#eeeeee"]
+#define LZHBackgroundColor             [UIColor colorWithHexString:@"#e6e6ed"]
 
 //随机色
 #define randomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0f]
