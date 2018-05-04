@@ -1,5 +1,5 @@
 //
-//  LLProcessChildVc.h
+//  LLProcessTitleDetailCell.h
 //  BuXiaoSheng
 //
 //  Created by 周尊贤 on 2018/5/4.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLProcessChildVc : BaseViewController
+@interface LLProcessTitleDetailCell : UITableViewCell
 
 @end

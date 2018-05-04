@@ -9,10 +9,11 @@
 #import "ProcessViewController.h"
 #import "LLProcessChildVc.h"
 
-@interface ProcessViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
-@property (nonatomic,strong) UITableView * tableView;
+@interface ProcessViewController ()<UIScrollViewDelegate>
+
 @property (nonatomic,weak) UISegmentedControl * segmented;
 @property (nonatomic,strong) UIScrollView * containerView;
+
 @end
 
 @implementation ProcessViewController
@@ -34,27 +35,33 @@
 -(void)setupUI {
     UIView * segmentedView = [self segmentedView];
     [segmentedView layoutIfNeeded];
+    [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        LLProcessChildVc * childVc = [LLProcessChildVc new];
+        childVc.title = obj;
+        [self.containerView addSubview:childVc.view];
+        [self addChildViewController:childVc];
+    }];
     
+    LLProcessChildVc * fristVc = self.childViewControllers.firstObject;
+    fristVc.view.frame = CGRectMake(0 , 0, SCREEN_WIDTH, CGRectGetHeight(self.containerView.frame));
+    self.containerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.segmentedTitles.count, 0);
 }
 
 -(void)segmentedClick {
-    
+    [self.containerView setContentOffset:CGPointMake(SCREEN_WIDTH * self.segmented.selectedSegmentIndex, 0) animated:true];
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
+       CGFloat offSetX = scrollView.contentOffset.x;
+        NSInteger index = offSetX / SCREEN_WIDTH;
+        self.segmented.selectedSegmentIndex = index;
+        LLProcessChildVc * childVc = self.childViewControllers[index];
+        childVc.view.frame = scrollView.bounds;
 }
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    
+    [self scrollViewDidEndDecelerating:scrollView];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
-}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    return cell;
-}
 
 -(UIView *)segmentedView {
     
@@ -66,7 +73,7 @@
         make.height.mas_equalTo(45);
     }];
     segmentedView.backgroundColor = [UIColor whiteColor];
-   UISegmentedControl * segmented = [[UISegmentedControl alloc] initWithItems:@[@"采购",@"加工"]];
+   UISegmentedControl * segmented = [[UISegmentedControl alloc] initWithItems:self.segmentedTitles];
     self.segmented = segmented;
     [segmentedView addSubview:segmented];
     segmented.selectedSegmentIndex = 0;
@@ -74,28 +81,26 @@
         make.center.equalTo(segmentedView);
         make.width.mas_equalTo(100);
     }];
-    [segmented addTarget:self action:@selector(segmentedClick) forControlEvents:UIControlEventTouchUpInside];
+    [segmented addTarget:self action:@selector(segmentedClick) forControlEvents:UIControlEventValueChanged];
     
     return segmentedView;
 }
 
--(UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableFooterView = [UIView new];
-        [self.view addSubview:_tableView];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+-(NSArray<NSString *> *)segmentedTitles {
+    if (!_segmentedTitles) {
+        _segmentedTitles = @[@"采购",@"加工"];
     }
-    return _tableView;
+    return _segmentedTitles;
 }
+
+
 -(UIScrollView *)containerView {
     if (!_containerView) {
         _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45)];
         _containerView.delegate = self;
         _containerView.pagingEnabled = true;
         [self.view addSubview:_containerView];
+        _containerView.backgroundColor = [UIColor redColor];
     }
     return _containerView;
 }

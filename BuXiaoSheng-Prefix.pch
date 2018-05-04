@@ -21,6 +21,7 @@
 #import "Utility.h"
 #import "CWLateralSlide-umbrella.h"
 #import "UIView+Extensions.h"
+#import "BaseViewController.h"
 
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)

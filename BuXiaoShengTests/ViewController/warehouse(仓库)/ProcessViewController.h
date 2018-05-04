@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+
 
 @interface ProcessViewController : BaseViewController
-
+@property (nonatomic,strong) NSArray <NSString *> * segmentedTitles;
 @end
