@@ -9,7 +9,12 @@
 #import "LLProcessTitleCell.h"
 
 @implementation LLProcessTitleCell
-
+{
+    UILabel * _leftcolorLable;
+    UILabel * _leftdemandLable;
+    UILabel * _rightcolorLable;
+    UILabel * _rightdemandLable;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -19,6 +24,22 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+    }
+    return self;
+}
+
+-(void)setupUI {
+    _leftcolorLable = [UILabel new];
+    [self.contentView addSubview:_leftcolorLable];
+    _leftcolorLable.textColor = CD_Text33;
+    _leftcolorLable.font = [UIFont systemFontOfSize:15];
+    _leftcolorLable.text = @"颜色";
+    
 }
 
 @end

@@ -281,12 +281,12 @@
 		B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */; };
 		B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0750A209C28BA00FD53DC /* LLProcessSectionView.m */; };
 		B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0750A209C28BA00FD53DC /* LLProcessSectionView.m */; };
-		B5B0750F209C291300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0750E209C291300FD53DC /* LLProcessTitleCell.m */; };
-		B5B07510209C291300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0750E209C291300FD53DC /* LLProcessTitleCell.m */; };
 		B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07512209C293E00FD53DC /* LLProcessTitleDetailCell.m */; };
 		B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07512209C293E00FD53DC /* LLProcessTitleDetailCell.m */; };
 		B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07516209C295900FD53DC /* LLProcessCell.m */; };
 		B5B07518209C295900FD53DC /* LLProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07516209C295900FD53DC /* LLProcessCell.m */; };
+		B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
+		B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -738,12 +738,12 @@
 		B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessChildVc.m; sourceTree = "<group>"; };
 		B5B07509209C28BA00FD53DC /* LLProcessSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessSectionView.h; sourceTree = "<group>"; };
 		B5B0750A209C28BA00FD53DC /* LLProcessSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessSectionView.m; sourceTree = "<group>"; };
-		B5B0750D209C291300FD53DC /* LLProcessTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessTitleCell.h; sourceTree = "<group>"; };
-		B5B0750E209C291300FD53DC /* LLProcessTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessTitleCell.m; sourceTree = "<group>"; };
 		B5B07511209C293E00FD53DC /* LLProcessTitleDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessTitleDetailCell.h; sourceTree = "<group>"; };
 		B5B07512209C293E00FD53DC /* LLProcessTitleDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessTitleDetailCell.m; sourceTree = "<group>"; };
 		B5B07515209C295900FD53DC /* LLProcessCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessCell.h; sourceTree = "<group>"; };
 		B5B07516209C295900FD53DC /* LLProcessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessCell.m; sourceTree = "<group>"; };
+		B5B07519209C3A7200FD53DC /* LLProcessTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLProcessTitleCell.h; sourceTree = "<group>"; };
+		B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLProcessTitleCell.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1590,8 +1590,8 @@
 			children = (
 				B5B07509209C28BA00FD53DC /* LLProcessSectionView.h */,
 				B5B0750A209C28BA00FD53DC /* LLProcessSectionView.m */,
-				B5B0750D209C291300FD53DC /* LLProcessTitleCell.h */,
-				B5B0750E209C291300FD53DC /* LLProcessTitleCell.m */,
+				B5B07519209C3A7200FD53DC /* LLProcessTitleCell.h */,
+				B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */,
 				B5B07511209C293E00FD53DC /* LLProcessTitleDetailCell.h */,
 				B5B07512209C293E00FD53DC /* LLProcessTitleDetailCell.m */,
 				B5B07515209C295900FD53DC /* LLProcessCell.h */,
@@ -1831,6 +1831,7 @@
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
+				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
@@ -1966,7 +1967,6 @@
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
 				346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */,
-				B5B0750F209C291300FD53DC /* LLProcessTitleCell.m in Sources */,
 				34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */,
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
@@ -2017,7 +2017,6 @@
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
-				B5B07510209C291300FD53DC /* LLProcessTitleCell.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				34A92B61207DEF9900572648 /* HomeEntranceView.m in Sources */,
 				34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */,
@@ -2056,6 +2055,7 @@
 				B5050669209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				B50505BA209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
+				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,

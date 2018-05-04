@@ -8,7 +8,7 @@
 
 #import "LLProcessChildVc.h"
 #import "ProcessViewController.h"
-
+#import "LLProcessSectionView.h"
 @interface LLProcessChildVc ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @end
@@ -43,6 +43,11 @@
     return 100;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0 || section == 1) {
+        LLProcessSectionView * sectionView  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLProcessSectionView"];
+        return sectionView;
+    }
+   
     return [UIView new];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -59,7 +64,7 @@
     return 44;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
+    return 54+20;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001;
@@ -72,6 +77,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
+        [_tableView registerClass:[LLProcessSectionView class] forHeaderFooterViewReuseIdentifier:@"LLProcessSectionView"];
         [self.view addSubview:_tableView];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     }
