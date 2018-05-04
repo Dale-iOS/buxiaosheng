@@ -15,6 +15,7 @@
 #import "AuditManagerViewController.h"
 #import "SubjectViewController.h"
 #import "OrganizationViewController.h"
+#import "ProductViewController.h"
 
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -275,6 +276,9 @@
 - (void)productCellTapAction
 {
     NSLog(@"productCellTapAction");
+    
+    ProductViewController *vc = [[ProductViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //客户

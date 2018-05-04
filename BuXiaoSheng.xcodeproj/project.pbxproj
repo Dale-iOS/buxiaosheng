@@ -40,6 +40,7 @@
 		343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008DE2081ACC500447992 /* NowQuarterViewController.m */; };
 		343008E42081ACF400447992 /* NowDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008D82081AC9700447992 /* NowDayViewController.m */; };
 		343008E52081ACF900447992 /* NowMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008DB2081ACA500447992 /* NowMonthViewController.m */; };
+		343025A8209BFA1F00869313 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025A7209BFA1F00869313 /* ProductViewController.m */; };
 		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F12094505300C64F4C /* StockTrackingViewController.m */; };
@@ -358,6 +359,8 @@
 		343008DE2081ACC500447992 /* NowQuarterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowQuarterViewController.m; sourceTree = "<group>"; };
 		343008E02081ACDB00447992 /* NowYearViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowYearViewController.h; sourceTree = "<group>"; };
 		343008E12081ACDB00447992 /* NowYearViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowYearViewController.m; sourceTree = "<group>"; };
+		343025A6209BFA1F00869313 /* ProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
+		343025A7209BFA1F00869313 /* ProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
 		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
@@ -887,6 +890,8 @@
 				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
 				348DB851209AE44F00CD36CD /* AddPeopleViewController.h */,
 				348DB852209AE44F00CD36CD /* AddPeopleViewController.m */,
+				343025A6209BFA1F00869313 /* ProductViewController.h */,
+				343025A7209BFA1F00869313 /* ProductViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1956,6 +1961,7 @@
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
+				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
 				34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */,
 			);
