@@ -41,6 +41,8 @@
 		343008E42081ACF400447992 /* NowDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008D82081AC9700447992 /* NowDayViewController.m */; };
 		343008E52081ACF900447992 /* NowMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343008DB2081ACA500447992 /* NowMonthViewController.m */; };
 		343025A8209BFA1F00869313 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025A7209BFA1F00869313 /* ProductViewController.m */; };
+		343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025ED209C405B00869313 /* UIButton+EdgeInsets.m */; };
+		343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025EE209C405B00869313 /* UIButton+KYTouch.m */; };
 		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F12094505300C64F4C /* StockTrackingViewController.m */; };
@@ -371,6 +373,10 @@
 		343008E12081ACDB00447992 /* NowYearViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowYearViewController.m; sourceTree = "<group>"; };
 		343025A6209BFA1F00869313 /* ProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
 		343025A7209BFA1F00869313 /* ProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
+		343025ED209C405B00869313 /* UIButton+EdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EdgeInsets.m"; sourceTree = "<group>"; };
+		343025EE209C405B00869313 /* UIButton+KYTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KYTouch.m"; sourceTree = "<group>"; };
+		343025EF209C405B00869313 /* UIButton+EdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EdgeInsets.h"; sourceTree = "<group>"; };
+		343025F0209C405B00869313 /* UIButton+KYTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KYTouch.h"; sourceTree = "<group>"; };
 		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
 		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
@@ -1085,6 +1091,10 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				343025EF209C405B00869313 /* UIButton+EdgeInsets.h */,
+				343025ED209C405B00869313 /* UIButton+EdgeInsets.m */,
+				343025F0209C405B00869313 /* UIButton+KYTouch.h */,
+				343025EE209C405B00869313 /* UIButton+KYTouch.m */,
 				34EA5BCE208B383B0048CFE1 /* UIView+LLXAlertPop.h */,
 				34EA5BCD208B383B0048CFE1 /* UIView+LLXAlertPop.m */,
 				34EA5BBE208B276B0048CFE1 /* LXDatePickerViewController.h */,
@@ -1834,6 +1844,7 @@
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
+				343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				348DB84D209AE38400CD36CD /* AddSubjectViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
@@ -1877,6 +1888,7 @@
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
+				343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
 				34EA5BCB208B276C0048CFE1 /* LXDatePickerViewController.m in Sources */,
