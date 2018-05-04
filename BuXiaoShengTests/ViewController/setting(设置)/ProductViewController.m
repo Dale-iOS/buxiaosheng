@@ -12,6 +12,7 @@
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
 #import "UIButton+EdgeInsets.h"
+#import "AddColorViewController.h"
 
 @interface ProductViewController ()<LZHTableViewDelegate>
 
@@ -208,8 +209,11 @@
 {
     self.addColorCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.addColorCell.rightArrowImageVIew.hidden = NO;
+    self.addColorCell.contentTF.userInteractionEnabled = NO;
     self.addColorCell.titleLabel.text = @"添加颜色";
     self.addColorCell.contentTF.placeholder = @"请选择颜色";
+    UITapGestureRecognizer *addColorCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addColorCellTapAction)];
+    [self.addColorCell addGestureRecognizer:addColorCellTap];
     
     self.remarkTextView = [[TextInputTextView alloc]init];
     self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 80);
@@ -269,6 +273,12 @@
         [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
         [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
     
+}
+
+- (void)addColorCellTapAction
+{
+    AddColorViewController *vc = [[AddColorViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectornavRightBtnClick
