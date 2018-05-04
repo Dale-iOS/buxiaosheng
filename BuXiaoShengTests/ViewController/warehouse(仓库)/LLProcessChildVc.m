@@ -69,6 +69,7 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0 || section == 1) {
         LLProcessSectionView * sectionView  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLProcessSectionView"];
+        sectionView.section = section;
         sectionView.delegate = self;
         sectionView.foldingBtn.selected = _folding[section];
         return sectionView;
