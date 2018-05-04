@@ -79,7 +79,9 @@
 }
 
 -(void)foldingBtnClick {
-    
+    if ([self.delegate respondsToSelector:@selector(sectionViewDelegate:)]) {
+        [self.delegate sectionViewDelegate:self];
+    }
 }
 
 @end

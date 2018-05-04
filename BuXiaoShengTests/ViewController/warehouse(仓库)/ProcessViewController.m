@@ -13,6 +13,7 @@
 
 @property (nonatomic,weak) UISegmentedControl * segmented;
 @property (nonatomic,strong) UIScrollView * containerView;
+@property (nonatomic,strong) UILabel * totalNumberLable;
 
 @end
 
@@ -24,7 +25,7 @@
     self.navigationItem.titleView = [Utility navTitleView:@"采购加工"];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
-    
+    [self setupBottomView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +47,37 @@
     fristVc.view.frame = CGRectMake(0 , 0, SCREEN_WIDTH, CGRectGetHeight(self.containerView.frame));
     self.containerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.segmentedTitles.count, 0);
 }
+
+-(UIView *)setupBottomView {
+    UIView * bottomView = [UIView new];
+    [self.view addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(50);
+    }];
+    self.totalNumberLable = [UILabel new];
+    [bottomView addSubview:self.totalNumberLable];
+    self.totalNumberLable.text = @"总数量: 8487484949";
+    self.totalNumberLable.textColor = [UIColor colorWithHexString:@"#333333"];
+    self.totalNumberLable.font = [UIFont systemFontOfSize:14];
+    [self.totalNumberLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomView).offset(15);
+        make.centerY.equalTo(bottomView);
+    }];
+    
+    UIButton * determineBtn = [UIButton new];
+    [determineBtn setTitle:@"确  定" forState:UIControlStateNormal];
+    determineBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [determineBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [determineBtn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
+    [bottomView addSubview:determineBtn];
+    [determineBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.bottom.equalTo(bottomView);
+        make.width.mas_equalTo(100);
+    }];
+    return bottomView;
+}
+
 
 -(void)segmentedClick {
     [self.containerView setContentOffset:CGPointMake(SCREEN_WIDTH * self.segmented.selectedSegmentIndex, 0) animated:true];
@@ -96,11 +128,10 @@
 
 -(UIScrollView *)containerView {
     if (!_containerView) {
-        _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45)];
+        _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45-50)];
         _containerView.delegate = self;
         _containerView.pagingEnabled = true;
         [self.view addSubview:_containerView];
-        _containerView.backgroundColor = [UIColor redColor];
     }
     return _containerView;
 }
