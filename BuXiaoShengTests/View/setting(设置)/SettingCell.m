@@ -92,7 +92,7 @@
     .heightIs(14);
     
     self.lineView.sd_layout
-    .bottomSpaceToView(self, 1)
+    .bottomSpaceToView(self, 0)
     .widthRatioToView(self, 1)
     .leftSpaceToView(self, 0)
     .heightIs(1);

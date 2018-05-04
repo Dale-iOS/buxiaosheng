@@ -118,7 +118,7 @@
     .topEqualToView(self)
     .leftSpaceToView(self, 15)
     .heightRatioToView(self, 1)
-    .widthIs(90);
+    .widthIs(100);
     
     self.contentTF.sd_layout
     .topEqualToView(self)
@@ -140,7 +140,7 @@
     .heightRatioToView(self, 1);
     
     self.lineView.sd_layout
-    .bottomSpaceToView(self, 1)
+    .bottomSpaceToView(self, 0)
     .widthRatioToView(self, 1)
     .leftSpaceToView(self, 0)
     .heightIs(1);

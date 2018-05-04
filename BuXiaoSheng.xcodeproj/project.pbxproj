@@ -43,6 +43,7 @@
 		343025A8209BFA1F00869313 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025A7209BFA1F00869313 /* ProductViewController.m */; };
 		343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025ED209C405B00869313 /* UIButton+EdgeInsets.m */; };
 		343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025EE209C405B00869313 /* UIButton+KYTouch.m */; };
+		343025F5209C537B00869313 /* AddColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025F4209C537B00869313 /* AddColorViewController.m */; };
 		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F12094505300C64F4C /* StockTrackingViewController.m */; };
@@ -377,6 +378,8 @@
 		343025EE209C405B00869313 /* UIButton+KYTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KYTouch.m"; sourceTree = "<group>"; };
 		343025EF209C405B00869313 /* UIButton+EdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EdgeInsets.h"; sourceTree = "<group>"; };
 		343025F0209C405B00869313 /* UIButton+KYTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KYTouch.h"; sourceTree = "<group>"; };
+		343025F3209C537B00869313 /* AddColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddColorViewController.h; sourceTree = "<group>"; };
+		343025F4209C537B00869313 /* AddColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddColorViewController.m; sourceTree = "<group>"; };
 		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
 		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
@@ -918,6 +921,8 @@
 				348DB852209AE44F00CD36CD /* AddPeopleViewController.m */,
 				343025A6209BFA1F00869313 /* ProductViewController.h */,
 				343025A7209BFA1F00869313 /* ProductViewController.m */,
+				343025F3209C537B00869313 /* AddColorViewController.h */,
+				343025F4209C537B00869313 /* AddColorViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1931,6 +1936,7 @@
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
+				343025F5209C537B00869313 /* AddColorViewController.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
