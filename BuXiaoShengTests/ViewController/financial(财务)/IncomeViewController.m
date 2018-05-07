@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/20.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  收款单页面
 
 #import "IncomeViewController.h"
 #import "LZHTableView.h"

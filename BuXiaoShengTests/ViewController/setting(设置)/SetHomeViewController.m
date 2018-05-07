@@ -16,6 +16,9 @@
 #import "SubjectViewController.h"
 #import "OrganizationViewController.h"
 #import "ProductViewController.h"
+#import "RecipeViewController.h"
+#import "SetCompanyViewController.h"
+#import "SetClientViewController.h"
 
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -285,18 +288,27 @@
 - (void)clientCellTapAction
 {
     NSLog(@"clientCellTapAction");
+    
+    SetClientViewController *vc = [[SetClientViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //厂商
 - (void)companyCellTapAction
 {
     NSLog(@"companyCellTapAction");
+    
+    SetCompanyViewController *vc = [[SetCompanyViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //配方表
 - (void)recipeCellTapAction
 {
     NSLog(@"recipeCellTapAction");
+    
+    RecipeViewController *vc = [[RecipeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

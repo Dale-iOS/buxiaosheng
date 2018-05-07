@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface AddDyeRecipeViewController : UIViewController
+@interface AddDyeRecipeViewController : BaseViewController
 
 @end

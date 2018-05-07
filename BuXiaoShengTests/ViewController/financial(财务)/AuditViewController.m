@@ -8,12 +8,20 @@
 
 #import "AuditViewController.h"
 #import "AuditTableViewCell.h"
+#import "SGPagingView.h"
 
-@interface AuditViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "NoAuditSellViewController.h"
+#import "NoAuditApplyViewController.h"
+#import "NoAuditInStorageViewController.h"
+
+@interface AuditViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 ///分段选择器背景
 @property (nonatomic, strong) UIView *SegmentedBgView;
+
+@property (nonatomic, strong) SGPageTitleView *pageTitleView;
+@property (nonatomic, strong) SGPageContentView *pageContentView;
 
 @end
 
@@ -38,7 +46,7 @@
     self.tableView .dataSource = self;
     //隐藏分割线
     self.tableView .separatorStyle = NO;
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
     
     self.SegmentedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, 40)];
     self.SegmentedBgView.backgroundColor = [UIColor whiteColor];
@@ -57,6 +65,41 @@
     .centerXEqualToView(self.SegmentedBgView)
     .widthIs(180)
     .heightIs(30);
+    
+    NSArray *titleArr = @[@"销售单", @"入库单", @"报销单"];
+    SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
+    configure.titleColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    configure.titleSelectedColor = [UIColor colorWithRed:50.0f/255.0f green:149.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    //横杠颜色
+    configure.indicatorColor = [UIColor colorWithRed:50.0f/255.0f green:149.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    //    configure.indicatorAdditionalWidth = 100; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
+    
+    /// pageTitleView
+    self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 64+44, APPWidth, 44) delegate:self titleNames:titleArr configure:configure];
+    [self.view addSubview:_pageTitleView];
+    _pageTitleView.selectedIndex = 0;
+    
+    NoAuditSellViewController *vc1 = [[NoAuditSellViewController alloc]init];
+    NoAuditApplyViewController *vc2 = [[NoAuditApplyViewController alloc]init];
+    NoAuditInStorageViewController *vc3 = [[NoAuditInStorageViewController alloc]init];
+    
+    
+    NSArray *childArr = @[vc1, vc2, vc3];
+    /// pageContentView
+    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, contentViewHeight) parentVC:self childVCs:childArr];
+    
+    _pageContentView.delegatePageContentView = self;
+    [self.view addSubview:_pageContentView];
+}
+
+#pragma mark ----- pageTitleViewdelegate -----
+- (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
+    [self.pageContentView setPageContentViewCurrentIndex:selectedIndex];
+}
+
+- (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
+    [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
 }
 
 #pragma mark ----- tableviewdelegate -----

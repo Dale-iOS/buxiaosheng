@@ -44,6 +44,15 @@
 		343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025ED209C405B00869313 /* UIButton+EdgeInsets.m */; };
 		343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025EE209C405B00869313 /* UIButton+KYTouch.m */; };
 		343025F5209C537B00869313 /* AddColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343025F4209C537B00869313 /* AddColorViewController.m */; };
+		34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34320782209FF25C005A5D23 /* AddDyeRecipeViewController.m */; };
+		3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3432078520A0087A005A5D23 /* SetClientViewController.m */; };
+		343207C720A05A8E005A5D23 /* BackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207C620A05A8E005A5D23 /* BackOrderViewController.m */; };
+		343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207C920A068BC005A5D23 /* NoAuditSellViewController.m */; };
+		343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207CC20A06968005A5D23 /* NoAuditInStorageViewController.m */; };
+		343207D020A069A3005A5D23 /* NoAuditApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207CF20A069A3005A5D23 /* NoAuditApplyViewController.m */; };
+		343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D220A06A70005A5D23 /* YesAuditInStorageViewController.m */; };
+		343207D620A06AA6005A5D23 /* YesAuditApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */; };
+		343207D920A06AB5005A5D23 /* YesAuditSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */; };
 		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F12094505300C64F4C /* StockTrackingViewController.m */; };
@@ -67,6 +76,10 @@
 		34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E902089CA9F004CD04B /* PagingTableViewCell.m */; };
 		34528E942089E18C004CD04B /* IncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E932089E18C004CD04B /* IncomeViewController.m */; };
 		34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */; };
+		345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5EFD209D4AAF00126C40 /* RecipeViewController.m */; };
+		345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */; };
+		345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F03209D614E00126C40 /* SetCompanyViewController.m */; };
+		345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F06209D664400126C40 /* SupplierCompanyViewController.m */; };
 		345E74762082FFCD004B49B3 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E74752082FFCD004B49B3 /* Utility.m */; };
 		345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E747B20835B5F004B49B3 /* OrderTrackingViewController.m */; };
 		345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345E747B20835B5F004B49B3 /* OrderTrackingViewController.m */; };
@@ -198,6 +211,9 @@
 		34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBAC9B208450980005BF77 /* WaitOutOrderViewController.m */; };
 		34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */; };
 		34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */; };
+		34F6D35C209D8C23009D5440 /* ProductionCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */; };
+		34F6D35F209D8C69009D5440 /* ProcessCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */; };
+		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050551209AB2DA00CE7E4D /* XLFormButtonCell.m */; };
@@ -380,6 +396,24 @@
 		343025F0209C405B00869313 /* UIButton+KYTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KYTouch.h"; sourceTree = "<group>"; };
 		343025F3209C537B00869313 /* AddColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddColorViewController.h; sourceTree = "<group>"; };
 		343025F4209C537B00869313 /* AddColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddColorViewController.m; sourceTree = "<group>"; };
+		34320781209FF25C005A5D23 /* AddDyeRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddDyeRecipeViewController.h; sourceTree = "<group>"; };
+		34320782209FF25C005A5D23 /* AddDyeRecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddDyeRecipeViewController.m; sourceTree = "<group>"; };
+		3432078420A0087A005A5D23 /* SetClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetClientViewController.h; sourceTree = "<group>"; };
+		3432078520A0087A005A5D23 /* SetClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetClientViewController.m; sourceTree = "<group>"; };
+		343207C520A05A8E005A5D23 /* BackOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackOrderViewController.h; sourceTree = "<group>"; };
+		343207C620A05A8E005A5D23 /* BackOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackOrderViewController.m; sourceTree = "<group>"; };
+		343207C820A068BC005A5D23 /* NoAuditSellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoAuditSellViewController.h; sourceTree = "<group>"; };
+		343207C920A068BC005A5D23 /* NoAuditSellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoAuditSellViewController.m; sourceTree = "<group>"; };
+		343207CB20A06968005A5D23 /* NoAuditInStorageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoAuditInStorageViewController.h; sourceTree = "<group>"; };
+		343207CC20A06968005A5D23 /* NoAuditInStorageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoAuditInStorageViewController.m; sourceTree = "<group>"; };
+		343207CE20A069A3005A5D23 /* NoAuditApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoAuditApplyViewController.h; sourceTree = "<group>"; };
+		343207CF20A069A3005A5D23 /* NoAuditApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoAuditApplyViewController.m; sourceTree = "<group>"; };
+		343207D120A06A70005A5D23 /* YesAuditInStorageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesAuditInStorageViewController.h; sourceTree = "<group>"; };
+		343207D220A06A70005A5D23 /* YesAuditInStorageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YesAuditInStorageViewController.m; sourceTree = "<group>"; };
+		343207D420A06AA6005A5D23 /* YesAuditApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesAuditApplyViewController.h; sourceTree = "<group>"; };
+		343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YesAuditApplyViewController.m; sourceTree = "<group>"; };
+		343207D720A06AB5005A5D23 /* YesAuditSellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesAuditSellViewController.h; sourceTree = "<group>"; };
+		343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YesAuditSellViewController.m; sourceTree = "<group>"; };
 		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
 		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
@@ -426,6 +460,14 @@
 		34528E932089E18C004CD04B /* IncomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeViewController.m; sourceTree = "<group>"; };
 		34528E962089EDB2004CD04B /* FinancialCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialCollectionViewCell.h; sourceTree = "<group>"; };
 		34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialCollectionViewCell.m; sourceTree = "<group>"; };
+		345D5EFC209D4AAF00126C40 /* RecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
+		345D5EFD209D4AAF00126C40 /* RecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
+		345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddRecipeViewController.h; sourceTree = "<group>"; };
+		345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddRecipeViewController.m; sourceTree = "<group>"; };
+		345D5F02209D614E00126C40 /* SetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCompanyViewController.h; sourceTree = "<group>"; };
+		345D5F03209D614E00126C40 /* SetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetCompanyViewController.m; sourceTree = "<group>"; };
+		345D5F05209D664400126C40 /* SupplierCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplierCompanyViewController.h; sourceTree = "<group>"; };
+		345D5F06209D664400126C40 /* SupplierCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplierCompanyViewController.m; sourceTree = "<group>"; };
 		345E74742082FFCD004B49B3 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		345E74752082FFCD004B49B3 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		345E747A20835B5F004B49B3 /* OrderTrackingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderTrackingViewController.h; sourceTree = "<group>"; };
@@ -655,6 +697,12 @@
 		34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitRecordViewController.m; sourceTree = "<group>"; };
 		34EBACB02084A5070005BF77 /* OrderListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
 		34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
+		34F6D35A209D8C23009D5440 /* ProductionCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionCompanyViewController.h; sourceTree = "<group>"; };
+		34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionCompanyViewController.m; sourceTree = "<group>"; };
+		34F6D35D209D8C69009D5440 /* ProcessCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessCompanyViewController.h; sourceTree = "<group>"; };
+		34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessCompanyViewController.m; sourceTree = "<group>"; };
+		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
+		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B505054E209AB2DA00CE7E4D /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
@@ -793,6 +841,18 @@
 				34EA5BD1208B40870048CFE1 /* SpendingViewController.m */,
 				346B6ACB208D7DAE00F4B054 /* AuditViewController.h */,
 				346B6ACC208D7DAE00F4B054 /* AuditViewController.m */,
+				343207CB20A06968005A5D23 /* NoAuditInStorageViewController.h */,
+				343207CC20A06968005A5D23 /* NoAuditInStorageViewController.m */,
+				343207CE20A069A3005A5D23 /* NoAuditApplyViewController.h */,
+				343207CF20A069A3005A5D23 /* NoAuditApplyViewController.m */,
+				343207C820A068BC005A5D23 /* NoAuditSellViewController.h */,
+				343207C920A068BC005A5D23 /* NoAuditSellViewController.m */,
+				343207D120A06A70005A5D23 /* YesAuditInStorageViewController.h */,
+				343207D220A06A70005A5D23 /* YesAuditInStorageViewController.m */,
+				343207D420A06AA6005A5D23 /* YesAuditApplyViewController.h */,
+				343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */,
+				343207D720A06AB5005A5D23 /* YesAuditSellViewController.h */,
+				343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */,
 				346B6ACE208D96F800F4B054 /* PaymentOrderViewController.h */,
 				346B6ACF208D96F800F4B054 /* PaymentOrderViewController.m */,
 				346B6AD1208D97B900F4B054 /* SupplierViewController.h */,
@@ -923,6 +983,24 @@
 				343025A7209BFA1F00869313 /* ProductViewController.m */,
 				343025F3209C537B00869313 /* AddColorViewController.h */,
 				343025F4209C537B00869313 /* AddColorViewController.m */,
+				3432078420A0087A005A5D23 /* SetClientViewController.h */,
+				3432078520A0087A005A5D23 /* SetClientViewController.m */,
+				345D5F02209D614E00126C40 /* SetCompanyViewController.h */,
+				345D5F03209D614E00126C40 /* SetCompanyViewController.m */,
+				345D5F05209D664400126C40 /* SupplierCompanyViewController.h */,
+				345D5F06209D664400126C40 /* SupplierCompanyViewController.m */,
+				34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */,
+				34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */,
+				34F6D35A209D8C23009D5440 /* ProductionCompanyViewController.h */,
+				34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */,
+				34F6D35D209D8C69009D5440 /* ProcessCompanyViewController.h */,
+				34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */,
+				345D5EFC209D4AAF00126C40 /* RecipeViewController.h */,
+				345D5EFD209D4AAF00126C40 /* RecipeViewController.m */,
+				345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */,
+				345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */,
+				34320781209FF25C005A5D23 /* AddDyeRecipeViewController.h */,
+				34320782209FF25C005A5D23 /* AddDyeRecipeViewController.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -1057,6 +1135,8 @@
 				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
 				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
 				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
+				343207C520A05A8E005A5D23 /* BackOrderViewController.h */,
+				343207C620A05A8E005A5D23 /* BackOrderViewController.m */,
 			);
 			path = "sale(销售)";
 			sourceTree = "<group>";
@@ -1825,8 +1905,10 @@
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
+				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
+				343207D920A06AB5005A5D23 /* YesAuditSellViewController.m in Sources */,
 				B50505AD209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				B50505C1209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
@@ -1841,6 +1923,7 @@
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				B50505DD209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
+				345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */,
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
@@ -1860,6 +1943,7 @@
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				34528E942089E18C004CD04B /* IncomeViewController.m in Sources */,
 				34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */,
+				343207D020A069A3005A5D23 /* NoAuditApplyViewController.m in Sources */,
 				B505066C209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
 				B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
@@ -1893,6 +1977,7 @@
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
+				34F6D35F209D8C69009D5440 /* ProcessCompanyViewController.m in Sources */,
 				343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
@@ -1905,12 +1990,14 @@
 				34EA5BC9208B276C0048CFE1 /* UIColor+Extensions.m in Sources */,
 				B50505BB209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
+				343207D620A06AA6005A5D23 /* YesAuditApplyViewController.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */,
+				34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */,
 				B5050670209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B50505DF209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
@@ -1946,6 +2033,7 @@
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
+				345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */,
 				342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
@@ -1955,13 +2043,16 @@
 				B50505E7209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */,
 				B50505B1209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
+				343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */,
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				342CF64E20995F82007C329D /* AddWarehouseViewController.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
+				345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
 				B5B07506209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
+				34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */,
 				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
@@ -1974,12 +2065,16 @@
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
+				34F6D35C209D8C23009D5440 /* ProductionCompanyViewController.m in Sources */,
+				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
+				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
+				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
@@ -1996,6 +2091,7 @@
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
 				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
+				343207C720A05A8E005A5D23 /* BackOrderViewController.m in Sources */,
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,

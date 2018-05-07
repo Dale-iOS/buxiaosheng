@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/17.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户管理
+//  客户管理页面
 
 #import "ClientManagerViewController.h"
 #import "SGPagingView.h"

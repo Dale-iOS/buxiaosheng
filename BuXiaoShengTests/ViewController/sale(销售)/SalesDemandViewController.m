@@ -69,6 +69,9 @@
     self.navigationItem.title = @"销售需求";
     self.view.backgroundColor = [UIColor whiteColor ];
     
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"search")];
+
+    
     self.datasource = [NSMutableArray array];
     
     self.mainTableView.delegate = self;
@@ -225,6 +228,11 @@
 - (void)nextBtnOnClickAction
 {
     NSLog(@"点击了 下一步 按钮");
+}
+
+- (void)navigationSetupClick
+{
+    NSLog(@"点击了放大镜");
 }
 
 

@@ -80,13 +80,13 @@
         headerView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:(headView = headerView)];
         
-        //龙纺布行 label
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 15, 75, 19)];
-        titleLabel.text = @"龙纺布行";
-        titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.textColor = [UIColor blackColor];
-        titleLabel.textAlignment = NSTextAlignmentLeft;
-        [headerView addSubview:titleLabel];
+//        //龙纺布行 label
+//        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 15, 75, 19)];
+//        titleLabel.text = @"龙纺布行";
+//        titleLabel.font = [UIFont boldSystemFontOfSize:18];
+//        titleLabel.textColor = [UIColor blackColor];
+//        titleLabel.textAlignment = NSTextAlignmentLeft;
+//        [headerView addSubview:titleLabel];
         
         //导航栏右上角设置按钮
 //        UIButton *setupBtn = [UIButton new];

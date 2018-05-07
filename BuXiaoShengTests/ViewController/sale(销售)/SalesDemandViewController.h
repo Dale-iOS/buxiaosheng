@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SalesDemandViewController : UIViewController
+@interface SalesDemandViewController : BaseViewController
 
 @end

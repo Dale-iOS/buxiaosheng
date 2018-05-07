@@ -142,8 +142,10 @@
     }
     else if (indexPath.row == 2)
     {
-        //跟单
-        AssignDeliveryViewController *vc = [[AssignDeliveryViewController alloc]init];
+//        //指派送货
+//        AssignDeliveryViewController *vc = [[AssignDeliveryViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        WithSingleViewControllerViewController *vc = [[WithSingleViewControllerViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 3)
