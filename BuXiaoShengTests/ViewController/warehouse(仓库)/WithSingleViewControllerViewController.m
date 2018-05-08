@@ -21,6 +21,7 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"跟单"];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self setCollectionView];
 }
@@ -29,15 +30,15 @@
 - (void)setCollectionView
 {
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    flow.itemSize = CGSizeMake(APPWidth /4, 100);
+    flow.itemSize = CGSizeMake(APPWidth /10, 10);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 85, APPWidth, 200) collectionViewLayout:flow];
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(100, 85, APPWidth, 200) collectionViewLayout:flow];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
-    self.collectView.backgroundColor = [UIColor whiteColor];
+    self.collectView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.collectView];
 }
 
@@ -91,7 +92,7 @@
 //设置itme大小
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(APPWidth /5, 80);
+    return CGSizeMake(APPWidth /5, 10);
 }
 
 //设置每个item的边距 上下左右
