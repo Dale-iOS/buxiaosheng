@@ -172,7 +172,6 @@
     conf.showAnimDuration = 0.2;
     conf.HiddenAnimDuration = 0.2;
     conf.maskAlpha = 0.1;
-    
     [demandVc cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
     
     

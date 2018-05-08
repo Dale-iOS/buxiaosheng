@@ -17,12 +17,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+   [self setupUI];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)setupUI {
+    UISearchBar * searchBar = [UISearchBar new];
+    [self.view addSubview:searchBar];
+    searchBar.placeholder = @"搜索颜色";
+    [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.top.equalTo(self.view).offset(22);
+    }];
 }
 
 /*

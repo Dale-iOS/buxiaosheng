@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LLSalesDemandSideSlipVc : UIViewController
+#import "BaseViewController.h"
+@interface LLSalesDemandSideSlipVc : BaseViewController
 
 @end
