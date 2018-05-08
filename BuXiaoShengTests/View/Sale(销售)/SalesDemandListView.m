@@ -8,7 +8,9 @@
 
 #import "SalesDemandListView.h"
 #import "DemandListTableViewCell.h"
-
+#import "SalesDemandViewController.h"
+#import "LLSalesDemandSideSlipVc.h"
+#import "UIViewController+CWLateralSlide.h"
 @interface SalesDemandListView()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIView *_headerView;
@@ -161,7 +163,19 @@
 #pragma mark ------ 点击事件 --------
 - (void)addBtnOnClickAction
 {
+    SalesDemandViewController * demandVc = (SalesDemandViewController *)[Utility getVCAtView:self WithVcClass:[SalesDemandViewController class]];
     NSLog(@"addBtnOnClickAction");
+    LLSalesDemandSideSlipVc *vc = [[LLSalesDemandSideSlipVc alloc] init];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
+    conf.maskAlpha = 0.1;
+    
+    [demandVc cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    
+    
     
 }
 

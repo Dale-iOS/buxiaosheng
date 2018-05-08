@@ -111,6 +111,17 @@
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return theImage;
-}  
+}
+
++(UIViewController *)getVCAtView:(UIView *)selfView WithVcClass:(Class )vcClass {
+    for (UIView* next = selfView; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:vcClass]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+    
+}
 
 @end

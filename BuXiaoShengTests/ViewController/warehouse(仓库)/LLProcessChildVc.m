@@ -27,7 +27,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
 //    ProcessViewController * parentVc = (ProcessViewController*)self.parentViewController;
 //    if ([self.title isEqualToString:parentVc.segmentedTitles.firstObject]) {
 //        self.view.backgroundColor = [UIColor redColor];

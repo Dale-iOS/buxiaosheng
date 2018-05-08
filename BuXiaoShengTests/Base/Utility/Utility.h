@@ -26,4 +26,6 @@
 + (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector image:(UIImage *)image;
 //颜色转换图片
 +(UIImage*) createImageWithColor:(UIColor*) color;
+
++(UIViewController *)getVCAtView:(UIView *)selfView WithVcClass:(Class )vcClass;
 @end
