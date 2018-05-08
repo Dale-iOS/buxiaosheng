@@ -31,9 +31,13 @@
 #define LLScale_WIDTH(cgflot) (SCREEN_WIDTH/750.0*(cgflot))
 
 #define LLAddHeight (IPHONE_X ? 24.0:0.0)
+
 #define LLNavViewHeight (IPHONE_X ? 88.0:64.0)
 
 #define LLTabBarHeight (IPHONE_X ? 83.0:49.0)
+
+//安全域高
+#define IPHONEX_MARGIN_BOTTOM (IPHONE_X ? 34.0:0.0)
 
 #define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
 #define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))

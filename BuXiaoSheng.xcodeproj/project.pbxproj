@@ -88,6 +88,8 @@
 		34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EBD207F404200710F91 /* DemandListTableViewCell.m */; };
 		34602EC2207F69C800710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
 		34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
+		3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464A93520A1894A00307C1A /* DyeRecipeView.m */; };
+		3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464A93820A1898100307C1A /* WeaveRecipeView.m */; };
 		346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */; };
 		346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ACC208D7DAE00F4B054 /* AuditViewController.m */; };
 		346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ACF208D96F800F4B054 /* PaymentOrderViewController.m */; };
@@ -490,6 +492,10 @@
 		34602EBD207F404200710F91 /* DemandListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemandListTableViewCell.m; sourceTree = "<group>"; };
 		34602EC0207F69C800710F91 /* TextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
 		34602EC1207F69C800710F91 /* TextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
+		3464A93420A1894A00307C1A /* DyeRecipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeRecipeView.h; sourceTree = "<group>"; };
+		3464A93520A1894A00307C1A /* DyeRecipeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyeRecipeView.m; sourceTree = "<group>"; };
+		3464A93720A1898100307C1A /* WeaveRecipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeaveRecipeView.h; sourceTree = "<group>"; };
+		3464A93820A1898100307C1A /* WeaveRecipeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeaveRecipeView.m; sourceTree = "<group>"; };
 		346B6AC8208D7A3F00F4B054 /* AuditTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditTableViewCell.h; sourceTree = "<group>"; };
 		346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditTableViewCell.m; sourceTree = "<group>"; };
 		346B6ACB208D7DAE00F4B054 /* AuditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditViewController.h; sourceTree = "<group>"; };
@@ -1040,6 +1046,10 @@
 				342CF65F20999990007C329D /* AuditManagerTableViewCell.m */,
 				348DB848209ABFC100CD36CD /* DefaultBankCell.h */,
 				348DB849209ABFC100CD36CD /* DefaultBankCell.m */,
+				3464A93420A1894A00307C1A /* DyeRecipeView.h */,
+				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
+				3464A93720A1898100307C1A /* WeaveRecipeView.h */,
+				3464A93820A1898100307C1A /* WeaveRecipeView.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -2065,6 +2075,7 @@
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
 				342CF65A209970D7007C329D /* AddBankViewController.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
+				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
@@ -2155,6 +2166,7 @@
 				34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
+				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,
 				B50505C7209AB2DA00CE7E4D /* XLFormDescriptor.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
 				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,

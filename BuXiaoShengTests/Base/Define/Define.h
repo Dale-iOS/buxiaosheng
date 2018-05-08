@@ -35,6 +35,15 @@
 #define IPHONE6PLUS_WIDTH               414.000000
 #define IPHONEX_Height                  812.000000
 
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH <= 568.0)
+#define IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+#define IPHONE_X (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
+
 ///原型宽比例
 #define LZHScale_WIDTH(number) ([UIScreen mainScreen].bounds.size.width/750.0 * (number))
 ///原型高比例

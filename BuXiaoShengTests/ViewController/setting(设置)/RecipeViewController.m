@@ -10,13 +10,21 @@
 #import "AddRecipeViewController.h"
 #import "AddDyeRecipeViewController.h"
 
-@interface RecipeViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "DyeRecipeView.h"
+#import "WeaveRecipeView.h"
+
+@interface RecipeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 ///分段选择器背景
 @property (nonatomic, strong) UIView *SegmentedBgView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UISegmentedControl *SegmentedControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
+///织布配方表
+@property (nonatomic, strong)WeaveRecipeView *weaveRecipeView;
+///染色配方表
+@property (nonatomic, strong)DyeRecipeView *dyeRecipeView;
 @end
 
 @implementation RecipeViewController
@@ -33,6 +41,15 @@
     
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"add1")];
     
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -64)];
+//    self.scrollView.backgroundColor = [UIColor yellowColor];
+    self.scrollView.contentSize = CGSizeMake(APPWidth *2, 0);
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
+
     self.SegmentedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, 40)];
     self.SegmentedBgView.backgroundColor = [UIColor whiteColor];
     
@@ -50,13 +67,21 @@
     .widthIs(180)
     .heightIs(30);
     
+    
+    self.weaveRecipeView = [[WeaveRecipeView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, self.scrollView.height)];
+    [self.scrollView addSubview:self.weaveRecipeView];
+    
+    self.dyeRecipeView = [[DyeRecipeView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, self.scrollView.height)];
+    [self.scrollView addSubview:self.dyeRecipeView];
+    
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.SegmentedBgView.bottom, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     
-    [self.view addSubview:_tableView];
+//    [self.view addSubview:_tableView];
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -114,8 +139,18 @@
     
 }
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat offSetX = scrollView.contentOffset.x;
+    NSInteger index = offSetX / SCREEN_WIDTH;
+    self.SegmentedControl.selectedSegmentIndex = index;
+ 
+}
+
+
 - (void)segClick:(UISegmentedControl *)sgc
 {
+     [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * sgc.selectedSegmentIndex, 0) animated:true];
+    
 //    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
 //    item.canSelected = NO;
 //    item.sectionView = self.headerView1;
