@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/11.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  登录页面
 
 #import "LoginViewController.h"
 #import "HomeViewController.h"
@@ -117,10 +117,24 @@
     NSLog(@"loginBtnOnClickAction");
     HomeViewController *vc = [[HomeViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-    //    [self presentViewController:vc animated:YES completion:nil];
+
     
-//    SaleViewController *vc1 = [[SaleViewController alloc]init];
-//    [self.navigationController pushViewController:vc1 animated:YES];
+    
+    //时间戳
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    NSDate *datenow = [NSDate date];//现在时间
+    
+    //时间转时间戳的方法:
+    NSInteger timeSp = [[NSNumber numberWithDouble:[datenow timeIntervalSince1970]] integerValue];
+    NSString *ts = [NSString stringWithFormat:@"%ld",(long)timeSp];//时间戳的值
+    NSLog(@"时间戳：%@",ts);
     
 }
 
