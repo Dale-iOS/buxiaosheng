@@ -313,6 +313,10 @@
 		B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6EF20A178D000A8B92B /* UIViewController+CWLateralSlide.m */; };
 		B58BF6FC20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6FB20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m */; };
 		B58BF6FD20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6FB20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m */; };
+		B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF72220A2D4FE00A8B92B /* LLNetWorkTools.m */; };
+		B58BF72520A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF72220A2D4FE00A8B92B /* LLNetWorkTools.m */; };
+		B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF72720A2D72100A8B92B /* BXSHttp.m */; };
+		B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF72720A2D72100A8B92B /* BXSHttp.m */; };
 		B5B07506209C1DC000FD53DC /* LLProcessChildVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */; };
 		B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */; };
 		B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0750A209C28BA00FD53DC /* LLProcessSectionView.m */; };
@@ -830,6 +834,10 @@
 		B58BF6EF20A178D000A8B92B /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
 		B58BF6FA20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSalesDemandSideSlipVc.h; sourceTree = "<group>"; };
 		B58BF6FB20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSalesDemandSideSlipVc.m; sourceTree = "<group>"; };
+		B58BF72220A2D4FE00A8B92B /* LLNetWorkTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetWorkTools.m; sourceTree = "<group>"; };
+		B58BF72320A2D4FE00A8B92B /* LLNetWorkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetWorkTools.h; sourceTree = "<group>"; };
+		B58BF72620A2D72100A8B92B /* BXSHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSHttp.h; sourceTree = "<group>"; };
+		B58BF72720A2D72100A8B92B /* BXSHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BXSHttp.m; sourceTree = "<group>"; };
 		B5B07504209C1DC000FD53DC /* LLProcessChildVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessChildVc.h; sourceTree = "<group>"; };
 		B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessChildVc.m; sourceTree = "<group>"; };
 		B5B07509209C28BA00FD53DC /* LLProcessSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProcessSectionView.h; sourceTree = "<group>"; };
@@ -1270,6 +1278,10 @@
 		34A0ED872080865A00659190 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				B58BF72320A2D4FE00A8B92B /* LLNetWorkTools.h */,
+				B58BF72220A2D4FE00A8B92B /* LLNetWorkTools.m */,
+				B58BF72620A2D72100A8B92B /* BXSHttp.h */,
+				B58BF72720A2D72100A8B92B /* BXSHttp.m */,
 				345E74742082FFCD004B49B3 /* Utility.h */,
 				345E74752082FFCD004B49B3 /* Utility.m */,
 			);
@@ -2012,6 +2024,7 @@
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
+				B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
@@ -2115,6 +2128,7 @@
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				343025F5209C537B00869313 /* AddColorViewController.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
+				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
@@ -2228,6 +2242,7 @@
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
+				B58BF72520A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34A92B61207DEF9900572648 /* HomeEntranceView.m in Sources */,
 				34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */,
 				B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
@@ -2259,6 +2274,7 @@
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
+				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B50505E2209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
 				B50505B6209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34A92B6C207DFB6700572648 /* HomeEntranceCell.m in Sources */,
