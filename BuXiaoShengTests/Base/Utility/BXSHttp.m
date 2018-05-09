@@ -45,6 +45,23 @@
      }];
 }
 
++(void)downloadWithTaskUrl:(NSString *)downURL downLoadBlock:(void (^)(NSString *))block {
+    
+    NSString * newURL =    [self makeMD5:downURL];
+    NSString * documentsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    documentsPath  = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",newURL]];
+    NSFileManager * fm=[NSFileManager defaultManager];
+    NSData * data = [fm contentsAtPath:documentsPath];
+    if (data != nil) {
+        block(documentsPath);
+    }else {
+        [[LLNetWorkTools shareTools]setDownloadWithTaskUrl:downURL saveName:newURL downLoadBlock:^(NSString *filePath) {
+            block(filePath);
+        }];
+        
+    }
+}
+
 +(NSMutableDictionary*) getConstantParam {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     param[@"appVersion"] =  appVersion;

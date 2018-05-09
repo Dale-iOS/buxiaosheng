@@ -19,5 +19,20 @@
 
 +(void)requestGETWithAppURL:(NSString *) url param:(NSDictionary *) param  success:(void (^)(id response))success  failure:(void (^) (NSError * error)) failure ;
 
++(void)downloadWithTaskUrl:(NSString *)downURL  downLoadBlock:(void (^) (NSString * filePath)) block;
+
+/**
+ 获取一些写死的签名值
+
+ @return 字典
+ */
 +(NSMutableDictionary*) getConstantParam;
+
+/**
+ 获取签名的key
+
+ @param param 所有要穿的参数
+ @return MD5签名
+ */
++(NSString *)sortObjectsAccordingToValueMD5With:(NSDictionary *)param;
 @end

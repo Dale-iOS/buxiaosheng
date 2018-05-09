@@ -23,16 +23,7 @@
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
     self.window.rootViewController = nav;
     nav.navigationBarHidden = YES;
-    //loginName=15018438558&password=E10ADC3949BA59ABBE56E057F20F883E
-    NSDictionary * param = @{@"loginName":@"15018438558",
-                             @"password":@"E10ADC3949BA59ABBE56E057F20F883E"
-                             };
-    [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
+ 
     return YES;
 }
 
