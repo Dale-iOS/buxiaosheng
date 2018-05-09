@@ -86,14 +86,9 @@
     NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
         return [obj1 compare:obj2 options: NSForcedOrderingSearch];
     }];
-    
-    for (NSString *categoryId in sortedArray) {
-        NSLog(@"[dict objectForKey:categoryId] === %@",[param objectForKey:categoryId]);
-    }
-    
     NSMutableString * str = [NSMutableString string];
     [sortedArray enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [str appendFormat:@"%@", param[obj]];
+        [str appendFormat:@"%@", param[obj]?param[obj]: @""];
     }];
     [str appendFormat:@"%@", key_str];
     
