@@ -11,7 +11,7 @@
 #define appName @"buxiaosheng_ios"
 #define appVersion @"1.0"
 #define key_str @"3D49257E25A04D16D97A3F024AA718A1"
-#define BXSBaseURL  @"http ://www.buxiaosheng.com/web-api/"
+#define BXSBaseURL  @"http://www.buxiaosheng.com/web-api/"
 
 @interface BXSHttp : NSObject
 

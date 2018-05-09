@@ -124,6 +124,8 @@
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         
+        NSLog(@"回调数据：%@",response);
+        
     } failure:^(NSError *error) {
         
     }];
