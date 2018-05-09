@@ -99,6 +99,7 @@
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
 		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
 		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
+		347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */; };
 		347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
@@ -516,6 +517,8 @@
 		347C309520A299030078BB69 /* InventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		347C309920A29DBC0078BB69 /* InventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryCell.h; sourceTree = "<group>"; };
 		347C309A20A29DBC0078BB69 /* InventoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryCell.m; sourceTree = "<group>"; };
+		347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryDetailViewController.h; sourceTree = "<group>"; };
+		347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryDetailViewController.m; sourceTree = "<group>"; };
 		347D64CA207F062500407FC4 /* SalesDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandViewController.h; sourceTree = "<group>"; };
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
@@ -1076,6 +1079,7 @@
 		34494DEA2091725800BDB309 /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
+				347C309C20A2C5780078BB69 /* inventory仓库 */,
 				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
 				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
 				34494DF22091A76200BDB309 /* ClientNeedsViewController.h */,
@@ -1150,6 +1154,15 @@
 			children = (
 				347C309920A29DBC0078BB69 /* InventoryCell.h */,
 				347C309A20A29DBC0078BB69 /* InventoryCell.m */,
+			);
+			path = "inventory仓库";
+			sourceTree = "<group>";
+		};
+		347C309C20A2C5780078BB69 /* inventory仓库 */ = {
+			isa = PBXGroup;
+			children = (
+				347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */,
+				347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */,
 			);
 			path = "inventory仓库";
 			sourceTree = "<group>";
@@ -2068,6 +2081,7 @@
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
+				347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */,
 				34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */,

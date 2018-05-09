@@ -1,42 +1,31 @@
 //
-//  InventoryViewController.m
+//  InventoryDetailViewController.m
 //  BuXiaoSheng
 //
 //  Created by 罗镇浩 on 2018/5/9.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  库存页面（仓库库存页面）
+//  仓库详情
 
-#import "InventoryViewController.h"
-#import "InventoryCell.h"
-#import "BankConversionViewController.h"
 #import "InventoryDetailViewController.h"
 
-@interface InventoryViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;
+@interface InventoryDetailViewController ()
 ///总米数
 @property (nonatomic, strong) UILabel *meterLbl;
 ///总码数
 @property (nonatomic, strong) UILabel *codeLbl;
 ///总公斤
 @property (nonatomic, strong) UILabel *kgLbl;
-
-
+///总条数
+@property (nonatomic, strong) UILabel *totalLbl;
 @end
 
-
-@implementation InventoryViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setupUI];
-}
+@implementation InventoryDetailViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    self.navigationItem.titleView = [Utility navWhiteTitleView:@"库存"];
+    self.navigationItem.titleView = [Utility navWhiteTitleView:@"广州大仓库"];
     //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     //    self.view.backgroundColor = [UIColor whiteColor];
     
@@ -64,6 +53,11 @@
     
     self.view.backgroundColor = LZHBackgroundColor;
     
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
 }
 
 - (void)setupUI
@@ -185,58 +179,22 @@
     .rightSpaceToView(totalKgLbl, 0);
     
     
+    //总条数
+    self.totalLbl = [[UILabel alloc]init];
+    self.totalLbl.font = FONT(13);
+    self.totalLbl.textAlignment = NSTextAlignmentCenter;
+    self.totalLbl.textColor = [UIColor whiteColor];
+    self.totalLbl.text = @"总条数：42565465";
+    [bgBlueView addSubview:self.totalLbl];
+    
+    self.totalLbl.sd_layout
+    .topSpaceToView(self.codeLbl, 45)
+    .widthIs(APPWidth)
+    .heightIs(14)
+    .centerXEqualToView(bgBlueView);
     
     
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20) style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    //隐藏分割线
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-    
-    
-}
-
-#pragma mark ----- tableviewdelegate -----
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 145;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellid = @"InventoryCell";
-    
-    InventoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
-    if (cell == nil) {
-        
-        cell = [[InventoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-    }
-    
-    cell.titleLabel.text = @"广州大仓库";
-    cell.meterLabel.text = @"米数：56468465485";
-    cell.codeLabel.text = @"码数：24113515";
-    cell.kgLabel.text = @"公斤：354864354";
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    InventoryDetailViewController *vc = [[InventoryDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //恢复到设置背景图之前的外观
@@ -299,10 +257,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+ 
 }
 
 
