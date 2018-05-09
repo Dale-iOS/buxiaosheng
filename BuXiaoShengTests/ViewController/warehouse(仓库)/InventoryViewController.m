@@ -102,7 +102,7 @@
     .leftSpaceToView(bgBlueView, 0);
     
     totalMeterLbl.sd_layout
-    .topSpaceToView(self.meterLbl, 15)
+    .topSpaceToView(self.meterLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .leftSpaceToView(bgBlueView, 0);
@@ -139,7 +139,7 @@
     .centerXEqualToView(bgBlueView);
     
     totalCodeLbl.sd_layout
-    .topSpaceToView(self.codeLbl, 15)
+    .topSpaceToView(self.codeLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .centerXEqualToView(bgBlueView);
@@ -173,7 +173,7 @@
     .rightSpaceToView(bgBlueView, 0);
     
     totalKgLbl.sd_layout
-    .topSpaceToView(self.codeLbl, 15)
+    .topSpaceToView(self.codeLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .rightSpaceToView(bgBlueView, 0);

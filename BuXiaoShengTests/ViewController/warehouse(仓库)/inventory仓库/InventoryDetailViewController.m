@@ -7,8 +7,9 @@
 //  仓库详情
 
 #import "InventoryDetailViewController.h"
+#import "CustomerArrearsTableViewCell.h"
 
-@interface InventoryDetailViewController ()
+@interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///总米数
 @property (nonatomic, strong) UILabel *meterLbl;
 ///总码数
@@ -17,6 +18,10 @@
 @property (nonatomic, strong) UILabel *kgLbl;
 ///总条数
 @property (nonatomic, strong) UILabel *totalLbl;
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *headView;
+
 @end
 
 @implementation InventoryDetailViewController
@@ -96,7 +101,7 @@
     .leftSpaceToView(bgBlueView, 0);
     
     totalMeterLbl.sd_layout
-    .topSpaceToView(self.meterLbl, 15)
+    .topSpaceToView(self.meterLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .leftSpaceToView(bgBlueView, 0);
@@ -133,7 +138,7 @@
     .centerXEqualToView(bgBlueView);
     
     totalCodeLbl.sd_layout
-    .topSpaceToView(self.codeLbl, 15)
+    .topSpaceToView(self.codeLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .centerXEqualToView(bgBlueView);
@@ -167,7 +172,7 @@
     .rightSpaceToView(bgBlueView, 0);
     
     totalKgLbl.sd_layout
-    .topSpaceToView(self.codeLbl, 15)
+    .topSpaceToView(self.codeLbl, 10)
     .widthIs(APPWidth/3)
     .heightIs(14)
     .rightSpaceToView(bgBlueView, 0);
@@ -192,6 +197,22 @@
     .widthIs(APPWidth)
     .heightIs(14)
     .centerXEqualToView(bgBlueView);
+    
+    
+    
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, bgBlueView.bottom, APPWidth, 49)];
+    self.headView.backgroundColor = LZHBackgroundColor;
+    [self.view addSubview:self.headView];
+    
+    [self setupHeadView];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.headView.bottom, APPWidth, APPHeight -64-10) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    //隐藏分割线
+    //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
     
     
     
@@ -236,7 +257,7 @@
     UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
     rightButton.backgroundColor = [UIColor clearColor];
     rightButton.frame = rightButtonView.frame;
-    [rightButton setImage:[UIImage imageNamed:@"wihtesearch"] forState:UIControlStateNormal];
+    [rightButton setImage:[UIImage imageNamed:@"whiteScreen"] forState:UIControlStateNormal];
     //    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     rightButton.tintColor = [UIColor whiteColor];
     rightButton.autoresizesSubviews = YES;
@@ -251,6 +272,101 @@
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
+
+
+//设置顶部
+- (void)setupHeadView
+{
+
+    
+    //客户名称
+    UILabel *titleLbl = [[UILabel alloc]init];
+    titleLbl.text = @"品名";
+    titleLbl.textColor = CD_Text33;
+    titleLbl.font = FONT(14);
+    titleLbl.textAlignment = NSTextAlignmentCenter;
+    [self.headView addSubview:titleLbl];
+    
+    //应收借欠
+    UILabel *lineLbl = [[UILabel alloc]init];
+    lineLbl.text = @"条数";
+    lineLbl.textColor = CD_Text33;
+    lineLbl.font = FONT(14);
+    lineLbl.textAlignment = NSTextAlignmentCenter;
+    [self.headView addSubview:lineLbl];
+    
+    //最后还款日期
+    UILabel *numLbl = [[UILabel alloc]init];
+    numLbl.text = @"数量";
+    numLbl.textColor = CD_Text33;
+    numLbl.font = FONT(14);
+    numLbl.textAlignment = NSTextAlignmentCenter;
+    [self.headView addSubview:numLbl];
+    
+    //业务员
+    UILabel *unitLbl = [[UILabel alloc]init];
+    unitLbl.text = @"单位";
+    unitLbl.textColor = CD_Text33;
+    unitLbl.font = FONT(14);
+    unitLbl.textAlignment = NSTextAlignmentCenter;
+    [self.headView addSubview:unitLbl];
+    
+    titleLbl.sd_layout
+    .leftSpaceToView(self.headView, 0)
+    .heightRatioToView(self.headView, 1)
+    .widthIs(APPWidth/4)
+    .topSpaceToView(self.headView, 0);
+    
+    lineLbl.sd_layout
+    .leftSpaceToView(titleLbl, 0)
+    .heightRatioToView(self.headView, 1)
+    .widthIs(APPWidth/4)
+    .topSpaceToView(self.headView, 0);
+    
+    numLbl.sd_layout
+    .leftSpaceToView(lineLbl, 0)
+    .heightRatioToView(self.headView, 1)
+    .widthIs(APPWidth/4)
+    .topSpaceToView(self.headView, 0);
+    
+    unitLbl.sd_layout
+    .leftSpaceToView(numLbl, 0)
+    .heightRatioToView(self.headView, 1)
+    .widthIs(APPWidth/4)
+    .topSpaceToView(self.headView, 0);
+}
+
+#pragma mark ----- tableviewdelegate -----
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellid = @"CustomerArrearsTableViewCell";
+    
+    CustomerArrearsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+    if (cell == nil) {
+        
+        cell = [[CustomerArrearsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
+    return cell;
+}
+
+
+
+
 
 - (void)backMethod
 {
