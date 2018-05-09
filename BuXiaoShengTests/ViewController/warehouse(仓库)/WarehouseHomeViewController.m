@@ -16,6 +16,7 @@
 #import "AssignDeliveryViewController.h"
 #import "DyeingDemandViewController.h"
 #import "StockTrackingViewController.h"
+#import "InventoryViewController.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 
@@ -150,8 +151,8 @@
     }
     else if (indexPath.row == 3)
     {
-        //库存
-        WithSingleViewControllerViewController *vc = [[WithSingleViewControllerViewController alloc]init];
+        //库存        
+        InventoryViewController *vc = [[InventoryViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 4)

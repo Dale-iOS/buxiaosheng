@@ -81,7 +81,7 @@
     .widthIs(APPWidth)
     .leftSpaceToView(self.tableViewHeadView, 0);
     
-    self.navigationItem.titleView = [Utility navTitleView:@"银行明细"];
+    self.navigationItem.titleView = [Utility navTitleView:@"银行明细1"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = LZHBackgroundColor;
     

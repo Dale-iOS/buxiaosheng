@@ -1,30 +1,32 @@
 //
-//  BankDetailViewController.m
+//  InventoryViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/23.
+//  Created by 罗镇浩 on 2018/5/9.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  银行明细页面
+//  库存页面（仓库库存页面）
 
-#import "BankDetailViewController.h"
-#import "BankTableViewCell.h"
+#import "InventoryViewController.h"
+#import "InventoryCell.h"
 #import "BankConversionViewController.h"
 
-@interface BankDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface InventoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-///金额显示
-@property (nonatomic, strong) UILabel *priceLbl;
+///总米数
+@property (nonatomic, strong) UILabel *meterLbl;
+///总码数
+@property (nonatomic, strong) UILabel *codeLbl;
+///总公斤
+@property (nonatomic, strong) UILabel *kgLbl;
 
-///银行互转按钮
-@property (nonatomic, strong) UIButton *conversionBtn;
 @end
 
-@implementation BankDetailViewController
+
+@implementation InventoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
 }
 
@@ -32,7 +34,7 @@
 {
     [super viewWillAppear:YES];
     
-    self.navigationItem.titleView = [Utility navWhiteTitleView:@"银行明细2"];
+    self.navigationItem.titleView = [Utility navWhiteTitleView:@"库存"];
     //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     //    self.view.backgroundColor = [UIColor whiteColor];
     
@@ -64,42 +66,127 @@
 
 - (void)setupUI
 {
-
+    
     UIView *bgBlueView = [[UIView alloc]init];
     bgBlueView.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
     bgBlueView.frame = CGRectMake(0, 0, APPWidth, LZHScale_HEIGHT(250)  +64);
     [self.view addSubview:bgBlueView];
     
-    //总金额
-    UILabel *totalMoneyLbl = [[UILabel alloc]init];
-    totalMoneyLbl.font = FONT(13);
-    totalMoneyLbl.textAlignment = NSTextAlignmentCenter;
-    totalMoneyLbl.textColor = [UIColor whiteColor];
-    totalMoneyLbl.text = @"总资金（元）";
-    [bgBlueView addSubview:totalMoneyLbl];
+    //总米数
+    UILabel *totalMeterLbl = [[UILabel alloc]init];
+    totalMeterLbl.font = FONT(13);
+    totalMeterLbl.textAlignment = NSTextAlignmentCenter;
+    totalMeterLbl.textColor = [UIColor whiteColor];
+    totalMeterLbl.text = @"总米数";
+    [bgBlueView addSubview:totalMeterLbl];
     
-    //具体金钱数
-    self.priceLbl = [[UILabel alloc]init];
-    self.priceLbl.font = [UIFont boldSystemFontOfSize:35];
-    self.priceLbl.textColor = [UIColor whiteColor];
-    self.priceLbl.textAlignment = NSTextAlignmentCenter;
-    self.priceLbl.text = @"2390.00";
-    [bgBlueView addSubview:self.priceLbl];
+    //具体米数
+    self.meterLbl = [[UILabel alloc]init];
+    self.meterLbl.font = [UIFont boldSystemFontOfSize:18];
+    self.meterLbl.textColor = [UIColor whiteColor];
+    self.meterLbl.textAlignment = NSTextAlignmentCenter;
+    self.meterLbl.text = @"2390.00";
+    [bgBlueView addSubview:self.meterLbl];
+    
+    UIView *lineView1 = [[UIView alloc]init];
+    lineView1.backgroundColor = [UIColor whiteColor];
+    [bgBlueView addSubview:lineView1];
     
     //布局
-    self.priceLbl.sd_layout
+    self.meterLbl.sd_layout
     .topSpaceToView(bgBlueView, 30+64)
-    .widthIs(APPWidth)
+    .widthIs(APPWidth/3)
+    .heightIs(36)
+    .leftSpaceToView(bgBlueView, 0);
+    
+    totalMeterLbl.sd_layout
+    .topSpaceToView(self.meterLbl, 15)
+    .widthIs(APPWidth/3)
+    .heightIs(14)
+    .leftSpaceToView(bgBlueView, 0);
+    
+    lineView1.sd_layout
+    .topEqualToView(totalMeterLbl)
+    .widthIs(1)
+    .heightIs(14)
+    .leftSpaceToView(bgBlueView, APPWidth/3);
+    
+    
+    
+    //总码数
+    UILabel *totalCodeLbl = [[UILabel alloc]init];
+    totalCodeLbl.font = FONT(13);
+    totalCodeLbl.textAlignment = NSTextAlignmentCenter;
+    totalCodeLbl.textColor = [UIColor whiteColor];
+    totalCodeLbl.text = @"总码数";
+    [bgBlueView addSubview:totalCodeLbl];
+    
+    //具体码数
+    self.codeLbl = [[UILabel alloc]init];
+    self.codeLbl.font = [UIFont boldSystemFontOfSize:18];
+    self.codeLbl.textColor = [UIColor whiteColor];
+    self.codeLbl.textAlignment = NSTextAlignmentCenter;
+    self.codeLbl.text = @"2355.00";
+    [bgBlueView addSubview:self.codeLbl];
+    
+    //布局
+    self.codeLbl.sd_layout
+    .topSpaceToView(bgBlueView, 30+64)
+    .widthIs(APPWidth/3)
     .heightIs(36)
     .centerXEqualToView(bgBlueView);
     
-    totalMoneyLbl.sd_layout
-    .topSpaceToView(self.priceLbl, 15)
-    .widthIs(APPWidth)
+    totalCodeLbl.sd_layout
+    .topSpaceToView(self.codeLbl, 15)
+    .widthIs(APPWidth/3)
     .heightIs(14)
     .centerXEqualToView(bgBlueView);
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20-44) style:UITableViewStylePlain];
+    
+    //总公斤
+    UILabel *totalKgLbl = [[UILabel alloc]init];
+    totalKgLbl.font = FONT(13);
+    totalKgLbl.textAlignment = NSTextAlignmentCenter;
+    totalKgLbl.textColor = [UIColor whiteColor];
+    totalKgLbl.text = @"总公斤";
+    [bgBlueView addSubview:totalKgLbl];
+    
+    //具体公斤
+    self.kgLbl = [[UILabel alloc]init];
+    self.kgLbl.font = [UIFont boldSystemFontOfSize:18];
+    self.kgLbl.textColor = [UIColor whiteColor];
+    self.kgLbl.textAlignment = NSTextAlignmentCenter;
+    self.kgLbl.text = @"4325.00";
+    [bgBlueView addSubview:self.kgLbl];
+    
+    UIView *lineView2 = [[UIView alloc]init];
+    lineView2.backgroundColor = [UIColor whiteColor];
+    [bgBlueView addSubview:lineView2];
+    
+    //布局
+    self.kgLbl.sd_layout
+    .topSpaceToView(bgBlueView, 30+64)
+    .widthIs(APPWidth/3)
+    .heightIs(36)
+    .rightSpaceToView(bgBlueView, 0);
+    
+    totalKgLbl.sd_layout
+    .topSpaceToView(self.codeLbl, 15)
+    .widthIs(APPWidth/3)
+    .heightIs(14)
+    .rightSpaceToView(bgBlueView, 0);
+    
+    lineView2.sd_layout
+    .topEqualToView(totalKgLbl)
+    .widthIs(1)
+    .heightIs(14)
+    .rightSpaceToView(totalKgLbl, 0);
+    
+    
+    
+    
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -107,15 +194,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    //银行互转
-    self.conversionBtn = [UIButton new];
-    self.conversionBtn.frame = CGRectMake(0, APPHeight -44, APPWidth, 44);
-    self.conversionBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
-    [self.conversionBtn setTitle:@"银行互转" forState:UIControlStateNormal];
-    [self.conversionBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [self.conversionBtn addTarget:self action:@selector(conversionBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    self.conversionBtn.titleLabel.font = FONT(14);
-    [self.view addSubview:self.conversionBtn];
     
 }
 
@@ -137,22 +215,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellid = @"bankTableViewCell";
+    static NSString *cellid = @"InventoryCell";
     
-    BankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+    InventoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
     if (cell == nil) {
         
-        cell = [[BankTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell = [[InventoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    
+    cell.titleLabel.text = @"广州大仓库";
+    cell.meterLabel.text = @"米数：56468465485";
+    cell.codeLabel.text = @"码数：24113515";
+    cell.kgLabel.text = @"公斤：354864354";
+    
     return cell;
 }
 
 //恢复到设置背景图之前的外观
 - (void)viewWillDisappear:(BOOL)animated {
     
-
+    
     [super viewWillDisappear:YES];
-
+    
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     self.navigationController.navigationBar.tintColor = nil;
@@ -172,7 +256,7 @@
     leftButton.backgroundColor = [UIColor clearColor];
     leftButton.frame = leftButtonView.frame;
     [leftButton setImage:[UIImage imageNamed:@"whiteback"] forState:UIControlStateNormal];
-//    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    //    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.tintColor = [UIColor whiteColor];
     leftButton.autoresizesSubviews = YES;
     leftButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -202,15 +286,6 @@
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark ---- 点击事件 ----
-- (void)conversionBtnClick
-{
-    NSLog(@"点击了银行互转");
-    
-    BankConversionViewController *vc = [[BankConversionViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)backMethod
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -221,6 +296,7 @@
     [super didReceiveMemoryWarning];
 
 }
+
 
 
 @end

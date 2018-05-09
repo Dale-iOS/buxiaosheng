@@ -97,6 +97,8 @@
 		346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD5208D97DC00F4B054 /* ProducersViewController.m */; };
 		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
+		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
+		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
 		347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
@@ -510,6 +512,10 @@
 		346B6AD8208D981700F4B054 /* ProcessorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessorsViewController.m; sourceTree = "<group>"; };
 		346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailViewController.h; sourceTree = "<group>"; };
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
+		347C309420A299030078BB69 /* InventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
+		347C309520A299030078BB69 /* InventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
+		347C309920A29DBC0078BB69 /* InventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryCell.h; sourceTree = "<group>"; };
+		347C309A20A29DBC0078BB69 /* InventoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryCell.m; sourceTree = "<group>"; };
 		347D64CA207F062500407FC4 /* SalesDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandViewController.h; sourceTree = "<group>"; };
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
@@ -1080,6 +1086,8 @@
 				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
 				34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */,
 				34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */,
+				347C309420A299030078BB69 /* InventoryViewController.h */,
+				347C309520A299030078BB69 /* InventoryViewController.m */,
 				34DE25AE2092C61A009E7589 /* DyeingViewController.h */,
 				34DE25AF2092C61A009E7589 /* DyeingViewController.m */,
 				34DE25B12092C7F1009E7589 /* ProcessViewController.h */,
@@ -1099,6 +1107,7 @@
 		34494DEE20917A0F00BDB309 /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
+				347C309820A29D970078BB69 /* inventory仓库 */,
 				B5B07508209C287F00FD53DC /* Process采购加工 */,
 				B5050665209ABDF600CE7E4D /* Dyeing制造染色 */,
 				34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */,
@@ -1134,6 +1143,15 @@
 				342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */,
 			);
 			path = "financial(财务)";
+			sourceTree = "<group>";
+		};
+		347C309820A29D970078BB69 /* inventory仓库 */ = {
+			isa = PBXGroup;
+			children = (
+				347C309920A29DBC0078BB69 /* InventoryCell.h */,
+				347C309A20A29DBC0078BB69 /* InventoryCell.m */,
+			);
+			path = "inventory仓库";
 			sourceTree = "<group>";
 		};
 		347D64C9207F05ED00407FC4 /* sale(销售) */ = {
@@ -2093,6 +2111,7 @@
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
 				345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */,
 				342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */,
+				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
@@ -2100,6 +2119,7 @@
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
 				B50505E7209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */,
+				347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */,
 				B50505B1209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */,
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
