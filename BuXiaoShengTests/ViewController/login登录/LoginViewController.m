@@ -141,12 +141,10 @@
                            @"password":[BXSHttp makeMD5:self.passwordTF.text]
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
-        
-
-        self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
-        
+        //[BXSUser deleteUser:<#(LoginModel *)#>]
         if ([[response objectForKey:@"code"] integerValue] == 200) {
-            
+             self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
+            [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
             
             HomeViewController *vc = [[HomeViewController alloc]init];

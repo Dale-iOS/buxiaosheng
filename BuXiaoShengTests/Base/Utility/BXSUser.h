@@ -14,7 +14,7 @@
 +(void)saveUser:(LoginModel *)user;
 
 /// 删除用户
-+ (void)deleteUser:(LoginModel *)user;
++ (void)deleteUser;
 
 /// 获取当前用户
 + (LoginModel *)currentUser;

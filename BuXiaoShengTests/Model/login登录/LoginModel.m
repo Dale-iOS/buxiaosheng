@@ -7,9 +7,12 @@
 //
 
 #import "LoginModel.h"
+#import "WZLSerializeKit.h"
 
 @implementation LoginModel
 
-
+  WZLSERIALIZE_CODER_DECODER();
+  WZLSERIALIZE_COPY_WITH_ZONE();
+  WZLSERIALIZE_DESCRIPTION();//(NOT NECESSARY)
 
 @end

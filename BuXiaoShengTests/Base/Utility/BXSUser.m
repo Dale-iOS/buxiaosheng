@@ -21,12 +21,18 @@
 }
 
 /// 删除用户
-+ (void)deleteUser:(LoginModel *)user{
-    NSError * error;
-    [[NSFileManager defaultManager] removeItemAtPath:MHWeChatDocDirPath() error:&error];
-    if (error) {
-        NSLog(@"删除用户信息失败");
++ (void)deleteUser;{
+    // 创建文件管理对象
+    NSFileManager *manager = [NSFileManager defaultManager];
+    BOOL isExist = [manager fileExistsAtPath:MHWeChatDocDirPath()];
+    if (isExist) {
+        NSError * error;
+        [[NSFileManager defaultManager] removeItemAtPath:MHWeChatDocDirPath() error:&error];
+        if (error) {
+            NSLog(@"删除用户信息失败");
+        }
     }
+   
 }
 
 /// 获取当前用户

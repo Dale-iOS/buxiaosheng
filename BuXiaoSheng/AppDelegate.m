@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-
+#import "HomeViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -19,9 +19,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     LoginViewController *loginVC = [[LoginViewController alloc]init];
-
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
-    self.window.rootViewController = nav;
+    if ([BXSUser isLogin]) {
+        HomeViewController *vc = [[HomeViewController alloc]init];
+        self.window.rootViewController = vc;
+    }else {
+         self.window.rootViewController = nav;
+    }
+    
     nav.navigationBarHidden = YES;
     
     
