@@ -35,4 +35,7 @@
  @return MD5签名
  */
 +(NSString *)sortObjectsAccordingToValueMD5With:(NSDictionary *)param;
+
+///md5 32位加密 转大写
++ (NSString *)makeMD5:(NSString *)signString;
 @end

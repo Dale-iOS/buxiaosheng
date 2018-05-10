@@ -17,4 +17,7 @@ inhibit_all_warnings!
     pod 'YYKit'
     pod 'pop'
     pod 'EasyNavigation'
+    pod 'SVProgressHUD'
+    pod 'MJExtension'
+    pod 'MLeaksFinder'
 end

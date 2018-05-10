@@ -17,14 +17,19 @@ PODS:
     - AFNetworking/NSURLSession
   - CWLateralSlide (1.5.8)
   - EasyNavigation (1.0.5)
+  - FBRetainCycleDetector (0.1.4)
   - Masonry (1.1.0)
+  - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - pop (1.0.10)
   - Reachability (3.2)
   - SDAutoLayout (2.2.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SVProgressHUD (2.2.5)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -35,11 +40,14 @@ DEPENDENCIES:
   - CWLateralSlide
   - EasyNavigation
   - Masonry
+  - MJExtension
   - MJRefresh
+  - MLeaksFinder
   - pop
   - Reachability
   - SDAutoLayout
   - SDWebImage (~> 3.8.2)
+  - SVProgressHUD
   - YYKit
 
 SPEC REPOS:
@@ -48,12 +56,16 @@ SPEC REPOS:
     - AFNetworking
     - CWLateralSlide
     - EasyNavigation
+    - FBRetainCycleDetector
     - Masonry
+    - MJExtension
     - MJRefresh
+    - MLeaksFinder
     - pop
     - Reachability
     - SDAutoLayout
     - SDWebImage
+    - SVProgressHUD
     - YYKit
 
 SPEC CHECKSUMS:
@@ -61,14 +73,18 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CWLateralSlide: 3af190c8ffa08040abfd9780f279dac94d531f8b
   EasyNavigation: 3414769a995d032e5dd9441f2bdd4eda7dd10089
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 1c76dbb033209dc00a06b72a70c6afc86b3e467a
+PODFILE CHECKSUM: 44239b9c638db1c25ab49ad039c59a2ff19c3253
 
 COCOAPODS: 1.5.0

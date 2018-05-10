@@ -59,8 +59,13 @@
 /*  颜色
  CD For Color Define
  */
+
+#define UIColorFromRGB(rgbValue)        UIColorFromRGBA(rgbValue,1.0)
+
+#define UIColorFromRGBA(rgbValue,a)        [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
+
 #define CD_Text                         UIColorFromRGB(0x000000)
-//#define CD_Text33                       UIColorFromRGB(0x333333)
+#define Text33                       UIColorFromRGB(0x333333)
 #define CD_Text33                       [UIColor colorWithHexString:@"#333333"]
 //#define CD_Text66                       UIColorFromRGB(0x666666)
 
@@ -89,6 +94,9 @@
 
 
 #define IMAGE(imagename)                [UIImage imageNamed:imagename]
+
+//网络请求的数据response转中文TF8
+#define STRING(response)                [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:response options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding]
 
 
 #endif /* Define_h */

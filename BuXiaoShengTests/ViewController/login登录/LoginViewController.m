@@ -8,9 +8,16 @@
 
 #import "LoginViewController.h"
 #import "HomeViewController.h"
-//#import "SaleViewController.h"
+#import "LoginModel.h"
+#import "AlterPassworddViewController.h"
 
 @interface LoginViewController ()
+
+///登录输入框
+@property (nonatomic, strong)UITextField *loginTF;
+///密码输入框
+@property (nonatomic, strong)UITextField *passwordTF;
+@property (nonatomic, strong) LoginModel *loginModel;
 
 @end
 
@@ -64,30 +71,32 @@
     [passwordLeftView addSubview:passwordImageView];
     
     //登录输入框
-    UITextField *loginTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 124, self.view.frame.size.width -60, 45)];
-    loginTF.leftView = loginLeftView;
-    loginTF.leftViewMode = UITextFieldViewModeAlways;
-    loginTF.layer.cornerRadius = 22;
-    loginTF.placeholder = @"手机号或ID";
-    [loginTF setValue:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f] forKeyPath:@"_placeholderLabel.textColor"];
-    [loginTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
-    loginTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
-    loginTF.textColor = [UIColor whiteColor];
-    loginTF.layer.borderWidth = 0.5;
-    [self.view addSubview:loginTF];
+    self.loginTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 124, self.view.frame.size.width -60, 45)];
+    self.loginTF.leftView = loginLeftView;
+    self.loginTF.leftViewMode = UITextFieldViewModeAlways;
+    self.loginTF.layer.cornerRadius = 22;
+    self.loginTF.placeholder = @"手机号或ID";
+    [self.loginTF setValue:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.loginTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
+    self.loginTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
+    self.loginTF.textColor = [UIColor whiteColor];
+    self.loginTF.layer.borderWidth = 0.5;
+    [self.view addSubview:self.loginTF];
     
     //密码输入框
-    UITextField *passwordTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 183, self.view.frame.size.width -60, 44)];
-    passwordTF.layer.cornerRadius = 22;
-    passwordTF.leftView = passwordLeftView;
-    passwordTF.leftViewMode = UITextFieldViewModeAlways;
-    passwordTF.placeholder = @"请输入密码";
-    [passwordTF setValue:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f] forKeyPath:@"_placeholderLabel.textColor"];
-    [passwordTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
-    passwordTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
-    passwordTF.textColor = [UIColor whiteColor];
-    passwordTF.layer.borderWidth = 0.5;
-    [self.view addSubview:passwordTF];
+    self.passwordTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 183, self.view.frame.size.width -60, 44)];
+    self.passwordTF.layer.cornerRadius = 22;
+    self.passwordTF.leftView = passwordLeftView;
+    self.passwordTF.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordTF.placeholder = @"请输入密码";
+    //密码形式
+    self.passwordTF.secureTextEntry = YES;
+    [self.passwordTF setValue:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.passwordTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
+    self.passwordTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
+    self.passwordTF.textColor = [UIColor whiteColor];
+    self.passwordTF.layer.borderWidth = 0.5;
+    [self.view addSubview:self.passwordTF];
     
     //登录按钮
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -97,38 +106,69 @@
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [loginBtn setTitleColor:[UIColor colorWithRed:62.0f/255.0f green:178.0f/255.0f blue:247.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+//    [loginBtn addTarget:self action:@selector(AlterPassworldloginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn addTarget:self action:@selector(loginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:loginBtn];
     
     //最底下的版本号
     UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height -15 -14, self.view.frame.size.width, 14)];
-    versionLabel.text = @"V1.0";
+    versionLabel.text = [NSString stringWithFormat:@"V%@",appVersion];
     versionLabel.textColor = [UIColor whiteColor];
     versionLabel.font = [UIFont systemFontOfSize:13];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:versionLabel];
     
+    
+#pragma mark ------- 假数据 --------
+    self.loginTF.text = @"18814188198";
+    self.passwordTF.text = @"666666";
+
+    
 }
 
 #pragma mark ------- 点击事件 --------
+//登录事件
 - (void)loginBtnOnClickAction
 {
     NSLog(@"loginBtnOnClickAction");
-    HomeViewController *vc = [[HomeViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-
     
-    NSDictionary *param = @{@"loginName":@"15018438558",
-                           @"password":@"E10ADC3949BA59ABBE56E057F20F883E"
+//    [LLHudTools showWithMessage:@"登录成功"];
+    
+    
+
+    NSDictionary *param = @{@"loginName":self.loginTF.text,
+                           @"password":[BXSHttp makeMD5:self.passwordTF.text]
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         
-        NSLog(@"回调数据：%@",response);
+
+        self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
+        
+        if ([[response objectForKey:@"code"] integerValue] == 200) {
+            
+            HomeViewController *vc = [[HomeViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
+        NSString *jsonStr = STRING(response);
+        
+        NSLog(@"1133 %@",jsonStr);
+        
+//        NSLog(@"++++++%@",self.loginModel.loginName);
+        
+        [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+        
         
     } failure:^(NSError *error) {
         
     }];
+}
+
+- (void)AlterPassworldloginBtnOnClickAction
+{
+    AlterPassworddViewController *vc = [[AlterPassworddViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 //无论是UITextField还是UITextView弹出来的键盘，点击空白处都会取消。
