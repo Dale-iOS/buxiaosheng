@@ -91,6 +91,9 @@
         [str appendFormat:@"%@", param[obj]?param[obj]: @""];
     }];
     [str appendFormat:@"%@", key_str];
+    if ([BXSUser isLogin]) {
+        [str appendFormat:@"%@%zd", [BXSUser currentUser].token,[BXSUser currentUser].userId];
+    }
     
     NSString * md5Str = [self makeMD5:str];
     

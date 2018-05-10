@@ -330,6 +330,8 @@
 		B5B07518209C295900FD53DC /* LLProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B07516209C295900FD53DC /* LLProcessCell.m */; };
 		B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
 		B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
+		B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
+		B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -857,6 +859,10 @@
 		B5B07516209C295900FD53DC /* LLProcessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProcessCell.m; sourceTree = "<group>"; };
 		B5B07519209C3A7200FD53DC /* LLProcessTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLProcessTitleCell.h; sourceTree = "<group>"; };
 		B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLProcessTitleCell.m; sourceTree = "<group>"; };
+		B5BA43DA20A4488000A867E9 /* WZLSerializeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLSerializeKit.h; sourceTree = "<group>"; };
+		B5BA43DB20A4492A00A867E9 /* BXSUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSUser.h; sourceTree = "<group>"; };
+		B5BA43DC20A4492A00A867E9 /* BXSUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BXSUser.m; sourceTree = "<group>"; };
+		B5BA43DF20A44AF000A867E9 /* MHConstInline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHConstInline.h; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1307,6 +1313,8 @@
 		34A0ED872080865A00659190 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				B5BA43DF20A44AF000A867E9 /* MHConstInline.h */,
+				B5BA43DA20A4488000A867E9 /* WZLSerializeKit.h */,
 				B58BF72320A2D4FE00A8B92B /* LLNetWorkTools.h */,
 				B58BF72220A2D4FE00A8B92B /* LLNetWorkTools.m */,
 				343B17F920A3DF7200349A6D /* LLHudTools.h */,
@@ -1315,6 +1323,8 @@
 				B58BF72720A2D72100A8B92B /* BXSHttp.m */,
 				345E74742082FFCD004B49B3 /* Utility.h */,
 				345E74752082FFCD004B49B3 /* Utility.m */,
+				B5BA43DB20A4492A00A867E9 /* BXSUser.h */,
+				B5BA43DC20A4492A00A867E9 /* BXSUser.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2234,6 +2244,7 @@
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
+				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
 				343B17FB20A3DF7200349A6D /* LLHudTools.m in Sources */,
 				342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
@@ -2296,6 +2307,7 @@
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				B50505C0209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
+				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				34A92B53207DECA200572648 /* LZHTableViewItem.m in Sources */,
 				34A92B58207DEE6C00572648 /* HomeViewController.m in Sources */,
 				B50505C2209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
