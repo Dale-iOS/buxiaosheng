@@ -147,13 +147,16 @@
         
         if ([[response objectForKey:@"code"] integerValue] == 200) {
             
+            [BXSUser saveUser:self.loginModel];
+            
             HomeViewController *vc = [[HomeViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
 
         NSString *jsonStr = STRING(response);
         
-        NSLog(@"1133 %@",jsonStr);
+//        NSLog(@"1133 %@",jsonStr);
+//        NSLog(@"+++%@",[BXSUser currentUser].token);
         
 //        NSLog(@"++++++%@",self.loginModel.loginName);
         

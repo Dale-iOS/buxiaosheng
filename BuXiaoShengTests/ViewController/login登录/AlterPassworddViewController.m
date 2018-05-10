@@ -135,9 +135,34 @@
 //点击事件
 - (void)affirmBtnOnClickAction
 {
+    
     if (self.isPasswordSame) {
         
+       
         
+        NSDictionary *param = @{@"newPassword":self.passwordAgainTF.text,
+//                                @"password":[BXSHttp makeMD5:self.passwordTF.text]
+                                };
+        [BXSHttp requestPOSTWithAppURL:@"reset_password.do" param:param success:^(id response) {
+            
+            
+            if ([[response objectForKey:@"code"] integerValue] == 200) {
+                
+                [LLHudTools showWithMessage:@"修改成功"];
+            }
+            
+            NSString *jsonStr = STRING(response);
+            
+            NSLog(@"1133 %@",jsonStr);
+            
+            //        NSLog(@"++++++%@",self.loginModel.loginName);
+            
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            
+            
+        } failure:^(NSError *error) {
+            
+        }];
     }
 }
 
