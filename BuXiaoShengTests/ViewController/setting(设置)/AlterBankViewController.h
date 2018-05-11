@@ -11,4 +11,5 @@
 
 @interface AlterBankViewController : BaseViewController
 
+@property (nonatomic,assign) BOOL  isFormBankAdd;  //yes 来源添加银行  false 更新银行
 @end

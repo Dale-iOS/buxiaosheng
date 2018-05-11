@@ -10,4 +10,5 @@
 
 @interface BXSTools : NSObject
 +(BOOL)stringIsNullOrEmpty:(NSString *)str ;
++(BOOL)isBankCard:(NSString *)cardNumber;
 @end

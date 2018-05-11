@@ -58,7 +58,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"修改银行"];
+    self.navigationItem.titleView = self.isFormBankAdd ?[Utility navTitleView:@"添加银行"] : [Utility navTitleView:@"修改银行"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
@@ -107,7 +107,7 @@
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.contentTF.enabled = false;
     self.stateCell.titleLabel.text = @"状态";
-    self.stateCell.contentTF.placeholder = @"请选择类型";
+    self.stateCell.contentTF.placeholder = @"请选择银行卡状态";
     
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
@@ -159,6 +159,54 @@
 
 - (void)saveBtnClick
 {
+    if ([BXSTools stringIsNullOrEmpty:self.accountCell.contentTF.text]) {
+         BXS_Alert(@"请输入您的银行卡号");
+        return;
+       
+    }
+    if (![BXSTools isBankCard:self.accountCell.contentTF.text]) {
+         BXS_Alert(@"请输入正确的银行卡号");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.bankTitleCell.contentTF.text]) {
+         BXS_Alert(@"请输入银行名称");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
+         BXS_Alert(@"请选择银行卡状态");
+        return;
+    }
+    NSInteger status = -1;
+    if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
+        status = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
+        status = 1;
+    }
+    NSString * requestUrl ;
+    if (self.isFormBankAdd) {
+        requestUrl = @"bank/add.do";
+    }else {
+        requestUrl = @"bank/update.do";
+    }
+    NSDictionary * param = @{
+                             @"cardNumber":self.accountCell.contentTF.text,
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"name":self.bankTitleCell.contentTF.text,
+                             @"status":@(status)
+                             };
+    [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+         [LLHudTools showWithMessage:baseModel.msg];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+  
 }
 
 - (void)defaultCellAction

@@ -90,6 +90,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AlterBankViewController *vc = [[AlterBankViewController alloc]init];
+    vc.isFormBankAdd = false;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -97,7 +98,8 @@
 {
     NSLog(@"点击了添加");
     
-    AddBankViewController *vc = [[AddBankViewController alloc]init];
+    AlterBankViewController *vc = [[AlterBankViewController alloc]init];
+    vc.isFormBankAdd = true;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

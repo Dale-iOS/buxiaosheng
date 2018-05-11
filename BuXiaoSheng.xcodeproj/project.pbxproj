@@ -19,7 +19,6 @@
 		342CF65120996579007C329D /* ModifyWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65020996579007C329D /* ModifyWarehouseViewController.m */; };
 		342CF6542099688F007C329D /* CashBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6532099688F007C329D /* CashBankViewController.m */; };
 		342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65620996AAC007C329D /* CashBankTableViewCell.m */; };
-		342CF65A209970D7007C329D /* AddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF659209970D7007C329D /* AddBankViewController.m */; };
 		342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65C209998A9007C329D /* AuditManagerViewController.m */; };
 		342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65F20999990007C329D /* AuditManagerTableViewCell.m */; };
 		342CF6632099B603007C329D /* SubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6622099B603007C329D /* SubjectViewController.m */; };
@@ -389,8 +388,6 @@
 		342CF6532099688F007C329D /* CashBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashBankViewController.m; sourceTree = "<group>"; };
 		342CF65520996AAC007C329D /* CashBankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashBankTableViewCell.h; sourceTree = "<group>"; };
 		342CF65620996AAC007C329D /* CashBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashBankTableViewCell.m; sourceTree = "<group>"; };
-		342CF658209970D7007C329D /* AddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBankViewController.h; sourceTree = "<group>"; };
-		342CF659209970D7007C329D /* AddBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBankViewController.m; sourceTree = "<group>"; };
 		342CF65B209998A9007C329D /* AuditManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditManagerViewController.h; sourceTree = "<group>"; };
 		342CF65C209998A9007C329D /* AuditManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditManagerViewController.m; sourceTree = "<group>"; };
 		342CF65E20999990007C329D /* AuditManagerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditManagerTableViewCell.h; sourceTree = "<group>"; };
@@ -1056,8 +1053,6 @@
 				342CF6532099688F007C329D /* CashBankViewController.m */,
 				B5CF34FA20A574B30043D906 /* AlterBankViewController.h */,
 				B5CF34F920A574B20043D906 /* AlterBankViewController.m */,
-				342CF658209970D7007C329D /* AddBankViewController.h */,
-				342CF659209970D7007C329D /* AddBankViewController.m */,
 				342CF65B209998A9007C329D /* AuditManagerViewController.h */,
 				342CF65C209998A9007C329D /* AuditManagerViewController.m */,
 				342CF6612099B603007C329D /* SubjectViewController.h */,
@@ -2226,7 +2221,6 @@
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
-				342CF65A209970D7007C329D /* AddBankViewController.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,

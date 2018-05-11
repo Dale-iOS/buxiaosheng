@@ -31,6 +31,12 @@
 #import "NSObject+LLMJParse.h"
 #import "BXSTools.h"
 
+
+#define BXS_Alert(manager1) UIAlertController * alterVC = [UIAlertController alertControllerWithTitle:@"温馨提示: " message:manager1 preferredStyle:UIAlertControllerStyleAlert];\
+UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"确 定" style:UIAlertActionStyleCancel handler:nil ];\
+[alterVC addAction:cancle];\
+[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alterVC animated:true completion:nil];
+
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
