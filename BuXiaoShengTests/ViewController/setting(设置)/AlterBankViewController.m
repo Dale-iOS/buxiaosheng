@@ -17,8 +17,8 @@
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 
-///账户类型
-@property (nonatomic, strong) TextInputCell *typeCell;
+/////账户类型
+//@property (nonatomic, strong) TextInputCell *typeCell;
 ///账号
 @property (nonatomic, strong) TextInputCell *accountCell;
 ///现金银行名称
@@ -47,6 +47,7 @@
     if (!mainTabelView) {
         
         LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
+        tableView.delegate = self;
         //        tableView.tableView.allowsSelection = YES;
         //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
@@ -61,11 +62,15 @@
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [navRightBtn setTitle:@"确 认" forState:UIControlStateNormal];
     [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     [navRightBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    [navRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.width.mas_equalTo(40);
+         make.height.mas_equalTo(30);
+    }];
     
     self.datasource = [NSMutableArray array];
     
@@ -78,10 +83,10 @@
 
 - (void)setupSectionOne
 {
-    self.typeCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.typeCell.rightArrowImageVIew.hidden = NO;
-    self.typeCell.titleLabel.text = @"账户类型";
-    self.typeCell.contentTF.placeholder = @"请选择账户类型";
+//    self.typeCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+//    self.typeCell.rightArrowImageVIew.hidden = NO;
+//    self.typeCell.titleLabel.text = @"账户类型";
+//    self.typeCell.contentTF.placeholder = @"请选择账户类型";
     
     self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     //    self.accountCell.rightArrowImageVIew.hidden = NO;
@@ -100,15 +105,17 @@
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
+    self.stateCell.contentTF.enabled = false;
     self.stateCell.titleLabel.text = @"状态";
     self.stateCell.contentTF.placeholder = @"请选择类型";
+    
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.typeCell,self.accountCell,self.bankTitleCell,self.stateCell];
-    item.canSelected = NO;
+    item.sectionRows = @[self.accountCell,self.bankTitleCell,self.stateCell];
+    item.canSelected = true;
     item.sectionView = headerView;
     [self.datasource addObject:item];
 }
@@ -131,9 +138,31 @@
     [self.datasource addObject:item];
 }
 
+-(void)LzhTableView:(LZHTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0 ||indexPath.row == 1) {
+        return;
+    }
+    WEAKSELF;
+    UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该卡启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.stateCell.contentTF.text = @"启用";
+    }];
+    UIAlertAction * disEnabled = [UIAlertAction actionWithTitle:@"未启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.stateCell.contentTF.text = @"未启用";
+    }];
+    UIAlertAction * cacanle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alterVc addAction:enabled];
+    [alterVc addAction:disEnabled];
+    [alterVc addAction:cacanle];
+    [self.navigationController presentViewController:alterVc animated:true completion:nil];
+}
+
 - (void)saveBtnClick
 {
-    NSLog(@"saveBtnClick");
+    BOOL a = BXSStrEmpty(@"");
+    if (a) {
+        <#statements#>
+    }
 }
 
 - (void)defaultCellAction

@@ -37,12 +37,40 @@
 
 /// 获取当前用户
 + (LoginModel *)currentUser{
-    LoginModel *user = nil;
+    static LoginModel *onceUser = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        onceUser = [LoginModel new];
+    });
+    LoginModel *user;
     WZLSERIALIZE_UNARCHIVE(user, BXSCacheUserKey, MHWeChatDocDirPath());
-    if (user) {
-        return user;
-    }
-    return nil;
+    [self setonceUserValue:user withOnceUser:onceUser];
+    return onceUser;
+}
+
+
++(void)setonceUserValue:(LoginModel *)user withOnceUser:(LoginModel *)onceUser{
+        unsigned int iVarCount = 0;
+        unsigned int propVarCount = 0;
+        unsigned int sharedVarCount = 0;
+        Ivar *ivarList =  class_copyIvarList([user class], &iVarCount) ;/*变量列表，含属性以及私有变量*/
+        objc_property_t *propList = class_copyPropertyList([user class], &propVarCount);/*属性列表*/
+        sharedVarCount = iVarCount ;
+        
+        for (int i = 0; i < sharedVarCount; i++) {
+            const char *varName = property_getName(*(propList + i));
+            NSString *key = [NSString stringWithUTF8String:varName];
+            /*valueForKey只能获取本类所有变量以及所有层级父类的属性，不包含任何父类的私有变量(会崩溃)*/  \
+            id varValue = [user valueForKey:key];
+            NSArray *filters = @[@"superclass", @"description", @"debugDescription", @"hash"];
+            if (varValue && [filters containsObject:key] == NO) {
+                [onceUser setValue:varValue ? : @"" forKey:key];
+            }
+        }
+        free(ivarList);
+        free(propList);
+        
+   
 }
 
 
@@ -55,7 +83,7 @@
 /// 是否登录
 + (BOOL)isLogin{
     LoginModel *user = [self currentUser];
-    if (stringIsNullOrEmpty(user.token)) {
+    if (BXSStrEmpty(user.token)) {
         return false;
     }
     return true;

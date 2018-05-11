@@ -51,10 +51,12 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"bank/list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] == 200) {
-            self.banks = [LLCashBankModel LLMJParse:baseModel.data];
-            [self.tableView reloadData];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
         }
+        self.banks = [LLCashBankModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         
     }];
