@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加银行页面
+//  添加银行页面（取消默认和所属分店）
 
 #import "AddBankViewController.h"
 #import "LZHTableView.h"
@@ -73,7 +73,7 @@
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
     [self setupSectionOne];
-    [self setSectionTwo];
+//    [self setSectionTwo];
     self.mainTabelView.dataSoure = self.datasource;
 }
 
@@ -108,7 +108,7 @@
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.typeCell,self.accountCell,self.bankTitleCell,self.belongStoreCell,self.stateCell];
+    item.sectionRows = @[self.typeCell,self.accountCell,self.bankTitleCell,self.stateCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];

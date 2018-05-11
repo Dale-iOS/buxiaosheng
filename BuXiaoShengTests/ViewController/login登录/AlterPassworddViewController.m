@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/10.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  修改密码页面
 
 #import "AlterPassworddViewController.h"
 
@@ -200,7 +200,37 @@
 
         NSMutableString *text = [textField.text mutableCopy];
         [text replaceCharactersInRange:range withString:string];
+    
+    //限制只能填英文字母和数字
+    NSUInteger lengthOfString = string.length;  //lengthOfString的值始终为1
+    
+    for (NSInteger loopIndex = 0; loopIndex < lengthOfString; loopIndex++) {
         
+        unichar character = [string characterAtIndex:loopIndex]; //将输入的值转化为ASCII值（即内部索引值），可以参考ASCII表
+        
+        // 48-57;{0,9};65-90;{A..Z};97-122:{a..z}
+        
+        if (character < 48) return NO; // 48 unichar for 0
+        
+        if (character > 57 && character < 65) return NO; //
+        
+        if (character > 90 && character < 97) return NO;
+        
+        if (character > 122) return NO;
+        
+        
+        
+    }
+    
+    // Check for total length
+//    NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
+//    
+//    if (proposedNewLength > 6) {
+//        
+//        return NO;//限制长度
+//        
+//    }
+    
         if (text.length > 16 && range.length == 0)
         {
             return NO;

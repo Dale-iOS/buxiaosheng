@@ -88,7 +88,7 @@
     self.mainTabelView.dataSoure = self.datasource;
     
     self.changeUserBtn = [UIButton new];
-    [self.changeUserBtn setTitle:@"切换用户" forState:UIControlStateNormal];
+    [self.changeUserBtn setTitle:@"退出" forState:UIControlStateNormal];
     [self.changeUserBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     self.changeUserBtn.titleLabel.font = FONT(14);
     [self.changeUserBtn setBackgroundColor:[UIColor whiteColor]];
@@ -316,6 +316,7 @@
 - (void)changeUserBtnClick
 {
     NSLog(@"点击了 切换用户 按钮");
+//    用户退出接口
 }
 
 

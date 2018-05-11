@@ -18,16 +18,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    LoginViewController *loginVC = [[LoginViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+//    LoginViewController *loginVC = [[LoginViewController alloc]init];
+//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    
     if ([BXSUser isLogin]) {
         HomeViewController *vc = [[HomeViewController alloc]init];
-        self.window.rootViewController = vc;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+        
     }else {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
          self.window.rootViewController = nav;
+        nav.navigationBarHidden = NO;
     }
-    
-    nav.navigationBarHidden = YES;
+
+//    nav.navigationBarHidden = NO;
     
     
  

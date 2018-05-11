@@ -156,7 +156,7 @@
 //        NSLog(@"1133 %@",jsonStr);
 //        NSLog(@"+++%@",[BXSUser currentUser].token);
         
-//        NSLog(@"++++++%@",self.loginModel.loginName);
+        NSLog(@"++++++%@",self.loginModel.loginName);
         
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
         
