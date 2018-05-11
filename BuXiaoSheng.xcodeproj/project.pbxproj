@@ -305,6 +305,8 @@
 		B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
 		B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
 		B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
+		B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
+		B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -836,6 +838,8 @@
 		B505066F209ABEE200CE7E4D /* LLDyeingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCell.m; sourceTree = "<group>"; };
 		B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionViewCell.h; sourceTree = "<group>"; };
 		B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
+		B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCashBankModel.h; sourceTree = "<group>"; };
+		B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCashBankModel.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -1426,6 +1430,7 @@
 		34A92B47207DE93C00572648 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B55ADE0B20A554A5000F9C4A /* Setting设置 */,
 				343B17FC20A3F48B00349A6D /* login登录 */,
 			);
 			path = Model;
@@ -1806,6 +1811,15 @@
 			path = "Dyeing制造染色";
 			sourceTree = "<group>";
 		};
+		B55ADE0B20A554A5000F9C4A /* Setting设置 */ = {
+			isa = PBXGroup;
+			children = (
+				B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */,
+				B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */,
+			);
+			path = "Setting设置";
+			sourceTree = "<group>";
+		};
 		B58BF6E520A178D000A8B92B /* CWLateralSlide */ = {
 			isa = PBXGroup;
 			children = (
@@ -2083,6 +2097,7 @@
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
+				B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
@@ -2361,6 +2376,7 @@
 				B50505A6209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
+				B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505BE209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
