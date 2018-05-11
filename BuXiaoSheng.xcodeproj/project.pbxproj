@@ -191,6 +191,7 @@
 		34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */; };
 		34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25C1209308A8009E7589 /* SegmentDyeingView.m */; };
 		34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */; };
+		34E9538A20A53D5C00883363 /* AlterBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9538920A53D5C00883363 /* AlterBankViewController.m */; };
 		34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */; };
 		34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */; };
 		34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B9D208B1F010048CFE1 /* LGAlertViewWindowContainer.m */; };
@@ -684,6 +685,8 @@
 		34DE25C1209308A8009E7589 /* SegmentDyeingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingView.m; sourceTree = "<group>"; };
 		34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrearsNameTextInputCell.h; sourceTree = "<group>"; };
 		34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrearsNameTextInputCell.m; sourceTree = "<group>"; };
+		34E9538820A53D5C00883363 /* AlterBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterBankViewController.h; sourceTree = "<group>"; };
+		34E9538920A53D5C00883363 /* AlterBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterBankViewController.m; sourceTree = "<group>"; };
 		34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewTextField.m; sourceTree = "<group>"; };
 		34EA5B97208B1F010048CFE1 /* LGAlertViewWindowsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewWindowsObserver.h; sourceTree = "<group>"; };
 		34EA5B98208B1F010048CFE1 /* LGAlertViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewCell.h; sourceTree = "<group>"; };
@@ -1029,6 +1032,8 @@
 				342CF6532099688F007C329D /* CashBankViewController.m */,
 				342CF658209970D7007C329D /* AddBankViewController.h */,
 				342CF659209970D7007C329D /* AddBankViewController.m */,
+				34E9538820A53D5C00883363 /* AlterBankViewController.h */,
+				34E9538920A53D5C00883363 /* AlterBankViewController.m */,
 				342CF65B209998A9007C329D /* AuditManagerViewController.h */,
 				342CF65C209998A9007C329D /* AuditManagerViewController.m */,
 				342CF6612099B603007C329D /* SubjectViewController.h */,
@@ -2242,6 +2247,7 @@
 				34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */,
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
+				34E9538A20A53D5C00883363 /* AlterBankViewController.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,

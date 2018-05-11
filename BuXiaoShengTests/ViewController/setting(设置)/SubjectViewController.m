@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加科目页面
+//  科目页面
 
 #import "SubjectViewController.h"
 #import "CashBankTableViewCell.h"
@@ -25,7 +25,7 @@ typedef BOOL(^RunLoopBlock)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     self.navigationItem.titleView = [Utility navTitleView:@"科目"];
+     self.navigationItem.titleView = [Utility navTitleView:@"科目1"];
     
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"add1")];
  
@@ -182,6 +182,10 @@ static void Callback(CFRunLoopObserverRef observer,CFRunLoopActivity activity,vo
     AddSubjectViewController *vc = [[AddSubjectViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

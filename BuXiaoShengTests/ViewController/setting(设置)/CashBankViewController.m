@@ -9,6 +9,7 @@
 #import "CashBankViewController.h"
 #import "CashBankTableViewCell.h"
 #import "AddBankViewController.h"
+#import "AlterBankViewController.h"
 
 @interface CashBankViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -67,6 +68,12 @@
         
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AlterBankViewController *vc = [[AlterBankViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)navigationAddClick
