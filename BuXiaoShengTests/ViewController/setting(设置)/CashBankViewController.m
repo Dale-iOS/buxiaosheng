@@ -14,6 +14,7 @@
 @interface CashBankViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic,strong) NSArray <LLCashBankModel *> * banks;
 
 @end
 
@@ -23,6 +24,10 @@
     [super viewDidLoad];
 
     [self setupUI];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setupData];
 }
 
@@ -36,6 +41,7 @@
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView registerClass:[CashBankTableViewCell class] forCellReuseIdentifier:@"CashBankTableViewCell"];
     //隐藏分割线
     self.tableView.separatorStyle = NO;
 
@@ -44,7 +50,11 @@
 -(void)setupData {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"bank/list.do" param:param success:^(id response) {
-        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] == 200) {
+            self.banks = [LLCashBankModel LLMJParse:baseModel.data];
+            [self.tableView reloadData];
+        }
     } failure:^(NSError *error) {
         
     }];
@@ -53,7 +63,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.banks.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -71,11 +81,7 @@
     static NSString *cellID = @"CashBankTableViewCell";
     CashBankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    if (cell == nil) {
-        
-        cell = [[CashBankTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
-    }
+    cell.model = self.banks[indexPath.row];
     return cell;
 }
 

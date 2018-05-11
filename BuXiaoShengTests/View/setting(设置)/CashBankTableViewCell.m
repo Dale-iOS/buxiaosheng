@@ -7,10 +7,16 @@
 //
 
 #import "CashBankTableViewCell.h"
-
+#import "LLCashBankModel.h"
 @implementation CashBankTableViewCell
 @synthesize bgView,iconImageView,titleLabel,rightArrowImageVIew;
 #define contentView   self.contentView
+
+
+-(void)setModel:(LLCashBankModel *)model {
+    _model = model;
+    self.titleLabel.text = model.name;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -84,14 +90,14 @@
     .widthIs(APPWidth -16)
     .heightIs(75);
     
-    self.iconImageView.sd_layout
-    .leftSpaceToView(self.bgView, 15)
-    .centerYEqualToView(self.bgView)
-    .widthIs(40)
-    .heightIs(40);
+//    self.iconImageView.sd_layout
+//    .leftSpaceToView(self.bgView, 15)
+//    .centerYEqualToView(self.bgView)
+//    .widthIs(40)
+//    .heightIs(40);
     
     self.titleLabel.sd_layout
-    .leftSpaceToView(self.iconImageView, 15)
+    .leftSpaceToView(self.bgView, 15)
     .widthIs(250)
     .heightIs(15)
     .centerYEqualToView(self.bgView);

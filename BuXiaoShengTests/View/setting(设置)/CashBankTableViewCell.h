@@ -5,7 +5,7 @@
 //  Created by 罗镇浩 on 2018/5/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
-
+@class LLCashBankModel;
 #import <UIKit/UIKit.h>
 
 @interface CashBankTableViewCell : UITableViewCell
@@ -21,5 +21,7 @@
 
 ///右箭头
 @property (nonatomic, strong) UIImageView *rightArrowImageVIew;
+
+@property (nonatomic,strong) LLCashBankModel * model;
 
 @end
