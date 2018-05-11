@@ -9,8 +9,7 @@
 #import "SetCompanyViewController.h"
 #import "SGPagingView.h"
 #import "SupplierCompanyViewController.h"
-#import "ProductionCompanyViewController.h"
-#import "ProcessCompanyViewController.h"
+
 #import "AddSetCompanyViewController.h"
 
 @interface SetCompanyViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
@@ -65,10 +64,13 @@
     _pageTitleView.selectedIndex = 0;
     
     SupplierCompanyViewController *supplierVC = [[SupplierCompanyViewController alloc]init];
-    ProductionCompanyViewController *productionVC = [[ProductionCompanyViewController alloc]init];
-    ProcessCompanyViewController *processVC = [[ProcessCompanyViewController alloc]init];
-   
+    supplierVC.type = FactoryTypeGongHuoShang;
     
+    SupplierCompanyViewController *productionVC = [[SupplierCompanyViewController alloc]init];
+    productionVC.type = FactoryTypeShngChanShang;
+    SupplierCompanyViewController *processVC = [[SupplierCompanyViewController alloc]init];
+    processVC.type = FactoryTypeJiaGongShang;
+
     NSArray *childArr = @[supplierVC, productionVC, processVC];
     /// pageContentView
     CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
@@ -85,12 +87,30 @@
 
 - (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+    self.pageTitleView.selectedIndex = targetIndex;
 }
 
 
 - (void)navigationAddClick
 {
     AddSetCompanyViewController *vc = [[AddSetCompanyViewController alloc]init];
+    switch (self.pageTitleView.selectedIndex) {
+        case 0:
+            vc.type = FactoryTypeGongHuoShang;
+            vc.navigationItem.titleView = [Utility navTitleView:@"添加厂商"];
+            break;
+        case 1:
+            vc.type = FactoryTypeShngChanShang;
+            vc.navigationItem.titleView = [Utility navTitleView:@"添加生产商"];
+            break;
+        case 2:
+            vc.type = FactoryTypeJiaGongShang;
+              vc.navigationItem.titleView = [Utility navTitleView:@"添工生产商"];
+            break;
+            
+        default:
+            break;
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 

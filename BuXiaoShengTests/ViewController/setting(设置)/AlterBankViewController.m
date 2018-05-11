@@ -10,7 +10,7 @@
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "DefaultBankCell.h"
-
+#import "LLCashBankModel.h"
 @interface AlterBankViewController ()<LZHTableViewDelegate>
 
 @property (nonatomic,assign)BOOL isdefault;
@@ -39,7 +39,31 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupBankDetailData];
 
+}
+
+-(void)setupBankDetailData {
+    //从添加银行过来的直接 return
+    if (self.isFormBankAdd) {
+        return;
+    }
+    NSDictionary * param = @{@"id":self.id};
+    [BXSHttp requestGETWithAppURL:@"bank/detail.do" param:param success:^(id response) {
+        NSLog(@"%@",response);
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            return ;
+        }
+        LLCashBankModel * model = [LLCashBankModel LLMJParse:baseModel.data];
+
+        self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"暂无" :model.cardNumber;
+        self.bankTitleCell.contentTF.text = model.name;
+        self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 - (LZHTableView *)mainTabelView

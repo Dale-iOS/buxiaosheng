@@ -220,8 +220,6 @@
 		34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBAC9B208450980005BF77 /* WaitOutOrderViewController.m */; };
 		34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */; };
 		34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */; };
-		34F6D35C209D8C23009D5440 /* ProductionCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */; };
-		34F6D35F209D8C69009D5440 /* ProcessCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
@@ -343,6 +341,8 @@
 		B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34F920A574B20043D906 /* AlterBankViewController.m */; };
 		B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34FE20A576BE0043D906 /* BXSTools.m */; };
 		B5CF350020A576BE0043D906 /* BXSTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34FE20A576BE0043D906 /* BXSTools.m */; };
+		B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF350220A58DED0043D906 /* LLFactoryModel.m */; };
+		B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF350220A58DED0043D906 /* LLFactoryModel.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -752,10 +752,6 @@
 		34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitRecordViewController.m; sourceTree = "<group>"; };
 		34EBACB02084A5070005BF77 /* OrderListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
 		34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
-		34F6D35A209D8C23009D5440 /* ProductionCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionCompanyViewController.h; sourceTree = "<group>"; };
-		34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionCompanyViewController.m; sourceTree = "<group>"; };
-		34F6D35D209D8C69009D5440 /* ProcessCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessCompanyViewController.h; sourceTree = "<group>"; };
-		34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessCompanyViewController.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
@@ -886,6 +882,8 @@
 		B5CF34FA20A574B30043D906 /* AlterBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterBankViewController.h; sourceTree = "<group>"; };
 		B5CF34FD20A576BE0043D906 /* BXSTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSTools.h; sourceTree = "<group>"; };
 		B5CF34FE20A576BE0043D906 /* BXSTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BXSTools.m; sourceTree = "<group>"; };
+		B5CF350120A58DED0043D906 /* LLFactoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFactoryModel.h; sourceTree = "<group>"; };
+		B5CF350220A58DED0043D906 /* LLFactoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFactoryModel.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1077,10 +1075,6 @@
 				345D5F06209D664400126C40 /* SupplierCompanyViewController.m */,
 				34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */,
 				34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */,
-				34F6D35A209D8C23009D5440 /* ProductionCompanyViewController.h */,
-				34F6D35B209D8C23009D5440 /* ProductionCompanyViewController.m */,
-				34F6D35D209D8C69009D5440 /* ProcessCompanyViewController.h */,
-				34F6D35E209D8C69009D5440 /* ProcessCompanyViewController.m */,
 				345D5EFC209D4AAF00126C40 /* RecipeViewController.h */,
 				345D5EFD209D4AAF00126C40 /* RecipeViewController.m */,
 				345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */,
@@ -1848,6 +1842,8 @@
 			children = (
 				B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */,
 				B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */,
+				B5CF350120A58DED0043D906 /* LLFactoryModel.h */,
+				B5CF350220A58DED0043D906 /* LLFactoryModel.m */,
 			);
 			path = "Setting设置";
 			sourceTree = "<group>";
@@ -2178,7 +2174,6 @@
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
-				34F6D35F209D8C69009D5440 /* ProcessCompanyViewController.m in Sources */,
 				343025F2209C405C00869313 /* UIButton+KYTouch.m in Sources */,
 				34EBAC992084506B0005BF77 /* AllOrderViewController.m in Sources */,
 				34EA5BB7208B1F010048CFE1 /* LGAlertViewController.m in Sources */,
@@ -2232,6 +2227,7 @@
 				343025F5209C537B00869313 /* AddColorViewController.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
+				B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
@@ -2279,7 +2275,6 @@
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
-				34F6D35C209D8C23009D5440 /* ProductionCompanyViewController.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
@@ -2400,6 +2395,7 @@
 				B50505BA209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
+				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,

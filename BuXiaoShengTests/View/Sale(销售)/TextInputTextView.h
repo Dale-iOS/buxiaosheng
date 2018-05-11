@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextView *textView;
-
+///画底部的线
+@property (nonatomic, strong) UIView *lineView;
 @end

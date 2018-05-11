@@ -8,7 +8,6 @@
 
 #import "CashBankViewController.h"
 #import "CashBankTableViewCell.h"
-#import "AddBankViewController.h"
 #import "AlterBankViewController.h"
 #import "LLCashBankModel.h"
 @interface CashBankViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -91,6 +90,7 @@
 {
     AlterBankViewController *vc = [[AlterBankViewController alloc]init];
     vc.isFormBankAdd = false;
+    vc.id = self.banks[indexPath.row].id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

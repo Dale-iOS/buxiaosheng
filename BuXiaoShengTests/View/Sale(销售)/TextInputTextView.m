@@ -55,6 +55,17 @@
     return textView;
 }
 
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = LZHBackgroundColor;
+        [self addSubview:(_lineView = view)];
+    }
+    return _lineView;
+}
+
 //自动布局
 - (void)setupSDlayout
 {
@@ -69,6 +80,12 @@
     .topSpaceToView(self, 7)
     .widthIs(APPWidth -120 -15)
     .heightIs(60);
+    
+    self.lineView.sd_layout
+    .bottomSpaceToView(self, 0)
+    .widthRatioToView(self, 1)
+    .leftSpaceToView(self, 0)
+    .heightIs(1);
     
 }
 

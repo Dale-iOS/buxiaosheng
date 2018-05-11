@@ -7,16 +7,20 @@
 //  供货商(厂商)
 
 #import "SupplierCompanyViewController.h"
-
-@interface SupplierCompanyViewController ()
-
+#import "LLFactoryModel.h"
+@interface SupplierCompanyViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) NSArray <LLFactoryModel *> * factorys;
 @end
 
 @implementation SupplierCompanyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self setupData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,5 +28,49 @@
 
 }
 
+-(void)setupData {
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"type":@(self.type)
+                             };
+    [BXSHttp requestGETWithAppURL:@"factory/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.factorys = [LLFactoryModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+        if (!self.factorys.count) {
+            [LLHudTools showWithMessage:LLLoadNoMoreMessage];
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.factorys.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    cell.textLabel.text = self.factorys[indexPath.row].name;
+    return cell;
+}
+
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        [self.view addSubview:_tableView];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    }
+    return _tableView;
+}
 
 @end

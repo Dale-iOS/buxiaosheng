@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-
+#import "SupplierCompanyViewController.h"
 @interface AddSetCompanyViewController : BaseViewController
-
+@property (nonatomic,assign) FactoryType type;
 @end
