@@ -21,4 +21,6 @@
 ///用户id (数据类型：long)
 @property(nonatomic,copy)NSString* userId;
 
+@property (nonatomic,copy) NSString * companyId;
+
 @end

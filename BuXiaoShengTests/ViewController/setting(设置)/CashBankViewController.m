@@ -23,6 +23,7 @@
     [super viewDidLoad];
 
     [self setupUI];
+    [self setupData];
 }
 
 - (void)setupUI
@@ -39,6 +40,14 @@
     self.tableView.separatorStyle = NO;
 
     [self.view addSubview:self.tableView];
+}
+-(void)setupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"bank/list.do" param:param success:^(id response) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark ----- tableviewdelegate -----

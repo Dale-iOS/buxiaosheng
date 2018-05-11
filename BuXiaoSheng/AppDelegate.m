@@ -20,6 +20,8 @@
     
 //    LoginViewController *loginVC = [[LoginViewController alloc]init];
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
     
     if ([BXSUser isLogin]) {
         HomeViewController *vc = [[HomeViewController alloc]init];

@@ -54,6 +54,21 @@
 //安全域高
 #define IPHONEX_MARGIN_BOTTOM (IPHONE_X ? 34.0:0.0)
 
+#define LLLoadPermissionsMessage @"该产品暂无权限"
+#define LLLoadNoMoreMessage @"没有更多了"
+
+#define LLLoadErrorMessage @"加载失败,请重试"
+
+#define LLLoadingMessage   @"加载中..."
+
+#define LLLoadNoNetWorking  @"暂无网络..."
+
+#define LLLoadShoppingMessage  @"您的购物车空空如也"
+
+#define LLLoginStateNotification @"LLLoginStateNotification"
+
+#define LLAiliPayNotification @"LLAiliPayNotification"
+
 
 
 /*  颜色

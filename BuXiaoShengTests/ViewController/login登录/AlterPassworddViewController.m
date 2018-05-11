@@ -7,7 +7,7 @@
 //  修改密码页面
 
 #import "AlterPassworddViewController.h"
-
+#import "HomeViewController.h"
 @interface AlterPassworddViewController ()<UITextFieldDelegate>
 
 ///红色提醒底图
@@ -139,29 +139,23 @@
     if (self.isPasswordSame) {
         
        
-        
-        NSDictionary *param = @{@"newPassword":self.passwordAgainTF.text,
-//                                @"password":[BXSHttp makeMD5:self.passwordTF.text]
-                                };
-        [BXSHttp requestPOSTWithAppURL:@"reset_password.do" param:param success:^(id response) {
-            
-            
-            if ([[response objectForKey:@"code"] integerValue] == 200) {
-                
-                [LLHudTools showWithMessage:@"修改成功"];
-            }
-            
-            NSString *jsonStr = STRING(response);
-            
-            NSLog(@"1133 %@",jsonStr);
-            
-            //        NSLog(@"++++++%@",self.loginModel.loginName);
-            
+        NSDictionary * param = @{@"token":[BXSUser currentUser].token,
+                                 @"userId":[BXSUser currentUser].userId,
+                                 @"newPassword":[BXSHttp makeMD5:self.passwordAgainTF.text]
+                                 };
+        [LLHudTools showLoadingMessage:LLLoadingMessage];
+        [BXSHttp requestPOSTWithAppURL:@"member/reset_password.do" param:param success:^(id response) {
             [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
             
+            if ([[response objectForKey:@"code"] integerValue] == 200) {
+                HomeViewController *vc = [[HomeViewController alloc]init];
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+                
+            }
             
         } failure:^(NSError *error) {
-            
+              [LLHudTools showWithMessage:@"修改密码失败,请重试"];
         }];
     }
 }

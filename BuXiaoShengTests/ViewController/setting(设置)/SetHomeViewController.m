@@ -19,7 +19,7 @@
 #import "RecipeViewController.h"
 #import "SetCompanyViewController.h"
 #import "SetClientViewController.h"
-
+#import "LoginViewController.h"
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -315,6 +315,21 @@
 //切换用户
 - (void)changeUserBtnClick
 {
+    NSDictionary * param = @{@"token":[BXSUser currentUser].token,
+                             @"userId":[BXSUser currentUser].userId
+                             };
+    [LLHudTools showLoadingMessage:LLLoadingMessage];
+    [BXSHttp requestGETWithAppURL:@"login_out.do" param:param success:^(id response) {
+        [LLHudTools dismiss];
+        if ([response[@"code"] integerValue] == 200) {
+            [BXSUser deleteUser];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
+            [self.navigationController pushViewController:[LoginViewController new] animated:true];
+        }
+         [LLHudTools showWithMessage:response[@"msg"]];
+    } failure:^(NSError *error) {
+         [LLHudTools dismiss];
+    }];
     NSLog(@"点击了 切换用户 按钮");
 //    用户退出接口
 }

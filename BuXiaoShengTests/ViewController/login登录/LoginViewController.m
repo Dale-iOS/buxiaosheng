@@ -34,6 +34,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(loginBack)];
 }
 
 - (void)setBackgroud
@@ -147,14 +149,15 @@
             [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
             
+            if ([self.loginModel.pwdResetStaus isEqualToString:@"0"]) {
+                AlterPassworddViewController *vc = [[AlterPassworddViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                return ;
+            }
+            
             HomeViewController *vc = [[HomeViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
-
-        NSString *jsonStr = STRING(response);
-        
-//        NSLog(@"1133 %@",jsonStr);
-//        NSLog(@"+++%@",[BXSUser currentUser].token);
         
         NSLog(@"++++++%@",self.loginModel.loginName);
         
@@ -183,6 +186,9 @@
         
     }
     
+}
+-(void)loginBack {
+    [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)didReceiveMemoryWarning {
