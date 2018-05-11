@@ -69,13 +69,7 @@ static inline NSString *MHFilePathFromWeChatCache(NSString *filename){
     return [cachePath stringByAppendingPathComponent:filename];
 }
 
-static inline BOOL BXSStrEmpty(NSString * str) {
-        if (str == nil ||str.length == 0||[str isEqualToString:@""]||[str isEqualToString:@"(null)"]) {
-            return true;
-        }
-        return false;
-    
-}
+
 
 
 

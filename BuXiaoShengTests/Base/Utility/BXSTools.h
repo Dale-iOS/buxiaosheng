@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface BXSTools : NSObject
-
++(BOOL)stringIsNullOrEmpty:(NSString *)str ;
 @end

@@ -159,10 +159,6 @@
 
 - (void)saveBtnClick
 {
-    BOOL a = BXSStrEmpty(@"");
-    if (a) {
-        <#statements#>
-    }
 }
 
 - (void)defaultCellAction

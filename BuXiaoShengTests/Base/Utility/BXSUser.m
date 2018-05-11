@@ -83,7 +83,7 @@
 /// 是否登录
 + (BOOL)isLogin{
     LoginModel *user = [self currentUser];
-    if (BXSStrEmpty(user.token)) {
+    if ([BXSTools stringIsNullOrEmpty:user.token]) {
         return false;
     }
     return true;

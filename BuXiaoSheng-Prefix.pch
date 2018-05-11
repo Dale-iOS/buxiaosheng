@@ -29,7 +29,7 @@
 #import "BXSUser.h"
 #import "LLBaseModel.h"
 #import "NSObject+LLMJParse.h"
-
+#import "BXSTools.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)

@@ -9,5 +9,11 @@
 #import "BXSTools.h"
 
 @implementation BXSTools
-
++(BOOL)stringIsNullOrEmpty:(NSString *)str {
+    if (str == nil ||str.length == 0||[str isEqualToString:@""]||[str isEqualToString:@"(null)"]) {
+        return true;
+    }
+    
+    return false;
+}
 @end
