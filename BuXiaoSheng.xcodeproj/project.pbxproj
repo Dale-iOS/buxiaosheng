@@ -191,6 +191,8 @@
 		34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */; };
 		34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25C1209308A8009E7589 /* SegmentDyeingView.m */; };
 		34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */; };
+		34E49B2820A57FB60074F454 /* QQTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E49B2420A57FB60074F454 /* QQTagView.m */; };
+		34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E49B2620A57FB60074F454 /* QQTagItem.m */; };
 		34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */; };
 		34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B99208B1F010048CFE1 /* LGAlertViewWindow.m */; };
 		34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EA5B9D208B1F010048CFE1 /* LGAlertViewWindowContainer.m */; };
@@ -694,6 +696,10 @@
 		34DE25C1209308A8009E7589 /* SegmentDyeingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingView.m; sourceTree = "<group>"; };
 		34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrearsNameTextInputCell.h; sourceTree = "<group>"; };
 		34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrearsNameTextInputCell.m; sourceTree = "<group>"; };
+		34E49B2420A57FB60074F454 /* QQTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQTagView.m; sourceTree = "<group>"; };
+		34E49B2520A57FB60074F454 /* QQTagItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQTagItem.h; sourceTree = "<group>"; };
+		34E49B2620A57FB60074F454 /* QQTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQTagItem.m; sourceTree = "<group>"; };
+		34E49B2720A57FB60074F454 /* QQTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQTagView.h; sourceTree = "<group>"; };
 		34EA5B96208B1F010048CFE1 /* LGAlertViewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAlertViewTextField.m; sourceTree = "<group>"; };
 		34EA5B97208B1F010048CFE1 /* LGAlertViewWindowsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewWindowsObserver.h; sourceTree = "<group>"; };
 		34EA5B98208B1F010048CFE1 /* LGAlertViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAlertViewCell.h; sourceTree = "<group>"; };
@@ -964,6 +970,7 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				34E49B1520A57F3D0074F454 /* QQTagView */,
 				B505054B209AB2DA00CE7E4D /* XLForm */,
 				34EA5B95208B1F010048CFE1 /* LGAlertView */,
 				344080262087362500FD36B8 /* YANScrollMenu */,
@@ -1624,6 +1631,17 @@
 			path = AAChartConfiger;
 			sourceTree = "<group>";
 		};
+		34E49B1520A57F3D0074F454 /* QQTagView */ = {
+			isa = PBXGroup;
+			children = (
+				34E49B2520A57FB60074F454 /* QQTagItem.h */,
+				34E49B2620A57FB60074F454 /* QQTagItem.m */,
+				34E49B2720A57FB60074F454 /* QQTagView.h */,
+				34E49B2420A57FB60074F454 /* QQTagView.m */,
+			);
+			path = QQTagView;
+			sourceTree = "<group>";
+		};
 		34EA5B95208B1F010048CFE1 /* LGAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2213,6 +2231,7 @@
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
+				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
@@ -2225,6 +2244,7 @@
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
+				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
 				345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */,

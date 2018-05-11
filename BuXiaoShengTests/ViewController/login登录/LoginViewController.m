@@ -123,8 +123,8 @@
     
     
 #pragma mark ------- 假数据 --------
-    self.loginTF.text = @"18814188198";
-    self.passwordTF.text = @"666666";
+//    self.loginTF.text = @"18814188198";
+//    self.passwordTF.text = @"666666";
 
     
 }

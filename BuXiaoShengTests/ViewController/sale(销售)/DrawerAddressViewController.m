@@ -7,10 +7,12 @@
 //   选择地址抽屉
 
 #import "DrawerAddressViewController.h"
+#import "QQTagView.h"
 
-@interface DrawerAddressViewController ()
+@interface DrawerAddressViewController ()<QQTagViewDelegate>
 
 @property (nonatomic, strong) UIButton *nextBtn;
+@property(nonatomic, strong) QQTagView *originalView;
 
 @end
 
@@ -59,6 +61,13 @@
     [self.nextBtn setTitle:@"确认" forState:UIControlStateNormal];
     [self.nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.nextBtn];
+    
+    self.originalView = [[QQTagView alloc]init];
+    self.originalView.frame =CGRectMake(0, 0, APPWidth *3/4, 0);
+    self.originalView.delegate = self;
+    self.originalView.tag = 1;
+    [self.originalView addTags:@[@"天河", @"天河", @"天河",@"天河",@"天河",@"天河",@"天河"]];
+    [self.view addSubview:self.originalView];
 }
 
 - (void)didReceiveMemoryWarning {
