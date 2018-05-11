@@ -10,7 +10,7 @@
 #import "CashBankTableViewCell.h"
 #import "AddBankViewController.h"
 #import "AlterBankViewController.h"
-
+#import "LLCashBankModel.h"
 @interface CashBankViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;

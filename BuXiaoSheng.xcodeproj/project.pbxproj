@@ -307,6 +307,8 @@
 		B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
 		B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
+		B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
+		B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -840,6 +842,8 @@
 		B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
 		B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCashBankModel.h; sourceTree = "<group>"; };
 		B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCashBankModel.m; sourceTree = "<group>"; };
+		B55ADE1020A555F2000F9C4A /* LLBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseModel.h; sourceTree = "<group>"; };
+		B55ADE1120A555F2000F9C4A /* LLBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseModel.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -1432,6 +1436,8 @@
 			children = (
 				B55ADE0B20A554A5000F9C4A /* Setting设置 */,
 				343B17FC20A3F48B00349A6D /* login登录 */,
+				B55ADE1020A555F2000F9C4A /* LLBaseModel.h */,
+				B55ADE1120A555F2000F9C4A /* LLBaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2184,6 +2190,7 @@
 				348DB853209AE44F00CD36CD /* AddPeopleViewController.m in Sources */,
 				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
+				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
@@ -2314,6 +2321,7 @@
 			files = (
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
+				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				B58BF72520A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
