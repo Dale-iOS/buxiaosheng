@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/ViewController/setting(&#x8bbe;&#x7f6e;)/CashBankViewController.m"
-            timestampString = "547705721.485567"
+            timestampString = "547706120.346692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkName = "-setupData"
             landmarkType = "7">
             <Locations>
                <Location
@@ -36,7 +36,7 @@
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zuoxue/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/ViewController/setting(%E8%AE%BE%E7%BD%AE)/CashBankViewController.m"
-                  timestampString = "547705721.561766"
+                  timestampString = "547706120.787823"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -51,7 +51,7 @@
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zuoxue/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/ViewController/setting(%E8%AE%BE%E7%BD%AE)/CashBankViewController.m"
-                  timestampString = "547705721.564199"
+                  timestampString = "547706120.789633"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -59,22 +59,6 @@
                   offsetFromSymbolStart = "56">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/ViewController/setting(&#x8bbe;&#x7f6e;)/CashBankViewController.m"
-            timestampString = "547705721.48588"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "CashBankViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
