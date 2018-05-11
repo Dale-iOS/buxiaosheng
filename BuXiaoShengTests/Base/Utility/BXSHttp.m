@@ -17,7 +17,7 @@
     NSMutableDictionary * baseParam =  [self getConstantParam];
     [baseParam addEntriesFromDictionary:param];
     baseParam[@"sign"] = [self sortObjectsAccordingToValueMD5With:baseParam];
-    
+     [self logURL:requsetURL withDict:baseParam OnHttpType:@"POST"];
     [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTWithSucces:^(id responseObject) {
         if (success) {
             success(responseObject);
@@ -32,7 +32,9 @@
     NSString * requsetURL = [NSString stringWithFormat:@"%@%@?",BXSBaseURL,url];
     NSMutableDictionary * baseParam =  [self getConstantParam];
     [baseParam addEntriesFromDictionary:param];
+  
     baseParam[@"sign"] = [self sortObjectsAccordingToValueMD5With:baseParam];
+    [self logURL:requsetURL withDict:baseParam OnHttpType:@"GET"];
     [LLNetWorkTools.shareTools.urlStr(requsetURL).param(baseParam) GETWithSucces:^(id responseObject)
      {
      if (success) {
@@ -69,6 +71,10 @@
 //    param[@"key_str"] =  key_str
     param[@"timestamp"] = [self stringFromDate];
     param[@"key_str"] = key_str;
+    if ([BXSUser isLogin]) {
+    param[@"token"] =  [BXSUser currentUser].token;
+    param[@"userId"] = [BXSUser currentUser].userId;
+    }
     return param;
 }
 
@@ -91,9 +97,9 @@
         [str appendFormat:@"%@", param[obj]?param[obj]: @""];
     }];
     [str appendFormat:@"%@", key_str];
-    if ([BXSUser isLogin]) {
-        [str appendFormat:@"%@%zd", [BXSUser currentUser].token,[BXSUser currentUser].userId];
-    }
+//    if ([BXSUser isLogin]) {
+//        [str appendFormat:@"%@%@", [BXSUser currentUser].token,[BXSUser currentUser].userId];
+//    }
     
     NSString * md5Str = [self makeMD5:str];
     
@@ -109,6 +115,29 @@
         [ret appendFormat:@"%02X",result[i]];
     }
     return ret;
+}
+
++ (NSString *)logURL:(NSString *)str withDict:(NSDictionary <NSString*,id>*)dict OnHttpType:(NSString *)POSTandGET{
+    
+    NSMutableString *urlMStr = [NSMutableString stringWithFormat:@"%@",str];;
+    __block BOOL isFirst = YES;
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        NSString *valueStr = obj;
+        
+        if (isFirst) isFirst = NO;
+        else         [urlMStr appendFormat:@"&"];
+        
+        [urlMStr appendFormat:@"%@=%@",key,valueStr];
+    }];
+    
+    if (dict) {
+        NSLog(@"\n===================================\n    .---- -. -. .  .   .\n   ( .',----- - - ' '\n    |_/      ;--:-|         __-------%@---------__\n    %@\n c(_ ..(_ ..(_ ..( /,,,,,,] | |___||___||___||___| |\n ,____________'_|,L______],|______________________|\n/;_(@)(@)==(@)(@)   (o)(o)      (o)^(o)--(o)^(o)\n%@\n===================================\n",POSTandGET,urlMStr,dict);
+    }else{
+        NSLog(@"\n    .---- -. -. .  .   .\n   ( .',----- - - ' '\n    |_/      ;--:-|         __-------%@---------__\n    %@\n c(_ ..(_ ..(_ ..( /,,,,,,] | |___||___||___||___| |\n ,____________'_|,L______],|______________________|\n/;_(@)(@)==(@)(@)   (o)(o)      (o)^(o)--(o)^(o)\n",POSTandGET,urlMStr);
+    }
+    return urlMStr;
+    
 }
 
 @end
