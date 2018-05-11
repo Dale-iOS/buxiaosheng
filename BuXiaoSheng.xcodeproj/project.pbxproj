@@ -309,6 +309,8 @@
 		B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
 		B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
+		B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
+		B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -844,6 +846,8 @@
 		B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCashBankModel.m; sourceTree = "<group>"; };
 		B55ADE1020A555F2000F9C4A /* LLBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseModel.h; sourceTree = "<group>"; };
 		B55ADE1120A555F2000F9C4A /* LLBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseModel.m; sourceTree = "<group>"; };
+		B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LLMJParse.h"; sourceTree = "<group>"; };
+		B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LLMJParse.m"; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -1299,6 +1303,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */,
+				B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */,
 				343025EF209C405B00869313 /* UIButton+EdgeInsets.h */,
 				343025ED209C405B00869313 /* UIButton+EdgeInsets.m */,
 				343025F0209C405B00869313 /* UIButton+KYTouch.h */,
@@ -2277,6 +2283,7 @@
 				342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
+				B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
 				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
@@ -2358,6 +2365,7 @@
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,
+				B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
 				B50505E2209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
 				B50505B6209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34A92B6C207DFB6700572648 /* HomeEntranceCell.m in Sources */,
