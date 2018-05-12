@@ -7,9 +7,8 @@
 //  分店设置
 
 #import "SetBranchViewController.h"
-#import "AddBranchViewController.h"
+#import "AlterBranchViewController.h"
 #import "SetBranchCell.h"
-#import "ModifyWarehouseViewController.h"
 
 @interface SetBranchViewController ()<UITableViewDelegate,UITableViewDataSource,SetBranchCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -83,13 +82,15 @@
 
 - (void)didClickAlterBtnInCell:(UITableViewCell *)cell
 {
-    ModifyWarehouseViewController *vc = [[ModifyWarehouseViewController alloc]init];
+    AlterBranchViewController *vc = [[AlterBranchViewController alloc]init];
+    vc.isFormBranchAdd = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)navigationAddClick
 {
-    AddBranchViewController *vc = [[AddBranchViewController alloc]init];
+    AlterBranchViewController *vc = [[AlterBranchViewController alloc]init];
+    vc.isFormBranchAdd = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -1,5 +1,5 @@
 //
-//  AlterBranchViewController.h
+//  AlterWarehouseViewController.h
 //  BuXiaoSheng
 //
 //  Created by 罗镇浩 on 2018/5/12.
@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface AlterBranchViewController : BaseViewController
+@interface AlterWarehouseViewController : BaseViewController
 
 @property (nonatomic,copy) NSString * id;
-@property (nonatomic,assign) BOOL  isFormBranchAdd;  //yes 来源添加分店  false 更新分店
+@property (nonatomic,assign) BOOL  isFormWarehouseAdd;  //yes 来源添加仓库  false 修改仓库
 
 @end

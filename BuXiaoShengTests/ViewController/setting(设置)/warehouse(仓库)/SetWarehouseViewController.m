@@ -7,12 +7,13 @@
 //  仓库页面
 
 #import "SetWarehouseViewController.h"
-#import "AddWarehouseViewController.h"
-#import "ModifyWarehouseViewController.h"
+#import "LLFactoryModel.h"
+#import "AlterWarehouseViewController.h"
 
 @interface SetWarehouseViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray <LLFactoryModel *> * warehouseModel;
 
 @end
 
@@ -22,6 +23,12 @@
     [super viewDidLoad];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupData];
 }
 
 - (void)setupUI
@@ -34,16 +41,36 @@
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCellId"];
+    self.tableView.tableFooterView = [UIView new];
     
     [self.view addSubview:_tableView];
 }
 
+#pragma mark ------ 网络请求 --------
+- (void)setupData
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestPOSTWithAppURL:@"house/list.do" param:param success:^(id response) {
+        
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.warehouseModel = [LLFactoryModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.warehouseModel.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -53,21 +80,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 49;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"Cellid";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"UITableViewCellId";
     
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = @"大龙纺";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = self.warehouseModel[indexPath.row].name;
+    
     return cell;
 }
 
@@ -75,10 +98,12 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
-    ModifyWarehouseViewController *vc = [[ModifyWarehouseViewController alloc]init];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+//
+    AlterWarehouseViewController *vc = [[AlterWarehouseViewController alloc]init];
+    vc.isFormWarehouseAdd = false;
+    vc.id = self.warehouseModel[indexPath.row].id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -87,9 +112,8 @@
 
 - (void)navigationAddClick
 {
-    NSLog(@"点击了添加");
-    
-    AddWarehouseViewController *vc = [[AddWarehouseViewController alloc]init];
+    AlterWarehouseViewController *vc = [[AlterWarehouseViewController alloc]init];
+    vc.isFormWarehouseAdd = true;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

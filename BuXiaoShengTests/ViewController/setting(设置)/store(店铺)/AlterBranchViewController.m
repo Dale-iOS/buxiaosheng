@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"添加分店"];
+    self.navigationItem.titleView = self.isFormBranchAdd ?[Utility navTitleView:@"添加分店"] : [Utility navTitleView:@"修改分店"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
