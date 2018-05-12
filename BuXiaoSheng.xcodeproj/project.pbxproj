@@ -230,6 +230,7 @@
 		34EE5D8420A68E7700A2C9B5 /* OtherCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8320A68E7700A2C9B5 /* OtherCostViewController.m */; };
 		34EE5D8820A690D300A2C9B5 /* SetBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8720A690D300A2C9B5 /* SetBranchViewController.m */; };
 		34EE5D8B20A6929800A2C9B5 /* AlterBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8A20A6929800A2C9B5 /* AlterBranchViewController.m */; };
+		34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
@@ -782,6 +783,8 @@
 		34EE5D8720A690D300A2C9B5 /* SetBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBranchViewController.m; sourceTree = "<group>"; };
 		34EE5D8920A6929800A2C9B5 /* AlterBranchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterBranchViewController.h; sourceTree = "<group>"; };
 		34EE5D8A20A6929800A2C9B5 /* AlterBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterBranchViewController.m; sourceTree = "<group>"; };
+		34EE5D9120A6974200A2C9B5 /* SetBranchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBranchCell.h; sourceTree = "<group>"; };
+		34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBranchCell.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1086,6 +1089,7 @@
 		343747F72094620700C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
+				34EE5D9020A696E400A2C9B5 /* store(店铺) */,
 				343747FB2094640500C64F4C /* SettingCell.h */,
 				343747FC2094640500C64F4C /* SettingCell.m */,
 				342CF65520996AAC007C329D /* CashBankTableViewCell.h */,
@@ -1793,6 +1797,15 @@
 			path = "recipe(配方表)";
 			sourceTree = "<group>";
 		};
+		34EE5D9020A696E400A2C9B5 /* store(店铺) */ = {
+			isa = PBXGroup;
+			children = (
+				34EE5D9120A6974200A2C9B5 /* SetBranchCell.h */,
+				34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */,
+			);
+			path = "store(店铺)";
+			sourceTree = "<group>";
+		};
 		4617F059D04BB6C0063A464F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2237,6 +2250,7 @@
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				B50505C1209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				34EE5D6C20A68B2600A2C9B5 /* AddProductViewController.m in Sources */,
+				34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */,
 				B50505E1209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
 				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
 				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,

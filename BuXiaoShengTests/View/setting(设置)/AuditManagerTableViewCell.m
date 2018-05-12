@@ -18,7 +18,7 @@
         
         self.selectionStyle = UITableViewCellAccessoryNone;
         
-        self.backgroundColor = LZHBackgroundColor;
+        self.backgroundColor = [UIColor whiteColor];
         
         [self setSDlayout];
         
