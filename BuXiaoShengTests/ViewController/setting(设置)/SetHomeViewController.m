@@ -9,7 +9,7 @@
 #import "SetHomeViewController.h"
 #import "SettingCell.h"
 #import "LZHTableView.h"
-#import "AddBranchViewController.h"
+#import "SetBranchViewController.h"
 #import "SetWarehouseViewController.h"
 #import "CashBankViewController.h"
 #import "AuditManagerViewController.h"
@@ -224,9 +224,7 @@
 //店铺
 - (void)storeCellTapAction
 {
-    NSLog(@"storeCellTapAction");
-    
-    AddBranchViewController *vc = [[AddBranchViewController alloc]init];
+    SetBranchViewController *vc = [[SetBranchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
