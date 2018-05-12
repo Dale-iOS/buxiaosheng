@@ -1,28 +1,29 @@
 //
-//  AddSubjectViewController.m
+//  AddColorViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/3.
+//  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加科目页面
+//  添加颜色页面
 
-#import "AddSubjectViewController.h"
+#import "AddColorViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
+#import "TextInputTextView.h"
+#import "UITextView+Placeholder.h"
 
-@interface AddSubjectViewController ()<LZHTableViewDelegate>
+@interface AddColorViewController ()<LZHTableViewDelegate>
+
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
+///添加颜色
+@property (nonatomic, strong) TextInputCell *addColorCell;
+///备注
+@property (nonatomic, strong) TextInputTextView *colorTextView;
 
-///科目名称
-@property (nonatomic, strong) TextInputCell *titleCell;
-///所属分组
-@property (nonatomic, strong) TextInputCell *groupCell;
-///状态
-@property (nonatomic, strong) TextInputCell *stateCell;
 @end
 
-@implementation AddSubjectViewController
+@implementation AddColorViewController
 @synthesize mainTabelView;
 
 - (void)viewDidLoad {
@@ -46,7 +47,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加项目"];
+    self.navigationItem.titleView = [Utility navTitleView:@"添加颜色"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
@@ -55,6 +56,7 @@
     [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    
     
     self.datasource = [NSMutableArray array];
     
@@ -66,28 +68,26 @@
 
 - (void)setupSectionOne
 {
-    self.titleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.titleCell.titleLabel.text = @"科目名称";
-    self.titleCell.contentTF.placeholder = @"请输入科目名称";
+    self.addColorCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.addColorCell.rightArrowImageVIew.hidden = NO;
+    self.addColorCell.titleLabel.text = @"添加颜色";
+    self.addColorCell.contentTF.placeholder = @"请选择颜色";
     
-    self.groupCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.groupCell.rightArrowImageVIew.hidden = NO;
-    self.groupCell.titleLabel.text = @"所属分组";
-    self.groupCell.contentTF.placeholder = @"请选择所属分组";
+    self.colorTextView = [[TextInputTextView alloc]init];
+    self.colorTextView.frame = CGRectMake(0, 0, APPWidth, 80);
     
-    self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.stateCell.rightArrowImageVIew.hidden = NO;
-    self.stateCell.titleLabel.text = @"状态";
-    self.stateCell.contentTF.placeholder = @"请选择状态";
+    self.colorTextView.titleLabel.text = @"颜色";
+    self.colorTextView.textView.placeholder = @"请输入备注内容";
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.titleCell,self.groupCell,self.stateCell];
+    item.sectionRows = @[self.addColorCell,self.colorTextView];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
+    
 }
 
 - (void)selectornavRightBtnClick
@@ -95,10 +95,12 @@
     NSLog(@"selectornavRightBtnClick");
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
+
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "AuditManagerViewController.h"
 #import "AuditManagerTableViewCell.h"
-
+#import "AddAuditManagerViewController.h"
 
 @interface AuditManagerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -35,7 +35,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     //隐藏分割线
-//    self.tableView.separatorStyle = NO;
+    //    self.tableView.separatorStyle = NO;
     
     [self.view addSubview:self.tableView];
 }
@@ -71,12 +71,13 @@
 
 - (void)navigationAddClick
 {
-    NSLog(@"navigationAddClick");
+    AddAuditManagerViewController *vc = [[AddAuditManagerViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 

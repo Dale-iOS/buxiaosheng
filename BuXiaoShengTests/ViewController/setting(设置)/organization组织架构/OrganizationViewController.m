@@ -7,6 +7,8 @@
 //  组织架构页面
 
 #import "OrganizationViewController.h"
+#import "AddDepartmentViewController.h"
+#import "AddNewPeopleViewController.h"
 
 @interface OrganizationViewController ()
 
@@ -16,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
 }
 
@@ -99,18 +101,22 @@
 //添加部门点击事件
 - (void)addDepartmentViewTapAction
 {
-    NSLog(@"addDepartmentViewTapAction");
+    
+    AddDepartmentViewController *vc = [[AddDepartmentViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //添加人员点击事件
 - (void)addPeopleViewTapAction
 {
-    NSLog(@"addPeopleViewTapAction");
+    
+    AddNewPeopleViewController *vc = [[AddNewPeopleViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 

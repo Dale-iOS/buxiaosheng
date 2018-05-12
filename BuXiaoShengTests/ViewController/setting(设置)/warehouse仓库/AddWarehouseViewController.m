@@ -1,37 +1,36 @@
 //
-//  ModifyWarehouseViewController.m
+//  AddWarehouseViewController.m
 //  BuXiaoSheng
 //
 //  Created by 罗镇浩 on 2018/5/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  修改仓库页面
+//  添加仓库页面
 
-#import "ModifyWarehouseViewController.h"
+#import "AddWarehouseViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 
-@interface ModifyWarehouseViewController ()<LZHTableViewDelegate>
+@interface AddWarehouseViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 
 ///分店名称
 @property (nonatomic, strong) TextInputCell *titleCell;
-///所属分店
-@property (nonatomic, strong) TextInputCell *belongCell;
-///是否允许负库存
-@property (nonatomic, strong) TextInputCell *negativetCell;
+/////所属分店
+//@property (nonatomic, strong) TextInputCell *belongCell;
+/////是否允许负库存
+//@property (nonatomic, strong) TextInputCell *negativetCell;
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
 @end
 
-@implementation ModifyWarehouseViewController
+@implementation AddWarehouseViewController
 @synthesize mainTabelView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupUI];
-
 }
 
 - (LZHTableView *)mainTabelView
@@ -47,6 +46,7 @@
     return mainTabelView;
 }
 
+
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"添加仓库"];
@@ -55,7 +55,7 @@
     navRightBtn.titleLabel.font = FONT(15);
     [navRightBtn setTitle:@"保存" forState:UIControlStateNormal];
     [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [navRightBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
     
@@ -73,15 +73,15 @@
     self.titleCell.titleLabel.text = @"分店名称";
     self.titleCell.contentTF.placeholder = @"请输入分店名称";
     
-    self.belongCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.belongCell.rightArrowImageVIew.hidden = NO;
-    self.belongCell.titleLabel.text = @"所属分店";
-    self.belongCell.contentTF.placeholder = @"请选择分店";
-    
-    self.negativetCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.negativetCell.rightArrowImageVIew.hidden = NO;
-    self.negativetCell.titleLabel.text = @"是否允许负库存";
-    self.negativetCell.contentTF.placeholder = @"请选择类型";
+    //    self.belongCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    //    self.belongCell.rightArrowImageVIew.hidden = NO;
+    //    self.belongCell.titleLabel.text = @"所属分店";
+    //    self.belongCell.contentTF.placeholder = @"请选择分店";
+    //
+    //    self.negativetCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    //    self.negativetCell.rightArrowImageVIew.hidden = NO;
+    //    self.negativetCell.titleLabel.text = @"是否允许负库存";
+    //    self.negativetCell.contentTF.placeholder = @"请选择类型";
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
@@ -92,22 +92,22 @@
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.titleCell,self.belongCell,self.negativetCell,self.stateCell];
+    item.sectionRows = @[self.titleCell,self.stateCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
 }
 
-- (void)confirmBtnClick
+- (void)saveBtnClick
 {
     NSLog(@"点击了保存按钮");
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    // Dispose of any resources that can be recreated.
 }
+
 
 
 @end

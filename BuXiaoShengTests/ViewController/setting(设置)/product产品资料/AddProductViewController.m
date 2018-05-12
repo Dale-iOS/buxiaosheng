@@ -1,12 +1,12 @@
 //
-//  ProductViewController.m
+//  AddProductViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/4.
+//  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //  添加产品资料页面
 
-#import "ProductViewController.h"
+#import "AddProductViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
@@ -14,7 +14,7 @@
 #import "UIButton+EdgeInsets.h"
 #import "AddColorViewController.h"
 
-@interface ProductViewController ()<LZHTableViewDelegate>
+@interface AddProductViewController ()<LZHTableViewDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -40,8 +40,7 @@
 @property (nonatomic, strong) TextInputCell *bigPriceCell;
 ///销售散剪价
 @property (nonatomic, strong) TextInputCell *dispersePriceCell;
-///订单的单条数量
-@property (nonatomic, strong) TextInputCell *oneOrderNumCell;
+
 
 ///添加颜色
 @property (nonatomic, strong) TextInputCell *addColorCell;
@@ -53,7 +52,7 @@
 
 @end
 
-@implementation ProductViewController
+@implementation AddProductViewController
 @synthesize mainTabelView;
 
 - (void)viewDidLoad {
@@ -190,15 +189,11 @@
     self.dispersePriceCell.titleLabel.text = @"销售散剪价";
     self.dispersePriceCell.contentTF.placeholder = @"可选填";
     
-    self.oneOrderNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.oneOrderNumCell.titleLabel.text = @"订单的单条数量";
-    self.oneOrderNumCell.contentTF.placeholder = @"请输入单挑数量";
-    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.nicknameCell,self.bigPriceCell,self.dispersePriceCell,self.oneOrderNumCell];
+    item.sectionRows = @[self.nicknameCell,self.bigPriceCell,self.dispersePriceCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -237,7 +232,7 @@
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.titleLabel.text = @"状态";
-    self.stateCell.contentTF.placeholder = @"请选择颜色";
+    self.stateCell.contentTF.placeholder = @"请选择状态";
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -257,10 +252,10 @@
     
     _isSelLeftBtn = YES;
     
-   
-        [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
-        [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
-
+    
+    [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
+    [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
+    
 }
 
 - (void)rightBtnClick
@@ -269,9 +264,9 @@
     
     _isSelrightBtn = YES;
     
-
-        [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
-        [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
+    
+    [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
+    [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
     
 }
 

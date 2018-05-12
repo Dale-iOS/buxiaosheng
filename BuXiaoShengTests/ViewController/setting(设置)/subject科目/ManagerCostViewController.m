@@ -1,44 +1,38 @@
 //
-//  SetWarehouseViewController.m
+//  ManagerCostViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/29.
+//  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  仓库页面
+//  管理费用
 
-#import "SetWarehouseViewController.h"
-#import "AddWarehouseViewController.h"
+#import "ManagerCostViewController.h"
+#import "ModifySubjectViewController.h"
 
-
-@interface SetWarehouseViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface ManagerCostViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) UIView *headView;
 @end
 
-@implementation SetWarehouseViewController
+@implementation ManagerCostViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setupUI];
 }
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"仓库"];
-    
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"add1")];
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.headView.backgroundColor = [UIColor redColor];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
+    self.tableView.tableHeaderView = self.headView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
-    
     [self.view addSubview:_tableView];
 }
-
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,7 +58,7 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = @"大龙纺";
+        cell.textLabel.text = @"管理费用";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
@@ -76,24 +70,15 @@
 {
     //获取cell
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    NSLog(@"管理费用 = %@",cell.textLabel.text);
     
-}
-
-
-
-
-- (void)navigationAddClick
-{
-    NSLog(@"点击了添加");
-    
-    AddWarehouseViewController *vc = [[AddWarehouseViewController alloc]init];
+    ModifySubjectViewController *vc = [[ModifySubjectViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 

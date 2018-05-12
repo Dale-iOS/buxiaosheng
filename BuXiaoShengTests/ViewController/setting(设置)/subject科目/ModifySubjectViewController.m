@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
 }
 
@@ -47,7 +47,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加项目"];
+    self.navigationItem.titleView = [Utility navTitleView:@"修改科目"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
@@ -99,7 +99,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 
