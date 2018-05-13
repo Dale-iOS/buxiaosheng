@@ -30,10 +30,10 @@
 - (void)setCollectionView
 {
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    flow.itemSize = CGSizeMake(APPWidth /10, 10);
+    flow.itemSize = CGSizeMake(APPWidth /4, 10);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(100, 85, APPWidth, 200) collectionViewLayout:flow];
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight +20, APPWidth, 200) collectionViewLayout:flow];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
@@ -49,10 +49,10 @@
     
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-    
+//    cell.backgroundColor = [UIColor redColor];
     
     if (indexPath.row == 0) {
-        
+
         cell.iconImageView.image = IMAGE(@"dyeing");
         cell.titileLabel.text = @"织造染色";
     }
@@ -92,7 +92,7 @@
 //设置itme大小
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(APPWidth /5, 10);
+    return CGSizeMake(APPWidth /5, 90);
 }
 
 //设置每个item的边距 上下左右

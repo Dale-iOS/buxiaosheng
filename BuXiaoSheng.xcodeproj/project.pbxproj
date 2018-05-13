@@ -119,6 +119,9 @@
 		34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0ED9920809E9700659190 /* UITextView+Placeholder.m */; };
 		34A0EDA120809F1800659190 /* TextInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0EDA020809F1800659190 /* TextInputTextView.m */; };
 		34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0ED9920809E9700659190 /* UITextView+Placeholder.m */; };
+		34A82B8C20A82F9400BFF1B0 /* JKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */; };
+		34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */; };
+		34A82B9220A82FB400BFF1B0 /* JKSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */; };
 		34A92B15207DE86200572648 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B14207DE86200572648 /* AppDelegate.m */; };
 		34A92B18207DE86200572648 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B17207DE86200572648 /* ViewController.m */; };
 		34A92B1B207DE86200572648 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A92B19207DE86200572648 /* Main.storyboard */; };
@@ -576,6 +579,11 @@
 		34A0ED9A20809E9700659190 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
 		34A0ED9F20809F1800659190 /* TextInputTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputTextView.h; sourceTree = "<group>"; };
 		34A0EDA020809F1800659190 /* TextInputTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputTextView.m; sourceTree = "<group>"; };
+		34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPickerView.m; sourceTree = "<group>"; };
+		34A82B8B20A82F9400BFF1B0 /* JKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPickerView.h; sourceTree = "<group>"; };
+		34A82B8E20A82FB400BFF1B0 /* JKSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSearchBar.h; sourceTree = "<group>"; };
+		34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JKSearchBar_ICON@2x.png"; sourceTree = "<group>"; };
+		34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSearchBar.m; sourceTree = "<group>"; };
 		34A92B10207DE86200572648 /* BuXiaoSheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuXiaoSheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A92B13207DE86200572648 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		34A92B14207DE86200572648 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -995,6 +1003,8 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				34A82B8D20A82FB400BFF1B0 /* JKSearchBar */,
+				34A82B8920A82F9400BFF1B0 /* JKPickerView */,
 				34E49B1520A57F3D0074F454 /* QQTagView */,
 				B505054B209AB2DA00CE7E4D /* XLForm */,
 				34EA5B95208B1F010048CFE1 /* LGAlertView */,
@@ -1348,6 +1358,25 @@
 				B5CF34FE20A576BE0043D906 /* BXSTools.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		34A82B8920A82F9400BFF1B0 /* JKPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */,
+				34A82B8B20A82F9400BFF1B0 /* JKPickerView.h */,
+			);
+			path = JKPickerView;
+			sourceTree = "<group>";
+		};
+		34A82B8D20A82FB400BFF1B0 /* JKSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				34A82B8E20A82FB400BFF1B0 /* JKSearchBar.h */,
+				34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */,
+				34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */,
+			);
+			path = JKSearchBar;
 			sourceTree = "<group>";
 		};
 		34A92B07207DE86200572648 = {
@@ -2139,6 +2168,7 @@
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				34B8730E2081EEEC00B05EBF /* AAHighchartsLib.js in Resources */,
 				349C096E208890BE00D2AC38 /* city.plist in Resources */,
+				34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */,
 				34B873102081EEEC00B05EBF /* AAFunnel.js in Resources */,
 				349C0971208890BE00D2AC38 /* menuData.plist in Resources */,
 				34B8730F2081EEEC00B05EBF /* AAHighchartsMore.js in Resources */,
@@ -2425,6 +2455,7 @@
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
+				34A82B9220A82FB400BFF1B0 /* JKSearchBar.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
@@ -2445,6 +2476,7 @@
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
 				343B17FB20A3DF7200349A6D /* LLHudTools.m in Sources */,
+				34A82B8C20A82F9400BFF1B0 /* JKPickerView.m in Sources */,
 				342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */,
 				34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,

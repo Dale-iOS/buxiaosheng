@@ -4,14 +4,16 @@
 //
 //  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  管理费用
+//  管理费用(科目页面)
 
 #import "ManagerCostViewController.h"
 #import "ModifySubjectViewController.h"
+#import "JKSearchBar.h"
 
-@interface ManagerCostViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ManagerCostViewController ()<UITableViewDelegate,UITableViewDataSource,JKSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
+@property (nonatomic, strong) JKSearchBar * searchBar;
 @end
 
 @implementation ManagerCostViewController
@@ -23,12 +25,20 @@
 
 - (void)setupUI
 {
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.headView.backgroundColor = [UIColor redColor];
+    self.searchBar = [[JKSearchBar alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = JKSearchBarIconAlignCenter;
+    [self.view addSubview:self.searchBar];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
+//    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+//    self.headView.backgroundColor = [UIColor redColor];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.bottom, APPWidth, APPHeight -self.searchBar.bottom -LLNavViewHeight -44) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
-    self.tableView.tableHeaderView = self.headView;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -37,7 +47,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 20;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
