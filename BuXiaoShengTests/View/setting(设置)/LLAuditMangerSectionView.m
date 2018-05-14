@@ -10,8 +10,16 @@
 #import "LLAuditMangerModel.h"
 @implementation LLAuditMangerSectionView
 {
+    //箭头
     UIImageView * _arrowImageView;
+    
     UILabel * _nameLable;
+    
+    ///图标
+    UIImageView * _iconImageView;
+    
+    ///图标里面的名字
+    UILabel * _iconNameLabel;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -23,6 +31,12 @@
 -(void)setModel:(LLAuditMangerModel *)model {
     _model = model;
     _nameLable.text = model.deptName;
+    if (model.deptName.length > 3) {
+        _iconNameLabel.text = [model.deptName substringToIndex:3];
+    }else{
+        _iconNameLabel.text = model.deptName;
+    }
+    
     [UIView animateWithDuration:0.25 animations:^{
         if (_model.sectionClick) {
             _arrowImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
@@ -47,13 +61,31 @@
         make.left.equalTo(self.contentView).offset((15));
         make.centerY.equalTo(self.contentView);
     }];
+
+    _iconImageView = [[UIImageView alloc]initWithImage:IMAGE(@"ordericon")];
+    [self.contentView addSubview:_iconImageView];
+    [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_arrowImageView.mas_right).offset(12);
+        make.centerY.equalTo(self.contentView);
+    }];
+    
+    _iconNameLabel = [UILabel new];
+    _iconNameLabel.textAlignment = NSTextAlignmentCenter;
+    [_iconImageView addSubview:_iconNameLabel];
+    _iconNameLabel.font = [UIFont systemFontOfSize:15];
+    _iconNameLabel.textColor = [UIColor whiteColor];
+    [_iconNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_iconImageView).offset(0);
+        make.centerY.equalTo(_iconImageView);
+        make.centerX.equalTo(_iconImageView);
+    }];
     
     _nameLable = [UILabel new];
     [self.contentView addSubview:_nameLable];
     _nameLable.font = [UIFont systemFontOfSize:15];
     _nameLable.textColor = [UIColor darkGrayColor];
     [_nameLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_arrowImageView.mas_right).offset(12);
+        make.left.equalTo(_iconImageView.mas_right).offset(12);
         make.centerY.equalTo(self.contentView);
     }];
 }

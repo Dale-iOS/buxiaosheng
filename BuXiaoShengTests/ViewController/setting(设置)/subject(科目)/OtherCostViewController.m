@@ -9,11 +9,13 @@
 #import "OtherCostViewController.h"
 #import "ModifySubjectViewController.h"
 #import "LZSearchBar.h"
+#import "LZSubjectModel.h"
 
 @interface OtherCostViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
 @property (nonatomic, strong) LZSearchBar * searchBar;
+@property (nonatomic, strong) NSArray <LZSubjectModel *> * subjects;
 @end
 
 @implementation OtherCostViewController
@@ -22,6 +24,12 @@
     [super viewDidLoad];
     [self setupUI];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupData];
 }
 
 - (void)setupUI
@@ -42,10 +50,32 @@
     [self.view addSubview:_tableView];
 }
 
+- (void)setupData
+{
+    NSDictionary *param = @{
+                            @"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"20",
+                            @"searchName":self.searchBar.text,
+                            @"type":@"3"
+                            };
+    [BXSHttp requestGETWithAppURL:@"costsubject/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.subjects = [LZSubjectModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.subjects.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -55,7 +85,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 49;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,10 +96,10 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = @"其他费用";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
     }
+    cell.textLabel.text = self.subjects[indexPath.row].name;
+    
     return cell;
 }
 
@@ -81,6 +111,7 @@
     NSLog(@"其他费用 = %@",cell.textLabel.text);
     
     ModifySubjectViewController *vc = [[ModifySubjectViewController alloc]init];
+    vc.id = self.subjects[indexPath.row].id;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

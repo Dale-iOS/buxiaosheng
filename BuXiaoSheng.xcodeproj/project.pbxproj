@@ -232,6 +232,8 @@
 		34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */; };
 		34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100020A93C16009A29A5 /* LZPickerView.m */; };
 		34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100420A93C56009A29A5 /* LZSearchBar.m */; };
+		34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100720A957CF009A29A5 /* LZSubjectModel.m */; };
+		34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
@@ -793,6 +795,10 @@
 		34F6100020A93C16009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
 		34F6100320A93C56009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
 		34F6100420A93C56009A29A5 /* LZSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchBar.m; sourceTree = "<group>"; };
+		34F6100620A957CF009A29A5 /* LZSubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSubjectModel.h; sourceTree = "<group>"; };
+		34F6100720A957CF009A29A5 /* LZSubjectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSubjectModel.m; sourceTree = "<group>"; };
+		34F6100920A9A38A009A29A5 /* LZCompanyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZCompanyModel.h; sourceTree = "<group>"; };
+		34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZCompanyModel.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2024,6 +2030,10 @@
 				B5CF350220A58DED0043D906 /* LLFactoryModel.m */,
 				B5E288E220A9332500D84196 /* LLAuditMangerModel.h */,
 				B5E288E320A9332500D84196 /* LLAuditMangerModel.m */,
+				34F6100620A957CF009A29A5 /* LZSubjectModel.h */,
+				34F6100720A957CF009A29A5 /* LZSubjectModel.m */,
+				34F6100920A9A38A009A29A5 /* LZCompanyModel.h */,
+				34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */,
 			);
 			path = "Setting设置";
 			sourceTree = "<group>";
@@ -2295,6 +2305,7 @@
 				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
 				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,
 				B50505B5209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
+				34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
@@ -2520,6 +2531,7 @@
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
 				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,
 				34B873242081EEEC00B05EBF /* AAArea.m in Sources */,
+				34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */,
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,

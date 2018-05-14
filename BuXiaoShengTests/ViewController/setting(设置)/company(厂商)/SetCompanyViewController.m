@@ -97,7 +97,7 @@
     switch (self.pageTitleView.selectedIndex) {
         case 0:
             vc.type = FactoryTypeGongHuoShang;
-            vc.navigationItem.titleView = [Utility navTitleView:@"添加厂商"];
+            vc.navigationItem.titleView = [Utility navTitleView:@"添加供货商"];
             break;
         case 1:
             vc.type = FactoryTypeShngChanShang;
@@ -105,12 +105,13 @@
             break;
         case 2:
             vc.type = FactoryTypeJiaGongShang;
-              vc.navigationItem.titleView = [Utility navTitleView:@"添工生产商"];
+              vc.navigationItem.titleView = [Utility navTitleView:@"添加加工商"];
             break;
             
         default:
             break;
     }
+    vc.isFormCompanyAdd = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

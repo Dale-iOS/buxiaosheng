@@ -101,7 +101,7 @@
     //生产商
     self.producersCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.producersCell.rightArrowImageVIew.hidden = NO;
-    self.producersCell.titleLabel.text = @"生厂商";
+    self.producersCell.titleLabel.text = @"生产商";
     self.producersCell.contentTF.text = @"佛山编织成";
     
     //计划出料仓

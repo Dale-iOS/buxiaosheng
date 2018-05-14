@@ -12,6 +12,7 @@
 #import "DefaultBankCell.h"
 #import "UITextView+Placeholder.h"
 #import "TextInputTextView.h"
+#import "LZCompanyModel.h"
 
 @interface AddSetCompanyViewController ()<LZHTableViewDelegate>
 
@@ -29,7 +30,6 @@
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///别名
 @property (nonatomic, strong) TextInputCell *nicknameCell;
-////  分组
 ///联系人
 @property (nonatomic, strong) TextInputCell *contactCell;
 
@@ -51,6 +51,7 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupCompanyDetailData];
 }
 
 - (LZHTableView *)mainTabelView
@@ -92,6 +93,47 @@
     self.mainTabelView.dataSoure = self.datasource;
 }
 
+-(void)setupCompanyDetailData {
+    //从添加厂商过来的直接 return
+    if (self.isFormCompanyAdd) {
+        return;
+    }
+    NSDictionary * param = @{@"id":self.id};
+    [BXSHttp requestGETWithAppURL:@"factory/detail.do" param:param success:^(id response) {
+        NSLog(@"%@",response);
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            return ;
+        }
+        LZCompanyModel * model = [LZCompanyModel LLMJParse:baseModel.data];
+        
+//        self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"暂无" :model.cardNumber;
+//        self.bankTitleCell.contentTF.text = model.name;
+        
+        self.titleCell.contentTF.text = model.name;
+        
+        if ([model.type integerValue] == 0) {
+            self.typeCell.contentTF.text = @"供货商";
+        }else if ([model.type integerValue] == 1)
+        {
+            self.typeCell.contentTF.text = @"生产商";
+        }else if ([model.type integerValue] == 2)
+        {
+            self.typeCell.contentTF.text = @"加工商";
+        }
+        self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
+        self.nicknameCell.contentTF.text = model.alias;
+        self.contactCell.contentTF.text = model.contactName;
+        self.phoneCell.contentTF.text = model.tel;
+        self.phoneNumberCell.contentTF.text = model.mobile;
+        self.addressTextView.textView.text = model.address;
+        self.remarkTextView.textView.text = model.remark;
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
 -(void)LzhTableView:(LZHTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         return;
@@ -100,6 +142,26 @@
     if (indexPath.row == 1) {
         WEAKSELF;
         UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择您要添加的厂商类型" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction * offer = [UIAlertAction actionWithTitle:@"供货商" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.typeCell.contentTF.text = @"供货商";
+        }];
+        UIAlertAction * production = [UIAlertAction actionWithTitle:@"生产商" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.typeCell.contentTF.text = @"生产商";
+        }];
+        UIAlertAction * process = [UIAlertAction actionWithTitle:@"加工商" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.typeCell.contentTF.text = @"加工商";
+        }];
+        UIAlertAction * cacanle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alterVc addAction:offer];
+        [alterVc addAction:production];
+        [alterVc addAction:process];
+        [alterVc addAction:cacanle];
+        [self.navigationController presentViewController:alterVc animated:true completion:nil];
+    }else if (indexPath.row == 2)
+    {
+        WEAKSELF;
+
+        UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择该供货启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             weakSelf.stateCell.contentTF.text = @"启用";
         }];
@@ -112,6 +174,7 @@
         [alterVc addAction:cacanle];
         [self.navigationController presentViewController:alterVc animated:true completion:nil];
     }
+
 }
 
 - (void)setupSectionOne
@@ -128,15 +191,16 @@
     self.typeCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.typeCell.rightArrowImageVIew.hidden = NO;
     self.typeCell.titleLabel.text = @"类型";
+    self.typeCell.contentTF.enabled = NO;
     self.typeCell.contentTF.placeholder = @"请选择类型";
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.titleLabel.text = @"状态";
+    self.stateCell.contentTF.enabled = NO;
     self.stateCell.contentTF.placeholder = @"请选择状态";
     
     self.nicknameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.nicknameCell.rightArrowImageVIew.hidden = NO;
     self.nicknameCell.titleLabel.text = @"别名";
     self.nicknameCell.contentTF.placeholder = @"请输入别名";
     
@@ -235,19 +299,60 @@
             break;
     }
     
-    NSDictionary * param = @{
-                             @"address":self.addressTextView.textView.text?:@"",
-                             @"alias":self.nicknameCell.contentTF.text ? :@"",
-                             @"companyId":self.addressTextView.textView.text ? :@"",
-                             @"contactName":self.contactCell.contentTF.text ? :@"",
-                             @"mobile" : self.phoneNumberCell.contentTF.text ? :@"",
-                             @"name" : self.titleCell.contentTF.text ? :@"",
-                             @"remark" : self.remarkTextView.textView.text ? : @"",
-                             @"staus":self.stateCell.contentTF.text ? :@"",
-                             @"tel" : self.phoneCell.contentTF.text ? :@"",
-                             @"type" :@(stauts)
-                             };
-    [BXSHttp requestPOSTWithAppURL:@"factory/add.do" param:param success:^(id response) {
+    NSInteger types = -1;
+    if ([self.typeCell.contentTF.text isEqualToString:@"供货商"]) {
+        types = 0;
+    }else if ([self.typeCell.contentTF.text isEqualToString:@"生产商"]){
+        types = 1;
+    }else if ([self.typeCell.contentTF.text isEqualToString:@"加工商"]){
+        types = 2;
+    }
+    
+    NSDictionary * param = nil;
+    NSString * AppURL = @"";
+    
+    if (_isFormCompanyAdd) {
+        param = @{
+                  @"address":self.addressTextView.textView.text?:@"",
+                  @"alias":self.nicknameCell.contentTF.text ? :@"",
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"contactName":self.contactCell.contentTF.text ? :@"",
+                  @"mobile" : self.phoneNumberCell.contentTF.text ? :@"",
+                  @"name" : self.titleCell.contentTF.text ? :@"",
+                  @"remark" : self.remarkTextView.textView.text ? : @"",
+                  @"status" : @(stauts),
+                  @"tel" : self.phoneCell.contentTF.text ? :@"",
+                  @"type" : @(types)
+                  };
+        AppURL = @"factory/add.do";
+    }else
+    {
+        param = @{
+                  @"address":self.addressTextView.textView.text?:@"",
+                  @"alias":self.nicknameCell.contentTF.text ? :@"",
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"contactName":self.contactCell.contentTF.text ? :@"",
+                  @"id":self.id,
+                  @"mobile" : self.phoneNumberCell.contentTF.text ? :@"",
+                  @"name" : self.titleCell.contentTF.text ? :@"",
+                  @"remark" : self.remarkTextView.textView.text ? : @"",
+                  @"status" : @(stauts),
+                  @"tel" : self.phoneCell.contentTF.text ? :@"",
+                  @"type" : @(types)
+                  };
+        AppURL = @"factory/update.do";
+    }
+    
+    [BXSHttp requestPOSTWithAppURL:AppURL param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        [LLHudTools showWithMessage:baseModel.msg];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
         
     } failure:^(NSError *error) {
       BXS_Alert(LLLoadErrorMessage)

@@ -108,6 +108,12 @@
     if (cell == nil) {
         cell = [[AuditManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    NSString *nameStr = self.names[indexPath.row][@"memberName"];
+    if (nameStr.length > 3) {
+        cell.iconNameLabel.text = [nameStr substringToIndex:3];
+    }else{
+        cell.iconNameLabel.text = nameStr;
+    }
     cell.iconNameLabel.text = self.names[indexPath.row][@"memberName"];
      cell.titleLabel.text = self.names[indexPath.row][@"memberName"];
     

@@ -25,7 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *datasource;
 
 ///店铺
-@property (nonatomic, strong) SettingCell *storeCell;
+//@property (nonatomic, strong) SettingCell *storeCell;
 ///仓库
 @property (nonatomic, strong) SettingCell *warehouseCell;
 ///现金银行
@@ -107,11 +107,11 @@
     headerView.backgroundColor = LZHBackgroundColor;
     
     //店铺
-    self.storeCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.storeCell.iconImageView.image = IMAGE(@"store");
-    self.storeCell.titleLabel.text = @"店铺";
-    UITapGestureRecognizer *storeCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(storeCellTapAction)];
-    [self.storeCell addGestureRecognizer:storeCellTap];
+//    self.storeCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+//    self.storeCell.iconImageView.image = IMAGE(@"store");
+//    self.storeCell.titleLabel.text = @"店铺";
+//    UITapGestureRecognizer *storeCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(storeCellTapAction)];
+//    [self.storeCell addGestureRecognizer:storeCellTap];
     
     //仓库
     self.warehouseCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
@@ -139,7 +139,7 @@
     
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.storeCell,self.warehouseCell,self.bankCell,self.auditManagerCell];
+    item.sectionRows = @[self.warehouseCell,self.bankCell,self.auditManagerCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];

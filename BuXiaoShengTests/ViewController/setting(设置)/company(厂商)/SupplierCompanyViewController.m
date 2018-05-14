@@ -8,6 +8,7 @@
 
 #import "SupplierCompanyViewController.h"
 #import "LLFactoryModel.h"
+#import "AddSetCompanyViewController.h"
 @interface SupplierCompanyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray <LLFactoryModel *> * factorys;
@@ -20,6 +21,12 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self setupData];
 }
 
@@ -59,6 +66,27 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     cell.textLabel.text = self.factorys[indexPath.row].name;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddSetCompanyViewController *vc = [[AddSetCompanyViewController alloc]init];
+    vc.id = self.factorys[indexPath.row].id;
+
+    switch (self.type) {
+        case 0:
+            vc.navigationItem.titleView = [Utility navTitleView:@"修改供货商"];
+            break;
+        case 1:
+            vc.navigationItem.titleView = [Utility navTitleView:@"修改生产商"];
+            break;
+        case 2:
+            vc.navigationItem.titleView = [Utility navTitleView:@"修改加工商"];
+            break;
+        default:
+            break;
+    }
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(UITableView *)tableView {

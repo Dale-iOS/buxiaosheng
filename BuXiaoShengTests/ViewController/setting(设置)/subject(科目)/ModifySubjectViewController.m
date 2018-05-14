@@ -9,6 +9,7 @@
 #import "ModifySubjectViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
+#import "LZSubjectModel.h"
 
 @interface ModifySubjectViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -30,6 +31,7 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupSubjectDetailData];
 }
 
 - (LZHTableView *)mainTabelView
@@ -95,6 +97,43 @@
     [self.datasource addObject:item];
 }
 
+- (void)setupSubjectDetailData
+{
+    //从添加项目过来的直接 return
+    if (self.isFormSubjectAdd) {
+        return;
+    }
+    NSDictionary * param = @{@"id":self.id};
+    [BXSHttp requestGETWithAppURL:@"costsubject/detail.do" param:param success:^(id response) {
+        NSLog(@"%@",response);
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            return ;
+        }
+        LZSubjectModel * model = [LZSubjectModel LLMJParse:baseModel.data];
+        
+        self.titleCell.contentTF.text = model.name;
+        
+        if ([model.type integerValue] == 0) {
+            self.groupCell.contentTF.text = @"管理费用";
+        }else if ([model.type integerValue] == 1)
+        {
+            self.groupCell.contentTF.text = @"销售费用";
+        }else if ([model.type integerValue] == 2)
+        {
+            self.groupCell.contentTF.text = @"财务费用";
+        }
+        else if ([model.type integerValue] == 3)
+        {
+            self.groupCell.contentTF.text = @"其他费用";
+        }
+        
+        self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
 
 - (void)selectornavRightBtnClick
 {
@@ -123,12 +162,12 @@
     NSInteger types = -1;
     if ([self.groupCell.contentTF.text isEqualToString:@"管理费用"]) {
         types = 0;
-    }else if ([self.stateCell.contentTF.text isEqualToString:@"销售费用"]){
+    }else if ([self.groupCell.contentTF.text isEqualToString:@"销售费用"]){
         types = 1;
-    }else if ([self.stateCell.contentTF.text isEqualToString:@"财务费用"]){
+    }else if ([self.groupCell.contentTF.text isEqualToString:@"财务费用"]){
+        types = 2;
+    }else if ([self.groupCell.contentTF.text isEqualToString:@"其他费用"]){
         types = 3;
-    }else if ([self.stateCell.contentTF.text isEqualToString:@"其他费用"]){
-        types = 4;
     }
     
     NSString * requestUrl ;
@@ -137,12 +176,25 @@
     }else {
         requestUrl = @"costsubject/update.do";
     }
-    NSDictionary * param = @{
-                             @"type":@(types),
-                             @"companyId":[BXSUser currentUser].companyId,
-                             @"name":self.titleCell.contentTF.text,
-                             @"status":@(status)
-                             };
+    NSDictionary * param = nil;
+    if (_isFormSubjectAdd) {
+        param = @{
+                  @"type":@(types),
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.titleCell.contentTF.text,
+                  @"status":@(status)
+                  };
+    }else
+    {
+        param = @{
+                  @"type":@(types),
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.titleCell.contentTF.text,
+                  @"status":@(status),
+                  @"id":self.id
+                  };
+    }
+    
     [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         [LLHudTools showWithMessage:baseModel.msg];
