@@ -10,6 +10,7 @@
 #import "LLAuditMangerModel.h"
 #import "LLAuditMangerSectionView.h"
 #import "LLAuditMangerCell.h"
+#import "AuditManagerViewController.h"
 @interface AddAuditManagerViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray <LLAuditMangerModel *> * manages;
@@ -100,6 +101,18 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   WEAKSELF
+    [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[AuditManagerViewController class]]) {
+            AuditManagerViewController * mangerVc = (AuditManagerViewController*) obj;
+            mangerVc.model = weakSelf.manages[indexPath.section].itemList[indexPath.row];
+            [weakSelf.navigationController popToViewController:mangerVc animated:true];
+            *stop = true;
+        }
+    }];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.manages[indexPath.section].sectionClick) {
         return 49;
@@ -113,6 +126,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[LLAuditMangerCell class] forCellReuseIdentifier:@"LLAuditMangerCell"];
         [_tableView registerClass:[LLAuditMangerSectionView class] forHeaderFooterViewReuseIdentifier:@"LLAuditMangerSectionView"];
     }

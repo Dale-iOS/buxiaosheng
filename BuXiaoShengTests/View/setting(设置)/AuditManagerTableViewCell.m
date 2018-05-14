@@ -9,7 +9,7 @@
 #import "AuditManagerTableViewCell.h"
 
 @implementation AuditManagerTableViewCell
-@synthesize iconImageView,iconNameLabel,titleLabel,deletLabel;
+@synthesize iconImageView,iconNameLabel,titleLabel;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -66,19 +66,19 @@
     return titleLabel;
 }
 
-- (UILabel *)deletLabel
-{
-    if (!deletLabel)
-    {
-        UILabel *label = [[UILabel alloc]init];
-        label.textAlignment = NSTextAlignmentRight;
-        label.text = @"删除";
-        label.font = FONT(12);
-        label.textColor = CD_Text33;
-        [contentView addSubview:(deletLabel = label)];
-    }
-    return deletLabel;
-}
+//- (UILabel *)deletLabel
+//{
+//    if (!deletLabel)
+//    {
+//        UILabel *label = [[UILabel alloc]init];
+//        label.textAlignment = NSTextAlignmentRight;
+//        label.text = @"删除";
+//        label.font = FONT(12);
+//        label.textColor = CD_Text33;
+//        [contentView addSubview:(deletLabel = label)];
+//    }
+//    return deletLabel;
+//}
 
 - (void)setSDlayout
 {
@@ -100,11 +100,11 @@
     .leftSpaceToView(self.iconImageView, 10)
     .centerYEqualToView(contentView);
     
-    self.deletLabel.sd_layout
-    .widthIs(30)
-    .heightIs(13)
-    .rightSpaceToView(contentView, 15)
-    .centerYEqualToView(contentView);
+//    self.deletLabel.sd_layout
+//    .widthIs(30)
+//    .heightIs(13)
+//    .rightSpaceToView(contentView, 15)
+//    .centerYEqualToView(contentView);
 }
 
 - (void)awakeFromNib {

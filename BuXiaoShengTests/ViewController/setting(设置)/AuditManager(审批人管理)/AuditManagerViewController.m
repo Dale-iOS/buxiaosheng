@@ -9,7 +9,7 @@
 #import "AuditManagerViewController.h"
 #import "AuditManagerTableViewCell.h"
 #import "AddAuditManagerViewController.h"
-
+#import "LLAuditMangerModel.h"
 @interface AuditManagerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
@@ -19,6 +19,26 @@
 @end
 
 @implementation AuditManagerViewController
+
+-(void)setModel:(LLAuditMangerItemModel *)model {
+    _model = model;
+    if (_model) {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"memberId":_model.id
+                                 };
+        [BXSHttp requestGETWithAppURL:@"approver/add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                BXS_Alert(baseModel.msg)
+                return ;
+            }
+            [LLHudTools showWithMessage:@"操作成功"];
+            [self setupData];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:LLLoadErrorMessage];
+        }];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,8 +61,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
+   
     //隐藏分割线
     //    self.tableView.separatorStyle = NO;
+
     [self.view addSubview:self.tableView];
 }
 
@@ -86,7 +108,8 @@
     if (cell == nil) {
         cell = [[AuditManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.iconNameLabel.text = self.names[indexPath.row][@"name"];
+    cell.iconNameLabel.text = self.names[indexPath.row][@"memberName"];
+     cell.titleLabel.text = self.names[indexPath.row][@"memberName"];
     
     return cell;
 }

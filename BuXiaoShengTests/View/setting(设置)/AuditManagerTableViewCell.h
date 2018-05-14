@@ -19,7 +19,7 @@
 ///名字
 @property (nonatomic, strong)UILabel *titleLabel;
 
-///删除
-@property (nonatomic, strong)UILabel *deletLabel;
+/////删除
+//@property (nonatomic, strong)UILabel *deletLabel;
 
 @end
