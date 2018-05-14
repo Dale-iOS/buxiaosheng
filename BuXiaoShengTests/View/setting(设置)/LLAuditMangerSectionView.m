@@ -27,12 +27,13 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
+        addGestureRecognizer(self.contentView, sectionViewClick)
     }
     return self;
 }
 
 -(void)setupUI {
-    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"auditManger_arrow"]];
     [self.contentView addSubview:_arrowImageView];
     [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset((15));
@@ -47,6 +48,12 @@
         make.left.equalTo(_arrowImageView.mas_right);
         make.centerY.equalTo(self.contentView);
     }];
+}
+
+-(void)sectionViewClick {
+    self.model.sectionClick = !self.model.sectionClick;
+    
+    self.block(self);
 }
 
 @end

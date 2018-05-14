@@ -31,6 +31,11 @@
 #import "NSObject+LLMJParse.h"
 #import "BXSTools.h"
 
+//点击事件
+#define addGestureRecognizer(viewName,clickName) do {                                                                          viewName.userInteractionEnabled = YES;\
+[viewName addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickName)]];\
+} while (0);
+
 
 #define BXS_Alert(manager1) UIAlertController * alterVC = [UIAlertController alertControllerWithTitle:@"温馨提示: " message:manager1 preferredStyle:UIAlertControllerStyleAlert];\
 UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"确 定" style:UIAlertActionStyleCancel handler:nil ];\
