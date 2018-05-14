@@ -6,9 +6,9 @@
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import "LLAuditMangerSectionModel.h"
-
-@implementation LLAuditMangerSectionModel
+#import "LLAuditMangerSectionView.h"
+#import "LLAuditMangerModel.h"
+@implementation LLAuditMangerSectionView
 {
     UIImageView * _arrowImageView;
     UILabel * _nameLable;
@@ -20,9 +20,13 @@
     // Drawing code
 }
 */
+-(void)setModel:(LLAuditMangerModel *)model {
+    _model = model;
+    _nameLable.text = model.deptName;
+}
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        
+        [self setupUI];
     }
     return self;
 }
@@ -32,6 +36,15 @@
     [self.contentView addSubview:_arrowImageView];
     [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset((15));
+        make.centerY.equalTo(self.contentView);
+    }];
+    
+    _nameLable = [UILabel new];
+    [self.contentView addSubview:_nameLable];
+    _nameLable.font = [UIFont systemFontOfSize:15];
+    _nameLable.textColor = [UIColor darkGrayColor];
+    [_nameLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_arrowImageView.mas_right);
         make.centerY.equalTo(self.contentView);
     }];
 }

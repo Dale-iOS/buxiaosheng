@@ -360,8 +360,10 @@
 		B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF350220A58DED0043D906 /* LLFactoryModel.m */; };
 		B5E288E420A9332500D84196 /* LLAuditMangerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E320A9332500D84196 /* LLAuditMangerModel.m */; };
 		B5E288E520A9332500D84196 /* LLAuditMangerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E320A9332500D84196 /* LLAuditMangerModel.m */; };
-		B5E288E820A9371400D84196 /* LLAuditMangerSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E720A9371400D84196 /* LLAuditMangerSectionModel.m */; };
-		B5E288E920A9371400D84196 /* LLAuditMangerSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E720A9371400D84196 /* LLAuditMangerSectionModel.m */; };
+		B5E288E820A9371400D84196 /* LLAuditMangerSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */; };
+		B5E288E920A9371400D84196 /* LLAuditMangerSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */; };
+		B5E288EC20A93B0300D84196 /* LLAuditMangerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */; };
+		B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -934,8 +936,10 @@
 		B5CF350220A58DED0043D906 /* LLFactoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFactoryModel.m; sourceTree = "<group>"; };
 		B5E288E220A9332500D84196 /* LLAuditMangerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuditMangerModel.h; sourceTree = "<group>"; };
 		B5E288E320A9332500D84196 /* LLAuditMangerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuditMangerModel.m; sourceTree = "<group>"; };
-		B5E288E620A9371400D84196 /* LLAuditMangerSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuditMangerSectionModel.h; sourceTree = "<group>"; };
-		B5E288E720A9371400D84196 /* LLAuditMangerSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuditMangerSectionModel.m; sourceTree = "<group>"; };
+		B5E288E620A9371400D84196 /* LLAuditMangerSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuditMangerSectionView.h; sourceTree = "<group>"; };
+		B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuditMangerSectionView.m; sourceTree = "<group>"; };
+		B5E288EA20A93B0300D84196 /* LLAuditMangerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuditMangerCell.h; sourceTree = "<group>"; };
+		B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuditMangerCell.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1127,8 +1131,10 @@
 				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
 				3464A93720A1898100307C1A /* WeaveRecipeView.h */,
 				3464A93820A1898100307C1A /* WeaveRecipeView.m */,
-				B5E288E620A9371400D84196 /* LLAuditMangerSectionModel.h */,
-				B5E288E720A9371400D84196 /* LLAuditMangerSectionModel.m */,
+				B5E288E620A9371400D84196 /* LLAuditMangerSectionView.h */,
+				B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */,
+				B5E288EA20A93B0300D84196 /* LLAuditMangerCell.h */,
+				B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */,
 			);
 			path = "setting(设置)";
 			sourceTree = "<group>";
@@ -2286,7 +2292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5E288E820A9371400D84196 /* LLAuditMangerSectionModel.m in Sources */,
+				B5E288E820A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
@@ -2307,6 +2313,7 @@
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
+				B5E288EC20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				B50505BD209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				B50505DD209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
@@ -2555,7 +2562,7 @@
 				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
-				B5E288E920A9371400D84196 /* LLAuditMangerSectionModel.m in Sources */,
+				B5E288E920A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
 				B58BF72520A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34A92B61207DEF9900572648 /* HomeEntranceView.m in Sources */,
 				34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */,
@@ -2589,6 +2596,7 @@
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
+				B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,

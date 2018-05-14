@@ -1,5 +1,5 @@
 //
-//  LLAuditMangerSectionModel.h
+//  LLAuditMangerCell.h
 //  BuXiaoSheng
 //
 //  Created by 周尊贤 on 2018/5/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLAuditMangerSectionModel : UITableViewHeaderFooterView
+@interface LLAuditMangerCell : UITableViewCell
 
 @end
