@@ -233,6 +233,8 @@
 		34EE5D8B20A6929800A2C9B5 /* AlterBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8A20A6929800A2C9B5 /* AlterBranchViewController.m */; };
 		34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */; };
 		34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */; };
+		34F60FF820A9233E009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60FF720A9233E009A29A5 /* LZSearchBar.m */; };
+		34F60FFB20A9253F009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60FFA20A9253F009A29A5 /* LZPickerView.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
@@ -790,6 +792,10 @@
 		34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBranchCell.m; sourceTree = "<group>"; };
 		34EE5D9A20A6D32600A2C9B5 /* AlterWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterWarehouseViewController.h; sourceTree = "<group>"; };
 		34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterWarehouseViewController.m; sourceTree = "<group>"; };
+		34F60FF620A9233E009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
+		34F60FF720A9233E009A29A5 /* LZSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchBar.m; sourceTree = "<group>"; };
+		34F60FF920A9253F009A29A5 /* LZPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPickerView.h; sourceTree = "<group>"; };
+		34F60FFA20A9253F009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1011,6 +1017,10 @@
 				344080262087362500FD36B8 /* YANScrollMenu */,
 				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
+				34F60FF620A9233E009A29A5 /* LZSearchBar.h */,
+				34F60FF720A9233E009A29A5 /* LZSearchBar.m */,
+				34F60FF920A9253F009A29A5 /* LZPickerView.h */,
+				34F60FFA20A9253F009A29A5 /* LZPickerView.m */,
 			);
 			path = "ThirdParty(第三方)";
 			sourceTree = "<group>";
@@ -2396,6 +2406,7 @@
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
+				34F60FFB20A9253F009A29A5 /* LZPickerView.m in Sources */,
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
@@ -2513,6 +2524,7 @@
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
+				34F60FF820A9233E009A29A5 /* LZSearchBar.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
