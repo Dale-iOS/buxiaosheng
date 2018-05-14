@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong)UITableView *tableView;
 
+@property (nonatomic,strong) NSArray <NSDictionary*> * names;
+
 @end
 
 @implementation AuditManagerViewController
@@ -22,6 +24,10 @@
     [super viewDidLoad];
     
     [self setupUI];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupData];
 }
 
 - (void)setupUI
@@ -34,16 +40,33 @@
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
     //隐藏分割线
     //    self.tableView.separatorStyle = NO;
-    
     [self.view addSubview:self.tableView];
+}
+
+-(void)setupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"approver/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            return ;
+        }
+        self.names = baseModel.data;
+        if (!self.names.count) {
+            [LLHudTools showWithMessage:@"暂无数据"];
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.names.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,12 +83,11 @@
 {
     static NSString *cellID = @"AuditManagerTableViewCell";
     AuditManagerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
     if (cell == nil) {
-        
         cell = [[AuditManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
     }
+    cell.iconNameLabel.text = self.names[indexPath.row][@"name"];
+    
     return cell;
 }
 
