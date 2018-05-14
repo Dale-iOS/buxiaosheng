@@ -23,6 +23,14 @@
 -(void)setModel:(LLAuditMangerModel *)model {
     _model = model;
     _nameLable.text = model.deptName;
+    [UIView animateWithDuration:0.25 animations:^{
+        if (_model.sectionClick) {
+            _arrowImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+        }else {
+            _arrowImageView.transform = CGAffineTransformIdentity;
+        }
+    }];
+   
 }
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
@@ -45,14 +53,13 @@
     _nameLable.font = [UIFont systemFontOfSize:15];
     _nameLable.textColor = [UIColor darkGrayColor];
     [_nameLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_arrowImageView.mas_right);
+        make.left.equalTo(_arrowImageView.mas_right).offset(12);
         make.centerY.equalTo(self.contentView);
     }];
 }
 
 -(void)sectionViewClick {
     self.model.sectionClick = !self.model.sectionClick;
-    
     self.block(self);
 }
 

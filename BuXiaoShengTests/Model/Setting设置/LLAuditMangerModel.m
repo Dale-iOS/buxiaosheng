@@ -10,10 +10,8 @@
 
 @implementation LLAuditMangerModel
 
-+ (NSDictionary *)mj_replacedKeyFromPropertyName{
-    return @{
-             @"itemList" : @"LLAuditMangerItemModel"
-             };
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"itemList" : @"LLAuditMangerItemModel"};//前边，是属性数组的名字，后边就是类名
 }
     
 @end

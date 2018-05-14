@@ -29,7 +29,7 @@
     self.navigationItem.titleView = [Utility navTitleView:@"添加审批人"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(LLNavViewHeight);
+        make.top.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-LLAddHeight);
     }];
 }
@@ -43,6 +43,7 @@
             return ;
         }
         self.manages = [LLAuditMangerModel LLMJParse:baseModel.data];
+        self.manages.firstObject.sectionClick = true;
         [self.tableView reloadData];
         if (!self.manages.count) {
             [LLHudTools showWithMessage:LLLoadNoMoreMessage];
@@ -75,7 +76,7 @@
     sectionView.model = self.manages[section];
     WEAKSELF
     sectionView.block = ^(LLAuditMangerSectionView *sectionView) {
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:0.0 animations:^{
              [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
         }];
        
@@ -92,19 +93,20 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 49;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.manages[indexPath.section].sectionClick) {
-        return 49;
-    }
-    return 0;
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LLAuditMangerCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLAuditMangerCell"];
     cell.model = self.manages[indexPath.section].itemList[indexPath.row];
     return cell;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.manages[indexPath.section].sectionClick) {
+        return 49;
+    }
+    return 49;
+}
+
 -(UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
