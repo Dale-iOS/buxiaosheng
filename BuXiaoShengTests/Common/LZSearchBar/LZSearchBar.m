@@ -109,7 +109,7 @@
         
         CGFloat x = _textField.frame.size.width/2 - titleSize.width/2-25;
         if (!_iconCenterView) {
-            _iconCenterView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LZSearchBar_ICON"]];
+            _iconCenterView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"JKSearchBar_ICON"]];
             _iconCenterView.contentMode = UIViewContentModeScaleAspectFit;
             [_textField addSubview:_iconCenterView];
         }
@@ -126,7 +126,7 @@
         
         [UIView animateWithDuration:1 animations:^{
             _textField.textAlignment = NSTextAlignmentLeft;
-            _iconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LZSearchBar_ICON"]];
+            _iconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"JKSearchBar_ICON"]];
             _iconView.contentMode = UIViewContentModeScaleAspectFit;
             _textField.leftView = _iconView;
             _textField.leftViewMode =  UITextFieldViewModeAlways;

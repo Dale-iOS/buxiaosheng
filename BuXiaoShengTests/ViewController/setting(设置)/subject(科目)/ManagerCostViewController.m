@@ -8,12 +8,12 @@
 
 #import "ManagerCostViewController.h"
 #import "ModifySubjectViewController.h"
-#import "JKSearchBar.h"
+#import "LZSearchBar.h"
 
-@interface ManagerCostViewController ()<UITableViewDelegate,UITableViewDataSource,JKSearchBarDelegate>
+@interface ManagerCostViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
-@property (nonatomic, strong) JKSearchBar * searchBar;
+@property (nonatomic, strong) LZSearchBar * searchBar;
 @end
 
 @implementation ManagerCostViewController
@@ -25,16 +25,16 @@
 
 - (void)setupUI
 {
-    self.searchBar = [[JKSearchBar alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.searchBar.placeholder = @"输入搜索";
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");
-    self.searchBar.iconAlign = JKSearchBarIconAlignCenter;
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self.view addSubview:self.searchBar];
     
-//    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-//    self.headView.backgroundColor = [UIColor redColor];
+    //    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    //    self.headView.backgroundColor = [UIColor redColor];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.searchBar.bottom, APPWidth, APPHeight -self.searchBar.bottom -LLNavViewHeight -44) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;

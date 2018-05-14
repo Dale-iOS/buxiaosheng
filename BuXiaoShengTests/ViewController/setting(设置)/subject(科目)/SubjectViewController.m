@@ -12,7 +12,8 @@
 #import "SellCostViewController.h"
 #import "FinanceCostViewController.h"
 #import "OtherCostViewController.h"
-#import "AddSubjectViewController.h"
+//#import "AddSubjectViewController.h"
+#import "ModifySubjectViewController.h"
 
 @interface SubjectViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -79,79 +80,8 @@
     _pageContentView.delegatePageContentView = self;
     [self.view addSubview:_pageContentView];
     
-    
-    //    搜索框底图
-    //    UIView *searchBgView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 49)];
-    //    searchBgView.backgroundColor = LZHBackgroundColor;
-    //    [self.view addSubview:searchBgView];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //
-    //    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame)+5, APPWidth, 34)];
-    //    _headView.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
-    //    _headView.userInteractionEnabled = YES;
-    //    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesOnClick)];
-    //    [_headView addGestureRecognizer:tapGes];
-    //    [self.view addSubview:_headView];
-    //    NSLog(@"%f",_headLabel.right);
-    //    UILabel *label = [[UILabel alloc]init];
-    //    label.text = @"筛选";
-    //    label.font = FONT(13);
-    //    label.textColor = [UIColor whiteColor];
-    //
-    //    UIImageView *imageView = [[UIImageView alloc]init];
-    //    imageView.image = IMAGE(@"screenwihte");
-    //
-    //    UIView *headBgView = [[UIView alloc]init];
-    //    headBgView.backgroundColor = [UIColor clearColor];
-    //    [headBgView addSubview:label];
-    //    [headBgView addSubview:imageView];
-    //    [_headView addSubview:headBgView];
-    //
-    //    headBgView.sd_layout
-    //    .centerXEqualToView(_headView)
-    //    .centerYEqualToView(_headView)
-    //    .widthIs(45)
-    //    .heightIs(14);
-    //
-    //    label.sd_layout
-    //    .leftSpaceToView(headBgView, 0)
-    //    .centerYEqualToView(headBgView)
-    //    .widthIs(27)
-    //    .heightIs(14);
-    //
-    //    imageView.sd_layout
-    //    .rightSpaceToView(headBgView, 0)
-    //    .centerYEqualToView(headBgView)
-    //    .widthIs(14)
-    //    .heightIs(12);
-    //
-    //
-    //    _headLabel = [[UILabel alloc]init];
-    //    _headLabel.text = @"共3人";
-    //    _headLabel.textColor = CD_Text99;
-    //    _headLabel.font = FONT(13);
-    //    _headLabel.backgroundColor = [UIColor clearColor];
-    //    [self.view addSubview:_headLabel];
-    //    _headLabel.sd_layout
-    //    .leftSpaceToView(self.view, 15)
-    //    .topSpaceToView(_headView, 8)
-    //    .widthIs(APPWidth/2)
-    //    .heightIs(14);
-    //
-    
 }
+
 
 #pragma mark ----- pageTitleViewdelegate -----
 - (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
@@ -164,7 +94,8 @@
 
 - (void)navigationAddClick
 {
-    AddSubjectViewController *vc = [[AddSubjectViewController alloc]init];
+    ModifySubjectViewController *vc = [[ModifySubjectViewController alloc]init];
+    vc.isFormSubjectAdd = true;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

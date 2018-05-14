@@ -104,7 +104,6 @@
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
-		348DB84D209AE38400CD36CD /* AddSubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84C209AE38400CD36CD /* AddSubjectViewController.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
 		349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */; };
@@ -119,9 +118,7 @@
 		34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0ED9920809E9700659190 /* UITextView+Placeholder.m */; };
 		34A0EDA120809F1800659190 /* TextInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0EDA020809F1800659190 /* TextInputTextView.m */; };
 		34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A0ED9920809E9700659190 /* UITextView+Placeholder.m */; };
-		34A82B8C20A82F9400BFF1B0 /* JKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */; };
 		34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */; };
-		34A82B9220A82FB400BFF1B0 /* JKSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */; };
 		34A92B15207DE86200572648 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B14207DE86200572648 /* AppDelegate.m */; };
 		34A92B18207DE86200572648 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B17207DE86200572648 /* ViewController.m */; };
 		34A92B1B207DE86200572648 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A92B19207DE86200572648 /* Main.storyboard */; };
@@ -233,8 +230,8 @@
 		34EE5D8B20A6929800A2C9B5 /* AlterBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8A20A6929800A2C9B5 /* AlterBranchViewController.m */; };
 		34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */; };
 		34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */; };
-		34F60FF820A9233E009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60FF720A9233E009A29A5 /* LZSearchBar.m */; };
-		34F60FFB20A9253F009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60FFA20A9253F009A29A5 /* LZPickerView.m */; };
+		34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100020A93C16009A29A5 /* LZPickerView.m */; };
+		34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100420A93C56009A29A5 /* LZSearchBar.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
@@ -564,8 +561,6 @@
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
-		348DB84B209AE38400CD36CD /* AddSubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSubjectViewController.h; sourceTree = "<group>"; };
-		348DB84C209AE38400CD36CD /* AddSubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSubjectViewController.m; sourceTree = "<group>"; };
 		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
 		348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifySubjectViewController.m; sourceTree = "<group>"; };
 		348DB854209AEC0700CD36CD /* OrganizationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrganizationViewController.h; sourceTree = "<group>"; };
@@ -587,11 +582,7 @@
 		34A0ED9A20809E9700659190 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
 		34A0ED9F20809F1800659190 /* TextInputTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputTextView.h; sourceTree = "<group>"; };
 		34A0EDA020809F1800659190 /* TextInputTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputTextView.m; sourceTree = "<group>"; };
-		34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPickerView.m; sourceTree = "<group>"; };
-		34A82B8B20A82F9400BFF1B0 /* JKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPickerView.h; sourceTree = "<group>"; };
-		34A82B8E20A82FB400BFF1B0 /* JKSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSearchBar.h; sourceTree = "<group>"; };
 		34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JKSearchBar_ICON@2x.png"; sourceTree = "<group>"; };
-		34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSearchBar.m; sourceTree = "<group>"; };
 		34A92B10207DE86200572648 /* BuXiaoSheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuXiaoSheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A92B13207DE86200572648 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		34A92B14207DE86200572648 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -798,10 +789,10 @@
 		34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBranchCell.m; sourceTree = "<group>"; };
 		34EE5D9A20A6D32600A2C9B5 /* AlterWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterWarehouseViewController.h; sourceTree = "<group>"; };
 		34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterWarehouseViewController.m; sourceTree = "<group>"; };
-		34F60FF620A9233E009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
-		34F60FF720A9233E009A29A5 /* LZSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchBar.m; sourceTree = "<group>"; };
-		34F60FF920A9253F009A29A5 /* LZPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPickerView.h; sourceTree = "<group>"; };
-		34F60FFA20A9253F009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
+		34F60FFF20A93C16009A29A5 /* LZPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPickerView.h; sourceTree = "<group>"; };
+		34F6100020A93C16009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
+		34F6100320A93C56009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
+		34F6100420A93C56009A29A5 /* LZSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchBar.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1021,18 +1012,12 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
-				34A82B8D20A82FB400BFF1B0 /* JKSearchBar */,
-				34A82B8920A82F9400BFF1B0 /* JKPickerView */,
 				34E49B1520A57F3D0074F454 /* QQTagView */,
 				B505054B209AB2DA00CE7E4D /* XLForm */,
 				34EA5B95208B1F010048CFE1 /* LGAlertView */,
 				344080262087362500FD36B8 /* YANScrollMenu */,
 				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
-				34F60FF620A9233E009A29A5 /* LZSearchBar.h */,
-				34F60FF720A9233E009A29A5 /* LZSearchBar.m */,
-				34F60FF920A9253F009A29A5 /* LZPickerView.h */,
-				34F60FFA20A9253F009A29A5 /* LZPickerView.m */,
 			);
 			path = "ThirdParty(第三方)";
 			sourceTree = "<group>";
@@ -1386,25 +1371,6 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		34A82B8920A82F9400BFF1B0 /* JKPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				34A82B8A20A82F9400BFF1B0 /* JKPickerView.m */,
-				34A82B8B20A82F9400BFF1B0 /* JKPickerView.h */,
-			);
-			path = JKPickerView;
-			sourceTree = "<group>";
-		};
-		34A82B8D20A82FB400BFF1B0 /* JKSearchBar */ = {
-			isa = PBXGroup;
-			children = (
-				34A82B8E20A82FB400BFF1B0 /* JKSearchBar.h */,
-				34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */,
-				34A82B9020A82FB400BFF1B0 /* JKSearchBar.m */,
-			);
-			path = JKSearchBar;
-			sourceTree = "<group>";
-		};
 		34A92B07207DE86200572648 = {
 			isa = PBXGroup;
 			children = (
@@ -1508,6 +1474,8 @@
 		34A92B48207DE95600572648 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				34F6100220A93C43009A29A5 /* LZSearchBar */,
+				34F60FFE20A93C06009A29A5 /* LZPickerView */,
 				B58BF6E520A178D000A8B92B /* CWLateralSlide */,
 				349C09592088720F00D2AC38 /* Menu */,
 				34A92B4C207DEA5300572648 /* LZHTableView */,
@@ -1722,8 +1690,6 @@
 			children = (
 				342CF6612099B603007C329D /* SubjectViewController.h */,
 				342CF6622099B603007C329D /* SubjectViewController.m */,
-				348DB84B209AE38400CD36CD /* AddSubjectViewController.h */,
-				348DB84C209AE38400CD36CD /* AddSubjectViewController.m */,
 				348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */,
 				348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */,
 				34EE5D7920A68E1800A2C9B5 /* ManagerCostViewController.h */,
@@ -1854,6 +1820,25 @@
 				34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */,
 			);
 			path = "store(店铺)";
+			sourceTree = "<group>";
+		};
+		34F60FFE20A93C06009A29A5 /* LZPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				34F60FFF20A93C16009A29A5 /* LZPickerView.h */,
+				34F6100020A93C16009A29A5 /* LZPickerView.m */,
+			);
+			path = LZPickerView;
+			sourceTree = "<group>";
+		};
+		34F6100220A93C43009A29A5 /* LZSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				34A82B8F20A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png */,
+				34F6100320A93C56009A29A5 /* LZSearchBar.h */,
+				34F6100420A93C56009A29A5 /* LZSearchBar.m */,
+			);
+			path = LZSearchBar;
 			sourceTree = "<group>";
 		};
 		4617F059D04BB6C0063A464F /* Frameworks */ = {
@@ -2331,7 +2316,6 @@
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
-				348DB84D209AE38400CD36CD /* AddSubjectViewController.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
@@ -2347,6 +2331,7 @@
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				B58BF6FC20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */,
+				34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */,
 				34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */,
 				345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				B50505AB209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
@@ -2392,6 +2377,7 @@
 				B50505BB209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
 				343207D620A06AA6005A5D23 /* YesAuditApplyViewController.m in Sources */,
+				34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
@@ -2426,7 +2412,6 @@
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
-				34F60FFB20A9253F009A29A5 /* LZPickerView.m in Sources */,
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
@@ -2487,7 +2472,6 @@
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
-				34A82B9220A82FB400BFF1B0 /* JKSearchBar.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
@@ -2508,7 +2492,6 @@
 				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
 				343B17FB20A3DF7200349A6D /* LLHudTools.m in Sources */,
-				34A82B8C20A82F9400BFF1B0 /* JKPickerView.m in Sources */,
 				342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */,
 				34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
@@ -2545,7 +2528,6 @@
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
-				34F60FF820A9233E009A29A5 /* LZSearchBar.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,

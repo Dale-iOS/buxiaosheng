@@ -10,5 +10,6 @@
 #import "BaseViewController.h"
 
 @interface ModifySubjectViewController : BaseViewController
-
+@property (nonatomic,copy) NSString * id;
+@property (nonatomic,assign) BOOL  isFormSubjectAdd;  //yes 来源添加科目 false 修改科目
 @end

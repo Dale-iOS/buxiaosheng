@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/3.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  修改科目页面
+//  修改科目页面 添加科目页面
 
 #import "ModifySubjectViewController.h"
 #import "LZHTableView.h"
@@ -40,6 +40,7 @@
         //        tableView.tableView.allowsSelection = YES;
         //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
+        tableView.delegate = self;
         [self.view addSubview:(mainTabelView = tableView)];
     }
     return mainTabelView;
@@ -48,6 +49,7 @@
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"修改科目"];
+    self.navigationItem.titleView = self.isFormSubjectAdd ?[Utility navTitleView:@"添加科目"] : [Utility navTitleView:@"修改科目"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
@@ -75,11 +77,13 @@
     self.groupCell.rightArrowImageVIew.hidden = NO;
     self.groupCell.titleLabel.text = @"所属分组";
     self.groupCell.contentTF.placeholder = @"请选择所属分组";
+    self.groupCell.contentTF.enabled = false;
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.titleLabel.text = @"状态";
     self.stateCell.contentTF.placeholder = @"请选择状态";
+    self.stateCell.contentTF.enabled = NO;
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -91,9 +95,119 @@
     [self.datasource addObject:item];
 }
 
+
 - (void)selectornavRightBtnClick
 {
-    NSLog(@"selectornavRightBtnClick");
+    if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
+        BXS_Alert(@"请输入科目名称");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
+        BXS_Alert(@"请输入所属分组");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
+        BXS_Alert(@"请输入状态");
+        return;
+    }
+    
+    NSInteger status = -1;
+    if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
+        status = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
+        status = 1;
+    }
+    
+    NSInteger types = -1;
+    if ([self.groupCell.contentTF.text isEqualToString:@"管理费用"]) {
+        types = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"销售费用"]){
+        types = 1;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"财务费用"]){
+        types = 3;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"其他费用"]){
+        types = 4;
+    }
+    
+    NSString * requestUrl ;
+    if (self.isFormSubjectAdd) {
+        requestUrl = @"costsubject/add.do";
+    }else {
+        requestUrl = @"costsubject/update.do";
+    }
+    NSDictionary * param = @{
+                             @"type":@(types),
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"name":self.titleCell.contentTF.text,
+                             @"status":@(status)
+                             };
+    [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        [LLHudTools showWithMessage:baseModel.msg];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+-(void)LzhTableView:(LZHTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0 ) {
+        return;
+    }
+    WEAKSELF;
+    
+    if (indexPath.row == 1) {
+        
+        UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择该科目所属分组" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction * manager = [UIAlertAction actionWithTitle:@"管理费用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.groupCell.contentTF.text = @"管理费用";
+        }];
+        
+        UIAlertAction * sell = [UIAlertAction actionWithTitle:@"销售费用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.groupCell.contentTF.text = @"销售费用";
+        }];
+        
+        UIAlertAction * finance = [UIAlertAction actionWithTitle:@"财务费用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.groupCell.contentTF.text = @"财务费用";
+        }];
+        
+        UIAlertAction * other = [UIAlertAction actionWithTitle:@"其他费用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.groupCell.contentTF.text = @"其他费用";
+        }];
+        UIAlertAction * cacanle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alterVc addAction:manager];
+        [alterVc addAction:sell];
+        [alterVc addAction:finance];
+        [alterVc addAction:other];
+        [alterVc addAction:cacanle];
+        [self.navigationController presentViewController:alterVc animated:true completion:nil];
+    }
+    
+    if (indexPath.row == 2) {
+        UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该科目启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.stateCell.contentTF.text = @"启用";
+        }];
+        
+        UIAlertAction * disEnabled = [UIAlertAction actionWithTitle:@"未启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.stateCell.contentTF.text = @"未启用";
+        }];
+        UIAlertAction * cacanle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alterVc addAction:enabled];
+        [alterVc addAction:disEnabled];
+        [alterVc addAction:cacanle];
+        [self.navigationController presentViewController:alterVc animated:true completion:nil];
+    }
+    
+    
 }
 
 
