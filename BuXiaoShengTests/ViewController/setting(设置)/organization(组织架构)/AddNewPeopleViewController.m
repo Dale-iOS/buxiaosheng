@@ -119,7 +119,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.details.count;
+        return 4;
     }
     return 1;
 }
