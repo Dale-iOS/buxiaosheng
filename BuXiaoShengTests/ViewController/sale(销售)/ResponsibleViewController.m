@@ -36,7 +36,7 @@
                             @"pageNo":@"1",
                             @"pageSize":@"20",
                             @"searchName":@"",
-                            @"status":@""
+//                            @"status":@""
                             
                             };
     [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
