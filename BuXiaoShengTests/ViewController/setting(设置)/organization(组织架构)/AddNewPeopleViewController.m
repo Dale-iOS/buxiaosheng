@@ -7,48 +7,30 @@
 //  添加人员页面
 
 #import "AddNewPeopleViewController.h"
-#import "LZHTableView.h"
-#import "TextInputCell.h"
+#import "LLAddNewPeopleModel.h"
+#import "LLAddNewPeopleCell.h"
+@interface AddNewPeopleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface AddNewPeopleViewController ()<LZHTableViewDelegate>
-
-@property (weak, nonatomic) LZHTableView *mainTabelView;
-@property (strong, nonatomic) NSMutableArray *datasource;
-
-///选择部门
-@property (nonatomic, strong) TextInputCell * chooseDepartmentCell;
-///人员名称
-@property (nonatomic, strong) TextInputCell * nameCell;
-///账号
-@property (nonatomic, strong) TextInputCell * accountCell;
-///账号登录密码
-@property (nonatomic, strong) TextInputCell * passwordCell;
-///名额
-@property (nonatomic, strong) UILabel * placesLbl;
-
+@property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) NSDictionary * details;
 @end
 
 @implementation AddNewPeopleViewController
-@synthesize mainTabelView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  
     [self setupUI];
+      [self setupData];
+    [self setupDepartmentData];
 }
 
-- (LZHTableView *)mainTabelView
-{
-    if (!mainTabelView) {
-        
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
-        //        tableView.tableView.allowsSelection = YES;
-        //        tableView.tableHeaderView = self.headView;
-        tableView.backgroundColor = LZHBackgroundColor;
-        [self.view addSubview:(mainTabelView = tableView)];
-    }
-    return mainTabelView;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
 }
+
 
 - (void)setupUI
 {
@@ -56,99 +38,94 @@
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [navRightBtn setTitle:@"确 认" forState:UIControlStateNormal];
     [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    [navRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo (30);
+    }];
     
-    self.datasource = [NSMutableArray array];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-LLAddHeight);
+    }];
     
-    [self.view addSubview:self.mainTabelView];
-    self.mainTabelView.delegate = self;
-    [self setupSectionOne];
-    [self setupSectionTwo];
-    
-    self.mainTabelView.dataSoure = self.datasource;
     
 }
 
-- (void)setupSectionOne
-{
-    self.chooseDepartmentCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.chooseDepartmentCell.titleLabel.text = @"选择部门";
-    self.chooseDepartmentCell.contentTF.placeholder = @"请选择部门";
-    self.chooseDepartmentCell.rightArrowImageVIew.hidden = NO;
+-(void)setupData{
+    NSDictionary * param = @{@"id":[BXSUser currentUser].userId};
+    [BXSHttp requestGETWithAppURL:@"member/detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+        self.details = baseModel.data;
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+-(void)setupDepartmentData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"dept/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+        
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return self.details.count;
+    }
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        LLAddNewPeopleCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLAddNewPeopleCell"];
+        cell.indexPath = indexPath;
+        cell.model = [LLAddNewPeopleModel LLMJParse:self.details];
+        return cell;
+    }
+    UITableViewCell * cell =[ tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
-    self.nameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.nameCell.titleLabel.text = @"人员名称";
-    self.nameCell.contentTF.placeholder = @"请输入人员名称";
-    
-    self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.accountCell.titleLabel.text = @"账号";
-    self.accountCell.contentTF.placeholder = @"请输入账号";
-    
-    self.passwordCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.passwordCell.titleLabel.text = @"账号登录密码";
-    self.passwordCell.contentTF.placeholder = @"请设置登录密码";
-    
-    //    还剩n个名额
-    UIView * placesView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 30)];
-    
-    self.placesLbl = [[UILabel alloc]init];
-    self.placesLbl.text = @"还剩2个名额";
-    self.placesLbl.textColor = CD_Text99;
-    self.placesLbl.font = FONT(12);
-    [placesView addSubview:self.placesLbl];
-    self.placesLbl.sd_layout
-    .leftSpaceToView(placesView, 15)
-    .centerYEqualToView(placesView)
-    .widthIs(250)
-    .heightIs(13);
-    
-    
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[placesView,self.chooseDepartmentCell,self.nameCell];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
+    return cell;
+}
+
+-(void)selectornavRightBtnClick {
     
 }
 
-- (void)setupSectionTwo
-{
-    
-    self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.accountCell.titleLabel.text = @"账号";
-    self.accountCell.contentTF.placeholder = @"请输入账号";
-    
-    self.passwordCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.passwordCell.titleLabel.text = @"账号登录密码";
-    self.passwordCell.contentTF.placeholder = @"请设置登录密码";
-    
-    
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.accountCell,self.passwordCell];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
-    
-}
-
-- (void)selectornavRightBtnClick
-{
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        [self.view addSubview:_tableView];
+        [_tableView registerClass:[LLAddNewPeopleCell class] forCellReuseIdentifier:@"LLAddNewPeopleCell"];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    }
+    return _tableView;
 }
 
 

@@ -323,6 +323,10 @@
 		B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
 		B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
 		B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
+		B577CE9020AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */; };
+		B577CE9120AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */; };
+		B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */; };
+		B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -895,6 +899,10 @@
 		B55ADE1120A555F2000F9C4A /* LLBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseModel.m; sourceTree = "<group>"; };
 		B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LLMJParse.h"; sourceTree = "<group>"; };
 		B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LLMJParse.m"; sourceTree = "<group>"; };
+		B577CE8E20AA78550001B8B8 /* LLAddNewPeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeopleCell.h; sourceTree = "<group>"; };
+		B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeopleCell.m; sourceTree = "<group>"; };
+		B577CE9320AA78640001B8B8 /* LLAddNewPeopleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeopleModel.h; sourceTree = "<group>"; };
+		B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeopleModel.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -1109,6 +1117,7 @@
 		343747F72094620700C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
+				B577CE8D20AA78550001B8B8 /* organization(组织架构) */,
 				34EE5D9020A696E400A2C9B5 /* store(店铺) */,
 				343747FB2094640500C64F4C /* SettingCell.h */,
 				343747FC2094640500C64F4C /* SettingCell.m */,
@@ -2024,6 +2033,7 @@
 		B55ADE0B20A554A5000F9C4A /* Setting设置 */ = {
 			isa = PBXGroup;
 			children = (
+				B577CE9220AA78640001B8B8 /* organization(组织架构) */,
 				B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */,
 				B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */,
 				B5CF350120A58DED0043D906 /* LLFactoryModel.h */,
@@ -2036,6 +2046,24 @@
 				34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */,
 			);
 			path = "Setting设置";
+			sourceTree = "<group>";
+		};
+		B577CE8D20AA78550001B8B8 /* organization(组织架构) */ = {
+			isa = PBXGroup;
+			children = (
+				B577CE8E20AA78550001B8B8 /* LLAddNewPeopleCell.h */,
+				B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */,
+			);
+			path = "organization(组织架构)";
+			sourceTree = "<group>";
+		};
+		B577CE9220AA78640001B8B8 /* organization(组织架构) */ = {
+			isa = PBXGroup;
+			children = (
+				B577CE9320AA78640001B8B8 /* LLAddNewPeopleModel.h */,
+				B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */,
+			);
+			path = "organization(组织架构)";
 			sourceTree = "<group>";
 		};
 		B58BF6E520A178D000A8B92B /* CWLateralSlide */ = {
@@ -2388,6 +2416,7 @@
 				B50505BB209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				343008D12081A0C800447992 /* UIView+SGPagingView.m in Sources */,
 				343207D620A06AA6005A5D23 /* YesAuditApplyViewController.m in Sources */,
+				B577CE9020AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */,
 				34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */,
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
@@ -2524,6 +2553,7 @@
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
 				34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */,
+				B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,
@@ -2575,6 +2605,7 @@
 				B50505C2209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				34602EBE207F404200710F91 /* DemandListTableViewCell.m in Sources */,
 				B50505B4209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
+				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				B50505B0209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				B50505A4209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
@@ -2594,6 +2625,7 @@
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
+				B577CE9120AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */,
 				B50505E2209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
 				B50505B6209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34A92B6C207DFB6700572648 /* HomeEntranceCell.m in Sources */,
