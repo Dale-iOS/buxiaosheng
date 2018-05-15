@@ -11,6 +11,7 @@
 #import "LLAddNewPeopleCell.h"
 #import "LLAddNewsPeopleSectionView.h"
 #import "LLAddNewsPepleContainerCell.h"
+#import "LLAddNewPeoleRoleModel.h"
 @interface AddNewPeopleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView * tableView;

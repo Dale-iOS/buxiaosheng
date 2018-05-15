@@ -331,8 +331,8 @@
 		B577CE9A20AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9820AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m */; };
 		B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */; };
 		B577CE9E20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */; };
-		B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRole.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRole.m */; };
-		B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRole.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRole.m */; };
+		B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */; };
+		B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -913,8 +913,8 @@
 		B577CE9820AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewsPeopleSectionView.m; sourceTree = "<group>"; };
 		B577CE9B20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddNewsPepleContainerCell.h; sourceTree = "<group>"; };
 		B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewsPepleContainerCell.m; sourceTree = "<group>"; };
-		B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeoleRole.h; sourceTree = "<group>"; };
-		B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeoleRole.m; sourceTree = "<group>"; };
+		B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeoleRoleModel.h; sourceTree = "<group>"; };
+		B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeoleRoleModel.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -2078,8 +2078,8 @@
 			children = (
 				B577CE9320AA78640001B8B8 /* LLAddNewPeopleModel.h */,
 				B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */,
-				B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRole.h */,
-				B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRole.m */,
+				B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRoleModel.h */,
+				B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */,
 			);
 			path = "organization(组织架构)";
 			sourceTree = "<group>";
@@ -2337,7 +2337,7 @@
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
-				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRole.m in Sources */,
+				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
@@ -2640,7 +2640,7 @@
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
 				B58BF6F320A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */,
-				B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRole.m in Sources */,
+				B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				B50505E6209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,

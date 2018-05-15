@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LLAddNewPeoleRole : NSObject
+@interface LLAddNewPeoleRoleModel : NSObject
 @property (nonatomic,copy) NSString * id;
 @property (nonatomic,copy) NSString * logo;
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,copy) NSString * parentId;
-@property (nonatomic,strong) NSArray <LLAddNewPeoleRole*> * itemList;
+@property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*> * itemList;
 @end
