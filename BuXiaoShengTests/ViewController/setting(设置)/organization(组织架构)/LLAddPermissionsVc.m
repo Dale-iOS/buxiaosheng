@@ -21,12 +21,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = [Utility navTitleView:@"选择添加权限"];
+    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    navRightBtn.titleLabel.font = FONT(15);
+    [navRightBtn setTitle:@"确 认" forState:UIControlStateNormal];
+    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+    [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    [navRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo (30);
+    }];
+
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-LLAddHeight);
         make.top.equalTo(self.view);
     }];
-    //[self setupData];
+    [self setupData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,13 +46,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"memberId":self.model.id
+                             };
+    [BXSHttp requestGETWithAppURL:@"member/company_usable_role.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+        self.roles = [LLAddNewPeoleRoleModel LLMJParse:baseModel.data];
+        [self.exis_roles enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.roles enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull currentObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [currentObj.itemList enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj.id isEqualToString:itemObj.id]) {
+                        currentObj.exis_role = true;
+                    }
+                }];
+            }];
+        }];
+        [self.collectionView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+    
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 4;
+    return self.roles.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return self.roles[section].itemList.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -81,32 +121,69 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     LLAddPermissonSectionView * sectionView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LLAddPermissonSectionView" forIndexPath:indexPath];
+    
+    sectionView.model = self.roles[indexPath.section];
     return sectionView;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LLAddPermissonCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLAddPermissonCollectionViewCell" forIndexPath:indexPath];
+    cell.model = self.roles[indexPath.section].itemList[indexPath.row];
     return cell;
 }
 
--(void)setupData {
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"memberId":[BXSUser currentUser].userId
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.roles[indexPath.section].itemList[indexPath.row].exis_role = !self.roles[indexPath.section].itemList[indexPath.row].exis_role;
+    [collectionView reloadData];
+}
+
+-(void)selectornavRightBtnClick {
+    
+    NSMutableArray * btnIds = [NSMutableArray array];
+    [self.roles enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemList enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (itemObj.exis_role) {
+                [btnIds addObject:itemObj.id];
+            }
+           
+        }];
+    }];
+    if (!btnIds.count) {
+        [LLHudTools showWithMessage:@"请选择权限"];
+        return;
+    }
+    NSMutableString * btnIdStrs = [NSMutableString string];
+    [btnIds enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx == 0) {
+            [btnIdStrs appendString:obj];
+        }else {
+           [btnIdStrs appendString:[NSString stringWithFormat:@",%@",obj]];
+        }
+    }];
+    
+    NSDictionary * param = @{@"bids":btnIdStrs,
+                             @"companyId" :[BXSUser currentUser].companyId,
+                             @"memberId" :self.model.id
                              };
-    [BXSHttp requestGETWithAppURL:@"member/company_usable_role.do" param:param success:^(id response) {
+    [BXSHttp requestPOSTWithAppURL:@"member/add_role_button.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
             BXS_Alert(baseModel.msg);
             return ;
         }
-        self.roles = [LLAddNewPeoleRoleModel LLMJParse:baseModel.data];
-        [self.collectionView reloadData];
-        
+        [LLHudTools showWithMessage:@"权限添加成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           [self.navigationController popViewControllerAnimated:true];
+        });
+       
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
     
 }
+
+
 
 -(UICollectionView *)collectionView {
     if (!_collectionView) {

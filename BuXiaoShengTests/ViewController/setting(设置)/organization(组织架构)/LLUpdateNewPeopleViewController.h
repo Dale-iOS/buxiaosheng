@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BaseViewController.h"
-
-@interface AddNewPeopleViewController : BaseViewController
-
+#import "LLAuditMangerModel.h"
+@interface LLUpdateNewPeopleViewController : BaseViewController
+@property (nonatomic,strong) LLAuditMangerItemModel * model;
 @end

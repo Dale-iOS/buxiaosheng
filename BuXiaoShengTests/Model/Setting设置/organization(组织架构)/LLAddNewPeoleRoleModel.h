@@ -14,4 +14,6 @@
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,copy) NSString * parentId;
 @property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*> * itemList;
+
+@property (nonatomic,assign) BOOL exis_role; //是否存在权限  或者选中
 @end

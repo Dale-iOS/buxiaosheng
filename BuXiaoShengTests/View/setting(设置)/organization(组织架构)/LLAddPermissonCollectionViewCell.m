@@ -14,6 +14,16 @@
     UILabel * _titleLable;
     UIButton * _addBtn;
 }
+-(void)setModel:(LLAddNewPeoleRoleModel *)model {
+    _model = model;
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.logo] placeholderImage:[UIImage imageNamed:@""]];
+    _titleLable.text = _model.name;
+    if (_model.exis_role) {
+        _addBtn.hidden = false;
+    }else {
+          _addBtn.hidden = true;
+    }
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

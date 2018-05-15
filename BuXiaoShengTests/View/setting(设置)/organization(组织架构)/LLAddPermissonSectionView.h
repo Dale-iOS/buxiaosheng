@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LLAddNewPeoleRoleModel.h"
 @interface LLAddPermissonSectionView : UICollectionReusableView
-
+@property (nonatomic,strong) LLAddNewPeoleRoleModel * model;
 @end

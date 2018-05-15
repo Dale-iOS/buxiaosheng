@@ -221,7 +221,7 @@
 		34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */; };
 		34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */; };
 		34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */; };
-		34EE5D7820A68C2900A2C9B5 /* AddNewPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7720A68C2800A2C9B5 /* AddNewPeopleViewController.m */; };
+		34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */; };
 		34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7A20A68E1800A2C9B5 /* ManagerCostViewController.m */; };
 		34EE5D7E20A68E3F00A2C9B5 /* SellCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7D20A68E3F00A2C9B5 /* SellCostViewController.m */; };
 		34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8020A68E5B00A2C9B5 /* FinanceCostViewController.m */; };
@@ -791,8 +791,8 @@
 		34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddColorViewController.m; sourceTree = "<group>"; };
 		34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddDepartmentViewController.h; sourceTree = "<group>"; };
 		34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddDepartmentViewController.m; sourceTree = "<group>"; };
-		34EE5D7620A68C2800A2C9B5 /* AddNewPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNewPeopleViewController.h; sourceTree = "<group>"; };
-		34EE5D7720A68C2800A2C9B5 /* AddNewPeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNewPeopleViewController.m; sourceTree = "<group>"; };
+		34EE5D7620A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUpdateNewPeopleViewController.h; sourceTree = "<group>"; };
+		34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUpdateNewPeopleViewController.m; sourceTree = "<group>"; };
 		34EE5D7920A68E1800A2C9B5 /* ManagerCostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerCostViewController.h; sourceTree = "<group>"; };
 		34EE5D7A20A68E1800A2C9B5 /* ManagerCostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerCostViewController.m; sourceTree = "<group>"; };
 		34EE5D7C20A68E3F00A2C9B5 /* SellCostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellCostViewController.h; sourceTree = "<group>"; };
@@ -1765,8 +1765,8 @@
 				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
 				34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */,
 				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
-				34EE5D7620A68C2800A2C9B5 /* AddNewPeopleViewController.h */,
-				34EE5D7720A68C2800A2C9B5 /* AddNewPeopleViewController.m */,
+				34EE5D7620A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.h */,
+				34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */,
 				B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */,
 				B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */,
 			);
@@ -2480,7 +2480,7 @@
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
-				34EE5D7820A68C2900A2C9B5 /* AddNewPeopleViewController.m in Sources */,
+				34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				B50505A9209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,

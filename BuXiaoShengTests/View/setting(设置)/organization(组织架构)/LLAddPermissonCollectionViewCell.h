@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LLAddNewPeoleRoleModel.h"
 @interface LLAddPermissonCollectionViewCell : UICollectionViewCell
-
+@property (nonatomic,strong) LLAddNewPeoleRoleModel * model;
 @end

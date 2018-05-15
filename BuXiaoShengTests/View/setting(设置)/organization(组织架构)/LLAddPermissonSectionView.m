@@ -13,6 +13,11 @@
 {
     UILabel * _titleLable;
 }
+
+-(void)setModel:(LLAddNewPeoleRoleModel *)model {
+    _model = model;
+    _titleLable.text = model.name;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

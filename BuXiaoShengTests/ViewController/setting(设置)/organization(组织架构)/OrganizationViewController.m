@@ -8,7 +8,7 @@
 
 #import "OrganizationViewController.h"
 #import "AddDepartmentViewController.h"
-#import "AddNewPeopleViewController.h"
+#import "LLUpdateNewPeopleViewController.h"
 #import "LLAuditMangerModel.h"
 #import "LLAuditMangerSectionView.h"
 #import "LLAuditMangerCell.h"
@@ -175,7 +175,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    LLUpdateNewPeopleViewController *vc = [[LLUpdateNewPeopleViewController alloc]init];
+    vc.model = self.manages[indexPath.section].itemList[indexPath.row];;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -210,8 +212,7 @@
 - (void)addPeopleViewTapAction
 {
     
-    AddNewPeopleViewController *vc = [[AddNewPeopleViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 
