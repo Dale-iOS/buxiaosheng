@@ -9,10 +9,14 @@
 #import "AddNewPeopleViewController.h"
 #import "LLAddNewPeopleModel.h"
 #import "LLAddNewPeopleCell.h"
+#import "LLAddNewsPeopleSectionView.h"
+#import "LLAddNewsPepleContainerCell.h"
 @interface AddNewPeopleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSDictionary * details;
+
+@property (nonatomic,strong) NSArray * member_exis_roles;
 @end
 
 @implementation AddNewPeopleViewController
@@ -24,6 +28,7 @@
     [self setupUI];
       [self setupData];
     [self setupDepartmentData];
+    [self setupSectionData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +93,23 @@
     }];
 }
 
+-(void)setupSectionData {
+      NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                               @"memberId":[BXSUser currentUser].userId
+                               };
+    [BXSHttp requestGETWithAppURL:@"member/member_exis_role.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+        
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
@@ -96,7 +118,30 @@
     if (section == 0) {
         return self.details.count;
     }
-    return 10;
+    return 1;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        UITableViewHeaderFooterView * headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UITableViewHeaderFooterView"];
+        headerFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        return headerFooterView;
+    }
+    LLAddNewsPeopleSectionView * headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLAddNewsPeopleSectionView"];
+    return headerFooterView;
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 25;
+    }
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,10 +151,20 @@
         cell.model = [LLAddNewPeopleModel LLMJParse:self.details];
         return cell;
     }
-    UITableViewCell * cell =[ tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    LLAddNewsPepleContainerCell * cell =[ tableView dequeueReusableCellWithIdentifier:@"LLAddNewsPepleContainerCell"];
     
     return cell;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 49;
+    }
+
+    int lineCount =
+    10%4 ? 10/4 + 1: 10/4;
+    return lineCount*LLScale_WIDTH(130)+lineCount*15 + 15;
+}
+
 
 -(void)selectornavRightBtnClick {
     
@@ -120,10 +175,11 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
         [_tableView registerClass:[LLAddNewPeopleCell class] forCellReuseIdentifier:@"LLAddNewPeopleCell"];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        [_tableView registerClass:[LLAddNewsPeopleSectionView class] forHeaderFooterViewReuseIdentifier:@"LLAddNewsPeopleSectionView"];
+        [_tableView registerClass:[LLAddNewsPepleContainerCell class] forCellReuseIdentifier:@"LLAddNewsPepleContainerCell"];
     }
     return _tableView;
 }
