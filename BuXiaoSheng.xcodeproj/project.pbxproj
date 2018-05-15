@@ -337,6 +337,10 @@
 		B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */; };
 		B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */; };
 		B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */; };
+		B577CEB020AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAF20AACBA80001B8B8 /* LLAddPermissonSectionView.m */; };
+		B577CEB120AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAF20AACBA80001B8B8 /* LLAddPermissonSectionView.m */; };
+		B577CEB420AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEB320AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m */; };
+		B577CEB520AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEB320AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -923,6 +927,10 @@
 		B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewsPeopleCollectionViewCell.m; sourceTree = "<group>"; };
 		B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddPermissionsVc.h; sourceTree = "<group>"; };
 		B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddPermissionsVc.m; sourceTree = "<group>"; };
+		B577CEAE20AACBA80001B8B8 /* LLAddPermissonSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddPermissonSectionView.h; sourceTree = "<group>"; };
+		B577CEAF20AACBA80001B8B8 /* LLAddPermissonSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddPermissonSectionView.m; sourceTree = "<group>"; };
+		B577CEB220AACC610001B8B8 /* LLAddPermissonCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddPermissonCollectionViewCell.h; sourceTree = "<group>"; };
+		B577CEB320AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddPermissonCollectionViewCell.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -2081,6 +2089,10 @@
 				B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */,
 				B577CEA620AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.h */,
 				B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */,
+				B577CEAE20AACBA80001B8B8 /* LLAddPermissonSectionView.h */,
+				B577CEAF20AACBA80001B8B8 /* LLAddPermissonSectionView.m */,
+				B577CEB220AACC610001B8B8 /* LLAddPermissonCollectionViewCell.h */,
+				B577CEB320AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m */,
 			);
 			path = "organization(组织架构)";
 			sourceTree = "<group>";
@@ -2452,6 +2464,7 @@
 				34EBACAB208453D30005BF77 /* ShipmentOrderViewController.m in Sources */,
 				346B6AD3208D97B900F4B054 /* SupplierViewController.m in Sources */,
 				B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
+				B577CEB420AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */,
 				347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */,
 				347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
@@ -2505,6 +2518,7 @@
 				34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
+				B577CEB020AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
 				345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */,
 				342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */,
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
@@ -2623,6 +2637,7 @@
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				B5E288E920A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
 				B58BF72520A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
+				B577CEB520AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */,
 				34A92B61207DEF9900572648 /* HomeEntranceView.m in Sources */,
 				34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */,
 				B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
@@ -2684,6 +2699,7 @@
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
 				B50505C6209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
+				B577CEB120AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
 				B50505CE209AB2DA00CE7E4D /* NSArray+XLFormAdditions.m in Sources */,
 				B50505AA209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,
 				343008D92081AC9700447992 /* NowDayViewController.m in Sources */,
