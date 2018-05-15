@@ -4,15 +4,15 @@
 //
 //  Created by 罗镇浩 on 2018/4/17.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//   选择地址抽屉
+//   选择地址抽屉 侧栏页面
 
 #import "DrawerAddressViewController.h"
-#import "QQTagView.h"
 
-@interface DrawerAddressViewController ()<QQTagViewDelegate>
+
+@interface DrawerAddressViewController ()
 
 @property (nonatomic, strong) UIButton *nextBtn;
-@property(nonatomic, strong) QQTagView *originalView;
+
 
 @end
 
@@ -24,6 +24,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,12 +68,24 @@
     [self.nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.nextBtn];
     
-    self.originalView = [[QQTagView alloc]init];
-    self.originalView.frame =CGRectMake(0, 0, APPWidth *3/4, 0);
-    self.originalView.delegate = self;
-    self.originalView.tag = 1;
-    [self.originalView addTags:@[@"天河", @"天河", @"天河",@"天河",@"天河",@"天河",@"天河"]];
-    [self.view addSubview:self.originalView];
+ 
+}
+
+-(void)setupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId
+                             };
+    [BXSHttp requestGETWithAppURL:@"customer_label/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+      
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
