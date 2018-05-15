@@ -7,6 +7,8 @@
 //
 
 #import "LLAddNewsPepleContainerCell.h"
+#import "LLAddNewPeoleRoleModel.h"
+#import "LLAddNewsPeopleCollectionViewCell.h"
 @interface LLAddNewsPepleContainerCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @end
 
@@ -25,6 +27,11 @@
     // Configure the view for the selected state
 }
 
+-(void)setModel:(LLAddNewPeoleRoleModel *)model {
+    _model = model;
+    [_collectionView reloadData];
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
@@ -32,11 +39,12 @@
         layout.minimumInteritemSpacing = 10; //..列间距
         layout.itemSize = CGSizeMake(LLScale_WIDTH(130), LLScale_WIDTH(130));
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.scrollEnabled = false;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [self.contentView addSubview:_collectionView];
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [_collectionView registerClass:[LLAddNewsPeopleCollectionViewCell class] forCellWithReuseIdentifier:@"LLAddNewsPeopleCollectionViewCell"];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
@@ -46,12 +54,12 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 10;
+    return self.model.itemList.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    LLAddNewsPeopleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLAddNewsPeopleCollectionViewCell" forIndexPath:indexPath];
+    cell.model = self.model.itemList[indexPath.row];
     return cell;
 }
 

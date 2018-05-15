@@ -333,6 +333,10 @@
 		B577CE9E20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */; };
 		B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */; };
 		B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */; };
+		B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */; };
+		B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */; };
+		B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */; };
+		B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */; };
 		B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */; };
 		B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BF6E920A178D000A8B92B /* CWInteractiveTransition.m */; };
@@ -915,6 +919,10 @@
 		B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewsPepleContainerCell.m; sourceTree = "<group>"; };
 		B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeoleRoleModel.h; sourceTree = "<group>"; };
 		B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeoleRoleModel.m; sourceTree = "<group>"; };
+		B577CEA620AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddNewsPeopleCollectionViewCell.h; sourceTree = "<group>"; };
+		B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddNewsPeopleCollectionViewCell.m; sourceTree = "<group>"; };
+		B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddPermissionsVc.h; sourceTree = "<group>"; };
+		B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddPermissionsVc.m; sourceTree = "<group>"; };
 		B58BF6E620A178D000A8B92B /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		B58BF6E720A178D000A8B92B /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		B58BF6E820A178D000A8B92B /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
@@ -1751,6 +1759,8 @@
 				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
 				34EE5D7620A68C2800A2C9B5 /* AddNewPeopleViewController.h */,
 				34EE5D7720A68C2800A2C9B5 /* AddNewPeopleViewController.m */,
+				B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */,
+				B577CEAB20AAB4120001B8B8 /* LLAddPermissionsVc.m */,
 			);
 			path = "organization(组织架构)";
 			sourceTree = "<group>";
@@ -2069,6 +2079,8 @@
 				B577CE9820AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m */,
 				B577CE9B20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.h */,
 				B577CE9C20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m */,
+				B577CEA620AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.h */,
+				B577CEA720AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m */,
 			);
 			path = "organization(组织架构)";
 			sourceTree = "<group>";
@@ -2450,6 +2462,7 @@
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
 				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
+				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
@@ -2488,6 +2501,7 @@
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
+				B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
@@ -2631,6 +2645,7 @@
 				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				B50505B0209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				B50505A4209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
+				B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
@@ -2645,6 +2660,7 @@
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
+				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,

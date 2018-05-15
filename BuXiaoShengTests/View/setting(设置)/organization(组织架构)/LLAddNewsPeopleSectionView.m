@@ -7,10 +7,12 @@
 //
 
 #import "LLAddNewsPeopleSectionView.h"
-
+#import "LLAddNewPeoleRoleModel.h"
 @implementation LLAddNewsPeopleSectionView
 {
     UILabel * _titleLable;
+    
+    UIButton * _addPermissions;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -19,6 +21,10 @@
     // Drawing code
 }
 */
+-(void)setModel:(LLAddNewPeoleRoleModel *)model {
+    _model = model;
+    _titleLable.text = _model.name;
+}
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
@@ -36,7 +42,6 @@
         make.height.mas_equalTo(40);
     }];
     _titleLable = [UILabel new];
-    _titleLable.text = @"销售权限";
     [contentView addSubview:_titleLable];
     _titleLable.font = [UIFont systemFontOfSize:15];
     _titleLable.textColor = [UIColor darkGrayColor];
@@ -53,6 +58,19 @@
         make.height.mas_equalTo(1);
     }];
     
+    _addPermissions  = [UIButton new];
+    [_addPermissions addTarget:self action:@selector(addPermissionsClick) forControlEvents:UIControlEventTouchUpInside];
+    [contentView addSubview:_addPermissions];
+    [_addPermissions setBackgroundImage:[UIImage imageNamed:@"add1"] forState:UIControlStateNormal];
+    [_addPermissions mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(contentView.mas_right).offset(-15);
+        make.centerY.equalTo(contentView);
+    }];
+    
+}
+
+-(void)addPermissionsClick {
+    self.block(self);
 }
 
 

@@ -17,7 +17,7 @@
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSDictionary * details;
 
-@property (nonatomic,strong) NSArray * member_exis_roles;
+@property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*>* roles;
 @end
 
 @implementation AddNewPeopleViewController
@@ -104,7 +104,8 @@
             BXS_Alert(baseModel.msg);
             return ;
         }
-        
+        self.roles = [LLAddNewPeoleRoleModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -112,7 +113,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return self.roles.count+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -129,6 +130,11 @@
         return headerFooterView;
     }
     LLAddNewsPeopleSectionView * headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLAddNewsPeopleSectionView"];
+    WEAKSELF
+    headerFooterView.block = ^(LLAddNewsPeopleSectionView *sectionView) {
+        
+    };
+    headerFooterView.model = self.roles[section -1];
     return headerFooterView;
     
 }
@@ -140,7 +146,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return 25;
+        return 20;
     }
     return 60;
 }
@@ -153,7 +159,7 @@
         return cell;
     }
     LLAddNewsPepleContainerCell * cell =[ tableView dequeueReusableCellWithIdentifier:@"LLAddNewsPepleContainerCell"];
-    
+    cell.model = self.roles[indexPath.section-1];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -162,7 +168,7 @@
     }
 
     int lineCount =
-    10%4 ? 10/4 + 1: 10/4;
+    (self.roles[indexPath.section-1].itemList.count%4) ? ((int)(self.roles[indexPath.section-1].itemList.count/4 + 1)): ((int)(self.roles[indexPath.section-1].itemList.count/4));
     return lineCount*LLScale_WIDTH(130)+lineCount*15 + 15;
 }
 
