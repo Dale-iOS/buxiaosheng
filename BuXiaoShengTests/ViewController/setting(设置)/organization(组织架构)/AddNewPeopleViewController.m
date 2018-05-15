@@ -12,6 +12,7 @@
 #import "LLAddNewsPeopleSectionView.h"
 #import "LLAddNewsPepleContainerCell.h"
 #import "LLAddNewPeoleRoleModel.h"
+#import "LLAddPermissionsVc.h"
 @interface AddNewPeopleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView * tableView;
@@ -132,7 +133,7 @@
     LLAddNewsPeopleSectionView * headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLAddNewsPeopleSectionView"];
     WEAKSELF
     headerFooterView.block = ^(LLAddNewsPeopleSectionView *sectionView) {
-        
+        [weakSelf.navigationController pushViewController:[LLAddPermissionsVc new] animated:true];
     };
     headerFooterView.model = self.roles[section -1];
     return headerFooterView;
