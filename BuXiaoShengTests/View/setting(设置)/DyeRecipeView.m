@@ -7,9 +7,11 @@
 //  染色配方表
 
 #import "DyeRecipeView.h"
+#import "LZSearchBar.h"
 
-@interface DyeRecipeView()<UITableViewDelegate,UITableViewDataSource>
+@interface DyeRecipeView()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) LZSearchBar * searchBar;
 @end
 
 @implementation DyeRecipeView
@@ -26,7 +28,16 @@
 
 - (void)setupUI
 {
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, 40, APPWidth, 49)];
+    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    [self addSubview:self.searchBar];
+    
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.searchBar.bottom, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
