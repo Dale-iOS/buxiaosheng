@@ -22,6 +22,36 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupData];
+}
+
+- (void)setupData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"labelName":@"",
+                            @"memberId":[BXSUser currentUser].userId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"20",
+                            @"searchName":@"",
+//                            @"status":@""
+                            
+                            };
+    [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
+       
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            
+            [LLHudTools showWithMessage:baseModel.msg];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (void)setupUI
 {
 
