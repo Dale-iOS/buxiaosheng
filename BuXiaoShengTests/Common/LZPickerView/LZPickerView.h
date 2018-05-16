@@ -6,29 +6,17 @@
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
+///titileString 改为了compoentString对应的array的row
+typedef void (^customBlock)(NSString *compoentString,NSString *titileString);
 
-typedef void (^TouchButton)(UIBarButtonItem *barButton);
-typedef void (^OnCompletionBlock)(id item);
-typedef NSString* (^TitleBlock)(id item);
+@interface LZPickerView :  UIView
+@property (nonatomic ,copy)NSString *componentString;
+@property (nonatomic ,copy)NSString *titleString;
+@property (nonatomic ,copy)customBlock getPickerValue;
 
-@interface LZPickerView :  UIView<UIPickerViewDataSource,UIPickerViewDelegate>
-{
-    UIPickerView *_picker;
-    TouchButton _leftActionBlock;
-    TouchButton _rightActionBlock;
-    OnCompletionBlock _onCompletionBlock;
-    TitleBlock _titleBlock;
-    
-    NSInteger _currentIndex;
-}
-@property (strong, nonatomic) NSArray *items;
+@property (nonatomic ,copy)NSString *valueString;
 
--(void)setLeftActionBlock:(TouchButton)actionBlock;
--(void)setRightActionBlock:(TouchButton)actionBlock;
--(void)setOnCompletionBlock:(OnCompletionBlock)onCompletionBlock;
--(void)setTitleBlock:(TitleBlock)titleBlock;
-
+- (instancetype)initWithComponentDataArray:(NSArray *)ComponentDataArray titleDataArray:(NSArray *)titleDataArray;
 @end
 

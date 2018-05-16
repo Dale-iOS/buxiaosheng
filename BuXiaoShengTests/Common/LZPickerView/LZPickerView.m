@@ -8,120 +8,198 @@
 
 #import "LZPickerView.h"
 
+@interface LZPickerView ()<UIPickerViewDelegate,UIPickerViewDataSource>
+// pickerview  创建
+@property (nonatomic ,strong)UIView *toolsView;
+@property (nonatomic ,strong)UIPickerView *picerView;
+
+@property (nonatomic ,strong)NSArray *componentArray;
+@property (nonatomic ,strong)NSArray *titleArray;
+@end
+
 @implementation LZPickerView
 
-- (id)initWithFrame:(CGRect)frame
+/*!
+ *  初始化选择器
+ *
+ *  @param frame              整个 view 的 frame
+ *  @param ComponentDataArray 第一区 显示的数据
+ *  @param titleDataArray     第二区 显示的数据
+ *
+ *  @return 返回自己
+ */
+- (instancetype)initWithComponentDataArray:(NSArray *)ComponentDataArray titleDataArray:(NSArray *)titleDataArray
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        [self buildViews:frame];
+    self = [super init];
+    if (self)
+    {
+        self.componentArray = ComponentDataArray;
+        self.titleArray = titleDataArray;
+        self.frame = CGRectMake(0, 0, APPWidth, APPHeight);
+        
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        }];
+        
+        _toolsView = [[UIView alloc] initWithFrame:CGRectMake(0, APPHeight - 244, APPWidth, 44)];
+        _toolsView.backgroundColor = [UIColor colorWithR:248 G:248 B:248 A:1.0];
+        [self addSubview:_toolsView];
+        
+        // 右边确定按钮
+        UIButton *rightSureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        rightSureBtn.frame = CGRectMake(APPWidth - 54, 0, 44, 44);
+        [rightSureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [rightSureBtn addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_toolsView addSubview:rightSureBtn];
+        
+        // 中间显示  label
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(54, 0, APPWidth - 108, 44)];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = @"选择类型";
+        titleLabel.font = [UIFont systemFontOfSize:13];
+        [_toolsView addSubview:titleLabel];
+        
+        
+        // 左边取消按钮
+        UIButton *leftCancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        leftCancleButton.frame = CGRectMake(10, 0, 44, 44);
+        [leftCancleButton setTitle:@"取消" forState:UIControlStateNormal];
+        [leftCancleButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_toolsView addSubview:leftCancleButton];
+        
+        
+        
+        _picerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, APPHeight - 200, APPWidth, 200)];
+        _picerView.dataSource = self;
+        _picerView.delegate = self;
+        [_picerView selectRow:0 inComponent:0 animated:YES];
+        _picerView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:_picerView];
     }
     return self;
 }
 
--(void)buildViews:(CGRect)frame{
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]
-                                 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                 target:self action:@selector(leftClick:)];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]
-                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                  target:self action:@selector(rightClick:)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                           target:nil
-                                                                           action:nil];
-    
-    NSArray*buttons=[NSArray arrayWithObjects:leftItem, space, rightItem, nil];
-    
-    
-    //为子视图构造工具栏
-    UIToolbar *toolbar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0,frame.size.width, 44)];
-    toolbar.barStyle = UIBarStyleDefault;
-    [toolbar setItems:buttons animated:YES];
-    [self addSubview:toolbar];
-    
-    _picker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, toolbar.frame.size.height, frame.size.width, frame.size.height-toolbar.frame.size.height)];
-    [self addSubview:_picker];
-    _picker.delegate = self;
-    _picker.dataSource = self;
-    _picker.showsSelectionIndicator = YES;
-    self.items = [NSArray array];
-    _currentIndex = 0;
-    
-    
-}
--(void)setItems:(NSArray *)items{
-    _items = items;
-    [_picker reloadAllComponents];
-}
--(void)didMoveToSuperview{
-    [_picker selectRow:0 inComponent:0 animated:YES];
-    
+
+#pragma mark -
+#pragma mark -  左边按钮 方法  取消
+- (void)leftButtonClick:(UIButton *)button
+{
+    [self thisWayIsDissmisssSelf];
 }
 
-#pragma -mark - buttom blcok
--(void)setLeftActionBlock:(TouchButton)actionBlock{
-    if (actionBlock) {
-        _leftActionBlock = actionBlock;
-    }
-}
--(void)setRightActionBlock:(TouchButton)actionBlock{
-    if (actionBlock) {
-        _rightActionBlock  = actionBlock;
-    }
-}
--(void)leftClick:(UIBarButtonItem*)item{
-    if (_leftActionBlock) {
-        _leftActionBlock(item);
-    }
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+
+#pragma mark -
+#pragma mark -  右边按钮  方法
+- (void)rightButtonClick:(UIButton *)button
+{
     
-}
--(void)rightClick:(UIBarButtonItem*)item{
-    if (_rightActionBlock) {
-        _rightActionBlock(item);
-    }
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    if (_currentIndex==0) {
-        [self pickerView:_picker didSelectRow:0 inComponent:0];
-    }
-    _currentIndex = 0;
+    [self setDataValue];
     
-}
--(void)setOnCompletionBlock:(OnCompletionBlock)onCompletionBlock{
-    if (onCompletionBlock) {
-        _onCompletionBlock = onCompletionBlock;
+    if (self.getPickerValue)
+    {
+        self.getPickerValue(self.componentString,self.titleString);
     }
     
+    [self thisWayIsDissmisssSelf];
 }
--(void)setTitleBlock:(TitleBlock)titleBlock{
-    if (titleBlock) {
-        _titleBlock = titleBlock;
+#pragma mark -
+#pragma mark - 赋值
+- (void)setDataValue
+{
+    if ([self.componentString isEqualToString:@""] || self.componentString == NULL)
+    {
+        self.componentString = self.componentArray[0];
+        self.titleString = @"0";
     }
-}
-#pragma -mark - picker view delegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [self.items count];
-    
-}
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return _titleBlock(self.items[row]);
+    if ([self.titleString isEqualToString:@""]||self.titleString == NULL)
+    {
+        self.titleString = self.titleArray[0];
+    }
 }
 
-//获取滚轮标题
+#pragma mark -
+#pragma mark -  数据源方法
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if (self.componentArray.count == 0 || self.titleArray.count == 0)
+    {
+        return 1;
+    }
+    else if (self.componentArray.count == 0 && self.titleArray.count == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return 2;
+    }
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (component == 0)
+    {
+        return self.componentArray.count;
+    }
+    else
+    {
+        return self.titleArray.count;
+    }
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    if (component == 0)
+    {
+        return self.componentArray[row];
+    }
+    else
+    {
+        return self.titleArray[row];
+    }
+}
+
+
+
+
+#pragma mark -
+#pragma mark -  代理方法
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    _currentIndex = row;
-    if (_onCompletionBlock && self.items.count>0) {
-        NSLog(@"%@",[NSString stringWithFormat:@"didSelectComponent%zd Row%zd",component,row]);
-        _onCompletionBlock(self.items[row]);
+    if (component == 0)
+    {
+        self.componentString = self.componentArray[row];
+        self.titleString = [NSString stringWithFormat:@"%ld",row];
+        self.valueString = self.componentArray[row];
     }
+//    else
+//    {
+//        self.titleString = self.titleArray[row];
+//    }
     
 }
+#pragma mark -
+#pragma mark - 屏幕点击事件
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self thisWayIsDissmisssSelf];
+}
 
+
+#pragma mark -
+#pragma mark - 消失的方法
+- (void)thisWayIsDissmisssSelf
+{
+    __weak typeof (self)weakSelf = self;
+    __weak typeof(UIView *)blockView = _toolsView;
+    __weak typeof(UIPickerView *)blockPickerViwe = _picerView;
+    [UIView animateWithDuration:0.3 animations:^{
+        blockView.frame = CGRectMake(0, APPHeight, APPWidth, 44);
+        blockPickerViwe.frame = CGRectMake(0, APPHeight, APPWidth, 200);
+    }completion:^(BOOL finished) {
+        [weakSelf removeFromSuperview];
+    }];
+}
 
 @end
