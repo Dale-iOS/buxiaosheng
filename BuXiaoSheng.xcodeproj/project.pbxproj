@@ -103,6 +103,7 @@
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
+		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
@@ -579,6 +580,8 @@
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
+		3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddClienViewController.h; sourceTree = "<group>"; };
+		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
 		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
@@ -1294,6 +1297,7 @@
 		347D64C9207F05ED00407FC4 /* sale(销售) */ = {
 			isa = PBXGroup;
 			children = (
+				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
 				34A92B5C207DEF2400572648 /* SaleViewController.h */,
 				34A92B5D207DEF2400572648 /* SaleViewController.m */,
 				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
@@ -1330,6 +1334,15 @@
 				343207C620A05A8E005A5D23 /* BackOrderViewController.m */,
 			);
 			path = "sale(销售)";
+			sourceTree = "<group>";
+		};
+		3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */ = {
+			isa = PBXGroup;
+			children = (
+				3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */,
+				3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */,
+			);
+			path = "clientManager(客户管理)";
 			sourceTree = "<group>";
 		};
 		349C09592088720F00D2AC38 /* Menu */ = {
@@ -2366,6 +2379,7 @@
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
 				343207D920A06AB5005A5D23 /* YesAuditSellViewController.m in Sources */,
+				3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */,
 				34EE5D8420A68E7700A2C9B5 /* OtherCostViewController.m in Sources */,
 				B50505AD209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,

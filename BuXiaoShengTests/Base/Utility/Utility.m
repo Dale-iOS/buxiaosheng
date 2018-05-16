@@ -79,7 +79,7 @@
 }
 
 
-//!!!!: 右按钮是图片的
+
 /**
  *  右按钮是图片的
  *
@@ -96,6 +96,27 @@
     btn.frame = CGRectMake(0, 0, 25, 44);
     [btn setImage:image forState:UIControlStateNormal];
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+    [btn addTarget:_target action:selector forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    return item;
+}
+
+
+/**
+ *  右按钮是文字的
+ *
+ *  @param _target  对象
+ *  @param selector 方法
+ *  @param string   文字
+ *
+ *  @return
+ */
++ (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector title:(NSString *)string
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    btn.backgroundColor = [UIColor greenColor];
+    btn.frame = CGRectMake(0, 0, 25, 44);
+    [btn setTitle:string forState:UIControlStateNormal];
     [btn addTarget:_target action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;

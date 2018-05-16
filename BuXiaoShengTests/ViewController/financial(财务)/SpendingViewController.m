@@ -49,8 +49,6 @@
     if (!mainTabelView) {
         
         LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight)];
-        //        tableView.tableView.allowsSelection = YES;
-        //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:(mainTabelView = tableView)];
     }

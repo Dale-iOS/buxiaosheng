@@ -12,6 +12,7 @@
 #import "AllCompanyViewController.h"
 #import "NoneManagerViewController.h"
 #import "FreezeViewController.h"
+#import "AddClienViewController.h"
 
 #import "DrawerAddressViewController.h"
 
@@ -154,7 +155,8 @@
 #pragma mark ----- 点击事件 ------
 - (void)addBtnOnClick
 {
-    NSLog(@"addBtnOnClick");
+//    NSLog(@"addBtnOnClick");
+    [self.navigationController pushViewController:[[AddClienViewController alloc]init] animated:YES];
 }
 
 - (void)searchBtnOnClick
