@@ -137,7 +137,10 @@
     LLAddNewsPeopleSectionView * headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLAddNewsPeopleSectionView"];
     WEAKSELF
     headerFooterView.block = ^(LLAddNewsPeopleSectionView *sectionView) {
-        [weakSelf.navigationController pushViewController:[LLAddPermissionsVc new] animated:true];
+        LLAddPermissionsVc * permissonVc = [LLAddPermissionsVc new];
+        permissonVc.model = weakSelf.model;
+        permissonVc.exis_roles = weakSelf.roles;
+        [weakSelf.navigationController pushViewController:permissonVc animated:true];
     };
     headerFooterView.model = self.roles[section -1];
     return headerFooterView;
@@ -158,7 +161,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UILabel * temp_promptLable = nil;
+       static UILabel * temp_promptLable = nil;
+        static UIButton * temp_addBtn = nil;
+        static UILabel * temp_permissonLable = nil;
         if (indexPath.row ==4) {
             UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
             if (!cell) {
@@ -166,6 +171,7 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
                 UILabel * permissonLable = [UILabel new];
+                temp_permissonLable = permissonLable;
                 [cell.contentView addSubview:permissonLable];
                 permissonLable.font = [UIFont systemFontOfSize:15];
                 permissonLable.text = @"权限管理";
@@ -174,6 +180,7 @@
                     make.top.equalTo(cell.contentView).offset(15);
                 }];
               UIButton *  _addPermissions  = [UIButton new];
+                temp_addBtn = _addPermissions;
                 [_addPermissions addTarget:self action:@selector(addPermissionsClick) forControlEvents:UIControlEventTouchUpInside];
                 [cell.contentView addSubview:_addPermissions];
                 [_addPermissions setBackgroundImage:[UIImage imageNamed:@"add1"] forState:UIControlStateNormal];
@@ -191,8 +198,13 @@
                 }];
             }
              temp_promptLable.hidden = false;
+            temp_addBtn.hidden = false;
             if (self.roles.count) {
                 temp_promptLable.hidden = true;
+                  temp_addBtn.hidden = true;
+                [temp_permissonLable mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(cell.contentView).offset(5);
+                }];
             }
             return cell;
         }
