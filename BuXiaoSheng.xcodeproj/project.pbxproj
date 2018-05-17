@@ -87,6 +87,10 @@
 		34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EBD207F404200710F91 /* DemandListTableViewCell.m */; };
 		34602EC2207F69C800710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
 		34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
+		3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464457D20AD281F00D6A06B /* LZClientModel.m */; };
+		3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458320AD6FF900D6A06B /* ChooseLabelsVC.m */; };
+		3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
+		3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458A20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m */; };
 		3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464A93520A1894A00307C1A /* DyeRecipeView.m */; };
 		3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464A93820A1898100307C1A /* WeaveRecipeView.m */; };
 		346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AC9208D7A3F00F4B054 /* AuditTableViewCell.m */; };
@@ -552,6 +556,14 @@
 		34602EBD207F404200710F91 /* DemandListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemandListTableViewCell.m; sourceTree = "<group>"; };
 		34602EC0207F69C800710F91 /* TextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
 		34602EC1207F69C800710F91 /* TextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
+		3464457C20AD281F00D6A06B /* LZClientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientModel.h; sourceTree = "<group>"; };
+		3464457D20AD281F00D6A06B /* LZClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientModel.m; sourceTree = "<group>"; };
+		3464458220AD6FF900D6A06B /* ChooseLabelsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseLabelsVC.h; sourceTree = "<group>"; };
+		3464458320AD6FF900D6A06B /* ChooseLabelsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseLabelsVC.m; sourceTree = "<group>"; };
+		3464458620AD73D100D6A06B /* ChooseLablesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseLablesCell.h; sourceTree = "<group>"; };
+		3464458720AD73D100D6A06B /* ChooseLablesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseLablesCell.m; sourceTree = "<group>"; };
+		3464458920AD78A800D6A06B /* ChooseLablesCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseLablesCollectionReusableView.h; sourceTree = "<group>"; };
+		3464458A20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseLablesCollectionReusableView.m; sourceTree = "<group>"; };
 		3464A93420A1894A00307C1A /* DyeRecipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeRecipeView.h; sourceTree = "<group>"; };
 		3464A93520A1894A00307C1A /* DyeRecipeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyeRecipeView.m; sourceTree = "<group>"; };
 		3464A93720A1898100307C1A /* WeaveRecipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeaveRecipeView.h; sourceTree = "<group>"; };
@@ -1148,6 +1160,7 @@
 		343747F72094620700C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
+				3464458520AD71DE00D6A06B /* client(客户) */,
 				B577CE8D20AA78550001B8B8 /* organization(组织架构) */,
 				34EE5D9020A696E400A2C9B5 /* store(店铺) */,
 				343747FB2094640500C64F4C /* SettingCell.h */,
@@ -1274,6 +1287,17 @@
 				342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */,
 			);
 			path = "financial(财务)";
+			sourceTree = "<group>";
+		};
+		3464458520AD71DE00D6A06B /* client(客户) */ = {
+			isa = PBXGroup;
+			children = (
+				3464458620AD73D100D6A06B /* ChooseLablesCell.h */,
+				3464458720AD73D100D6A06B /* ChooseLablesCell.m */,
+				3464458920AD78A800D6A06B /* ChooseLablesCollectionReusableView.h */,
+				3464458A20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m */,
+			);
+			path = "client(客户)";
 			sourceTree = "<group>";
 		};
 		347C309820A29D970078BB69 /* inventory仓库 */ = {
@@ -1841,6 +1865,8 @@
 			children = (
 				3432078420A0087A005A5D23 /* SetClientViewController.h */,
 				3432078520A0087A005A5D23 /* SetClientViewController.m */,
+				3464458220AD6FF900D6A06B /* ChooseLabelsVC.h */,
+				3464458320AD6FF900D6A06B /* ChooseLabelsVC.m */,
 			);
 			path = "client(客户)";
 			sourceTree = "<group>";
@@ -2087,6 +2113,8 @@
 				34F6100720A957CF009A29A5 /* LZSubjectModel.m */,
 				34F6100920A9A38A009A29A5 /* LZCompanyModel.h */,
 				34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */,
+				3464457C20AD281F00D6A06B /* LZClientModel.h */,
+				3464457D20AD281F00D6A06B /* LZClientModel.m */,
 			);
 			path = "Setting设置";
 			sourceTree = "<group>";
@@ -2529,6 +2557,7 @@
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
+				3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */,
 				34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
@@ -2564,6 +2593,7 @@
 				B50505B3209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				34EE5D7E20A68E3F00A2C9B5 /* SellCostViewController.m in Sources */,
+				3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,
 				34BF66F22095CF22003768D2 /* SetWarehouseViewController.m in Sources */,
 				B50505DB209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
@@ -2619,6 +2649,7 @@
 				B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
+				3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */,
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,
 				B50505C7209AB2DA00CE7E4D /* XLFormDescriptor.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
@@ -2630,6 +2661,7 @@
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
+				3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */,
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,

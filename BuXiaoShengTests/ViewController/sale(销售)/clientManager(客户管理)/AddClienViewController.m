@@ -13,6 +13,8 @@
 #import "TextInputTextView.h"
 #import "LZPickerView.h"
 #import "LLAuditMangerModel.h"
+#import "LZClientModel.h"
+#import "ChooseLabelsVC.h"
 
 @interface AddClienViewController ()<LZHTableViewDelegate>
 
@@ -41,8 +43,14 @@
 
 ///标签列表数据
 @property (nonatomic,strong) NSArray <LLAuditMangerModel *> * tallys;
-///负责人列表数据
-@property (nonatomic,strong) NSArray <LLAuditMangerModel *> * principals;
+
+///负责人model
+@property (nonatomic,strong) NSArray <LZClientModel *> * clienModel;
+///负责人name数组
+@property (nonatomic, strong) NSArray *principalNameAry;
+///负责人id数组
+@property (nonatomic, strong) NSArray *principalIdAry;
+@property (nonatomic, copy) NSString *priceipalId;
 @end
 
 @implementation AddClienViewController
@@ -220,11 +228,20 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-////        LLAuditMangerModel *model = [LLAuditMangerModel LLMJParse:baseModel.data];
-//        LLAuditMangerModel *model = [LLAuditMangerModel LLMJParse:baseModel.data];
-//        self.principals = model.itemList;
-////        self.principals.firstObject.sectionClick = true;
+        self.clienModel = [LZClientModel LLMJParse:baseModel.data];
+        
+        NSMutableArray *muArray1 = [NSMutableArray array];
+        NSMutableArray *muArray2 = [NSMutableArray array];
 
+        for (int i = 0; i <= self.clienModel[0].itemList.count -1; i++) {
+            
+            LZAuditMangerItemModel *model = self.clienModel[0].itemList[i];
+            [muArray1 addObject:model.name];
+            [muArray2 addObject:model.id];
+        }
+        self.principalNameAry = [muArray1 mutableCopy];
+        self.principalIdAry = [muArray2 mutableCopy];
+        
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:LLLoadErrorMessage];
     }];
@@ -238,7 +255,7 @@
     
     if (indexPath.section == 1 && indexPath.row == 0) {
         
-        if (!self.tallys) {
+        if (self.tallys.count < 1) {
             [LLHudTools showWithMessage:@"暂无标签可选"];
             return;
         }
@@ -268,21 +285,33 @@
         [self.navigationController presentViewController:alterVc animated:true completion:nil];
     }else if (indexPath.section == 1 && indexPath.row == 3){
      
-//        if (!self.principals) {
+//        if (self.principalNameAry.count < 1) {
 //            [LLHudTools showWithMessage:@"暂无负责人可选"];
 //            return;
 //        }
-     
+//        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.principalNameAry titleDataArray:nil];
+//
+//        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+//        weakSelf.principalCell.contentTF.text = compoentString;
+//            weakSelf.priceipalId = titileString;
+//        };
+//
+//        [self.view addSubview:pickerView];
         
-        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:@[@"1",@"2"] titleDataArray:nil];
-        //测试
-        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
-            weakSelf.principalCell.contentTF.text = compoentString;
-            NSLog(@"+++++%@",titileString);
-        };
         
-        [self.view addSubview:pickerView];
         
+        ChooseLabelsVC *vc = [[ChooseLabelsVC alloc]init];
+        vc.drawerType = DrawerDefaultRight;
+        
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+        conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+        conf.finishPercent = 0.2f;
+        conf.showAnimDuration = 0.2;
+        conf.HiddenAnimDuration = 0.2;
+        conf.maskAlpha = 0.1;
+        
+        [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+
     }else if (indexPath.section == 1 && indexPath.row ==5){
         UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用高额度操作" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"提醒" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -315,18 +344,18 @@
         return;
     }
     
-    if ([BXSTools stringIsNullOrEmpty:self.addressCell.contentTF.text]) {
-        BXS_Alert(@"请输入客户地址");
+    if ([BXSTools stringIsNullOrEmpty:self.principalCell.contentTF.text]) {
+        BXS_Alert(@"请选择负责人");
+        return;
+    }
+
+    if ([BXSTools stringIsNullOrEmpty:self.tallyCell.contentTF.text]) {
+        BXS_Alert(@"请输入标签");
         return;
     }
     
-    if ([BXSTools stringIsNullOrEmpty:self.aliasCell.contentTF.text]) {
-        BXS_Alert(@"请输入客户别名");
-        return;
-    }
-    
-    if ([BXSTools stringIsNullOrEmpty:self.quotaCell.contentTF.text]) {
-        BXS_Alert(@"请输入信用额度");
+    if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
+        BXS_Alert(@"请选择状态");
         return;
     }
     
@@ -345,14 +374,15 @@
     }
     
     
-    NSDictionary *param =@{@"name":self.titleCell.titleLabel.text,
-                           @"mobile":self.mobileCell.titleLabel.text,
-                           @"address":self.addressCell.titleLabel.text,
-                           @"labelId":self.tallyCell.titleLabel.text,
+    NSDictionary *param =@{@"companyId":[BXSUser currentUser].companyId,
+                           @"name":self.titleCell.contentTF.text,
+                           @"mobile":self.mobileCell.contentTF.text,
+                           @"address":self.addressCell.contentTF.text,
+                           @"labelId":self.tallyCell.contentTF.text,
                            @"status":@(status),
-                           @"alias":self.aliasCell.titleLabel.text,
-                           @"memberId":self.principalCell.titleLabel.text,
-                           @"quota":self.quotaCell.titleLabel.text,
+                           @"alias":self.aliasCell.contentTF.text,
+                           @"memberId":self.priceipalId,
+                           @"quota":self.quotaCell.contentTF.text,
                            @"excessOperation":@(exceedQuotas),
                            @"remark":self.remarkTextView.textView.text
                            };
