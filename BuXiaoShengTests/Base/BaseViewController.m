@@ -26,6 +26,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+//无论是UITextField还是UITextView弹出来的键盘，点击空白处都会取消。
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    UITouch *touch = [touches anyObject];
+    
+    if (![touch.view isKindOfClass: [UITextField class]] || ![touch.view isKindOfClass: [UITextView class]]) {
+        
+        [self.view endEditing:YES];
+        
+    }
+    
+}
+
+
 - (void)backMethod
 {
     [self.navigationController popViewControllerAnimated:YES];

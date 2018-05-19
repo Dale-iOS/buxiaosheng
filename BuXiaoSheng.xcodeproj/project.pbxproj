@@ -75,6 +75,9 @@
 		34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E902089CA9F004CD04B /* PagingTableViewCell.m */; };
 		34528E942089E18C004CD04B /* IncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E932089E18C004CD04B /* IncomeViewController.m */; };
 		34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */; };
+		34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6720AFD3BE00D9D2C6 /* SearchClientViewController.m */; };
+		34535F6B20AFFCB600D9D2C6 /* LZScreenAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */; };
+		34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */; };
 		345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5EFD209D4AAF00126C40 /* RecipeViewController.m */; };
 		345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */; };
 		345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F03209D614E00126C40 /* SetCompanyViewController.m */; };
@@ -235,6 +238,7 @@
 		34EE5D8B20A6929800A2C9B5 /* AlterBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D8A20A6929800A2C9B5 /* AlterBranchViewController.m */; };
 		34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */; };
 		34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */; };
+		34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */; };
 		34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100020A93C16009A29A5 /* LZPickerView.m */; };
 		34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100420A93C56009A29A5 /* LZSearchBar.m */; };
 		34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100720A957CF009A29A5 /* LZSubjectModel.m */; };
@@ -538,6 +542,12 @@
 		34528E932089E18C004CD04B /* IncomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeViewController.m; sourceTree = "<group>"; };
 		34528E962089EDB2004CD04B /* FinancialCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialCollectionViewCell.h; sourceTree = "<group>"; };
 		34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialCollectionViewCell.m; sourceTree = "<group>"; };
+		34535F6620AFD3BE00D9D2C6 /* SearchClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchClientViewController.h; sourceTree = "<group>"; };
+		34535F6720AFD3BE00D9D2C6 /* SearchClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchClientViewController.m; sourceTree = "<group>"; };
+		34535F6920AFFCB600D9D2C6 /* LZScreenAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZScreenAddressVC.h; sourceTree = "<group>"; };
+		34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZScreenAddressVC.m; sourceTree = "<group>"; };
+		34535F6C20B0145300D9D2C6 /* LZClientDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientDetailsModel.h; sourceTree = "<group>"; };
+		34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientDetailsModel.m; sourceTree = "<group>"; };
 		345D5EFC209D4AAF00126C40 /* RecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		345D5EFD209D4AAF00126C40 /* RecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
 		345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddRecipeViewController.h; sourceTree = "<group>"; };
@@ -824,6 +834,8 @@
 		34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBranchCell.m; sourceTree = "<group>"; };
 		34EE5D9A20A6D32600A2C9B5 /* AlterWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterWarehouseViewController.h; sourceTree = "<group>"; };
 		34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterWarehouseViewController.m; sourceTree = "<group>"; };
+		34F1E98420AF018300EFAB7D /* LZClientManagerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientManagerModel.h; sourceTree = "<group>"; };
+		34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientManagerModel.m; sourceTree = "<group>"; };
 		34F60FFF20A93C16009A29A5 /* LZPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPickerView.h; sourceTree = "<group>"; };
 		34F6100020A93C16009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
 		34F6100320A93C56009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
@@ -1342,18 +1354,6 @@
 				34EBACA7208451C40005BF77 /* DeliveryOrderViewController.m */,
 				34EBACAD20847AC70005BF77 /* VisitRecordViewController.h */,
 				34EBACAE20847AC70005BF77 /* VisitRecordViewController.m */,
-				3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */,
-				3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */,
-				3411F2A52085C3B800C448FD /* ResponsibleViewController.h */,
-				3411F2A62085C3B800C448FD /* ResponsibleViewController.m */,
-				3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */,
-				3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */,
-				3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */,
-				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
-				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
-				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
-				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
-				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
 				343207C520A05A8E005A5D23 /* BackOrderViewController.h */,
 				343207C620A05A8E005A5D23 /* BackOrderViewController.m */,
 			);
@@ -1365,6 +1365,22 @@
 			children = (
 				3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */,
 				3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */,
+				3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */,
+				3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */,
+				34535F6920AFFCB600D9D2C6 /* LZScreenAddressVC.h */,
+				34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */,
+				34535F6620AFD3BE00D9D2C6 /* SearchClientViewController.h */,
+				34535F6720AFD3BE00D9D2C6 /* SearchClientViewController.m */,
+				3411F2A52085C3B800C448FD /* ResponsibleViewController.h */,
+				3411F2A62085C3B800C448FD /* ResponsibleViewController.m */,
+				3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */,
+				3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */,
+				3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */,
+				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
+				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
+				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
+				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
+				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
 			);
 			path = "clientManager(客户管理)";
 			sourceTree = "<group>";
@@ -1906,6 +1922,15 @@
 			path = "store(店铺)";
 			sourceTree = "<group>";
 		};
+		34F1E98020AEF4CA00EFAB7D /* clientManager(客户管理) */ = {
+			isa = PBXGroup;
+			children = (
+				34F1E98420AF018300EFAB7D /* LZClientManagerModel.h */,
+				34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */,
+			);
+			path = "clientManager(客户管理)";
+			sourceTree = "<group>";
+		};
 		34F60FFE20A93C06009A29A5 /* LZPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2102,6 +2127,7 @@
 		B55ADE0B20A554A5000F9C4A /* Setting设置 */ = {
 			isa = PBXGroup;
 			children = (
+				34F1E98020AEF4CA00EFAB7D /* clientManager(客户管理) */,
 				B577CE9220AA78640001B8B8 /* organization(组织架构) */,
 				B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */,
 				B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */,
@@ -2115,6 +2141,8 @@
 				34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */,
 				3464457C20AD281F00D6A06B /* LZClientModel.h */,
 				3464457D20AD281F00D6A06B /* LZClientModel.m */,
+				34535F6C20B0145300D9D2C6 /* LZClientDetailsModel.h */,
+				34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */,
 			);
 			path = "Setting设置";
 			sourceTree = "<group>";
@@ -2531,6 +2559,7 @@
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
+				34535F6B20AFFCB600D9D2C6 /* LZScreenAddressVC.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
@@ -2589,6 +2618,7 @@
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
+				34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */,
 				B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505B3209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
@@ -2607,6 +2637,7 @@
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
+				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
@@ -2667,6 +2698,7 @@
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
+				34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
 				34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */,
 			);
@@ -2922,7 +2954,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				DEVELOPMENT_TEAM = 62XPL7765W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -2941,7 +2973,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				DEVELOPMENT_TEAM = 62XPL7765W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;

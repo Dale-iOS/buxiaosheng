@@ -1,31 +1,28 @@
 //
-//  ChooseLabelsVC.m
+//  LZScreenAddressVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/17.
+//  Created by 罗镇浩 on 2018/5/19.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  客户筛选 选择地址
 
-#import "ChooseLabelsVC.h"
+#import "LZScreenAddressVC.h"
 #import "ChooseLablesCell.h"
 #import "ChooseLablesCollectionReusableView.h"
 #import "LLFactoryModel.h"
 
-@interface ChooseLabelsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ChooseLablesCollectionReusableViewDelegate>
+@interface LZScreenAddressVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ChooseLablesCollectionReusableViewDelegate>
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) UICollectionView *collectionView;
 //@property (nonatomic, strong) NSMutableArray *muArray;
 @property (nonatomic, strong) NSArray <LLFactoryModel *> *labels;
 @end
 
-@implementation ChooseLabelsVC
+@implementation LZScreenAddressVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    [self setupUI];
-
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +50,6 @@
     
     self.view.frame = rect;
 }
-
 - (void)setupUI
 {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -66,9 +62,9 @@
     selectLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:selectLabel];
     
-//    //假数据
-//    self.muArray = [[NSMutableArray alloc]init];
-
+    //    //假数据
+    //    self.muArray = [[NSMutableArray alloc]init];
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, selectLabel.bottom, APPWidth, 500) collectionViewLayout:flowLayout];
@@ -79,15 +75,15 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-     [self.collectionView registerClass:[ChooseLablesCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"Footer"];
+    [self.collectionView registerClass:[ChooseLablesCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"Footer"];
     
-//    UILabel *selectLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 34, APPWidth, 30)];
-//    selectLabel.backgroundColor = LZHBackgroundColor;
-//    selectLabel.text = @"  选择标签";
-//    selectLabel.textColor = CD_Text99;
-//    selectLabel.font = FONT(12);
-//    selectLabel.textAlignment = NSTextAlignmentLeft;
-//    [self.view addSubview:selectLabel];
+    //    UILabel *selectLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 34, APPWidth, 30)];
+    //    selectLabel.backgroundColor = LZHBackgroundColor;
+    //    selectLabel.text = @"  选择标签";
+    //    selectLabel.textColor = CD_Text99;
+    //    selectLabel.font = FONT(12);
+    //    selectLabel.textAlignment = NSTextAlignmentLeft;
+    //    [self.view addSubview:selectLabel];
     
     self.nextBtn = [UIButton new];
     self.nextBtn.frame = CGRectMake(0, APPHeight -44, APPWidth *3/4, 44);
@@ -122,13 +118,13 @@
     UICollectionReusableView *reusabel = nil;
     if (kind == UICollectionElementKindSectionFooter) {
         
-//        UICollectionReusableView *view = [collectionView dequeueReusableCellWithReuseIdentifier:UICollectionElementKindSectionFooter forIndexPath:@"footer" ]
+        //        UICollectionReusableView *view = [collectionView dequeueReusableCellWithReuseIdentifier:UICollectionElementKindSectionFooter forIndexPath:@"footer" ]
         ChooseLablesCollectionReusableView *view  = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"Footer" forIndexPath:indexPath];
         view.userInteractionEnabled = YES;
         view.delegate = self;
         NSLog(@"------------ %@",view.tfStr);
-//        view.titleLbl.text = [[NSString alloc]initWithString:@"尾部试图 %ld",indexPath.section];
-//        view.titleLbl.text = [[NSString alloc] initWithFormat:@"尾部视图%ld",indexPath.section];
+        //        view.titleLbl.text = [[NSString alloc]initWithString:@"尾部试图 %ld",indexPath.section];
+        //        view.titleLbl.text = [[NSString alloc] initWithFormat:@"尾部视图%ld",indexPath.section];
         reusabel = view;
     }
     return reusabel;
@@ -143,15 +139,15 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
-//    NSString *message = [[NSString alloc] initWithFormat:@"你点击了第%ld个section，第%ld个cell",(long)indexPath.section,(long)indexPath.row];
-//
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-//    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        //点击确定后执行的操作；
-//    }]];
-//    [self presentViewController:alert animated:true completion:^{
-//        //显示提示框后执行的事件；
-//    }];
+    //    NSString *message = [[NSString alloc] initWithFormat:@"你点击了第%ld个section，第%ld个cell",(long)indexPath.section,(long)indexPath.row];
+    //
+    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    //    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    //        //点击确定后执行的操作；
+    //    }]];
+    //    [self presentViewController:alert animated:true completion:^{
+    //        //显示提示框后执行的事件；
+    //    }];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -207,9 +203,9 @@
 
 - (void)didClickAddBtnInTextfeild:(UIView *)view
 {
-//    [self.muArray addObject:@"999"];
-//    
-//    
+    //    [self.muArray addObject:@"999"];
+    //
+    //
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"name":@"这是很多歌字"
                              };
@@ -247,3 +243,4 @@
 
 
 @end
+

@@ -1,29 +1,31 @@
 //
-//  AllCompanyViewController.m
+//  SearchClientViewController.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/17.
+//  Created by 罗镇浩 on 2018/5/19.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  全公司的（客户管理）
+//  搜索客户页面
 
-#import "AllCompanyViewController.h"
+#import "SearchClientViewController.h"
+#import "LZSearchBar.h"
 #import "LZClientModel.h"
 #import "LZClientManagerModel.h"
 #import "ClientManagerTableViewCell.h"
 #import "SearchClientViewController.h"
-#import "AddClienViewController.h"
 
-@interface AllCompanyViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SearchClientViewController ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) LZSearchBar * searchBar;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong) NSArray <LZClientManagerModel *> *clients;
 @property (nonatomic, strong) UILabel *headLabel;
 @end
 
-@implementation AllCompanyViewController
+@implementation SearchClientViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = LZHBackgroundColor;
+    
+    self.navigationItem.titleView = [Utility navTitleView:@"搜索客户"];
     
     [self setupUI];
 }
@@ -37,54 +39,22 @@
 
 - (void)setupUI
 {
-//    筛选蓝色底图View
-    UIView *screenView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
-    screenView.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
-    screenView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesOnClick)];
-    [screenView addGestureRecognizer:tapGes];
-    [self.view addSubview:screenView];
-
-    UILabel *label = [[UILabel alloc]init];
-    label.text = @"筛选";
-    label.font = FONT(13);
-    label.textColor = [UIColor whiteColor];
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
+    self.searchBar.placeholder = @"输入客户名称";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    [self.view addSubview:self.searchBar];
     
-    UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.image = IMAGE(@"screenwihte");
     
-    UIView *headBgView = [[UIView alloc]init];
-    headBgView.backgroundColor = [UIColor clearColor];
-    [screenView addSubview:headBgView];
-    [headBgView addSubview:imageView];
-    [headBgView addSubview:label];
-
-    headBgView.sd_layout
-    .centerXEqualToView(screenView)
-    .centerYEqualToView(screenView)
-    .widthIs(45)
-    .heightIs(14);
-    
-    label.sd_layout
-    .leftSpaceToView(headBgView, 0)
-    .centerYEqualToView(headBgView)
-    .widthIs(27)
-    .heightIs(14);
-    
-    imageView.sd_layout
-    .rightSpaceToView(headBgView, 0)
-    .centerYEqualToView(headBgView)
-    .widthIs(14)
-    .heightIs(12);
-
-    
-    _headLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, screenView.bottom, APPWidth -15, 25)];
-    _headLabel.text = @"共0人";
+    _headLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, self.searchBar.bottom, APPWidth -15, 25)];
+    _headLabel.text = @"搜索结果共0条";
     _headLabel.textColor = CD_Text99;
     _headLabel.font = FONT(13);
     _headLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_headLabel];
-
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _headLabel.bottom, APPWidth, APPHeight -LLNavViewHeight) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -94,6 +64,7 @@
     [self.view addSubview:_tableView];
 }
 
+#pragma mark ------ 网络请求 ------
 - (void)setupData
 {
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
@@ -101,7 +72,7 @@
                             @"memberId":@"",
                             @"pageNo":@"1",
                             @"pageSize":@"20",
-                            @"searchName":@"",
+                            @"searchName":self.searchBar.text,
                             //                            @"status":@""
                             
                             };
@@ -114,7 +85,7 @@
         }
         
         self.clients = [LZClientManagerModel LLMJParse:baseModel.data];
-        _headLabel.text = [NSString stringWithFormat:@"共%zd人",self.clients.count];
+        _headLabel.text = [NSString stringWithFormat:@"搜索结果共%zd条",self.clients.count];
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -151,26 +122,24 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark ----- 点击事件 --------
+//搜索
+- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
 {
-    AddClienViewController *vc = [[AddClienViewController alloc]init];
-    vc.id = self.clients[indexPath.row].id;
-    vc.isFormSelect = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self setupData];
 }
 
-//筛选点击
+//筛选
 - (void)tapGesOnClick
 {
-    SearchClientViewController *vc = [[SearchClientViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+   
 }
-
 
 
 @end

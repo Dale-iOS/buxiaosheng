@@ -35,7 +35,7 @@
 
 -(void)setupUI {
     _iconImageView = [UIImageView new];
-    _iconImageView.backgroundColor = [UIColor greenColor];
+    _iconImageView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_iconImageView];
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
@@ -55,7 +55,7 @@
     }];
     _addBtn = [UIButton new];
     [_iconImageView addSubview:_addBtn];
-    [_addBtn setBackgroundImage:[UIImage imageNamed:@"add_permisson"] forState:UIControlStateNormal];
+    [_addBtn setBackgroundImage:[UIImage imageNamed:@"yesSelect"] forState:UIControlStateNormal];
     [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_iconImageView).offset(5);
         make.right.equalTo(_iconImageView).offset(-5);

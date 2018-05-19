@@ -112,6 +112,13 @@
     
 }
 
+
+#pragma mark ----- searchBarDelegate --------
+- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
+{
+    [self setupData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

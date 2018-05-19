@@ -57,7 +57,7 @@
         self.banks = [LLCashBankModel LLMJParse:baseModel.data];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-        
+         BXS_Alert(LLLoadErrorMessage);
     }];
 }
 

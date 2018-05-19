@@ -16,12 +16,17 @@
     if (self) {
         self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPWidth *0.14, 29)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-//        self.layer.cornerRadius = 10.0f;
-        self.titleLabel.text = @"999999";
         self.titleLabel.backgroundColor = [UIColor redColor];
+        self.titleLabel.font = FONT(10);
         [self addSubview:self.titleLabel];
     }
     return self;
+}
+
+- (void)setModel:(LLFactoryModel *)model
+{
+    _model = model;
+    self.titleLabel.text = model.name;
 }
 
 @end

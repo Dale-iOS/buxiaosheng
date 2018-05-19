@@ -15,6 +15,7 @@
 #import "LLAuditMangerModel.h"
 #import "LZClientModel.h"
 #import "ChooseLabelsVC.h"
+#import "LZClientDetailsModel.h"
 
 @interface AddClienViewController ()<LZHTableViewDelegate>
 
@@ -42,15 +43,20 @@
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 
 ///标签列表数据
-@property (nonatomic,strong) NSArray <LLAuditMangerModel *> * tallys;
+@property (nonatomic,strong) NSArray <LLAuditMangerItemModel *> * tallys;
 
 ///负责人model
 @property (nonatomic,strong) NSArray <LZClientModel *> * clienModel;
-///负责人name数组
+@property (nonatomic, strong) LZClientDetailsModel *detailModel;
+
+///负责人数组
 @property (nonatomic, strong) NSArray *principalNameAry;
-///负责人id数组
 @property (nonatomic, strong) NSArray *principalIdAry;
 @property (nonatomic, copy) NSString *priceipalId;
+///标签数组
+@property (nonatomic, strong) NSArray *labelsIDAry;
+@property (nonatomic, strong) NSArray *labelsNameAry;
+@property (nonatomic, copy) NSString *labelslId;
 @end
 
 @implementation AddClienViewController
@@ -60,17 +66,15 @@
     [super viewDidLoad];
     
     [self setupUI];
-    [self setupCustomerData];
-    [self setupPrincipalData];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-//    [self setupCustomerData];
-//    [self setupPrincipalData];
+    [self setupClientDetailData];
+    [self setupCustomerData];
+    [self setupPrincipalData];
 }
 
 - (LZHTableView *)mainTabelView
@@ -100,6 +104,52 @@
     self.mainTabelView.dataSoure = self.datasource;
 
 }
+
+- (void)setupClientDetailData
+{
+    if (!self.isFormSelect) {
+        return;
+    }
+    
+    NSDictionary * param = @{@"id":self.id};
+    [BXSHttp requestGETWithAppURL:@"customer/detail.do" param:param success:^(id response) {
+        NSLog(@"%@",response);
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            return ;
+        }
+        
+        self.detailModel = [LZClientDetailsModel LLMJParse:baseModel.data];
+        
+        //开始赋值
+        self.titleCell.contentTF.text = self.detailModel.name;
+        self.mobileCell.contentTF.text = self.detailModel.mobile;
+        self.addressCell.contentTF.text = self.detailModel.address;
+        self.tallyCell.contentTF.text = self.detailModel.labelName;
+        self.labelslId = self.detailModel.labelId;
+        if ([self.detailModel.status integerValue] == 0) {
+            self.stateCell.contentTF.text = @"启用";
+        }else
+        {
+            self.stateCell.contentTF.text = @"未启用";
+        }
+        self.aliasCell.contentTF.text = self.detailModel.alias;
+        self.principalCell.contentTF.text = self.detailModel.memberName;
+        self.priceipalId = self.detailModel.memberId;
+        self.quotaCell.contentTF.text = self.detailModel.quota;
+        if ([self.detailModel.excessOperation integerValue] == 0) {
+            self.exceedQuotaCell.contentTF.text = @"提醒";
+        }else
+        {
+            self.exceedQuotaCell.contentTF.text = @"不能保存单据";
+        }
+        self.remarkTextView.textView.text = self.detailModel.remark;
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
 
 - (void)setSectionOne
 {
@@ -210,8 +260,21 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        self.tallys = [LLAuditMangerModel LLMJParse:baseModel.data];
-
+        self.tallys = [LLAuditMangerItemModel LLMJParse:baseModel.data];
+        
+        //把name和id分别取出来，组件数组
+        NSMutableArray *muArray1 = [NSMutableArray array];
+        NSMutableArray *muArray2 = [NSMutableArray array];
+        
+        for (int i = 0; i <= self.clienModel[0].itemList.count -1; i++) {
+            
+            LLAuditMangerItemModel *model = self.tallys[0];
+            [muArray1 addObject:model.name];
+            [muArray2 addObject:model.id];
+        }
+        self.labelsNameAry = [muArray1 mutableCopy];
+        self.labelsIDAry = [muArray2 mutableCopy];
+        
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:LLLoadErrorMessage];
     }];
@@ -241,7 +304,7 @@
         }
         self.principalNameAry = [muArray1 mutableCopy];
         self.principalIdAry = [muArray2 mutableCopy];
-        
+
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:LLLoadErrorMessage];
     }];
@@ -254,23 +317,28 @@
     WEAKSELF;
     
     if (indexPath.section == 1 && indexPath.row == 0) {
+//标签
+        ChooseLabelsVC *vc = [[ChooseLabelsVC alloc]init];
+        vc.drawerType = DrawerDefaultRight;
         
-        if (self.tallys.count < 1) {
-            [LLHudTools showWithMessage:@"暂无标签可选"];
-            return;
-        }
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+        conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+        conf.finishPercent = 0.2f;
+        conf.showAnimDuration = 0.2;
+        conf.HiddenAnimDuration = 0.2;
+        conf.maskAlpha = 0.1;
         
-        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.tallys titleDataArray:nil];
-        //测试
-        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
-            weakSelf.tallyCell.contentTF.text = compoentString;
-        };
+        [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
         
-        [self.view addSubview:pickerView];
         
+        [vc setLabelsArrayBlock:^(NSString *labelString) {
+            self.tallyCell.contentTF.text = labelString;
+        }];
+
     }else if (indexPath.section == 1 && indexPath.row == 1){
-    
-        UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该科目启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
+
+//状态
+        UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该客户启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             weakSelf.stateCell.contentTF.text = @"启用";
         }];
@@ -285,32 +353,21 @@
         [self.navigationController presentViewController:alterVc animated:true completion:nil];
     }else if (indexPath.section == 1 && indexPath.row == 3){
      
-//        if (self.principalNameAry.count < 1) {
-//            [LLHudTools showWithMessage:@"暂无负责人可选"];
-//            return;
-//        }
-//        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.principalNameAry titleDataArray:nil];
-//
-//        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
-//        weakSelf.principalCell.contentTF.text = compoentString;
-//            weakSelf.priceipalId = titileString;
-//        };
-//
-//        [self.view addSubview:pickerView];
-        
-        
-        
-        ChooseLabelsVC *vc = [[ChooseLabelsVC alloc]init];
-        vc.drawerType = DrawerDefaultRight;
-        
-        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-        conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-        conf.finishPercent = 0.2f;
-        conf.showAnimDuration = 0.2;
-        conf.HiddenAnimDuration = 0.2;
-        conf.maskAlpha = 0.1;
-        
-        [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+//负责人
+        if (self.principalNameAry.count < 1) {
+            [LLHudTools showWithMessage:@"暂无负责人可选"];
+            return;
+        }
+        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.principalNameAry titleDataArray:nil];
+
+        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+        weakSelf.principalCell.contentTF.text = compoentString;
+            NSInteger row = [titileString integerValue];
+            weakSelf.priceipalId = weakSelf.principalIdAry[row];
+    
+        };
+
+        [self.view addSubview:pickerView];
 
     }else if (indexPath.section == 1 && indexPath.row ==5){
         UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用高额度操作" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -374,11 +431,12 @@
     }
     
     
-    NSDictionary *param =@{@"companyId":[BXSUser currentUser].companyId,
+    NSDictionary *param = @{
+                           @"companyId":[BXSUser currentUser].companyId,
                            @"name":self.titleCell.contentTF.text,
                            @"mobile":self.mobileCell.contentTF.text,
                            @"address":self.addressCell.contentTF.text,
-                           @"labelId":self.tallyCell.contentTF.text,
+                           @"labelId":self.labelslId,
                            @"status":@(status),
                            @"alias":self.aliasCell.contentTF.text,
                            @"memberId":self.priceipalId,

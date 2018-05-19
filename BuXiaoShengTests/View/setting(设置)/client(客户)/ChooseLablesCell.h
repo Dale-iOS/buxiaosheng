@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LLFactoryModel.h"
 
 @interface ChooseLablesCell : UICollectionViewCell
 
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) LLFactoryModel *model;
 
 @end

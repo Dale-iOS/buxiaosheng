@@ -1,8 +1,8 @@
 //
-//  ChooseLabelsVC.h
+//  LZScreenAddressVC.h
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/17.
+//  Created by 罗镇浩 on 2018/5/19.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
@@ -15,10 +15,13 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
     DrawerTypeMaskRight    // 遮盖动画，右侧滑出
 };
 
-@interface ChooseLabelsVC : UIViewController
+@interface LZScreenAddressVC : UIViewController
+
+
 
 @property (nonatomic,assign) DrawerType drawerType; // 抽屉类型
 
 @property (nonatomic,copy) void(^LabelsArrayBlock)(NSString *labelString);
+
 
 @end

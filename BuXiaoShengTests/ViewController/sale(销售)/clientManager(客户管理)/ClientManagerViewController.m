@@ -18,7 +18,7 @@
 @interface ClientManagerViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 {
     UIView *_headView;
-    UILabel *_headLabel;
+
 }
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
@@ -102,7 +102,7 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesOnClick)];
     [_headView addGestureRecognizer:tapGes];
     [self.view addSubview:_headView];
-    NSLog(@"%f",_headLabel.right);
+   
     UILabel *label = [[UILabel alloc]init];
     label.text = @"筛选";
     label.font = FONT(13);
@@ -134,19 +134,7 @@
     .centerYEqualToView(headBgView)
     .widthIs(14)
     .heightIs(12);
-    
-    
-    _headLabel = [[UILabel alloc]init];
-    _headLabel.text = @"共3人";
-    _headLabel.textColor = CD_Text99;
-    _headLabel.font = FONT(13);
-    _headLabel.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_headLabel];
-    _headLabel.sd_layout
-    .leftSpaceToView(self.view, 15)
-    .topSpaceToView(_headView, 8)
-    .widthIs(APPWidth/2)
-    .heightIs(14);
+
     
     
 }

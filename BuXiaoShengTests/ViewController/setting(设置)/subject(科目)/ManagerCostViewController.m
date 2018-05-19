@@ -113,6 +113,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark ----- searchBarDelegate --------
+- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
+{
+    [self setupData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

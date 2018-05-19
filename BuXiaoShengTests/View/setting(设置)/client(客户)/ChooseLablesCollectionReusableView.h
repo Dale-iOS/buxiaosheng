@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ChooseLablesCollectionReusableViewDelegate <NSObject>
+
+- (void)didClickAddBtnInTextfeild:(UIView *)view;
+
+@end
+
 @interface ChooseLablesCollectionReusableView : UICollectionReusableView
 
+@property (nonatomic, weak) id<ChooseLablesCollectionReusableViewDelegate> delegate;
 //@property (nonatomic, strong) UILabel *titleLbl;
 
 @property (nonatomic, strong) UITextField *tf;
+@property (nonatomic, copy) NSString *tfStr;
 @end
