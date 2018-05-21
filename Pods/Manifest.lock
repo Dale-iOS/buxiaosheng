@@ -18,6 +18,7 @@ PODS:
   - CWLateralSlide (1.5.8)
   - EasyNavigation (1.0.5)
   - FBRetainCycleDetector (0.1.4)
+  - IQKeyboardManager (5.0.8)
   - Masonry (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - CWLateralSlide
   - EasyNavigation
+  - IQKeyboardManager
   - Masonry
   - MJExtension
   - MJRefresh
@@ -57,6 +59,7 @@ SPEC REPOS:
     - CWLateralSlide
     - EasyNavigation
     - FBRetainCycleDetector
+    - IQKeyboardManager
     - Masonry
     - MJExtension
     - MJRefresh
@@ -74,6 +77,7 @@ SPEC CHECKSUMS:
   CWLateralSlide: 3af190c8ffa08040abfd9780f279dac94d531f8b
   EasyNavigation: 3414769a995d032e5dd9441f2bdd4eda7dd10089
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
@@ -85,6 +89,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 44239b9c638db1c25ab49ad039c59a2ff19c3253
+PODFILE CHECKSUM: d640624fa21e102eac47615ee8f7897bceb43708
 
 COCOAPODS: 1.5.0

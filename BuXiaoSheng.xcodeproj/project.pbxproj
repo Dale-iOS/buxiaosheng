@@ -72,6 +72,8 @@
 		344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F229E208F2569009ADA33 /* BankDetailListViewController.m */; };
 		344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */; };
 		344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */; };
+		3452717220B2734A0001B65A /* AddColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3452717120B2734A0001B65A /* AddColorCell.m */; };
+		3452717720B2B6C20001B65A /* LZAddColorsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3452717620B2B6C20001B65A /* LZAddColorsModel.m */; };
 		34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E902089CA9F004CD04B /* PagingTableViewCell.m */; };
 		34528E942089E18C004CD04B /* IncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E932089E18C004CD04B /* IncomeViewController.m */; };
 		34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34528E972089EDB2004CD04B /* FinancialCollectionViewCell.m */; };
@@ -536,6 +538,10 @@
 		344F22A1208F25C1009ADA33 /* BankDetailListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailListTableViewCell.m; sourceTree = "<group>"; };
 		344F22A3208F403D009ADA33 /* DocumentBankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentBankDetailViewController.h; sourceTree = "<group>"; };
 		344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentBankDetailViewController.m; sourceTree = "<group>"; };
+		3452717020B2734A0001B65A /* AddColorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddColorCell.h; sourceTree = "<group>"; };
+		3452717120B2734A0001B65A /* AddColorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddColorCell.m; sourceTree = "<group>"; };
+		3452717520B2B6C20001B65A /* LZAddColorsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAddColorsModel.h; sourceTree = "<group>"; };
+		3452717620B2B6C20001B65A /* LZAddColorsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAddColorsModel.m; sourceTree = "<group>"; };
 		34528E8F2089CA9F004CD04B /* PagingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagingTableViewCell.h; sourceTree = "<group>"; };
 		34528E902089CA9F004CD04B /* PagingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagingTableViewCell.m; sourceTree = "<group>"; };
 		34528E922089E18C004CD04B /* IncomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeViewController.h; sourceTree = "<group>"; };
@@ -1172,6 +1178,7 @@
 		343747F72094620700C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
+				3452716F20B2723C0001B65A /* product(产品资料) */,
 				3464458520AD71DE00D6A06B /* client(客户) */,
 				B577CE8D20AA78550001B8B8 /* organization(组织架构) */,
 				34EE5D9020A696E400A2C9B5 /* store(店铺) */,
@@ -1276,6 +1283,24 @@
 				343747EE2094207F00C64F4C /* StockTrackingCell.m */,
 			);
 			path = "warehouse(仓库)";
+			sourceTree = "<group>";
+		};
+		3452716F20B2723C0001B65A /* product(产品资料) */ = {
+			isa = PBXGroup;
+			children = (
+				3452717020B2734A0001B65A /* AddColorCell.h */,
+				3452717120B2734A0001B65A /* AddColorCell.m */,
+			);
+			path = "product(产品资料)";
+			sourceTree = "<group>";
+		};
+		3452717320B2B6820001B65A /* product(产品资料) */ = {
+			isa = PBXGroup;
+			children = (
+				3452717520B2B6C20001B65A /* LZAddColorsModel.h */,
+				3452717620B2B6C20001B65A /* LZAddColorsModel.m */,
+			);
+			path = "product(产品资料)";
 			sourceTree = "<group>";
 		};
 		34528E952089E816004CD04B /* financial(财务) */ = {
@@ -2127,6 +2152,7 @@
 		B55ADE0B20A554A5000F9C4A /* Setting设置 */ = {
 			isa = PBXGroup;
 			children = (
+				3452717320B2B6820001B65A /* product(产品资料) */,
 				34F1E98020AEF4CA00EFAB7D /* clientManager(客户管理) */,
 				B577CE9220AA78640001B8B8 /* organization(组织架构) */,
 				B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */,
@@ -2367,6 +2393,7 @@
 				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyNavigation/EasyNavigation.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
@@ -2385,6 +2412,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyNavigation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
@@ -2675,12 +2703,14 @@
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
+				3452717220B2734A0001B65A /* AddColorCell.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
 				34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */,
 				B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */,
+				3452717720B2B6C20001B65A /* LZAddColorsModel.m in Sources */,
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,
 				B50505C7209AB2DA00CE7E4D /* XLFormDescriptor.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,

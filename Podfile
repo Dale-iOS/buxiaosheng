@@ -20,4 +20,6 @@ inhibit_all_warnings!
     pod 'SVProgressHUD'
     pod 'MJExtension'
     pod 'MLeaksFinder'
+    pod 'IQKeyboardManager'
 end
+

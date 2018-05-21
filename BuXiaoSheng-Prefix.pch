@@ -31,6 +31,7 @@
 #import "NSObject+LLMJParse.h"
 #import "BXSTools.h"
 
+
 //点击事件
 #define addGestureRecognizer(viewName,clickName) do {                                                                          viewName.userInteractionEnabled = YES;\
 [viewName addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickName)]];\
