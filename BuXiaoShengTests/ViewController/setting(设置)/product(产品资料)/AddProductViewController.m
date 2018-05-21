@@ -347,11 +347,104 @@
 
 - (void)addColorCellTapAction
 {
+    
+  
+    
+    
+    
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
    
+    [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
+        _array = [muColosArray copy];
+        
+        //添加颜色
+        UIView *addColorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+        addColorView.backgroundColor = [UIColor whiteColor];
+        addColorView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *addColorCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addColorCellTapAction)];
+        [addColorView addGestureRecognizer:addColorCellTap];
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"添加颜色";
+        label.font = FONT(14);
+        label.textColor = CD_Text33;
+        [addColorView addSubview:label];
+        label.sd_layout
+        .leftSpaceToView(addColorView, 15)
+        .centerYEqualToView(addColorView)
+        .widthIs(60)
+        .heightIs(15);
+        UIImageView *addIM = [[UIImageView alloc]init];
+        addIM.image = IMAGE(@"add1");
+        [addColorView addSubview:addIM];
+        addIM.sd_layout
+        .widthIs(22)
+        .heightIs(22)
+        .centerYEqualToView(addColorView)
+        .rightSpaceToView(addColorView, 15);
+        UIView *lineView = [[UIView alloc]init];
+        lineView.backgroundColor = LZHBackgroundColor;
+        [addColorView addSubview:lineView];
+        lineView.sd_layout
+        .widthIs(APPWidth)
+        .heightIs(1)
+        .leftSpaceToView(addColorView, 0)
+        .bottomSpaceToView(addColorView, 0);
+        
+        //返回的颜色
+        UIView *colorsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 200)];
+        
+        int col = 4;
+        
+        int margin = 10;
+        
+        for (int i = 0; i <_array.count ; i++) {
+            int page = i/col;
+            int index = i%col;
+            
+            UILabel *label = [[UILabel alloc]init];
+            
+            
+            if (APPWidth > IPHONE6PLUS_WIDTH) {
+                label = [[UILabel alloc]initWithFrame:CGRectMake(margin + index*(APPWidth - (col + 1)*margin)/col + margin*index,40*page + 5,(APPWidth *140 / 750),(APPWidth *90 / 750)*5/14)];
+            }else{
+                
+                label = [[UILabel alloc]initWithFrame:CGRectMake(margin + index*(APPWidth - (col + 1)*margin)/col + margin*index,40*page + 5,(APPWidth *140 / 750),(APPWidth *140 / 750)*5/14)];
+            }
+            
+            if (i==7 && IPHONE5) {
+                label = [[UILabel alloc]initWithFrame:CGRectMake(margin + index*(APPWidth - (col + 1)*margin)/col + margin*index,40*page + 5,(APPWidth *140 / 750 +10),(APPWidth *140 / 750)*5/14)];
+            }
+            
+            label.layer.borderColor = [UIColor blackColor].CGColor;
+            label.layer.borderWidth = 1;
+            
+            label.text = _array[i];
+            label.textAlignment = NSTextAlignmentCenter;
+            
+            colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
+            [colorsView addSubview:label];
+        }
+        UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        headerView.backgroundColor = LZHBackgroundColor;
+        
+        LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+        item.sectionRows = @[addColorView,colorsView];
+        item.canSelected = NO;
+        item.sectionView = headerView;
+        
+        
+        [self.datasource replaceObjectAtIndex:2 withObject:item];
+        [self.mainTabelView reloadData];
+        NSLog(@"sadr");
+    }];
     
-    
+//    [vc setColorsArrayBlock:^(NSMutableArray *muArray) {
+//        _array = [muArray copy];
+//        [weakSelf.datasource replaceObjectAtIndex:2 withObject:item];
+//        [weakSelf.mainTabelView reloadData];
+//    }];
+//
     
 //!!!!:    添加颜色测试（假的）
 //    NSMutableArray *tmpArray = [NSMutableArray arrayWithArray:_array];
@@ -390,10 +483,10 @@
 //    .heightIs(1)
 //    .leftSpaceToView(addColorView, 0)
 //    .bottomSpaceToView(addColorView, 0);
-// 
+//
 //    //返回的颜色
 //    UIView *colorsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 200)];
-//    
+//
 //    int col = 4;
 //    
 //    int margin = 10;

@@ -11,5 +11,7 @@
 
 @interface AddColorViewController : BaseViewController
 
+@property (nonatomic,copy) void(^ColorsArrayBlock)(NSMutableArray *muParamArray,NSMutableArray *muColosArray);
+
 @end
 

@@ -25,7 +25,7 @@
         self.selectionStyle = UITableViewCellAccessoryNone;
         self.backgroundColor = [UIColor whiteColor];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanging:) name:UITextFieldTextDidEndEditingNotification object:self.contentTF];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanging:) name:UITextFieldTextDidChangeNotification object:self.contentTF];
         
         [self setSDautoLayout];
     }

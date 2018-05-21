@@ -126,54 +126,123 @@
 //确认按钮
 - (void)selectornavRightBtnClick
 {
-    if (!self.colorsmodel.color0&&!self.colorsmodel.color1&&!self.colorsmodel.color2&&!self.colorsmodel.color3&&!self.colorsmodel.color4&&!self.colorsmodel.color5&&!self.colorsmodel.color6&&!self.colorsmodel.color7) {
-        BXS_Alert(@"请至少填写一个颜色");
-        return;
-    }
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    for (int i = 0; i<8; i++) {
-        switch (0) {
-            case 0:
-                param[@"name"] = self.colorsmodel.color0 ? : @"";
-                break;
-            case 1:
-                 param[@"name"] = self.colorsmodel.color1 ? : @"";
-                break;
-            case 2:
-                 param[@"name"] = self.colorsmodel.color2 ? : @"";
-                break;
-            case 3:
-                 param[@"name"] = self.colorsmodel.color3 ? : @"";
-                break;
-            case 4:
-                
-                param[@"name"] = self.colorsmodel.color4 ? : @"";
-                
-                break;
-            case 5:
-                 param[@"name"] = self.colorsmodel.color5 ? : @"";
-                break;
-            case 6:
-                 param[@"name"] = self.colorsmodel.color6 ? : @"";
-                break;
-            case 7:
-                param[@"name"] = self.colorsmodel.color6 ? : @"";
-                break;
-            default:
-                break;
+//    if (!self.colorsmodel.color0&&!self.colorsmodel.color1&&!self.colorsmodel.color2&&!self.colorsmodel.color3&&!self.colorsmodel.color4&&!self.colorsmodel.color5&&!self.colorsmodel.color6&&!self.colorsmodel.color7) {
+//        BXS_Alert(@"请至少填写一个颜色");
+//        return;
+//    }
+    
+//    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+//    for (int i = 0; i<8; i++) {
+//        switch (0) {
+//            case 0:
+//                param[@"name"] = self.colorsmodel.color0 ? : @"";
+//                break;
+//            case 1:
+//                 param[@"name"] = self.colorsmodel.color1 ? : @"";
+//                break;
+//            case 2:
+//                 param[@"name"] = self.colorsmodel.color2 ? : @"";
+//                break;
+//            case 3:
+//                 param[@"name"] = self.colorsmodel.color3 ? : @"";
+//                break;
+//            case 4:
+//
+//                param[@"name"] = self.colorsmodel.color4 ? : @"";
+//
+//                break;
+//            case 5:
+//                 param[@"name"] = self.colorsmodel.color5 ? : @"";
+//                break;
+//            case 6:
+//                 param[@"name"] = self.colorsmodel.color6 ? : @"";
+//                break;
+//            case 7:
+//                param[@"name"] = self.colorsmodel.color6 ? : @"";
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+    NSMutableArray *muArray = [NSMutableArray array];
+    NSMutableArray *muArray1 = [NSMutableArray array];
+    for (int i = 0 ; i < 8; i++) {
+        if (i == 0 && self.colorsmodel.color0.length >0) {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color0 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color0];
         }
+        else if (i == 1 && self.colorsmodel.color1.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color1 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color1];
+        }
+        else if (i == 2 && self.colorsmodel.color2.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color2 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color2];
+        }
+        else if (i == 3 && self.colorsmodel.color3.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color3 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color3];
+        }
+        else if (i == 4 && self.colorsmodel.color4.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color4 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color4];
+        }
+        else if (i == 5 && self.colorsmodel.color5.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color5 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color5];
+        }
+        else if (i == 6 && self.colorsmodel.color6.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color6 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color6];
+        }
+        else if (i == 7 && self.colorsmodel.color7.length >0)
+        {
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"name"] = self.colorsmodel.color7 ? : @"";
+            [muArray addObject:param];
+            [muArray1 addObject:self.colorsmodel.color7];
+        }
+
     }
-    NSData * paramData = [param mj_JSONData];
-    if (paramData) {
-       NSString * paramStr =   [NSJSONSerialization JSONObjectWithData:paramData options:NSJSONReadingAllowFragments error:nil];
+    
+//    NSData * paramData = [param mj_JSONData];
+//    if (paramData) {
+//       NSString * paramStr =   [NSJSONSerialization JSONObjectWithData:paramData options:NSJSONReadingAllowFragments error:nil];
+//    }
+    
+//    NSLog(@"%@",muArray);
+//
+
+    if (self.ColorsArrayBlock) {
+        self.ColorsArrayBlock(muArray, muArray1);
     }
     
-  
+    if (muArray.count > 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        BXS_Alert(@"请至少填写一个颜色");
+    }
     
-    
-    
-    NSLog(@"selectornavRightBtnClick");
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
