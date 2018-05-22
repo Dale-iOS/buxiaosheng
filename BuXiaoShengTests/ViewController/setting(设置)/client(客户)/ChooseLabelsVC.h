@@ -19,6 +19,6 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
 
 @property (nonatomic,assign) DrawerType drawerType; // 抽屉类型
 
-@property (nonatomic,copy) void(^LabelsArrayBlock)(NSString *labelString);
+@property (nonatomic,copy) void(^LabelsArrayBlock)(NSString *labelString,NSString *id);
 
 @end

@@ -17,7 +17,7 @@
 #import "ChooseLabelsVC.h"
 #import "LZClientDetailsModel.h"
 
-@interface AddClienViewController ()<LZHTableViewDelegate>
+@interface AddClienViewController ()<LZHTableViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -215,6 +215,8 @@
     self.quotaCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.quotaCell.contentTF.placeholder = @"给客户的信用额度";
     self.quotaCell.titleLabel.text = @"信用额度";
+    self.quotaCell.contentTF.delegate = self;
+    self.quotaCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     
     //超额度操作
     self.exceedQuotaCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
@@ -337,9 +339,9 @@
         
         [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
         
-        
-        [vc setLabelsArrayBlock:^(NSString *labelString) {
+        [vc setLabelsArrayBlock:^(NSString *labelString, NSString *id) {
             self.tallyCell.contentTF.text = labelString;
+            self.labelslId = id;
         }];
 
     }else if (indexPath.section == 1 && indexPath.row == 1){
@@ -431,9 +433,9 @@
     }
     
     NSInteger exceedQuotas = -1;
-    if ([self.stateCell.contentTF.text isEqualToString:@"提醒"]) {
+    if ([self.exceedQuotaCell.contentTF.text isEqualToString:@"提醒"]) {
         exceedQuotas = 0;
-    }else if ([self.stateCell.contentTF.text isEqualToString:@"单据"]){
+    }else if ([self.exceedQuotaCell.contentTF.text isEqualToString:@"不能保存单据"]){
         exceedQuotas = 1;
     }
     
@@ -466,6 +468,80 @@
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+  
+    //当不是信用额度cell，直接不走下面方法
+    if (textField != self.quotaCell.contentTF) {
+        return YES;
+    }
+    
+    //限制只能输入数字
+    BOOL isHaveDian = YES;
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
+    
+    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+        isHaveDian = NO;
+    }
+    if ([string length] > 0) {
+        
+        unichar single = [string characterAtIndex:0];//当前输入的字符
+        if ((single >= '0' && single <= '9') || single == '.') {//数据格式正确
+            
+            if([textField.text length] == 0){
+                if(single == '.') {
+                    [LLHudTools showWithMessage:@"只能输入数字和小数点"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }
+            
+            //输入的字符是否是小数点
+            if (single == '.') {
+                if(!isHaveDian)//text中还没有小数点
+                {
+                    isHaveDian = YES;
+                    return YES;
+                    
+                }else{
+                    
+                   [LLHudTools showWithMessage:@"只能输入数字和小数点"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }else{
+                if (isHaveDian) {//存在小数点
+                    
+                    //判断小数点的位数
+                    NSRange ran = [textField.text rangeOfString:@"."];
+                    if (range.location - ran.location <= 2) {
+                        return YES;
+                    }else{
+                        [LLHudTools showWithMessage:@"只能输入数字和小数点"];
+                        return NO;
+                    }
+                }else{
+                    return YES;
+                }
+            }
+        }else{//输入的数据格式不正确
+           [LLHudTools showWithMessage:@"只能输入数字和小数点"];
+            [textField.text stringByReplacingCharactersInRange:range withString:@""];
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,6 +10,7 @@
 
 @interface LLAddNewPeopleModel : NSObject
 @property (nonatomic,copy) NSString * deptId;
+@property (nonatomic,copy) NSString * deptName;
 @property (nonatomic,copy) NSString * id;
 @property (nonatomic,copy) NSString * loginName;
 @property (nonatomic,copy) NSString * mobile;

@@ -26,20 +26,26 @@
         case 0:
             _leftLable.text = @"选择部门";
             _rightTextFild.placeholder = @"请选择部门";
+            _rightTextFild.text = _model.deptName;
+            _rightTextFild.enabled = false;
+            _rightTextFild.textColor = CD_Text33;
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 1:
             _leftLable.text = @"人员名称";
             _rightTextFild.text = _model.realName;
+            _rightTextFild.textColor = CD_Text33;
             break;
         case 2:
             _leftLable.text = @"账号";
-            _rightTextFild.enabled = false;
+//            _rightTextFild.enabled = false;
             _rightTextFild.text = _model.loginName;
+            _rightTextFild.textColor = CD_Text33;
             break;
         case 3:
             _leftLable.text = @"账号登录密码";
-            _rightTextFild.placeholder = @"请设置登录密码";
+            _rightTextFild.placeholder = @"请重新设置密码";
+            _rightTextFild.secureTextEntry = YES;
             break;
         default:
             break;

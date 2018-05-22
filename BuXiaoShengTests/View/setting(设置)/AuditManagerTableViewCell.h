@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AuditManagerTableViewCellDelegate <NSObject>
+
+- (void)didClickDeletBtnInCell:(UITableViewCell *)cell;
+
+@end
+
 @interface AuditManagerTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) id<AuditManagerTableViewCellDelegate> delegate;
 ///图标
 @property (nonatomic, strong)UIImageView *iconImageView;
 
@@ -19,7 +26,7 @@
 ///名字
 @property (nonatomic, strong)UILabel *titleLabel;
 
-/////删除
-//@property (nonatomic, strong)UILabel *deletLabel;
+///删除
+@property (nonatomic, strong)UIButton *deletBtn;
 
 @end

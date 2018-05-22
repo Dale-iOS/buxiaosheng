@@ -9,7 +9,7 @@
 #import "AuditManagerTableViewCell.h"
 
 @implementation AuditManagerTableViewCell
-@synthesize iconImageView,iconNameLabel,titleLabel;
+@synthesize iconImageView,iconNameLabel,titleLabel,deletBtn;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -43,7 +43,7 @@
     if (iconNameLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"周鹏 ";
+//        label.text = @"周鹏 ";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
         label.textColor = [UIColor whiteColor];
@@ -58,7 +58,7 @@
     {
         UILabel *label = [[UILabel alloc]init];
         label.textAlignment = NSTextAlignmentLeft;
-        label.text = @"罗志祥";
+//        label.text = @"罗志祥";
         label.font = FONT(14);
         label.textColor = CD_Text33;
         [contentView addSubview:(titleLabel = label)];
@@ -66,19 +66,19 @@
     return titleLabel;
 }
 
-//- (UILabel *)deletLabel
-//{
-//    if (!deletLabel)
-//    {
-//        UILabel *label = [[UILabel alloc]init];
-//        label.textAlignment = NSTextAlignmentRight;
-//        label.text = @"删除";
-//        label.font = FONT(12);
-//        label.textColor = CD_Text33;
-//        [contentView addSubview:(deletLabel = label)];
-//    }
-//    return deletLabel;
-//}
+- (UIButton *)deletBtn
+{
+    if (!deletBtn) {
+        
+        UIButton *btn = [UIButton new];
+        [btn setTitle:@"删除" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(deletBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = FONT(12);
+        [btn setTitleColor:CD_Text33 forState:UIControlStateNormal];
+        [contentView addSubview:(deletBtn = btn)];
+    }
+    return deletBtn;
+}
 
 - (void)setSDlayout
 {
@@ -100,11 +100,18 @@
     .leftSpaceToView(self.iconImageView, 10)
     .centerYEqualToView(contentView);
     
-//    self.deletLabel.sd_layout
-//    .widthIs(30)
-//    .heightIs(13)
-//    .rightSpaceToView(contentView, 15)
-//    .centerYEqualToView(contentView);
+    self.deletBtn.sd_layout
+    .widthIs(30)
+    .heightIs(13)
+    .rightSpaceToView(contentView, 15)
+    .centerYEqualToView(contentView);
+}
+
+- (void)deletBtnClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickDeletBtnInCell:)]) {
+        [self.delegate didClickDeletBtnInCell:self];
+    }
 }
 
 - (void)awakeFromNib {

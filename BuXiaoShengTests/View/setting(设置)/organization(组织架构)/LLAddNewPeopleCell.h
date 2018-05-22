@@ -11,4 +11,5 @@
 @interface LLAddNewPeopleCell : UITableViewCell
 @property (nonatomic,strong) LLAddNewPeopleModel * model;
 @property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic, strong) UITextField * rightTextFild;
 @end

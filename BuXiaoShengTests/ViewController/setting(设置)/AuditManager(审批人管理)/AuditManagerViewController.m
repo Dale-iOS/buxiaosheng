@@ -10,7 +10,7 @@
 #import "AuditManagerTableViewCell.h"
 #import "AddAuditManagerViewController.h"
 #import "LLAuditMangerModel.h"
-@interface AuditManagerViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AuditManagerViewController ()<UITableViewDelegate,UITableViewDataSource,AuditManagerTableViewCellDelegate>
 
 @property (nonatomic, strong)UITableView *tableView;
 
@@ -105,8 +105,10 @@
 {
     static NSString *cellID = @"AuditManagerTableViewCell";
     AuditManagerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
     if (cell == nil) {
         cell = [[AuditManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.delegate = self;
     }
     NSString *nameStr = self.names[indexPath.row][@"memberName"];
     if (nameStr.length > 3) {
@@ -114,7 +116,7 @@
     }else{
         cell.iconNameLabel.text = nameStr;
     }
-    cell.iconNameLabel.text = self.names[indexPath.row][@"memberName"];
+//    cell.iconNameLabel.text = self.names[indexPath.row][@"memberName"];
      cell.titleLabel.text = self.names[indexPath.row][@"memberName"];
     
     return cell;
@@ -126,10 +128,54 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)didClickDeletBtnInCell:(UITableViewCell *)cell
+{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定删除该审批人？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        NSLog(@"取消执行");
+        
+    }];
+
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        NSDictionary * param = @{
+                                 @"companyId":[BXSUser currentUser].companyId,
+                                 @"id":self.names[indexP.row][@"id"]
+                                 };
+        [BXSHttp requestPOSTWithAppURL:@"approver/delete.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+           
+            if ([baseModel.code integerValue] != 200) {
+                return ;
+            }
+             [LLHudTools showWithMessage:@"删除成功"];
+            [self setupData];
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)deleteManager
+{
+  
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
-
 
 @end

@@ -122,12 +122,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+//    ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    
+//    cell.backgroundColor = [UIColor blueColor];
+    
     LLFactoryModel *model = self.labels[indexPath.row];
     if (self.LabelsArrayBlock) {
         self.LabelsArrayBlock(model.name);
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+   
     
     //    NSString *message = [[NSString alloc] initWithFormat:@"你点击了第%ld个section，第%ld个cell",(long)indexPath.section,(long)indexPath.row];
     //
@@ -188,7 +194,7 @@
 //底部的确认按钮
 - (void)nextBtnClick
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didClickAddBtnInTextfeild:(UIView *)view withContentInTextfeild:(NSString *)contentStr

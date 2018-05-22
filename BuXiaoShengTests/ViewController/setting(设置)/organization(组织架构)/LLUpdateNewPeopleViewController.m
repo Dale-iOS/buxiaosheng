@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加人员页面
+//  添加人员
 
 #import "LLUpdateNewPeopleViewController.h"
 #import "LLAddNewPeopleModel.h"
@@ -13,12 +13,24 @@
 #import "LLAddNewsPepleContainerCell.h"
 #import "LLAddNewPeoleRoleModel.h"
 #import "LLAddPermissionsVc.h"
+#import "LZPickerView.h"
+#import "LZDeptListModel.h"
+
 @interface LLUpdateNewPeopleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSDictionary * details;
 
 @property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*>* roles;
+@property (nonatomic,strong) LLAddNewPeopleModel * detailModel;
+
+@property (nonatomic, strong) NSArray <LZDeptListModel *> *lists;
+
+@property (nonatomic, strong) NSArray *nameAry;
+@property (nonatomic, strong) NSArray *idAry;
+@property (nonatomic, strong) NSArray *companyIdAry;
+@property (nonatomic, copy) NSString *idStr;
+@property (nonatomic, copy) NSString *companyldStr;
 @end
 
 @implementation LLUpdateNewPeopleViewController
@@ -28,6 +40,7 @@
     [super viewDidLoad];
   
     [self setupUI];
+    [self setupPartsList];
     [self setupData];
     [self setupDepartmentData];
     
@@ -65,11 +78,10 @@
         make.bottom.equalTo(self.view).offset(-LLAddHeight);
     }];
     
-    
 }
 
 -(void)setupData{
-
+//用户详情接口
     NSDictionary * param = @{@"id":self.model.id};
     [BXSHttp requestGETWithAppURL:@"member/detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -78,6 +90,8 @@
             return ;
         }
         self.details = baseModel.data;
+        self.detailModel = [LLAddNewPeopleModel LLMJParse:baseModel.data];
+        self.idStr = self.detailModel.id;
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -117,6 +131,39 @@
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
+
+//获取部门列表数据
+- (void)setupPartsList
+{
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].companyId
+                             };
+    [BXSHttp requestPOSTWithAppURL:@"dept/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        self.lists = [LZDeptListModel LLMJParse:baseModel.data];
+        NSMutableArray *CompanyIdMuArray= [NSMutableArray array];
+        NSMutableArray *IdMuArray = [NSMutableArray array];
+        NSMutableArray *NameMuArray = [NSMutableArray array];
+        for (int i = 0; i < self.lists.count ; i++) {
+            LZDeptListModel *model = self.lists[0];
+            if (model.companyId.length > 0 && model.id.length > 0 && model.name.length > 0) {
+                [CompanyIdMuArray addObject:model.companyId];
+                [IdMuArray addObject:model.id];
+                [NameMuArray addObject:model.name];
+            }
+            self.companyIdAry = [CompanyIdMuArray mutableCopy];
+            self.idAry = [IdMuArray mutableCopy];
+            self.nameAry = [NameMuArray mutableCopy];
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.roles.count+1;
@@ -211,7 +258,7 @@
         }
         LLAddNewPeopleCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLAddNewPeopleCell"];
         cell.indexPath = indexPath;
-        cell.model = [LLAddNewPeopleModel LLMJParse:self.details];
+        cell.model = self.detailModel;
         return cell;
         
     }
@@ -233,6 +280,35 @@
     int lineCount =
     (self.roles[indexPath.section-1].itemList.count%4) ? ((int)(self.roles[indexPath.section-1].itemList.count/4 + 1)): ((int)(self.roles[indexPath.section-1].itemList.count/4));
     return lineCount*LLScale_WIDTH(130)+lineCount*15 + 15;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        LLAddNewPeopleCell *cell = (LLAddNewPeopleCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        if (self.nameAry.count < 1) {
+            [LLHudTools showWithMessage:@"暂无部门可选"];
+            return;
+        }
+        WEAKSELF
+        if (indexPath.row == 0 && indexPath.section == 0) {
+            
+            LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.nameAry titleDataArray:nil];
+            
+            pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+                cell.rightTextFild.text = compoentString;
+                NSInteger row = [titileString integerValue];
+                weakSelf.idStr = weakSelf.idAry[row];
+                weakSelf.companyldStr = weakSelf.companyIdAry[row];
+                
+            };
+            [self.view addSubview:pickerView];
+            
+        }
+
+    }
+    
 }
 
 -(void)addPermissionsClick {
