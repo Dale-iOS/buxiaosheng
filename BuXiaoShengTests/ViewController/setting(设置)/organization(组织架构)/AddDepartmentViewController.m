@@ -8,8 +8,8 @@
 
 #import "AddDepartmentViewController.h"
 
-@interface AddDepartmentViewController ()
-
+@interface AddDepartmentViewController ()<UITextFieldDelegate>
+@property (nonatomic,strong)UITextField *nameTf;
 @end
 
 @implementation AddDepartmentViewController
@@ -43,11 +43,12 @@
     newDepartmentLbl.textColor = CD_Text33;
     [whiteBgView addSubview:newDepartmentLbl];
     
-    UITextField *nameTf = [[UITextField alloc]init];
-    nameTf.placeholder = @"请输入部门名称";
-    nameTf.textColor = CD_Text33;
-    nameTf.font = FONT(14);
-    [whiteBgView addSubview:nameTf];
+    self.nameTf = [[UITextField alloc]init];
+    self.nameTf.delegate = self;
+    self.nameTf.placeholder = @"请输入部门名称";
+    self.nameTf.textColor = CD_Text33;
+    self.nameTf.font = FONT(14);
+    [whiteBgView addSubview:self.nameTf];
     
     //自动布局
     newDepartmentLbl.sd_layout
@@ -56,7 +57,7 @@
     .heightRatioToView(whiteBgView, 1)
     .topEqualToView(whiteBgView);
     
-    nameTf.sd_layout
+    self.nameTf.sd_layout
     .topEqualToView(whiteBgView)
     .leftSpaceToView(whiteBgView, 130)
     .heightRatioToView(whiteBgView, 1)
@@ -65,7 +66,25 @@
 
 - (void)selectornavRightBtnClick
 {
-    
+
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"name":self.nameTf.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"dept/add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+//        [LLHudTools showWithMessage:@"新增成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [LLHudTools showWithMessage:@"部门添加成功"];
+            [self.navigationController popViewControllerAnimated:true];
+        });
+       
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

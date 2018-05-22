@@ -154,9 +154,9 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+//
     AlterProductViewController *vc = [[AlterProductViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }

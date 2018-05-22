@@ -26,7 +26,7 @@
         self.tf.layer.cornerRadius = 5.0f;
         self.tf.textColor = CD_Text33;
         self.tf.delegate = self;
-        self.tf.backgroundColor = [UIColor yellowColor];
+        self.tf.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.tf];
         
         
@@ -44,7 +44,7 @@
         addLbl.textAlignment = NSTextAlignmentCenter;
         addLbl.textColor = CD_Text66;
         addLbl.font = FONT(12);
-        addLbl.userInteractionEnabled = NO;
+//        addLbl.userInteractionEnabled = NO;
         [addView addSubview:addLbl];
         addLbl.sd_layout
         .widthIs(25)
@@ -84,8 +84,8 @@
 
 - (void)tapClick
 {
-    if ([self.delegate respondsToSelector:@selector(didClickAddBtnInTextfeild:)]) {
-        [self.delegate didClickAddBtnInTextfeild:self];
+    if ([self.delegate respondsToSelector:@selector(didClickAddBtnInTextfeild:withContentInTextfeild:)]) {
+        [self.delegate didClickAddBtnInTextfeild:self withContentInTextfeild:self.tf.text];
     }
 }
 

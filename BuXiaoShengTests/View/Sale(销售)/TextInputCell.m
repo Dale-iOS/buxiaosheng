@@ -8,8 +8,8 @@
 
 #import "TextInputCell.h"
 
-//@interface TextInputCell()<UITextFieldDelegate>
-//@end
+@interface TextInputCell()<UITextFieldDelegate>
+@end
 
 @implementation TextInputCell
 @synthesize titleLabel,contentTF,hintLabel,rightArrowImageVIew,lineView;
@@ -52,7 +52,7 @@
         tf.font = FONT(14);
 //        tf.backgroundColor = [UIColor redColor];
         tf.textAlignment = NSTextAlignmentLeft;
-//        tf.delegate = self;
+        tf.delegate = self;
 //        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 //        tf.clearButtonMode = UITextFieldViewModeWhileEditing;
         [self addSubview:(contentTF = tf)];

@@ -60,6 +60,9 @@
 		3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 344080282087364300FD36B8 /* YANFlowLayout.m */; };
 		3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802A2087364300FD36B8 /* YANScrollMenu.m */; };
 		3440802F2087367F00FD36B8 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3440802D2087367F00FD36B8 /* DataSource.m */; };
+		34410EC420B3EF8100CE490E /* ChooseAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34410EC320B3EF8100CE490E /* ChooseAddressVC.m */; };
+		34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */; };
+		34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34410EC920B4041C00CE490E /* LZDeptListModel.m */; };
 		34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */; };
 		34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */; };
 		34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF32091A76200BDB309 /* ClientNeedsViewController.m */; };
@@ -514,6 +517,12 @@
 		3440802A2087364300FD36B8 /* YANScrollMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YANScrollMenu.m; sourceTree = "<group>"; };
 		3440802D2087367F00FD36B8 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		3440802E2087367F00FD36B8 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		34410EC220B3EF8100CE490E /* ChooseAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseAddressVC.h; sourceTree = "<group>"; };
+		34410EC320B3EF8100CE490E /* ChooseAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseAddressVC.m; sourceTree = "<group>"; };
+		34410EC520B3FBCB00CE490E /* AddDeptWorkerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddDeptWorkerVC.h; sourceTree = "<group>"; };
+		34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddDeptWorkerVC.m; sourceTree = "<group>"; };
+		34410EC820B4041C00CE490E /* LZDeptListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDeptListModel.h; sourceTree = "<group>"; };
+		34410EC920B4041C00CE490E /* LZDeptListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDeptListModel.m; sourceTree = "<group>"; };
 		34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouseHomeViewController.h; sourceTree = "<group>"; };
 		34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouseHomeViewController.m; sourceTree = "<group>"; };
 		34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouserTableViewCell.h; sourceTree = "<group>"; };
@@ -1843,6 +1852,8 @@
 				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
 				34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */,
 				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
+				34410EC520B3FBCB00CE490E /* AddDeptWorkerVC.h */,
+				34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */,
 				34EE5D7620A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.h */,
 				34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */,
 				B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */,
@@ -1908,6 +1919,8 @@
 				3432078520A0087A005A5D23 /* SetClientViewController.m */,
 				3464458220AD6FF900D6A06B /* ChooseLabelsVC.h */,
 				3464458320AD6FF900D6A06B /* ChooseLabelsVC.m */,
+				34410EC220B3EF8100CE490E /* ChooseAddressVC.h */,
+				34410EC320B3EF8100CE490E /* ChooseAddressVC.m */,
 			);
 			path = "client(客户)";
 			sourceTree = "<group>";
@@ -2199,6 +2212,8 @@
 				B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */,
 				B577CEA220AA90A70001B8B8 /* LLAddNewPeoleRoleModel.h */,
 				B577CEA320AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m */,
+				34410EC820B4041C00CE490E /* LZDeptListModel.h */,
+				34410EC920B4041C00CE490E /* LZDeptListModel.m */,
 			);
 			path = "organization(组织架构)";
 			sourceTree = "<group>";
@@ -2576,6 +2591,7 @@
 				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
+				34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
 				34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */,
@@ -2646,6 +2662,7 @@
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
+				34410EC420B3EF8100CE490E /* ChooseAddressVC.m in Sources */,
 				34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */,
 				B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505B3209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
@@ -2720,6 +2737,7 @@
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
+				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */,
@@ -2984,7 +3002,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				DEVELOPMENT_TEAM = MWF6K77HK5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -3003,7 +3021,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				DEVELOPMENT_TEAM = MWF6K77HK5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;

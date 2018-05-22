@@ -12,6 +12,8 @@
 #import "LLAuditMangerModel.h"
 #import "LLAuditMangerSectionView.h"
 #import "LLAuditMangerCell.h"
+#import "AddDeptWorkerVC.h"
+
 @interface OrganizationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray <LLAuditMangerModel *> * manages;
@@ -176,7 +178,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LLUpdateNewPeopleViewController *vc = [[LLUpdateNewPeopleViewController alloc]init];
-    vc.model = self.manages[indexPath.section].itemList[indexPath.row];;
+    vc.model = self.manages[indexPath.section].itemList[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -212,7 +214,8 @@
 - (void)addPeopleViewTapAction
 {
     
-   
+    AddDeptWorkerVC *vc = [[AddDeptWorkerVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

@@ -10,7 +10,7 @@
 
 @protocol ChooseLablesCollectionReusableViewDelegate <NSObject>
 
-- (void)didClickAddBtnInTextfeild:(UIView *)view;
+- (void)didClickAddBtnInTextfeild:(UIView *)view withContentInTextfeild:(NSString *)contentStr;
 
 @end
 

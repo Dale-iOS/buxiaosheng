@@ -56,7 +56,7 @@
         // 中间显示  label
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(54, 0, APPWidth - 108, 44)];
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = @"选择类型";
+        titleLabel.text = @"请选择一项";
         titleLabel.font = [UIFont systemFontOfSize:13];
         [_toolsView addSubview:titleLabel];
         

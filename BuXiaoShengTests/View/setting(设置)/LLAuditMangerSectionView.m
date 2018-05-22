@@ -72,7 +72,7 @@
     _iconNameLabel = [UILabel new];
     _iconNameLabel.textAlignment = NSTextAlignmentCenter;
     [_iconImageView addSubview:_iconNameLabel];
-    _iconNameLabel.font = [UIFont systemFontOfSize:15];
+    _iconNameLabel.font = [UIFont systemFontOfSize:12];
     _iconNameLabel.textColor = [UIColor whiteColor];
     [_iconNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.equalTo(_iconImageView).offset(0);

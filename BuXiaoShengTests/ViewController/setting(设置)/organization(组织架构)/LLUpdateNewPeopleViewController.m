@@ -28,7 +28,7 @@
     [super viewDidLoad];
   
     [self setupUI];
-      [self setupData];
+    [self setupData];
     [self setupDepartmentData];
     
 }
@@ -69,6 +69,7 @@
 }
 
 -(void)setupData{
+
     NSDictionary * param = @{@"id":self.model.id};
     [BXSHttp requestGETWithAppURL:@"member/detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

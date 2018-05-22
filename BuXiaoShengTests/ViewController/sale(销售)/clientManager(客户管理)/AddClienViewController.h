@@ -12,6 +12,6 @@
 @interface AddClienViewController : BaseViewController
 
 @property (nonatomic,copy) NSString * id;
-@property (nonatomic,assign) BOOL  isFormSelect;  //yes 来源添加银行  false 更新银行
+@property (nonatomic,assign) BOOL  isFormSelect;  //yes 来源添加客户  false 更新客户
 
 @end

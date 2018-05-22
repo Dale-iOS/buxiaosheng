@@ -66,6 +66,7 @@
     [super viewDidLoad];
     
     [self setupUI];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,7 +74,7 @@
     [super viewWillAppear:animated];
     
     [self setupClientDetailData];
-    [self setupCustomerData];
+//    [self setupCustomerData];
     [self setupPrincipalData];
 }
 
@@ -295,12 +296,18 @@
         
         NSMutableArray *muArray1 = [NSMutableArray array];
         NSMutableArray *muArray2 = [NSMutableArray array];
-
-        for (int i = 0; i <= self.clienModel[0].itemList.count -1; i++) {
+        LZAuditMangerItemModel *model = [[LZAuditMangerItemModel alloc]init];
+        
+        for (int i = 0; i < self.clienModel.count ; i++) {
             
-            LZAuditMangerItemModel *model = self.clienModel[0].itemList[i];
-            [muArray1 addObject:model.name];
-            [muArray2 addObject:model.id];
+            if (self.clienModel[i].itemList.count >0) {
+                
+                model = self.clienModel[i].itemList[0];
+                
+                [muArray1 addObject:model.name];
+                [muArray2 addObject:model.id];
+            }
+  
         }
         self.principalNameAry = [muArray1 mutableCopy];
         self.principalIdAry = [muArray2 mutableCopy];
@@ -429,7 +436,6 @@
     }else if ([self.stateCell.contentTF.text isEqualToString:@"单据"]){
         exceedQuotas = 1;
     }
-    
     
     NSDictionary *param = @{
                            @"companyId":[BXSUser currentUser].companyId,

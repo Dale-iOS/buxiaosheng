@@ -12,6 +12,7 @@
 #import "ClientManagerTableViewCell.h"
 #import "SearchClientViewController.h"
 #import "AddClienViewController.h"
+#import "ChooseAddressVC.h"
 
 @interface AllCompanyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UITableView *tableView;
@@ -97,13 +98,9 @@
 - (void)setupData
 {
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"labelName":@"",
                             @"memberId":@"",
                             @"pageNo":@"1",
                             @"pageSize":@"20",
-                            @"searchName":@"",
-                            //                            @"status":@""
-                            
                             };
     [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
         
@@ -162,8 +159,45 @@
 //筛选点击
 - (void)tapGesOnClick
 {
-    SearchClientViewController *vc = [[SearchClientViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
+    vc.drawerType = DrawerDefaultRight1;
+    
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
+    conf.maskAlpha = 0.1;
+    
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    
+    
+    [vc setLabelsArrayBlock:^(NSString *labelString) {
+        
+        NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                                @"labelName":labelString,
+                                @"memberId":@"",
+                                @"pageNo":@"1",
+                                @"pageSize":@"20",
+                                @"searchName":@""
+                                
+                                };
+        [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
+            
+            LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                
+                [LLHudTools showWithMessage:baseModel.msg];
+            }
+            
+            self.clients = [LZClientManagerModel LLMJParse:baseModel.data];
+            _headLabel.text = [NSString stringWithFormat:@"共%zd人",self.clients.count];
+            [self.tableView reloadData];
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

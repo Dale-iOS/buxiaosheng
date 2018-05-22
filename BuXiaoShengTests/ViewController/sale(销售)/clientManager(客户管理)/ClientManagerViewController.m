@@ -14,6 +14,7 @@
 #import "FreezeViewController.h"
 
 #import "DrawerAddressViewController.h"
+#import "ChooseAddressVC.h"
 
 @interface ClientManagerViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 {
@@ -157,19 +158,19 @@
 // 导航栏左边按钮的点击事件
 - (void)tapGesOnClick
 {
-    // 自己随心所欲创建的一个控制器
-    DrawerAddressViewController *vc = [[DrawerAddressViewController alloc] init];
-    
-    vc.drawerType = DrawerDefaultRight;
-    
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-    conf.finishPercent = 0.2f;
-    conf.showAnimDuration = 0.2;
-    conf.HiddenAnimDuration = 0.2;
-    conf.maskAlpha = 0.1;
-    
-    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+//    // 自己随心所欲创建的一个控制器
+//    ChooseAddressVC *vc = [[ChooseAddressVC alloc] init];
+//    
+//    vc.drawerType = DrawerDefaultRight;
+//    
+//    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+//    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+//    conf.finishPercent = 0.2f;
+//    conf.showAnimDuration = 0.2;
+//    conf.HiddenAnimDuration = 0.2;
+//    conf.maskAlpha = 0.1;
+//    
+//    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
 }
 
 #pragma mark ----- pageTitleViewdelegate -----
