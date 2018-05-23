@@ -77,11 +77,7 @@
             cell.titileLabel.text = @"仓库";
         }
             break;
-//        case 3:
-//        {
-//            cell.iconImageView.image = IMAGE(@"sale");
-//        }
-//            break;
+
         default:
             break;
     }
@@ -110,8 +106,6 @@
     }
     
 }
-
-
 
 //设置itme大小
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加人员
+//  修改人员页面
 
 #import "LLUpdateNewPeopleViewController.h"
 #import "LLAddNewPeopleModel.h"

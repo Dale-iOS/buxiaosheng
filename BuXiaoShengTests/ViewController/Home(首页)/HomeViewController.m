@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "LZHTableView.h"
-#import "HomeEntranceView.h"
+//#import "HomeEntranceView.h"
 #import "SaleViewController.h"
 #import "SGPagingView.h"
 #import "NowDayViewController.h"
@@ -17,15 +17,19 @@
 #import "NowYearViewController.h"
 #import "AAChartKit.h"
 #import "SetHomeViewController.h"
+#import "LZHomeModel.h"
+#import "FinancialCollectionViewCell.h"
+#import "SaleViewController.h"
+#import "FinancialViewController.h"
+#import "WarehouseHomeViewController.h"
 
-
-@interface HomeViewController ()<LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate>
+@interface HomeViewController ()<LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (nonatomic, strong) UIView *headView;
 ///首页入口cell
-@property (nonatomic, strong) HomeEntranceView *entranceViewCell;
+//@property (nonatomic, strong) HomeEntranceView *entranceViewCell;
 
 ///折线图
 @property (nonatomic, strong) AAChartView  *aaChartView;
@@ -33,21 +37,12 @@
 
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
-
-
+@property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
+@property (nonatomic, strong) UICollectionView *collectView;
 @end
 
 @implementation HomeViewController
 @synthesize mainTabelView,headView;
-
-//- (id)init
-//{
-//    self = [self init];
-//    if (self) {
-//
-//    }
-//    return self;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,19 +50,55 @@
     self.navigationItem.titleView = [Utility navTitleView:@"龙纺布行"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"homesetup")];
 
-    [self.view addSubview:self.mainTabelView];
+    self.datasource = [NSMutableArray array];
+    self.mainTabelView.tableHeaderView = self.headView;
     self.mainTabelView.delegate = self;
+    [self setSectionOne];
+    [self setSectionTwo];
+    [self setSectionThree];
+    
+    self.mainTabelView.dataSoure = self.datasource;
+    
+    [self.view addSubview:self.mainTabelView];
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
-
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-    [self setupUI];
+    [self setupBtns];
+    
+}
+
+
+
+#pragma mark ----- 网络请求 -------
+- (void)setupBtns
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"home/button_home.do" param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.buttons = [LZHomeModel LLMJParse:baseModel.data];
+        if (self.buttons.count <5) {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+        }else
+        {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+        }
+        [self.collectView reloadData];
+        [self.mainTabelView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 #pragma mark -------- lazy loading --------
@@ -79,22 +110,7 @@
         UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 14, self.view.frame.size.width, 45)];
         headerView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:(headView = headerView)];
-        
-//        //龙纺布行 label
-//        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 15, 75, 19)];
-//        titleLabel.text = @"龙纺布行";
-//        titleLabel.font = [UIFont boldSystemFontOfSize:18];
-//        titleLabel.textColor = [UIColor blackColor];
-//        titleLabel.textAlignment = NSTextAlignmentLeft;
-//        [headerView addSubview:titleLabel];
-        
-        //导航栏右上角设置按钮
-//        UIButton *setupBtn = [UIButton new];
-//        setupBtn.frame = CGRectMake(self.view.frame.size.width -15-20, 15, 20, 20);
-//        [setupBtn setBackgroundImage:[UIImage imageNamed:@"homesetup"] forState:UIControlStateNormal];
-//        [setupBtn addTarget:self action:@selector(setupBtnOnClickAciont) forControlEvents:UIControlEventTouchUpInside];
-//        [headerView addSubview:setupBtn];
-        
+
         //阴影
         CAGradientLayer *layer = [CAGradientLayer layer];
         layer.startPoint = CGPointMake(0.5, 0);
@@ -124,18 +140,23 @@
 - (void)setSectionOne
 {
     
-    _entranceViewCell = [[HomeEntranceView alloc]init];
-    _entranceViewCell.frame = CGRectMake(0, 0, APPWidth, 120);
-    _entranceViewCell.userInteractionEnabled = YES;
+    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
+    flow.itemSize = CGSizeMake(APPWidth /4, 100);
+    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(entranceViewCellTapOnClick)];
-//    [_entranceViewCell addGestureRecognizer:tap];
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20, APPWidth, 200) collectionViewLayout:flow];
+    
+    [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
+    self.collectView.delegate = self;
+    self.collectView.dataSource = self;
+    self.collectView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:self.collectView];
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    //    item.sectionView = self.headView;
-    item.sectionRows = @[_entranceViewCell];
+    item.sectionRows = @[self.collectView];
+    item.canSelected = YES;
     [self.datasource addObject:item];
-    
+   
 }
 
 - (void)setSectionTwo
@@ -180,11 +201,8 @@
 
     /*图表视图对象调用图表模型对象,绘制最终图形*/
     [_aaChartView aa_drawChartWithChartModel:chartModel];
-    
-    
 
 }
-
 
 - (void)setSectionThree
 {
@@ -236,20 +254,67 @@
     [self.datasource addObject:item];
 }
 
+#pragma mark -------- collectionView --------
 
-- (void)setupUI
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.datasource = [NSMutableArray array];
+    static NSString *cellID = @"cellid";
+    FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    cell.indexPath = indexPath;
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
+    cell.model = model;
+  
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    self.mainTabelView.tableHeaderView = self.headView;
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
     
-    [self setSectionOne];
-    [self setSectionTwo];
-    [self setSectionThree];
+    if ([model.paramsIos isEqualToString:@"sales"]) {
+        
+        SaleViewController *vc = [[SaleViewController alloc]init];
+        vc.buttonId = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    if ([model.paramsIos isEqualToString:@"finance"])
+    {
+        FinancialViewController *vc = [[FinancialViewController alloc]init];
+        vc.buttonId = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    if ([model.paramsIos isEqualToString:@"warehouse"])
+    {
+        WarehouseHomeViewController *vc = [[WarehouseHomeViewController alloc]init];
+        vc.buttonId = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
-    self.mainTabelView.dataSoure = self.datasource;
     
 }
+
+
+//一组返回item数量
+- (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.buttons.count;
+}
+
+//设置itme大小
+-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(APPWidth /5, 80);
+}
+
+//设置每个item的边距
+-(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(1, 1, 1, 1);
+}
+
 
 #pragma  mark -------- SGPageTitleViewDelegate --------
 - (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
@@ -269,12 +334,12 @@
 }
 
 //点击销售入口按钮
-- (void)entranceViewCellTapOnClick
-{
-    
-    SaleViewController *saleVC = [[SaleViewController alloc]init];
-    [self.navigationController pushViewController:saleVC animated:YES];
-}
+//- (void)entranceViewCellTapOnClick
+//{
+//
+//    SaleViewController *saleVC = [[SaleViewController alloc]init];
+//    [self.navigationController pushViewController:saleVC animated:YES];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZHomeModel.h"
 
 @interface FinancialCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) UIImageView *iconImageView;
 @property (nonatomic, weak) UILabel *titileLabel;
-
+@property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,strong) LZHomeModel *model;
 @end

@@ -41,10 +41,16 @@
         label.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
-        label.text = @"阿四季豆阿萨德";
         [self.contentView addSubview:(titileLabel = label)];
     }
     return titileLabel;
+}
+
+- (void)setModel:(LZHomeModel *)model
+{
+    _model = model;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.logo]];
+    self.titileLabel.text = model.name;
 }
 
 - (void)setupUI

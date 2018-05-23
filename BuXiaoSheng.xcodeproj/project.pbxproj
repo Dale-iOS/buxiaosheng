@@ -49,6 +49,9 @@
 		343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D220A06A70005A5D23 /* YesAuditInStorageViewController.m */; };
 		343207D620A06AA6005A5D23 /* YesAuditApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */; };
 		343207D920A06AB5005A5D23 /* YesAuditSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */; };
+		3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0B620B5105B003FFC16 /* LZHomeModel.m */; };
+		3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0B920B53B8C003FFC16 /* UITextField+rightView.m */; };
+		3433D0BF20B56CE0003FFC16 /* SalesDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */; };
 		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F12094505300C64F4C /* StockTrackingViewController.m */; };
@@ -495,6 +498,12 @@
 		343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YesAuditApplyViewController.m; sourceTree = "<group>"; };
 		343207D720A06AB5005A5D23 /* YesAuditSellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesAuditSellViewController.h; sourceTree = "<group>"; };
 		343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YesAuditSellViewController.m; sourceTree = "<group>"; };
+		3433D0B520B5105B003FFC16 /* LZHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHomeModel.h; sourceTree = "<group>"; };
+		3433D0B620B5105B003FFC16 /* LZHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHomeModel.m; sourceTree = "<group>"; };
+		3433D0B820B53B8C003FFC16 /* UITextField+rightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+rightView.h"; sourceTree = "<group>"; };
+		3433D0B920B53B8C003FFC16 /* UITextField+rightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+rightView.m"; sourceTree = "<group>"; };
+		3433D0BD20B56CE0003FFC16 /* SalesDemandCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandCell.h; sourceTree = "<group>"; };
+		3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandCell.m; sourceTree = "<group>"; };
 		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
 		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
@@ -1165,6 +1174,33 @@
 			path = "Home(首页)";
 			sourceTree = "<group>";
 		};
+		3433D0B120B50E99003FFC16 /* home(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				3433D0B520B5105B003FFC16 /* LZHomeModel.h */,
+				3433D0B620B5105B003FFC16 /* LZHomeModel.m */,
+			);
+			path = "home(首页)";
+			sourceTree = "<group>";
+		};
+		3433D0BB20B557EF003FFC16 /* salesDemand(销售需求) */ = {
+			isa = PBXGroup;
+			children = (
+				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
+				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
+			);
+			path = "salesDemand(销售需求)";
+			sourceTree = "<group>";
+		};
+		3433D0BC20B56A25003FFC16 /* salesDemand(销售需求) */ = {
+			isa = PBXGroup;
+			children = (
+				3433D0BD20B56CE0003FFC16 /* SalesDemandCell.h */,
+				3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */,
+			);
+			path = "salesDemand(销售需求)";
+			sourceTree = "<group>";
+		};
 		343747F3209460DF00C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1367,11 +1403,10 @@
 		347D64C9207F05ED00407FC4 /* sale(销售) */ = {
 			isa = PBXGroup;
 			children = (
+				3433D0BB20B557EF003FFC16 /* salesDemand(销售需求) */,
 				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
 				34A92B5C207DEF2400572648 /* SaleViewController.h */,
 				34A92B5D207DEF2400572648 /* SaleViewController.m */,
-				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
-				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
 				B58BF6FA20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.h */,
 				B58BF6FB20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m */,
 				345E747A20835B5F004B49B3 /* OrderTrackingViewController.h */,
@@ -1476,6 +1511,8 @@
 				34EA5BC5208B276B0048CFE1 /* UIView+Extensions.m */,
 				34A0ED9A20809E9700659190 /* UITextView+Placeholder.h */,
 				34A0ED9920809E9700659190 /* UITextView+Placeholder.m */,
+				3433D0B820B53B8C003FFC16 /* UITextField+rightView.h */,
+				3433D0B920B53B8C003FFC16 /* UITextField+rightView.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1568,12 +1605,12 @@
 		34A92B45207DE91300572648 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				347D64C9207F05ED00407FC4 /* sale(销售) */,
+				342AF9372086F2070043EA2E /* financial(财务) */,
 				343B180020A419E400349A6D /* login登录 */,
+				343008D62081AC3D00447992 /* Home(首页) */,
 				343747F3209460DF00C64F4C /* setting(设置) */,
 				34494DEA2091725800BDB309 /* warehouse(仓库) */,
-				342AF9372086F2070043EA2E /* financial(财务) */,
-				347D64C9207F05ED00407FC4 /* sale(销售) */,
-				343008D62081AC3D00447992 /* Home(首页) */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1581,6 +1618,7 @@
 		34A92B46207DE93600572648 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3433D0BC20B56A25003FFC16 /* salesDemand(销售需求) */,
 				343747F72094620700C64F4C /* setting(设置) */,
 				34494DEE20917A0F00BDB309 /* warehouse(仓库) */,
 				34528E952089E816004CD04B /* financial(财务) */,
@@ -1593,6 +1631,7 @@
 		34A92B47207DE93C00572648 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3433D0B120B50E99003FFC16 /* home(首页) */,
 				B55ADE0B20A554A5000F9C4A /* Setting设置 */,
 				343B17FC20A3F48B00349A6D /* login登录 */,
 				B55ADE1020A555F2000F9C4A /* LLBaseModel.h */,
@@ -2482,6 +2521,7 @@
 				34EE5D8420A68E7700A2C9B5 /* OtherCostViewController.m in Sources */,
 				B50505AD209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
+				3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */,
 				B50505C1209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				34EE5D6C20A68B2600A2C9B5 /* AddProductViewController.m in Sources */,
 				34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */,
@@ -2531,6 +2571,7 @@
 				345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				B50505AB209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */,
+				3433D0BF20B56CE0003FFC16 /* SalesDemandCell.m in Sources */,
 				B50505CF209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				B50505CB209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
 				343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */,
@@ -2625,6 +2666,7 @@
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
+				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,

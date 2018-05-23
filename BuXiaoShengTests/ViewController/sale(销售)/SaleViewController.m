@@ -15,11 +15,13 @@
 #import "LZHTableView.h"
 #import "FinancialCollectionViewCell.h"
 #import "BackOrderViewController.h"
+#import "LZHomeModel.h"
 
 @interface SaleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (nonatomic, strong) UICollectionView *collectView;
+@property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @end
 
 @implementation SaleViewController
@@ -28,12 +30,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.title = @"销售";
     self.navigationItem.titleView = [Utility navTitleView:@"销售"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = [UIColor whiteColor];;
     
     [self setupUI];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self setupBtns];
 }
 
 - (LZHTableView *)mainTabelView
@@ -48,6 +55,35 @@
     }
     return mainTabelView;
 }
+
+#pragma mark ----- 网络请求 -------
+- (void)setupBtns
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buttonId":self.buttonId
+                             };
+    [BXSHttp requestGETWithAppURL:@"home/button_page.do" param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.buttons = [LZHomeModel LLMJParse:baseModel.data];
+        if (self.buttons.count <5) {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+        }else
+        {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+        }
+        [self.collectView reloadData];
+        [self.mainTabelView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
 
 #pragma mark -------- collectionView --------
 - (void)setCollectionView
@@ -68,116 +104,57 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellid";
-    //    HomeEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
-    
+
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    
-    
-    
-    if (indexPath.row == 0) {
-        
-        cell.iconImageView.image = IMAGE(@"beginOrder");
-        cell.titileLabel.text = @"开单";
-    }
-    else if (indexPath.row == 1)
-    {
-        cell.iconImageView.image = IMAGE(@"tailOrder");
-        cell.titileLabel.text = @"订单跟踪";
-    }
-    else if (indexPath.row == 2)
-    {
-        cell.iconImageView.image = IMAGE(@"visitRecord");
-        cell.titileLabel.text = @"拜访记录";
-    }
-    else if (indexPath.row == 3)
-    {
-        cell.iconImageView.image = IMAGE(@"clientManager");
-        cell.titileLabel.text = @"客户管理";
-    }
-    else if (indexPath.row == 4)
-    {
-        cell.iconImageView.image = IMAGE(@"backOrder");
-        cell.titileLabel.text = @"退单";
-    }
-//    else if (indexPath.row == 5)
-//    {
-//        cell.iconImageView.image = IMAGE(@"StockDemand");
-//        cell.titileLabel.text = @"备货需求";
-//    }
-//    else if (indexPath.row == 6)
-//    {
-//        cell.iconImageView.image = IMAGE(@"ProcurementProcessing");
-//        cell.titileLabel.text = @"采购加工";
-//    }
-//    else if (indexPath.row == 7)
-//    {
-//        cell.iconImageView.image = IMAGE(@"StockTracking");
-//        cell.titileLabel.text = @"备货跟踪";
-//    }
+    cell.indexPath = indexPath;
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
+    cell.model = model;
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"点击了 %ld",(long)indexPath.row);
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
     
-    if (indexPath.row == 0) {
+    if ([model.paramsIos isEqualToString:@"beginOrder"]) {
         //开单
         SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        
     }
-    else if (indexPath.row == 1)
-    {
-        //订单跟踪
+    if ([model.paramsIos isEqualToString:@"tailOrder"])
+    {   //订单跟踪
         OrderTrackingViewController *vc = [[OrderTrackingViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-
+        
     }
-    else if (indexPath.row == 2)
-    {
-        //拜访记录
+    if ([model.paramsIos isEqualToString:@"visitRecord"])
+    {   //拜访记录
         VisitRecordViewController *vc = [[VisitRecordViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        
     }
-    else if (indexPath.row == 3)
-    {
-        //客户管理
+    if ([model.paramsIos isEqualToString:@"clientManager"])
+    {   //客户管理
         ClientManagerViewController *vc = [[ClientManagerViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        
     }
-    else if (indexPath.row == 4)
-    {
-        //退单
+    if ([model.paramsIos isEqualToString:@"backOrder"])
+    {   //退单
         BackOrderViewController *vc = [[BackOrderViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];;
-       
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
-    //    else if (indexPath.row == 5)
-    //    {
-    //
-    //        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
-    //    else if (indexPath.row == 6)
-    //    {
-    //        //备货需求
-    //        CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
-//    else if (indexPath.row == 7)
-//    {
-//        //备货跟踪
-//        StockTrackingViewController *vc = [[StockTrackingViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    
 }
 
 
 //一组返回item数量
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.buttons.count;
 }
 
 //设置itme大小

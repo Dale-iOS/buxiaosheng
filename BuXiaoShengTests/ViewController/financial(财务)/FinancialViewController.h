@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FinancialViewController : UIViewController
-
+@property (nonatomic,copy)NSString *buttonId;
 @end

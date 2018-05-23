@@ -129,7 +129,7 @@
         self.LabelsArrayBlock(model.name,model.id);
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+  
     
     
     
@@ -192,7 +192,7 @@
 //底部的确认按钮
 - (void)nextBtnClick
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+      [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didClickAddBtnInTextfeild:(UIView *)view withContentInTextfeild:(NSString *)contentStr

@@ -11,3 +11,18 @@
 @interface HRTableViewOne : UITableView
 
 @end
+
+
+
+//NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+//[BXSHttp requestGETWithAppURL:@"button_home.do" param:param success:^(id response) {
+//    
+//    LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+//    if ([baseModel.code integerValue]!=200) {
+//        return ;
+//    }
+//    LLCashBankModel * model = [LLCashBankModel LLMJParse:baseModel.data];
+//    
+//} failure:^(NSError *error) {
+//    BXS_Alert(LLLoadErrorMessage)
+//    }];

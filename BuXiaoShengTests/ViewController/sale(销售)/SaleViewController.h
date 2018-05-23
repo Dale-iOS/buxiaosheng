@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface SaleViewController : BaseViewController
-
+@property (nonatomic,copy)NSString *buttonId;
 @end

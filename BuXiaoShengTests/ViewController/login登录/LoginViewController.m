@@ -83,6 +83,7 @@
     self.loginTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
     self.loginTF.textColor = [UIColor whiteColor];
     self.loginTF.layer.borderWidth = 0.5;
+    self.loginTF.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.loginTF];
     
     //密码输入框
@@ -91,13 +92,28 @@
     self.passwordTF.leftView = passwordLeftView;
     self.passwordTF.leftViewMode = UITextFieldViewModeAlways;
     self.passwordTF.placeholder = @"请输入密码";
-    //密码形式
-    self.passwordTF.secureTextEntry = YES;
     [self.passwordTF setValue:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
     self.passwordTF.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.3f].CGColor;
     self.passwordTF.textColor = [UIColor whiteColor];
     self.passwordTF.layer.borderWidth = 0.5;
+    self.passwordTF.keyboardType = UIKeyboardTypeURL;
+    //密码明文或者暗文按钮
+    UIButton *rightBtn = [[UIButton alloc]init];
+    //密码形式
+    self.passwordTF.secureTextEntry = YES;
+    [rightBtn setBackgroundImage:IMAGE(@"password1") forState:UIControlStateNormal];
+    rightBtn.frame = CGRectMake(0, 5, 30, 30);
+    rightBtn.backgroundColor = [UIColor clearColor];
+    [rightBtn addTarget:self action:@selector(passwordBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIView *rightView = [[UIView alloc]init];
+    rightView.backgroundColor = [UIColor clearColor];
+    rightView.frame = CGRectMake(0, 0, 40, 40);
+    rightView.userInteractionEnabled = YES;
+    rightView.centerY = self.passwordTF.centerY;
+    [rightView addSubview:rightBtn];
+    self.passwordTF.rightView = rightView;
+    self.passwordTF.rightViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:self.passwordTF];
     
     //登录按钮
@@ -189,6 +205,20 @@
 }
 -(void)loginBack {
     [self.navigationController popToRootViewControllerAnimated:true];
+}
+
+- (void)passwordBtnClick:(UIButton *)btn
+{
+//    [self.passwordTF resignFirstResponder];
+    btn.selected = !btn.selected;
+    if (!btn.selected) {
+        [btn setBackgroundImage:IMAGE(@"password1") forState:UIControlStateNormal];
+        self.passwordTF.secureTextEntry = YES;
+    }else{
+        [btn setBackgroundImage:IMAGE(@"password2") forState:UIControlStateNormal];
+        self.passwordTF.secureTextEntry = NO;
+    }
+//    [self.passwordTF becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
