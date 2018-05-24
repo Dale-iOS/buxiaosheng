@@ -13,6 +13,7 @@ typedef void (^customBlock)(NSString *compoentString,NSString *titileString);
 @interface LZPickerView :  UIView
 @property (nonatomic ,copy)NSString *componentString;
 @property (nonatomic ,copy)NSString *titleString;
+@property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic ,copy)customBlock getPickerValue;
 
 @property (nonatomic ,copy)NSString *valueString;

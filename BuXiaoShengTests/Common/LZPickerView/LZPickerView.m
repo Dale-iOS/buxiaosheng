@@ -54,11 +54,11 @@
         [_toolsView addSubview:rightSureBtn];
         
         // 中间显示  label
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(54, 0, APPWidth - 108, 44)];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = @"请选择一项";
-        titleLabel.font = [UIFont systemFontOfSize:13];
-        [_toolsView addSubview:titleLabel];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(54, 0, APPWidth - 108, 44)];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.text = @"请选择一项";
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_toolsView addSubview:self.titleLabel];
         
         
         // 左边取消按钮

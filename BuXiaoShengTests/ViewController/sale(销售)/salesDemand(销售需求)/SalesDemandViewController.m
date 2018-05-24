@@ -9,18 +9,24 @@
 #import "SalesDemandViewController.h"
 #import "SalesDemandCell.h"
 #import "SalesDemandListView.h"
-#import "LZHTableView.h"
+//#import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
+#import "salesDemandModel.h"
+#import "LZPickerView.h"
+#import "ChooseAddressVC.h"
 
-@interface SalesDemandViewController ()<LZHTableViewDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) salesDemandModel *cellsModel;
+@property (nonatomic, strong) NSMutableArray <salesDemandModel *>* dataMuArray;
 
-
-@property (weak, nonatomic) LZHTableView *mainTableView;
-@property (strong, nonatomic) NSMutableArray *datasource;
+//@property (weak, nonatomic) LZHTableView *mainTableView;
+//@property (strong, nonatomic) NSMutableArray *datasource;
 ///销售需求列表View
 @property (nonatomic, strong) SalesDemandListView *demandListView;
 
@@ -35,7 +41,7 @@
 @property (nonatomic, strong) TextInputCell *adjustmentCell;
 ///实收金额
 @property (nonatomic, strong) TextInputCell *actualCell;
-///本单欠款
+///本单应收
 @property (nonatomic, strong) TextInputCell *arrearsCell;
 ///收款方式
 @property (nonatomic, strong) TextInputCell *paymentMethodCell;
@@ -44,13 +50,16 @@
 ///仓库注意事项
 @property (nonatomic, strong) TextInputTextView *warehouseTextView;
 
+@property (nonatomic, strong) UIView *lineView1;
+@property (nonatomic, strong) UIView *lineView2;
+
 ///下一步按钮
 @property (nonatomic, strong) UIButton *nextBtn;
 
 @end
 
 @implementation SalesDemandViewController
-//@synthesize mainTableView;
+@synthesize nameCell,phoneCell,depositCell,adjustmentCell,actualCell,arrearsCell,paymentMethodCell,remarkTextView,warehouseTextView,lineView1,lineView2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,26 +67,135 @@
     [self setupUI];
 }
 
-//- (LZHTableView *)mainTableView
-//{
-//    if (!mainTableView) {
-//        LZHTableView *tabelView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -44)];
-//        [self.view addSubview:(mainTableView = tabelView)];
-//    }
-//    return mainTableView;
-//}
+#pragma mark ----- lazy loading ----
+- (UIView *)lineView1
+{
+    if (!lineView1) {
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = LZHBackgroundColor;
+        [self.footerView addSubview:(lineView1 = view)];
+    }
+    return lineView1;
+}
 
+- (TextInputCell *)nameCell
+{
+    if (!nameCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"客户名字";
+        cell.contentTF.placeholder = @"请输入客户名字";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(nameCell = cell)];
+    }
+    return nameCell;
+}
+
+- (TextInputCell *)phoneCell
+{
+    if (!phoneCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"客户电话";
+        cell.contentTF.placeholder = @"请输入客户电话";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(phoneCell = cell)];
+    }
+    return phoneCell;
+}
+
+- (TextInputCell *)arrearsCell
+{
+    if (!arrearsCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"本单应收";
+        cell.contentTF.placeholder = @"请输入本单赢收";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(arrearsCell = cell)];
+    }
+    return arrearsCell;
+}
+
+- (TextInputCell *)depositCell
+{
+    if (!depositCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"预收定金";
+        cell.contentTF.placeholder = @"请输入预收定金";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(depositCell = cell)];
+    }
+    return depositCell;
+}
+
+- (TextInputCell *)paymentMethodCell
+{
+    if (!paymentMethodCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"收款方式";
+        cell.contentTF.placeholder = @"请选择收款方式";
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentTF.enabled = NO;
+        cell.rightArrowImageVIew.hidden = NO;
+        cell.userInteractionEnabled = YES;
+        UIGestureRecognizer * tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(paymentMethodCellClick)];
+        [cell addGestureRecognizer:tap];
+        [self.footerView addSubview:(paymentMethodCell = cell)];
+    }
+    return paymentMethodCell;
+}
+
+- (TextInputTextView *)remarkTextView
+{
+    if (!remarkTextView) {
+        
+        TextInputTextView *textView = [[TextInputTextView alloc]init];
+        textView.titleLabel.text = @"备注";
+        textView.textView.placeholder = @"请输入备注内容";
+        textView.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(remarkTextView = textView)];
+    }
+    return remarkTextView;
+}
+
+- (UIView *)lineView2
+{
+    if (!lineView2) {
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = LZHBackgroundColor;
+        [self.footerView addSubview:(lineView2 = view)];
+    }
+    return lineView2;
+}
+
+- (TextInputTextView *)warehouseTextView
+{
+    if (!warehouseTextView) {
+        TextInputTextView *textView = [[TextInputTextView alloc]init];
+        textView.titleLabel.text = @"仓库注意事项";
+        textView.textView.placeholder = @"请输入告知仓库事项";
+        textView.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(warehouseTextView = textView)];
+    }
+    return warehouseTextView;
+}
 
 - (void)setupUI
 {
     self.navigationItem.title = @"销售需求";
     self.view.backgroundColor = [UIColor whiteColor ];
-    
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"search")];
+    
+    self.dataArray = [NSMutableArray array];
+    self.dataMuArray = [NSMutableArray array];
+    self.cellsModel = [[salesDemandModel alloc]init];
 
+    [self setupHeaderView];
+    [self setupFooterView];
+    
     //初始化tableview
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,LLNavViewHeight, APPWidth, APPHeight -44-LLNavViewHeight) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -109,10 +227,176 @@
     
 }
 
+- (void)setupHeaderView
+{
+    _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPHeight, 40)];
+    _headerView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
+    
+    //品名  颜色  条数  数量  单价
+    UILabel *nameLabel = [[UILabel alloc]init];
+    nameLabel.font = FONT(14);
+    nameLabel.text = @"品名";
+    nameLabel.textAlignment = NSTextAlignmentCenter;
+    nameLabel.textColor = CD_Text33;
+    [_headerView addSubview:nameLabel];
+    
+    UILabel *colorLabel = [[UILabel alloc]init];
+    colorLabel.font = FONT(14);
+    colorLabel.text = @"颜色";
+    colorLabel.textAlignment = NSTextAlignmentCenter;
+    colorLabel.textColor = CD_Text33;
+    [_headerView addSubview:colorLabel];
+    
+    UILabel *lineNumLabel = [[UILabel alloc]init];
+    lineNumLabel.font = FONT(14);
+    lineNumLabel.text = @"条数";
+    lineNumLabel.textAlignment = NSTextAlignmentCenter;
+    lineNumLabel.textColor = CD_Text33;
+    [_headerView addSubview:lineNumLabel];
+    
+    UILabel *numLabel = [[UILabel alloc]init];
+    numLabel.font = FONT(14);
+    numLabel.text = @"数量";
+    numLabel.textAlignment = NSTextAlignmentCenter;
+    numLabel.textColor = CD_Text33;
+    [_headerView addSubview:numLabel];
+    
+    UILabel *priceLabel = [[UILabel alloc]init];
+    priceLabel.font = FONT(14);
+    priceLabel.text = @"单价";
+    priceLabel.textAlignment = NSTextAlignmentCenter;
+    priceLabel.textColor = CD_Text33;
+    [_headerView addSubview:priceLabel];
+    
+    nameLabel.sd_layout
+    .topSpaceToView(_headerView, 0)
+    .leftSpaceToView(_headerView, 0)
+    .heightRatioToView(_headerView, 1)
+    .widthIs(LZHScale_WIDTH(240));
+    
+    colorLabel.sd_layout
+    .topSpaceToView(_headerView, 0)
+    .leftSpaceToView(nameLabel, 0)
+    .heightRatioToView(_headerView, 1)
+    .widthIs(LZHScale_WIDTH(150));
+    
+    lineNumLabel.sd_layout
+    .topSpaceToView(_headerView, 0)
+    .leftSpaceToView(colorLabel, 0)
+    .heightRatioToView(_headerView, 1)
+    .widthIs(LZHScale_WIDTH(105));
+    
+    numLabel.sd_layout
+    .topSpaceToView(_headerView, 0)
+    .leftSpaceToView(lineNumLabel, 0)
+    .heightRatioToView(_headerView, 1)
+    .widthIs(LZHScale_WIDTH(150));
+    
+    priceLabel.sd_layout
+    .topSpaceToView(_headerView, 0)
+    .leftSpaceToView(numLabel, 0)
+    .heightRatioToView(_headerView, 1)
+    .widthIs(LZHScale_WIDTH(105));
+    
+}
+
+- (void)setupFooterView
+{
+    self.footerView = [[UIView alloc]init];
+    self.footerView.frame = CGRectMake(0, 0, APPWidth, 519);
+//    self.footerView.backgroundColor = [UIColor redColor];
+    
+    //新增一条底图view
+    UIView *addView = [[UIView alloc]init];
+    addView.backgroundColor = [UIColor whiteColor];
+    [self.footerView addSubview:addView];
+    addView.sd_layout
+    .leftSpaceToView(self.footerView, 0)
+    .topSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(65);
+    
+    //新增按钮
+    UIButton *addBtn = [UIButton new];
+    addBtn.backgroundColor = [UIColor whiteColor];
+    [addBtn setBackgroundImage:IMAGE(@"addbtn") forState:UIControlStateNormal];
+    [addBtn addTarget:self action:@selector(addBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    [addView addSubview:addBtn];
+    addBtn.sd_layout
+    .centerYEqualToView(addView)
+    .centerXEqualToView(addView)
+    .widthIs(92)
+    .heightIs(31);
+    
+    //第一条灰色line
+    self.lineView1.sd_layout
+    .topSpaceToView(addView, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(10);
+    
+    //客户名字
+    self.nameCell.sd_layout
+    .topSpaceToView(self.lineView1, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(49);
+    
+    //客户电话
+    self.phoneCell.sd_layout
+    .topSpaceToView(self.nameCell, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(49);
+    
+    //本单应收
+    self.arrearsCell.sd_layout
+    .topSpaceToView(self.phoneCell, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(49);
+    
+    //预收定金
+    self.depositCell.sd_layout
+    .topSpaceToView(self.arrearsCell, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(49);
+   
+    //收款方式
+    self.paymentMethodCell.sd_layout
+    .topSpaceToView(self.depositCell, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(49);
+    
+    //备注
+    self.remarkTextView.sd_layout
+    .topSpaceToView(self.paymentMethodCell, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(79);
+    
+    //灰色line2
+    self.lineView2.sd_layout
+    .topSpaceToView(self.remarkTextView, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(10);
+    
+    //仓库事项
+    self.warehouseTextView.sd_layout
+    .topSpaceToView(self.lineView2, 0)
+    .leftSpaceToView(self.footerView, 0)
+    .widthIs(APPWidth)
+    .heightIs(79);
+    
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.dataMuArray.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -133,12 +417,38 @@
     if (cell == nil) {
         
         cell = [[SalesDemandCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-    }
-//    cell.textLabel.text = [NSString stringWithFormat:@"染色配方表 %ld",(long)indexPath.row];
-    
+        cell.delegate = self;
+        if (self.dataMuArray.count >0) {
+            
+            [cell settitleTFContent:self.cellsModel.titleInfo WithColorTFContent:self.cellsModel.colorInfo WithlineTFContent:self.cellsModel.lineInfo WithNumberTFContent:self.cellsModel.numberInfo WithPriceTFContent:self.cellsModel.priceInfo WithReturnBlock:^(salesDemandModel *model) {
+                
+
+                //防止上一条有tf为空不传值为空
+                if (!model.titleInfo) {
+                    model.titleInfo = self.cellsModel.titleInfo;
+                }
+                if (!model.colorInfo)
+                {
+                    model.colorInfo = self.cellsModel.colorInfo;
+                }
+                if (!model.lineInfo)
+                {
+                    model.lineInfo = self.cellsModel.lineInfo;
+                }
+                if (!model.numberInfo)
+                {
+                    model.numberInfo = self.cellsModel.numberInfo;
+                }if (!model.priceInfo)
+                {
+                    model.priceInfo = self.cellsModel.numberInfo;
+                }
+                    
+                
+                self.cellsModel = model;
+            }];
+        }
+        }
+
     return cell;
 }
 
@@ -151,134 +461,23 @@
     
 }
 
-//
-//- (void)setSectionOne
-//{
-//    self.demandListView = [[SalesDemandListView alloc]init];
-//    self.demandListView.frame = CGRectMake(0, 0, APPWidth, 250);
-//    self.demandListView.backgroundColor = [UIColor blueColor];
-//
-//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//    item.sectionRows = @[self.demandListView];
-//    [self.datasource addObject:item];
-//}
-//
-//- (void)setSectionTwo
-//{
-//    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-//    headerView.backgroundColor = LZHBackgroundColor;
-//
-//    self.nameCell = [[TextInputCell alloc]init];
-//    self.nameCell.hidden = NO;
-////    self.nameCell.backgroundColor = [UIColor redColor];
-//    self.nameCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.phoneCell = [[TextInputCell alloc]init];
-//    self.phoneCell.hidden = NO;
-////    self.phoneCell.backgroundColor = [UIColor orangeColor];
-//    self.phoneCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//
-//    self.depositCell = [[TextInputCell alloc]init];
-//    self.depositCell.hidden = NO;
-////    self.depositCell.backgroundColor = [UIColor greenColor];
-//    self.depositCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//
-//    self.nameCell.titleLabel.text = @"客户名字";
-//    self.nameCell.contentTF.text = @"周鹏";
-//
-//    self.phoneCell.titleLabel.text = @"客户电话";
-//    self.phoneCell.contentTF.placeholder = @"请输入客户电话";
-//
-//    self.depositCell.titleLabel.text = @"预收定金";
-//    self.depositCell.contentTF.text = @"￥25,689";
-//
-//
-//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//    item.sectionRows = @[self.nameCell,self.phoneCell,self.depositCell];
-//    item.canSelected = NO;
-//    item.sectionView = headerView;
-//    [self.datasource addObject:item];
-//
-//}
-//
-//- (void)setSectionThree
-//{
-//    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-//    headerView.backgroundColor = LZHBackgroundColor;
-//
-//    self.adjustmentCell = [[TextInputCell alloc]init];
-//    self.adjustmentCell.hidden = NO;
-//    self.adjustmentCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.actualCell = [[TextInputCell alloc]init];
-//    self.actualCell.hidden = NO;
-//    self.actualCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.arrearsCell = [[TextInputCell alloc]init];
-//    self.arrearsCell.hidden = NO;
-//    self.arrearsCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.paymentMethodCell = [[TextInputCell alloc]init];
-//    self.paymentMethodCell.hintLabel.hidden = NO;
-//    self.paymentMethodCell.rightArrowImageVIew.hidden = NO;
-//    self.paymentMethodCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.remarkTextView = [[TextInputTextView alloc]init];
-//    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 80);
-//    self.remarkTextView.textView.delegate = self;
-//
-//
-//    self.adjustmentCell.titleLabel.text = @"调整金额";
-//    self.adjustmentCell.contentTF.placeholder = @"请输入调整金额";
-//    self.adjustmentCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.actualCell.titleLabel.text = @"实收金额";
-//    self.actualCell.contentTF.text = @"500";
-//    self.actualCell.frame = CGRectMake(0, 0, APPWidth, 49);
-//
-//    self.arrearsCell.titleLabel.text = @"本单欠款";
-//    self.arrearsCell.contentTF.text = @"100";
-//    self.arrearsCell.contentTF.textColor = [UIColor redColor];
-//
-//    self.paymentMethodCell.titleLabel.text = @"付款方式";
-//
-//    self.remarkTextView.titleLabel.text = @"备注";
-//    self.remarkTextView.textView.placeholder = @"请输入备注内容";
-//
-//
-//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//    item.sectionRows = @[self.adjustmentCell,self.actualCell,self.arrearsCell,self.paymentMethodCell,self.remarkTextView];
-//    item.canSelected = NO;
-//    item.sectionView = headerView;
-//    [self.datasource addObject:item];
-//}
-//
-//- (void)setSectionFour
-//{
-//    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-//    headerView.backgroundColor = LZHBackgroundColor;
-//
-//    self.warehouseTextView = [[TextInputTextView alloc]init];
-//    self.warehouseTextView.frame = CGRectMake(0, 0, APPWidth, 80);
-//    self.warehouseTextView.textView.delegate = self;
-//
-//    self.warehouseTextView.titleLabel.text = @"仓库注意事项";
-//    self.warehouseTextView.textView.placeholder = @"请输入告知仓库事项";
-//
-//    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPHeight, 60)];
-//    footerView.backgroundColor = LZHBackgroundColor;
-//
-//
-//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//    item.sectionRows = @[self.warehouseTextView,footerView];
-//    item.canSelected = NO;
-//    item.sectionView = headerView;
-//    [self.datasource addObject:item];
-//}
-//
-//
+//是否可以编辑tableView的cell
+-(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+//编辑cell是触发此方法
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //要先把数据源的对应的数据删除掉
+    [self.dataMuArray removeObjectAtIndex:indexPath.row];
+    
+    //删除cell
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
 #pragma mark -------- 点击事件 ----------
 - (void)nextBtnOnClickAction
 {
@@ -288,31 +487,51 @@
 - (void)navigationSetupClick
 {
     NSLog(@"点击了放大镜");
-}
-//
-//
-//#pragma mark ----- uitextview delegate
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-//{
-//    //    限制textView最大字数
-//#define MY_MAX 36
-//    if ((textView.text.length - range.length + text.length) > MY_MAX)
-//    {
-//        NSString *substring = [text substringToIndex:MY_MAX - (textView.text.length - range.length)];
-//        NSMutableString *lastString = [textView.text mutableCopy];
-//        [lastString replaceCharactersInRange:range withString:substring];
-//        textView.text = [lastString copy];
-//
-////        [Utility showToastWithMessage:@"限制字数200以内"];
-//
-//        return NO;
-//    }
-//    else
-//    {
-//        return YES;
-//    }
-//}
 
+}
+
+- (void)addBtnOnClickAction
+{
+    [self.dataMuArray addObject:self.cellsModel];
+    [self.tableView reloadData];
+}
+
+- (void)didClickTitleTextField:(NSString *)titleTFInfo
+{
+//    WEAKSELF
+//
+//    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:@[@"111",@"222",@"333",@"444",@"555",@"666",@"777",@"888"] titleDataArray:nil];
+//    pickerView.titleLabel.text = @"请选择品名";
+//    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+////        weakSelf.principalCell.contentTF.text = compoentString;
+////        NSInteger row = [titileString integerValue];
+////        weakSelf.priceipalId = weakSelf.principalIdAry[row];
+////
+//    };
+//
+//    [self.view addSubview:pickerView];
+    
+    
+    ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
+    vc.drawerType = DrawerDefaultRight1;
+    
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
+    conf.maskAlpha = 0.1;
+    
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    
+    
+}
+
+//收款方式点击事件
+- (void)paymentMethodCellClick
+{
+    NSLog(@"收款方式点击事件");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
