@@ -17,7 +17,7 @@
 {
     void (^_block)(salesDemandModel *infoModel);
 }
-@synthesize titleTF,colorTF,lineTF,numberTF,priceTF;
+@synthesize titleBtn,colorTF,lineTF,numberTF,priceTF;
 #define contentView  self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -26,7 +26,7 @@
         
         self.model = [[salesDemandModel alloc]init];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleTFChanging:) name:UITextFieldTextDidChangeNotification object:self.titleTF];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleTFChanging:) name:UITextFieldTextDidChangeNotification object:self.titleTF];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorTFChanging:) name:UITextFieldTextDidChangeNotification object:self.colorTF];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineTFChanging:) name:UITextFieldTextDidChangeNotification object:self.lineTF];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(numberTFChanging:) name:UITextFieldTextDidChangeNotification object:self.numberTF];
@@ -38,22 +38,35 @@
 }
 
 #pragma mark ------ lazy loding ------
-- (UITextField *)titleTF
+//- (UITextField *)titleTF
+//{
+//    if (!titleTF) {
+//        UITextField *tf = [[UITextField alloc]init];
+//        tf.font = FONT(14);
+//        tf.textColor = CD_Text33;
+//        tf.placeholder = @"品名";
+//        tf.delegate = self;
+////        tf.enabled = NO;
+//        tf.userInteractionEnabled = YES;
+//        tf.textAlignment = NSTextAlignmentCenter;
+////        UIGestureRecognizer *tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(titleTFClick)];
+////        [tf addGestureRecognizer:tap];
+//        [contentView addSubview:(titleTF = tf)];
+//    }
+//    return titleTF;
+//}
+- (UIButton *)titleBtn
 {
-    if (!titleTF) {
-        UITextField *tf = [[UITextField alloc]init];
-        tf.font = FONT(14);
-        tf.textColor = CD_Text33;
-        tf.placeholder = @"品名";
-        tf.delegate = self;
-//        tf.enabled = NO;
-        tf.userInteractionEnabled = YES;
-        tf.textAlignment = NSTextAlignmentCenter;
-//        UIGestureRecognizer *tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(titleTFClick)];
-//        [tf addGestureRecognizer:tap];
-        [contentView addSubview:(titleTF = tf)];
+    if (!titleBtn) {
+        UIButton *btn = [[UIButton alloc]init];
+        [btn setTitle:@"品名" forState:UIControlStateNormal];
+        btn.titleLabel.font = FONT(14);
+        [btn setTitleColor:[UIColor colorWithHexString:@"#cccccc"] forState:UIControlStateNormal];
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [btn addTarget:self action:@selector(titleBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [contentView addSubview:(titleBtn = btn)];
     }
-    return titleTF;
+    return titleBtn;
 }
 
 - (UITextField *)colorTF
@@ -121,14 +134,14 @@
 //        make.height.offset(65);
 //    }];
     
-    self.titleTF.sd_layout
+    self.titleBtn.sd_layout
     .leftSpaceToView(contentView, 0)
     .centerYEqualToView(contentView)
     .widthIs(LZHScale_WIDTH(240))
     .heightIs(65);
     
     self.colorTF.sd_layout
-    .leftSpaceToView(self.titleTF, 0)
+    .leftSpaceToView(self.titleBtn, 0)
     .centerYEqualToView(contentView)
     .widthIs(LZHScale_WIDTH(150))
     .heightIs(65);
@@ -153,27 +166,27 @@
 
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if ([textField isEqual:self.titleTF]) {
-//        self.titleTF.text = @"请选择";
-//        self.titleTF.textColor = [UIColor blueColor];
-//        NSLog(@"%f+++++%f",self.titleTF.centerY);
-//        NSLog(@"+++++++-----%f",self.titleTF.frame.or);
-        
-        
-        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
-            [self.delegate didClickTitleTextField:self.titleTF.text];
-        }
-    }
-}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    if ([textField isEqual:self.titleTF]) {
+////        self.titleTF.text = @"请选择";
+////        self.titleTF.textColor = [UIColor blueColor];
+////        NSLog(@"%f+++++%f",self.titleTF.centerY);
+////        NSLog(@"+++++++-----%f",self.titleTF.frame.or);
+//        
+//        
+//        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
+//            [self.delegate didClickTitleTextField:self.titleTF.text];
+//        }
+//    }
+//}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([textField isEqual:self.titleTF]) {
-        self.model.titleInfo = self.titleTF.text;
-//        self.titleTF.textColor = [UIColor whiteColor];
-    }
+//    if ([textField isEqual:self.titleTF]) {
+//        self.model.titleInfo = self.titleTF.text;
+////        self.titleTF.textColor = [UIColor whiteColor];
+//    }
     if ([textField isEqual:self.colorTF]) {
         self.model.colorInfo = self.colorTF.text;
     }
@@ -228,12 +241,9 @@
 
 -(void)settitleTFContent:(NSString *)title WithColorTFContent:(NSString *)color WithlineTFContent:(NSString *)line WithNumberTFContent:(NSString *)number WithPriceTFContent:(NSString *)price WithReturnBlock:(void (^)(salesDemandModel *model))textFieldBlock
 {
-//    title = self.model.titleInfo;
-//    color = self.model.colorInfo;
-//    line = self.model.lineInfo;
-//    number = self.model.numberInfo;
-//    price = self.model.priceInfo;
-    self.titleTF.text = title;
+
+//    self.titleTF.text = title;
+    [self.titleBtn setTitle:title forState:UIControlStateNormal];
     self.colorTF.text = color;
     self.lineTF.text = line;
     self.numberTF.text = number;
@@ -241,10 +251,14 @@
     _block = textFieldBlock;
 }
 
-- (void)titleTFClick
+//点击事件
+- (void)titleBtnClick
 {
-    if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
-        [self.delegate didClickTitleTextField:self.titleTF.text];
+//    if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
+//        [self.delegate didClickTitleTextField:self.titleTF.text];
+//    }
+    if ([self.delegate respondsToSelector:@selector(didClickTitleBtn:)]) {
+        [self.delegate didClickTitleBtn:self.titleBtn];
     }
 }
 

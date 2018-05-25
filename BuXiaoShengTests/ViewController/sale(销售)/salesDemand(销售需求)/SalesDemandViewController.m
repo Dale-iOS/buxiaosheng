@@ -15,7 +15,8 @@
 #import "UITextView+Placeholder.h"
 #import "salesDemandModel.h"
 #import "LZPickerView.h"
-#import "ChooseAddressVC.h"
+//#import "ChooseAddressVC.h"
+#import "LZSearchVC.h"
 
 @interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -496,6 +497,18 @@
     [self.tableView reloadData];
 }
 
+- (void)didClickTitleBtn:(UIButton *)titleBtn
+{
+    LZSearchVC *vc = [[LZSearchVC alloc]init];
+    vc.titleStr = @"选择品名";
+    vc.searchType = searchProduct;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [vc setTitleBtnBlock:^(NSString *titleInfo) {
+        [titleBtn setTitle:titleInfo forState:UIControlStateNormal];
+    }];
+}
+
 - (void)didClickTitleTextField:(NSString *)titleTFInfo
 {
 //    WEAKSELF
@@ -511,18 +524,10 @@
 //
 //    [self.view addSubview:pickerView];
     
-    
-    ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
-    vc.drawerType = DrawerDefaultRight1;
-    
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-    conf.finishPercent = 0.2f;
-    conf.showAnimDuration = 0.2;
-    conf.HiddenAnimDuration = 0.2;
-    conf.maskAlpha = 0.1;
-    
-    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    LZSearchVC *vc = [[LZSearchVC alloc]init];
+    vc.titleStr = @"选择品名";
+    vc.searchType = searchProductColor;
+    [self.navigationController pushViewController:vc animated:YES];
     
     
 }

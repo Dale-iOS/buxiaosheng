@@ -67,6 +67,7 @@
 		34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */; };
 		34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34410EC920B4041C00CE490E /* LZDeptListModel.m */; };
 		3447A66220B686DE00F657B7 /* salesDemandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3447A66120B686DE00F657B7 /* salesDemandModel.m */; };
+		3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3448D88620B7FB1B00C11120 /* LZSearchVC.m */; };
 		34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */; };
 		34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF020917A8100BDB309 /* WarehouserTableViewCell.m */; };
 		34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF32091A76200BDB309 /* ClientNeedsViewController.m */; };
@@ -535,6 +536,8 @@
 		34410EC920B4041C00CE490E /* LZDeptListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDeptListModel.m; sourceTree = "<group>"; };
 		3447A66020B686DE00F657B7 /* salesDemandModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = salesDemandModel.h; sourceTree = "<group>"; };
 		3447A66120B686DE00F657B7 /* salesDemandModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = salesDemandModel.m; sourceTree = "<group>"; };
+		3448D88520B7FB1B00C11120 /* LZSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchVC.h; sourceTree = "<group>"; };
+		3448D88620B7FB1B00C11120 /* LZSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchVC.m; sourceTree = "<group>"; };
 		34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouseHomeViewController.h; sourceTree = "<group>"; };
 		34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouseHomeViewController.m; sourceTree = "<group>"; };
 		34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouserTableViewCell.h; sourceTree = "<group>"; };
@@ -1191,6 +1194,8 @@
 			children = (
 				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
 				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
+				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
+				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
 			);
 			path = "salesDemand(销售需求)";
 			sourceTree = "<group>";
@@ -2527,6 +2532,7 @@
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
 				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
+				3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
 				343207D920A06AB5005A5D23 /* YesAuditSellViewController.m in Sources */,

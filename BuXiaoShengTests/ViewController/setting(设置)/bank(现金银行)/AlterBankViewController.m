@@ -50,7 +50,6 @@
     }
     NSDictionary * param = @{@"id":self.id};
     [BXSHttp requestGETWithAppURL:@"bank/detail.do" param:param success:^(id response) {
-        NSLog(@"%@",response);
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
             return ;
