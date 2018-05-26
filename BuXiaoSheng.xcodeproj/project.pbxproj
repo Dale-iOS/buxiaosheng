@@ -122,6 +122,8 @@
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
 		348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64920B93C8C0051E842 /* LZRecipeModel.m */; };
+		348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64D20B952580051E842 /* BaseSearchViewController.m */; };
+		348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
@@ -637,6 +639,10 @@
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
 		348AC64820B93C8C0051E842 /* LZRecipeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZRecipeModel.h; sourceTree = "<group>"; };
 		348AC64920B93C8C0051E842 /* LZRecipeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZRecipeModel.m; sourceTree = "<group>"; };
+		348AC64C20B952580051E842 /* BaseSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSearchViewController.h; sourceTree = "<group>"; };
+		348AC64D20B952580051E842 /* BaseSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseSearchViewController.m; sourceTree = "<group>"; };
+		348AC64F20B9579C0051E842 /* LZChooseRecipeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseRecipeVC.h; sourceTree = "<group>"; };
+		348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseRecipeVC.m; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
 		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
@@ -1234,6 +1240,7 @@
 		343747F72094620700C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
+				3471F4D820B9625600932B20 /* recipe(配方表) */,
 				3452716F20B2723C0001B65A /* product(产品资料) */,
 				3464458520AD71DE00D6A06B /* client(客户) */,
 				B577CE8D20AA78550001B8B8 /* organization(组织架构) */,
@@ -1246,10 +1253,6 @@
 				342CF65F20999990007C329D /* AuditManagerTableViewCell.m */,
 				348DB848209ABFC100CD36CD /* DefaultBankCell.h */,
 				348DB849209ABFC100CD36CD /* DefaultBankCell.m */,
-				3464A93420A1894A00307C1A /* DyeRecipeView.h */,
-				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
-				3464A93720A1898100307C1A /* WeaveRecipeView.h */,
-				3464A93820A1898100307C1A /* WeaveRecipeView.m */,
 				B5E288E620A9371400D84196 /* LLAuditMangerSectionView.h */,
 				B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */,
 				B5E288EA20A93B0300D84196 /* LLAuditMangerCell.h */,
@@ -1402,6 +1405,17 @@
 			path = "client(客户)";
 			sourceTree = "<group>";
 		};
+		3471F4D820B9625600932B20 /* recipe(配方表) */ = {
+			isa = PBXGroup;
+			children = (
+				3464A93420A1894A00307C1A /* DyeRecipeView.h */,
+				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
+				3464A93720A1898100307C1A /* WeaveRecipeView.h */,
+				3464A93820A1898100307C1A /* WeaveRecipeView.m */,
+			);
+			path = "recipe(配方表)";
+			sourceTree = "<group>";
+		};
 		347C309820A29D970078BB69 /* inventory仓库 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1481,6 +1495,17 @@
 				348AC64920B93C8C0051E842 /* LZRecipeModel.m */,
 			);
 			path = "recipe(配方表)";
+			sourceTree = "<group>";
+		};
+		348AC64B20B950B30051E842 /* PublicVC */ = {
+			isa = PBXGroup;
+			children = (
+				34494DF52091A7A600BDB309 /* BaseViewController.h */,
+				34494DF62091A7A600BDB309 /* BaseViewController.m */,
+				348AC64C20B952580051E842 /* BaseSearchViewController.h */,
+				348AC64D20B952580051E842 /* BaseSearchViewController.m */,
+			);
+			path = PublicVC;
 			sourceTree = "<group>";
 		};
 		349C09592088720F00D2AC38 /* Menu */ = {
@@ -1685,11 +1710,10 @@
 		34A92B49207DE9EB00572648 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				348AC64B20B950B30051E842 /* PublicVC */,
 				34A0ED872080865A00659190 /* Utility */,
 				34A0ED542080827C00659190 /* Category */,
 				34A92B4A207DE9F700572648 /* Define */,
-				34494DF52091A7A600BDB309 /* BaseViewController.h */,
-				34494DF62091A7A600BDB309 /* BaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2012,6 +2036,8 @@
 			children = (
 				345D5EFC209D4AAF00126C40 /* RecipeViewController.h */,
 				345D5EFD209D4AAF00126C40 /* RecipeViewController.m */,
+				348AC64F20B9579C0051E842 /* LZChooseRecipeVC.h */,
+				348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */,
 				345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */,
 				345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */,
 				34320781209FF25C005A5D23 /* AddDyeRecipeViewController.h */,
@@ -2544,6 +2570,7 @@
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
 				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
+				348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
 				3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
@@ -2802,6 +2829,7 @@
 				B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
+				348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */,
 				3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */,
 				3452717720B2B6C20001B65A /* LZAddColorsModel.m in Sources */,
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,

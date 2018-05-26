@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, LZSearchBarIconAlign) {
 @property(nonatomic,retain) UIFont                 *textFont;
 @property(nonatomic,copy)   NSString               *placeholder;           // default is nil
 @property(nonatomic,retain) UIColor                *placeholderColor;
+@property(nonatomic,retain) UIColor                *textFieldBackgroundColor;
 @property(nonatomic,retain) UIImage                *iconImage;
 @property(nonatomic,retain) UIImage                *backgroundImage;
 

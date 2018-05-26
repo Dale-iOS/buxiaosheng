@@ -163,6 +163,11 @@
     _textField.placeholder = placeholder;
     [self setIconAlign:_iconAlign];
 }
+- (void)setTextFieldBackgroundColor:(UIColor *)textFieldBackgroundColor
+{
+    _textFieldBackgroundColor = textFieldBackgroundColor;
+    _textField.backgroundColor = _textFieldBackgroundColor;
+}
 
 -(void)setBackgroundImage:(UIImage *)backgroundImage{
     _backgroundImage = backgroundImage;

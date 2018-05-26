@@ -35,6 +35,9 @@
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.backgroundColor = [UIColor whiteColor];
+    self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
+    self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self addSubview:self.searchBar];
     
@@ -50,7 +53,7 @@
 }
 
 #pragma mark ----- 网络请求 -----
-//接口：配方列表
+//配方列表
 - (void)setupData
 {
 

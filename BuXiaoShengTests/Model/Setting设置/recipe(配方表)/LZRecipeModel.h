@@ -12,4 +12,5 @@
 @property (nonatomic,copy) NSString * id;
 @property (nonatomic,copy) NSString * productId;
 @property (nonatomic,copy) NSString * productName;
+@property (nonatomic,copy) NSString * unitName;
 @end

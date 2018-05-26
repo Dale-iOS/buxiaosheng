@@ -12,6 +12,7 @@
 
 #import "DyeRecipeView.h"
 #import "WeaveRecipeView.h"
+#import "LZChooseRecipeVC.h"
 
 @interface RecipeViewController ()<UIScrollViewDelegate>
 
@@ -78,14 +79,28 @@
 #pragma mark ------- 点击事件 --------
 - (void)navigationAddClick
 {
+//    if (self.SegmentedControl.selectedSegmentIndex == 0) {
+//        AddRecipeViewController *vc = [[AddRecipeViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else if (self.SegmentedControl.selectedSegmentIndex == 1)
+//    {
+//        AddDyeRecipeViewController *vc = [[AddDyeRecipeViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+
     if (self.SegmentedControl.selectedSegmentIndex == 0) {
-        AddRecipeViewController *vc = [[AddRecipeViewController alloc]init];
+        //织布
+        LZChooseRecipeVC *vc = [[LZChooseRecipeVC alloc]init];
+        vc.chooseType = ChooseTypeFromDye;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (self.SegmentedControl.selectedSegmentIndex == 1)
     {
-        AddDyeRecipeViewController *vc = [[AddDyeRecipeViewController alloc]init];
+        //染色
+        LZChooseRecipeVC *vc = [[LZChooseRecipeVC alloc]init];
+        vc.chooseType = ChooseTypeFromWeaVe;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
     
     
 }

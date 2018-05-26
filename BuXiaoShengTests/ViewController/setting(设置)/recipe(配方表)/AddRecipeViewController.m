@@ -9,6 +9,7 @@
 #import "AddRecipeViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
+#import "LZRecipeModel.h"
 
 @interface AddRecipeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) TextInputCell *wastageCell;
 ///计划单位用料量
 @property (nonatomic, strong) TextInputCell *projectCell;
+@property (nonatomic,strong) LZRecipeModel *detailModel;
 @end
 
 @implementation AddRecipeViewController
@@ -71,15 +73,24 @@
     self.mainTabelView.dataSoure = self.datasource;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self setupData];
+    [self setupItemData];
+}
+
 - (void)setupSectionOne
 {
     self.titleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.titleCell.titleLabel.text = @"配方名称";
     self.titleCell.contentTF.placeholder = @"请输入配方名称";
+    self.titleCell.contentTF.enabled = NO;
     
     self.unitCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.unitCell.titleLabel.text = @"单位";
     self.unitCell.contentTF.placeholder = @"请输入公斤数";
+    self.unitCell.contentTF.enabled = NO;
     
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
@@ -120,6 +131,44 @@
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
+}
+
+#pragma mark ----- 网络请求 -----
+//配方产品详情
+- (void)setupData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"id":self.id
+                            };
+    [BXSHttp requestGETWithAppURL:@"formula/detail.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
+        }
+        self.detailModel = [LZRecipeModel LLMJParse:baseModel.data];
+        self.titleCell.contentTF.text = self.detailModel.productName;
+        self.unitCell.contentTF.text = self.detailModel.unitName;
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
+//配方项目详情列表
+- (void)setupItemData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"formulaId":self.id
+                            };
+    [BXSHttp requestGETWithAppURL:@"formula_item/list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
+        }
+//        self.detailModel = [LZRecipeModel LLMJParse:baseModel.data];
+
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 - (void)saveBtnClick
