@@ -8,10 +8,12 @@
 
 #import "DyeRecipeView.h"
 #import "LZSearchBar.h"
+#import "LZRecipeModel.h"
 
 @interface DyeRecipeView()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LZSearchBar * searchBar;
+@property (nonatomic, strong) NSArray <LZRecipeModel *> *recipes;
 @end
 
 @implementation DyeRecipeView
@@ -20,7 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self setupData];
         [self setupUI];
     }
     return self;
@@ -39,6 +41,7 @@
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.searchBar.bottom, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -46,10 +49,33 @@
     [self addSubview:_tableView];
 }
 
+#pragma mark ----- 网络请求 -----
+//接口：配方列表
+- (void)setupData
+{
+
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
+//                            @"searchName":self.searchBar.text,
+                            @"type":@"0"
+                            };
+    [BXSHttp requestGETWithAppURL:@"formula/list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
+        }
+        self.recipes = [LZRecipeModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.recipes.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -74,7 +100,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
-     cell.textLabel.text = [NSString stringWithFormat:@"染色配方表 %ld",(long)indexPath.row];
+    LZRecipeModel *model = self.recipes[indexPath.row];
+     cell.textLabel.text = [NSString stringWithFormat:@"%@",model.productName];
     
     return cell;
 }
@@ -86,6 +113,30 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
     
+}
+
+#pragma mark ---- searchBarDelegate -----
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (self.searchBar.text.length < 1) {
+        return;
+    }
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
+                            @"searchName":self.searchBar.text,
+                            @"type":@"0"
+                            };
+    [BXSHttp requestGETWithAppURL:@"formula/list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
+        }
+        self.recipes = [LZRecipeModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 @end

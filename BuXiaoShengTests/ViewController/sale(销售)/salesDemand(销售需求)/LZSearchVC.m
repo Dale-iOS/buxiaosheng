@@ -42,16 +42,24 @@
 {
     [super viewWillAppear:animated];
     
-    switch (_searchType) {
-        case searchProduct:
-            [self setupProductData];
-            break;
-        case searchProductColor:
-            [self setupProductColorData];
-            break;
-        default:
-            break;
+//    switch (_searchType) {
+//        case searchProduct:
+//            [self setupProductData];
+//            break;
+//        case searchProductColor:
+//            [self setupProductColorData];
+//            break;
+//        default:
+//            break;
+//    }
+//    
+    if (_searchType == searchProduct) {
+        [self setupProductData];
+    }else if (_searchType == searchProductColor)
+    {
+        [self setupProductColorData];
     }
+    
 }
 
 - (UITableView *)tableView

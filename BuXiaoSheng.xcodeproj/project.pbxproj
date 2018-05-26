@@ -121,6 +121,7 @@
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
+		348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64920B93C8C0051E842 /* LZRecipeModel.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
@@ -634,6 +635,8 @@
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
 		3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddClienViewController.h; sourceTree = "<group>"; };
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
+		348AC64820B93C8C0051E842 /* LZRecipeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZRecipeModel.h; sourceTree = "<group>"; };
+		348AC64920B93C8C0051E842 /* LZRecipeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZRecipeModel.m; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
 		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
@@ -1471,6 +1474,15 @@
 			path = "clientManager(客户管理)";
 			sourceTree = "<group>";
 		};
+		348AC64720B93C690051E842 /* recipe(配方表) */ = {
+			isa = PBXGroup;
+			children = (
+				348AC64820B93C8C0051E842 /* LZRecipeModel.h */,
+				348AC64920B93C8C0051E842 /* LZRecipeModel.m */,
+			);
+			path = "recipe(配方表)";
+			sourceTree = "<group>";
+		};
 		349C09592088720F00D2AC38 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2222,6 +2234,7 @@
 		B55ADE0B20A554A5000F9C4A /* Setting设置 */ = {
 			isa = PBXGroup;
 			children = (
+				348AC64720B93C690051E842 /* recipe(配方表) */,
 				3452717320B2B6820001B65A /* product(产品资料) */,
 				34F1E98020AEF4CA00EFAB7D /* clientManager(客户管理) */,
 				B577CE9220AA78640001B8B8 /* organization(组织架构) */,
@@ -2557,6 +2570,7 @@
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				B50505DD209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
+				348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */,
 				345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */,
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,

@@ -391,7 +391,6 @@
     .leftSpaceToView(self.footerView, 0)
     .widthIs(APPWidth)
     .heightIs(79);
-    
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -482,7 +481,7 @@
 #pragma mark -------- 点击事件 ----------
 - (void)nextBtnOnClickAction
 {
-    NSLog(@"点击了 下一步 按钮");
+    
 }
 
 - (void)navigationSetupClick
@@ -528,8 +527,7 @@
     vc.titleStr = @"选择品名";
     vc.searchType = searchProductColor;
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
+  
 }
 
 //收款方式点击事件
