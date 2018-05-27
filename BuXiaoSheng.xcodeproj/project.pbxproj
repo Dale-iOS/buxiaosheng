@@ -124,6 +124,7 @@
 		348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64920B93C8C0051E842 /* LZRecipeModel.m */; };
 		348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64D20B952580051E842 /* BaseSearchViewController.m */; };
 		348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */; };
+		348BD04020BAF7EB00DF23BB /* UITextField+PopOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 348BD03F20BAF7EB00DF23BB /* UITextField+PopOver.m */; };
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
@@ -643,6 +644,8 @@
 		348AC64D20B952580051E842 /* BaseSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseSearchViewController.m; sourceTree = "<group>"; };
 		348AC64F20B9579C0051E842 /* LZChooseRecipeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseRecipeVC.h; sourceTree = "<group>"; };
 		348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseRecipeVC.m; sourceTree = "<group>"; };
+		348BD03E20BAF7EA00DF23BB /* UITextField+PopOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+PopOver.h"; sourceTree = "<group>"; };
+		348BD03F20BAF7EB00DF23BB /* UITextField+PopOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+PopOver.m"; sourceTree = "<group>"; };
 		348DB848209ABFC100CD36CD /* DefaultBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultBankCell.h; sourceTree = "<group>"; };
 		348DB849209ABFC100CD36CD /* DefaultBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultBankCell.m; sourceTree = "<group>"; };
 		348DB84E209AE3AB00CD36CD /* ModifySubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifySubjectViewController.h; sourceTree = "<group>"; };
@@ -1543,6 +1546,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				348BD03E20BAF7EA00DF23BB /* UITextField+PopOver.h */,
+				348BD03F20BAF7EB00DF23BB /* UITextField+PopOver.m */,
 				B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */,
 				B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */,
 				343025EF209C405B00869313 /* UIButton+EdgeInsets.h */,
@@ -2614,6 +2619,7 @@
 				3447A66220B686DE00F657B7 /* salesDemandModel.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
+				348BD04020BAF7EB00DF23BB /* UITextField+PopOver.m in Sources */,
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,

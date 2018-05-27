@@ -11,15 +11,16 @@
 
 @protocol SalesDemandCellDelegate <NSObject>
 //- (void) didClickTitleTextField:(NSString *)titleTFInfo;
-- (void) didClickTitleBtn:(UIButton *)titleBtn;
+//- (void) didClickTitleBtn:(UIButton *)titleBtn;
+- (void) didClickTitleTextField:(UITextField*)titleTF;
+- (void) didClickColorTextField:(UITextField*)colorTF;
 
 @end
 
 @interface SalesDemandCell : UITableViewCell
 @property (nonatomic,weak) id<SalesDemandCellDelegate> delegate;
 ///品名
-//@property (nonatomic,strong)UITextField *titleTF;
-@property (nonatomic,strong)UIButton *titleBtn;
+@property (nonatomic,strong)UITextField *titleTF;
 ///颜色
 @property (nonatomic,strong)UITextField *colorTF;
 ///条数
