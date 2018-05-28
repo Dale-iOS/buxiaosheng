@@ -19,8 +19,10 @@
 #import "LZSearchVC.h"
 #import "UITextField+PopOver.h"
 #import "salesDemandModel.h"
+#import "LZDrawerChooseView.h"
+#import "LZSearchBar.h"
 
-@interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
+@interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate,LZDrawerChooseViewDelegate,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
@@ -67,6 +69,11 @@
 //展示图产品颜色列表数组
 @property (nonatomic, strong) NSMutableArray *productsColorsListMTArray;
 @property (nonatomic, copy) NSString *ProductColorId;
+@property (nonatomic,strong)LZDrawerChooseView *chooseView;
+@property (nonatomic,strong)UIView *bottomBlackView;//侧滑的黑色底图
+@property (nonatomic, strong) LZSearchBar * searchBar;
+//抽屉的颜色选择tableview
+@property (nonatomic,strong) UITableView *colorTableView;
 @end
 
 @implementation SalesDemandViewController
@@ -217,20 +224,13 @@
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
+    //抽屉时的黑色底图
+    _bottomBlackView = [[UIView alloc]initWithFrame:self.view.bounds];
+    _bottomBlackView.backgroundColor = [UIColor blackColor];
+    _bottomBlackView.hidden = YES;
+    [self.view addSubview:_bottomBlackView];
     
-    
-//    self.datasource = [NSMutableArray array];
-//
-//    self.mainTableView.delegate = self;
-//    [self.view addSubview:self.mainTableView];
-//
-//    [self setSectionOne];
-//    [self setSectionTwo];
-//    [self setSectionThree];
-//    [self setSectionFour];
-//
-//    self.mainTableView.dataSoure = self.datasource;
-//
+    [self setupChooseView];
     //下一步按钮
     self.nextBtn = [UIButton new];
     self.nextBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
@@ -242,6 +242,28 @@
     
     [self.view addSubview:self.nextBtn];
     
+}
+
+- (void)setupChooseView
+{
+    //初始化抽屉
+    _chooseView = [[LZDrawerChooseView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight)];
+    _chooseView.delegate = self;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:_chooseView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
+    [_chooseView.alphaiView addGestureRecognizer:tap];
+    
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(APPWidth *0.25 +5, LLNavViewHeight -44, APPWidth *0.75 -10, 49)];
+    self.searchBar.placeholder = @"搜索颜色";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.backgroundColor = [UIColor whiteColor];
+    self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
+    self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    [_chooseView addSubview:self.searchBar];
 }
 
 - (void)setupHeaderView
@@ -580,14 +602,33 @@
 //颜色TF点击方法
 - (void)didClickColorTextField:(UITextField *)colorTF
 {
-    colorTF.delegate = self;
-    //        cell.colorTF.borderStyle = UITextBorderStyleRoundedRect;
-    colorTF.scrollView = self.view;
-    colorTF.positionType = ZJPositionAuto;
-    [colorTF popOverSource:_productsColorsListMTArray index:^(NSInteger index) {
-        NSLog(@"dataSources index == %ld",index);
-        
+//    colorTF.delegate = self;
+//    //        cell.colorTF.borderStyle = UITextBorderStyleRoundedRect;
+//    colorTF.scrollView = self.view;
+//    colorTF.positionType = ZJPositionAuto;
+//    [colorTF popOverSource:_productsColorsListMTArray index:^(NSInteger index) {
+//        NSLog(@"dataSources index == %ld",index);
+//
+//    }];
+    [colorTF resignFirstResponder];
+    [_nextBtn setHidden:YES];
+    
+    _bottomBlackView.alpha = 0.65;
+    _bottomBlackView.hidden = NO;
+    [UIView animateWithDuration:0.35 animations:^{
+        _chooseView .frame = CGRectMake(0, 0, APPWidth, APPHeight);
     }];
+}
+
+- (void)dismiss
+{
+    [_nextBtn setHidden:NO];
+    [UIView animateWithDuration:0.35 animations:^{
+        _bottomBlackView.alpha = 0;
+        _chooseView .frame = CGRectMake(APPWidth, 0, APPWidth, APPHeight);
+        
+    } completion:nil];
+    
 }
 
 //收款方式点击事件

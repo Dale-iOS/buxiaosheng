@@ -253,6 +253,9 @@
 		34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9220A6974200A2C9B5 /* SetBranchCell.m */; };
 		34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */; };
 		34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */; };
+		34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F4B48E20BBAE650017003E /* LZClientDemandModel.m */; };
+		34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */; };
+		34F4B4B220BC03120017003E /* LZDrawerChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F4B4B120BC03120017003E /* LZDrawerChooseView.m */; };
 		34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100020A93C16009A29A5 /* LZPickerView.m */; };
 		34F6100520A93C56009A29A5 /* LZSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100420A93C56009A29A5 /* LZSearchBar.m */; };
 		34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100720A957CF009A29A5 /* LZSubjectModel.m */; };
@@ -878,6 +881,12 @@
 		34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterWarehouseViewController.m; sourceTree = "<group>"; };
 		34F1E98420AF018300EFAB7D /* LZClientManagerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientManagerModel.h; sourceTree = "<group>"; };
 		34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientManagerModel.m; sourceTree = "<group>"; };
+		34F4B48D20BBAE650017003E /* LZClientDemandModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientDemandModel.h; sourceTree = "<group>"; };
+		34F4B48E20BBAE650017003E /* LZClientDemandModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientDemandModel.m; sourceTree = "<group>"; };
+		34F4B49020BBDFE90017003E /* LZSearchClientNeedsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchClientNeedsVC.h; sourceTree = "<group>"; };
+		34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchClientNeedsVC.m; sourceTree = "<group>"; };
+		34F4B4B020BC03120017003E /* LZDrawerChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDrawerChooseView.h; sourceTree = "<group>"; };
+		34F4B4B120BC03120017003E /* LZDrawerChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDrawerChooseView.m; sourceTree = "<group>"; };
 		34F60FFF20A93C16009A29A5 /* LZPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPickerView.h; sourceTree = "<group>"; };
 		34F6100020A93C16009A29A5 /* LZPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPickerView.m; sourceTree = "<group>"; };
 		34F6100320A93C56009A29A5 /* LZSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchBar.h; sourceTree = "<group>"; };
@@ -1309,11 +1318,10 @@
 		34494DEA2091725800BDB309 /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
+				34F4B48820BBA46B0017003E /* clientDemand(客户需求) */,
 				347C309C20A2C5780078BB69 /* inventory仓库 */,
 				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
 				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
-				34494DF22091A76200BDB309 /* ClientNeedsViewController.h */,
-				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
 				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
 				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
 				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
@@ -1411,10 +1419,10 @@
 		3471F4D820B9625600932B20 /* recipe(配方表) */ = {
 			isa = PBXGroup;
 			children = (
-				3464A93420A1894A00307C1A /* DyeRecipeView.h */,
-				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
 				3464A93720A1898100307C1A /* WeaveRecipeView.h */,
 				3464A93820A1898100307C1A /* WeaveRecipeView.m */,
+				3464A93420A1894A00307C1A /* DyeRecipeView.h */,
+				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
 			);
 			path = "recipe(配方表)";
 			sourceTree = "<group>";
@@ -1690,6 +1698,7 @@
 		34A92B47207DE93C00572648 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34F4B48920BBAC960017003E /* warehouse仓库 */,
 				3447A65F20B686B500F657B7 /* salesDemand(销售需求) */,
 				3433D0B120B50E99003FFC16 /* home(首页) */,
 				B55ADE0B20A554A5000F9C4A /* Setting设置 */,
@@ -1715,6 +1724,7 @@
 		34A92B49207DE9EB00572648 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				34F4B4AC20BC029B0017003E /* 侧滑 */,
 				348AC64B20B950B30051E842 /* PublicVC */,
 				34A0ED872080865A00659190 /* Utility */,
 				34A0ED542080827C00659190 /* Category */,
@@ -2067,6 +2077,35 @@
 				34F1E98520AF018300EFAB7D /* LZClientManagerModel.m */,
 			);
 			path = "clientManager(客户管理)";
+			sourceTree = "<group>";
+		};
+		34F4B48820BBA46B0017003E /* clientDemand(客户需求) */ = {
+			isa = PBXGroup;
+			children = (
+				34494DF22091A76200BDB309 /* ClientNeedsViewController.h */,
+				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
+				34F4B49020BBDFE90017003E /* LZSearchClientNeedsVC.h */,
+				34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */,
+			);
+			path = "clientDemand(客户需求)";
+			sourceTree = "<group>";
+		};
+		34F4B48920BBAC960017003E /* warehouse仓库 */ = {
+			isa = PBXGroup;
+			children = (
+				34F4B48D20BBAE650017003E /* LZClientDemandModel.h */,
+				34F4B48E20BBAE650017003E /* LZClientDemandModel.m */,
+			);
+			path = "warehouse仓库";
+			sourceTree = "<group>";
+		};
+		34F4B4AC20BC029B0017003E /* 侧滑 */ = {
+			isa = PBXGroup;
+			children = (
+				34F4B4B020BC03120017003E /* LZDrawerChooseView.h */,
+				34F4B4B120BC03120017003E /* LZDrawerChooseView.m */,
+			);
+			path = "侧滑";
 			sourceTree = "<group>";
 		};
 		34F60FFE20A93C06009A29A5 /* LZPickerView */ = {
@@ -2702,6 +2741,7 @@
 				34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
+				34F4B4B220BC03120017003E /* LZDrawerChooseView.m in Sources */,
 				34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
@@ -2766,6 +2806,7 @@
 				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
 				34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
+				34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */,
 				B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */,
 				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
@@ -2789,6 +2830,7 @@
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
+				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,

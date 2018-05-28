@@ -38,4 +38,6 @@
 
 ///md5 32位加密 转大写
 + (NSString *)makeMD5:(NSString *)signString;
+
+
 @end

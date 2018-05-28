@@ -56,7 +56,6 @@
     if (iconNameLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"周鹏 ";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
         label.textColor = [UIColor whiteColor];
@@ -71,7 +70,6 @@
     if (titleLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"谢海峰的报销";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = CD_Text33;
@@ -85,7 +83,6 @@
     if (subLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"费用明细：用于采购费用";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -99,7 +96,6 @@
     if (priceLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"报销金额：￥500";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -113,7 +109,6 @@
     if (stateLabel == nil) {
         
         UILabel * label = [[UILabel alloc]init];
-        label.text = @"销售需求发起的审批";
         label.textColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
         label.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f];
         label.layer.cornerRadius = 2.0f;
@@ -155,7 +150,6 @@
     if (timeLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"2018-4-3 13:14";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text99;
@@ -275,6 +269,23 @@
     .topSpaceToView(self.priceLabel, 10)
     .widthIs(250)
     .heightIs(13);
+}
+
+- (void)setModel:(LZClientDemandModel *)model
+{
+    _model = model;
+    
+    self.titleLabel.text = _model.customerName;
+    self.subLabel.text = _model.productName;
+    self.priceLabel.text = [NSString stringWithFormat:@"报销金额：￥%@",_model.price];
+    NSString *tempStr =_model.drawerName;
+    if (tempStr.length >3) {
+        self.iconNameLabel.text = [tempStr substringFromIndex:3];
+    }else{
+        self.iconNameLabel.text = _model.drawerName;
+    }
+//先把返回的数据转成时间戳，再转成时间显示
+    self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 }
 
 - (void)yesBtnClick

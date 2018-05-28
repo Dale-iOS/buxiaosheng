@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZClientDemandModel.h"
 @protocol AuditTableViewCellDelegate <NSObject>
 
 - (void)didClickYesBtnInCell:(UITableViewCell *)cell;
@@ -18,6 +18,8 @@
 @interface AuditTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) id<AuditTableViewCellDelegate> delegate;
+
+@property (nonatomic, strong) LZClientDemandModel *model;
 
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;

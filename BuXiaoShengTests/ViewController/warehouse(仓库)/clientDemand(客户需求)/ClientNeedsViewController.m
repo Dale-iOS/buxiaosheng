@@ -4,16 +4,18 @@
 //
 //  Created by 罗镇浩 on 2018/4/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  客户需求页面
 
 #import "ClientNeedsViewController.h"
 #import "AuditTableViewCell.h"
 #import "OutboundViewController.h"
+#import "LZClientDemandModel.h"
+#import "LZSearchClientNeedsVC.h"
 
 @interface ClientNeedsViewController ()<UITableViewDelegate,UITableViewDataSource,AuditTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSArray <LZClientDemandModel *> *listDatas;
 
 @end
 
@@ -22,10 +24,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"客户需求"];
+    self.navigationItem.titleView = [Utility navTitleView:@"客户需求-未出库"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupListData];
 }
 
 - (void)setupUI
@@ -39,10 +47,31 @@
     [self.view addSubview:self.tableView];
 }
 
+#pragma mark ------- 网络请求 --------
+//未出库-销售需求
+- (void)setupListData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"15"
+                            };
+    [BXSHttp requestGETWithAppURL:@"storehouse/out_storage_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _listDatas = [LZClientDemandModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _listDatas.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,6 +98,8 @@
         [cell.yesBtn setTitle:@"出库" forState:UIControlStateNormal];
         [cell.noBtn setTitle:@"指派" forState:UIControlStateNormal];
     }
+    cell.model = _listDatas[indexPath.row];
+    
     return cell;
 }
 
@@ -93,7 +124,8 @@
 #pragma mark ------ 点击事件 -------
 - (void)ToSearch
 {
-    NSLog(@"点击了search");
+
+    [self.navigationController pushViewController:[[LZSearchClientNeedsVC alloc]init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

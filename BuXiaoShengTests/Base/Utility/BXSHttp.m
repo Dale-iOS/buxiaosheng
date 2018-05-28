@@ -78,6 +78,7 @@
     return param;
 }
 
+//当前时间转为时间戳
 +(NSString*)stringFromDate {
     NSTimeInterval time=[[NSDate date] timeIntervalSince1970]*1000;
     double i=time;      //NSTimeInterval返回的是double类型

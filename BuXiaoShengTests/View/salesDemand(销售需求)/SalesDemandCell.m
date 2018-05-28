@@ -221,7 +221,6 @@
 
 -(void)settitleTFContent:(NSString *)title WithColorTFContent:(NSString *)color WithlineTFContent:(NSString *)line WithNumberTFContent:(NSString *)number WithPriceTFContent:(NSString *)price WithReturnBlock:(void (^)(salesDemandModel *model))textFieldBlock
 {
-
     self.titleTF.text = title;
     self.colorTF.text = color;
 //    self.lineTF.text = line;

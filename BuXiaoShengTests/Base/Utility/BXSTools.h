@@ -11,4 +11,8 @@
 @interface BXSTools : NSObject
 +(BOOL)stringIsNullOrEmpty:(NSString *)str ;
 +(BOOL)isBankCard:(NSString *)cardNumber;
+///字符串转时间戳
++ (NSString *)getTimeStrWithString:(NSString*)str;
+///时间戳转时间
++(NSString *)stringFromTimestamp:(NSString*)str;
 @end

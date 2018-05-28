@@ -50,4 +50,28 @@
     int modulus = sum % 10;
     return modulus == 0;
 }
+
++ (NSString *)getTimeStrWithString:(NSString*)str
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];//创建一个时间
+    [dateFormatter setDateFormat:@"YYYYMMddHHmmss"];//设定时间的格式
+    NSDate *tempDate = [dateFormatter dateFromString:str];
+    NSString *timeStr = [NSString stringWithFormat:@"%ld",(long)[tempDate timeIntervalSince1970]*1000];//字符串转成时间戳，精确到毫秒*1000
+    return timeStr;
+}
+
+//时间戳(13位)转为时间
++(NSString *)stringFromTimestamp:(NSString*)str {
+
+    // iOS 生成的时间戳是10位
+    NSTimeInterval interval    =[str doubleValue] / 1000.0;
+    NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString       = [formatter stringFromDate: date];
+    
+    return dateString;
+}
+
 @end
