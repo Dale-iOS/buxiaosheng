@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray <LZRecipeModel *> *recipes;
 @property (nonatomic, assign) NSInteger typeNum;
 @property (nonatomic, strong) LZSearchBar * searchBar;
+@property (nonatomic, copy) NSString *recipeId;;
 @end
 
 @implementation LZChooseRecipeVC
@@ -139,15 +140,8 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
     LZRecipeModel *model = self.recipes[indexPath.row];
-//    cell.textLabel.text = [NSString stringWithFormat:@"%@",model.productName];
-    AddRecipeViewController *vc = [[AddRecipeViewController alloc]init];
-    vc.id = model.id;
-    [self.navigationController pushViewController:vc animated:YES];
+    _recipeId = model.id;
 }
 
 #pragma mark ---- searchBarDelegate -----
@@ -178,6 +172,7 @@
 - (void)addNavRightBtnClick
 {
     AddRecipeViewController *vc = [[AddRecipeViewController alloc]init];
+    vc.id = _recipeId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -22,7 +22,7 @@
 /*!
  *  初始化选择器
  *
- *  @param frame              整个 view 的 frame
+ *  
  *  @param ComponentDataArray 第一区 显示的数据
  *  @param titleDataArray     第二区 显示的数据
  *

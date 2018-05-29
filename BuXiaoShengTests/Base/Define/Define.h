@@ -97,6 +97,9 @@
 //随机色
 #define randomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0f]
 
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r,g,b) RGBA(r,g,b,1.0f)
+
 //字体
 #define FONT(x)   [UIFont systemFontOfSize:x]
 
@@ -113,5 +116,39 @@
 //网络请求的数据response转中文TF8
 #define STRING(response)                [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:response options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding]
 
+//点击事件
+#define addGestureRecognizer(viewName,clickName) do {                                                                          viewName.userInteractionEnabled = YES;\
+[viewName addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickName)]];\
+} while (0);
+
+
+#define BXS_Alert(manager1) UIAlertController * alterVC = [UIAlertController alertControllerWithTitle:@"温馨提示: " message:manager1 preferredStyle:UIAlertControllerStyleAlert];\
+UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"确 定" style:UIAlertActionStyleCancel handler:nil ];\
+[alterVC addAction:cancle];\
+[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alterVC animated:true completion:nil];
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+//原型宽比例
+#define LLScale_WIDTH(cgflot) (SCREEN_WIDTH/750.0*(cgflot))
+
+#define LLAddHeight (IPHONE_X ? 24.0:0.0)
+
+#define LLNavViewHeight (IPHONE_X ? 88.0:64.0)
+
+#define LLTabBarHeight (IPHONE_X ? 83.0:49.0)
+
+//安全域高
+#define IPHONEX_MARGIN_BOTTOM (IPHONE_X ? 34.0:0.0)
+
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH <= 568.0)
+#define IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+#define IPHONE_X (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
 
 #endif /* Define_h */

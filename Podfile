@@ -21,5 +21,6 @@ inhibit_all_warnings!
     pod 'MJExtension'
     pod 'MLeaksFinder'
     pod 'IQKeyboardManager'
+    pod 'EasyShowView'
 end
 

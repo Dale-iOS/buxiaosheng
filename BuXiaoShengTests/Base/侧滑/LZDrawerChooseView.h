@@ -10,6 +10,8 @@
 
 @protocol LZDrawerChooseViewDelegate <NSObject>
 
+- (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId;
+
 @end
 
 @interface LZDrawerChooseView : UIView
@@ -17,4 +19,9 @@
 @property(nonatomic,retain)UIView *alphaiView;
 @property(nonatomic,retain)UIView *bgWhiteView;
 @property(nonatomic,strong)UIButton *makeSureBtn;
+@property(nonatomic,copy)void(^colorTFBlock)(NSString *colorName,NSString *colorId,NSString *productId);
+@property(nonatomic,copy)NSString *chooseName;
+@property(nonatomic,copy)NSString *chooseId;
+@property(nonatomic,copy)NSString *chooseProductId;
+
 @end

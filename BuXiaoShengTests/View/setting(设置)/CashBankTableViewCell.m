@@ -18,6 +18,14 @@
     self.titleLabel.text = model.name;
 }
 
+- (void)setIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+    if (indexPath.row <3) {
+        rightArrowImageVIew.hidden = YES;
+    }
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

@@ -261,6 +261,31 @@
 		34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100720A957CF009A29A5 /* LZSubjectModel.m */; };
 		34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
+		34FB1F0720BD4EC7004D18C2 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EE220BD4EC7004D18C2 /* FSCalendarCollectionView.m */; };
+		34FB1F0820BD4EC7004D18C2 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EE620BD4EC7004D18C2 /* FSCalendarDelegationProxy.m */; };
+		34FB1F0920BD4EC7004D18C2 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EE820BD4EC7004D18C2 /* FSCalendarDelegationFactory.m */; };
+		34FB1F0A20BD4EC7004D18C2 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EEE20BD4EC7004D18C2 /* FSCalendarCell.m */; };
+		34FB1F0B20BD4EC7004D18C2 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EEF20BD4EC7004D18C2 /* FSCalendarStickyHeader.m */; };
+		34FB1F0C20BD4EC7004D18C2 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF020BD4EC7004D18C2 /* FSCalendar.m */; };
+		34FB1F0D20BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF120BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.m */; };
+		34FB1F0E20BD4EC7004D18C2 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF220BD4EC7004D18C2 /* FSCalendarScopeHandle.m */; };
+		34FB1F0F20BD4EC7004D18C2 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF320BD4EC7004D18C2 /* FSCalendarWeekdayView.m */; };
+		34FB1F1020BD4EC7004D18C2 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF720BD4EC7004D18C2 /* FSCalendarExtensions.m */; };
+		34FB1F1120BD4EC7004D18C2 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EF920BD4EC7004D18C2 /* FSCalendar+Deprecated.m */; };
+		34FB1F1220BD4EC7004D18C2 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EFA20BD4EC7004D18C2 /* FSCalendarConstants.m */; };
+		34FB1F1320BD4EC7004D18C2 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EFB20BD4EC7004D18C2 /* FSCalendarCalculator.m */; };
+		34FB1F1420BD4EC7004D18C2 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1EFC20BD4EC7004D18C2 /* FSCalendarHeaderView.m */; };
+		34FB1F1520BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F0020BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.m */; };
+		34FB1F1620BD4EC7004D18C2 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F0120BD4EC7004D18C2 /* FSCalendarAppearance.m */; };
+		34FB1F2920BD5072004D18C2 /* LLDayRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1720BD5070004D18C2 /* LLDayRangeCell.m */; };
+		34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1820BD5070004D18C2 /* LLDayCalendarVc.m */; };
+		34FB1F2B20BD5072004D18C2 /* HYCGetDateAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1C20BD5071004D18C2 /* HYCGetDateAttribute.m */; };
+		34FB1F2C20BD5072004D18C2 /* LLWeekCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1E20BD5071004D18C2 /* LLWeekCalendarVc.m */; };
+		34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2120BD5071004D18C2 /* LLMonthModel.m */; };
+		34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2220BD5071004D18C2 /* LLWeekRangeCell.m */; };
+		34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2320BD5071004D18C2 /* LLMonthCollectionViewCell.m */; };
+		34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */; };
+		34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050551209AB2DA00CE7E4D /* XLFormButtonCell.m */; };
@@ -897,6 +922,56 @@
 		34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZCompanyModel.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
+		34FB1EE220BD4EC7004D18C2 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionView.m; sourceTree = "<group>"; };
+		34FB1EE320BD4EC7004D18C2 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
+		34FB1EE420BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
+		34FB1EE520BD4EC7004D18C2 /* FSCalendarScopeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarScopeHandle.h; sourceTree = "<group>"; };
+		34FB1EE620BD4EC7004D18C2 /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
+		34FB1EE720BD4EC7004D18C2 /* FSCalendarExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarExtensions.h; sourceTree = "<group>"; };
+		34FB1EE820BD4EC7004D18C2 /* FSCalendarDelegationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationFactory.m; sourceTree = "<group>"; };
+		34FB1EE920BD4EC7004D18C2 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCalculator.h; sourceTree = "<group>"; };
+		34FB1EEA20BD4EC7004D18C2 /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeaderView.h; sourceTree = "<group>"; };
+		34FB1EEB20BD4EC7004D18C2 /* FSCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarConstants.h; sourceTree = "<group>"; };
+		34FB1EEC20BD4EC7004D18C2 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
+		34FB1EED20BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
+		34FB1EEE20BD4EC7004D18C2 /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
+		34FB1EEF20BD4EC7004D18C2 /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarStickyHeader.m; sourceTree = "<group>"; };
+		34FB1EF020BD4EC7004D18C2 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
+		34FB1EF120BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
+		34FB1EF220BD4EC7004D18C2 /* FSCalendarScopeHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarScopeHandle.m; sourceTree = "<group>"; };
+		34FB1EF320BD4EC7004D18C2 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		34FB1EF420BD4EC7004D18C2 /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionView.h; sourceTree = "<group>"; };
+		34FB1EF520BD4EC7004D18C2 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
+		34FB1EF620BD4EC7004D18C2 /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
+		34FB1EF720BD4EC7004D18C2 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarExtensions.m; sourceTree = "<group>"; };
+		34FB1EF820BD4EC7004D18C2 /* FSCalendarDelegationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationProxy.h; sourceTree = "<group>"; };
+		34FB1EF920BD4EC7004D18C2 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
+		34FB1EFA20BD4EC7004D18C2 /* FSCalendarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarConstants.m; sourceTree = "<group>"; };
+		34FB1EFB20BD4EC7004D18C2 /* FSCalendarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCalculator.m; sourceTree = "<group>"; };
+		34FB1EFC20BD4EC7004D18C2 /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeaderView.m; sourceTree = "<group>"; };
+		34FB1EFD20BD4EC7004D18C2 /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarStickyHeader.h; sourceTree = "<group>"; };
+		34FB1EFE20BD4EC7004D18C2 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
+		34FB1EFF20BD4EC7004D18C2 /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
+		34FB1F0020BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
+		34FB1F0120BD4EC7004D18C2 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
+		34FB1F1720BD5070004D18C2 /* LLDayRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDayRangeCell.m; sourceTree = "<group>"; };
+		34FB1F1820BD5070004D18C2 /* LLDayCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDayCalendarVc.m; sourceTree = "<group>"; };
+		34FB1F1920BD5070004D18C2 /* LLQuarterCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLQuarterCalendarVc.h; sourceTree = "<group>"; };
+		34FB1F1A20BD5070004D18C2 /* LLDayCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDayCalendarVc.h; sourceTree = "<group>"; };
+		34FB1F1B20BD5070004D18C2 /* LLDayRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDayRangeCell.h; sourceTree = "<group>"; };
+		34FB1F1C20BD5071004D18C2 /* HYCGetDateAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCGetDateAttribute.m; sourceTree = "<group>"; };
+		34FB1F1D20BD5071004D18C2 /* LLMonthCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMonthCalendarVc.h; sourceTree = "<group>"; };
+		34FB1F1E20BD5071004D18C2 /* LLWeekCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWeekCalendarVc.m; sourceTree = "<group>"; };
+		34FB1F1F20BD5071004D18C2 /* HYCGetDateAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCGetDateAttribute.h; sourceTree = "<group>"; };
+		34FB1F2020BD5071004D18C2 /* LLMonthCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMonthCollectionViewCell.h; sourceTree = "<group>"; };
+		34FB1F2120BD5071004D18C2 /* LLMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMonthModel.m; sourceTree = "<group>"; };
+		34FB1F2220BD5071004D18C2 /* LLWeekRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWeekRangeCell.m; sourceTree = "<group>"; };
+		34FB1F2320BD5071004D18C2 /* LLMonthCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMonthCollectionViewCell.m; sourceTree = "<group>"; };
+		34FB1F2420BD5072004D18C2 /* LLWeekRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWeekRangeCell.h; sourceTree = "<group>"; };
+		34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMonthCalendarVc.m; sourceTree = "<group>"; };
+		34FB1F2620BD5072004D18C2 /* LLMonthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMonthModel.h; sourceTree = "<group>"; };
+		34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLQuarterCalendarVc.m; sourceTree = "<group>"; };
+		34FB1F2820BD5072004D18C2 /* LLWeekCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWeekCalendarVc.h; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B505054E209AB2DA00CE7E4D /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
@@ -1712,6 +1787,7 @@
 		34A92B48207DE95600572648 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */,
 				34F6100220A93C43009A29A5 /* LZSearchBar */,
 				34F60FFE20A93C06009A29A5 /* LZPickerView */,
 				B58BF6E520A178D000A8B92B /* CWLateralSlide */,
@@ -2125,6 +2201,72 @@
 				34F6100420A93C56009A29A5 /* LZSearchBar.m */,
 			);
 			path = LZSearchBar;
+			sourceTree = "<group>";
+		};
+		34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */ = {
+			isa = PBXGroup;
+			children = (
+				34FB1F1F20BD5071004D18C2 /* HYCGetDateAttribute.h */,
+				34FB1F1C20BD5071004D18C2 /* HYCGetDateAttribute.m */,
+				34FB1F1A20BD5070004D18C2 /* LLDayCalendarVc.h */,
+				34FB1F1820BD5070004D18C2 /* LLDayCalendarVc.m */,
+				34FB1F1B20BD5070004D18C2 /* LLDayRangeCell.h */,
+				34FB1F1720BD5070004D18C2 /* LLDayRangeCell.m */,
+				34FB1F1D20BD5071004D18C2 /* LLMonthCalendarVc.h */,
+				34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */,
+				34FB1F2020BD5071004D18C2 /* LLMonthCollectionViewCell.h */,
+				34FB1F2320BD5071004D18C2 /* LLMonthCollectionViewCell.m */,
+				34FB1F2620BD5072004D18C2 /* LLMonthModel.h */,
+				34FB1F2120BD5071004D18C2 /* LLMonthModel.m */,
+				34FB1F1920BD5070004D18C2 /* LLQuarterCalendarVc.h */,
+				34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */,
+				34FB1F2820BD5072004D18C2 /* LLWeekCalendarVc.h */,
+				34FB1F1E20BD5071004D18C2 /* LLWeekCalendarVc.m */,
+				34FB1F2420BD5072004D18C2 /* LLWeekRangeCell.h */,
+				34FB1F2220BD5071004D18C2 /* LLWeekRangeCell.m */,
+				34FB1EE120BD4EC7004D18C2 /* FSCalendar */,
+			);
+			path = "Calendar(日历)";
+			sourceTree = "<group>";
+		};
+		34FB1EE120BD4EC7004D18C2 /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				34FB1EE220BD4EC7004D18C2 /* FSCalendarCollectionView.m */,
+				34FB1EE320BD4EC7004D18C2 /* FSCalendarWeekdayView.h */,
+				34FB1EE420BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.h */,
+				34FB1EE520BD4EC7004D18C2 /* FSCalendarScopeHandle.h */,
+				34FB1EE620BD4EC7004D18C2 /* FSCalendarDelegationProxy.m */,
+				34FB1EE720BD4EC7004D18C2 /* FSCalendarExtensions.h */,
+				34FB1EE820BD4EC7004D18C2 /* FSCalendarDelegationFactory.m */,
+				34FB1EE920BD4EC7004D18C2 /* FSCalendarCalculator.h */,
+				34FB1EEA20BD4EC7004D18C2 /* FSCalendarHeaderView.h */,
+				34FB1EEB20BD4EC7004D18C2 /* FSCalendarConstants.h */,
+				34FB1EEC20BD4EC7004D18C2 /* FSCalendarAppearance.h */,
+				34FB1EED20BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.h */,
+				34FB1EEE20BD4EC7004D18C2 /* FSCalendarCell.m */,
+				34FB1EEF20BD4EC7004D18C2 /* FSCalendarStickyHeader.m */,
+				34FB1EF020BD4EC7004D18C2 /* FSCalendar.m */,
+				34FB1EF120BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.m */,
+				34FB1EF220BD4EC7004D18C2 /* FSCalendarScopeHandle.m */,
+				34FB1EF320BD4EC7004D18C2 /* FSCalendarWeekdayView.m */,
+				34FB1EF420BD4EC7004D18C2 /* FSCalendarCollectionView.h */,
+				34FB1EF520BD4EC7004D18C2 /* FSCalendarDynamicHeader.h */,
+				34FB1EF620BD4EC7004D18C2 /* FSCalendarDelegationFactory.h */,
+				34FB1EF720BD4EC7004D18C2 /* FSCalendarExtensions.m */,
+				34FB1EF820BD4EC7004D18C2 /* FSCalendarDelegationProxy.h */,
+				34FB1EF920BD4EC7004D18C2 /* FSCalendar+Deprecated.m */,
+				34FB1EFA20BD4EC7004D18C2 /* FSCalendarConstants.m */,
+				34FB1EFB20BD4EC7004D18C2 /* FSCalendarCalculator.m */,
+				34FB1EFC20BD4EC7004D18C2 /* FSCalendarHeaderView.m */,
+				34FB1EFD20BD4EC7004D18C2 /* FSCalendarStickyHeader.h */,
+				34FB1EFE20BD4EC7004D18C2 /* FSCalendar.h */,
+				34FB1EFF20BD4EC7004D18C2 /* FSCalendarCell.h */,
+				34FB1F0020BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.m */,
+				34FB1F0120BD4EC7004D18C2 /* FSCalendarAppearance.m */,
+			);
+			name = FSCalendar;
+			path = "../../../../Desktop/好用的app/iOS仿钉钉智能报表日历/iOS仿钉钉智能报表日历/FSCalendar";
 			sourceTree = "<group>";
 		};
 		4617F059D04BB6C0063A464F /* Frameworks */ = {
@@ -2547,6 +2689,7 @@
 				"${BUILT_PRODUCTS_DIR}/Addition/Addition.framework",
 				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyNavigation/EasyNavigation.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyShowView/EasyShowView.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -2566,6 +2709,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Addition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyShowView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
@@ -2616,6 +2760,8 @@
 				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
+				34FB1F0A20BD4EC7004D18C2 /* FSCalendarCell.m in Sources */,
+				34FB1F0820BD4EC7004D18C2 /* FSCalendarDelegationProxy.m in Sources */,
 				3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				34EA5BCA208B276C0048CFE1 /* NSDate+Calendar.m in Sources */,
@@ -2629,10 +2775,13 @@
 				34EE5D6C20A68B2600A2C9B5 /* AddProductViewController.m in Sources */,
 				34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */,
 				B50505E1209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
+				34FB1F0C20BD4EC7004D18C2 /* FSCalendar.m in Sources */,
 				342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */,
+				34FB1F1120BD4EC7004D18C2 /* FSCalendar+Deprecated.m in Sources */,
 				342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */,
 				B50505B5209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */,
+				34FB1F2C20BD5072004D18C2 /* LLWeekCalendarVc.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
@@ -2643,11 +2792,13 @@
 				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
 				348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */,
 				345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */,
+				34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */,
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
+				34FB1F1620BD4EC7004D18C2 /* FSCalendarAppearance.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
@@ -2662,6 +2813,7 @@
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
+				34FB1F1520BD4EC7004D18C2 /* FSCalendarTransitionCoordinator.m in Sources */,
 				34528E942089E18C004CD04B /* IncomeViewController.m in Sources */,
 				34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */,
 				343207D020A069A3005A5D23 /* NoAuditApplyViewController.m in Sources */,
@@ -2685,6 +2837,7 @@
 				34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */,
 				343B180620A421FF00349A6D /* AlterPassworddViewController.m in Sources */,
 				34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */,
+				34FB1F2B20BD5072004D18C2 /* HYCGetDateAttribute.m in Sources */,
 				B50505E3209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */,
 				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
@@ -2696,6 +2849,7 @@
 				343747F22094505300C64F4C /* StockTrackingViewController.m in Sources */,
 				34EE5D6920A68AC000A2C9B5 /* AddAuditManagerViewController.m in Sources */,
 				3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */,
+				34FB1F0E20BD4EC7004D18C2 /* FSCalendarScopeHandle.m in Sources */,
 				34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */,
 				B50505B7209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				B50505CD209AB2DA00CE7E4D /* NSArray+XLFormAdditions.m in Sources */,
@@ -2732,11 +2886,13 @@
 				34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */,
 				B5050670209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B50505DF209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
+				34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */,
 				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
 				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
 				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
+				34FB1F0D20BD4EC7004D18C2 /* FSCalendarCollectionViewLayout.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
 				34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
@@ -2761,6 +2917,7 @@
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
+				34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
@@ -2768,9 +2925,11 @@
 				B577CE9920AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
+				34FB1F0920BD4EC7004D18C2 /* FSCalendarDelegationFactory.m in Sources */,
 				B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
+				34FB1F1020BD4EC7004D18C2 /* FSCalendarExtensions.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
@@ -2790,6 +2949,7 @@
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
+				34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
 				B50505E7209AB2DA00CE7E4D /* XLForm.m in Sources */,
@@ -2799,6 +2959,7 @@
 				343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */,
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
+				34FB1F0B20BD4EC7004D18C2 /* FSCalendarStickyHeader.m in Sources */,
 				345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
@@ -2819,11 +2980,15 @@
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				34EE5D7E20A68E3F00A2C9B5 /* SellCostViewController.m in Sources */,
 				3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */,
+				34FB1F2920BD5072004D18C2 /* LLDayRangeCell.m in Sources */,
+				34FB1F0720BD4EC7004D18C2 /* FSCalendarCollectionView.m in Sources */,
 				345E74762082FFCD004B49B3 /* Utility.m in Sources */,
 				34BF66F22095CF22003768D2 /* SetWarehouseViewController.m in Sources */,
 				B50505DB209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
+				34FB1F0F20BD4EC7004D18C2 /* FSCalendarWeekdayView.m in Sources */,
+				34FB1F1220BD4EC7004D18C2 /* FSCalendarConstants.m in Sources */,
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
@@ -2860,6 +3025,7 @@
 				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				343207C720A05A8E005A5D23 /* BackOrderViewController.m in Sources */,
+				34FB1F1320BD4EC7004D18C2 /* FSCalendarCalculator.m in Sources */,
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
@@ -2876,6 +3042,7 @@
 				34DE25BC2092FC73009E7589 /* HRTabView.m in Sources */,
 				B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344F229F208F2569009ADA33 /* BankDetailListViewController.m in Sources */,
+				34FB1F1420BD4EC7004D18C2 /* FSCalendarHeaderView.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */,
 				3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */,
@@ -2889,6 +3056,7 @@
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
+				34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */,
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
@@ -2897,6 +3065,7 @@
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
+				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,

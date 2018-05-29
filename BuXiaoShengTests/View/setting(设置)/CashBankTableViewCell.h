@@ -24,4 +24,6 @@
 
 @property (nonatomic,strong) LLCashBankModel * model;
 
+@property (nonatomic,strong)NSIndexPath *indexPath;
+
 @end

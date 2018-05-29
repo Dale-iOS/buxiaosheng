@@ -33,7 +33,7 @@
         [_makeSureBtn setTitle:@"确认" forState:UIControlStateNormal];
         [_makeSureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_makeSureBtn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
-        
+        [_makeSureBtn addTarget:self action:@selector(makeSureBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [_bgWhiteView addSubview:_makeSureBtn];
         
     }
@@ -44,6 +44,19 @@
 - (void)tapClick
 {
     NSLog(@"点击了白色底图");
+}
+
+//点击确认按钮
+- (void)makeSureBtnClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickMakeSureBtnWithName:WithId:WithProductId:)]) {
+        
+        [self.delegate didClickMakeSureBtnWithName:_chooseName WithId:_chooseId WithProductId:_chooseProductId];
+        
+        if (self.colorTFBlock) {
+            self.colorTFBlock(_chooseName, _chooseId, _chooseProductId);
+        }
+    }
 }
 
 @end
