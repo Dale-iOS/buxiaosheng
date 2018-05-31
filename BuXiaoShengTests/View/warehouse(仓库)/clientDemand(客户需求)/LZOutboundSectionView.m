@@ -15,6 +15,8 @@
     UILabel * _demandLable;//需求
     UILabel * _colorLable;//颜色
     //UIButton * _foldingBtn;//折叠按钮
+    UIButton * _addBtn;
+    UIView * _bottomView;
 }
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
@@ -76,13 +78,84 @@
     
     [_foldingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-12);
-        make.centerY.equalTo(self.contentView);
+        make.top.equalTo(self.contentView).offset(40);
         // make.width.mas_equalTo(100);
     }];
     [_foldingBtn layoutIfNeeded];
     _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     
     _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+    
+    UIView * _headView = [[UIView alloc]init];
+    _headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
+    _bottomView = _headView;
+    [self.contentView addSubview:_headView];
+    [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.contentView);
+        make.top.equalTo(_colorLable.mas_bottom).offset(5);
+        make.height.mas_equalTo(39);
+    }];
+    
+    UILabel *warehouseNumLbl = [[UILabel alloc]init];
+    warehouseNumLbl.font = FONT(14);
+    warehouseNumLbl.textColor = CD_Text33;
+    warehouseNumLbl.textAlignment = NSTextAlignmentCenter;
+    warehouseNumLbl.text = @"库存数量";
+    [_headView addSubview:warehouseNumLbl];
+    [warehouseNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(_headView);
+        make.width.mas_offset(APPWidth *0.2);
+        make.height.mas_offset(39);
+    }];
+    
+    UILabel *OutNumLbl = [[UILabel alloc]init];
+    OutNumLbl.font = FONT(14);
+    OutNumLbl.textColor = CD_Text33;
+    OutNumLbl.textAlignment = NSTextAlignmentCenter;
+    OutNumLbl.text = @"出库数量";
+    [_headView addSubview:OutNumLbl];
+    [OutNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_headView);
+        make.left.equalTo(warehouseNumLbl.mas_right);
+        make.width.mas_offset(APPWidth *0.2);
+        make.height.mas_offset(39);
+    }];
+    
+    UILabel *lineNumLbl = [[UILabel alloc]init];
+    lineNumLbl.font = FONT(14);
+    lineNumLbl.textColor = CD_Text33;
+    lineNumLbl.textAlignment = NSTextAlignmentCenter;
+    lineNumLbl.text = @"条数";
+    [_headView addSubview:lineNumLbl];
+    [lineNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_headView);
+        make.left.equalTo(OutNumLbl.mas_right);
+        make.width.mas_offset(APPWidth *0.2);
+        make.height.mas_offset(39);
+    }];
+    
+    UILabel *fromWarahouseLbl = [[UILabel alloc]init];
+    fromWarahouseLbl.font = FONT(14);
+    fromWarahouseLbl.textColor = CD_Text33;
+    fromWarahouseLbl.textAlignment = NSTextAlignmentCenter;
+    fromWarahouseLbl.text = @"出库仓";
+    [_headView addSubview:fromWarahouseLbl];
+    [fromWarahouseLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_headView);
+        make.left.equalTo(lineNumLbl.mas_right);
+        make.width.mas_offset(APPWidth *0.2);
+        make.height.mas_offset(39);
+    }];
+    
+    _addBtn = [[UIButton alloc]init];;
+    [_headView addSubview:_addBtn];
+    [_addBtn setImage:IMAGE(@"dyeing_add") forState:UIControlStateNormal];
+    [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_headView);
+        make.right.equalTo(_headView).offset(-12);
+        make.width.mas_offset(APPWidth *0.2);
+        make.height.mas_offset(39);
+    }];
 }
 
 -(void)foldingBtnClick {
@@ -97,6 +170,7 @@
     _nameLable.text = [NSString stringWithFormat:@"品名 : %@",_model.productName];
     _demandLable.text = [NSString stringWithFormat:@"需求量 : %@",_model.number];
     _colorLable.text = [NSString stringWithFormat:@"颜色 : %@",_model.productColorName];
+    _model.seleted ? (_bottomView.hidden = false) : (_bottomView.hidden = true);
 }
 
 @end

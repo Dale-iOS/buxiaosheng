@@ -8,12 +8,11 @@
 
 #import "LZOutboundCell.h"
 #import "LZOutboundListCell.h"
-@interface LZOutboundCell()<UITableViewDelegate,UITableViewDataSource,LZOutboundListCellDelegate>
+@interface LZOutboundCell()
 @end
 @implementation LZOutboundCell
 {
-    UIButton *_addBtn;
-    UITableView *_myTableView;
+   // UIButton *_addBtn;
     UIView *_headView;
     UIView *_footView;
 }
@@ -82,15 +81,7 @@
         make.height.mas_offset(39);
     }];
     
-    _addBtn = [[UIButton alloc]init];;
-    [self.contentView addSubview:_addBtn];
-    [_addBtn setImage:IMAGE(@"dyeing_add") forState:UIControlStateNormal];
-    [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_headView);
-        make.left.equalTo(fromWarahouseLbl.mas_right);
-        make.width.mas_offset(APPWidth *0.2);
-        make.height.mas_offset(39);
-    }];
+   
     
     
     //tableview尾部试图
@@ -120,54 +111,9 @@
         make.width.mas_offset(APPWidth *0.5);
         make.height.mas_offset(44);
     }];
-    
-    _myTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _myTableView.delegate = self;
-    _myTableView.dataSource = self;
-    _myTableView.tableFooterView = _footView;
-    
-    [self.contentView addSubview:_myTableView];
-    [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-15);
-        make.top.equalTo(_addBtn.mas_bottom).offset(15);
-        make.bottom.equalTo(self.contentView).offset(-25);
-        make.width.mas_equalTo(APPWidth -30);
-    }];
+
 }
 
-#pragma mark ----- tableviewdelegate -----
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 44;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 44;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellID = @"LZOutboundListCell";
-    LZOutboundListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[LZOutboundListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.delegate = self;
-    }
-
-    return cell;
-}
-
-- (void)didClickInWarehouseNumTF:(UITextField *)warehouseNumTF
-{
-  
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

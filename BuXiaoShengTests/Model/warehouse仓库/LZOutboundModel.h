@@ -25,4 +25,6 @@
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *stock;
 @property (nonatomic,copy) NSString *storageType;
+
+@property (nonatomic,assign) BOOL seleted;
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "LZOutboundModel.h"
 @interface LZOutboundCell : UITableViewCell
-@property(nonatomic,strong)NSArray<LZOutboundItemListModel *> *listArrays;
+@property(nonatomic,strong)LZOutboundItemListModel * itemsModel;
 @end

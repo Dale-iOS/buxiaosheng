@@ -142,8 +142,8 @@
 //登录事件
 - (void)loginBtnOnClickAction
 {
-    NSDictionary *param = @{@"loginName":self.loginTF.text,
-                           @"password":[BXSHttp makeMD5:self.passwordTF.text]
+    NSDictionary *param = @{@"loginName": @"18814188198",//self.loginTF.text,
+                           @"password":[BXSHttp makeMD5:@"123456"]//self.passwordTF.text]
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         if ([[response objectForKey:@"code"] integerValue] == 200) {

@@ -388,6 +388,8 @@
 		B531EF4020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF2020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m */; };
 		B531EF4120BF8FE90028F18B /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF2220BF8FE90028F18B /* FSCalendarWeekdayView.m */; };
 		B531EF4220BF8FE90028F18B /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF2220BF8FE90028F18B /* FSCalendarWeekdayView.m */; };
+		B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */; };
+		B531EF4620BFBDB90028F18B /* LLOutboundFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */; };
 		B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
@@ -1088,6 +1090,8 @@
 		B531EF2020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		B531EF2120BF8FE90028F18B /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		B531EF2220BF8FE90028F18B /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		B531EF4320BFBDB90028F18B /* LLOutboundFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutboundFooterView.h; sourceTree = "<group>"; };
+		B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutboundFooterView.m; sourceTree = "<group>"; };
 		B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCashBankModel.h; sourceTree = "<group>"; };
 		B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCashBankModel.m; sourceTree = "<group>"; };
 		B55ADE1020A555F2000F9C4A /* LLBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseModel.h; sourceTree = "<group>"; };
@@ -1988,6 +1992,8 @@
 			children = (
 				34D705B320BE85C700F0940C /* LZOutboundSectionView.h */,
 				34D705B420BE85C700F0940C /* LZOutboundSectionView.m */,
+				B531EF4320BFBDB90028F18B /* LLOutboundFooterView.h */,
+				B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */,
 				34D705B620BE9D3000F0940C /* LZOutboundCell.h */,
 				34D705B720BE9D3000F0940C /* LZOutboundCell.m */,
 				34D705B920BED8B100F0940C /* LZOutboundListCell.h */,
@@ -3073,6 +3079,7 @@
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				343207C720A05A8E005A5D23 /* BackOrderViewController.m in Sources */,
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
+				B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
@@ -3199,6 +3206,7 @@
 				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
+				B531EF4620BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
