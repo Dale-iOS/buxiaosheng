@@ -77,4 +77,17 @@
     return dateString;
 }
 
+/**
+ *  返回当前视图的控制器
+ */
++ (UIViewController *)viewWithViewController:(UIView *)view {
+    for (UIView* next = [view superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
 @end
