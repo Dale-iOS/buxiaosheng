@@ -21,12 +21,17 @@
 		<key>CWLateralSlide.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>7</integer>
 		</dict>
 		<key>EasyNavigation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>8</integer>
+		</dict>
+		<key>EasyShowView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>FBRetainCycleDetector.xcscheme</key>
 		<dict>
@@ -36,7 +41,7 @@
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>10</integer>
 		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
