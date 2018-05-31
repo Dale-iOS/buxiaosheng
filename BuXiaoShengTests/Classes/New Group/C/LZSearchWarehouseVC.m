@@ -8,6 +8,7 @@
 
 #import "LZSearchWarehouseVC.h"
 #import "LZSearchBar.h"
+#import "LZInventoryDetailCell.h"
 
 @interface LZSearchWarehouseVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)LZSearchBar*searchBar;
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -29,6 +30,7 @@
 
 - (void)setupUI{
     
+    self.navigationItem.titleView = [Utility navTitleView:@"搜索全库存"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(screenAddClick) image:IMAGE(@"screen3")];
     
     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
@@ -102,6 +104,15 @@
         make.width.mas_offset(APPWidth *0.2);
     }];
     
+    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.tableFooterView = [[UIView alloc]init];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(_headView.mas_bottom);
+    }];
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -122,10 +133,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"ClientManagerTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZInventoryDetailCell";
+    LZInventoryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZInventoryDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     return cell;
 }

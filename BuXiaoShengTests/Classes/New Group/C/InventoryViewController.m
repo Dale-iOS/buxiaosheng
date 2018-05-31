@@ -11,7 +11,7 @@
 #import "BankConversionViewController.h"
 #import "InventoryDetailViewController.h"
 #import "LZInventoryModel.h"
-
+#import "LZSearchWarehouseVC.h"
 @interface InventoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 ///总米数
@@ -274,7 +274,7 @@
     rightButton.autoresizesSubviews = YES;
     rightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     rightButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
-    [rightButton addTarget:self action:@selector(backMethod) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [rightButtonView addSubview:rightButton];
     UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButtonView];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -303,6 +303,12 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
+}
+
+- (void)rightButtonClick
+{
+    LZSearchWarehouseVC *vc = [[LZSearchWarehouseVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES]; 
 }
 
 - (void)backMethod
