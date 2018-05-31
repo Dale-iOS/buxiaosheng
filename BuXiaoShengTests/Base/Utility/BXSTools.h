@@ -15,4 +15,6 @@
 + (NSString *)getTimeStrWithString:(NSString*)str;
 ///时间戳转时间
 +(NSString *)stringFromTimestamp:(NSString*)str;
+
++ (UIViewController *)viewWithViewController:(UIView *)view;
 @end

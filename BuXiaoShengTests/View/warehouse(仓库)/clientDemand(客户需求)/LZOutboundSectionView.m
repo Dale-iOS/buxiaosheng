@@ -7,7 +7,9 @@
 //
 
 #import "LZOutboundSectionView.h"
-
+#import "OutboundViewController.h"
+#import "LZDrawerChooseView.h"
+#import "LLOutboundSeletedVC.h"
 @implementation LZOutboundSectionView
 {
     UIView * _bgView;
@@ -148,6 +150,7 @@
     }];
     
     _addBtn = [[UIButton alloc]init];;
+    [_addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_headView addSubview:_addBtn];
     [_addBtn setImage:IMAGE(@"dyeing_add") forState:UIControlStateNormal];
     [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,6 +159,17 @@
         make.width.mas_offset(APPWidth *0.2);
         make.height.mas_offset(39);
     }];
+}
+
+-(void)addBtnClick {
+    
+    OutboundViewController *  outboundVc = (OutboundViewController *)[BXSTools viewWithViewController:self.contentView ];
+    
+    LLOutboundSeletedVC * rightSeletedVc = [LLOutboundSeletedVC new];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    
+    [outboundVc cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+   
 }
 
 -(void)foldingBtnClick {

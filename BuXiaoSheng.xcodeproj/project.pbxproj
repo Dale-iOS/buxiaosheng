@@ -398,6 +398,8 @@
 		B531EF4220BF8FE90028F18B /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF2220BF8FE90028F18B /* FSCalendarWeekdayView.m */; };
 		B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */; };
 		B531EF4620BFBDB90028F18B /* LLOutboundFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */; };
+		B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */; };
+		B531EF4A20BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */; };
 		B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */; };
 		B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
@@ -1108,6 +1110,8 @@
 		B531EF2220BF8FE90028F18B /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		B531EF4320BFBDB90028F18B /* LLOutboundFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutboundFooterView.h; sourceTree = "<group>"; };
 		B531EF4420BFBDB90028F18B /* LLOutboundFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutboundFooterView.m; sourceTree = "<group>"; };
+		B531EF4720BFF8450028F18B /* LLOutboundSeletedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutboundSeletedVC.h; sourceTree = "<group>"; };
+		B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutboundSeletedVC.m; sourceTree = "<group>"; };
 		B55ADE0C20A554C7000F9C4A /* LLCashBankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCashBankModel.h; sourceTree = "<group>"; };
 		B55ADE0D20A554C7000F9C4A /* LLCashBankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCashBankModel.m; sourceTree = "<group>"; };
 		B55ADE1020A555F2000F9C4A /* LLBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseModel.h; sourceTree = "<group>"; };
@@ -2203,6 +2207,8 @@
 				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
 				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
 				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
+				B531EF4720BFF8450028F18B /* LLOutboundSeletedVC.h */,
+				B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */,
 				34F4B49020BBDFE90017003E /* LZSearchClientNeedsVC.h */,
 				34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */,
 			);
@@ -3038,6 +3044,7 @@
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
+				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
@@ -3266,6 +3273,7 @@
 				B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
+				B531EF4A20BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				B50505C6209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
 				B577CEB120AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
 				B50505CE209AB2DA00CE7E4D /* NSArray+XLFormAdditions.m in Sources */,
