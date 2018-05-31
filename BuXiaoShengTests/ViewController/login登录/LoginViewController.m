@@ -142,14 +142,12 @@
 //登录事件
 - (void)loginBtnOnClickAction
 {
-    NSDictionary *param = @{@"loginName": @"18814188198",//self.loginTF.text,
-                           @"password":[BXSHttp makeMD5:@"123456"]//self.passwordTF.text]
+    NSDictionary *param = @{@"loginName":self.loginTF.text,
+                           @"password":[BXSHttp makeMD5:self.passwordTF.text]
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         if ([[response objectForKey:@"code"] integerValue] == 200) {
              self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
-            [BXSUser deleteUser];
-            [BXSUser saveUser:self.loginModel];
             
             if ([self.loginModel.pwdResetStaus isEqualToString:@"0"]) {
                 AlterPassworddViewController *vc = [[AlterPassworddViewController alloc]init];
@@ -157,9 +155,17 @@
                 return ;
             }
             
-            HomeViewController *vc = [[HomeViewController alloc]init];
-            
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([BXSTools stringIsNullOrEmpty:[BXSUser currentUser].userId]) {
+                [BXSUser deleteUser];
+                [BXSUser saveUser:self.loginModel];
+                HomeViewController *vc = [[HomeViewController alloc]init];
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+                return ;
+            }
+            [BXSUser deleteUser];
+            [BXSUser saveUser:self.loginModel];
+            [self.navigationController popViewControllerAnimated:true];
         }
 
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];

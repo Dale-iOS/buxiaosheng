@@ -9,6 +9,7 @@
 #import "BXSHttp.h"
 #import "LLNetWorkTools.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "LoginViewController.h"
 @implementation BXSHttp
 
 +(void)requestPOSTWithAppURL:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure {
@@ -19,6 +20,11 @@
     baseParam[@"sign"] = [self sortObjectsAccordingToValueMD5With:baseParam];
      [self logURL:requsetURL withDict:baseParam OnHttpType:@"POST"];
     [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTWithSucces:^(id responseObject) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+        if ([baseModel.code isEqualToString:@"9000"]) {
+            [self setupLoginStateFild];
+            return ;
+        }
         if (success) {
             success(responseObject);
         }
@@ -37,6 +43,11 @@
     [self logURL:requsetURL withDict:baseParam OnHttpType:@"GET"];
     [LLNetWorkTools.shareTools.urlStr(requsetURL).param(baseParam) GETWithSucces:^(id responseObject)
      {
+         LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+         if ([baseModel.code isEqualToString:@"9000"]) {
+             [self setupLoginStateFild];
+             return ;
+         }
      if (success) {
         success(responseObject);
         }
@@ -62,6 +73,22 @@
         }];
         
     }
+}
+//登录状态失效的情况下跳到登录页,从新登录
++(void)setupLoginStateFild {
+    
+   UINavigationController * navVC =  (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    [navVC popToRootViewControllerAnimated:true];
+   __block LoginViewController * loginVc = nil;
+    [navVC.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LoginViewController class]]) {
+            loginVc = obj;
+        }
+    }];
+    if (loginVc) {
+        return;
+    }
+    [navVC pushViewController:[LoginViewController new] animated:true];
 }
 
 +(NSMutableDictionary*) getConstantParam {

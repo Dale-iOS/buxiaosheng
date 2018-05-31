@@ -10,6 +10,9 @@
 
 @implementation BXSTools
 +(BOOL)stringIsNullOrEmpty:(NSString *)str {
+    if ([str isKindOfClass:[NSNull class]]) {
+        return true;
+    }
     if (str == nil ||str.length == 0||[str isEqualToString:@""]||[str isEqualToString:@"(null)"]) {
         return true;
     }

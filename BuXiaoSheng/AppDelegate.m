@@ -39,8 +39,7 @@
     
 //    LoginViewController *loginVC = [[LoginViewController alloc]init];
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.window makeKeyAndVisible];
+   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     if ([BXSUser isLogin]) {
         HomeViewController *vc = [[HomeViewController alloc]init];
@@ -55,8 +54,7 @@
     }
 
 //    nav.navigationBarHidden = NO;
-    
-    
+    [self.window makeKeyAndVisible];
  
     return YES;
 }
