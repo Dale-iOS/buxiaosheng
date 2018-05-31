@@ -65,7 +65,6 @@
     if (iconNameLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"周鹏 ";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
         label.textColor = [UIColor whiteColor];
@@ -150,19 +149,7 @@
     .leftSpaceToView(contentView, 0)
     .widthIs(APPWidth -30)
     .heightIs(133);
-    
-    //    self.bottomBgView.sd_layout
-    //    .bottomSpaceToView(self.bgView, -10)
-    //    .leftSpaceToView(contentView, 0)
-    //    .widthIs(APPWidth -30)
-    //    .heightIs(10);
-    
-    //    self.cornerWhiteBgView.sd_layout
-    //    .topSpaceToView(self.bgView, 0)
-    //    .leftSpaceToView(self.bgView, 0)
-    //    .widthIs(APPWidth -30)
-    //    .heightIs(10);
-    
+
     self.iconImageView.sd_layout
     .leftSpaceToView(contentView, 15)
     //    .centerYEqualToView(self.bgView)
@@ -199,9 +186,18 @@
     .topSpaceToView(self.codeLabel, 10)
     .widthIs(300)
     .heightIs(13);
-    
-    
-    
+}
+
+- (void)setModel:(LZInventoryListModel *)model
+{
+    _model = model;
+    self.titleLabel.text = _model.houseName;
+    self.meterLabel.text = [NSString stringWithFormat:@"米数：%@",_model.rice];
+    self.codeLabel.text = [NSString stringWithFormat:@"码数：%@",_model.code];
+    self.kgLabel.text = [NSString stringWithFormat:@"公斤：%@",_model.kg];
+    if (_model.houseName.length >0) {
+        self.iconNameLabel.text = [_model.houseName substringToIndex:2];
+    }
 }
 
 

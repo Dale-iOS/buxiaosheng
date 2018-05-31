@@ -4,10 +4,11 @@
 //
 //  Created by 罗镇浩 on 2018/5/9.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  仓库详情
+//  仓库详情页面
 
 #import "InventoryDetailViewController.h"
 #import "CustomerArrearsTableViewCell.h"
+#import "LZInventoryDetailModel.h"
 
 @interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///总米数
@@ -21,7 +22,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
-
+@property (nonatomic,assign) NSInteger pageIndex;
 @end
 
 @implementation InventoryDetailViewController
@@ -31,21 +32,15 @@
     [super viewWillAppear:YES];
     
     self.navigationItem.titleView = [Utility navWhiteTitleView:@"广州大仓库"];
-    //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-    //    self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [self.navigationController.navigationBar setBackgroundImage:[Utility createImageWithColor:[UIColor colorWithHexString:@"#3d9bfa"]] forBarMetrics:UIBarMetricsDefault];
-    
-    //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"sale"] forBarMetrics:UIBarMetricsDefault];
+
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     //修复navigationController侧滑关闭失效的问题
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     self.view.backgroundColor = [UIColor whiteColor];
-    //    [self.navigationController.navigationBar setBackgroundColor:[UIColor greenColor]];
     [self setCustomLeftButton];
-    //    self.title = @"银行明细";
-    
+
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     //设置透明的背景图，便于识别底部线条有没有被隐藏
     [navigationBar setBackgroundImage:[[UIImage alloc] init]
@@ -55,9 +50,9 @@
     [navigationBar setShadowImage:[UIImage new]];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     self.view.backgroundColor = LZHBackgroundColor;
     
+    [self setupDetailData];
 }
 
 - (void)viewDidLoad {
@@ -334,6 +329,26 @@
     .heightRatioToView(self.headView, 1)
     .widthIs(APPWidth/4)
     .topSpaceToView(self.headView, 0);
+}
+
+#pragma mark ----- 网络请求 ------
+- (void)setupDetailData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"houseId":self.id,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15",
+                             };
+    [BXSHttp requestGETWithAppURL:@"house_stock/house_product_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 #pragma mark ----- tableviewdelegate -----

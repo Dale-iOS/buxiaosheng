@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZInventoryModel.h"
 @interface InventoryCell : UITableViewCell
 
 ///底图
@@ -36,5 +36,5 @@
 
 ///底角背景
 @property (nonatomic, strong) UIView *bottomBgView;
-
+@property(nonatomic,strong)LZInventoryListModel *model;
 @end

@@ -265,6 +265,10 @@
 		34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100720A957CF009A29A5 /* LZSubjectModel.m */; };
 		34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */; };
 		34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */; };
+		34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */; };
+		34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */; };
+		34F6E76C20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */; };
+		34F6E76D20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */; };
 		34FB1F2920BD5072004D18C2 /* LLDayRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1720BD5070004D18C2 /* LLDayRangeCell.m */; };
 		34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1820BD5070004D18C2 /* LLDayCalendarVc.m */; };
 		34FB1F2B20BD5072004D18C2 /* HYCGetDateAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F1C20BD5071004D18C2 /* HYCGetDateAttribute.m */; };
@@ -952,6 +956,10 @@
 		34F6100A20A9A38A009A29A5 /* LZCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZCompanyModel.m; sourceTree = "<group>"; };
 		34F6D360209DA406009D5440 /* AddSetCompanyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSetCompanyViewController.h; sourceTree = "<group>"; };
 		34F6D361209DA406009D5440 /* AddSetCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSetCompanyViewController.m; sourceTree = "<group>"; };
+		34F6E76620BFCEC900FABC5F /* LZInventoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZInventoryModel.h; sourceTree = "<group>"; };
+		34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZInventoryModel.m; sourceTree = "<group>"; };
+		34F6E76A20BFDD4300FABC5F /* LZInventoryDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZInventoryDetailModel.h; sourceTree = "<group>"; };
+		34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZInventoryDetailModel.m; sourceTree = "<group>"; };
 		34FB1F1720BD5070004D18C2 /* LLDayRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDayRangeCell.m; sourceTree = "<group>"; };
 		34FB1F1820BD5070004D18C2 /* LLDayCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDayCalendarVc.m; sourceTree = "<group>"; };
 		34FB1F1920BD5070004D18C2 /* LLQuarterCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLQuarterCalendarVc.h; sourceTree = "<group>"; };
@@ -1425,16 +1433,14 @@
 		34494DEA2091725800BDB309 /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
+				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
 				34F4B48820BBA46B0017003E /* clientDemand(客户需求) */,
-				347C309C20A2C5780078BB69 /* inventory仓库 */,
 				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
 				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
 				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
 				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
 				34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */,
 				34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */,
-				347C309420A299030078BB69 /* InventoryViewController.h */,
-				347C309520A299030078BB69 /* InventoryViewController.m */,
 				34DE25AE2092C61A009E7589 /* DyeingViewController.h */,
 				34DE25AF2092C61A009E7589 /* DyeingViewController.m */,
 				34DE25B12092C7F1009E7589 /* ProcessViewController.h */,
@@ -1455,7 +1461,6 @@
 			isa = PBXGroup;
 			children = (
 				34D705B220BE858600F0940C /* clientDemand(客户需求) */,
-				347C309820A29D970078BB69 /* inventory仓库 */,
 				B5B07508209C287F00FD53DC /* Process采购加工 */,
 				B5050665209ABDF600CE7E4D /* Dyeing制造染色 */,
 				34494DEF20917A8100BDB309 /* WarehouserTableViewCell.h */,
@@ -1531,24 +1536,6 @@
 				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
 			);
 			path = "recipe(配方表)";
-			sourceTree = "<group>";
-		};
-		347C309820A29D970078BB69 /* inventory仓库 */ = {
-			isa = PBXGroup;
-			children = (
-				347C309920A29DBC0078BB69 /* InventoryCell.h */,
-				347C309A20A29DBC0078BB69 /* InventoryCell.m */,
-			);
-			path = "inventory仓库";
-			sourceTree = "<group>";
-		};
-		347C309C20A2C5780078BB69 /* inventory仓库 */ = {
-			isa = PBXGroup;
-			children = (
-				347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */,
-				347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */,
-			);
-			path = "inventory仓库";
 			sourceTree = "<group>";
 		};
 		347D64C9207F05ED00407FC4 /* sale(销售) */ = {
@@ -2251,6 +2238,48 @@
 				34F6100420A93C56009A29A5 /* LZSearchBar.m */,
 			);
 			path = LZSearchBar;
+			sourceTree = "<group>";
+		};
+		34F6E76220BFCE9200FABC5F /* inventory(库存) */ = {
+			isa = PBXGroup;
+			children = (
+				34F6E76520BFCEB300FABC5F /* M */,
+				34F6E76420BFCEAE00FABC5F /* V */,
+				34F6E76320BFCEA800FABC5F /* C */,
+			);
+			name = "inventory(库存)";
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		34F6E76320BFCEA800FABC5F /* C */ = {
+			isa = PBXGroup;
+			children = (
+				347C309420A299030078BB69 /* InventoryViewController.h */,
+				347C309520A299030078BB69 /* InventoryViewController.m */,
+				347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */,
+				347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		34F6E76420BFCEAE00FABC5F /* V */ = {
+			isa = PBXGroup;
+			children = (
+				347C309920A29DBC0078BB69 /* InventoryCell.h */,
+				347C309A20A29DBC0078BB69 /* InventoryCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		34F6E76520BFCEB300FABC5F /* M */ = {
+			isa = PBXGroup;
+			children = (
+				34F6E76620BFCEC900FABC5F /* LZInventoryModel.h */,
+				34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */,
+				34F6E76A20BFDD4300FABC5F /* LZInventoryDetailModel.h */,
+				34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */,
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */ = {
@@ -3002,6 +3031,7 @@
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
+				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
@@ -3044,6 +3074,7 @@
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
+				34F6E76C20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
@@ -3133,6 +3164,7 @@
 			files = (
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
+				34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
@@ -3193,6 +3225,7 @@
 				B577CE9120AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */,
 				B50505E2209AB2DA00CE7E4D /* XLFormRegexValidator.m in Sources */,
 				B50505B6209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
+				34F6E76D20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				34A92B6C207DFB6700572648 /* HomeEntranceCell.m in Sources */,
 				343008DC2081ACA500447992 /* NowMonthViewController.m in Sources */,
 				347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */,

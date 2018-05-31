@@ -10,6 +10,7 @@
 #import "InventoryCell.h"
 #import "BankConversionViewController.h"
 #import "InventoryDetailViewController.h"
+#import "LZInventoryModel.h"
 
 @interface InventoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -19,8 +20,8 @@
 @property (nonatomic, strong) UILabel *codeLbl;
 ///总公斤
 @property (nonatomic, strong) UILabel *kgLbl;
-
-
+@property(nonatomic,strong)LZInventoryModel *model;
+@property(nonatomic,strong)NSArray <LZInventoryListModel*> *listAry;
 @end
 
 
@@ -37,20 +38,15 @@
     [super viewWillAppear:YES];
     
     self.navigationItem.titleView = [Utility navWhiteTitleView:@"库存"];
-    //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-    //    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar setBackgroundImage:[Utility createImageWithColor:[UIColor colorWithHexString:@"#3d9bfa"]] forBarMetrics:UIBarMetricsDefault];
     
-    //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"sale"] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     //修复navigationController侧滑关闭失效的问题
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     self.view.backgroundColor = [UIColor whiteColor];
-    //    [self.navigationController.navigationBar setBackgroundColor:[UIColor greenColor]];
+    
     [self setCustomLeftButton];
-    //    self.title = @"银行明细";
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     //设置透明的背景图，便于识别底部线条有没有被隐藏
@@ -63,6 +59,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.view.backgroundColor = LZHBackgroundColor;
+    
+    [self setupDetailData];
     
 }
 
@@ -87,7 +85,6 @@
     self.meterLbl.font = [UIFont boldSystemFontOfSize:18];
     self.meterLbl.textColor = [UIColor whiteColor];
     self.meterLbl.textAlignment = NSTextAlignmentCenter;
-    self.meterLbl.text = @"2390.00";
     [bgBlueView addSubview:self.meterLbl];
     
     UIView *lineView1 = [[UIView alloc]init];
@@ -128,7 +125,6 @@
     self.codeLbl.font = [UIFont boldSystemFontOfSize:18];
     self.codeLbl.textColor = [UIColor whiteColor];
     self.codeLbl.textAlignment = NSTextAlignmentCenter;
-    self.codeLbl.text = @"2355.00";
     [bgBlueView addSubview:self.codeLbl];
     
     //布局
@@ -158,7 +154,6 @@
     self.kgLbl.font = [UIFont boldSystemFontOfSize:18];
     self.kgLbl.textColor = [UIColor whiteColor];
     self.kgLbl.textAlignment = NSTextAlignmentCenter;
-    self.kgLbl.text = @"4325.00";
     [bgBlueView addSubview:self.kgLbl];
     
     UIView *lineView2 = [[UIView alloc]init];
@@ -183,15 +178,12 @@
     .widthIs(1)
     .heightIs(14)
     .rightSpaceToView(totalKgLbl, 0);
-    
-    
-    
-    
-    
+
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = [[UIView alloc]init];
     //隐藏分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
@@ -202,7 +194,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _listAry.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -224,18 +216,16 @@
         
         cell = [[InventoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    
-    cell.titleLabel.text = @"广州大仓库";
-    cell.meterLabel.text = @"米数：56468465485";
-    cell.codeLabel.text = @"码数：24113515";
-    cell.kgLabel.text = @"公斤：354864354";
-    
+    cell.model = _listAry[indexPath.row];
+ 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LZInventoryListModel *model = _listAry[indexPath.row];
     InventoryDetailViewController *vc = [[InventoryDetailViewController alloc]init];
+    vc.id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -290,6 +280,27 @@
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
+#pragma mark ----- 网络请求 ------
+- (void)setupDetailData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"house_stock/index.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _model = [LZInventoryModel LLMJParse:baseModel.data];
+        self.meterLbl.text = _model.totalRice;
+        self.codeLbl.text = _model.totalCode;
+        self.kgLbl.text = _model.totalKg;
+        _listAry = _model.itemList;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -302,7 +313,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 
