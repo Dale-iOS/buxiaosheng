@@ -32,7 +32,6 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(13);
         label.textColor = CD_Text99;
-        label.text = @"周杰伦";
         label.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(titleLbl = label)];
     }
@@ -46,7 +45,6 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(13);
         label.textColor = CD_Text99;
-        label.text = @"20415444.00";
         label.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(borrowLbl = label)];
     }
@@ -60,7 +58,6 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(13);
         label.textColor = CD_Text99;
-        label.text = @"李小龙";
         label.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(workerLbl = label)];
     }
@@ -74,7 +71,6 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(13);
         label.textColor = CD_Text99;
-        label.text = @"2018-4-12";
         label.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(payDateLbl = label)];
     }
@@ -106,6 +102,15 @@
     .heightRatioToView(contentView, 1)
     .widthIs(APPWidth/4)
     .topSpaceToView(contentView, 0);
+}
+
+- (void)setModel:(LZInventoryDetailModel *)model
+{
+    _model = model;
+    self.titleLbl.text = _model.productName;
+    self.borrowLbl.text = _model.total;
+    self.payDateLbl.text = _model.number;
+    self.workerLbl.text = _model.unitName;
 }
 
 - (void)awakeFromNib {

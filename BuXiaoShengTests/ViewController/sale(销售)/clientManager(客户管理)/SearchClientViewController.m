@@ -131,10 +131,10 @@
 }
 
 //筛选
-- (void)tapGesOnClick
-{
-   
-}
+//- (void)tapGesOnClick
+//{
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

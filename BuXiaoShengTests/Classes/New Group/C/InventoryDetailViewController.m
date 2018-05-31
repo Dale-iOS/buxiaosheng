@@ -9,8 +9,9 @@
 #import "InventoryDetailViewController.h"
 #import "CustomerArrearsTableViewCell.h"
 #import "LZInventoryDetailModel.h"
+#import "LZSearchBar.h"
 
-@interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 ///总米数
 @property (nonatomic, strong) UILabel *meterLbl;
 ///总码数
@@ -22,7 +23,9 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
-@property (nonatomic,assign) NSInteger pageIndex;
+@property(nonatomic,strong)NSArray <LZInventoryDetailModel *> *listsAry;
+@property(nonatomic,strong)LZInventoryDetailModel *titleModel;
+@property (nonatomic, strong) LZSearchBar *searchBar;
 @end
 
 @implementation InventoryDetailViewController
@@ -31,8 +34,6 @@
 {
     [super viewWillAppear:YES];
     
-    self.navigationItem.titleView = [Utility navWhiteTitleView:@"广州大仓库"];
-
     [self.navigationController.navigationBar setBackgroundImage:[Utility createImageWithColor:[UIColor colorWithHexString:@"#3d9bfa"]] forBarMetrics:UIBarMetricsDefault];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -52,6 +53,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.view.backgroundColor = LZHBackgroundColor;
     
+    [self setupData];
     [self setupDetailData];
 }
 
@@ -81,7 +83,6 @@
     self.meterLbl.font = [UIFont boldSystemFontOfSize:18];
     self.meterLbl.textColor = [UIColor whiteColor];
     self.meterLbl.textAlignment = NSTextAlignmentCenter;
-    self.meterLbl.text = @"2390.00";
     [bgBlueView addSubview:self.meterLbl];
     
     UIView *lineView1 = [[UIView alloc]init];
@@ -122,7 +123,6 @@
     self.codeLbl.font = [UIFont boldSystemFontOfSize:18];
     self.codeLbl.textColor = [UIColor whiteColor];
     self.codeLbl.textAlignment = NSTextAlignmentCenter;
-    self.codeLbl.text = @"2355.00";
     [bgBlueView addSubview:self.codeLbl];
     
     //布局
@@ -152,7 +152,6 @@
     self.kgLbl.font = [UIFont boldSystemFontOfSize:18];
     self.kgLbl.textColor = [UIColor whiteColor];
     self.kgLbl.textAlignment = NSTextAlignmentCenter;
-    self.kgLbl.text = @"4325.00";
     [bgBlueView addSubview:self.kgLbl];
     
     UIView *lineView2 = [[UIView alloc]init];
@@ -184,7 +183,6 @@
     self.totalLbl.font = FONT(13);
     self.totalLbl.textAlignment = NSTextAlignmentCenter;
     self.totalLbl.textColor = [UIColor whiteColor];
-    self.totalLbl.text = @"总条数：42565465";
     [bgBlueView addSubview:self.totalLbl];
     
     self.totalLbl.sd_layout
@@ -193,23 +191,28 @@
     .heightIs(14)
     .centerXEqualToView(bgBlueView);
     
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, bgBlueView.bottom, APPWidth, 44)];
+    self.searchBar.placeholder = @"输入品名或批号搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    [self.view addSubview:self.searchBar];
     
-    
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, bgBlueView.bottom, APPWidth, 49)];
-    self.headView.backgroundColor = LZHBackgroundColor;
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, self.searchBar.bottom, APPWidth, 39)];
+    self.headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
     [self.view addSubview:self.headView];
     
     [self setupHeadView];
-    
+
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.headView.bottom, APPWidth, APPHeight -64-10) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.backgroundColor = [UIColor whiteColor];
     //隐藏分割线
     //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    
-    
     
 }
 
@@ -332,6 +335,7 @@
 }
 
 #pragma mark ----- 网络请求 ------
+//接口：仓库产品列表
 - (void)setupDetailData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"houseId":self.id,
@@ -344,8 +348,31 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        
+        _listsAry = [LZInventoryDetailModel LLMJParse:baseModel.data];
         [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+//接口：仓库库存信息
+- (void)setupData
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"houseId":self.id,
+                             };
+    [BXSHttp requestGETWithAppURL:@"house_stock/house_info.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _titleModel = [LZInventoryDetailModel LLMJParse:baseModel.data];
+        self.navigationItem.titleView = [Utility navWhiteTitleView:_titleModel.houseName];
+        self.meterLbl.text = _titleModel.totalRice;
+        self.codeLbl.text = _titleModel.totalCode;
+        self.kgLbl.text = _titleModel.totalKg;
+        self.totalLbl.text = [NSString stringWithFormat:@"总条数：%@",_titleModel.total];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -354,7 +381,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return _listsAry.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -376,12 +403,30 @@
         
         cell = [[CustomerArrearsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _listsAry[indexPath.row];
     return cell;
 }
 
-
-
-
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"houseId":self.id,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15",
+                             @"searchName":self.searchBar.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"house_stock/house_product_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _listsAry = [LZInventoryDetailModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
 
 - (void)backMethod
 {

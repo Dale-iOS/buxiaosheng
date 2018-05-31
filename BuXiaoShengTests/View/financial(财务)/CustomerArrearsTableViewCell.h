@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZInventoryDetailModel.h"
 @interface CustomerArrearsTableViewCell : UITableViewCell
 
 ///客户名称
@@ -21,5 +21,5 @@
 
 ///业务员
 @property (nonatomic, strong) UILabel *workerLbl;
-
+@property(nonatomic,strong) LZInventoryDetailModel *model;
 @end

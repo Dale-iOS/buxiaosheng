@@ -22,4 +22,8 @@
 @property (nonatomic,copy) NSString *storageType;
 @property (nonatomic,copy) NSString *total;
 @property (nonatomic,copy) NSString *unitName;
+@property (nonatomic,copy) NSString *id;
+@property (nonatomic,copy) NSString *totalCode;
+@property (nonatomic,copy) NSString *totalKg;
+@property (nonatomic,copy) NSString *totalRice;
 @end
