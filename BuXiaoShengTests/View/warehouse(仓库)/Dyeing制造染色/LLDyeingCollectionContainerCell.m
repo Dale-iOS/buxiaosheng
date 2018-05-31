@@ -77,7 +77,7 @@
     _rightCollectionView.dataSource = self;
     [_rightCollectionView registerClass:[LLDyeingCollectionViewCell class] forCellWithReuseIdentifier:@"LLRightDyeingCollectionViewCell"];
     [_rightCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-15);;
+        make.right.equalTo(self.contentView).offset(-15);
         make.top.equalTo(_addBtn.mas_bottom).offset(15);
         make.bottom.equalTo(self.contentView).offset(-25);
         make.width.mas_equalTo(CGRectGetWidth([UIScreen mainScreen].bounds)/2-25);

@@ -47,8 +47,6 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    
     [self addSubview:_tableView];
 }
 
@@ -61,7 +59,7 @@
                             @"pageNo":@"1",
                             @"pageSize":@"15",
 //                            @"searchName":self.searchBar.text,
-                            @"type":@"0"
+                            @"type":@"1"
                             };
     [BXSHttp requestGETWithAppURL:@"formula/list.do" param:param success:^(id response) {
         LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
@@ -99,12 +97,10 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-       
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
     }
     LZRecipeModel *model = self.recipes[indexPath.row];
-     cell.textLabel.text = [NSString stringWithFormat:@"%@",model.productName];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",model.productName];
     
     return cell;
 }
@@ -128,7 +124,7 @@
                             @"pageNo":@"1",
                             @"pageSize":@"15",
                             @"searchName":self.searchBar.text,
-                            @"type":@"0"
+                            @"type":@"1"
                             };
     [BXSHttp requestGETWithAppURL:@"formula/list.do" param:param success:^(id response) {
         LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];

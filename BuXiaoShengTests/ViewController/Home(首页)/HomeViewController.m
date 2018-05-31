@@ -69,6 +69,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    self.navigationItem.leftBarButtonItem = nil;
     [self setupBtns];
     
 }

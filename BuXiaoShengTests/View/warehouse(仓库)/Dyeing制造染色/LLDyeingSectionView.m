@@ -88,8 +88,9 @@
     _foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_foldingBtn];
     [_foldingBtn addTarget:self action:@selector(foldingBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal];
-    [_foldingBtn setTitle:@"展开    " forState:UIControlStateSelected];
+    [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
+    [_foldingBtn setTitle:@"收起    " forState:UIControlStateSelected];
+    _foldingBtn.titleLabel.font = FONT(12);
     [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
      [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateSelected];
     [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_close"] forState:UIControlStateNormal];

@@ -9,9 +9,8 @@
 #import "RecipeViewController.h"
 #import "AddRecipeViewController.h"
 #import "AddDyeRecipeViewController.h"
-
-#import "DyeRecipeView.h"
 #import "WeaveRecipeView.h"
+#import "DyeRecipeView.h"
 #import "LZChooseRecipeVC.h"
 
 @interface RecipeViewController ()<UIScrollViewDelegate>

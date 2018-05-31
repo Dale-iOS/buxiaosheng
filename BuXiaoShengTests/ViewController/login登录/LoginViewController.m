@@ -124,7 +124,6 @@
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [loginBtn setTitleColor:[UIColor colorWithRed:62.0f/255.0f green:178.0f/255.0f blue:247.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-//    [loginBtn addTarget:self action:@selector(AlterPassworldloginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn addTarget:self action:@selector(loginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:loginBtn];
@@ -136,30 +135,17 @@
     versionLabel.font = [UIFont systemFontOfSize:13];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:versionLabel];
-    
-    
-#pragma mark ------- 假数据 --------
-//    self.loginTF.text = @"18814188198";
-//    self.passwordTF.text = @"666666";
 
-    
 }
 
 #pragma mark ------- 点击事件 --------
 //登录事件
 - (void)loginBtnOnClickAction
 {
-    NSLog(@"loginBtnOnClickAction");
-    
-//    [LLHudTools showWithMessage:@"登录成功"];
-    
-    
-
     NSDictionary *param = @{@"loginName":self.loginTF.text,
                            @"password":[BXSHttp makeMD5:self.passwordTF.text]
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
-        //[BXSUser deleteUser:<#(LoginModel *)#>]
         if ([[response objectForKey:@"code"] integerValue] == 200) {
              self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
             [BXSUser deleteUser];
@@ -172,11 +158,10 @@
             }
             
             HomeViewController *vc = [[HomeViewController alloc]init];
+            
             [self.navigationController pushViewController:vc animated:YES];
         }
-        
-        NSLog(@"++++++%@",self.loginModel.loginName);
-        
+
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
         
         
@@ -191,18 +176,6 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-//无论是UITextField还是UITextView弹出来的键盘，点击空白处都会取消。
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    UITouch *touch = [touches anyObject];
-    
-    if (![touch.view isKindOfClass: [UITextField class]] || ![touch.view isKindOfClass: [UITextView class]]) {
-        
-        [self.view endEditing:YES];
-        
-    }
-    
-}
 -(void)loginBack {
     [self.navigationController popToRootViewControllerAnimated:true];
 }

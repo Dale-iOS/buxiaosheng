@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface OutboundViewController : BaseViewController
-
+@property(nonatomic,copy)NSString *id;
 @end

@@ -15,8 +15,6 @@
 
 @end
 
-
-
 @interface LLDyeingSectionView : UITableViewHeaderFooterView
 @property (nonatomic,assign) NSInteger  section;
 @property (nonatomic,weak) id<sectionViewDelegate>  delegate;

@@ -113,6 +113,7 @@
 		346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD5208D97DC00F4B054 /* ProducersViewController.m */; };
 		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
+		346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346EF4A020BE73D60078C087 /* LZOutboundModel.m */; };
 		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
 		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
 		347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */; };
@@ -199,6 +200,9 @@
 		34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730B2081EEEC00B05EBF /* AASeriesElement.m */; };
 		34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */; };
 		34BF66F22095CF22003768D2 /* SetWarehouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */; };
+		34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B420BE85C700F0940C /* LZOutboundSectionView.m */; };
+		34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B720BE9D3000F0940C /* LZOutboundCell.m */; };
+		34D705BB20BED8B100F0940C /* LZOutboundListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705BA20BED8B100F0940C /* LZOutboundListCell.m */; };
 		34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */; };
 		34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AF2092C61A009E7589 /* DyeingViewController.m */; };
 		34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B22092C7F1009E7589 /* ProcessViewController.m */; };
@@ -654,6 +658,8 @@
 		346B6AD8208D981700F4B054 /* ProcessorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessorsViewController.m; sourceTree = "<group>"; };
 		346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailViewController.h; sourceTree = "<group>"; };
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
+		346EF49F20BE73D60078C087 /* LZOutboundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundModel.h; sourceTree = "<group>"; };
+		346EF4A020BE73D60078C087 /* LZOutboundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundModel.m; sourceTree = "<group>"; };
 		347C309420A299030078BB69 /* InventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
 		347C309520A299030078BB69 /* InventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		347C309920A29DBC0078BB69 /* InventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryCell.h; sourceTree = "<group>"; };
@@ -799,6 +805,12 @@
 		34BF66EE2095C8F6003768D2 /* AddBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBranchViewController.m; sourceTree = "<group>"; };
 		34BF66F02095CF22003768D2 /* SetWarehouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetWarehouseViewController.h; sourceTree = "<group>"; };
 		34BF66F12095CF22003768D2 /* SetWarehouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetWarehouseViewController.m; sourceTree = "<group>"; };
+		34D705B320BE85C700F0940C /* LZOutboundSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundSectionView.h; sourceTree = "<group>"; };
+		34D705B420BE85C700F0940C /* LZOutboundSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundSectionView.m; sourceTree = "<group>"; };
+		34D705B620BE9D3000F0940C /* LZOutboundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundCell.h; sourceTree = "<group>"; };
+		34D705B720BE9D3000F0940C /* LZOutboundCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundCell.m; sourceTree = "<group>"; };
+		34D705B920BED8B100F0940C /* LZOutboundListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundListCell.h; sourceTree = "<group>"; };
+		34D705BA20BED8B100F0940C /* LZOutboundListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundListCell.m; sourceTree = "<group>"; };
 		34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithSingleViewControllerViewController.h; sourceTree = "<group>"; };
 		34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithSingleViewControllerViewController.m; sourceTree = "<group>"; };
 		34DE25AE2092C61A009E7589 /* DyeingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeingViewController.h; sourceTree = "<group>"; };
@@ -1397,8 +1409,6 @@
 				347C309C20A2C5780078BB69 /* inventory仓库 */,
 				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
 				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
-				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
-				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
 				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
 				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
 				34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */,
@@ -1424,6 +1434,7 @@
 		34494DEE20917A0F00BDB309 /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
+				34D705B220BE858600F0940C /* clientDemand(客户需求) */,
 				347C309820A29D970078BB69 /* inventory仓库 */,
 				B5B07508209C287F00FD53DC /* Process采购加工 */,
 				B5050665209ABDF600CE7E4D /* Dyeing制造染色 */,
@@ -1956,6 +1967,19 @@
 			path = AAChartConfiger;
 			sourceTree = "<group>";
 		};
+		34D705B220BE858600F0940C /* clientDemand(客户需求) */ = {
+			isa = PBXGroup;
+			children = (
+				34D705B320BE85C700F0940C /* LZOutboundSectionView.h */,
+				34D705B420BE85C700F0940C /* LZOutboundSectionView.m */,
+				34D705B620BE9D3000F0940C /* LZOutboundCell.h */,
+				34D705B720BE9D3000F0940C /* LZOutboundCell.m */,
+				34D705B920BED8B100F0940C /* LZOutboundListCell.h */,
+				34D705BA20BED8B100F0940C /* LZOutboundListCell.m */,
+			);
+			path = "clientDemand(客户需求)";
+			sourceTree = "<group>";
+		};
 		34E49B1520A57F3D0074F454 /* QQTagView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2160,6 +2184,8 @@
 			children = (
 				34494DF22091A76200BDB309 /* ClientNeedsViewController.h */,
 				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
+				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
+				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
 				34F4B49020BBDFE90017003E /* LZSearchClientNeedsVC.h */,
 				34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */,
 			);
@@ -2171,6 +2197,8 @@
 			children = (
 				34F4B48D20BBAE650017003E /* LZClientDemandModel.h */,
 				34F4B48E20BBAE650017003E /* LZClientDemandModel.m */,
+				346EF49F20BE73D60078C087 /* LZOutboundModel.h */,
+				346EF4A020BE73D60078C087 /* LZOutboundModel.m */,
 			);
 			path = "warehouse仓库";
 			sourceTree = "<group>";
@@ -2769,6 +2797,7 @@
 				3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */,
 				34EE5D8420A68E7700A2C9B5 /* OtherCostViewController.m in Sources */,
 				B50505AD209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
+				34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */,
 				B50505C1209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
@@ -2824,6 +2853,7 @@
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				B58BF6FC20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */,
+				346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */,
 				34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */,
 				34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */,
 				345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
@@ -2912,6 +2942,7 @@
 				34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
+				34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
@@ -3045,6 +3076,7 @@
 				34FB1F1420BD4EC7004D18C2 /* FSCalendarHeaderView.m in Sources */,
 				34A92B15207DE86200572648 /* AppDelegate.m in Sources */,
 				348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */,
+				34D705BB20BED8B100F0940C /* LZOutboundListCell.m in Sources */,
 				3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */,
 				3452717720B2B6C20001B65A /* LZAddColorsModel.m in Sources */,
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,

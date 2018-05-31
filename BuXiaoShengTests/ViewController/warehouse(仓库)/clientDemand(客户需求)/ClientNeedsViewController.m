@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户需求页面
+//  客户需求-未出库页面
 
 #import "ClientNeedsViewController.h"
 #import "AuditTableViewCell.h"
@@ -105,16 +105,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OutboundViewController *vc = [[OutboundViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    
 }
 
 #pragma mark -------- AuditTableViewCellDelegate -------
+//出库按钮事件
 - (void)didClickYesBtnInCell:(UITableViewCell *)cell
 {
-    NSLog(@"点击了YES");
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    
+    OutboundViewController *vc = [[OutboundViewController alloc]init];
+    LZClientDemandModel *model = _listDatas[indexP.row];
+    vc.id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+//指派按钮事件
 - (void)didClickNoBtnInCell:(UITableViewCell *)cell
 {
     NSLog(@"点击了NO");

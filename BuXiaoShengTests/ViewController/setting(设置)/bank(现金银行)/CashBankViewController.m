@@ -92,7 +92,6 @@
         [LLHudTools showWithMessage:@"默认支付方式不可编辑~"];
         return;
     }
-
     AlterBankViewController *vc = [[AlterBankViewController alloc]init];
     vc.isFormBankAdd = false;
     vc.id = self.banks[indexPath.row].id;
@@ -101,12 +100,9 @@
 
 - (void)navigationAddClick
 {
-    NSLog(@"点击了添加");
-    
     AlterBankViewController *vc = [[AlterBankViewController alloc]init];
     vc.isFormBankAdd = true;
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (void)didReceiveMemoryWarning {

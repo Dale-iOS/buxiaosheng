@@ -593,7 +593,6 @@
 - (void)didClickTitleTextField:(UITextField *)titleTF
 {
     titleTF.delegate = self;
-    //        cell.colorTF.borderStyle = UITextBorderStyleRoundedRect;
     titleTF.scrollView = self.view;
     titleTF.positionType = ZJPositionAuto;
     [titleTF popOverSource:_productsListMTArray index:^(NSInteger index) {
@@ -674,9 +673,7 @@
 
 - (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
 {
-//    NSLog(@"++++++111 %@",chooseStr);
-//    NSLog(@"++++++222 %@",chooseId);
-//    NSLog(@"++++++222 %@",chooseProductId);
+
     [self dismiss];
 }
 
