@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/ViewController/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/OutboundViewController.m"
-            timestampString = "549441595.541993"
+            timestampString = "549444077.5169539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
             landmarkName = "-setupDetailData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/ViewController/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/ClientNeedsViewController.m"
-            timestampString = "549440459.628677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-setupListData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

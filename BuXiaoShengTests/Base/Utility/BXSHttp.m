@@ -9,6 +9,7 @@
 #import "BXSHttp.h"
 #import "LLNetWorkTools.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "HomeViewController.h"
 #import "LoginViewController.h"
 @implementation BXSHttp
 
@@ -22,7 +23,7 @@
     [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTWithSucces:^(id responseObject) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
         if ([baseModel.code isEqualToString:@"9000"]) {
-            [self setupLoginStateFild];
+            [self setupLoginStateFildWithMsg:baseModel.msg];
             return ;
         }
         if (success) {
@@ -45,7 +46,7 @@
      {
          LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
          if ([baseModel.code isEqualToString:@"9000"]) {
-             [self setupLoginStateFild];
+             [self setupLoginStateFildWithMsg:baseModel.msg];
              return ;
          }
      if (success) {
@@ -75,20 +76,15 @@
     }
 }
 //登录状态失效的情况下跳到登录页,从新登录
-+(void)setupLoginStateFild {
-    
++(void)setupLoginStateFildWithMsg:(NSString *)msg {
+    [BXSUser deleteUser];
    UINavigationController * navVC =  (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    [navVC popToRootViewControllerAnimated:true];
-   __block LoginViewController * loginVc = nil;
-    [navVC.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[LoginViewController class]]) {
-            loginVc = obj;
-        }
-    }];
-    if (loginVc) {
-        return;
+    if ([navVC isKindOfClass:[UINavigationController class]]) {
+        [navVC popToRootViewControllerAnimated:true];
+        [navVC pushViewController:[LoginViewController new] animated:true];
+        [LLHudTools showWithMessage:msg];
     }
-    [navVC pushViewController:[LoginViewController new] animated:true];
+   
 }
 
 +(NSMutableDictionary*) getConstantParam {

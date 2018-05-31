@@ -60,7 +60,7 @@
     self.mainTabelView.dataSoure = self.datasource;
     
     [self.view addSubview:self.mainTabelView];
-    
+     [self setupBtns];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -70,7 +70,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.leftBarButtonItem = nil;
-    [self setupBtns];
+   
     
 }
 
