@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/View/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/LZOutboundCell.m"
-            timestampString = "549555206.0080611"
+            filePath = "BuXiaoShengTests/ViewController/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/OutboundViewController.m"
+            timestampString = "549557895.368821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-textFieldDidEndEditing:"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-determineBtnClick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

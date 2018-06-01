@@ -29,6 +29,8 @@
 @property (nonatomic,strong) NSMutableArray * itemCellData;
 
 @property (nonatomic,assign) BOOL seleted;
+
+@property (nonatomic,assign) BOOL  checkOut;
 @end
 
 @interface LLOutboundlistModel : NSObject

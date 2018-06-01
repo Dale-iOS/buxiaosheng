@@ -289,13 +289,50 @@
 }
 
 -(void)determineBtnClick {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"checkOut==1"];
+    NSArray <LZOutboundItemListModel*> *filterArray = [_listModels filteredArrayUsingPredicate:predicate];
+    if (!filterArray.count) {
+        [LLHudTools showWithMessage:@"请至少选择一个"];
+        return;
+    }
+    NSMutableArray <NSDictionary *> * orderHouseItems = [NSMutableArray array];
     
-    
+    [filterArray enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary * param = @{
+                                         @"productId":obj.productId,
+                                         @"productColorId":obj.productColorId,
+                                         @"price":obj.price,
+                                         @"stockId":celldetalobj.stockId,
+                                         @"batchNumber":cellobj.batcNumber,
+                                         @"number":obj.number,
+                                         @"houseId":cellobj.leftModel.houseId,
+                                         @"needId":obj.needId,
+                                         @"needTotal":self.totalCountLable.text,
+                                         @"total":self.totalNumberLable.text,
+                                         };
+                [orderHouseItems addObject:param];
+            }];
+            
+        }];
+    }];
+
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].userId,
                              @"orderId":self.model.orderId,
-                             
+                             @"orderHouseItems":[orderHouseItems mj_JSONString],
                              };
+    [BXSHttp requestPOSTWithAppURL:@"settle/create_order_house.do" param:param
+                           success:^(id response) {
+                               LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+                               if ([baseModel.code integerValue]!=200) {
+                                   [LLHudTools showWithMessage:baseModel.msg];
+                                   return ;
+                               }
+                           } failure:^(NSError *error) {
+                               
+                           }];
 }
 
 

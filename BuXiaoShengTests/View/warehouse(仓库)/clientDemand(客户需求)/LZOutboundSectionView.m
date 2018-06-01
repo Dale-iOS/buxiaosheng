@@ -19,6 +19,7 @@
     //UIButton * _foldingBtn;//折叠按钮
     UIButton * _addBtn;
     UIView * _bottomView;
+    UIButton * _seletedBtn;
 }
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
@@ -65,7 +66,15 @@
         make.top.equalTo(_demandLable.mas_bottom).offset(8);
     }];
     
-    
+    _seletedBtn = [UIButton new];
+    [self.contentView addSubview:_seletedBtn];
+    [_seletedBtn addTarget:self action:@selector(checkoutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [_seletedBtn setBackgroundImage:[UIImage imageNamed:@"noSelect1"] forState:UIControlStateNormal];
+     [_seletedBtn setBackgroundImage:[UIImage imageNamed:@"yesSelect"] forState:UIControlStateSelected];
+    [_seletedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(12);
+        make.top.equalTo(self.contentView).offset(40);
+    }];
     
     _foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_foldingBtn];
@@ -175,6 +184,11 @@
    
 }
 
+-(void)checkoutBtnClick {
+    self.model.checkOut = !self.model.checkOut;
+    OutboundViewController * outVc = (OutboundViewController*)[BXSTools viewWithViewController:self.contentView];
+    [outVc.tableView reloadData];
+}
 -(void)foldingBtnClick {
     if ([self.model.stock isEqualToString:@"0"]) {
         return;
@@ -191,6 +205,7 @@
     _demandLable.text = [NSString stringWithFormat:@"需求量 : %@",_model.number];
     _colorLable.text = [NSString stringWithFormat:@"颜色 : %@",_model.productColorName];
     _model.seleted ? (_bottomView.hidden = false) : (_bottomView.hidden = true);
+    _seletedBtn.selected = _model.checkOut;
     if ([model.stock isEqualToString:@"0"]) {
         [_foldingBtn setTitle:@"无库存" forState:UIControlStateNormal];
         [_foldingBtn setBackgroundColor:[UIColor redColor]];
