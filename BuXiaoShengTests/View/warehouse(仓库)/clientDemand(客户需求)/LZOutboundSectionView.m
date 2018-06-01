@@ -81,12 +81,10 @@
     [_foldingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-12);
         make.top.equalTo(self.contentView).offset(40);
-        // make.width.mas_equalTo(100);
+         make.width.mas_equalTo(60);
     }];
     [_foldingBtn layoutIfNeeded];
-    _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     
-    _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
     
     UIView * _headView = [[UIView alloc]init];
     _headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
@@ -166,6 +164,7 @@
     OutboundViewController *  outboundVc = (OutboundViewController *)[BXSTools viewWithViewController:self.contentView ];
     
     LLOutboundSeletedVC * rightSeletedVc = [LLOutboundSeletedVC new];
+    rightSeletedVc.itemModel = self.model;
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     
     [outboundVc cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
@@ -173,6 +172,9 @@
 }
 
 -(void)foldingBtnClick {
+    if ([self.model.stock isEqualToString:@"0"]) {
+        return;
+    }
     if ([self.delegate respondsToSelector:@selector(sectionViewDelegate:)]) {
         [self.delegate sectionViewDelegate:self];
     }
@@ -185,6 +187,24 @@
     _demandLable.text = [NSString stringWithFormat:@"需求量 : %@",_model.number];
     _colorLable.text = [NSString stringWithFormat:@"颜色 : %@",_model.productColorName];
     _model.seleted ? (_bottomView.hidden = false) : (_bottomView.hidden = true);
+    if ([model.stock isEqualToString:@"0"]) {
+        [_foldingBtn setTitle:@"无库存" forState:UIControlStateNormal];
+        [_foldingBtn setBackgroundColor:[UIColor redColor]];
+        [_foldingBtn setImage:nil forState:UIControlStateNormal];
+         [_foldingBtn setImage:nil forState:UIControlStateSelected];
+        _foldingBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  0, 0, 0);
+    }else {
+        [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
+        [_foldingBtn setTitle:@"收起    " forState:UIControlStateSelected];
+        _foldingBtn.titleLabel.font = FONT(12);
+        [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+        [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateSelected];
+        [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_close"] forState:UIControlStateNormal];
+        [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_show"] forState:UIControlStateSelected];
+        _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
+        _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+    }
 }
 
 @end

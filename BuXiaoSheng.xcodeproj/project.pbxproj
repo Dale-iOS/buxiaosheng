@@ -454,6 +454,8 @@
 		B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
 		B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
 		B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
+		B5C888D220C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */; };
+		B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */; };
 		B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34F920A574B20043D906 /* AlterBankViewController.m */; };
 		B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34F920A574B20043D906 /* AlterBankViewController.m */; };
 		B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34FE20A576BE0043D906 /* BXSTools.m */; };
@@ -1170,6 +1172,8 @@
 		B5BA43DB20A4492A00A867E9 /* BXSUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSUser.h; sourceTree = "<group>"; };
 		B5BA43DC20A4492A00A867E9 /* BXSUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BXSUser.m; sourceTree = "<group>"; };
 		B5BA43DF20A44AF000A867E9 /* MHConstInline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHConstInline.h; sourceTree = "<group>"; };
+		B5C888D020C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutbounceSeletedLeftCell.h; sourceTree = "<group>"; };
+		B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutbounceSeletedLeftCell.m; sourceTree = "<group>"; };
 		B5CF34F920A574B20043D906 /* AlterBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterBankViewController.m; sourceTree = "<group>"; };
 		B5CF34FA20A574B30043D906 /* AlterBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterBankViewController.h; sourceTree = "<group>"; };
 		B5CF34FD20A576BE0043D906 /* BXSTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSTools.h; sourceTree = "<group>"; };
@@ -2011,6 +2015,8 @@
 				34D705B720BE9D3000F0940C /* LZOutboundCell.m */,
 				34D705B920BED8B100F0940C /* LZOutboundListCell.h */,
 				34D705BA20BED8B100F0940C /* LZOutboundListCell.m */,
+				B5C888D020C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.h */,
+				B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */,
 			);
 			path = "clientDemand(客户需求)";
 			sourceTree = "<group>";
@@ -3120,6 +3126,7 @@
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
 				34F6E76C20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
+				B5C888D220C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
@@ -3302,6 +3309,7 @@
 				34F6E77620C03EAC00FABC5F /* LZInventoryDetailCell.m in Sources */,
 				B50505A6209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
+				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				B531EF3220BF8FE90028F18B /* FSCalendarConstants.m in Sources */,
 				B5CF350020A576BE0043D906 /* BXSTools.m in Sources */,
@@ -3479,7 +3487,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3498,7 +3506,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";

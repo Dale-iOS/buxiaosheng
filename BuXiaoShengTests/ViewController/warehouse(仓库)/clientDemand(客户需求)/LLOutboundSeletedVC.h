@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZOutboundModel.h"
 @interface LLOutboundSeletedVC : BaseViewController
-
+@property (nonatomic,strong) LZOutboundItemListModel * itemModel;
 @end

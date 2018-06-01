@@ -26,5 +26,12 @@
 @property (nonatomic,copy) NSString *stock;
 @property (nonatomic,copy) NSString *storageType;
 
+@property (nonatomic,strong) NSMutableArray * itemCellData;
+
 @property (nonatomic,assign) BOOL seleted;
+@end
+
+@interface LLOutboundlistModel : NSObject
+@property (nonatomic,copy) NSString *houseId;
+@property (nonatomic,copy) NSString *houseName;
 @end

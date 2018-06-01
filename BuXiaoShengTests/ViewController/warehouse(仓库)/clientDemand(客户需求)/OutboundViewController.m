@@ -189,7 +189,7 @@
     return self.listModels.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listModels[section].seleted ? 1 :0;
+    return self.listModels[section].seleted ? self.listModels[section].itemCellData.count :0;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
         LZOutboundSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LZOutboundSectionView"];

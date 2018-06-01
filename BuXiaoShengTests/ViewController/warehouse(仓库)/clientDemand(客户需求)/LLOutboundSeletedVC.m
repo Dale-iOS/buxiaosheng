@@ -12,6 +12,8 @@
 @property (nonatomic,strong) UITableView * leftTableView;
 
 @property (nonatomic,strong) UICollectionView * collectionView;
+
+@property (nonatomic,strong) NSArray <LLOutboundlistModel *> * leftListModel;
 @end
 
 @implementation LLOutboundSeletedVC
@@ -20,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    [self setupData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,8 +30,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setupData {
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"productId":self.itemModel.productId,
+                             @"productColorId":self.itemModel.productColorId
+                             };
+    [BXSHttp requestPOSTWithAppURL:@"product/house_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+             [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.leftListModel = [LLOutboundlistModel LLMJParse:baseModel.data];
+        [self.leftTableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 -(void)setupUI {
     self.leftTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.leftTableView.tableFooterView = [UIView new];
     [self.view addSubview:self.leftTableView];
     self.leftTableView.delegate = self;
     self.leftTableView.dataSource = self;
@@ -65,14 +88,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.leftListModel.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    cell.textLabel.text = @"UITableViewCell";
+    cell.textLabel.text = self.leftListModel[indexPath.row].houseName;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.numberOfLines = 0;
     return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
