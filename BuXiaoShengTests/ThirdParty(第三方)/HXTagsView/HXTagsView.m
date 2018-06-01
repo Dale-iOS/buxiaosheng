@@ -17,24 +17,24 @@
         self.showsHorizontalScrollIndicator = YES;
         self.showsVerticalScrollIndicator = YES;
         self.frame = frame;
-        self.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
-        int r = arc4random() % 255;
-        int g = arc4random() % 255;
-        int b = arc4random() % 255;
+        self.backgroundColor = [UIColor whiteColor];
+        //        int r = arc4random() % 255;
+        //        int g = arc4random() % 255;
+        //        int b = arc4random() % 255;
         _tagSpace = 9.0;
         _tagHeight = 32.0;
         _tagOriginX = 10.0;
         _tagOriginY = 10.0;
         _tagHorizontalSpace = 10.0;
         _tagVerticalSpace = 10.0;
-        _borderColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+        _borderColor = [UIColor colorWithHexString:@"#eeeeee"];
         _borderWidth = 0.5f;
         _masksToBounds = YES;
-        _cornerRadius = 2.0;
+        _cornerRadius = 4.0;
         _titleSize = 14;
-        _titleColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];;
+        _titleColor = CD_Text99;
         _normalBackgroundImage = [self imageWithColor:[UIColor whiteColor] size:CGSizeMake(1.0, 1.0)];
-        _highlightedBackgroundImage = [self imageWithColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0] size:CGSizeMake(1.0, 1.0)];
+        _highlightedBackgroundImage = [self imageWithColor:[UIColor colorWithHexString:@"#3d9bfa"] size:CGSizeMake(1.0, 1.0)];
     }
     return self;
 }
@@ -112,7 +112,9 @@
         
         //计算每个tag的宽度
         CGSize contentSize = [tagTitle fdd_sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.frame.size.width-_tagOriginX*2, MAXFLOAT)];
-        
+        if (_isFixedTat) {
+            contentSize = _fixedContentSize;
+        }
         NSMutableDictionary *dict = [NSMutableDictionary new];
         dict[@"tagTitle"] = tagTitle;//标签标题
         dict[@"buttonWith"] = [NSString stringWithFormat:@"%f",contentSize.width+_tagSpace];//标签的宽度

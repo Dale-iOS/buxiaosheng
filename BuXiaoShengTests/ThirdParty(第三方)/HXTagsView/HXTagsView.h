@@ -40,6 +40,8 @@
 @property (nonatomic,strong) UIColor *titleColor;//标签字体颜色
 @property (nonatomic,strong) UIImage *normalBackgroundImage;//标签默认背景颜色
 @property (nonatomic,strong) UIImage *highlightedBackgroundImage;//标签高亮背景颜色
+@property (nonatomic,assign) CGSize fixedContentSize;//固定tag大小
+@property (nonatomic,assign) BOOL isFixedTat;//是否固定tag(Yes:固定大小 No:自适应大小)
 
 /**
  *  设置标签数据和代理
