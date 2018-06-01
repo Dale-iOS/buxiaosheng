@@ -8,13 +8,30 @@
 
 #import "LZOutboundCell.h"
 #import "LZOutboundListCell.h"
-@interface LZOutboundCell()
+@interface LZOutboundCell()<UITextFieldDelegate>
 @end
 @implementation LZOutboundCell
 {
    // UIButton *_addBtn;
     UIView *_headView;
     UIView *_footView;
+    //库存数量
+    UILabel * _warehouseNumLbl;
+    //出库数量
+    UITextField * _OutNumLbl;
+    //条数
+    UILabel * _lineNumLbl;
+    //出库仓
+    UILabel * _fromWarahouseLbl ;
+}
+
+-(void)setItemsModel:(LLOutboundRightModel *)itemsModel {
+    _itemsModel = itemsModel;
+    
+    _warehouseNumLbl.text = _itemsModel.number;
+    _lineNumLbl.text =_itemsModel.total;
+    _fromWarahouseLbl.text = itemsModel.leftModel.houseName;
+    
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -31,6 +48,7 @@
     [self.contentView addSubview:_headView];
    
     UILabel *warehouseNumLbl = [[UILabel alloc]init];
+    _warehouseNumLbl = warehouseNumLbl;
     warehouseNumLbl.font = FONT(14);
     warehouseNumLbl.textColor = CD_Text33;
     warehouseNumLbl.textAlignment = NSTextAlignmentCenter;
@@ -42,11 +60,14 @@
         make.height.mas_offset(39);
     }];
     
-    UILabel *OutNumLbl = [[UILabel alloc]init];
+    UITextField *OutNumLbl = [[UITextField alloc]init];
+    OutNumLbl.keyboardType = UIKeyboardTypeNumberPad;
+    _OutNumLbl = OutNumLbl;
     OutNumLbl.font = FONT(14);
+    OutNumLbl.delegate = self;
     OutNumLbl.textColor = CD_Text33;
     OutNumLbl.textAlignment = NSTextAlignmentCenter;
-    OutNumLbl.text = @"出库数量";
+    OutNumLbl.placeholder = @"出库数量";
     [_headView addSubview:OutNumLbl];
     [OutNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_headView);
@@ -56,6 +77,7 @@
     }];
     
     UILabel *lineNumLbl = [[UILabel alloc]init];
+    _lineNumLbl = lineNumLbl;
     lineNumLbl.font = FONT(14);
     lineNumLbl.textColor = CD_Text33;
     lineNumLbl.textAlignment = NSTextAlignmentCenter;
@@ -69,6 +91,7 @@
     }];
     
     UILabel *fromWarahouseLbl = [[UILabel alloc]init];
+    _fromWarahouseLbl = fromWarahouseLbl;
     fromWarahouseLbl.font = FONT(14);
     fromWarahouseLbl.textColor = CD_Text33;
     fromWarahouseLbl.textAlignment = NSTextAlignmentCenter;
@@ -80,38 +103,10 @@
         make.width.mas_offset(APPWidth *0.2);
         make.height.mas_offset(39);
     }];
-    
-   
-    
-    
-    //tableview尾部试图
-    _footView = [[UIView alloc]init];
-    _footView.backgroundColor = [UIColor whiteColor];
-    //总库存数
-    UILabel *totalWarehousLbl = [[UILabel alloc]init];
-    totalWarehousLbl.textAlignment = NSTextAlignmentCenter;
-    totalWarehousLbl.textColor = CD_Text99;
-    totalWarehousLbl.font = FONT(13);
-    totalWarehousLbl.text = @"总库存数量：";
-    [_footView addSubview:totalWarehousLbl];
-    [totalWarehousLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(_footView);
-        make.width.mas_offset(APPWidth *0.5);
-        make.height.mas_offset(44);
-    }];
-    //总出库数
-    UILabel *totalOutWarehousLbl = [[UILabel alloc]init];
-    totalOutWarehousLbl.textAlignment = NSTextAlignmentCenter;
-    totalOutWarehousLbl.textColor = CD_Text99;
-    totalOutWarehousLbl.font = FONT(13);
-    totalOutWarehousLbl.text = @"总出库存数：";
-    [_footView addSubview:totalOutWarehousLbl];
-    [totalOutWarehousLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.equalTo(_footView);
-        make.width.mas_offset(APPWidth *0.5);
-        make.height.mas_offset(44);
-    }];
+}
 
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    self.itemsModel.outgoingCount = textField.text;
 }
 
 

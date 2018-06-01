@@ -165,6 +165,10 @@
     
     LLOutboundSeletedVC * rightSeletedVc = [LLOutboundSeletedVC new];
     rightSeletedVc.itemModel = self.model;
+    rightSeletedVc.block = ^(NSArray<LLOutboundRightModel *> *seleteds, LZOutboundItemListModel *lastModel) {
+        outboundVc.sectionModel = lastModel;
+        outboundVc.rightSeleteds = seleteds;
+    };
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     
     [outboundVc cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];

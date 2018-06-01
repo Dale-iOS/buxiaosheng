@@ -31,12 +31,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [Utility navTitleView:@"出库"];
+     [self setupDetailData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupDetailData];
+   
+}
+//该数据源是来源右侧侧滑来的数据
+-(void)setRightSeleteds:(NSArray<LLOutboundRightModel *> *)rightSeleteds {
+    _rightSeleteds = rightSeleteds;
+    [_listModels enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.productColorId isEqual:self.sectionModel.productColorId]) {
+            obj.itemCellData = [NSMutableArray arrayWithArray:_rightSeleteds];
+        }
+    }];
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark ----- 网络请求 -----
@@ -201,13 +213,14 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     LLOutboundFooterView * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLOutboundFooterView"];
-    footerView.model = _listModels[section];
+    footerView.selteds = self.rightSeleteds;
     return footerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LZOutboundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZOutboundCell"];
+    cell.itemsModel = self.listModels[indexPath.section].itemCellData[indexPath.row];
     return cell;
 
 }

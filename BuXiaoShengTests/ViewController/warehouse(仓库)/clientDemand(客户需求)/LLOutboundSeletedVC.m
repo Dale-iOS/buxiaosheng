@@ -201,22 +201,11 @@
 }
 -(void)bottomBtnClick {
    
-    NSMutableArray <LLOutboundRightDetailModel *> * seleteds = [NSMutableArray array];
-    NSMutableArray <NSDictionary *>* arrayJson = [NSMutableArray array];
+    NSMutableArray <LLOutboundRightModel *> * seleteds = [NSMutableArray array];
     [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (itemObj.seleted) {
-                [seleteds addObject:itemObj];
-                NSDictionary * param = @{
-                                         @"productId":self.itemModel.productId,
-                                         @"productColorId":self.itemModel.productColorId,
-                                         @"stockId":itemObj.stockId,
-                                         @"number":obj.number,
-                                         @"houseId":obj.leftModel.houseId,
-                                         @"total":obj.total,
-                                         @"batchNumber":obj.batcNumber
-                                         };
-                [arrayJson addObject:param];
+                [seleteds addObject:obj];
             }
         }];
     }];
@@ -224,23 +213,10 @@
         [LLHudTools showWithMessage:@"请选择产品"];
         return;
     }
+    self.block(seleteds.mutableCopy,self.itemModel);
+    [self dismissViewControllerAnimated:true completion:nil];
     
-    NSString * str = [arrayJson mj_JSONString];
-    
-    NSMutableDictionary * jsonParam = [NSMutableDictionary dictionary];
-    [seleteds enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        jsonParam[@"productItems"] = [obj mj_JSONString];
-    }];
-    NSDictionary * param = @{
-                             @"companyId":[BXSUser currentUser].companyId,
-                             @"factoryId":@"",
-                             @"productItems" :[seleteds mj_JSONString],
-                             };
-    [BXSHttp requestPOSTWithAppURL:@"" param:param success:^(id response) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+   
 }
 
 

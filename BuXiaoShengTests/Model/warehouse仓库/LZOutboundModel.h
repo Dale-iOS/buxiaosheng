@@ -46,6 +46,8 @@
 @property (nonatomic,copy) NSString *unitName;
 @property (nonatomic,copy) NSArray <LLOutboundRightDetailModel*> *itemList;
 @property (nonatomic,assign) BOOL seleted;
+///输入的出库数量
+@property (nonatomic,copy) NSString  * outgoingCount;
 @end
 
 @interface LLOutboundRightDetailModel : NSObject

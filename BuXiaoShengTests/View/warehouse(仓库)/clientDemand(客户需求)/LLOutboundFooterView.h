@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "LZOutboundModel.h"
 @interface LLOutboundFooterView : UITableViewHeaderFooterView
-@property(nonatomic,strong)LZOutboundItemListModel *model;
+@property(nonatomic,strong)NSArray <LLOutboundRightModel*> *selteds;
 @end
