@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/Base/Utility/BXSHttp.m"
-            timestampString = "549535264.9613709"
+            filePath = "BuXiaoShengTests/ViewController/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/LLOutboundSeletedVC.m"
+            timestampString = "549539962.036386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "+setupLoginStateFildWithMsg:"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "-bottomBtnClick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

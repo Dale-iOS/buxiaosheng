@@ -13,6 +13,7 @@
 -(void)setModel:(LLOutboundRightDetailModel *)model {
     _model = model;
     _totalCount.text = model.total;
+    model.seleted ? (self.contentView.layer.borderColor = [UIColor redColor].CGColor) : (self.contentView.layer.borderColor = [UIColor darkGrayColor].CGColor);
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {

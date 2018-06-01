@@ -18,6 +18,7 @@
 @property (nonatomic,strong) NSArray <LLOutboundlistModel *> * leftListModel;
 
 @property (nonatomic,strong) NSArray <LLOutboundRightModel *> * rightModels;
+
 @end
 
 @implementation LLOutboundSeletedVC
@@ -145,6 +146,9 @@
             return ;
         }
         self.rightModels = [LLOutboundRightModel LLMJParse:baseModel.data];
+        [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.leftModel = self.leftListModel[indexPath.row];
+        }];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
         
@@ -191,9 +195,55 @@
     return UIEdgeInsetsMake(5, 12, 5, 12);
 }
 
--(void)bottomBtnClick {
-    
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.rightModels[indexPath.section].itemList[indexPath.row].seleted = ! self.rightModels[indexPath.section].itemList[indexPath.row].seleted;
+    [collectionView reloadData];
 }
+-(void)bottomBtnClick {
+   
+    NSMutableArray <LLOutboundRightDetailModel *> * seleteds = [NSMutableArray array];
+    NSMutableArray <NSDictionary *>* arrayJson = [NSMutableArray array];
+    [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (itemObj.seleted) {
+                [seleteds addObject:itemObj];
+                NSDictionary * param = @{
+                                         @"productId":self.itemModel.productId,
+                                         @"productColorId":self.itemModel.productColorId,
+                                         @"stockId":itemObj.stockId,
+                                         @"number":obj.number,
+                                         @"houseId":obj.leftModel.houseId,
+                                         @"total":obj.total,
+                                         @"batchNumber":obj.batcNumber
+                                         };
+                [arrayJson addObject:param];
+            }
+        }];
+    }];
+    if (!seleteds.count) {
+        [LLHudTools showWithMessage:@"请选择产品"];
+        return;
+    }
+    
+    NSString * str = [arrayJson mj_JSONString];
+    
+    NSMutableDictionary * jsonParam = [NSMutableDictionary dictionary];
+    [seleteds enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        jsonParam[@"productItems"] = [obj mj_JSONString];
+    }];
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"factoryId":@"",
+                             @"productItems" :[seleteds mj_JSONString],
+                             };
+    [BXSHttp requestPOSTWithAppURL:@"" param:param success:^(id response) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+
 
 
 @end

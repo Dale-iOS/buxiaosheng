@@ -39,6 +39,7 @@
 
 @class LLOutboundRightDetailModel;
 @interface LLOutboundRightModel : NSObject
+@property (nonatomic,strong) LLOutboundlistModel * leftModel;
 @property (nonatomic,copy) NSString *batcNumber;
 @property (nonatomic,copy) NSString *number;
 @property (nonatomic,copy) NSString *total;
@@ -51,5 +52,7 @@
 @property (nonatomic,copy) NSString *stockId;
 @property (nonatomic,copy) NSString *total;
 @property (nonatomic,copy) NSString *value;
+
+@property (nonatomic,assign) BOOL seleted;
 
 @end
