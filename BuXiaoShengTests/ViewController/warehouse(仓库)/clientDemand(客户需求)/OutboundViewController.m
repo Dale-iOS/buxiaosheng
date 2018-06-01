@@ -195,6 +195,7 @@
     }];
     
     UIButton * determineBtn = [UIButton new];
+    [determineBtn addTarget:self action:@selector(determineBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [determineBtn setTitle:@"确  定" forState:UIControlStateNormal];
     determineBtn.titleLabel.font = [UIFont systemFontOfSize:17];
     [determineBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -285,6 +286,16 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
     }];
 
+}
+
+-(void)determineBtnClick {
+    
+    
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].userId,
+                             @"orderId":self.model.orderId,
+                             
+                             };
 }
 
 
