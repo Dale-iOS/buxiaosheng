@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZOutboundModel.h"
 @interface LLOutbounceSeletedLeftCell : UITableViewCell
-
+@property (nonatomic,strong) LLOutboundlistModel * model;
 @end

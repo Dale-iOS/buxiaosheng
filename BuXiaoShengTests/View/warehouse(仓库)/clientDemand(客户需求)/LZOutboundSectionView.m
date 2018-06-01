@@ -204,7 +204,11 @@
         [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_show"] forState:UIControlStateSelected];
         _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+        
+         _model.seleted ? (_foldingBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_foldingBtn.imageView.transform = CGAffineTransformIdentity);
     }
+    
+    
 }
 
 @end

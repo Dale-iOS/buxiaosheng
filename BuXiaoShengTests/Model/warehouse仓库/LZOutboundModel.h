@@ -34,4 +34,22 @@
 @interface LLOutboundlistModel : NSObject
 @property (nonatomic,copy) NSString *houseId;
 @property (nonatomic,copy) NSString *houseName;
+@property (nonatomic,assign) BOOL seleted;
+@end
+
+@class LLOutboundRightDetailModel;
+@interface LLOutboundRightModel : NSObject
+@property (nonatomic,copy) NSString *batcNumber;
+@property (nonatomic,copy) NSString *number;
+@property (nonatomic,copy) NSString *total;
+@property (nonatomic,copy) NSString *unitName;
+@property (nonatomic,copy) NSArray <LLOutboundRightDetailModel*> *itemList;
+@property (nonatomic,assign) BOOL seleted;
+@end
+
+@interface LLOutboundRightDetailModel : NSObject
+@property (nonatomic,copy) NSString *stockId;
+@property (nonatomic,copy) NSString *total;
+@property (nonatomic,copy) NSString *value;
+
 @end

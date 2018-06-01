@@ -454,6 +454,10 @@
 		B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B0751A209C3A7300FD53DC /* LLProcessTitleCell.m */; };
 		B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
 		B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA43DC20A4492A00A867E9 /* BXSUser.m */; };
+		B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C73EBB20C1336E00595176 /* LLOutbounceSeletedHeaderView.m */; };
+		B5C73EBD20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C73EBB20C1336E00595176 /* LLOutbounceSeletedHeaderView.m */; };
+		B5C73EC020C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C73EBF20C136C500595176 /* LLOutbounceSeletedRightCell.m */; };
+		B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C73EBF20C136C500595176 /* LLOutbounceSeletedRightCell.m */; };
 		B5C888D220C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */; };
 		B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */; };
 		B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF34F920A574B20043D906 /* AlterBankViewController.m */; };
@@ -1172,6 +1176,10 @@
 		B5BA43DB20A4492A00A867E9 /* BXSUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSUser.h; sourceTree = "<group>"; };
 		B5BA43DC20A4492A00A867E9 /* BXSUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BXSUser.m; sourceTree = "<group>"; };
 		B5BA43DF20A44AF000A867E9 /* MHConstInline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHConstInline.h; sourceTree = "<group>"; };
+		B5C73EBA20C1336E00595176 /* LLOutbounceSeletedHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutbounceSeletedHeaderView.h; sourceTree = "<group>"; };
+		B5C73EBB20C1336E00595176 /* LLOutbounceSeletedHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutbounceSeletedHeaderView.m; sourceTree = "<group>"; };
+		B5C73EBE20C136C500595176 /* LLOutbounceSeletedRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutbounceSeletedRightCell.h; sourceTree = "<group>"; };
+		B5C73EBF20C136C500595176 /* LLOutbounceSeletedRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutbounceSeletedRightCell.m; sourceTree = "<group>"; };
 		B5C888D020C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLOutbounceSeletedLeftCell.h; sourceTree = "<group>"; };
 		B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLOutbounceSeletedLeftCell.m; sourceTree = "<group>"; };
 		B5CF34F920A574B20043D906 /* AlterBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterBankViewController.m; sourceTree = "<group>"; };
@@ -2017,6 +2025,10 @@
 				34D705BA20BED8B100F0940C /* LZOutboundListCell.m */,
 				B5C888D020C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.h */,
 				B5C888D120C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m */,
+				B5C73EBA20C1336E00595176 /* LLOutbounceSeletedHeaderView.h */,
+				B5C73EBB20C1336E00595176 /* LLOutbounceSeletedHeaderView.m */,
+				B5C73EBE20C136C500595176 /* LLOutbounceSeletedRightCell.h */,
+				B5C73EBF20C136C500595176 /* LLOutbounceSeletedRightCell.m */,
 			);
 			path = "clientDemand(客户需求)";
 			sourceTree = "<group>";
@@ -2726,7 +2738,7 @@
 				TargetAttributes = {
 					34A92B0F207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					34A92B27207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
@@ -2970,6 +2982,7 @@
 				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
 				34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */,
 				34EBACAF20847AC70005BF77 /* VisitRecordViewController.m in Sources */,
+				B5C73EC020C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
 				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
 				B50505C3209AB2DA00CE7E4D /* XLFormOptionsViewController.m in Sources */,
@@ -3200,6 +3213,7 @@
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
+				B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
@@ -3216,6 +3230,7 @@
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
+				B5C73EBD20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
 				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
@@ -3232,6 +3247,7 @@
 				34A92B2D207DE86200572648 /* BuXiaoShengTests.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
+				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				B58BF6F720A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
@@ -3482,8 +3498,8 @@
 			baseConfigurationReference = 86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -3491,6 +3507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
@@ -3501,8 +3518,8 @@
 			baseConfigurationReference = CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -3510,6 +3527,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuXiaoSheng.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};

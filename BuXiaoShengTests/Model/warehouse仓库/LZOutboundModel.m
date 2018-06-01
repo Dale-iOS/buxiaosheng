@@ -23,3 +23,18 @@
 
 @implementation LLOutboundlistModel
 @end
+
+
+@implementation LLOutboundRightModel
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"itemList":[LLOutboundRightDetailModel class],
+             };
+}
+@end
+@implementation LLOutboundRightDetailModel
+
+
+@end
