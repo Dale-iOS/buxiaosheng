@@ -25,13 +25,14 @@
 -(void)setSelteds:(NSArray<LLOutboundRightModel *> *)selteds {
     _selteds = selteds;
    __block NSInteger  totalSaveCount = 0;
-    
-     __block NSInteger totalOutCount = 0;
+   __block NSInteger totalOutCount = 0;
     [_selteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         totalSaveCount += [obj.number integerValue];
         totalOutCount += [obj.outgoingCount integerValue];
     }];
     _totalSaveCountLable.text = [NSString stringWithFormat:@"总库存数:%@",[@(totalSaveCount)stringValue]] ;
+    
+     _totalOutCountLable.text = [NSString stringWithFormat:@"总出库数:%@",[@(totalOutCount)stringValue]] ;
 }
 
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {

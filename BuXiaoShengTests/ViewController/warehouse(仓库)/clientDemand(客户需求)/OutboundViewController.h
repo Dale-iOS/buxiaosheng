@@ -13,7 +13,9 @@
 @interface OutboundViewController : BaseViewController
 @property(nonatomic,copy)NSString *id;
 
-@property (nonatomic,strong) NSArray <LLOutboundRightModel*>  * rightSeleteds;
+@property (nonatomic,strong) NSMutableArray <LLOutboundRightModel*>  * rightSeleteds;
 
 @property (nonatomic,strong) LZOutboundItemListModel  * sectionModel;
+
+@property (nonatomic,strong) UITableView * tableView;
 @end

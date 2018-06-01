@@ -16,7 +16,7 @@
 #import "LZDrawerChooseView.h"
 @interface OutboundViewController ()<UITableViewDelegate,UITableViewDataSource,LZOutboundSectionViewDelegate>
 @property(nonatomic,strong)LZOutboundModel *model;
-@property (nonatomic,strong) UITableView * tableView;
+
 @property (nonatomic,strong) UILabel * totalNumberLable;
 @property (nonatomic,strong) UILabel * totalCountLable;
 @property(nonatomic,strong)UIView *headView;
@@ -40,13 +40,23 @@
    
 }
 //该数据源是来源右侧侧滑来的数据
--(void)setRightSeleteds:(NSArray<LLOutboundRightModel *> *)rightSeleteds {
+-(void)setRightSeleteds:(NSMutableArray<LLOutboundRightModel *> *)rightSeleteds {
     _rightSeleteds = rightSeleteds;
     [_listModels enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.productColorId isEqual:self.sectionModel.productColorId]) {
             obj.itemCellData = [NSMutableArray arrayWithArray:_rightSeleteds];
         }
     }];
+    __block NSInteger  totalCount = 0;
+    __block NSInteger totalOutCount = 0;
+    [_rightSeleteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalCount += [obj.total integerValue];
+        totalOutCount += [obj.outgoingCount integerValue];
+    }];
+    
+    self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
+    
+    self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     [self.tableView reloadData];
     
 }
@@ -166,7 +176,7 @@
     }];
     self.totalNumberLable = [UILabel new];
     [bottomView addSubview:self.totalNumberLable];
-    self.totalNumberLable.text = @"总数量: 8487484949";
+    self.totalNumberLable.text = @"总出库数量: 0";
     self.totalNumberLable.textColor = [UIColor colorWithHexString:@"#333333"];
     self.totalNumberLable.font = [UIFont systemFontOfSize:14];
     [self.totalNumberLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +186,7 @@
     
     self.totalCountLable = [UILabel new];
     [bottomView addSubview:self.totalCountLable];
-    self.totalCountLable.text = @"总条数: 8487484949";
+    self.totalCountLable.text = @"总条数: 0";
     self.totalCountLable.textColor = [UIColor colorWithHexString:@"#333333"];
     self.totalCountLable.font = [UIFont systemFontOfSize:14];
     [self.totalCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -235,6 +245,39 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return   _listModels[section].seleted  ? 34 : 0;
 }
+
+//先要设Cell可编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+//修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+//设置进入编辑状态时，Cell不会缩进
+- (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+//点击删除
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //在这里实现删除操作
+    //删除数据，和删除动画
+    [self.listModels[indexPath.section].itemCellData removeObjectAtIndex:indexPath.row];
+    [self.rightSeleteds removeObjectAtIndex:indexPath.row];
+    [tableView reloadData];
+    __block NSInteger  totalCount = 0;
+    __block NSInteger totalOutCount = 0;
+    [_rightSeleteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalCount += [obj.total integerValue];
+        totalOutCount += [obj.outgoingCount integerValue];
+    }];
+    
+    self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
+    
+    self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
+}
+
 
 -(void)sectionViewDelegate:(LZOutboundSectionView *)sectionView {
     _listModels[sectionView.section].seleted = ! _listModels[sectionView.section].seleted;

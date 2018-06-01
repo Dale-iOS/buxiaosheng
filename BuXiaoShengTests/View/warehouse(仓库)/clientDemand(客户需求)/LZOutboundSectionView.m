@@ -167,7 +167,7 @@
     rightSeletedVc.itemModel = self.model;
     rightSeletedVc.block = ^(NSArray<LLOutboundRightModel *> *seleteds, LZOutboundItemListModel *lastModel) {
         outboundVc.sectionModel = lastModel;
-        outboundVc.rightSeleteds = seleteds;
+        outboundVc.rightSeleteds = [NSMutableArray arrayWithArray:seleteds];
     };
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     
@@ -198,7 +198,9 @@
          [_foldingBtn setImage:nil forState:UIControlStateSelected];
         _foldingBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  0, 0, 0);
+         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
     }else {
+        _foldingBtn.backgroundColor = [UIColor whiteColor];
         [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
         [_foldingBtn setTitle:@"收起    " forState:UIControlStateSelected];
         _foldingBtn.titleLabel.font = FONT(12);
