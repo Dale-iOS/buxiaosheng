@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZInventoryDetailModel.h"
 
 @interface LZInventoryDetailCell : UITableViewCell
 @property(nonatomic,strong)UILabel *nameLbl;
@@ -14,4 +15,5 @@
 @property(nonatomic,strong)UILabel *numLbl;
 @property(nonatomic,strong)UILabel *unitLbl;
 @property(nonatomic,strong)UILabel *warehouseLbl;
+@property(nonatomic,strong)LZInventoryDetailModel *model;
 @end

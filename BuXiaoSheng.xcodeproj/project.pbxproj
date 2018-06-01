@@ -100,6 +100,8 @@
 		34602EBF207F418400710F91 /* DemandListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EBD207F404200710F91 /* DemandListTableViewCell.m */; };
 		34602EC2207F69C800710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
 		34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
+		3461107720C11B940080579F /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3461107520C11B940080579F /* HXTagsView.m */; };
+		3461107820C11B940080579F /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3461107520C11B940080579F /* HXTagsView.m */; };
 		3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464457D20AD281F00D6A06B /* LZClientModel.m */; };
 		3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458320AD6FF900D6A06B /* ChooseLabelsVC.m */; };
 		3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
@@ -660,6 +662,8 @@
 		34602EBD207F404200710F91 /* DemandListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemandListTableViewCell.m; sourceTree = "<group>"; };
 		34602EC0207F69C800710F91 /* TextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
 		34602EC1207F69C800710F91 /* TextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
+		3461107520C11B940080579F /* HXTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXTagsView.m; sourceTree = "<group>"; };
+		3461107620C11B940080579F /* HXTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXTagsView.h; sourceTree = "<group>"; };
 		3464457C20AD281F00D6A06B /* LZClientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientModel.h; sourceTree = "<group>"; };
 		3464457D20AD281F00D6A06B /* LZClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientModel.m; sourceTree = "<group>"; };
 		3464458220AD6FF900D6A06B /* ChooseLabelsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseLabelsVC.h; sourceTree = "<group>"; };
@@ -1259,6 +1263,7 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				3461107420C11B940080579F /* HXTagsView */,
 				34E49B1520A57F3D0074F454 /* QQTagView */,
 				B505054B209AB2DA00CE7E4D /* XLForm */,
 				34EA5B95208B1F010048CFE1 /* LGAlertView */,
@@ -1525,6 +1530,15 @@
 				342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */,
 			);
 			path = "financial(财务)";
+			sourceTree = "<group>";
+		};
+		3461107420C11B940080579F /* HXTagsView */ = {
+			isa = PBXGroup;
+			children = (
+				3461107520C11B940080579F /* HXTagsView.m */,
+				3461107620C11B940080579F /* HXTagsView.h */,
+			);
+			path = HXTagsView;
 			sourceTree = "<group>";
 		};
 		3464458520AD71DE00D6A06B /* client(客户) */ = {
@@ -3026,6 +3040,7 @@
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
+				3461107720C11B940080579F /* HXTagsView.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
 				B531EF2720BF8FE90028F18B /* FSCalendarAppearance.m in Sources */,
@@ -3208,6 +3223,7 @@
 				34A92B50207DEC6D00572648 /* LZHTableView.m in Sources */,
 				B50505A8209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				34A92B2D207DE86200572648 /* BuXiaoShengTests.m in Sources */,
+				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B58BF6F720A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
