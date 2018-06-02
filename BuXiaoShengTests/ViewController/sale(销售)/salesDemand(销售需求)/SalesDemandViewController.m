@@ -62,6 +62,8 @@
 
 @property (nonatomic,assign) BOOL  markSeletedTableView;
 
+@property (nonatomic,strong) NSIndexPath  * tableViewIndexPath;
+
 @end
 
 @implementation SalesDemandViewController
@@ -360,13 +362,14 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
     if (tableView == self.seletedTableView) {
         [self.seletedTableView removeFromSuperview];
         self.markSeletedTableView = false;
         self.seletedTableView.delegate = nil;
         self.seletedTableView.dataSource = nil;
         self.seletedTableView = nil;
-        [self.listModels replaceObjectAtIndex:self.listModels.count-1 withObject:self.dataMuArray[indexPath.row]];
+        [self.listModels replaceObjectAtIndex:_tableViewIndexPath.row withObject:self.dataMuArray[indexPath.row]];
         [self.tableView reloadData];
         return;
     }
@@ -412,6 +415,7 @@
     self.markSeletedTableView = ! self.markSeletedTableView;
     if (self.markSeletedTableView) {
         [UIView animateWithDuration:0.25 animations:^{
+            self.tableViewIndexPath = titleCell.indexPath;
             CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
             CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
             self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, LZHScale_WIDTH(240), self.dataMuArray.count *44);
