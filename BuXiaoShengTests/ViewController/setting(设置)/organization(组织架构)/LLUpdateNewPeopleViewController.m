@@ -43,6 +43,9 @@
     [self setupPartsList];
     [self setupData];
     [self setupDepartmentData];
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupSectionData) name:@"LLAddNewsdelete_role_buttonNotificationCenter" object:nil];
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated {

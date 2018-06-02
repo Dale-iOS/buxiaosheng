@@ -60,6 +60,26 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LLAddNewsPeopleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLAddNewsPeopleCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.model.itemList[indexPath.row];
+    
+    cell.block = ^(LLAddNewsPeopleCollectionViewCell *cell) {
+        
+        NSDictionary * param = @{
+                                 @"buttonId":cell.model.id,
+                                 @"companyId":[BXSUser currentUser].companyId,
+                                 @"parentId":cell.model.parentId,
+                                 @"memberId":[BXSUser currentUser].userId
+                                 };
+        [BXSHttp requestGETWithAppURL:@"member/delete_role_button.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue]!=200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LLAddNewsdelete_role_buttonNotificationCenter" object:nil];
+        } failure:^(NSError *error) {
+            
+        }];
+    };
     return cell;
 }
 

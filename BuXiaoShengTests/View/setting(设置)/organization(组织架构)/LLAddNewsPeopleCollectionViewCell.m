@@ -51,5 +51,24 @@
         make.top.equalTo(_logoImgaeView.mas_bottom).offset(5);
         make.centerX.equalTo(_logoImgaeView);
     }];
+    
+    _deleteBtn = [UIButton new];
+    [_deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_deleteBtn];
+   // [_deleteBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [_deleteBtn setBackgroundColor:[UIColor redColor]];
+    _deleteBtn.layer.masksToBounds = true;
+    _deleteBtn.layer.cornerRadius = 10;
+    _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:5];
+    _deleteBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_logoImgaeView.mas_top).offset(-2);
+        make.left.equalTo(_logoImgaeView.mas_left).offset(-3);
+        make.width.height.mas_equalTo(20);
+    }];
+}
+-(void)deleteBtnClick {
+    
+    self.block(self);
 }
 @end

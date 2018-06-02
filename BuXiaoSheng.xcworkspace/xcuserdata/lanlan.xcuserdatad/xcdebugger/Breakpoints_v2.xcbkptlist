@@ -36,12 +36,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/ViewController/warehouse(&#x4ed3;&#x5e93;)/clientDemand(&#x5ba2;&#x6237;&#x9700;&#x6c42;)/OutboundViewController.m"
-            timestampString = "549557895.368821"
+            timestampString = "549596764.678719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "-determineBtnClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/ViewController/setting(&#x8bbe;&#x7f6e;)/product(&#x4ea7;&#x54c1;&#x8d44;&#x6599;)/AddColorViewController.m"
+            timestampString = "549596903.332111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-selectornavRightBtnClick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

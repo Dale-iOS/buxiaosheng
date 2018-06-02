@@ -225,6 +225,14 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     LLOutboundFooterView * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLOutboundFooterView"];
     footerView.selteds = self.rightSeleteds;
+    __block NSInteger  totalCount = 0;
+    __block NSInteger totalOutCount = 0;
+    [_rightSeleteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalCount += [obj.total integerValue];
+        totalOutCount += [obj.outgoingCount integerValue];
+    }];
+    self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
+    self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     return footerView;
 }
 
@@ -291,13 +299,19 @@
 -(void)determineBtnClick {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"checkOut==1"];
     NSArray <LZOutboundItemListModel*> *filterArray = [_listModels filteredArrayUsingPredicate:predicate];
-    if (!filterArray.count) {
+    NSMutableArray <LZOutboundItemListModel*> *seleteds = [NSMutableArray array];
+    for (LZOutboundItemListModel * ItemListModel  in filterArray) {
+        if (ItemListModel.itemCellData.count) {
+            [seleteds addObject:ItemListModel];
+        }
+    }
+    if (!seleteds.count) {
         [LLHudTools showWithMessage:@"请至少选择一个"];
         return;
     }
     NSMutableArray <NSDictionary *> * orderHouseItems = [NSMutableArray array];
     
-    [filterArray enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [seleteds enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
             [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSDictionary * param = @{
