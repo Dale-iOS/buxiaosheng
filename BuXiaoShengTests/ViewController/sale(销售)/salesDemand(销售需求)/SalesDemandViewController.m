@@ -399,7 +399,11 @@
     LZSearchVC * rightSeletedVc = [LZSearchVC new];
     WEAKSELF;
     rightSeletedVc.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
-        weakSelf.listModels[colorCell.indexPath.row].colorModel = seletedModel;
+        LLSalesColorListModel * model = [LLSalesColorListModel new];
+        model.id = seletedModel.id;
+        model.productId = seletedModel.productId;
+        model.name = seletedModel.name;
+        colorCell.model.colorModel = model;
         [weakSelf.tableView reloadData];
     };
     rightSeletedVc.productId = colorCell.model.id;
