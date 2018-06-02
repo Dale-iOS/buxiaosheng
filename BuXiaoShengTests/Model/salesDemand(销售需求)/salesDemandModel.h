@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *priceInfo;
 @end
 
+@class LLSalesColorListModel;
 @interface productListModel : NSObject
 @property (nonatomic, copy) NSString *alias;
 @property (nonatomic, copy) NSString *id;
@@ -29,5 +30,13 @@
 @property (nonatomic, copy) NSString *shearPrice;
 @property (nonatomic, copy) NSString *status;
 @property (nonatomic, copy) NSString *unitName;
+@property (nonatomic, copy) NSString *productId;
+@property (nonatomic,copy) NSString  * number;
+@property (nonatomic,strong) LLSalesColorListModel  * colorModel;
+@end
+
+@interface LLSalesColorListModel : NSObject
+@property (nonatomic, copy) NSString *id;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *productId;
 @end

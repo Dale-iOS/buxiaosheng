@@ -10,27 +10,25 @@
 
 
 @interface SalesDemandCell()<UITextFieldDelegate>
-@property (nonatomic, strong)salesDemandModel *model;
 @end;
 
 @implementation SalesDemandCell
-{
-    void (^_block)(salesDemandModel *infoModel);
-}
+
 @synthesize titleTF,colorTF,lineTF,numberTF,priceTF;
 #define contentView  self.contentView
+
+-(void)setModel:(productListModel *)model {
+    _model = model;
+    titleTF.text = model.name;
+    lineTF.text = @"1";
+    priceTF.text = model.shearPrice;
+    colorTF.text = model.colorModel.name;
+    numberTF.text = model.number;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-        self.model = [[salesDemandModel alloc]init];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleTFChanging:) name:UITextFieldTextDidChangeNotification object:self.titleTF];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorTFChanging:) name:UITextFieldTextDidChangeNotification object:self.colorTF];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineTFChanging:) name:UITextFieldTextDidChangeNotification object:self.lineTF];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(numberTFChanging:) name:UITextFieldTextDidChangeNotification object:self.numberTF];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(priceTFChanging:) name:UITextFieldTextDidChangeNotification object:self.priceTF];
         
         [self setupAutoLayout];
     }
@@ -42,9 +40,10 @@
 {
     if (!titleTF) {
         UITextField *tf = [[UITextField alloc]init];
+        tf.delegate = self;
         tf.font = FONT(14);
         tf.textColor = CD_Text33;
-        tf.placeholder = @"品名";
+        tf.placeholder = @"请选择品名";
         tf.delegate = self;
         tf.userInteractionEnabled = YES;
         tf.textAlignment = NSTextAlignmentCenter;
@@ -57,9 +56,10 @@
 {
     if (!colorTF) {
         UITextField *tf = [[UITextField alloc]init];
+        tf.delegate = self;
         tf.font = FONT(14);
         tf.textColor = CD_Text33;
-        tf.placeholder = @"颜色";
+        tf.placeholder = @"请选择颜色";
         tf.delegate = self;
         tf.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(colorTF = tf)];
@@ -91,6 +91,7 @@
         tf.textColor = CD_Text33;
         tf.placeholder = @"数量";
         tf.delegate = self;
+        tf.keyboardType = UIKeyboardTypeNumberPad;
         tf.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(numberTF = tf)];
     }
@@ -103,6 +104,7 @@
         UITextField *tf = [[UITextField alloc]init];
         tf.font = FONT(14);
         tf.textColor = CD_Text33;
+        tf.userInteractionEnabled = false;
         tf.placeholder = @"单价";
         tf.delegate = self;
         tf.textAlignment = NSTextAlignmentCenter;
@@ -152,105 +154,40 @@
 
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.titleTF]) {
-        [self titleTFClick];
+        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
+            [self.delegate didClickTitleTextField:self];
+        }
     }
     if ([textField isEqual:self.colorTF]) {
-        [self colotTFClick];
+        if ([self.delegate respondsToSelector:@selector(didClickColorTextField:)]) {
+            [self.delegate didClickColorTextField:self];
+        }
+    }
+    if (textField == self.titleTF || textField == self.colorTF) {
+        return false;
+    }
+    return true;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField == self.numberTF) {
+        self.model.number = textField.text;
+        if ([self.delegate respondsToSelector:@selector(didClickNumberTextField:)]) {
+            [self.delegate didClickNumberTextField:self];
+        }
     }
 }
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if ([textField isEqual:self.titleTF]) {
-        self.model.titleInfo = self.titleTF.text;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.numberTF) {
+        if ([self.delegate respondsToSelector:@selector(didClickNumberTextField:)]) {
+            [self.delegate didClickNumberTextField:self];
+        }
     }
-    if ([textField isEqual:self.colorTF]) {
-        self.model.colorInfo = self.colorTF.text;
-    }
-//    if ([textField isEqual:self.lineTF]) {
-//        self.model.lineInfo = self.lineTF.text;
-//    }
-    if ([textField isEqual:self.numberTF]) {
-        self.model.numberInfo = self.numberTF.text;
-    }
-    if ([textField isEqual:self.priceTF]) {
-        self.model.priceInfo = self.priceTF.text;
-    }
-}
-
-- (void)titleTFChanging:(id)sender
-{
-    if (_block) {
-        _block(self.model);
-    }
-}
-
-- (void)colorTFChanging:(id)sender
-{
-    if (_block) {
-        _block(self.model);
-    }
+    return true;
 }
 
 
-- (void)lineTFChanging:(id)sender
-{
-    if (_block) {
-        _block(self.model);
-    }
-}
-
-
-- (void)numberTFChanging:(id)sender
-{
-    if (_block) {
-        _block(self.model);
-    }
-}
-
-
-- (void)priceTFChanging:(id)sender
-{
-    if (_block) {
-        _block(self.model);
-    }
-}
-
--(void)settitleTFContent:(NSString *)title WithColorTFContent:(NSString *)color WithlineTFContent:(NSString *)line WithNumberTFContent:(NSString *)number WithPriceTFContent:(NSString *)price WithReturnBlock:(void (^)(salesDemandModel *model))textFieldBlock
-{
-    self.titleTF.text = title;
-    self.colorTF.text = color;
-//    self.lineTF.text = line;
-    self.numberTF.text = number;
-    self.priceTF.text = price;
-    _block = textFieldBlock;
-}
-
-#pragma mark ---- 点击事件 -----
-//品名按钮点击
-- (void)titleTFClick
-{
-
-    if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
-        [self.delegate didClickTitleTextField:self.titleTF];
-    }
-}
-
-//颜色按钮点击
-- (void)colotTFClick
-{
-    if ([self.delegate respondsToSelector:@selector(didClickColorTextField:)]) {
-        [self.delegate didClickColorTextField:self.colorTF];
-    }
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

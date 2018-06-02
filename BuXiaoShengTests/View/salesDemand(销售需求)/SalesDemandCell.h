@@ -8,16 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "salesDemandModel.h"
-
+@class SalesDemandCell;
 @protocol SalesDemandCellDelegate <NSObject>
 //- (void) didClickTitleTextField:(NSString *)titleTFInfo;
 //- (void) didClickTitleBtn:(UIButton *)titleBtn;
-- (void) didClickTitleTextField:(UITextField*)titleTF;
-- (void) didClickColorTextField:(UITextField*)colorTF;
+- (void) didClickTitleTextField:(SalesDemandCell*)titleCell;
+- (void) didClickColorTextField:(SalesDemandCell*)colorCell;
+- (void) didClickNumberTextField:(SalesDemandCell*)colorCell;
 
 @end
 
 @interface SalesDemandCell : UITableViewCell
+
+@property (nonatomic,strong) NSIndexPath  * indexPath;
 @property (nonatomic,weak) id<SalesDemandCellDelegate> delegate;
 ///品名
 @property (nonatomic,strong)UITextField *titleTF;
@@ -30,5 +33,5 @@
 ///单价
 @property (nonatomic,strong)UITextField *priceTF;
 
--(void)settitleTFContent:(NSString *)title WithColorTFContent:(NSString *)color WithlineTFContent:(NSString *)line WithNumberTFContent:(NSString *)number WithPriceTFContent:(NSString *)price WithReturnBlock:(void (^)(salesDemandModel *model))textFieldBlock;
+@property (nonatomic,strong) productListModel  * model;
 @end

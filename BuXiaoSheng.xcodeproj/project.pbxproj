@@ -1843,6 +1843,7 @@
 		34A92B48207DE95600572648 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A088DCC520C26D7A00699E55 /* LMJDropdownMenu */,
 				34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */,
 				34F6100220A93C43009A29A5 /* LZSearchBar */,
 				34F60FFE20A93C06009A29A5 /* LZPickerView */,
@@ -2382,6 +2383,13 @@
 				CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A088DCC520C26D7A00699E55 /* LMJDropdownMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LMJDropdownMenu;
 			sourceTree = "<group>";
 		};
 		B505054B209AB2DA00CE7E4D /* XLForm */ = {

@@ -20,13 +20,11 @@
 #import "LZDrawerChooseView.h"
 #import "LZSearchBar.h"
 
-@interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate,LZDrawerChooseViewDelegate,LZSearchBarDelegate>
+@interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) salesDemandModel *cellsModel;
-@property (nonatomic, strong) NSMutableArray <salesDemandModel *>* dataMuArray;
+@property (nonatomic, strong) NSMutableArray <productListModel *>* dataMuArray;
 ///销售需求列表View
 @property (nonatomic, strong) SalesDemandListView *demandListView;
 
@@ -50,26 +48,20 @@
 ///仓库注意事项
 @property (nonatomic, strong) TextInputTextView *warehouseTextView;
 
+@property (nonatomic,strong) UITableView  * seletedTableView;
+
 @property (nonatomic, strong) UIView *lineView1;
 @property (nonatomic, strong) UIView *lineView2;
 
 ///下一步按钮
 @property (nonatomic, strong) UIButton *nextBtn;
-@property (nonatomic, strong) NSMutableArray <productListModel *> *products;
-@property (nonatomic, strong) NSMutableArray <productListModel *> *productColors;
-//展示图产品列表名称数组
-@property (nonatomic, strong) NSMutableArray *productsListMTArray;
-//展示图产品列表ID数组
-@property (nonatomic, strong) NSMutableArray *productsIdMTArray;
-//展示图产品颜色列表数组
-@property (nonatomic, strong) NSMutableArray *productsColorsListMTArray;
-@property (nonatomic, copy) NSString *ProductColorId;
-@property (nonatomic,strong)LZDrawerChooseView *chooseView;
-@property (nonatomic,strong)UIView *bottomBlackView;//侧滑的黑色底图
-@property (nonatomic, strong) LZSearchBar * searchBar;
-//抽屉的颜色选择tableview
-@property (nonatomic,strong) UITableView *colorTableView;
-@property (nonatomic,strong)NSArray *dataColorsArray;
+
+@property (nonatomic,strong) NSMutableArray <productListModel*>  * listModels;
+
+@property (nonatomic,strong) productListModel  * fristAddModel;
+
+@property (nonatomic,assign) BOOL  markSeletedTableView;
+
 @end
 
 @implementation SalesDemandViewController
@@ -87,127 +79,12 @@
     [self setupProductData];
 }
 
-#pragma mark ----- lazy loading ----
-- (UIView *)lineView1
-{
-    if (!lineView1) {
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = LZHBackgroundColor;
-        [self.footerView addSubview:(lineView1 = view)];
-    }
-    return lineView1;
-}
-
-- (TextInputCell *)nameCell
-{
-    if (!nameCell) {
-        TextInputCell *cell = [[TextInputCell alloc]init];
-        cell.titleLabel.text = @"客户名字";
-        cell.contentTF.placeholder = @"请输入客户名字";
-        cell.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(nameCell = cell)];
-    }
-    return nameCell;
-}
-
-- (TextInputCell *)phoneCell
-{
-    if (!phoneCell) {
-        TextInputCell *cell = [[TextInputCell alloc]init];
-        cell.titleLabel.text = @"客户电话";
-        cell.contentTF.placeholder = @"请输入客户电话";
-        cell.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(phoneCell = cell)];
-    }
-    return phoneCell;
-}
-
-- (TextInputCell *)arrearsCell
-{
-    if (!arrearsCell) {
-        TextInputCell *cell = [[TextInputCell alloc]init];
-        cell.titleLabel.text = @"本单应收";
-        cell.contentTF.placeholder = @"请输入本单赢收";
-        cell.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(arrearsCell = cell)];
-    }
-    return arrearsCell;
-}
-
-- (TextInputCell *)depositCell
-{
-    if (!depositCell) {
-        TextInputCell *cell = [[TextInputCell alloc]init];
-        cell.titleLabel.text = @"预收定金";
-        cell.contentTF.placeholder = @"请输入预收定金";
-        cell.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(depositCell = cell)];
-    }
-    return depositCell;
-}
-
-- (TextInputCell *)paymentMethodCell
-{
-    if (!paymentMethodCell) {
-        TextInputCell *cell = [[TextInputCell alloc]init];
-        cell.titleLabel.text = @"收款方式";
-        cell.contentTF.placeholder = @"请选择收款方式";
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.contentTF.enabled = NO;
-        cell.rightArrowImageVIew.hidden = NO;
-        cell.userInteractionEnabled = YES;
-        UIGestureRecognizer * tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(paymentMethodCellClick)];
-        [cell addGestureRecognizer:tap];
-        [self.footerView addSubview:(paymentMethodCell = cell)];
-    }
-    return paymentMethodCell;
-}
-
-- (TextInputTextView *)remarkTextView
-{
-    if (!remarkTextView) {
-        
-        TextInputTextView *textView = [[TextInputTextView alloc]init];
-        textView.titleLabel.text = @"备注";
-        textView.textView.placeholder = @"请输入备注内容";
-        textView.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(remarkTextView = textView)];
-    }
-    return remarkTextView;
-}
-
-- (UIView *)lineView2
-{
-    if (!lineView2) {
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = LZHBackgroundColor;
-        [self.footerView addSubview:(lineView2 = view)];
-    }
-    return lineView2;
-}
-
-- (TextInputTextView *)warehouseTextView
-{
-    if (!warehouseTextView) {
-        TextInputTextView *textView = [[TextInputTextView alloc]init];
-        textView.titleLabel.text = @"仓库注意事项";
-        textView.textView.placeholder = @"请输入告知仓库事项";
-        textView.backgroundColor = [UIColor whiteColor];
-        [self.footerView addSubview:(warehouseTextView = textView)];
-    }
-    return warehouseTextView;
-}
 
 - (void)setupUI
 {
     self.navigationItem.title = @"销售需求";
     self.view.backgroundColor = [UIColor whiteColor ];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"search")];
-    
-    self.dataArray = [NSMutableArray array];
-    self.dataMuArray = [NSMutableArray array];
-    self.cellsModel = [[salesDemandModel alloc]init];
-
     [self setupHeaderView];
     [self setupFooterView];
     
@@ -216,17 +93,11 @@
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
+    [self.tableView registerClass:[SalesDemandCell class] forCellReuseIdentifier:@"SalesDemandCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    
-    //抽屉时的黑色底图
-    _bottomBlackView = [[UIView alloc]initWithFrame:self.view.bounds];
-    _bottomBlackView.backgroundColor = [UIColor blackColor];
-    _bottomBlackView.hidden = YES;
-    [self.view addSubview:_bottomBlackView];
-    
-    [self setupChooseView];
+
     //下一步按钮
     self.nextBtn = [UIButton new];
     self.nextBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
@@ -416,126 +287,72 @@
         if ([baseModel.code integerValue] != 200) {
             return ;
         }
-        _products = [productListModel LLMJParse:baseModel.data];
-        //拼接要展示的列表数据
-        _productsListMTArray = [NSMutableArray array];
-        _productsIdMTArray = [NSMutableArray array];
-        if (_products) {
-            for (int i = 0; i <_products.count; i++) {
-                productListModel *model = [productListModel LLMJParse:_products[i]];
-                [_productsListMTArray addObject:model.name];
-                [_productsIdMTArray addObject:model.id];
-            }
-        }
+        self.dataMuArray = [productListModel LLMJParse:baseModel.data];
+       
     } failure:^(NSError *error) {
         
     }];
 }
 
 //功能用到颜色列表
-- (void)setupProductColorData
-{
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"productId":_ProductColorId
-                             };
-    [BXSHttp requestGETWithAppURL:@"product_color/color_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            return ;
-        }
-        _productColors = [productListModel LLMJParse:baseModel.data];
-        _productsColorsListMTArray = [NSMutableArray array];
-        _dataColorsArray = [NSArray arrayWithArray:baseModel.data];
-        if (_productColors) {
-            for (int i = 0; i <_productColors.count; i++) {
-                productListModel *model = [productListModel LLMJParse:_productColors[i]];
-                [_productsColorsListMTArray addObject:model.name];
-                [_colorTableView reloadData];
-            }
-        }
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//- (void)setupProductColorData
+//{
+//    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+//                             @"productId":_ProductColorId
+//                             };
+//    [BXSHttp requestGETWithAppURL:@"product_color/color_list.do" param:param success:^(id response) {
+//        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue] != 200) {
+//            return ;
+//        }
+//        _productColors = [productListModel LLMJParse:baseModel.data];
+//        _productsColorsListMTArray = [NSMutableArray array];
+//        _dataColorsArray = [NSArray arrayWithArray:baseModel.data];
+//        if (_productColors) {
+//            for (int i = 0; i <_productColors.count; i++) {
+//                productListModel *model = [productListModel LLMJParse:_productColors[i]];
+//                [_productsColorsListMTArray addObject:model.name];
+//                [_colorTableView reloadData];
+//            }
+//        }
+//    } failure:^(NSError *error) {
+//
+//    }];
+//}
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.tableView]) {
+    if (tableView == self.seletedTableView) {
         return self.dataMuArray.count;
-    }else{
-        return self.productsColorsListMTArray.count;
     }
-    
+     return self.listModels.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.seletedTableView) {
+        return 44;
+    }
     return 49;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([tableView isEqual:self.tableView]) {
-//        一开始的品名颜色的tableview
-        static NSString *cellID = @"Cellid";
-        SalesDemandCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        
-        if (cell == nil) {
-            
-            cell = [[SalesDemandCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.delegate = self;
-            
-            if (self.dataMuArray.count >0) {
-                
-                [cell settitleTFContent:self.cellsModel.titleInfo WithColorTFContent:self.cellsModel.colorInfo WithlineTFContent:self.cellsModel.lineInfo WithNumberTFContent:self.cellsModel.numberInfo WithPriceTFContent:self.cellsModel.priceInfo WithReturnBlock:^(salesDemandModel *model) {
-
-                    //防止上一条有tf为空不传值为空
-                    if (!model.titleInfo) {
-                        model.titleInfo = self.cellsModel.titleInfo;
-                    }
-                    if (!model.colorInfo)
-                    {
-                        model.colorInfo = self.cellsModel.colorInfo;
-                    }
-                    if (!model.lineInfo)
-                    {
-                        model.lineInfo = self.cellsModel.lineInfo;
-                    }
-                    if (!model.numberInfo)
-                    {
-                        model.numberInfo = self.cellsModel.numberInfo;
-                    }if (!model.priceInfo)
-                    {
-                        model.priceInfo = self.cellsModel.numberInfo;
-                    }
-        
-                    self.cellsModel = model;
-                }];
-            }
-        }
-        
+    if (tableView == self.seletedTableView) {
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"seletedTableView"];
+        cell.textLabel.text = self.dataMuArray[indexPath.row].name;
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
         return cell;
     }
-    
-    else 
-        //选择颜色tableview
-    {
-        static NSString *colorTVCellId = @"colorTVCellId";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:colorTVCellId];
-        if (cell == nil) {
-            
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:colorTVCellId];
-        }
-        cell.textLabel.text = _productsColorsListMTArray[indexPath.row];
-        return cell;
-    }
-    
+     SalesDemandCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SalesDemandCell"];
+    cell.indexPath  = indexPath;
+    cell.delegate = self;
+    cell.model = self.listModels[indexPath.row];
+    return cell;
+  
     
     
 }
@@ -543,14 +360,15 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
-    if ([tableView isEqual:_colorTableView]) {
-        _chooseView.chooseName = _dataColorsArray[indexPath.row][@"name"];
-        _chooseView.chooseId = _dataColorsArray[indexPath.row][@"id"];
-        _chooseView.chooseProductId = _dataColorsArray[indexPath.row][@"productId"];
+    if (tableView == self.seletedTableView) {
+        [self.seletedTableView removeFromSuperview];
+        self.markSeletedTableView = false;
+        self.seletedTableView.delegate = nil;
+        self.seletedTableView.dataSource = nil;
+        self.seletedTableView = nil;
+        [self.listModels replaceObjectAtIndex:self.listModels.count-1 withObject:self.dataMuArray[indexPath.row]];
+        [self.tableView reloadData];
+        return;
     }
 }
 
@@ -564,10 +382,51 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //要先把数据源的对应的数据删除掉
-    [self.dataMuArray removeObjectAtIndex:indexPath.row];
+    [self.listModels removeObjectAtIndex:indexPath.row];
     
     //删除cell
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void) didClickColorTextField:(SalesDemandCell *)colorCell{
+    if (!colorCell.model.name) {
+        [LLHudTools showWithMessage:@"请选择品名"];
+        return;
+    }
+    LZSearchVC * rightSeletedVc = [LZSearchVC new];
+    WEAKSELF;
+    rightSeletedVc.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
+        weakSelf.listModels[colorCell.indexPath.row].colorModel = seletedModel;
+        [weakSelf.tableView reloadData];
+    };
+    rightSeletedVc.productId = colorCell.model.id;
+//    rightSeletedVc.block = ^(NSArray<LLOutboundRightModel *> *seleteds, LZOutboundItemListModel *lastModel) {
+//        outboundVc.sectionModel = lastModel;
+//        outboundVc.rightSeleteds = [NSMutableArray arrayWithArray:seleteds];
+//    };
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+}
+- (void)didClickTitleTextField:(SalesDemandCell *)titleCell{
+    
+    self.markSeletedTableView = ! self.markSeletedTableView;
+    if (self.markSeletedTableView) {
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect cellFrame = [titleCell convertRect:titleCell.frame toView:self.view];
+            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y, LZHScale_WIDTH(240), self.dataMuArray.count *44);
+        }];
+    }else {
+        [self.seletedTableView removeFromSuperview];
+        self.seletedTableView.delegate = nil;
+        self.seletedTableView.dataSource = nil;
+        self.seletedTableView = nil;
+    }
+    
+}
+-(void)didClickNumberTextField:(SalesDemandCell *)colorCell {
+    
+    [self.listModels replaceObjectAtIndex:colorCell.indexPath.row withObject:colorCell.model];
+    [self.tableView reloadData];
 }
 
 
@@ -582,52 +441,36 @@
     NSLog(@"点击了放大镜");
 
 }
-
-- (void)addBtnOnClickAction
+#pragma mark -------- 新增一条数据 ----------
+-(void)addBtnOnClickAction
 {
-    [self.dataMuArray addObject:self.cellsModel];
+    if (!self.fristAddModel) {
+         self.fristAddModel = [productListModel new];
+    }else {
+        if (self.listModels.count) {
+            self.fristAddModel = [productListModel new];
+            self.fristAddModel.alias = self.listModels.lastObject.alias;
+             self.fristAddModel.id = self.listModels.lastObject.id;
+             self.fristAddModel.name = self.listModels.lastObject.name;
+             self.fristAddModel.shearPrice = self.listModels.lastObject.shearPrice;
+             self.fristAddModel.status = self.listModels.lastObject.status;
+             self.fristAddModel.unitName = self.listModels.lastObject.unitName;
+             self.fristAddModel.productId = self.listModels.lastObject.productId;
+             self.fristAddModel.number = self.listModels.lastObject.number;
+             self.fristAddModel.colorModel = self.listModels.lastObject.colorModel;
+        }else {
+             self.fristAddModel = [productListModel new];
+        }
+    }
+    [self.listModels addObject:self.fristAddModel];
     [self.tableView reloadData];
 }
 
-//品名TF点击方法
-- (void)didClickTitleTextField:(UITextField *)titleTF
-{
-    titleTF.delegate = self;
-    titleTF.scrollView = self.view;
-    titleTF.positionType = ZJPositionAuto;
-    [titleTF popOverSource:_productsListMTArray index:^(NSInteger index) {
-        _ProductColorId = _productsIdMTArray[index];
-        [self setupProductColorData];
-    }];
-}
 
-//颜色TF点击方法
-- (void)didClickColorTextField:(UITextField *)colorTF
-{
-    [colorTF resignFirstResponder];
-    [_nextBtn setHidden:YES];
-    
-    _bottomBlackView.alpha = 0.65;
-    _bottomBlackView.hidden = NO;
-    [UIView animateWithDuration:0.35 animations:^{
-        _chooseView .frame = CGRectMake(0, 0, APPWidth, APPHeight);
-    }];
-    
-    [_chooseView setColorTFBlock:^(NSString *colorName, NSString *colorId, NSString *productId) {
-        colorTF.text = colorName;
-    }];
-}
 
-- (void)dismiss
-{
-    [_nextBtn setHidden:NO];
-    [UIView animateWithDuration:0.35 animations:^{
-        _bottomBlackView.alpha = 0;
-        _chooseView .frame = CGRectMake(APPWidth, 0, APPWidth, APPHeight);
-        
-    } completion:nil];
-    
-}
+
+
+
 
 //收款方式点击事件
 - (void)paymentMethodCellClick
@@ -640,68 +483,172 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark ----- 抽屉部分 ------
-- (void)setupChooseView
+
+
+//- (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
+//{
+//
+//    [self dismiss];
+//}
+//
+//- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+//{
+//
+//    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+//                             @"productId":_ProductColorId,
+//                             @"searchName":_searchBar.text.length == 0 ? @"" :self.searchBar.text
+//                             };
+//    [BXSHttp requestGETWithAppURL:@"product_color/color_list.do" param:param success:^(id response) {
+//        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue] != 200) {
+//            return ;
+//        }
+//        _productColors = [productListModel LLMJParse:baseModel.data];
+//        _productsColorsListMTArray = [NSMutableArray array];
+//        _dataColorsArray = [NSArray arrayWithArray:baseModel.data];
+//        if (_productColors) {
+//            for (int i = 0; i <_productColors.count; i++) {
+//                productListModel *model = [productListModel LLMJParse:_productColors[i]];
+//                [_productsColorsListMTArray addObject:model.name];
+//                [_colorTableView reloadData];
+//            }
+//        }
+//    } failure:^(NSError *error) {
+//
+//    }];
+//}
+
+
+#pragma mark ----- lazy loading ----
+- (UIView *)lineView1
 {
-    //初始化抽屉
-    _chooseView = [[LZDrawerChooseView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight)];
-    _chooseView.delegate = self;
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:_chooseView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
-    [_chooseView.alphaiView addGestureRecognizer:tap];
-    
-    
-    _colorTableView = [[UITableView alloc]initWithFrame:CGRectMake(APPWidth *0.25, LLNavViewHeight, APPWidth *0.75, APPHeight -LLNavViewHeight-50) style:UITableViewStylePlain];
-    _colorTableView.delegate = self;
-    _colorTableView.dataSource = self;
-    _colorTableView.backgroundColor = [UIColor whiteColor];
-    _colorTableView.tableFooterView = [UIView new];
-    [_chooseView addSubview: _colorTableView];
-    
-    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(APPWidth *0.25 +5, LLNavViewHeight -44, APPWidth *0.75 -10, 49)];
-    self.searchBar.placeholder = @"搜索颜色";
-    self.searchBar.textColor = Text33;
-    self.searchBar.delegate = self;
-    self.searchBar.iconImage = IMAGE(@"search1");
-    self.searchBar.backgroundColor = [UIColor whiteColor];
-    self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
-    self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
-    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
-    [_chooseView addSubview:self.searchBar];
+    if (!lineView1) {
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = LZHBackgroundColor;
+        [self.footerView addSubview:(lineView1 = view)];
+    }
+    return lineView1;
 }
 
-- (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
+- (TextInputCell *)nameCell
 {
-
-    [self dismiss];
+    if (!nameCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"客户名字";
+        cell.contentTF.placeholder = @"请输入客户名字";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(nameCell = cell)];
+    }
+    return nameCell;
 }
 
-- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+- (TextInputCell *)phoneCell
 {
+    if (!phoneCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"客户电话";
+        cell.contentTF.placeholder = @"请输入客户电话";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(phoneCell = cell)];
+    }
+    return phoneCell;
+}
 
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"productId":_ProductColorId,
-                             @"searchName":_searchBar.text.length == 0 ? @"" :self.searchBar.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"product_color/color_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            return ;
-        }
-        _productColors = [productListModel LLMJParse:baseModel.data];
-        _productsColorsListMTArray = [NSMutableArray array];
-        _dataColorsArray = [NSArray arrayWithArray:baseModel.data];
-        if (_productColors) {
-            for (int i = 0; i <_productColors.count; i++) {
-                productListModel *model = [productListModel LLMJParse:_productColors[i]];
-                [_productsColorsListMTArray addObject:model.name];
-                [_colorTableView reloadData];
-            }
-        }
-    } failure:^(NSError *error) {
+- (TextInputCell *)arrearsCell
+{
+    if (!arrearsCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"本单应收";
+        cell.contentTF.placeholder = @"请输入本单赢收";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(arrearsCell = cell)];
+    }
+    return arrearsCell;
+}
+
+- (TextInputCell *)depositCell
+{
+    if (!depositCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"预收定金";
+        cell.contentTF.placeholder = @"请输入预收定金";
+        cell.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(depositCell = cell)];
+    }
+    return depositCell;
+}
+
+- (TextInputCell *)paymentMethodCell
+{
+    if (!paymentMethodCell) {
+        TextInputCell *cell = [[TextInputCell alloc]init];
+        cell.titleLabel.text = @"收款方式";
+        cell.contentTF.placeholder = @"请选择收款方式";
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentTF.enabled = NO;
+        cell.rightArrowImageVIew.hidden = NO;
+        cell.userInteractionEnabled = YES;
+        UIGestureRecognizer * tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(paymentMethodCellClick)];
+        [cell addGestureRecognizer:tap];
+        [self.footerView addSubview:(paymentMethodCell = cell)];
+    }
+    return paymentMethodCell;
+}
+
+- (TextInputTextView *)remarkTextView
+{
+    if (!remarkTextView) {
         
-    }];
+        TextInputTextView *textView = [[TextInputTextView alloc]init];
+        textView.titleLabel.text = @"备注";
+        textView.textView.placeholder = @"请输入备注内容";
+        textView.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(remarkTextView = textView)];
+    }
+    return remarkTextView;
 }
+
+- (UIView *)lineView2
+{
+    if (!lineView2) {
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = LZHBackgroundColor;
+        [self.footerView addSubview:(lineView2 = view)];
+    }
+    return lineView2;
+}
+
+- (TextInputTextView *)warehouseTextView
+{
+    if (!warehouseTextView) {
+        TextInputTextView *textView = [[TextInputTextView alloc]init];
+        textView.titleLabel.text = @"仓库注意事项";
+        textView.textView.placeholder = @"请输入告知仓库事项";
+        textView.backgroundColor = [UIColor whiteColor];
+        [self.footerView addSubview:(warehouseTextView = textView)];
+    }
+    return warehouseTextView;
+}
+
+-(NSMutableArray<productListModel *> *)listModels {
+    if (!_listModels) {
+        
+        _listModels = [NSMutableArray array];
+    }
+    return _listModels;
+}
+
+-(UITableView *)seletedTableView {
+    if (!_seletedTableView) {
+        _seletedTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _seletedTableView.delegate = self;
+        _seletedTableView.dataSource = self;
+        _seletedTableView.tableFooterView = [UIView new];
+        [self.view addSubview:_seletedTableView];
+        [_seletedTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"seletedTableView"];
+    }
+    return _seletedTableView;
+}
+
 
 @end

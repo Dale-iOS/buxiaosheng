@@ -15,3 +15,7 @@
 
 @implementation productListModel
 @end
+
+@implementation LLSalesColorListModel
+@end
+
