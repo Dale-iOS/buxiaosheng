@@ -448,8 +448,8 @@
          self.fristAddModel = [productListModel new];
     }else {
         if (self.listModels.count) {
-            self.fristAddModel = [productListModel new];
-            self.fristAddModel.alias = self.listModels.lastObject.alias;
+             self.fristAddModel = [productListModel new];
+             self.fristAddModel.alias = self.listModels.lastObject.alias;
              self.fristAddModel.id = self.listModels.lastObject.id;
              self.fristAddModel.name = self.listModels.lastObject.name;
              self.fristAddModel.shearPrice = self.listModels.lastObject.shearPrice;
