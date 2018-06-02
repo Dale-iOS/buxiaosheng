@@ -55,7 +55,7 @@
     _deleteBtn = [UIButton new];
     [_deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_deleteBtn];
-   // [_deleteBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [_deleteBtn setBackgroundImage:[UIImage imageNamed:@"delete_jurisdiction"] forState:UIControlStateNormal];
     [_deleteBtn setBackgroundColor:[UIColor redColor]];
     _deleteBtn.layer.masksToBounds = true;
     _deleteBtn.layer.cornerRadius = 10;

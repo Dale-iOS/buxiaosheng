@@ -275,7 +275,6 @@
     _unitTitleLbl.textColor = CD_Text99;
     _unitTitleLbl.text = @"  单位";
     [_chooseView addSubview:_unitTitleLbl];
-    //单行不滚动 ===============
     
 }
 

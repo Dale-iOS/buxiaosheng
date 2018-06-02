@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class LLAddNewPeoleRoleModel;
+@class LLAuditMangerItemModel;
 @interface LLAddNewsPepleContainerCell : UITableViewCell
 @property (nonatomic,strong) LLAddNewPeoleRoleModel * model;
+@property (nonatomic,strong) LLAuditMangerItemModel * idModel;
 @end

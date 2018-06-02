@@ -9,6 +9,7 @@
 #import "LLAddNewsPepleContainerCell.h"
 #import "LLAddNewPeoleRoleModel.h"
 #import "LLAddNewsPeopleCollectionViewCell.h"
+#import "LLAuditMangerModel.h"
 @interface LLAddNewsPepleContainerCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @end
 
@@ -60,14 +61,13 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LLAddNewsPeopleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLAddNewsPeopleCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.model.itemList[indexPath.row];
-    
     cell.block = ^(LLAddNewsPeopleCollectionViewCell *cell) {
         
         NSDictionary * param = @{
                                  @"buttonId":cell.model.id,
                                  @"companyId":[BXSUser currentUser].companyId,
                                  @"parentId":cell.model.parentId,
-                                 @"memberId":[BXSUser currentUser].userId
+                                 @"memberId":_idModel.id
                                  };
         [BXSHttp requestGETWithAppURL:@"member/delete_role_button.do" param:param success:^(id response) {
             LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

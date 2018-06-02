@@ -2738,7 +2738,7 @@
 				TargetAttributes = {
 					34A92B0F207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					34A92B27207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
@@ -3498,8 +3498,9 @@
 			baseConfigurationReference = 86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MWF6K77HK5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -3518,8 +3519,9 @@
 			baseConfigurationReference = CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MWF6K77HK5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;

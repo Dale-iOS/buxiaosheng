@@ -267,6 +267,7 @@
     }
     LLAddNewsPepleContainerCell * cell =[ tableView dequeueReusableCellWithIdentifier:@"LLAddNewsPepleContainerCell"];
     cell.model = self.roles[indexPath.section-1];
+    cell.idModel = _model;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
