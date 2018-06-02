@@ -324,7 +324,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.seletedTableView) {
-        return self.dataMuArray.count;
+        return self.markSeletedTableView ? self.dataMuArray.count : 0;
     }
      return self.listModels.count;
 }
@@ -412,8 +412,10 @@
     self.markSeletedTableView = ! self.markSeletedTableView;
     if (self.markSeletedTableView) {
         [UIView animateWithDuration:0.25 animations:^{
-            CGRect cellFrame = [titleCell convertRect:titleCell.frame toView:self.view];
-            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y, LZHScale_WIDTH(240), self.dataMuArray.count *44);
+            CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
+            CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
+            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, LZHScale_WIDTH(240), self.dataMuArray.count *44);
+            [self.view addSubview:_seletedTableView];
         }];
     }else {
         [self.seletedTableView removeFromSuperview];
@@ -644,7 +646,7 @@
         _seletedTableView.delegate = self;
         _seletedTableView.dataSource = self;
         _seletedTableView.tableFooterView = [UIView new];
-        [self.view addSubview:_seletedTableView];
+        
         [_seletedTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"seletedTableView"];
     }
     return _seletedTableView;
