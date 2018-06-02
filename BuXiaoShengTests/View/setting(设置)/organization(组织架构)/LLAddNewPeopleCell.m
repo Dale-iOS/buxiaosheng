@@ -8,6 +8,8 @@
 
 #import "LLAddNewPeopleCell.h"
 #import "LLAddNewPeopleModel.h"
+@interface LLAddNewPeopleCell()<UITextFieldDelegate>
+@end
 @implementation LLAddNewPeopleCell
 {
     UILabel * _leftLable;
@@ -75,6 +77,7 @@
     }];
     
     _rightTextFild = [UITextField new];
+    _rightTextFild.delegate = self;
     _rightTextFild.textColor = [UIColor darkGrayColor];
     [self.contentView addSubview:_rightTextFild];
     _rightTextFild.font = [UIFont systemFontOfSize:15];
@@ -82,6 +85,23 @@
         make.left.equalTo(self.contentView).offset(160);
         make.centerY.equalTo(self.contentView);
     }];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    switch (self.indexPath.row) {
+        case 0:
+            break;
+        case 1:
+            self.model.realName = textField.text;
+            break;
+        case 2:
+            break;
+        case 3:
+             self.model.passWord = textField.text;
+            break;
+        default:
+            break;
+    }
 }
 
 @end

@@ -15,4 +15,5 @@
 @property (nonatomic,copy) NSString * loginName;
 @property (nonatomic,copy) NSString * mobile;
 @property (nonatomic,copy) NSString * realName;
+@property (nonatomic,copy) NSString  * passWord;
 @end

@@ -323,7 +323,32 @@
 }
 
 -(void)selectornavRightBtnClick {
-    
+    if ([BXSTools stringIsNullOrEmpty:self.detailModel.realName]) {
+        [LLHudTools showWithMessage:@"请输入人员名称"];
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.detailModel.passWord]) {
+        [LLHudTools showWithMessage:@"请输入密码"];
+        return;
+    }
+    NSDictionary * param = @{
+                             @"companyId":[BXSUser currentUser].companyId,
+                             @"deptId":self.detailModel.deptId,
+                             @"id":self.model.id,
+                             @"loginName":self.detailModel.loginName,
+                             @"password":[BXSHttp makeMD5:self.detailModel.passWord],
+                             @"realName":self.detailModel.realName,
+                             };
+    [BXSHttp requestPOSTWithAppURL:@"member/update.do" param:param success:^(id response) {
+        LLBaseModel * baseModel =[LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [self.navigationController popViewControllerAnimated:true];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 -(UITableView *)tableView {

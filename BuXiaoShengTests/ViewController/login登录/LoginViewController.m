@@ -165,7 +165,7 @@
             }
             [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
-            [self.navigationController popViewControllerAnimated:true];
+            [self.navigationController popToRootViewControllerAnimated:true];
         }
 
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
