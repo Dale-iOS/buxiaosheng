@@ -178,7 +178,7 @@
     .widthIs(1)
     .heightIs(14)
     .rightSpaceToView(totalKgLbl, 0);
-
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -217,7 +217,7 @@
         cell = [[InventoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.model = _listAry[indexPath.row];
- 
+    
     return cell;
 }
 
@@ -308,7 +308,7 @@
 - (void)rightButtonClick
 {
     LZSearchWarehouseVC *vc = [[LZSearchWarehouseVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES]; 
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backMethod

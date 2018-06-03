@@ -149,7 +149,7 @@
     .leftSpaceToView(contentView, 0)
     .widthIs(APPWidth -30)
     .heightIs(133);
-
+    
     self.iconImageView.sd_layout
     .leftSpaceToView(contentView, 15)
     //    .centerYEqualToView(self.bgView)
@@ -208,7 +208,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

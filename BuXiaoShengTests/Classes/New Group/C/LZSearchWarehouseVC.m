@@ -202,9 +202,9 @@
 {
     static NSString *cellID = @"LZInventoryDetailCell";
     LZInventoryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    //    if (cell == nil) {
-    //        cell = [[LZInventoryDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    //    }
+    if (cell == nil) {
+        cell = [[LZInventoryDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
     cell.model = _listsAry[indexPath.row];
     return cell;
 }
@@ -292,6 +292,11 @@
 - (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
 {
     [self dismiss];
+}
+
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self setupData];
 }
 
 #pragma mark --- HXTagsViewDelegate ---

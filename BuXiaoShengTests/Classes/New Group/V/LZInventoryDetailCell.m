@@ -9,10 +9,11 @@
 #import "LZInventoryDetailCell.h"
 
 @implementation LZInventoryDetailCell
+@synthesize nameLbl,lineLbl,numLbl,unitLbl,warehouseLbl;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//        self.selectionStyle = UITableViewCellAccessoryNone;
+        self.selectionStyle = UITableViewCellAccessoryNone;
         [self setupUI];
     }
     return self;
@@ -20,100 +21,97 @@
 
 - (UILabel *)nameLbl
 {
-    if (!_numLbl) {
-        _numLbl = [[UILabel alloc]init];
-        _numLbl.backgroundColor = [UIColor redColor];
-        _numLbl.text = @"12323";
-        _numLbl.textColor = CD_Text99;
-        _numLbl.textAlignment = NSTextAlignmentCenter;
-        _numLbl.font = FONT(13);
-        [self.contentView addSubview:_numLbl];
+    if (numLbl == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        [self.contentView addSubview:(nameLbl = label)];
     }
-    return _nameLbl;
+    return nameLbl;
 }
 
 - (UILabel *)lineLbl
 {
-    if (!_lineLbl) {
-        _lineLbl = [[UILabel alloc]init];
-        _lineLbl.textColor = CD_Text99;
-        _lineLbl.textAlignment = NSTextAlignmentCenter;
-        _lineLbl.font = FONT(13);
-        [self.contentView addSubview:_lineLbl];
+    if (lineLbl == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        [self.contentView addSubview:(lineLbl = label)];
     }
-    return _lineLbl;
+    return lineLbl;
 }
 
 - (UILabel *)numLbl
 {
-    if (!_numLbl) {
-        _numLbl = [[UILabel alloc]init];
-        _numLbl.textColor = CD_Text99;
-        _numLbl.textAlignment = NSTextAlignmentCenter;
-        _numLbl.font = FONT(13);
-        [self.contentView addSubview:_numLbl];
+    if (numLbl == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        [self.contentView addSubview:(numLbl = label)];
     }
-    return _numLbl;
+    return numLbl;
 }
 
 - (UILabel *)unitLbl
 {
-    if (!_unitLbl) {
-        _unitLbl = [[UILabel alloc]init];
-        _unitLbl.textColor = CD_Text99;
-        _unitLbl.textAlignment = NSTextAlignmentCenter;
-        _unitLbl.font = FONT(13);
-        [self.contentView addSubview:_unitLbl];
+    if (unitLbl == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        [self.contentView addSubview:(unitLbl = label)];
     }
-    return _unitLbl;
+    return unitLbl;
 }
 
 - (UILabel *)warehouseLbl
 {
-    if (!_warehouseLbl) {
-        _warehouseLbl = [[UILabel alloc]init];
-        _warehouseLbl.backgroundColor = [UIColor yellowColor];
-        _warehouseLbl.textColor = CD_Text99;
-        _warehouseLbl.textAlignment = NSTextAlignmentCenter;
-        _warehouseLbl.font = FONT(13);
-        [self.contentView addSubview:_warehouseLbl];
+    if (warehouseLbl == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        [self.contentView addSubview:(warehouseLbl = label)];
     }
-    return _warehouseLbl;
+    return warehouseLbl;
 }
 
 //UI布局
 - (void)setupUI
 {
-    [_nameLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.nameLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.contentView);
         make.width.mas_offset(APPWidth *0.2);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_lineLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.lineLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(_nameLbl.mas_right);
+        make.left.equalTo(self.contentView).offset(APPWidth *0.2);
         make.width.mas_offset(APPWidth *0.2);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_numLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.numLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(_lineLbl.mas_right);
+        make.left.equalTo(self.contentView).offset(APPWidth *0.4);
         make.width.mas_offset(APPWidth *0.2);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_unitLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.unitLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(_numLbl.mas_right);
+        make.left.equalTo(self.contentView).offset(APPWidth *0.6);
         make.width.mas_offset(APPWidth *0.2);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_warehouseLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.warehouseLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(_unitLbl.mas_right);
+        make.left.equalTo(self.contentView).offset(APPWidth *0.8);
         make.width.mas_offset(APPWidth *0.2);
         make.centerY.equalTo(self.contentView);
     }];
@@ -122,21 +120,21 @@
 - (void)setModel:(LZInventoryDetailModel *)model
 {
     _model = model;
-    _nameLbl.text = _model.productName;
-    _lineLbl.text = _model.total;
-    _numLbl.text = _model.number;
-    _unitLbl.text = _model.unitName;
-    _warehouseLbl.text = _model.houseName;
+    self.nameLbl.text = _model.productName;
+    self.lineLbl.text = _model.total;
+    self.numLbl.text = _model.number;
+    self.unitLbl.text = _model.unitName;
+    self.warehouseLbl.text = _model.houseName;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
 }
 
 @end

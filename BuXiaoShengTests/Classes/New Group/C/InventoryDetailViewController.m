@@ -42,13 +42,13 @@
     [super viewWillAppear:YES];
     
     [self.navigationController.navigationBar setBackgroundImage:[Utility createImageWithColor:[UIColor colorWithHexString:@"#3d9bfa"]] forBarMetrics:UIBarMetricsDefault];
-
+    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     //修复navigationController侧滑关闭失效的问题
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setCustomLeftButton];
-
+    
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     //设置透明的背景图，便于识别底部线条有没有被隐藏
     [navigationBar setBackgroundImage:[[UIImage alloc] init]
@@ -211,7 +211,7 @@
     [self.view addSubview:self.headView];
     
     [self setupHeadView];
-
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.headView.bottom, APPWidth, APPHeight -64-10) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -282,7 +282,7 @@
 //设置顶部
 - (void)setupHeadView
 {
-
+    
     
     //客户名称
     UILabel *titleLbl = [[UILabel alloc]init];
@@ -569,7 +569,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
- 
+    
 }
 
 
