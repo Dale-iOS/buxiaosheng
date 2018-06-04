@@ -1,14 +1,17 @@
 //
-//  OrderTableViewCell.h
+//  DidOutInventoryCell.h
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/15.
+//  Created by 罗镇浩 on 2018/6/4.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
+@class LZOrderTrackingModel;
 #import <UIKit/UIKit.h>
 
-@interface OrderTableViewCell : UITableViewCell
+@interface DidOutInventoryCell : UITableViewCell
+
+@property(nonatomic,strong)LZOrderTrackingModel *model;
 
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;
@@ -34,11 +37,17 @@
 ///时间
 @property (nonatomic, strong)UILabel *timeLabel;
 
-///订单状态
-@property (nonatomic, strong)UILabel *stateLabel;
+///已出库运输中
+@property (nonatomic, strong)UILabel *transportLabel;
 
-///配送信息
-@property (nonatomic, strong)UILabel *distributionLabel;
+///已出库待送货
+@property (nonatomic, strong)UILabel *didTransportLabel;
+
+///收货
+@property (nonatomic, strong)UILabel *receivingLabel;
+
+///图标名字
+@property (nonatomic, strong)UILabel *iconLabel;
 
 
 @end

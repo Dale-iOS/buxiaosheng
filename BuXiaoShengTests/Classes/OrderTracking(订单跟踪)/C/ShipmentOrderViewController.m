@@ -7,9 +7,18 @@
 //  待出货（销售）
 
 #import "ShipmentOrderViewController.h"
+#import "OrderTableViewCell.h"
+#import "LZOrderTrackingModel.h"
 
-@interface ShipmentOrderViewController ()
-
+@interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    UIView *_headerView;
+    UILabel *_timeLabel;
+    UITableView *_tableView;
+    UIView *_rightHeadView;
+    NSInteger _page;
+}
+@property(nonatomic,strong)NSArray<LZOrderTrackingModel *> *lists;
 @end
 
 @implementation ShipmentOrderViewController

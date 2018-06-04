@@ -7,9 +7,10 @@
 //
 
 #import "OrderTableViewCell.h"
+#import "LZOrderTrackingModel.h"
 
 @implementation OrderTableViewCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,stateLabel,distributionLabel;
+@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,procurementLabel,procurementInfoLabel,processedLabel,iconLabel;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -55,6 +56,7 @@
     if (!companyLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @"companyLabel";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithR:51.0f/255.0f G:51.0f/255.0f B:51.0f/255.0f A:1.0f];
@@ -68,6 +70,7 @@
     if (!nameLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @"nameLabel";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -81,6 +84,7 @@
     if (!demandLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @"demandlabel ";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -94,6 +98,7 @@
     if (!OutNumLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @" outnumLabel";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -108,6 +113,7 @@
     if (!priceLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @"priceLabel";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -121,6 +127,7 @@
     if (!timeLabel)
     {
         UILabel *label = [[UILabel alloc]init];
+        label.text = @" timeLabel";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -129,34 +136,72 @@
     return timeLabel;
 }
 
-- (UILabel *)stateLabel
+- (UILabel *)procurementLabel
 {
-    if (!stateLabel)
+    if (!procurementLabel)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.backgroundColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        label.textColor = [UIColor whiteColor];
-        label.font = FONT(12);
-        label.layer.cornerRadius = 5.0f;
-        [self.bgView addSubview:(stateLabel = label)];
-    }
-    return stateLabel;
-}
-
-- (UILabel *)distributionLabel
-{
-    if (!distributionLabel)
-    {
-        UILabel *label = [[UILabel alloc]init];
+        label.text = @"采购中";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
         label.textColor = [UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
         label.backgroundColor =[UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:0.2f];
         label.layer.cornerRadius = 2.0f;
-        [self.bgView addSubview:(distributionLabel = label)];
+        label.layer.masksToBounds = YES;
+        label.hidden = YES;
+        [self.bgView addSubview:(procurementLabel = label)];
     }
-    return distributionLabel;
+    return procurementLabel;
+}
+
+- (UILabel *)procurementInfoLabel
+{
+    if (!procurementInfoLabel) {
+        
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"采购信息";
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
+        label.layer.cornerRadius = 5.0f;
+        label.layer.masksToBounds = YES;
+        label.font = FONT(13);
+        label.hidden = YES;
+        [self.bgView addSubview:(procurementInfoLabel = label)];
+    }
+    return procurementInfoLabel;
+}
+
+- (UILabel *)processedLabel
+{
+    if (!processedLabel)
+    {
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"已下单待处理";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(12);
+        label.textColor = [UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
+        label.backgroundColor =[UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:0.2f];
+        label.layer.cornerRadius = 2.0f;
+        label.hidden = YES;
+        label.layer.masksToBounds = YES;
+        [self.bgView addSubview:(processedLabel = label)];
+    }
+    return processedLabel;
+}
+
+- (UILabel *)iconLabel
+{
+    if (!iconLabel)
+    {
+        UILabel *label = [[UILabel alloc]init];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(13);
+        label.textColor = [UIColor colorWithHexString:@"#ffffff"];
+        label.backgroundColor =[UIColor clearColor];
+        [self.iconImageView addSubview:(iconLabel = label)];
+    }
+    return iconLabel;
 }
 
 //自动布局
@@ -174,53 +219,97 @@
     .widthIs(40)
     .heightIs(40);
     
-    self.companyLabel.text = @"广州佛山染织厂";
+
     self.companyLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
-    .topSpaceToView(self.bgView, 20)
-//    .widthIs(300)
+    .topSpaceToView(self.bgView, 10)
     .heightIs(15);
     [self.companyLabel setSingleLineAutoResizeWithMaxWidth:300];
     
-    self.nameLabel.text = @"魔术贴印双层BAD";
+
     self.nameLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
     .topSpaceToView(self.companyLabel, 10)
     .heightIs(13);
     [self.nameLabel setSingleLineAutoResizeWithMaxWidth:300];
     
-    self.demandLabel.text = @"需求量：5000";
+
     self.demandLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
     .topSpaceToView(self.nameLabel, 10)
     .heightIs(13);
-    [self.demandLabel setSingleLineAutoResizeWithMaxWidth:180];
+    [self.demandLabel setSingleLineAutoResizeWithMaxWidth:100];
     
-    self.OutNumLabel.text = @"出库数：500";
+
     self.OutNumLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
     .topSpaceToView(self.nameLabel, 10)
     .heightIs(13);
     [self.OutNumLabel setSingleLineAutoResizeWithMaxWidth:180];
     
-    self.priceLabel.text = @"￥1623";
     self.priceLabel.sd_layout
-    .leftSpaceToView(self.iconImageView, 115)
+    .leftSpaceToView(self.iconImageView, 135)
     .topSpaceToView(self.nameLabel, 10)
     .heightIs(13);
     [self.priceLabel setSingleLineAutoResizeWithMaxWidth:60];
     
-    self.timeLabel.text = @"2018-4-3  13:14";
     self.timeLabel.sd_layout
-    .rightSpaceToView(self.bgView, 15)
-    .topSpaceToView(self.nameLabel, 10)
+    .leftSpaceToView(self.iconImageView, 15)
+    .topSpaceToView(self.demandLabel, 10)
     .heightIs(13);
     [self.timeLabel setSingleLineAutoResizeWithMaxWidth:200];
+    
+    self.iconLabel.sd_layout
+    .widthIs(40)
+    .heightIs(14)
+    .centerXEqualToView(self.iconImageView)
+    .centerYEqualToView(self.iconImageView);
+    
+    self.processedLabel.sd_layout
+    .widthIs(80)
+    .heightIs(20)
+    .rightSpaceToView(self.bgView, 15)
+    .topSpaceToView(self.bgView, 15);
+    
+    
+    self.procurementLabel.sd_layout
+    .widthIs(60)
+    .heightIs(20)
+    .rightSpaceToView(self.bgView, 15)
+    .topSpaceToView(self.bgView, 15);
+    
+    self.procurementInfoLabel.sd_layout
+    .widthIs(64)
+    .heightIs(29)
+    .rightSpaceToView(self.bgView, 15)
+    .bottomSpaceToView(self.bgView, 15);
 }
+
+- (void)setModel:(LZOrderTrackingModel *)model
+{
+    _model = model;
+    if (_model.drawerName.length >3) {
+        self.iconLabel.text = [_model.drawerName substringFromIndex:3];
+    }else{
+        self.iconLabel.text = _model.drawerName;
+    }
+    self.nameLabel.text = _model.productName;
+    self.companyLabel.text = _model.customerName;
+    self.demandLabel.text = [NSString stringWithFormat:@"出库数:%@",_model.number];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥:%@",_model.price];
+    self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+    if ([_model.buyStatus isEqualToString:@"0"]) {
+        self.processedLabel.hidden = NO;
+    }else
+    {
+        self.procurementLabel.hidden = NO;
+        self.procurementInfoLabel.hidden = NO;
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

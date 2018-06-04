@@ -173,7 +173,7 @@
     _model = model;
     self.titleLbl.text = [NSString stringWithFormat:@"客户：%@",_model.drawerName];
     
-    if (timeLbl.text.length >2) {
+    if (_model.drawerName.length >2) {
         self.iconName.text = [_model.drawerName substringFromIndex:2];
     }else
     {

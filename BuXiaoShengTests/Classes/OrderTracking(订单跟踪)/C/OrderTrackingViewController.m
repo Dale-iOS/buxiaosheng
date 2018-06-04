@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.navigationItem.titleView = [Utility navTitleView:@"订单跟踪1"];
+    self.navigationItem.titleView = [Utility navTitleView:@"订单跟踪"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toSearch) image:IMAGE(@"search")];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -45,7 +45,7 @@
         pageTitleViewY = 88;
     }
     
-    NSArray *titleArr = @[@"全部", @"待出库", @"已出库", @"待出货", @"已交货"];
+    NSArray *titleArr = @[ @"待出库", @"已出库", @"待出货", @"已交货"];
     SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
     configure.titleColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     configure.titleSelectedColor = [UIColor colorWithRed:50.0f/255.0f green:149.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
@@ -66,7 +66,7 @@
     ShipmentOrderViewController *shipmentVC = [[ShipmentOrderViewController alloc]init];
     DeliveryOrderViewController *deliveryVC = [[DeliveryOrderViewController alloc]init];
     
-    NSArray *childArr = @[allVC, watiOutVC, didOutVC, shipmentVC, deliveryVC];
+    NSArray *childArr = @[watiOutVC, didOutVC, shipmentVC, deliveryVC];
     /// pageContentView
     CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, contentViewHeight) parentVC:self childVCs:childArr];
