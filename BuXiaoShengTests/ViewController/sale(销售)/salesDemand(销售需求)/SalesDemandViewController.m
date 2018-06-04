@@ -384,6 +384,12 @@
 //编辑cell是触发此方法
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.seletedTableView) {
+        [self.seletedTableView removeFromSuperview];
+        self.seletedTableView.dataSource = nil;
+        self.seletedTableView.delegate = nil;
+        self.seletedTableView = nil;
+    }
     //要先把数据源的对应的数据删除掉
     [self.listModels removeObjectAtIndex:indexPath.row];
     
@@ -437,6 +443,11 @@
     
     [self.listModels replaceObjectAtIndex:colorCell.indexPath.row withObject:colorCell.model];
     [self.tableView reloadData];
+    __block NSInteger  totalPrice = 0;
+    [self.listModels enumerateObjectsUsingBlock:^(productListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalPrice+= ([obj.number integerValue] * [obj.shearPrice integerValue]);
+    }];
+   self.arrearsCell.contentTF.text = [@(totalPrice) stringValue];
 }
 
 
@@ -474,6 +485,13 @@
     }
     [self.listModels addObject:self.fristAddModel];
     [self.tableView reloadData];
+    
+    //arrearsCell
+    __block NSInteger  totalPrice = 0;
+    [self.listModels enumerateObjectsUsingBlock:^(productListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalPrice+= ([obj.number integerValue] * [obj.shearPrice integerValue]);
+    }];
+    self.arrearsCell.contentTF.text = [@(totalPrice) stringValue];
 }
 
 

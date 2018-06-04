@@ -63,6 +63,8 @@
      [self setupBtns];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupBtns) name:LLLoginStateNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

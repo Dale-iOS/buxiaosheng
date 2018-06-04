@@ -32,6 +32,7 @@
 #import "BXSTools.h"
 
 
+#define LLLoginStateNotification  @"LLLoginStateNotification"
 
 //#import "AdditionFrameworks.h"
 #endif /* BuXiaoSheng_Prefix_pch */

@@ -165,6 +165,7 @@
             }
             [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
             [self.navigationController popToRootViewControllerAnimated:true];
         }
 
