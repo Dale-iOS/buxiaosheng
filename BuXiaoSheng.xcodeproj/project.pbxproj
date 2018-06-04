@@ -116,6 +116,10 @@
 		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
 		346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346EF4A020BE73D60078C087 /* LZOutboundModel.m */; };
+		3479056B20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
+		3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
+		3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056E20C509F1008C835C /* AssignDeliveryCell.m */; };
+		3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056E20C509F1008C835C /* AssignDeliveryCell.m */; };
 		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
 		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
 		347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */; };
@@ -698,6 +702,10 @@
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
 		346EF49F20BE73D60078C087 /* LZOutboundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundModel.h; sourceTree = "<group>"; };
 		346EF4A020BE73D60078C087 /* LZOutboundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundModel.m; sourceTree = "<group>"; };
+		3479056920C50973008C835C /* LZAssignDeliveryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryModel.h; sourceTree = "<group>"; };
+		3479056A20C50973008C835C /* LZAssignDeliveryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryModel.m; sourceTree = "<group>"; };
+		3479056D20C509F1008C835C /* AssignDeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignDeliveryCell.h; sourceTree = "<group>"; };
+		3479056E20C509F1008C835C /* AssignDeliveryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignDeliveryCell.m; sourceTree = "<group>"; };
 		347C309420A299030078BB69 /* InventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
 		347C309520A299030078BB69 /* InventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		347C309920A29DBC0078BB69 /* InventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryCell.h; sourceTree = "<group>"; };
@@ -1465,8 +1473,6 @@
 				34F4B48820BBA46B0017003E /* clientDemand(客户需求) */,
 				34494DEB2091739A00BDB309 /* WarehouseHomeViewController.h */,
 				34494DEC2091739A00BDB309 /* WarehouseHomeViewController.m */,
-				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
-				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
 				34DE25AB2092BFD6009E7589 /* WithSingleViewControllerViewController.h */,
 				34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */,
 				34DE25AE2092C61A009E7589 /* DyeingViewController.h */,
@@ -1573,6 +1579,44 @@
 				3464A93520A1894A00307C1A /* DyeRecipeView.m */,
 			);
 			path = "recipe(配方表)";
+			sourceTree = "<group>";
+		};
+		3479056520C50930008C835C /* assign(指派发货) */ = {
+			isa = PBXGroup;
+			children = (
+				3479056820C50944008C835C /* M */,
+				3479056720C50940008C835C /* V */,
+				3479056620C5093A008C835C /* C */,
+			);
+			name = "assign(指派发货)";
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		3479056620C5093A008C835C /* C */ = {
+			isa = PBXGroup;
+			children = (
+				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
+				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3479056720C50940008C835C /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3479056D20C509F1008C835C /* AssignDeliveryCell.h */,
+				3479056E20C509F1008C835C /* AssignDeliveryCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3479056820C50944008C835C /* M */ = {
+			isa = PBXGroup;
+			children = (
+				3479056920C50973008C835C /* LZAssignDeliveryModel.h */,
+				3479056A20C50973008C835C /* LZAssignDeliveryModel.m */,
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		347D64C9207F05ED00407FC4 /* sale(销售) */ = {
@@ -2336,6 +2380,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3479056520C50930008C835C /* assign(指派发货) */,
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
 			);
 			path = Classes;
@@ -3035,6 +3080,7 @@
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */,
 				34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */,
+				3479056B20C50973008C835C /* LZAssignDeliveryModel.m in Sources */,
 				B5050670209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B50505DF209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */,
@@ -3225,6 +3271,7 @@
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
+				3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */,
 				34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
 				34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */,
@@ -3277,6 +3324,7 @@
 				B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
+				3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
@@ -3293,6 +3341,7 @@
 				B531EF3420BF8FE90028F18B /* FSCalendarDelegationFactory.m in Sources */,
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
+				3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
