@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/16.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加客户页面
+//  添加客户资料页面
 
 #import "AddClienViewController.h"
 #import "LZHTableView.h"

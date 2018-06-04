@@ -19,6 +19,7 @@
 #import "salesDemandModel.h"
 #import "LZDrawerChooseView.h"
 #import "LZSearchBar.h"
+#import "LZPickerView.h"
 
 @interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -64,6 +65,11 @@
 
 @property (nonatomic,strong) NSIndexPath  * tableViewIndexPath;
 
+//付款方式数组
+@property (nonatomic, strong) NSMutableArray *payNameAry;
+@property (nonatomic, strong) NSMutableArray *payIdAry;
+@property (nonatomic, copy) NSString *payIdStr;///选择中的付款方式id
+
 @end
 
 @implementation SalesDemandViewController
@@ -79,6 +85,7 @@
 {
     [super viewWillAppear:animated];
     [self setupProductData];
+    [self setupPayList];
 }
 
 
@@ -189,6 +196,7 @@
 - (void)setupFooterView
 {
     self.footerView = [[UIView alloc]init];
+    self.footerView.userInteractionEnabled = YES;
     self.footerView.frame = CGRectMake(0, 0, APPWidth, 519);
 //    self.footerView.backgroundColor = [UIColor redColor];
     
@@ -293,6 +301,27 @@
        
     } failure:^(NSError *error) {
         
+    }];
+}
+
+- (void)setupPayList{
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"bank/pay_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSMutableArray *tempAry = baseModel.data;
+        _payNameAry = [NSMutableArray array];
+        _payIdAry = [NSMutableArray array];
+        for (int i = 0; i <tempAry.count; i++) {
+            [_payIdAry addObject:tempAry[i][@"id"]];
+            [_payNameAry addObject:tempAry[i][@"name"]];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
     }];
 }
 
@@ -494,16 +523,23 @@
     self.arrearsCell.contentTF.text = [@(totalPrice) stringValue];
 }
 
-
-
-
-
-
-
 //收款方式点击事件
 - (void)paymentMethodCellClick
 {
-    NSLog(@"收款方式点击事件");
+
+    if (_payNameAry.count <1) {
+        [LLHudTools showWithMessage:@"暂无收款方式，请在“设置 - 现金银行”中添加"];
+        return;
+    }
+    
+    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_payNameAry titleDataArray:nil];
+    
+    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+        self.paymentMethodCell.contentTF.text = compoentString;
+        NSInteger row = [titileString integerValue];
+        _payIdStr = _payIdAry[row];
+    };
+    [self.view addSubview:pickerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -616,7 +652,7 @@
         cell.contentTF.enabled = NO;
         cell.rightArrowImageVIew.hidden = NO;
         cell.userInteractionEnabled = YES;
-        UIGestureRecognizer * tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(paymentMethodCellClick)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(paymentMethodCellClick)];
         [cell addGestureRecognizer:tap];
         [self.footerView addSubview:(paymentMethodCell = cell)];
     }
