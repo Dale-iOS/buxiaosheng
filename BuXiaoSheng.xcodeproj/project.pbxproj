@@ -1482,14 +1482,14 @@
 			path = YANScrollMenu;
 			sourceTree = "<group>";
 		};
-		3440E11420C63C5E00655173 /* visitRecord(订单跟踪) */ = {
+		3440E11420C63C5E00655173 /* visitRecord(拜访记录) */ = {
 			isa = PBXGroup;
 			children = (
 				3440E11720C63D9F00655173 /* M */,
 				3440E11620C63D9A00655173 /* V */,
 				3440E11520C63D9400655173 /* C */,
 			);
-			path = "visitRecord(订单跟踪)";
+			path = "visitRecord(拜访记录)";
 			sourceTree = "<group>";
 		};
 		3440E11520C63D9400655173 /* C */ = {
@@ -1648,6 +1648,14 @@
 			children = (
 				3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */,
 				3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */,
+				3411F2A52085C3B800C448FD /* ResponsibleViewController.h */,
+				3411F2A62085C3B800C448FD /* ResponsibleViewController.m */,
+				3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */,
+				3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */,
+				3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */,
+				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
+				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
+				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1788,14 +1796,6 @@
 				34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */,
 				34535F6620AFD3BE00D9D2C6 /* SearchClientViewController.h */,
 				34535F6720AFD3BE00D9D2C6 /* SearchClientViewController.m */,
-				3411F2A52085C3B800C448FD /* ResponsibleViewController.h */,
-				3411F2A62085C3B800C448FD /* ResponsibleViewController.m */,
-				3411F2AB2085CE0600C448FD /* AllCompanyViewController.h */,
-				3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */,
-				3411F2AE2085CEBA00C448FD /* NoneManagerViewController.h */,
-				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
-				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
-				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
 				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
 				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
 			);
@@ -2508,7 +2508,7 @@
 			isa = PBXGroup;
 			children = (
 				346992AA20C6756C00476CF0 /* clientManager(客户管理) */,
-				3440E11420C63C5E00655173 /* visitRecord(订单跟踪) */,
+				3440E11420C63C5E00655173 /* visitRecord(拜访记录) */,
 				3479057120C511E4008C835C /* orderTracking(订单跟踪) */,
 				3479056520C50930008C835C /* assign(指派发货) */,
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,

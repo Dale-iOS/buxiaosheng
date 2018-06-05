@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ClientManagerViewController : UIViewController
+#import "BaseViewController.h"
+@interface ClientManagerViewController : BaseViewController
 
 @end

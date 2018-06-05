@@ -8,8 +8,7 @@
 
 #import "OrderTrackingViewController.h"
 #import "SGPagingView.h"
-
-#import "AllOrderViewController.h"
+//#import "AllOrderViewController.h"
 #import "WaitOutOrderViewController.h"
 #import "DidOutOrderViewController.h"
 #import "ShipmentOrderViewController.h"
@@ -59,7 +58,7 @@
     _pageTitleView.selectedIndex = 0;
 
     
-    AllOrderViewController *allVC = [[AllOrderViewController alloc]init];
+//    AllOrderViewController *allVC = [[AllOrderViewController alloc]init];
     WaitOutOrderViewController *watiOutVC = [[WaitOutOrderViewController alloc]init];
     DidOutOrderViewController *didOutVC = [[DidOutOrderViewController alloc]init];
     ShipmentOrderViewController *shipmentVC = [[ShipmentOrderViewController alloc]init];

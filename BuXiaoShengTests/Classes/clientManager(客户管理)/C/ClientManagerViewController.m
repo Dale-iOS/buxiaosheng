@@ -12,15 +12,13 @@
 #import "AllCompanyViewController.h"
 #import "NoneManagerViewController.h"
 #import "FreezeViewController.h"
-
 #import "DrawerAddressViewController.h"
 #import "ChooseAddressVC.h"
+#import "AddClienViewController.h"
+#import "SearchClientViewController.h"
 
 @interface ClientManagerViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
-{
-    UIView *_headView;
 
-}
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 
@@ -92,17 +90,11 @@
     NSArray *childArr = @[vc1, vc2, vc3, vc4];
     /// pageContentView
     CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
-    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame) +34+28+5, APPWidth, contentViewHeight) parentVC:self childVCs:childArr];
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, _pageTitleView.bottom, APPWidth, contentViewHeight) parentVC:self childVCs:childArr];
     
     _pageContentView.delegatePageContentView = self;
     [self.view addSubview:_pageContentView];
-    
-    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame)+5, APPWidth, 34)];
-    _headView.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
-    _headView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesOnClick)];
-    [_headView addGestureRecognizer:tapGes];
-    [self.view addSubview:_headView];
+
    
     UILabel *label = [[UILabel alloc]init];
     label.text = @"筛选";
@@ -111,44 +103,20 @@
     
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = IMAGE(@"screenwihte");
-    
-    UIView *headBgView = [[UIView alloc]init];
-    headBgView.backgroundColor = [UIColor clearColor];
-    [headBgView addSubview:label];
-    [headBgView addSubview:imageView];
-    [_headView addSubview:headBgView];
-    
-    headBgView.sd_layout
-    .centerXEqualToView(_headView)
-    .centerYEqualToView(_headView)
-    .widthIs(45)
-    .heightIs(14);
-    
-    label.sd_layout
-    .leftSpaceToView(headBgView, 0)
-    .centerYEqualToView(headBgView)
-    .widthIs(27)
-    .heightIs(14);
-    
-    imageView.sd_layout
-    .rightSpaceToView(headBgView, 0)
-    .centerYEqualToView(headBgView)
-    .widthIs(14)
-    .heightIs(12);
 
-    
-    
 }
 
 #pragma mark ----- 点击事件 ------
 - (void)addBtnOnClick
 {
-    NSLog(@"addBtnOnClick");
+    AddClienViewController *vc = [[AddClienViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)searchBtnOnClick
 {
-    NSLog(@"searchBtnOnClick");
+    SearchClientViewController *vc = [[SearchClientViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backMethod {
@@ -158,19 +126,7 @@
 // 导航栏左边按钮的点击事件
 - (void)tapGesOnClick
 {
-//    // 自己随心所欲创建的一个控制器
-//    ChooseAddressVC *vc = [[ChooseAddressVC alloc] init];
-//    
-//    vc.drawerType = DrawerDefaultRight;
-//    
-//    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-//    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-//    conf.finishPercent = 0.2f;
-//    conf.showAnimDuration = 0.2;
-//    conf.HiddenAnimDuration = 0.2;
-//    conf.maskAlpha = 0.1;
-//    
-//    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+
 }
 
 #pragma mark ----- pageTitleViewdelegate -----

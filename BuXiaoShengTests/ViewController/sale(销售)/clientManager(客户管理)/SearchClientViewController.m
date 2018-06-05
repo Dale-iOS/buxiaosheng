@@ -125,16 +125,10 @@
 
 #pragma mark ----- 点击事件 --------
 //搜索
-- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self setupData];
 }
-
-//筛选
-//- (void)tapGesOnClick
-//{
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

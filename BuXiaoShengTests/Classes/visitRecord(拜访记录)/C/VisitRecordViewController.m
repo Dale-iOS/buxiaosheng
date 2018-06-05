@@ -12,6 +12,7 @@
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
 #import "LZVisitRecordVC.h"
+#import "LZPickerView.h"
 
 @interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate>
 
@@ -32,7 +33,7 @@
 
 ///提交按钮
 @property (nonatomic, strong) UIButton *commitBtn;
-
+@property(nonatomic,strong)NSArray *typeAry;
 
 @end
 
@@ -67,33 +68,37 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
+    //拜访记录
     _objectCell = [[TextInputCell alloc]init];
     _objectCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _objectCell.userInteractionEnabled = YES;
+    _objectCell.titleLabel.text = @"拜访对象";
+    _objectCell.contentTF.placeholder = @"请输入拜访对象";
     
+    //拜访记录
     _wayCell = [[TextInputCell alloc]init];
     _wayCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _wayCell.userInteractionEnabled = YES;
     _wayCell.rightArrowImageVIew.hidden = NO;
+    _wayCell.titleLabel.text = @"拜访方式";
+    _wayCell.contentTF.placeholder = @"请选择拜访方式";
+    _wayCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapWayClick)];
+    [_wayCell addGestureRecognizer:tap];
     
     _mainCell = [[TextInputCell alloc]init];
     _mainCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _mainCell.userInteractionEnabled = YES;
+    _mainCell.titleLabel.text = @"主要事宜";
+    _mainCell.contentTF.placeholder = @"请输入主要事宜";
     
     _resultView = [[TextInputTextView alloc]init];
     _resultView.frame = CGRectMake(0, 0, APPWidth, 80);
 //    self.resultView.userInteractionEnabled = YES;
     _resultView.textView.delegate = self;
-    
-    //假数据
-    _objectCell.titleLabel.text = @"拜访对象";
-    _objectCell.contentTF.text = @"李总";
-    _wayCell.titleLabel.text = @"拜访方式";
-    _wayCell.contentTF.placeholder = @"当面拜访";
-    _mainCell.titleLabel.text = @"主要事宜";
-    _mainCell.contentTF.text = @"秋冬开发情况";
     _resultView.titleLabel.text = @"拜访结果";
-    _resultView.textView.placeholder = @"请输入告知仓库事项";
+    _resultView.textView.placeholder = @"请输入拜访结果";
+
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
     item.sectionRows = @[_objectCell,_wayCell,_mainCell,_resultView];
@@ -125,6 +130,8 @@
 
 - (void)setupUI
 {
+    _typeAry = [NSArray arrayWithObjects:@"当面拜访",@"电话拜访",@"聊天软件拜访",@"其他方式拜访",nil];
+    
     self.datasource = [NSMutableArray array];
     self.mainTabelView.delegate = self;
     [self.view addSubview:self.mainTabelView];
@@ -152,6 +159,19 @@
 
 - (void)backMethod {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)tapWayClick{
+    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_typeAry titleDataArray:nil];
+    
+    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+//        weakSelf.principalCell.contentTF.text = compoentString;
+//        NSInteger row = [titileString integerValue];
+//        weakSelf.priceipalId = weakSelf.principalIdAry[row];
+        self.wayCell.contentTF.text = compoentString;
+    };
+    
+    [self.view addSubview:pickerView];
 }
 
 //跳转到拜访记录列表

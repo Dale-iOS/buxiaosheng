@@ -11,11 +11,11 @@
 #import "LZClientManagerModel.h"
 #import "ClientManagerTableViewCell.h"
 #import "SearchClientViewController.h"
+#import "AddClienViewController.h"
+#import "ChooseAddressVC.h"
 
 @interface ResponsibleViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
-    UITableView *_tableView;
-}
+@property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong) NSArray <LZClientManagerModel *> *clients;
 @property (nonatomic, strong) UILabel *headLabel;
 @end
@@ -24,42 +24,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = LZHBackgroundColor;
+    
     [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self setupData];
-}
-
-- (void)setupData
-{
-    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"labelName":@"",
-                            @"memberId":[BXSUser currentUser].userId,
-                            @"pageNo":@"1",
-                            @"pageSize":@"20",
-                            @"searchName":@"",
-//                            @"status":@""
-                            
-                            };
-    [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
-       
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            
-            [LLHudTools showWithMessage:baseModel.msg];
-        }
-        
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 - (void)setupUI
 {
-
     //    筛选蓝色底图View
     UIView *screenView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
     screenView.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
@@ -108,19 +86,43 @@
     _headLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_headLabel];
     
-    
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, screenView.bottom, APPWidth, APPHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _headLabel.bottom, APPWidth, APPHeight -LLNavViewHeight) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     //隐藏分割线
     _tableView.separatorStyle = NO;
+    _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
+}
+
+- (void)setupData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"memberId":@"",
+                            @"pageNo":@"1",
+                            @"pageSize":@"20",
+                            };
+    [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
+        
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            
+            [LLHudTools showWithMessage:baseModel.msg];
+        }
+        
+        self.clients = [LZClientManagerModel LLMJParse:baseModel.data];
+        _headLabel.text = [NSString stringWithFormat:@"共%zd人",self.clients.count];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.clients.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -141,22 +143,68 @@
     if (cell == nil) {
         
         cell = [[ClientManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
+        cell.model = self.clients[indexPath.row];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddClienViewController *vc = [[AddClienViewController alloc]init];
+    vc.id = self.clients[indexPath.row].id;
+    vc.isFormSelect = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //筛选点击
 - (void)tapGesOnClick
 {
-    SearchClientViewController *vc = [[SearchClientViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
+    vc.drawerType = DrawerDefaultRight1;
+    
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
+    conf.maskAlpha = 0.1;
+    
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    
+    
+    [vc setLabelsArrayBlock:^(NSString *labelString) {
+        
+        NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                                @"labelName":labelString,
+                                @"memberId":[BXSUser currentUser].userId,
+                                @"pageNo":@"1",
+                                @"pageSize":@"20",
+                                @"searchName":@""
+                                
+                                };
+        [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
+            
+            LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                
+                [LLHudTools showWithMessage:baseModel.msg];
+            }
+            
+            self.clients = [LZClientManagerModel LLMJParse:baseModel.data];
+            _headLabel.text = [NSString stringWithFormat:@"共%zd人",self.clients.count];
+            [self.tableView reloadData];
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
+
 
 
 @end
