@@ -10,7 +10,7 @@
 #import "LZOrderTrackingModel.h"
 
 @implementation DidOutInventoryCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,transportLabel,didTransportLabel,receivingLabel,iconLabel;
+@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,transportLabel,didTransportLabel,receivingLabel,iconLabel,redLeftView;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -205,6 +205,17 @@
     return iconLabel;
 }
 
+- (UIView *)redLeftView
+{
+    if (!redLeftView) {
+        
+        UIView *view = [[UIView alloc]init];
+        view.backgroundColor = [UIColor colorWithHexString:@"#ff6565"];
+        [self.bgView addSubview:(redLeftView = view)];
+    }
+    return redLeftView;
+}
+
 //自动布局
 - (void)setSDlayout
 {
@@ -284,7 +295,13 @@
     .rightSpaceToView(self.bgView, 15)
     .topSpaceToView(self.bgView, 15);
     
-    
+    self.redLeftView.sd_layout
+    .topSpaceToView(self.bgView, 0)
+    .bottomSpaceToView(self.bgView, 0)
+    .leftSpaceToView(self.bgView, 0)
+    .widthIs(7);
+    //设置多出superView的部分隐藏
+    self.bgView.clipsToBounds = YES;
 }
 
 - (void)setModel:(LZOrderTrackingModel *)model{
@@ -307,13 +324,14 @@
     [OutNumStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
     self.OutNumLabel.attributedText = OutNumStr;
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+
     
     if ([_model.orderStatus integerValue] == 1) {
+        self.didTransportLabel.hidden = NO;
+    }else if ([_model.orderStatus integerValue] == 2)
+    {
         self.receivingLabel.hidden = NO;
         self.transportLabel.hidden = NO;
-    }else
-    {
-        self.didTransportLabel.hidden = NO;
     }
 }
 

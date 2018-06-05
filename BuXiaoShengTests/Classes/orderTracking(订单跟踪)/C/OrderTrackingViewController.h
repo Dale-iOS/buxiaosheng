@@ -7,7 +7,7 @@
 //  
 
 #import <UIKit/UIKit.h>
-
-@interface OrderTrackingViewController : UIViewController
+#import "BaseViewController.h"
+@interface OrderTrackingViewController : BaseViewController
 
 @end

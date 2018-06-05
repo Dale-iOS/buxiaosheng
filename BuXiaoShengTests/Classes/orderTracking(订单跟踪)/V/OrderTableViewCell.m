@@ -298,9 +298,11 @@
     self.demandLabel.text = [NSString stringWithFormat:@"出库数:%@",_model.number];
     self.priceLabel.text = [NSString stringWithFormat:@"￥:%@",_model.price];
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+    
+//采购状态（0：未采购 1：采购中）
     if ([_model.buyStatus isEqualToString:@"0"]) {
         self.processedLabel.hidden = NO;
-    }else
+    }else if ([_model.buyStatus isEqualToString:@"1"])
     {
         self.procurementLabel.hidden = NO;
         self.procurementInfoLabel.hidden = NO;

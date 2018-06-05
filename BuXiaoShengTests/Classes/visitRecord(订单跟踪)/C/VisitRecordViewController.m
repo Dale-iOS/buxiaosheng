@@ -4,13 +4,14 @@
 //
 //  Created by 罗镇浩 on 2018/4/16.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  拜访记录
+//  拜访记录页面
 
 #import "VisitRecordViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
+#import "LZVisitRecordVC.h"
 
 @interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate>
 
@@ -43,6 +44,7 @@
    
     self.navigationItem.titleView = [Utility navTitleView:@"拜访记录"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(screenClick) image:IMAGE(@"list")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
@@ -54,7 +56,7 @@
         
         LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight -44-64)];
         tableView.tableView.allowsSelection = YES;
-        tableView.backgroundColor = [UIColor grayColor];
+        tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:(mainTabelView = tableView)];
     }
     return mainTabelView;
@@ -152,19 +154,16 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//跳转到拜访记录列表
+- (void)screenClick{
+    LZVisitRecordVC *vc = [[LZVisitRecordVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
