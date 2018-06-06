@@ -13,8 +13,11 @@
 #import "UITextView+Placeholder.h"
 #import "LZVisitRecordVC.h"
 #import "LZPickerView.h"
-
-@interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate>
+#import "LZUploadMomentImagesCell.h"
+#import "TZImagePickerController.h"
+#import "LZPictureBrowseVC.h"
+#import "NSArray+Utils.h"
+@interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,TZImagePickerControllerDelegate,LZUploadImageViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LZPictureBrowseVCDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -29,15 +32,16 @@
 @property (nonatomic, strong) TextInputTextView *resultView;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkView;
+@property(nonatomic,strong)LZUploadMomentImagesCell *imageCell;
 ///提交按钮
 @property (nonatomic, strong) UIButton *commitBtn;
 @property(nonatomic,strong)NSArray *typeAry;
 @property(nonatomic,strong)NSString *typeStr;
-
+@property (nonatomic,strong)UIImagePickerController *imagePicker;
 @end
 
 @implementation VisitRecordViewController
-@synthesize mainTabelView;
+@synthesize mainTabelView,imageCell;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +64,19 @@
         [self.view addSubview:(mainTabelView = tableView)];
     }
     return mainTabelView;
+}
+
+- (LZUploadMomentImagesCell *)imageCell{
+    
+    float itemWidth=(APPWidth-5*5)/4;
+    float itemHeight=itemWidth+5+5;
+    if (imageCell == nil) {
+        //imagesCell = [[MPUploadMomentImagesCell alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 110)];
+        imageCell = [[LZUploadMomentImagesCell alloc]initWithFrame:CGRectMake(0, 1, APPWidth, itemHeight)];
+        imageCell.backgroundColor = [UIColor whiteColor];
+        [imageCell.addBtn addTarget:self action:@selector(showAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return imageCell;
 }
 
 - (void)setSectionOne
@@ -127,6 +144,22 @@
     [self.datasource addObject:item];
 }
 
+- (void)setSectionThree{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+    textLbl.textColor = CD_Text33;
+    textLbl.font = FONT(14);
+    textLbl.text = @"图片";
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[textLbl,self.imageCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
 - (void)setupUI
 {
     _typeAry = [NSArray arrayWithObjects:@"当面拜访",@"电话拜访",@"聊天软件拜访",@"其他方式拜访",nil];
@@ -137,6 +170,7 @@
     
     [self setSectionOne];
     [self setSectionTwo];
+    [self setSectionThree];
     
     self.mainTabelView.dataSoure = self.datasource;
     
@@ -221,6 +255,137 @@
         BXS_Alert(@"上传失败,请重试!");
         
     }];
+}
+
+- (void)tapUploadImageView:(LZUploadImageView *)view {
+    NSArray *uploadImagesArr = [NSArray array];
+    
+    //        uploadImagesArr = [self.imagesCell.imageViews arrayWithObjectProperty:@"imageUrl"];
+    
+    //苗木入库
+    uploadImagesArr = [self.imageCell.imageViews  arrayWithObjectProperty:@"image"];
+    
+    
+    if (uploadImagesArr.count == 0)
+    {
+        return;
+    }
+    
+    
+    //当前点击的图片索引
+    //        NSInteger tempIndex = [uploadImagesArr indexOfObject:view.imageUrl];
+    //
+    //        MPPictureBrowseViewController *vc = [[MPPictureBrowseViewController alloc] init];
+    //        vc.imageUrl      = view.imageUrl;
+    //        vc.showIndex     = tempIndex;
+    //        vc.showImagesArr = [NSMutableArray arrayWithArray:uploadImagesArr];
+    //        vc.delegate = self;
+    //        [self.navigationController pushViewController:vc animated:YES];
+    
+    //        //当前点击的图片索引
+    NSInteger tempIndex = [uploadImagesArr indexOfObject:view.imageView.image];
+    
+    LZPictureBrowseVC *vc = [[LZPictureBrowseVC alloc] init];
+    vc.imageUrl      = view.imageUrl;
+    vc.image         = view.imageView.image;
+    vc.showIndex     = tempIndex;
+    vc.showImagesArr = [NSMutableArray arrayWithArray:uploadImagesArr];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+#pragma mark - MPPictureBrowseViewControllerDelegate
+
+- (void)didDeletePicture:(NSString *)imageUrl {
+    
+    
+    [self uploadImageViewDeleteImageUrl:imageUrl];
+}
+
+- (void)deleteImageWithImageIndex:(NSInteger)imageIndex {
+    NSArray *uploadImagesArr = [self.imageCell.imageViews arrayWithObjectProperty:@"imageUrl"];
+    if (imageIndex>=uploadImagesArr.count)
+    {
+        return;
+    }
+    [self uploadImageViewDeleteImageUrl:uploadImagesArr[imageIndex]];
+    
+    
+    
+}
+
+-(void)changeImageCellHeight{
+    
+    float itemWidth=(APPWidth-5*5)/4;
+    float itemHeight=itemWidth+5+5;
+    
+    NSArray *imageNamesArr     = [imageCell.imageViews arrayWithObjectProperty:@"imageUrl"];
+    if(imageNamesArr!=nil && imageNamesArr.count<4){
+        
+        CGRect frame=imageCell.frame;
+        frame.size.height=itemHeight+5;
+        imageCell.frame=frame;
+        
+    }else if(imageNamesArr!=nil && imageNamesArr.count>=4 && imageNamesArr.count<8){
+        
+        CGRect frame=imageCell.frame;
+        frame.size.height=itemHeight*2+5;
+        imageCell.frame=frame;
+        
+    }else if(imageNamesArr!=nil && imageNamesArr.count>=8){
+        CGRect frame=imageCell.frame;
+        frame.size.height=itemHeight*3+5;
+        imageCell.frame=frame;
+    }
+    [self.mainTabelView reloadData];
+    
+}
+
+#pragma mark ----- 选择图片上传 -----
+
+- (void)showAction {
+    
+    UIActionSheet *actSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    actSheet.delegate = self;
+    [actSheet showInView:self.view];
+    
+//    [contentCell.contentView resignFirstResponder];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0)
+    {
+        /**
+         *  拍照
+         */
+//        AppDelegate *appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        self.imagePicker = [[UIImagePickerController alloc] init];
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
+        self.imagePicker.delegate = self;
+        [self.navigationController pushViewController:self.imagePicker animated:YES];
+//        [appDel.window.rootViewController presentViewController:self.imagePicker animated:YES completion:NULL];
+    }
+    else if (buttonIndex == 1)
+    {
+        NSInteger max = 9 - self.imageCell.imageViews.count;
+        if (max <= 0)
+        {
+
+            [LLHudTools showWithMessage:@"最多可选1张图片"];
+            return ;
+        }
+        TZImagePickerController *tzIPC = [[TZImagePickerController alloc] initWithMaxImagesCount:max delegate:self];
+        [self presentViewController:tzIPC animated:YES completion:NULL];
+        
+        
+        
+    }
+    else
+    {
+        NSAssert(@"", nil);
+    }
 }
 
 - (void)backMethod {

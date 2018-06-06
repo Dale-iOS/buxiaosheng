@@ -30,4 +30,7 @@
 +(UIImage*) createImageWithColor:(UIColor*) color;
 
 +(UIViewController *)getVCAtView:(UIView *)selfView WithVcClass:(Class )vcClass;
+//图片的颜色和尺寸
++ (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
+
 @end

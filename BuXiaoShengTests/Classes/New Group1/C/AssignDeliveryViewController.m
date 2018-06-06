@@ -7,9 +7,11 @@
 //  指派送货页面
 
 #import "AssignDeliveryViewController.h"
-#import "AddAuditManagerViewController.h"
+//#import "AddAuditManagerViewController.h"
 #import "LZAssignDeliveryModel.h"
 #import "AssignDeliveryCell.h"
+#import "LZPickerView.h"
+#import "LZHomeModel.h"
 
 @interface AssignDeliveryViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -18,6 +20,10 @@
 @property(nonatomic,strong)UIImageView *allIM;
 @property(nonatomic,strong)UILabel *chooseLbl;
 @property(nonatomic,strong)NSArray<LZAssignDeliveryModel*> *lists;
+@property(nonatomic,strong)NSMutableArray *workersAry;
+@property(nonatomic,strong)NSMutableArray *workersNameAry;
+@property(nonatomic,strong)NSMutableArray *workersIdAry;
+@property(nonatomic,strong)NSString *workerId;
 @end
 
 @implementation AssignDeliveryViewController
@@ -39,6 +45,7 @@
 {
     [super viewWillAppear:animated];
     [self setupData];
+    [self setupWorkerList];
 }
 
 - (void)setupUI
@@ -123,6 +130,26 @@
     }];
 }
 
+- (void)setupWorkerList
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"approver/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _workersNameAry = [NSMutableArray array];
+        _workersIdAry = [NSMutableArray array];
+        _workersAry = baseModel.data;
+        for (int i = 0; i <_workersAry.count; i++) {
+            [_workersNameAry addObject:_workersAry[i][@"memberName"]];
+            [_workersIdAry addObject:_workersAry[i][@"id"]];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
 
 #pragma mark ---- tableviewDelegate ----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -160,8 +187,17 @@
 
 - (void)tapChooseClick
 {
-    AddAuditManagerViewController *vc = [[AddAuditManagerViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_workersNameAry titleDataArray:nil];
+    
+    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+//        weakSelf.principalCell.contentTF.text = compoentString;
+        NSInteger row = [titileString integerValue];
+//        weakSelf.priceipalId = weakSelf.principalIdAry[row];
+        NSLog(@"%@++++%@",compoentString,titileString);
+    };
+    
+    [self.view addSubview:pickerView];
 }
 
 

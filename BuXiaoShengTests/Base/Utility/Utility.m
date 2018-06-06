@@ -147,4 +147,39 @@
     
 }
 
+//!!!!: 设置图片的颜色和尺寸
+/**
+ *  设置图片的颜色和尺寸
+ *
+ *  @param color 颜色
+ *  @param size  尺寸
+ *
+ *  @return
+ */
++ (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    
+    // color=[UIColor colorWithRed:155 green:155 blue:155 alpha:0.3];
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    // CGContextSetAlpha(context, 0.3);
+    
+    
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //CGContextDrawImage(context, rect, image.CGImage);
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
 @end

@@ -88,10 +88,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row <3) {
-        [LLHudTools showWithMessage:@"默认支付方式不可编辑~"];
-        return;
-    }
+//    if (indexPath.row <3) {
+//        [LLHudTools showWithMessage:@"默认支付方式不可编辑~"];
+//        return;
+//    }
     AlterBankViewController *vc = [[AlterBankViewController alloc]init];
     vc.isFormBankAdd = false;
     vc.id = self.banks[indexPath.row].id;

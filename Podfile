@@ -22,5 +22,6 @@ inhibit_all_warnings!
     pod 'MLeaksFinder'
     pod 'IQKeyboardManager'
     pod 'EasyShowView'
+    pod 'TZImagePickerController'
 end
 

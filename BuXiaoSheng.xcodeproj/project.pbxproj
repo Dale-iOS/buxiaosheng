@@ -142,6 +142,16 @@
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
+		34847D4520C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
+		34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
+		34847D4D20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4C20C7D235004485F1 /* LZUploadMomentImagesCell.m */; };
+		34847D4E20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4C20C7D235004485F1 /* LZUploadMomentImagesCell.m */; };
+		34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5020C7D3FC004485F1 /* NSArray+Utils.m */; };
+		34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5020C7D3FC004485F1 /* NSArray+Utils.m */; };
+		34847D5520C7D63C004485F1 /* LZZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5420C7D63C004485F1 /* LZZoomScrollView.m */; };
+		34847D5620C7D63C004485F1 /* LZZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5420C7D63C004485F1 /* LZZoomScrollView.m */; };
+		34847D5920C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */; };
+		34847D5A20C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */; };
 		348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64920B93C8C0051E842 /* LZRecipeModel.m */; };
 		348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64D20B952580051E842 /* BaseSearchViewController.m */; };
 		348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */; };
@@ -742,6 +752,16 @@
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
 		3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddClienViewController.h; sourceTree = "<group>"; };
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
+		34847D4320C7CE96004485F1 /* LZUploadImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZUploadImageView.h; sourceTree = "<group>"; };
+		34847D4420C7CE96004485F1 /* LZUploadImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZUploadImageView.m; sourceTree = "<group>"; };
+		34847D4B20C7D235004485F1 /* LZUploadMomentImagesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZUploadMomentImagesCell.h; sourceTree = "<group>"; };
+		34847D4C20C7D235004485F1 /* LZUploadMomentImagesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZUploadMomentImagesCell.m; sourceTree = "<group>"; };
+		34847D4F20C7D3FC004485F1 /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
+		34847D5020C7D3FC004485F1 /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
+		34847D5320C7D63C004485F1 /* LZZoomScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZZoomScrollView.h; sourceTree = "<group>"; };
+		34847D5420C7D63C004485F1 /* LZZoomScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZZoomScrollView.m; sourceTree = "<group>"; };
+		34847D5720C7D8F9004485F1 /* LZPictureBrowseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPictureBrowseVC.h; sourceTree = "<group>"; };
+		34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPictureBrowseVC.m; sourceTree = "<group>"; };
 		348AC64820B93C8C0051E842 /* LZRecipeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZRecipeModel.h; sourceTree = "<group>"; };
 		348AC64920B93C8C0051E842 /* LZRecipeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZRecipeModel.m; sourceTree = "<group>"; };
 		348AC64C20B952580051E842 /* BaseSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSearchViewController.h; sourceTree = "<group>"; };
@@ -1802,6 +1822,21 @@
 			path = "clientManager(客户管理)";
 			sourceTree = "<group>";
 		};
+		34847D4220C7CE33004485F1 /* LZUploadImage */ = {
+			isa = PBXGroup;
+			children = (
+				34847D4320C7CE96004485F1 /* LZUploadImageView.h */,
+				34847D4420C7CE96004485F1 /* LZUploadImageView.m */,
+				34847D4B20C7D235004485F1 /* LZUploadMomentImagesCell.h */,
+				34847D4C20C7D235004485F1 /* LZUploadMomentImagesCell.m */,
+				34847D5320C7D63C004485F1 /* LZZoomScrollView.h */,
+				34847D5420C7D63C004485F1 /* LZZoomScrollView.m */,
+				34847D5720C7D8F9004485F1 /* LZPictureBrowseVC.h */,
+				34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */,
+			);
+			path = LZUploadImage;
+			sourceTree = "<group>";
+		};
 		348AC64720B93C690051E842 /* recipe(配方表) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,6 +1892,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				34847D4F20C7D3FC004485F1 /* NSArray+Utils.h */,
+				34847D5020C7D3FC004485F1 /* NSArray+Utils.m */,
 				348BD03E20BAF7EA00DF23BB /* UITextField+PopOver.h */,
 				348BD03F20BAF7EB00DF23BB /* UITextField+PopOver.m */,
 				B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */,
@@ -2016,6 +2053,7 @@
 		34A92B48207DE95600572648 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				34847D4220C7CE33004485F1 /* LZUploadImage */,
 				A088DCC520C26D7A00699E55 /* LMJDropdownMenu */,
 				34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */,
 				34F6100220A93C43009A29A5 /* LZSearchBar */,
@@ -3019,6 +3057,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -3039,6 +3078,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -3079,6 +3119,7 @@
 				B531EF2B20BF8FE90028F18B /* FSCalendarCell.m in Sources */,
 				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */,
+				34847D4520C7CE96004485F1 /* LZUploadImageView.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
 				3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
@@ -3143,6 +3184,7 @@
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
 				34B873222081EEEC00B05EBF /* AABar.m in Sources */,
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
+				34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				B58BF6FC20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */,
 				346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */,
@@ -3282,6 +3324,7 @@
 				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				34A92B70207E0D0B00572648 /* HomeEntranceCell.m in Sources */,
 				3479057B20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
+				34847D5520C7D63C004485F1 /* LZZoomScrollView.m in Sources */,
 				34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */,
 				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				346992A820C6649500476CF0 /* LZVisitRecordCell.m in Sources */,
@@ -3302,6 +3345,7 @@
 				34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */,
 				B531EF2320BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */,
 				3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
+				34847D4D20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
 				34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */,
 				B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */,
@@ -3401,6 +3445,7 @@
 				3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */,
 				34DE25BB2092FC73009E7589 /* HRTableViewOne.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
+				34847D5920C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
@@ -3458,10 +3503,13 @@
 				B50505B4209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				B531EF4020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m in Sources */,
 				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,
+				34847D5620C7D63C004485F1 /* LZZoomScrollView.m in Sources */,
 				B50505B0209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				B50505A4209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
+				34847D4E20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */,
 				3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
+				34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */,
@@ -3471,6 +3519,7 @@
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
+				34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				B531EF2820BF8FE90028F18B /* FSCalendarAppearance.m in Sources */,
 				B58BF6F320A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */,
@@ -3504,6 +3553,7 @@
 				B50505BA209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
+				34847D5A20C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */,
 				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,

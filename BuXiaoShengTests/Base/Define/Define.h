@@ -139,6 +139,8 @@ UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"确 定" style:UIAlert
 
 #define LLTabBarHeight (IPHONE_X ? 83.0:49.0)
 
+#define CONTENT_HEIGHT                  (APPHeight == 812.0 ? APPHeight-88-34:APPHeight-64)
+
 //安全域高
 #define IPHONEX_MARGIN_BOTTOM (IPHONE_X ? 34.0:0.0)
 
