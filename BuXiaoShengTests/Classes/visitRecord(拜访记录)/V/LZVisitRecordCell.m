@@ -19,8 +19,7 @@
         self.selectionStyle = UITableViewCellAccessoryNone;
         
         self.backgroundColor = LZHBackgroundColor;
-        
-        
+        [self setNeedsUpdateConstraints];
     }
     return self;
 }
@@ -117,10 +116,10 @@
     [super updateConstraints];
     
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(self.contentView).offset(10);
         make.left.equalTo(self.contentView).offset(15);
         make.right.equalTo(self.contentView).offset(-15);
-        make.height.mas_offset(112);
+        make.height.mas_offset(122);
     }];
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,29 +134,29 @@
     }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bgView).offset(-20);
-        make.left.equalTo(self.iconImageView).offset(15);
+        make.top.equalTo(self.bgView).offset(15);
+        make.left.equalTo(self.iconImageView).offset(70);
         make.width.mas_offset(200);
         make.height.mas_offset(15);
     }];
     
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLabel).offset(-10);
-        make.left.equalTo(self.iconImageView).offset(13);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(10);
+        make.left.equalTo(self.iconImageView).offset(70);
         make.width.mas_offset(200);
         make.height.mas_offset(15);
     }];
     
     [self.matterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.typeLabel).offset(-10);
-        make.left.equalTo(self.iconImageView).offset(13);
+        make.top.equalTo(self.typeLabel.mas_bottom).offset(10);
+        make.left.equalTo(self.iconImageView).offset(70);
         make.width.mas_offset(200);
         make.height.mas_offset(15);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.matterLabel).offset(-10);
-        make.left.equalTo(self.iconImageView).offset(13);
+        make.top.equalTo(self.matterLabel.mas_bottom).offset(10);
+        make.left.equalTo(self.iconImageView).offset(70);
         make.width.mas_offset(200);
         make.height.mas_offset(15);
     }];
@@ -167,13 +166,13 @@
 {
     _model = model;
     
-    if (_model.name.length >3) {
-        self.iconLabel.text = [_model.name substringFromIndex:3];
+    if (_model.memberName.length >3) {
+        self.iconLabel.text = [_model.memberName substringFromIndex:3];
     }else{
-        self.iconLabel.text = _model.name;
+        self.iconLabel.text = _model.memberName;
     }
     
-    self.nameLabel.text = [NSString stringWithFormat:@"拜访对象：%@",_model.memberName];
+    self.nameLabel.text = [NSString stringWithFormat:@"拜访对象：%@",_model.name];
     
 //    拜访方式（0：当面拜访 1：电话拜访 2:聊天软件拜访 3：其他）
     switch ([_model.type integerValue]) {
@@ -193,17 +192,16 @@
             break;
     }
     
+    self.matterLabel.text = _model.matters;
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
 }
 
 @end

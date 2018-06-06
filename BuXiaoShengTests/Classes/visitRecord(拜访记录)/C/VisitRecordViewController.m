@@ -27,13 +27,12 @@
 @property (nonatomic, strong) TextInputCell *mainCell;
 ///拜访结果
 @property (nonatomic, strong) TextInputTextView *resultView;
-
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkView;
-
 ///提交按钮
 @property (nonatomic, strong) UIButton *commitBtn;
 @property(nonatomic,strong)NSArray *typeAry;
+@property(nonatomic,strong)NSString *typeStr;
 
 @end
 
@@ -152,9 +151,116 @@
 
 
 #pragma mark ------ 点击事件 --------
+//提交点击按钮
 - (void)commitBtnOnClickAction
 {
-    NSLog(@"commitBtnOnClickAction");
+    if ([BXSTools stringIsNullOrEmpty:self.objectCell.contentTF.text]) {
+        BXS_Alert(@"请输入拜访对象名称");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.mainCell.contentTF.text]) {
+        BXS_Alert(@"请输入主要事宜");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.resultView.textView.text]) {
+        BXS_Alert(@"请输入拜访结果");
+        return;
+    }
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"img":@"",
+                             @"matters":self.mainCell.contentTF.text,
+                             @"name":self.objectCell.contentTF.text,
+                             @"remark":self.remarkView.textView.text,
+                             @"result":self.resultView.textView.text,
+                             @"type":_typeStr
+                             };
+    [BXSHttp requestGETWithAppURL:@"record/add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        [LLHudTools showWithMessage:baseModel.msg];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+/// MARK: ---- 上传头像
+-(void)submitUserPhoto:(UIImage *)pictureimage;
+{
+    
+    NSData *pictureData = UIImageJPEGRepresentation(pictureimage, 0.5);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *str = [formatter stringFromDate:[NSDate date]];
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+    NSDictionary *param = @{
+                            @"userid"  :[JLCUserData sharedManager].userId,
+                            };
+    
+    NSMutableDictionary * picParam = [JLCRequest getTimeMd5DictWithMenthString:@"user/upfileusericon"];
+    
+    [picParam addEntriesFromDictionary:param];
+    //    NSString * time = [JLCTools stringFromDate];
+    //    NSArray *strArray = [@"setting/appUploadImage" componentsSeparatedByString:@"/"];
+    //    NSString * mod = strArray[0];
+    //    NSString * act = strArray[1];
+    //
+    //    NSString * sign = [JLCTools makeMD5:[NSString stringWithFormat:@"%@%@%@%@",mod,act,time,Sign_Key]];
+    //    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:param];
+    //    [dict addEntriesFromDictionary:@{@"mod":mod,
+    //                                     @"act":act,
+    //                                     @"t":time,
+    //                                     @"sign":sign,
+    //                                     @"C_ver":CurentVersion,
+    //                                     @"C_type":C_type,
+    //                                     }];
+    
+    
+    NSMutableString * uploadURL = [NSMutableString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@%@?",[JLCRequest getServerWithNewApp],@"user/upfileusericon"]];
+    
+    [picParam enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [uploadURL appendFormat:@"&%@=%@",key,obj];
+    }];
+    
+    
+    //     NSString * newsurlStr = [HttpManager GetURL:@"setting/appUploadImage" parameter:param OldSign:@"set.html"];
+    //    [UserView setOnView:self.view withTitle:@"Loading"];
+    [LLHudTools showLoadingMessage:LLLoadingMessage];
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
+    LLWeakSelf(self);
+    [manager POST:uploadURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        [formData appendPartWithFileData:pictureData name:@"imageFile" fileName:fileName mimeType:@"image/jpeg"];
+        
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [LLHudTools dismiss];
+        NSLog(@"上传反馈 %@",responseObject);
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+        
+        if (baseModel.code != 0) {
+            HYC__ShowAlert(baseModel.message);
+            return ;
+        }
+        [JLCUserData setHYCModelDict:@{@"IconURL":baseModel.result}];
+        HYC__ShowAlert(@"上传成功");
+        
+        weakself.iconImageView.image = pictureimage;
+        //发送通知
+        [[NSNotificationCenter defaultCenter]postNotificationName:LLLoginStateNotification object:nil];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [LLHudTools dismiss];
+        HYC__ShowAlert(@"上传失败");
+        
+    }];
 }
 
 - (void)backMethod {
@@ -166,9 +272,10 @@
     
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
 //        weakSelf.principalCell.contentTF.text = compoentString;
-//        NSInteger row = [titileString integerValue];
+        NSInteger row = [titileString integerValue];
 //        weakSelf.priceipalId = weakSelf.principalIdAry[row];
         self.wayCell.contentTF.text = compoentString;
+        _typeStr = [NSString stringWithFormat:@"%zd",row];
     };
     
     [self.view addSubview:pickerView];

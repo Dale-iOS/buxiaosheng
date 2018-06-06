@@ -36,7 +36,7 @@
     
     //初始化搜索框
      self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 44)];
-    self.searchBar.placeholder = @"输入品名或批号搜索";
+    self.searchBar.placeholder = @"输入拜访对象名称搜索";
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");
@@ -64,7 +64,8 @@
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageSize":@"15",
+                             @"name":self.searchBar.text
                              };
     [BXSHttp requestGETWithAppURL:@"record/list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -106,6 +107,11 @@
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self setupListData];
 }
 
 - (void)didReceiveMemoryWarning {
