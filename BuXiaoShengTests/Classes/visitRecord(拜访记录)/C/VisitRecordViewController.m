@@ -198,67 +198,27 @@
     formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *str = [formatter stringFromDate:[NSDate date]];
     NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-    NSDictionary *param = @{
-                            @"userid"  :[JLCUserData sharedManager].userId,
-                            };
-    
-    NSMutableDictionary * picParam = [JLCRequest getTimeMd5DictWithMenthString:@"user/upfileusericon"];
-    
-    [picParam addEntriesFromDictionary:param];
-    //    NSString * time = [JLCTools stringFromDate];
-    //    NSArray *strArray = [@"setting/appUploadImage" componentsSeparatedByString:@"/"];
-    //    NSString * mod = strArray[0];
-    //    NSString * act = strArray[1];
-    //
-    //    NSString * sign = [JLCTools makeMD5:[NSString stringWithFormat:@"%@%@%@%@",mod,act,time,Sign_Key]];
-    //    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:param];
-    //    [dict addEntriesFromDictionary:@{@"mod":mod,
-    //                                     @"act":act,
-    //                                     @"t":time,
-    //                                     @"sign":sign,
-    //                                     @"C_ver":CurentVersion,
-    //                                     @"C_type":C_type,
-    //                                     }];
-    
-    
-    NSMutableString * uploadURL = [NSMutableString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@%@?",[JLCRequest getServerWithNewApp],@"user/upfileusericon"]];
-    
-    [picParam enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [uploadURL appendFormat:@"&%@=%@",key,obj];
-    }];
-    
-    
-    //     NSString * newsurlStr = [HttpManager GetURL:@"setting/appUploadImage" parameter:param OldSign:@"set.html"];
-    //    [UserView setOnView:self.view withTitle:@"Loading"];
+
     [LLHudTools showLoadingMessage:LLLoadingMessage];
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
     manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
-    LLWeakSelf(self);
+    NSString * uploadURL = [NSString stringWithFormat:@"%@%@",BXSBaseURL,@"file/imageUpload.do"];
     [manager POST:uploadURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        [formData appendPartWithFileData:pictureData name:@"imageFile" fileName:fileName mimeType:@"image/jpeg"];
-        
-        
+        [formData appendPartWithFileData:pictureData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [LLHudTools dismiss];
         NSLog(@"上传反馈 %@",responseObject);
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
-        
-        if (baseModel.code != 0) {
-            HYC__ShowAlert(baseModel.message);
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [JLCUserData setHYCModelDict:@{@"IconURL":baseModel.result}];
-        HYC__ShowAlert(@"上传成功");
-        
-        weakself.iconImageView.image = pictureimage;
-        //发送通知
-        [[NSNotificationCenter defaultCenter]postNotificationName:LLLoginStateNotification object:nil];
+         [LLHudTools showWithMessage:@"上传成功"];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [LLHudTools dismiss];
-        HYC__ShowAlert(@"上传失败");
+        BXS_Alert(@"上传失败,请重试!");
         
     }];
 }

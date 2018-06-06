@@ -9,7 +9,7 @@ typedef void(^success)(id);
 typedef void(^error)(NSError*);
 typedef void(^DownLoadBlock)(NSString * filePath);
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+
 #define LLNetWork [LLNetWorkTools shareTools]
 
 @interface LLNetWorkTools : NSObject
