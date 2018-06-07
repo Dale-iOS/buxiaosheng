@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/27.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  采购加工页面
+//  指派页面
 
 #import "ProcessViewController.h"
 #import "LLProcessChildVc.h"
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"采购加工"];
+    self.navigationItem.titleView = [Utility navTitleView:@"指派"];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
     [self setupBottomView];

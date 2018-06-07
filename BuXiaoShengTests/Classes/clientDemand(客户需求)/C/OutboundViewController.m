@@ -34,11 +34,6 @@
      [self setupDetailData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-   
-}
 //该数据源是来源右侧侧滑来的数据
 -(void)setRightSeleteds:(NSMutableArray<LLOutboundRightModel *> *)rightSeleteds {
     _rightSeleteds = rightSeleteds;
@@ -364,9 +359,6 @@
     }
     return _tableView;
 }
-
-
-
 
 
 - (void)didReceiveMemoryWarning {

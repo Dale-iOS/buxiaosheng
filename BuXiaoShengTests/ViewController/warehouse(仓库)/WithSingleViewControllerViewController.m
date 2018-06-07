@@ -38,7 +38,7 @@
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
-    self.collectView.backgroundColor = [UIColor yellowColor];
+    self.collectView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectView];
 }
 
@@ -53,13 +53,14 @@
     
     if (indexPath.row == 0) {
 
-        cell.iconImageView.image = IMAGE(@"dyeing");
-        cell.titileLabel.text = @"织造染色";
+        cell.iconImageView.image = IMAGE(@"process");
+        cell.titileLabel.text = @"采购加工";
+        
     }
     else if (indexPath.row == 1)
     {
-        cell.iconImageView.image = IMAGE(@"process");
-        cell.titileLabel.text = @"采购加工";
+        cell.iconImageView.image = IMAGE(@"dyeing");
+        cell.titileLabel.text = @"织造染色";
     }
     return cell;
 }
@@ -67,17 +68,18 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击了 %ld",(long)indexPath.row);
-    
+//
     if (indexPath.row == 0) {
         
-        //织造染色
-        DyeingViewController *vc = [[DyeingViewController alloc]init];
+        //采购加工
+        ProcessViewController *vc = [[ProcessViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 1)
     {
-        //采购加工
-        ProcessViewController *vc = [[ProcessViewController alloc]init];
+        
+        //织造染色
+        DyeingViewController *vc = [[DyeingViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 
@@ -86,14 +88,15 @@
 //一组返回item数量
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
+
 //设置itme大小
--(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(APPWidth /5, 90);
-}
+//-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(APPWidth /5, 90);
+//}
 
 //设置每个item的边距 上下左右
 -(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

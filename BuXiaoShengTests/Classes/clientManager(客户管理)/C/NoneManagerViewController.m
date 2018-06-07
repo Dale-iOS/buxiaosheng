@@ -149,7 +149,7 @@
 - (void)tapGesOnClick
 {
     ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
-    vc.drawerType = DrawerDefaultRight1;
+//    vc.drawerType = DrawerDefaultRight1;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
     conf.direction = CWDrawerTransitionFromRight; // 从右边滑出

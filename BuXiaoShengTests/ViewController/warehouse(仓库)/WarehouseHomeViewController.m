@@ -17,6 +17,8 @@
 #import "DyeingDemandViewController.h"
 #import "StockTrackingViewController.h"
 #import "InventoryViewController.h"
+#import "LZHomeModel.h"
+#import "DyeingViewController.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 
@@ -26,7 +28,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UILabel *dateLbl;
-
+@property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @end
 
 @implementation WarehouseHomeViewController
@@ -40,6 +42,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupBtns];
 }
 
 - (LZHTableView *)mainTabelView
@@ -75,52 +83,53 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellid";
-    //    HomeEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
-    
+
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
+    cell.indexPath = indexPath;
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
+    cell.model = model;
     
-    
-    if (indexPath.row == 0) {
-        
-        cell.iconImageView.image = IMAGE(@"clientneeds");
-        cell.titileLabel.text = @"客户需求";
-    }
-    else if (indexPath.row == 1)
-    {
-        cell.iconImageView.image = IMAGE(@"assigndelivery");
-        cell.titileLabel.text = @"指派送货";
-    }
-    else if (indexPath.row == 2)
-    {
-        cell.iconImageView.image = IMAGE(@"withsingle");
-        cell.titileLabel.text = @"跟单";
-    }
-    else if (indexPath.row == 3)
-    {
-        cell.iconImageView.image = IMAGE(@"warehouse11");
-        cell.titileLabel.text = @"库存";
-    }
-    else if (indexPath.row == 4)
-    {
-        cell.iconImageView.image = IMAGE(@"DyeingRequirements");
-        cell.titileLabel.text = @"织染需求";
-    }
-    else if (indexPath.row == 5)
-    {
-        cell.iconImageView.image = IMAGE(@"StockDemand");
-        cell.titileLabel.text = @"备货需求";
-    }
-    else if (indexPath.row == 6)
-    {
-        cell.iconImageView.image = IMAGE(@"ProcurementProcessing");
-        cell.titileLabel.text = @"采购加工";
-    }
-    else if (indexPath.row == 7)
-    {
-        cell.iconImageView.image = IMAGE(@"StockTracking");
-        cell.titileLabel.text = @"备货跟踪";
-    }
+//    if (indexPath.row == 0) {
+//
+//        cell.iconImageView.image = IMAGE(@"clientneeds");
+//        cell.titileLabel.text = @"客户需求";
+//    }
+//    else if (indexPath.row == 1)
+//    {
+//        cell.iconImageView.image = IMAGE(@"assigndelivery");
+//        cell.titileLabel.text = @"指派送货";
+//    }
+//    else if (indexPath.row == 2)
+//    {
+//        cell.iconImageView.image = IMAGE(@"withsingle");
+//        cell.titileLabel.text = @"跟单";
+//    }
+//    else if (indexPath.row == 3)
+//    {
+//        cell.iconImageView.image = IMAGE(@"warehouse11");
+//        cell.titileLabel.text = @"库存";
+//    }
+//    else if (indexPath.row == 4)
+//    {
+//        cell.iconImageView.image = IMAGE(@"DyeingRequirements");
+//        cell.titileLabel.text = @"织染需求";
+//    }
+//    else if (indexPath.row == 5)
+//    {
+//        cell.iconImageView.image = IMAGE(@"StockDemand");
+//        cell.titileLabel.text = @"备货需求";
+//    }
+//    else if (indexPath.row == 6)
+//    {
+//        cell.iconImageView.image = IMAGE(@"ProcurementProcessing");
+//        cell.titileLabel.text = @"采购加工";
+//    }
+//    else if (indexPath.row == 7)
+//    {
+//        cell.iconImageView.image = IMAGE(@"StockTracking");
+//        cell.titileLabel.text = @"备货跟踪";
+//    }
     
     return cell;
 }
@@ -129,32 +138,34 @@
 {
     NSLog(@"点击了 %ld",(long)indexPath.row);
     
-    if (indexPath.row == 0) {
-
+     LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
+    
+    if ([model.paramsIos isEqualToString:@"clientdemand"]) {
         //客户需求
         ClientNeedsViewController *vc = [[ClientNeedsViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 1)
+    else if ([model.paramsIos isEqualToString:@"assigndelivery"])
     {
-        //        //指派送货
+        //指派送货
         AssignDeliveryViewController *vc = [[AssignDeliveryViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 2)
+    else if ([model.paramsIos isEqualToString:@"documentary"])
     {
+        //跟单
         WithSingleViewControllerViewController *vc = [[WithSingleViewControllerViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 3)
+    else if ([model.paramsIos isEqualToString:@"stock"])
     {
         //库存        
         InventoryViewController *vc = [[InventoryViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 4)
+    else if ([model.paramsIos isEqualToString:@"weavdyedemand"])
     {
-        //染指需求
+        //织染需求
         DyeingDemandViewController *vc = [[DyeingDemandViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -164,13 +175,13 @@
 //        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
-//    else if (indexPath.row == 6)
-//    {
-//        //备货需求
-//        CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-    else if (indexPath.row == 7)
+    else if ([model.paramsIos isEqualToString:@"stockdemand"])
+    {
+        //备货需求
+        DyeingViewController *vc = [[DyeingViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([model.paramsIos isEqualToString:@"stocktrack"])
     {
         //备货跟踪
         StockTrackingViewController *vc = [[StockTrackingViewController alloc]init];
@@ -182,7 +193,7 @@
 //一组返回item数量
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 8;
+    return self.buttons.count;
 }
 
 //设置itme大小
@@ -301,6 +312,34 @@
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
+}
+
+#pragma mark ----- 网络请求 -------
+- (void)setupBtns
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buttonId":self.buttonId
+                             };
+    [BXSHttp requestGETWithAppURL:@"home/button_page.do" param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.buttons = [LZHomeModel LLMJParse:baseModel.data];
+        if (self.buttons.count <5) {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+        }else
+        {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+        }
+        [self.collectView reloadData];
+        [self.mainTabelView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 #pragma mark ------ tableViewDelegate ----

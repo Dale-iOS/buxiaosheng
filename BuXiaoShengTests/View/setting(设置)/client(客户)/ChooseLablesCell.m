@@ -14,10 +14,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPWidth *0.14, 29)];
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 29)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.backgroundColor = [UIColor redColor];
-        self.titleLabel.layer.cornerRadius = 4.0f;
+        self.titleLabel.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+        self.titleLabel.layer.cornerRadius = 5.0f;
+        self.titleLabel.layer.masksToBounds = YES;
         self.titleLabel.font = FONT(10);
         [self addSubview:self.titleLabel];
     }

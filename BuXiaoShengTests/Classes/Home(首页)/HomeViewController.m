@@ -72,11 +72,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.leftBarButtonItem = nil;
-   
-    
+
 }
-
-
 
 #pragma mark ----- 网络请求 -------
 - (void)setupBtns

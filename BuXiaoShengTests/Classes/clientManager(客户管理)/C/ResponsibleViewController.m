@@ -13,6 +13,8 @@
 #import "SearchClientViewController.h"
 #import "AddClienViewController.h"
 #import "ChooseAddressVC.h"
+//#import "LZDrawerChooseView.h"
+#import "LZChooseLabelVC.h"
 
 @interface ResponsibleViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UITableView *tableView;
@@ -25,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = LZHBackgroundColor;
-    
+    [self setupData];
     [self setupUI];
 }
 
@@ -33,7 +35,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self setupData];
+    
 }
 
 - (void)setupUI
@@ -159,17 +161,10 @@
 //筛选点击
 - (void)tapGesOnClick
 {
-    ChooseAddressVC *vc = [[ChooseAddressVC alloc]init];
-    vc.drawerType = DrawerDefaultRight1;
+    LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-    conf.finishPercent = 0.2f;
-    conf.showAnimDuration = 0.2;
-    conf.HiddenAnimDuration = 0.2;
-    conf.maskAlpha = 0.1;
-    
-    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
     
     
     [vc setLabelsArrayBlock:^(NSString *labelString) {

@@ -24,15 +24,15 @@
 #import "BankDetailListViewController.h"
 #import "CustomerArrearsViewController.h"
 #import "CustomerReconciliationViewController.h"
+#import "LZHomeModel.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
-
 @property (nonatomic, strong) UICollectionView *collectView;
-
+@property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @end
 
 @implementation FinancialViewController
@@ -47,6 +47,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupBtns];
 }
 
 - (LZHTableView *)mainTabelView
@@ -80,109 +85,67 @@
 //一组返回item数量
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.buttons.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellid";
-    //    HomeEntranceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
     
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    
-   
-    
-    if (indexPath.row == 0) {
-        
-        cell.iconImageView.image = IMAGE(@"sale");
-        //    cell.backgroundColor = [UIColor redColor];
-//        cell.iconImageView.backgroundColor = [UIColor whiteColor];
-    }
-    else if (indexPath.row == 1)
-    {
-        cell.iconImageView.image = IMAGE(@"spending");
-        cell.titileLabel.text = @"支出";
-    }
-    else if (indexPath.row == 2)
-    {
-        cell.iconImageView.image = IMAGE(@"audit");
-        cell.titileLabel.text = @"审批";
-    }
-    else if (indexPath.row == 3)
-    {
-        cell.iconImageView.image = IMAGE(@"payment");
-        cell.titileLabel.text = @"付款单";
-    }
-    else if (indexPath.row == 4)
-    {
-        cell.iconImageView.image = IMAGE(@"bankdetail");
-        cell.titileLabel.text = @"银行明细";
-    }
-    else if (indexPath.row == 5)
-    {
-        cell.iconImageView.image = IMAGE(@"banktransfer");
-        cell.titileLabel.text = @"银行互转";
-    }
-    else if (indexPath.row == 6)
-    {
-        cell.iconImageView.image = IMAGE(@"customerarrears");
-        cell.titileLabel.text = @"客户欠款表";
-    }
-    else if (indexPath.row == 7)
-    {
-        cell.iconImageView.image = IMAGE(@"clientreconciliation");
-        cell.titileLabel.text = @"客户对账表";
-    }
-    
+
+    cell.indexPath = indexPath;
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
+    cell.model = model;
+
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"点击了 %ld",(long)indexPath.row);
+    LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
     
-    if (indexPath.row == 0) {
-
-        //销售
+    if ([model.paramsIos isEqualToString:@"receipt"]) {
+        //收入
         IncomeViewController *vc = [[IncomeViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 1)
+     if ([model.paramsIos isEqualToString:@"expend"])
     {
         //支出
         SpendingViewController *vc = [[SpendingViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 2)
+     if ([model.paramsIos isEqualToString:@"approval"])
     {
         //审批
         AuditViewController *vc = [[AuditViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 3)
+     if ([model.paramsIos isEqualToString:@"receiptorder"])
     {
-       //审批
+       //付款单
         PaymentOrderViewController *vc = [[PaymentOrderViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 4)
+     if ([model.paramsIos isEqualToString:@"bankdetail"])
     {
         //银行明细
         BankDetailViewController *vc = [[BankDetailViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 5)
-    {
-        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.row == 6)
+//     if ([model.paramsIos isEqualToString:@"还没有设置"])
+//    {   //银行互转
+//        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+     if ([model.paramsIos isEqualToString:@"customarrear"])
     {
         //客户欠款表
         CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if (indexPath.row == 7)
+     if ([model.paramsIos isEqualToString:@"reconciliation"])
     {
 //        客户对账
         CustomerReconciliationViewController *vc = [[CustomerReconciliationViewController alloc]init];
@@ -280,6 +243,34 @@
     item.canSelected = YES;
     item.sectionView = headerView;
     [self.datasource addObject:item];
+}
+
+#pragma mark ----- 网络请求 -------
+- (void)setupBtns
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buttonId":self.buttonId
+                             };
+    [BXSHttp requestGETWithAppURL:@"home/button_page.do" param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.buttons = [LZHomeModel LLMJParse:baseModel.data];
+        if (self.buttons.count <5) {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+        }else
+        {
+            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+        }
+        [self.collectView reloadData];
+        [self.mainTabelView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
 }
 
 #pragma  mark -------- SGPageTitleViewDelegate --------

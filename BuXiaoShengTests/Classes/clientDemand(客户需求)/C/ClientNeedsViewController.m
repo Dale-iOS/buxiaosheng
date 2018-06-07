@@ -11,6 +11,7 @@
 #import "OutboundViewController.h"
 #import "LZClientDemandModel.h"
 #import "LZSearchClientNeedsVC.h"
+#import "ProcessViewController.h"
 
 @interface ClientNeedsViewController ()<UITableViewDelegate,UITableViewDataSource,AuditTableViewCellDelegate>
 
@@ -124,7 +125,8 @@
 //指派按钮事件
 - (void)didClickNoBtnInCell:(UITableViewCell *)cell
 {
-    NSLog(@"点击了NO");
+    ProcessViewController *vc = [[ProcessViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
