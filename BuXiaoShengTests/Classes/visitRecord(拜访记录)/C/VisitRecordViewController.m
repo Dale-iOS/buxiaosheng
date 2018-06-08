@@ -235,27 +235,41 @@
     NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
 
     [LLHudTools showLoadingMessage:LLLoadingMessage];
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
-    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
-    NSString * uploadURL = [NSString stringWithFormat:@"%@%@",BXSBaseURL,@"file/imageUpload.do"];
-    [manager POST:uploadURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-        [formData appendPartWithFileData:pictureData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"上传反馈 %@",responseObject);
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
-        if ([baseModel.code integerValue]!=200) {
+    
+    NSDictionary * param = @{@"file":pictureData};
+    [BXSHttp requestGETWithAppURL:@"file/imageUpload.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-         [LLHudTools showWithMessage:@"上传成功"];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [LLHudTools dismiss];
-        BXS_Alert(@"上传失败,请重试!");
-        
+       
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
     }];
+    
+    
+//    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
+//    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
+//    NSString * uploadURL = [NSString stringWithFormat:@"%@%@",BXSBaseURL,@"file/imageUpload.do"];
+//    [manager POST:uploadURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//
+//        [formData appendPartWithFileData:pictureData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+//    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"上传反馈 %@",responseObject);
+//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+//        if ([baseModel.code integerValue]!=200) {
+//            [LLHudTools showWithMessage:baseModel.msg];
+//            return ;
+//        }
+//         [LLHudTools showWithMessage:@"上传成功"];
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [LLHudTools dismiss];
+//        BXS_Alert(@"上传失败,请重试!");
+//
+//    }];
 }
 
 - (void)tapUploadImageView:(LZUploadImageView *)view {
@@ -389,6 +403,66 @@
     {
         NSAssert(@"", nil);
     }
+}
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos{
+    
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < photos.count; i++)
+    {
+        UIImage *image = photos[i];
+        if (image != nil)
+        {
+            [array addObject:image];
+        }
+    }
+    
+//    //判断图片数组是否已经有图片
+//    if (array.count > 0) {
+//        isHavePhotos = YES;
+//    }else{
+//        isHavePhotos = NO;
+//    }
+    
+    //先展示
+    [self showImageViewWithArray:array];
+}
+
+- (void)showImageViewWithArray:(NSArray *)images {
+    /**
+     *  网络正常情况下才去展示
+     */
+//    if (![Utility isConnectionAvailable])
+//    {
+//        [Utility showToastWithMessage:@"网络未连接"];
+//        return;
+//    }
+    /**
+     * 添加图片视图
+     */
+//    [Utility showMBProgress:self.view message:@"上传中"];
+    WEAKSELF
+    [images enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL * _Nonnull stop) {
+        LZUploadImageView *imageview = [[LZUploadImageView alloc] init];
+        imageview.image    = image;
+        imageview.imageUrl = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
+        imageview.delegate = weakSelf;
+        [weakSelf.imageCell addImageView:imageview];
+        
+        [weakSelf submitUserPhoto:image];
+        
+    }];
+//    [Utility hideMBProgress:self.view];
+    
+    [self changeImageCellHeight];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        /**
+         *  后网络请求拿到图片的网络链接，并更换对应视图的图片链接
+         */
+//        [weakSelf uploadImages:images];
+    });
 }
 
 - (void)backMethod {

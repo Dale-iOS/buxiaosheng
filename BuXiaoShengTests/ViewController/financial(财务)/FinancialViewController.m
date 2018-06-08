@@ -25,6 +25,7 @@
 #import "CustomerArrearsViewController.h"
 #import "CustomerReconciliationViewController.h"
 #import "LZHomeModel.h"
+#import "LZIncomeVC.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -107,7 +108,7 @@
     
     if ([model.paramsIos isEqualToString:@"receipt"]) {
         //收入
-        IncomeViewController *vc = [[IncomeViewController alloc]init];
+        LZIncomeVC *vc = [[LZIncomeVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
      if ([model.paramsIos isEqualToString:@"expend"])

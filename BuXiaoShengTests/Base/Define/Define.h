@@ -94,6 +94,8 @@
 
 #define LZHBackgroundColor             [UIColor colorWithHexString:@"#e6e6ed"]
 
+#define LZAppBlueColor            [UIColor colorWithHexString:@"#3d9bfa"]
+
 //随机色
 #define randomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0f]
 

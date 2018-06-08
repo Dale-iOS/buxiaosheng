@@ -77,6 +77,7 @@
 -(void)segmentedClick {
     [self.containerView setContentOffset:CGPointMake(SCREEN_WIDTH * self.segmented.selectedSegmentIndex, 0) animated:true];
 }
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat offSetX = scrollView.contentOffset.x;
     NSInteger index = offSetX / SCREEN_WIDTH;

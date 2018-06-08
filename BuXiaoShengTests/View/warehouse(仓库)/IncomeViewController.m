@@ -190,33 +190,8 @@
         item.sectionRows = @[self.titileCell,self.collectionCell,self.arrearsCell,self.accountCell,self.headerView2,self.remarkTextView];
         [self.datasource replaceObjectAtIndex:0 withObject:item];
         [self.mainTabelView reloadData];
-//        NSLog(@"213143");
     }
     
-//    switch (sgc.selectedSegmentIndex) {
-//        case 0:
-//            NSLog(@"00000");
-//
-//            LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//            item.sectionRows = @[self.titileCell,self.collectionCell,self.arrearsCell,self.accountCell,self.headerView2,self.remarkTextView];
-//            [self.datasource replaceObjectAtIndex:0 withObject:item];
-//            [self.mainTabelView reloadData];
-//
-//            break;
-//        case 1:
-//
-//            NSLog(@"111111");
-//
-//            LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-//            item.sectionRows = @[self.titileCell,self.collectionCell,self.arrearsCell,self.remarkTextView];
-//            [self.datasource replaceObjectAtIndex:0 withObject:item];
-//            [self.mainTabelView reloadData];
-//
-//            break;
-    
-//        default:
-//            break;
-//    }
 }
 
 
