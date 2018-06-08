@@ -1,39 +1,34 @@
 //
-//  ProcessViewController.m
+//  LZDesignateVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/27.
+//  Created by 罗镇浩 on 2018/6/8.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  加工页面
+//  指派页面 
 
-#import "ProcessViewController.h"
+#import "LZDesignateVC.h"
 #import "LLProcessChildVc.h"
 
-@interface ProcessViewController ()<UIScrollViewDelegate>
-
+@interface LZDesignateVC ()<UIScrollViewDelegate>
 @property (nonatomic,weak) UISegmentedControl * segmented;
 @property (nonatomic,strong) UIScrollView * containerView;
 @property (nonatomic,strong) UILabel * totalNumberLable;
-
 @end
 
-@implementation ProcessViewController
+@implementation LZDesignateVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"指派"];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
     [self setupBottomView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
-
 -(void)setupUI {
+    
+    self.navigationItem.titleView = [Utility navTitleView:@"指派"];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
     UIView * segmentedView = [self segmentedView];
     [segmentedView layoutIfNeeded];
     [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -83,11 +78,11 @@
     [self.containerView setContentOffset:CGPointMake(SCREEN_WIDTH * self.segmented.selectedSegmentIndex, 0) animated:true];
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-       CGFloat offSetX = scrollView.contentOffset.x;
-        NSInteger index = offSetX / SCREEN_WIDTH;
-        self.segmented.selectedSegmentIndex = index;
-        LLProcessChildVc * childVc = self.childViewControllers[index];
-        childVc.view.frame = scrollView.bounds;
+    CGFloat offSetX = scrollView.contentOffset.x;
+    NSInteger index = offSetX / SCREEN_WIDTH;
+    self.segmented.selectedSegmentIndex = index;
+    LLProcessChildVc * childVc = self.childViewControllers[index];
+    childVc.view.frame = scrollView.bounds;
 }
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self scrollViewDidEndDecelerating:scrollView];
@@ -105,7 +100,7 @@
         make.height.mas_equalTo(45);
     }];
     segmentedView.backgroundColor = [UIColor whiteColor];
-   UISegmentedControl * segmented = [[UISegmentedControl alloc] initWithItems:self.segmentedTitles];
+    UISegmentedControl * segmented = [[UISegmentedControl alloc] initWithItems:self.segmentedTitles];
     self.segmented = segmented;
     [segmentedView addSubview:segmented];
     segmented.selectedSegmentIndex = 0;
@@ -136,5 +131,10 @@
     return _containerView;
 }
 
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
+}
 
 @end

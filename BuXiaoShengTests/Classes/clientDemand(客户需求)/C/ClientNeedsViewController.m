@@ -11,7 +11,7 @@
 #import "OutboundViewController.h"
 #import "LZClientDemandModel.h"
 #import "LZSearchClientNeedsVC.h"
-#import "ProcessViewController.h"
+#import "LZDesignateVC.h"
 
 @interface ClientNeedsViewController ()<UITableViewDelegate,UITableViewDataSource,AuditTableViewCellDelegate>
 
@@ -125,7 +125,7 @@
 //指派按钮事件
 - (void)didClickNoBtnInCell:(UITableViewCell *)cell
 {
-    ProcessViewController *vc = [[ProcessViewController alloc]init];
+    LZDesignateVC *vc = [[LZDesignateVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

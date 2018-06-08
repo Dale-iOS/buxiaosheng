@@ -92,6 +92,8 @@
 		34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6720AFD3BE00D9D2C6 /* SearchClientViewController.m */; };
 		34535F6B20AFFCB600D9D2C6 /* LZScreenAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */; };
 		34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */; };
+		3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
+		3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
 		345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5EFD209D4AAF00126C40 /* RecipeViewController.m */; };
 		345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */; };
 		345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F03209D614E00126C40 /* SetCompanyViewController.m */; };
@@ -684,6 +686,8 @@
 		34535F6A20AFFCB600D9D2C6 /* LZScreenAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZScreenAddressVC.m; sourceTree = "<group>"; };
 		34535F6C20B0145300D9D2C6 /* LZClientDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientDetailsModel.h; sourceTree = "<group>"; };
 		34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientDetailsModel.m; sourceTree = "<group>"; };
+		3455F67B20CA223400579521 /* LZDesignateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDesignateVC.h; sourceTree = "<group>"; };
+		3455F67C20CA223400579521 /* LZDesignateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDesignateVC.m; sourceTree = "<group>"; };
 		345D5EFC209D4AAF00126C40 /* RecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		345D5EFD209D4AAF00126C40 /* RecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
 		345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddRecipeViewController.h; sourceTree = "<group>"; };
@@ -1437,6 +1441,8 @@
 				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
 				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
 				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
+				3455F67B20CA223400579521 /* LZDesignateVC.h */,
+				3455F67C20CA223400579521 /* LZDesignateVC.m */,
 				34DE25B12092C7F1009E7589 /* ProcessViewController.h */,
 				34DE25B22092C7F1009E7589 /* ProcessViewController.m */,
 				B531EF4720BFF8450028F18B /* LLOutboundSeletedVC.h */,
@@ -3449,6 +3455,7 @@
 				343B17FF20A40B2300349A6D /* LoginModel.m in Sources */,
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
+				3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */,
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
 				3452717220B2734A0001B65A /* AddColorCell.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
@@ -3609,6 +3616,7 @@
 				346992A520C6610200476CF0 /* LZVisitModel.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
+				3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				B531EF3220BF8FE90028F18B /* FSCalendarConstants.m in Sources */,
 				B5CF350020A576BE0043D906 /* BXSTools.m in Sources */,
