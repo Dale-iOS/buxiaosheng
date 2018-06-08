@@ -71,7 +71,7 @@
                             @"labelName":@"",
                             @"memberId":@"",
                             @"pageNo":@"1",
-                            @"pageSize":@"20",
+                            @"pageSize":@"15",
                             @"searchName":self.searchBar.text,
                             //                            @"status":@""
                             

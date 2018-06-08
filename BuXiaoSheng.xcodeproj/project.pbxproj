@@ -94,6 +94,8 @@
 		34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */; };
 		3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
 		3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
+		3455F68120CA4F0700579521 /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F68020CA4F0700579521 /* LZChooseProductVC.m */; };
+		3455F68220CA4F0700579521 /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F68020CA4F0700579521 /* LZChooseProductVC.m */; };
 		345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5EFD209D4AAF00126C40 /* RecipeViewController.m */; };
 		345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */; };
 		345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345D5F03209D614E00126C40 /* SetCompanyViewController.m */; };
@@ -688,6 +690,8 @@
 		34535F6D20B0145300D9D2C6 /* LZClientDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientDetailsModel.m; sourceTree = "<group>"; };
 		3455F67B20CA223400579521 /* LZDesignateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDesignateVC.h; sourceTree = "<group>"; };
 		3455F67C20CA223400579521 /* LZDesignateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDesignateVC.m; sourceTree = "<group>"; };
+		3455F67F20CA4F0700579521 /* LZChooseProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseProductVC.h; sourceTree = "<group>"; };
+		3455F68020CA4F0700579521 /* LZChooseProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseProductVC.m; sourceTree = "<group>"; };
 		345D5EFC209D4AAF00126C40 /* RecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		345D5EFD209D4AAF00126C40 /* RecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
 		345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddRecipeViewController.h; sourceTree = "<group>"; };
@@ -2376,6 +2380,8 @@
 			children = (
 				343025A6209BFA1F00869313 /* ProductViewController.h */,
 				343025A7209BFA1F00869313 /* ProductViewController.m */,
+				3455F67F20CA4F0700579521 /* LZChooseProductVC.h */,
+				3455F68020CA4F0700579521 /* LZChooseProductVC.m */,
 				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
 				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
 				34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */,
@@ -3194,6 +3200,7 @@
 				34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */,
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
+				3455F68120CA4F0700579521 /* LZChooseProductVC.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
@@ -3506,6 +3513,7 @@
 				34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				B5C73EBD20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
 				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
+				3455F68220CA4F0700579521 /* LZChooseProductVC.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				B531EF3C20BF8FE90028F18B /* FSCalendarScopeHandle.m in Sources */,

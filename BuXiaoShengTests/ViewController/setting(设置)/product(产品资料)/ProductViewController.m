@@ -11,6 +11,7 @@
 #import "AlterProductViewController.h"
 #import "LZSearchBar.h"
 #import "LLFactoryModel.h"
+#import "LZChooseProductVC.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 
@@ -27,12 +28,13 @@
     [super viewDidLoad];
     
     [self setupUI];
+     [self setupData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupData];
+   
 }
 
 - (void)setupUI
@@ -40,7 +42,7 @@
 
     self.navigationItem.titleView = [Utility navTitleView:@"产品资料"];
     
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationAddClick) image:IMAGE(@"screen3")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screen3")];
     
     
     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
@@ -164,16 +166,39 @@
 
 #pragma mark ----- 点击事件 --------
 //搜索
-- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
-{
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
     [self setupData];
 }
 
 
-- (void)navigationAddClick
+- (void)navigationScreenClick
 {
-    NSLog(@"点击了添加");
+    LZChooseProductVC *vc = [[LZChooseProductVC alloc]init];
     
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    
+    [vc setLabelsArrayBlock:^(NSString *labelString) {
+        
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"groupId":labelString,
+                                 @"pageNo":@"1",
+                                 @"pageSize":@"15",
+                                 @"searchName":self.searchBar.text
+                                 };
+        [BXSHttp requestGETWithAppURL:@"product/list.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            self.products = [LLFactoryModel LLMJParse:baseModel.data];
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }];
 }
 
 - (void)addViewAction
