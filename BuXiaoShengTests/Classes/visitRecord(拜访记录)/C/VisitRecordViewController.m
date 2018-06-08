@@ -17,6 +17,7 @@
 #import "TZImagePickerController.h"
 #import "LZPictureBrowseVC.h"
 #import "NSArray+Utils.h"
+#import <Photos/Photos.h>
 @interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,TZImagePickerControllerDelegate,LZUploadImageViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LZPictureBrowseVCDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -354,8 +355,10 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
     if (buttonIndex == 0)
     {
+        
         /**
          *  拍照
          */
@@ -364,7 +367,7 @@
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
         self.imagePicker.delegate = self;
-        [self.navigationController pushViewController:self.imagePicker animated:YES];
+        [self.navigationController presentViewController:self.imagePicker animated:YES completion:NULL];
 //        [appDel.window.rootViewController presentViewController:self.imagePicker animated:YES completion:NULL];
     }
     else if (buttonIndex == 1)
