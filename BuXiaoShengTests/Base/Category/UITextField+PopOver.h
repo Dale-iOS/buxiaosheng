@@ -11,6 +11,7 @@ typedef NS_ENUM(NSUInteger, ZJPositionType) {
     ZJPositionAuto,
     ZJPositionTop,
     ZJPositionBottom,
+    ZJPositionBottomTwo,
 };
 @interface UITextField (PopOver)<UITableViewDelegate,UITableViewDataSource>
 /*

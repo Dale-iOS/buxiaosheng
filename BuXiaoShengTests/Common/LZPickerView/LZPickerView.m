@@ -10,8 +10,8 @@
 
 @interface LZPickerView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 // pickerview  创建
-@property (nonatomic ,strong)UIView *toolsView;
-@property (nonatomic ,strong)UIPickerView *picerView;
+
+
 
 @property (nonatomic ,strong)NSArray *componentArray;
 @property (nonatomic ,strong)NSArray *titleArray;

@@ -494,6 +494,48 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
         }
             break;
             
+        case ZJPositionBottomTwo:
+        {
+            if (self.keyString) {
+                //按照key进行排序
+                NSSortDescriptor *keyName = [NSSortDescriptor sortDescriptorWithKey:self.keyString ascending:YES];
+                changeArray = [changeArray sortedArrayUsingDescriptors:@[keyName]];
+            }
+            
+            CGFloat listY = 0;
+            if (self.scrollView) {
+                listY = self.rectXY.origin.y + CGRectGetHeight(self.frame)-NavH -45;
+            }else{
+                listY = self.rectXY.origin.y + CGRectGetHeight(self.frame);
+            }
+            
+            CGFloat heigt = 0;
+            if (self.isEditing) {
+                heigt =  [UIScreen mainScreen].bounds.size.height - listY - 280;
+            }else{
+                heigt =  [UIScreen mainScreen].bounds.size.height - listY;
+            }
+            if (self.scrollView){
+                heigt = CellH*changeArray.count > heigt - NavH? heigt - NavH:CellH*changeArray.count;
+            }else{
+                heigt = CellH*changeArray.count > heigt? heigt:CellH*changeArray.count;
+            }
+            
+            
+            if (CellH*changeArray.count > heigt) {
+                self.popList.scrollEnabled = YES;
+            }else{
+                self.popList.scrollEnabled = NO;
+            }
+            
+            self.bgView.frame = CGRectMake(self.rectXY.origin.x,listY, CGRectGetWidth(self.frame), heigt);
+            self.changeArray = changeArray;
+            [self.popList reloadData];
+            self.popList.frame = self.bgView.bounds;
+            
+        }
+            break;
+            
         default:
             break;
     }
@@ -607,6 +649,23 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
                 [self.popList reloadData];
             }];
  
+        }
+            break;
+            
+        case ZJPositionBottomTwo:
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                CGFloat listY = 0;
+                if (self.scrollView) {
+                    listY = self.rectXY.origin.y + CGRectGetHeight(self.frame)-NavH;
+                }else{
+                    listY = self.rectXY.origin.y + CGRectGetHeight(self.frame);
+                }
+                self.bgView.frame = CGRectMake(self.rectXY.origin.x, listY, CGRectGetWidth(self.frame), 0);
+                self.popList.frame = self.bgView.bounds;
+                [self.popList reloadData];
+            }];
+            
         }
             break;
             

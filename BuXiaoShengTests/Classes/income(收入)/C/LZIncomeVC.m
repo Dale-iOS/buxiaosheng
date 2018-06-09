@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/8.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  收款单页面
 
 #import "LZIncomeVC.h"
 #import "LZHTableView.h"
@@ -16,6 +16,8 @@
 #import "LZWeaveView.h"
 #import "LZDyeView.h"
 #import "LZClientReceiptVC.h"
+
+
 
 @interface LZIncomeVC ()<LZHTableViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,weak)LZHTableView *myTabelView;
@@ -42,6 +44,7 @@
 @property(nonatomic,strong)UISegmentedControl *sgc;
 @property(nonatomic,strong)LZWeaveView *weaveView;
 @property(nonatomic,strong)LZDyeView *dyeView;
+
 @end
 
 @implementation LZIncomeVC
@@ -50,7 +53,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-
 }
 
 - (LZHTableView *)myTabelView{
@@ -79,16 +81,16 @@
     }];
     
     //保存按钮
-    _saveBtn = [UIButton new];
-    _saveBtn.backgroundColor = LZAppBlueColor;
-    [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
-    [_saveBtn addTarget:self action:@selector(saveBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
-    _saveBtn.titleLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:_saveBtn];
-    [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.and.left.and.right.equalTo(self.view);
-        make.height.mas_offset(45);
-    }];
+//    _saveBtn = [UIButton new];
+//    _saveBtn.backgroundColor = LZAppBlueColor;
+//    [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+//    [_saveBtn addTarget:self action:@selector(saveBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+//    _saveBtn.titleLabel.textColor = [UIColor whiteColor];
+//    [self.view addSubview:_saveBtn];
+//    [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.and.left.and.right.equalTo(self.view);
+//        make.height.mas_offset(45);
+//    }];
     
     _scrollView = [[UIScrollView alloc]init];
     _scrollView.backgroundColor = [UIColor blueColor];
@@ -101,13 +103,13 @@
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_sgc.mas_bottom).offset(10);
         make.left.and.right.equalTo(self.view);
-        make.bottom.equalTo(_saveBtn.mas_top);
+        make.bottom.equalTo(self.view);
     }];
     
-    _weaveView = [[LZWeaveView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight - LLNavViewHeight -45 -50)];
+    _weaveView = [[LZWeaveView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight - LLNavViewHeight -50)];
     [_scrollView addSubview:_weaveView];
     
-    _dyeView = [[LZDyeView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight - LLNavViewHeight -45 -50)];
+    _dyeView = [[LZDyeView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight - LLNavViewHeight -50)];
     [_scrollView addSubview:_dyeView];
 }
 
@@ -118,6 +120,8 @@
     
     [self setupSgc];
 }
+
+
 
 #pragma mark --- 点击事件 ----
 //分段选择器方法

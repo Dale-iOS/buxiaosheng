@@ -15,8 +15,11 @@ typedef void (^customBlock)(NSString *compoentString,NSString *titileString);
 @property (nonatomic ,copy)NSString *titleString;
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic ,copy)customBlock getPickerValue;
-
 @property (nonatomic ,copy)NSString *valueString;
+
+@property (nonatomic ,strong)UIPickerView *picerView;
+@property (nonatomic ,strong)UIView *toolsView;
+
 
 - (instancetype)initWithComponentDataArray:(NSArray *)ComponentDataArray titleDataArray:(NSArray *)titleDataArray;
 @end

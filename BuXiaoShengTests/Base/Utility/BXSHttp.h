@@ -11,8 +11,10 @@
 #define appName @"buxiaosheng_ios"
 #define appVersion @"1.0"
 #define key_str @"3D49257E25A04D16D97A3F024AA718A1"
+//正式环境
 #define BXSBaseURL  @"http://www.buxiaosheng.com/web-api/"
-
+//测试环境
+//#define BXSBaseURL  @"http://192.168.3.10:8080/web-api/"
 @interface BXSHttp : NSObject
 
 +(void)requestPOSTWithAppURL:(NSString *) url  param:(NSDictionary *) param  success:(void (^)(id response))success  failure:(void (^) (NSError * error)) failure;

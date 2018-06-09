@@ -20,6 +20,7 @@
 #import "SetCompanyViewController.h"
 #import "SetClientViewController.h"
 #import "LoginViewController.h"
+
 @interface SetHomeViewController ()<LZHTableViewDelegate>
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -312,7 +313,7 @@
 
 //切换用户
 - (void)changeUserBtnClick
-{
+{//    用户退出接口  正式环境
     NSDictionary * param = @{@"token":[BXSUser currentUser].token,
                              @"userId":[BXSUser currentUser].userId
                              };
@@ -329,7 +330,14 @@
          [LLHudTools dismiss];
     }];
     NSLog(@"点击了 切换用户 按钮");
-//    用户退出接口
+
+    
+    
+    
+    
+    
+//    LoginViewController *vc = [[LoginViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
