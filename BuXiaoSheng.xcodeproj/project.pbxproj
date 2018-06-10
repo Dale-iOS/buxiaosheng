@@ -14,6 +14,10 @@
 		3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */; };
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
 		3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B52086026600C448FD /* DrawerAddressViewController.m */; };
+		34195FAF20CD430B00524F20 /* LZSpendingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FAE20CD430B00524F20 /* LZSpendingListVC.m */; };
+		34195FB020CD430B00524F20 /* LZSpendingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FAE20CD430B00524F20 /* LZSpendingListVC.m */; };
+		34195FB320CD441000524F20 /* LZSpendingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FB220CD441000524F20 /* LZSpendingListCell.m */; };
+		34195FB420CD441000524F20 /* LZSpendingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FB220CD441000524F20 /* LZSpendingListCell.m */; };
 		342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AF9392086F21C0043EA2E /* FinancialViewController.m */; };
 		342CF6542099688F007C329D /* CashBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6532099688F007C329D /* CashBankViewController.m */; };
 		342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65620996AAC007C329D /* CashBankTableViewCell.m */; };
@@ -559,6 +563,10 @@
 		3411F2B22085CEF700C448FD /* FreezeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreezeViewController.m; sourceTree = "<group>"; };
 		3411F2B42086026600C448FD /* DrawerAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerAddressViewController.h; sourceTree = "<group>"; };
 		3411F2B52086026600C448FD /* DrawerAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerAddressViewController.m; sourceTree = "<group>"; };
+		34195FAD20CD430B00524F20 /* LZSpendingListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSpendingListVC.h; sourceTree = "<group>"; };
+		34195FAE20CD430B00524F20 /* LZSpendingListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingListVC.m; sourceTree = "<group>"; };
+		34195FB120CD441000524F20 /* LZSpendingListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSpendingListCell.h; sourceTree = "<group>"; };
+		34195FB220CD441000524F20 /* LZSpendingListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingListCell.m; sourceTree = "<group>"; };
 		342AF9382086F21C0043EA2E /* FinancialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewController.h; sourceTree = "<group>"; };
 		342AF9392086F21C0043EA2E /* FinancialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewController.m; sourceTree = "<group>"; };
 		342CF6522099688F007C329D /* CashBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashBankViewController.h; sourceTree = "<group>"; };
@@ -1323,13 +1331,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34195FA520CD1C4800524F20 /* 支出 */ = {
+			isa = PBXGroup;
+			children = (
+				34195FA820CD1CA900524F20 /* M */,
+				34195FA720CD1CA400524F20 /* V */,
+				34195FA620CD1C9D00524F20 /* C */,
+			);
+			path = "支出";
+			sourceTree = "<group>";
+		};
+		34195FA620CD1C9D00524F20 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				34EA5BD0208B40870048CFE1 /* SpendingViewController.h */,
+				34EA5BD1208B40870048CFE1 /* SpendingViewController.m */,
+				34195FAD20CD430B00524F20 /* LZSpendingListVC.h */,
+				34195FAE20CD430B00524F20 /* LZSpendingListVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		34195FA720CD1CA400524F20 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				34195FB120CD441000524F20 /* LZSpendingListCell.h */,
+				34195FB220CD441000524F20 /* LZSpendingListCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		34195FA820CD1CA900524F20 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
 		342AF9372086F2070043EA2E /* financial(财务) */ = {
 			isa = PBXGroup;
 			children = (
 				342AF9382086F21C0043EA2E /* FinancialViewController.h */,
 				342AF9392086F21C0043EA2E /* FinancialViewController.m */,
-				34EA5BD0208B40870048CFE1 /* SpendingViewController.h */,
-				34EA5BD1208B40870048CFE1 /* SpendingViewController.m */,
 				346B6ACB208D7DAE00F4B054 /* AuditViewController.h */,
 				346B6ACC208D7DAE00F4B054 /* AuditViewController.m */,
 				343207CB20A06968005A5D23 /* NoAuditInStorageViewController.h */,
@@ -2669,6 +2712,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				34195FA520CD1C4800524F20 /* 支出 */,
 				3455F68320CA799500579521 /* income(收入) */,
 				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
 				3433D0BB20B557EF003FFC16 /* deal(开单) */,
@@ -3354,6 +3398,7 @@
 				B50505D3209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
+				34195FAF20CD430B00524F20 /* LZSpendingListVC.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
 				34EE5D8820A690D300A2C9B5 /* SetBranchViewController.m in Sources */,
 				34EE5D8B20A6929800A2C9B5 /* AlterBranchViewController.m in Sources */,
@@ -3592,6 +3637,7 @@
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
+				34195FB320CD441000524F20 /* LZSpendingListCell.m in Sources */,
 				3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */,
 				34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */,
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
@@ -3648,6 +3694,7 @@
 				3455F68F20CA7CB600579521 /* LZDyeView.m in Sources */,
 				B531EF4020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m in Sources */,
 				3455F68B20CA7C8700579521 /* LZWeaveView.m in Sources */,
+				34195FB420CD441000524F20 /* LZSpendingListCell.m in Sources */,
 				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				34847D5620C7D63C004485F1 /* LZZoomScrollView.m in Sources */,
 				34EE88D920CBBE590060D00B /* LZReceipCustomerModel.m in Sources */,
@@ -3657,6 +3704,7 @@
 				34847D4E20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */,
 				3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
 				34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */,
+				34195FB020CD430B00524F20 /* LZSpendingListVC.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				3455F69B20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,

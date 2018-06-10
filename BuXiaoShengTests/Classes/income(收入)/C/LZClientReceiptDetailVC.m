@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self setupData];
 }
 
 - (LZHTableView *)myTableView
@@ -129,9 +130,11 @@
         _model = [LZClientReceiptDetailModel LLMJParse:baseModel.data];
         
         //详情赋值
-//        _dateLbl.text = _
-        self.nameCell.titleLabel.text = _model.customerName;
-        
+        _dateLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+        self.nameCell.contentTF.text = _model.customerName;
+        self.collectionCell.contentTF.text = _model.amount;
+        self.arrearsCell.contentTF.text = _model.bankName;
+        self.remarkTextView.textView.text = _model.remark;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

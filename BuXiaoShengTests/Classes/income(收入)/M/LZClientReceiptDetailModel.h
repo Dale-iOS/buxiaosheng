@@ -14,5 +14,5 @@
 @property(nonatomic,strong)NSString *bankName;
 @property(nonatomic,strong)NSString *customerName;
 @property(nonatomic,strong)NSString *remark;
-
+@property(nonatomic,strong)NSString *createTime;
 @end

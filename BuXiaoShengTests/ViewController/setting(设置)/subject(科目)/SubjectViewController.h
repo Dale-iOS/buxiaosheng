@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface SubjectViewController : BaseViewController
-
+@property(nonatomic,assign)BOOL isFromExpendVC;
 @end

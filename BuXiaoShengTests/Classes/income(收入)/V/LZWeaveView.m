@@ -155,7 +155,7 @@
         WEAKSELF
         [self.titileCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
             //设置名称 前欠款
-            NSString *str = _customerList[index][@"mobile"];
+            NSString *str = _customerList[index][@"arrear"];
             weakSelf.titileCell.beforeLabel.text = [NSString stringWithFormat:@"前欠款:￥%@",str];
             _customerId = _customerList[index][@"id"];
         }];

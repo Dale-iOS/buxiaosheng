@@ -68,9 +68,16 @@
     _pageTitleView.selectedIndex = 0;
     
     ManagerCostViewController *vc1 = [[ManagerCostViewController alloc]init];
+    vc1.isFromExpendVC = self.isFromExpendVC;
+    
     SellCostViewController *vc2 = [[SellCostViewController alloc]init];
+    vc2.isFromExpendVC = self.isFromExpendVC;
+    
     FinanceCostViewController *vc3 = [[FinanceCostViewController alloc]init];
+    vc3.isFromExpendVC = self.isFromExpendVC;
+    
     OtherCostViewController *vc4 = [[OtherCostViewController alloc]init];
+    vc4.isFromExpendVC = self.isFromExpendVC;
     
     NSArray *childArr = @[vc1, vc2, vc3, vc4];
     /// pageContentView

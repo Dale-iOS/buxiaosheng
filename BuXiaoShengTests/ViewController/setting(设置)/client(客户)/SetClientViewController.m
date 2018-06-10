@@ -17,7 +17,6 @@
 #import "SearchClientViewController.h"
 
 
-
 @interface SetClientViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;

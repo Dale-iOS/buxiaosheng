@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FinanceCostViewController : UIViewController
-
+@property(nonatomic,assign)BOOL isFromExpendVC;
+@property(nonatomic,copy)void(^didClickCostLabel)(UILabel *costLabel);
 @end

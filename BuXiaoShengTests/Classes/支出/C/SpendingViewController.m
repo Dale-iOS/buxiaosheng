@@ -4,13 +4,17 @@
 //
 //  Created by 罗镇浩 on 2018/4/21.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  日常支出登记页面
 
 #import "SpendingViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "UITextView+Placeholder.h"
 #import "TextInputTextView.h"
+#import "LZClientModel.h"
+#import "LZPickerView.h"
+#import "SubjectViewController.h"
+#import "LZSpendingListVC.h"
 
 @interface SpendingViewController ()<LZHTableViewDelegate>
 
@@ -29,9 +33,13 @@
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 
+
 ///保存按钮
 @property (nonatomic, strong) UIButton *saveBtn;
-
+@property(nonatomic,strong)NSMutableArray *approverList;
+@property(nonatomic,strong)NSMutableArray *approverNameAry;
+@property(nonatomic,strong)NSMutableArray *approverIdAry;
+@property(nonatomic,copy)NSString *approverId;
 @end
 
 @implementation SpendingViewController
@@ -41,7 +49,7 @@
     [super viewDidLoad];
 
     [self setupUI];
-    
+    [self setupAuditmanList];
 }
 
 - (LZHTableView *)mainTabelView
@@ -93,6 +101,12 @@
     
     self.overheadCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.overheadCell.rightArrowImageVIew.hidden = NO;
+    self.overheadCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(overheadCellTapClick)];
+    [self.overheadCell addGestureRecognizer:tap];
+    
+    
+    
     self.collectionCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     
     self.overheadCell.titleLabel.text = @"开销类型";
@@ -114,8 +128,13 @@
     
     self.timeCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.timeCell.rightArrowImageVIew.hidden = NO;
+    
     self.auditCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.auditCell.rightArrowImageVIew.hidden = NO;
+    self.auditCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+    [self.auditCell addGestureRecognizer:tap];
+    
     self.spendingCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.spendingCell.rightArrowImageVIew.hidden = NO;
     
@@ -150,9 +169,30 @@
     item.canSelected = NO;
     item.sectionView = headView;
     [self.datasource addObject:item];
-    
-    
 }
+
+#pragma mark ----- 网络请求 -----
+-(void)setupAuditmanList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"approver/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _approverList = baseModel.data;
+        _approverNameAry = [NSMutableArray array];
+        _approverIdAry = [NSMutableArray array];
+        for (int i = 0; i <_approverList.count; i++) {
+            [_approverIdAry addObject:_approverList[i][@"id"]];
+            [_approverNameAry addObject:_approverList[i][@"memberName"]];
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 #pragma mark -------- 点击事件 ----------
 - (void)saveBtnOnClickAction
 {
@@ -160,7 +200,14 @@
 }
 - (void)toList
 {
-    NSLog(@"点击了列表图标");
+    [self.navigationController pushViewController:[[LZSpendingListVC alloc]init] animated:YES];
+}
+
+//开销类型点击事件
+- (void)overheadCellTapClick{
+    SubjectViewController *vc = [[SubjectViewController alloc]init];
+    vc.isFromExpendVC = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backMethod
@@ -168,19 +215,20 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)tapClick{
+    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_approverNameAry titleDataArray:nil];
+    
+    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+        self.auditCell.contentTF.text = compoentString;
+        NSInteger row = [titileString integerValue];
+        _approverId = _approverList[row][@"id"];
+    };
+    
+    [self.view addSubview:pickerView];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
