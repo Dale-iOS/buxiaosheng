@@ -14,12 +14,13 @@
 #import "OtherCostViewController.h"
 //#import "AddSubjectViewController.h"
 #import "ModifySubjectViewController.h"
+#import "LZSubjectModel.h"
 
 @interface SubjectViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
-
+@property(nonatomic,strong)LZSubjectModel *costModel;
 @end
 
 @implementation SubjectViewController
@@ -29,6 +30,13 @@
     
     [self setupNavigation];
     [self setipSGPagingView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if (self.didClickBlock) {
+        self.didClickBlock(_costModel);
+    }
 }
 
 - (void)setupNavigation
@@ -68,16 +76,28 @@
     _pageTitleView.selectedIndex = 0;
     
     ManagerCostViewController *vc1 = [[ManagerCostViewController alloc]init];
-    vc1.isFromExpendVC = self.isFromExpendVC;
+    vc1.isFromSpend = _isFromSpend;
+    [vc1 setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _costModel = blockModel;
+    }];
     
     SellCostViewController *vc2 = [[SellCostViewController alloc]init];
-    vc2.isFromExpendVC = self.isFromExpendVC;
+    vc2.isFromSpend = _isFromSpend;
+    [vc2 setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _costModel = blockModel;
+    }];
     
     FinanceCostViewController *vc3 = [[FinanceCostViewController alloc]init];
-    vc3.isFromExpendVC = self.isFromExpendVC;
+    vc3.isFromSpend = _isFromSpend;
+    [vc3 setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _costModel = blockModel;
+    }];
     
     OtherCostViewController *vc4 = [[OtherCostViewController alloc]init];
-    vc4.isFromExpendVC = self.isFromExpendVC;
+    vc4.isFromSpend = _isFromSpend;
+    [vc4 setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _costModel = blockModel;
+    }];
     
     NSArray *childArr = @[vc1, vc2, vc3, vc4];
     /// pageContentView

@@ -77,6 +77,18 @@
     return dateString;
 }
 
+///后台返回的数据转日期带"-"
++(NSString *)stringFromTData:(NSString*)str{
+    if (str.length >=8) {
+        NSMutableString* date=[[NSMutableString alloc]initWithString:str];//存在堆区，可变字符串
+        [date insertString:@"-"atIndex:4];//把一个字符串插入另一个字符串中的某一个位置
+        [date insertString:@"-"atIndex:7];
+        return date;
+    }else{
+        return str;
+    }
+}
+
 /**
  *  返回当前视图的控制器
  */

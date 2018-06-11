@@ -15,6 +15,9 @@
 #import "LZPickerView.h"
 #import "SubjectViewController.h"
 #import "LZSpendingListVC.h"
+#import "BRPickerView.h"
+#import "NSDate+BRPickerView.h"
+#import "LZSubjectModel.h"
 
 @interface SpendingViewController ()<LZHTableViewDelegate>
 
@@ -28,8 +31,6 @@
 @property (nonatomic, strong) TextInputCell *timeCell;
 ///审批人
 @property (nonatomic, strong) TextInputCell *auditCell;
-///支出方式
-@property (nonatomic, strong) TextInputCell *spendingCell;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 
@@ -40,6 +41,8 @@
 @property(nonatomic,strong)NSMutableArray *approverNameAry;
 @property(nonatomic,strong)NSMutableArray *approverIdAry;
 @property(nonatomic,copy)NSString *approverId;
+@property(nonatomic,copy)NSString *dateStr;
+@property(nonatomic,copy)LZSubjectModel *didCostModel;
 @end
 
 @implementation SpendingViewController
@@ -110,8 +113,8 @@
     self.collectionCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     
     self.overheadCell.titleLabel.text = @"开销类型";
-    self.overheadCell.contentTF.text = @"车费";
-    self.collectionCell.titleLabel.text = @"收款金额";
+    self.overheadCell.contentTF.placeholder = @"请选择开销类型";
+    self.collectionCell.titleLabel.text = @"支出金额";
     self.collectionCell.contentTF.placeholder = @"请输入金额";
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
@@ -128,25 +131,23 @@
     
     self.timeCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.timeCell.rightArrowImageVIew.hidden = NO;
+    self.timeCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *timeCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(timeCellTapClick)];
+    [self.timeCell addGestureRecognizer:timeCellTap];
     
     self.auditCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.auditCell.rightArrowImageVIew.hidden = NO;
     self.auditCell.contentTF.enabled = NO;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
-    [self.auditCell addGestureRecognizer:tap];
+    UITapGestureRecognizer *auditCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(auditCellTapClick)];
+    [self.auditCell addGestureRecognizer:auditCellTap];
     
-    self.spendingCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.spendingCell.rightArrowImageVIew.hidden = NO;
-    
-    self.timeCell.titleLabel.text = @"时间";
-    self.timeCell.contentTF.text = @"2018-4-11";
+    self.timeCell.titleLabel.text = @"做账时间";
+    self.timeCell.contentTF.placeholder = @"请选择时间";
     self.auditCell.titleLabel.text = @"审批人";
-    self.auditCell.contentTF.placeholder = @"请选择";
-    self.spendingCell.titleLabel.text = @"支出方式";
-    self.spendingCell.contentTF.text = @"中国银行";
+    self.auditCell.contentTF.placeholder = @"请选择审批人";
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.timeCell,self.auditCell,self.spendingCell];
+    item.sectionRows = @[self.timeCell,self.auditCell];
     item.canSelected = NO;
     item.sectionView = headView;
     [self.datasource addObject:item];
@@ -154,8 +155,8 @@
 
 - (void)setSectionThree
 {
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headView.backgroundColor = LZHBackgroundColor;
+//    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+//    headView.backgroundColor = LZHBackgroundColor;
     
     //    备注textView
     self.remarkTextView = [[TextInputTextView alloc]init];
@@ -167,7 +168,7 @@
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
     item.sectionRows = @[self.remarkTextView];
     item.canSelected = NO;
-    item.sectionView = headView;
+//    item.sectionView = headView;
     [self.datasource addObject:item];
 }
 
@@ -196,7 +197,43 @@
 #pragma mark -------- 点击事件 ----------
 - (void)saveBtnOnClickAction
 {
-    NSLog(@"点击了 提交 按钮");
+//    if ([BXSTools stringIsNullOrEmpty:self.overheadCell.contentTF.text]) {
+//        BXS_Alert(@"请选择开销类型");
+//        return;
+//    }
+    if ([BXSTools stringIsNullOrEmpty:self.collectionCell.contentTF.text]) {
+        BXS_Alert(@"请输入金额");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.timeCell.contentTF.text]) {
+        BXS_Alert(@"请选择时间");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.auditCell.contentTF.text]) {
+        BXS_Alert(@"请选择审批人");
+        return;
+    }
+
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"approverId":_approverId,
+                             @"costsubjectId":_didCostModel.id,
+                             @"remark":self.remarkTextView.textView.text,
+                             @"tallyTime":_dateStr,
+                             @"amount":self.collectionCell.contentTF.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"finance/expend_add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [LLHudTools showWithMessage:@"提交成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 - (void)toList
 {
@@ -206,8 +243,12 @@
 //开销类型点击事件
 - (void)overheadCellTapClick{
     SubjectViewController *vc = [[SubjectViewController alloc]init];
-    vc.isFromExpendVC = YES;
+    vc.isFromSpend = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    [vc setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _didCostModel = blockModel;
+        self.overheadCell.contentTF.text = _didCostModel.name;
+    }];
 }
 
 - (void)backMethod
@@ -215,7 +256,22 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)tapClick{
+//选择做账时间
+- (void)timeCellTapClick{
+    NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
+    //            NSDate *maxDate = [NSDate date];
+    NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
+    [BRDatePickerView showDatePickerWithTitle:@"出生日期" dateType:BRDatePickerModeYMD defaultSelValue:self.timeCell.contentTF.text minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+        self.timeCell.contentTF.text =  selectValue;
+        
+        _dateStr = [selectValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    } cancelBlock:^{
+        NSLog(@"点击了背景或取消按钮");
+    }];
+}
+
+//选择审批人
+- (void)auditCellTapClick{
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_approverNameAry titleDataArray:nil];
     
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {

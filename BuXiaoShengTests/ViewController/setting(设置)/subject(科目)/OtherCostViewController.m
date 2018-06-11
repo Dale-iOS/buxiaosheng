@@ -106,13 +106,19 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"其他费用 = %@",cell.textLabel.text);
+    LZSubjectModel *model = [LZSubjectModel LLMJParse:self.subjects[indexPath.row]];
+    //执行回调block
+    if (self.didClickBlock) {
+        self.didClickBlock(model);
+    }
     
     ModifySubjectViewController *vc = [[ModifySubjectViewController alloc]init];
     vc.id = self.subjects[indexPath.row].id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (!_isFromSpend) {
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 

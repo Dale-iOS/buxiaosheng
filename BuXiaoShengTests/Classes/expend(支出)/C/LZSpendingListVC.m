@@ -1,42 +1,41 @@
 //
-//  LZClientReceiptVC.m
+//  LZSpendingListVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/8.
+//  Created by 罗镇浩 on 2018/6/10.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户收款单列表
+//
 
-#import "LZClientReceiptVC.h"
-#import "LZClientReceiptModel.h"
-#import "LZClientReceiptCell.h"
-#import "LZClientReceiptDetailVC.h"
+#import "LZSpendingListVC.h"
+#import "LZSpendingListCell.h"
+#import "LZSpendingModel.h"
 
-@interface LZClientReceiptVC ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)NSArray <LZClientReceiptModel *> *list;
+@interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource>
 //顶部试图
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UILabel *dateText;
 @property(nonatomic,strong)UIView *rigthHeadView;
 @property(nonatomic,strong)UILabel *dateLbl;
+@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)NSArray<LZSpendingDetailModel*> *lists;
 @end
 
-@implementation LZClientReceiptVC
+@implementation LZSpendingListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self setupListData];
 }
 
 - (void)setupUI{
-    self.navigationItem.titleView = [Utility navTitleView:@"客户收款单列表"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationRightClick) image:IMAGE(@"screen1")];
-
+    self.navigationItem.titleView = [Utility navTitleView:@"日出支出列表"];
+    
     //设置顶部时间筛选
     _headView = [[UIView alloc]init];
     _headView.backgroundColor = [UIColor whiteColor];
@@ -109,13 +108,13 @@
                              @"pageNo":@"1",
                              @"pageSize":@"15"
                              };
-    [BXSHttp requestGETWithAppURL:@"finance/receipt_list.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"finance/expend_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _list = [LZClientReceiptModel LLMJParse:baseModel.data];
+        _lists = [LZSpendingDetailModel LLMJParse:baseModel.data];
         [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -123,11 +122,10 @@
 }
 
 
-
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _list.count;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -137,36 +135,38 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 64;
+    return 85;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"LZClientReceiptCellid";
-    LZClientReceiptCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZSpendingListCellid";
+    LZSpendingListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[LZClientReceiptCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZSpendingListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.model = _list[indexPath.row];
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    //获取cell
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    LZClientReceiptModel *model = _list[indexPath.row];
-    LZClientReceiptDetailVC *vc = [[LZClientReceiptDetailVC alloc]init];
-    vc.id = model.id;
-    [self.navigationController pushViewController:vc animated:YES];
+    //    //获取cell
+    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    
+//    LZClientReceiptModel *model = _list[indexPath.row];
+//    LZClientReceiptDetailVC *vc = [[LZClientReceiptDetailVC alloc]init];
+//    vc.id = model.id;
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
-//点击选择日期按钮
+
+#pragma mark ----- 点击事件 ------
 - (void)headerTapClick{
     
 }
@@ -175,8 +175,5 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)navigationRightClick{
-    
-}
 
 @end
