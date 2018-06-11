@@ -22,8 +22,6 @@
 @interface LZIncomeVC ()<LZHTableViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,weak)LZHTableView *myTabelView;
 @property(nonatomic,strong)NSMutableArray *dataSourse;
-///分段选择器背景
-@property(nonatomic,strong)UIView *SegmentedBgView;
 ///名称
 @property(nonatomic,strong)ArrearsNameTextInputCell *titileCell;
 ///收款金额
@@ -93,7 +91,7 @@
 //    }];
     
     _scrollView = [[UIScrollView alloc]init];
-    _scrollView.backgroundColor = [UIColor blueColor];
+    _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(APPWidth *2, 0);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;

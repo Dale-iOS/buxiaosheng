@@ -10,6 +10,7 @@
 #import "FinancialCollectionViewCell.h"
 #import "ProcessViewController.h"
 #import "DyeingViewController.h"
+#import "LZBugAndProcessUntreatedVC.h"
 
 @interface WithSingleViewControllerViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectView;
@@ -72,7 +73,10 @@
     if (indexPath.row == 0) {
         
         //采购加工
-        ProcessViewController *vc = [[ProcessViewController alloc]init];
+//        ProcessViewController *vc = [[ProcessViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        LZBugAndProcessUntreatedVC *vc = [[LZBugAndProcessUntreatedVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.row == 1)

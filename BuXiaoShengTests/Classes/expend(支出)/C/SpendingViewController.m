@@ -261,7 +261,7 @@
     NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
     //            NSDate *maxDate = [NSDate date];
     NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
-    [BRDatePickerView showDatePickerWithTitle:@"出生日期" dateType:BRDatePickerModeYMD defaultSelValue:self.timeCell.contentTF.text minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+    [BRDatePickerView showDatePickerWithTitle:@"选择做账时间" dateType:BRDatePickerModeYMD defaultSelValue:self.timeCell.contentTF.text minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
         self.timeCell.contentTF.text =  selectValue;
         
         _dateStr = [selectValue stringByReplacingOccurrencesOfString:@"-" withString:@""];

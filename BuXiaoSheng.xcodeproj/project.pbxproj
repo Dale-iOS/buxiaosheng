@@ -34,6 +34,12 @@
 		3427A4F920CE507600369650 /* BRPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3427A4EB20CE507600369650 /* BRPickerView.bundle */; };
 		3427A4FA20CE507600369650 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4ED20CE507600369650 /* BRAddressPickerView.m */; };
 		3427A4FB20CE507600369650 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4ED20CE507600369650 /* BRAddressPickerView.m */; };
+		3427A4FF20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4FE20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m */; };
+		3427A50020CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4FE20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m */; };
+		3427A50620CE918F00369650 /* LZBugAndProcessUntreatedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A50520CE918F00369650 /* LZBugAndProcessUntreatedCell.m */; };
+		3427A50720CE918F00369650 /* LZBugAndProcessUntreatedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A50520CE918F00369650 /* LZBugAndProcessUntreatedCell.m */; };
+		3427A50A20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A50920CEB70500369650 /* LZBugAndProcessUntreatedView.m */; };
+		3427A50B20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A50920CEB70500369650 /* LZBugAndProcessUntreatedView.m */; };
 		342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AF9392086F21C0043EA2E /* FinancialViewController.m */; };
 		342CF6542099688F007C329D /* CashBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6532099688F007C329D /* CashBankViewController.m */; };
 		342CF65720996AAC007C329D /* CashBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65620996AAC007C329D /* CashBankTableViewCell.m */; };
@@ -600,6 +606,12 @@
 		3427A4EB20CE507600369650 /* BRPickerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BRPickerView.bundle; sourceTree = "<group>"; };
 		3427A4EC20CE507600369650 /* BRAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressModel.h; sourceTree = "<group>"; };
 		3427A4ED20CE507600369650 /* BRAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressPickerView.m; sourceTree = "<group>"; };
+		3427A4FD20CE6D6400369650 /* LZBugAndProcessUntreatedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBugAndProcessUntreatedVC.h; sourceTree = "<group>"; };
+		3427A4FE20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBugAndProcessUntreatedVC.m; sourceTree = "<group>"; };
+		3427A50420CE918F00369650 /* LZBugAndProcessUntreatedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBugAndProcessUntreatedCell.h; sourceTree = "<group>"; };
+		3427A50520CE918F00369650 /* LZBugAndProcessUntreatedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBugAndProcessUntreatedCell.m; sourceTree = "<group>"; };
+		3427A50820CEB70500369650 /* LZBugAndProcessUntreatedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBugAndProcessUntreatedView.h; sourceTree = "<group>"; };
+		3427A50920CEB70500369650 /* LZBugAndProcessUntreatedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBugAndProcessUntreatedView.m; sourceTree = "<group>"; };
 		342AF9382086F21C0043EA2E /* FinancialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewController.h; sourceTree = "<group>"; };
 		342AF9392086F21C0043EA2E /* FinancialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewController.m; sourceTree = "<group>"; };
 		342CF6522099688F007C329D /* CashBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashBankViewController.h; sourceTree = "<group>"; };
@@ -1455,6 +1467,43 @@
 				3427A4ED20CE507600369650 /* BRAddressPickerView.m */,
 			);
 			path = AddressPickerView;
+			sourceTree = "<group>";
+		};
+		3427A4FC20CE6CBC00369650 /* bugAndProcess(采购加工) */ = {
+			isa = PBXGroup;
+			children = (
+				3427A50320CE6D7100369650 /* M */,
+				3427A50220CE6D6D00369650 /* V */,
+				3427A50120CE6D6800369650 /* C */,
+			);
+			path = "bugAndProcess(采购加工)";
+			sourceTree = "<group>";
+		};
+		3427A50120CE6D6800369650 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3427A4FD20CE6D6400369650 /* LZBugAndProcessUntreatedVC.h */,
+				3427A4FE20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3427A50220CE6D6D00369650 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3427A50420CE918F00369650 /* LZBugAndProcessUntreatedCell.h */,
+				3427A50520CE918F00369650 /* LZBugAndProcessUntreatedCell.m */,
+				3427A50820CEB70500369650 /* LZBugAndProcessUntreatedView.h */,
+				3427A50920CEB70500369650 /* LZBugAndProcessUntreatedView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3427A50320CE6D7100369650 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		342AF9372086F2070043EA2E /* financial(财务) */ = {
@@ -2802,6 +2851,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3427A4FC20CE6CBC00369650 /* bugAndProcess(采购加工) */,
 				34195FA520CD1C4800524F20 /* expend(支出) */,
 				3455F68320CA799500579521 /* income(收入) */,
 				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
@@ -3407,6 +3457,7 @@
 				B50505B5209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */,
 				B531EF3F20BF8FE90028F18B /* FSCalendarTransitionCoordinator.m in Sources */,
+				3427A50A20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				34FB1F2C20BD5072004D18C2 /* LLWeekCalendarVc.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
@@ -3428,6 +3479,7 @@
 				B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
+				3427A4FF20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
 				B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
@@ -3631,6 +3683,7 @@
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
 				34410EC420B3EF8100CE490E /* ChooseAddressVC.m in Sources */,
+				3427A50620CE918F00369650 /* LZBugAndProcessUntreatedCell.m in Sources */,
 				34EE88E020CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
 				34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */,
 				B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */,
@@ -3778,6 +3831,7 @@
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				B50505C0209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
+				3427A50020CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */,
 				34EE88E120CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3479058020C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
@@ -3785,6 +3839,7 @@
 				34A92B53207DECA200572648 /* LZHTableViewItem.m in Sources */,
 				34EE88DD20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				34A92B58207DEE6C00572648 /* HomeViewController.m in Sources */,
+				3427A50720CE918F00369650 /* LZBugAndProcessUntreatedCell.m in Sources */,
 				B50505C2209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				B577CE9A20AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
 				B531EF2420BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */,
@@ -3816,6 +3871,7 @@
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
+				3427A50B20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
