@@ -1,27 +1,28 @@
 //
-//  LZBugAndProcessUntreatedView.m
+//  LZBugAndProcessBssView.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/11.
+//  Created by 罗镇浩 on 2018/6/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  采购加工-未处理页面（销售）
+//  采购加工-未处理页面（老板）
 
-#import "LZBugAndProcessUntreatedView.h"
+#import "LZBugAndProcessBssView.h"
 #import "LZBugAndProcessUntreatedCell.h"
 #import "LZBugAndProcessBssModel.h"
 
-@interface LZBugAndProcessUntreatedView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
+
+@interface LZBugAndProcessBssView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSArray<LZBugAndProcessBssModel*> *lists;
 @end
 
-@implementation LZBugAndProcessUntreatedView
+@implementation LZBugAndProcessBssView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
-        [self setupList];
+//        [self setupList];
     }
     return self;
 }
@@ -42,7 +43,7 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@"1",
                              @"pageSize":@"15",
-                             @"type":@"0"
+                             @"type":@"1"
                              };
     [BXSHttp requestGETWithAppURL:@"documentary/not_handle_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -55,7 +56,7 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
-    
+
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -87,10 +88,9 @@
     return cell;
 }
 
-
 #pragma mark ---- 点击事件 ----
 - (void)didClickFirstBtnInCell:(UITableViewCell *)cell{
-//    [[self viewController].navigationController pushViewController:[yourViewController new]animated:YES];
+//    [[self viewController].navigationController pushViewController:[[LZBugAndProcessListVC alloc]init] animated:YES];
 }
 
 - (void)didClickSecondBtnInCell:(UITableViewCell *)cell{
@@ -110,5 +110,6 @@
     }
     return nil;
 }
+
 
 @end

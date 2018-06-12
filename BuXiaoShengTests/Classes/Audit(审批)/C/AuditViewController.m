@@ -13,6 +13,7 @@
 #import "NoAuditSellViewController.h"
 #import "NoAuditApplyViewController.h"
 #import "NoAuditInStorageViewController.h"
+#import "LZNoBackOrderVC.h"
 
 @interface AuditViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -66,7 +67,7 @@
     .widthIs(180)
     .heightIs(30);
     
-    NSArray *titleArr = @[@"销售单", @"入库单", @"报销单"];
+    NSArray *titleArr = @[@"销售单", @"入库单", @"报销单",@"退货单"];
     SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
     configure.titleColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     configure.titleSelectedColor = [UIColor colorWithRed:50.0f/255.0f green:149.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
@@ -79,12 +80,12 @@
     [self.view addSubview:_pageTitleView];
     _pageTitleView.selectedIndex = 0;
     
-    NoAuditSellViewController *vc1 = [[NoAuditSellViewController alloc]init];
-    NoAuditApplyViewController *vc2 = [[NoAuditApplyViewController alloc]init];
-    NoAuditInStorageViewController *vc3 = [[NoAuditInStorageViewController alloc]init];
+    NoAuditInStorageViewController *vc1 = [[NoAuditInStorageViewController alloc]init];
+    NoAuditSellViewController *vc2 = [[NoAuditSellViewController alloc]init];
+    NoAuditApplyViewController *vc3 = [[NoAuditApplyViewController alloc]init];
+    LZNoBackOrderVC *vc4 = [[LZNoBackOrderVC alloc]init];
     
-    
-    NSArray *childArr = @[vc1, vc2, vc3];
+    NSArray *childArr = @[vc1, vc2, vc3, vc4];
     /// pageContentView
     CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, contentViewHeight) parentVC:self childVCs:childArr];

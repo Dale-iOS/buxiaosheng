@@ -15,7 +15,7 @@
 #import "WithSingleViewControllerViewController.h"
 #import "AssignDeliveryViewController.h"
 #import "DyeingDemandViewController.h"
-#import "StockTrackingViewController.h"
+#import "LZStockTrackingVC.h"
 #import "InventoryViewController.h"
 #import "LZHomeModel.h"
 #import "DyeingViewController.h"
@@ -184,7 +184,7 @@
     else if ([model.paramsIos isEqualToString:@"stocktrack"])
     {
         //备货跟踪
-        StockTrackingViewController *vc = [[StockTrackingViewController alloc]init];
+        LZStockTrackingVC *vc = [[LZStockTrackingVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

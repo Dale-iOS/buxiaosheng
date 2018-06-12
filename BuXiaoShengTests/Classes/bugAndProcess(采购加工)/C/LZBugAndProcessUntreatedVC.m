@@ -4,13 +4,18 @@
 //
 //  Created by 罗镇浩 on 2018/6/11.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  采购加工-未处理页面
 
 #import "LZBugAndProcessUntreatedVC.h"
+#import "LZBugAndProcessUntreatedView.h"
+#import "LZBugAndProcessBssView.h"
+#import "LZDidBugAndProcessUntreatedVC.h"
 
 @interface LZBugAndProcessUntreatedVC ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UISegmentedControl *sgc;
 @property(nonatomic,strong)UIScrollView *scrollView;
+@property(nonatomic,strong)LZBugAndProcessUntreatedView *untreatedView;
+@property(nonatomic,strong)LZBugAndProcessBssView *bossView;
 @end
 
 @implementation LZBugAndProcessUntreatedVC
@@ -45,12 +50,34 @@
         make.centerX.equalTo(bgSgcView);
         make.centerY.equalTo(bgSgcView);
     }];
+    
+    _scrollView = [[UIScrollView alloc]init];
+    _scrollView.backgroundColor = [UIColor whiteColor];
+    _scrollView.contentSize = CGSizeMake(APPWidth *2, 0);
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.scrollEnabled = YES;
+    _scrollView.delegate = self;
+    [self.view addSubview:_scrollView];
+    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(bgSgcView.mas_bottom);
+        make.left.and.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    _untreatedView = [[LZBugAndProcessUntreatedView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight -bgSgcView.height)];
+    [_scrollView addSubview:_untreatedView];
+   
+    _bossView = [[LZBugAndProcessBssView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -LLNavViewHeight -bgSgcView.height)];
+    [_scrollView addSubview:_bossView];
 }
+
 
 #pragma mark ----- 点击事件 -----
 //导航栏右按钮点击事件
 - (void)navigationSetupClick{
-    
+    LZDidBugAndProcessUntreatedVC *vc = [[LZDidBugAndProcessUntreatedVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //分段选择器方法

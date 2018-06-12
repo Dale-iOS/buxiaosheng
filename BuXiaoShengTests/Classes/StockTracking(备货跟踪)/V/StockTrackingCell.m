@@ -7,7 +7,7 @@
 //
 
 #import "StockTrackingCell.h"
-
+#import "LZBugAndProcessBssModel.h"
 @implementation StockTrackingCell
 @synthesize bgView,iconImageView,iconNameLabel,titleLabel,stateLabel,subLabel,timeLabel,demandNumLabel,typeLabel,StorageNumLabel,redLeftView;
 #define contentView   self.contentView
@@ -55,7 +55,7 @@
     if (iconNameLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"周鹏 ";
+//        label.text = @"周鹏 ";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
         label.textColor = [UIColor whiteColor];
@@ -69,7 +69,7 @@
     if (titleLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"供应商：阿吉布行";
+//        label.text = @"供应商：阿吉布行";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = CD_Text33;
@@ -83,7 +83,7 @@
     if (subLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"魔术贴魔术贴魔术贴魔术贴魔术贴";
+//        label.text = @"魔术贴魔术贴魔术贴魔术贴魔术贴";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -97,7 +97,7 @@
     if (demandNumLabel == nil) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"需求量：500";
+//        label.text = @"需求量：500";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -111,10 +111,11 @@
     if (timeLabel == nil) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"2018-4-3 13:14";
+//        label.text = @"2018-4-3 13:14";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
+        label.hidden = YES;
         [self.bgView addSubview:(timeLabel = label)];
     }
     return timeLabel;
@@ -125,7 +126,7 @@
     if (stateLabel == nil) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"已下单待处理";
+        label.text = @"采购中";
         label.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(12);
@@ -156,6 +157,7 @@
         
         UIView *view = [[UIView alloc]init];
         view.backgroundColor = [UIColor colorWithHexString:@"#ff6565"];
+        view.hidden = YES;
         [self.bgView addSubview:(redLeftView = view)];
     }
     return redLeftView;
@@ -166,7 +168,7 @@
     if (StorageNumLabel == nil) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"入库数:16464 -3435";
+//        label.text = @"入库数:16464 -3435";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -182,11 +184,11 @@
     .topSpaceToView(contentView, 10)
     .leftSpaceToView(contentView, 8)
     .widthIs(APPWidth -16)
-    .heightIs(140);
+    .bottomSpaceToView(contentView, 0);
     
     self.iconImageView.sd_layout
     .leftSpaceToView(self.bgView, 15)
-    .topSpaceToView(self.bgView, 28)
+    .centerYEqualToView(self.bgView)
     .widthIs(40)
     .heightIs(40);
     
@@ -201,6 +203,7 @@
     .leftSpaceToView(self.bgView, 70)
     .widthIs(200)
     .heightIs(15);
+//    [self.titleLabel setSingleLineAutoResizeWithMaxWidth:200];
     
     self.subLabel.sd_layout
     .topSpaceToView(self.titleLabel, 10)
@@ -214,8 +217,15 @@
     .widthIs(250)
     .heightIs(13);
     
-    self.timeLabel.sd_layout
+    self.StorageNumLabel.sd_layout
     .topSpaceToView(self.demandNumLabel, 10)
+    .leftSpaceToView(self.bgView, 70)
+//    .widthIs(250)
+    .heightIs(13);
+    [self.StorageNumLabel setSingleLineAutoResizeWithMaxWidth:250];
+    
+    self.timeLabel.sd_layout
+    .topSpaceToView(self.StorageNumLabel, 10)
     .leftSpaceToView(self.bgView, 70)
     .widthIs(250)
     .heightIs(13);
@@ -227,7 +237,7 @@
     [self.stateLabel setSingleLineAutoResizeWithMaxWidth:150];
     
     self.typeLabel.sd_layout
-    .topEqualToView(self.timeLabel)
+    .topEqualToView(self.StorageNumLabel)
     .rightSpaceToView(self.bgView, 15)
     .widthIs(25)
     .heightIs(13);
@@ -238,16 +248,53 @@
     .leftSpaceToView(self.bgView, 0)
     .widthIs(7);
     
-    self.StorageNumLabel.sd_layout
-    .topSpaceToView(self.timeLabel, 10)
-    .leftSpaceToView(self.bgView, 70)
-    .widthIs(250)
-    .heightIs(13);
-    
     //设置多出superView的部分隐藏
     self.bgView.clipsToBounds = YES;
     
+
 }
+
+- (void)setModel:(LZBugAndProcessBssModel *)model{
+    _model = model;
+
+    if (_model.initiatorName.length >3) {
+        self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
+    }else{
+        self.iconNameLabel.text = _model.initiatorName;
+    }
+    self.titleLabel.text = [NSString stringWithFormat:@"供应商：%@",_model.factoryName];
+    self.subLabel.text = [NSString stringWithFormat:@"品名：%@",_model.productName];
+    self.demandNumLabel.text = [NSString stringWithFormat:@"需求量：%@",_model.number];
+    NSInteger leftInteger = [_model.number integerValue] - [_model.houseNum integerValue];
+
+
+    //当库存数少于需求量，显示红色样式
+    if (leftInteger < [_model.number integerValue]) {
+        self.StorageNumLabel.text = [NSString stringWithFormat:@"入库数：%zd - %@",leftInteger,_model.houseNum];
+        self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+        self.timeLabel.hidden = NO;
+        self.stateLabel.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f];
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"#ff6565"];
+        self.redLeftView.hidden = NO;
+    }else{
+        self.StorageNumLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+        self.timeLabel.hidden = YES;
+        self.stateLabel.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"#25cce5"];
+        self.redLeftView.hidden = YES;
+    }
+
+//    采购类型（0：采购 1：加工）
+    if ([_model.purchaseType integerValue] == 0) {
+        self.typeLabel.text = @"采购";
+    }else if ([_model.purchaseType integerValue] == 1){
+        self.typeLabel.text = @"加工";
+    }
+
+    //设置cell高度自适应
+    [self setupAutoHeightWithBottomView:self.bgView bottomMargin:110];
+    }
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

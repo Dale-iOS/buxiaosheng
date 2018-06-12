@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LZBugAndProcessBssModel;
 @interface StockTrackingCell : UITableViewCell
 
 ///白色底图
@@ -43,4 +43,5 @@
 ///左边红view
 @property (nonatomic, strong) UIView *redLeftView;
 
+@property(nonatomic,strong)LZBugAndProcessBssModel *model;
 @end

@@ -5,10 +5,19 @@
 //  Created by 罗镇浩 on 2018/6/11.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
+@class LZBugAndProcessBssModel;
+@protocol LZBugAndProcessUntreatedCellDelegate <NSObject>
+
+- (void)didClickFirstBtnInCell:(UITableViewCell *)cell;
+- (void)didClickSecondBtnInCell:(UITableViewCell *)cell;
+- (void)didClickThirdBtnInCell:(UITableViewCell *)cell;
+
+@end
+
 
 @interface LZBugAndProcessUntreatedCell : UITableViewCell
+@property (nonatomic, weak) id<LZBugAndProcessUntreatedCellDelegate> delegate;
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;
 ///头像
@@ -31,4 +40,5 @@
 @property(nonatomic,strong)UIButton *askBtn;
 ///完成
 @property(nonatomic,strong)UIButton *completeBtn;
+@property(nonatomic,strong)LZBugAndProcessBssModel *model;
 @end

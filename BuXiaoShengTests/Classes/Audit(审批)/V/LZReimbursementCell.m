@@ -1,14 +1,15 @@
 //
-//  AuditTableViewCell.m
+//  LZReimbursementCell.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/4/23.
+//  Created by 罗镇浩 on 2018/6/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  审批cell
+//
 
-#import "AuditTableViewCell.h"
+#import "LZReimbursementCell.h"
+#import "LZReimbursementModel.h"
 
-@implementation AuditTableViewCell
+@implementation LZReimbursementCell
 @synthesize bgView,iconImageView,iconNameLabel,titleLabel,stateLabel,subLabel,priceLabel,lineView,timeLabel,yesBtn,noBtn,NumLabel;
 #define contentView   self.contentView
 
@@ -271,20 +272,19 @@
     .heightIs(13);
 }
 
-- (void)setModel:(LZClientDemandModel *)model
+- (void)setModel:(LZReimbursementModel *)model
 {
     _model = model;
     
-    self.titleLabel.text = _model.customerName;
-    self.subLabel.text = [NSString stringWithFormat:@"品名：￥%@",_model.productName];
-    self.priceLabel.text = [NSString stringWithFormat:@"报销金额：￥%@",_model.price];
-    NSString *tempStr =_model.drawerName;
-    if (tempStr.length >3) {
-        self.iconNameLabel.text = [tempStr substringFromIndex:3];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@的报销",_model.initiatorName];
+    self.subLabel.text = [NSString stringWithFormat:@"费用明细：%@",_model.costsubjectName];
+    self.priceLabel.text = [NSString stringWithFormat:@"报销金额：￥%@",_model.amount];
+    if ([_model.initiatorName integerValue] >3) {
+        self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
     }else{
-        self.iconNameLabel.text = _model.drawerName;
+        self.iconNameLabel.text = _model.initiatorName;
     }
-//先把返回的数据转成时间戳，再转成时间显示
+    //先把返回的数据转成时间戳，再转成时间显示
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 }
 
@@ -310,7 +310,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

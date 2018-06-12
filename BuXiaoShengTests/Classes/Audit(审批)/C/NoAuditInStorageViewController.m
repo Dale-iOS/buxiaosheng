@@ -8,10 +8,11 @@
 
 #import "NoAuditInStorageViewController.h"
 #import "AuditTableViewCell.h"
+#import "LZClientDemandModel.h"
 
 @interface NoAuditInStorageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSArray <LZClientDemandModel *> *listDatas;
 @end
 
 @implementation NoAuditInStorageViewController
@@ -22,9 +23,13 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [self setupListData];
+}
+
 - (void)setupUI
 {
-    
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
@@ -35,6 +40,29 @@
     [self.view addSubview:self.tableView];
     
 }
+
+#pragma mark ------- 网络请求 --------
+//接口名称 采购审批列表
+- (void)setupListData
+{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
+                            @"status":@"0"
+                            };
+    [BXSHttp requestGETWithAppURL:@"approval/buy_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _listDatas = [LZClientDemandModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
