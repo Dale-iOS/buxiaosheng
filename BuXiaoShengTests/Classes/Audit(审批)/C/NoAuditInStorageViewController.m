@@ -7,12 +7,12 @@
 //  入库单（未审批）
 
 #import "NoAuditInStorageViewController.h"
-#import "AuditTableViewCell.h"
-#import "LZClientDemandModel.h"
+#import "LZProcurementCell.h"
+#import "LZProcurementModel.h"
 
 @interface NoAuditInStorageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray <LZClientDemandModel *> *listDatas;
+@property (nonatomic, strong) NSArray <LZProcurementModel *> *listDatas;
 @end
 
 @implementation NoAuditInStorageViewController
@@ -25,7 +25,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self setupListData];
+    [self setupListData];
 }
 
 - (void)setupUI
@@ -56,7 +56,7 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _listDatas = [LZClientDemandModel LLMJParse:baseModel.data];
+        _listDatas = [LZProcurementModel LLMJParse:baseModel.data];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         
@@ -67,7 +67,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _listDatas.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,18 +77,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 160;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"AuditTableViewCell";
-    AuditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZProcurementCellId";
+    LZProcurementCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[AuditTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZProcurementCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    cell.model = _listDatas[indexPath.row];
     return cell;
 }
 

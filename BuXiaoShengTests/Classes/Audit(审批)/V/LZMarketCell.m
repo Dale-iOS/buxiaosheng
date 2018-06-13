@@ -1,15 +1,15 @@
 //
-//  LZReimbursementCell.m
+//  LZMarketCell.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/12.
+//  Created by 罗镇浩 on 2018/6/13.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import "LZReimbursementCell.h"
-#import "LZReimbursementModel.h"
+#import "LZMarketCell.h"
+#import "LZMarketModel.h"
 
-@implementation LZReimbursementCell
+@implementation LZMarketCell
 @synthesize bgView,iconImageView,iconNameLabel,titleLabel,stateLabel,subLabel,priceLabel,lineView,timeLabel,yesBtn,noBtn,NumLabel;
 #define contentView   self.contentView
 
@@ -26,7 +26,6 @@
     }
     return self;
 }
-
 
 #pragma mark ------- lazy loding --------
 - (UIView *)bgView
@@ -99,7 +98,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
-        label.textColor = [UIColor colorWithHexString:@"#fa3d3d"];;
+        label.textColor = CD_Text66;
         [self.bgView addSubview:(priceLabel = label)];
     }
     return priceLabel;
@@ -110,11 +109,13 @@
     if (stateLabel == nil) {
         
         UILabel * label = [[UILabel alloc]init];
-        label.textColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
+        label.textColor = [UIColor colorWithHexString:@"#ff6565"];
         label.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f];
         label.layer.cornerRadius = 2.0f;
         label.font = FONT(12);
         label.textAlignment = NSTextAlignmentCenter;
+        label.text = @"销售需求发起的审批";
+        label.layer.masksToBounds = YES;
         [self.bgView addSubview:(stateLabel = label)];
     }
     return stateLabel;
@@ -238,8 +239,8 @@
     self.stateLabel.sd_layout
     .topEqualToView(self.titleLabel)
     .rightSpaceToView(self.bgView, 15)
-    .heightIs(20);
-    [self.stateLabel setSingleLineAutoResizeWithMaxWidth:150];
+    .heightIs(20)
+    .widthIs(120);
     
     self.lineView.sd_layout
     .leftSpaceToView(self.bgView, 0)
@@ -272,50 +273,38 @@
     .heightIs(13);
 }
 
-- (void)setModel:(LZReimbursementModel *)model
-{
+- (void)setModel:(LZMarketModel *)model{
     _model = model;
-    
-    self.titleLabel.text = [NSString stringWithFormat:@"%@的报销",_model.initiatorName];
-    self.subLabel.text = [NSString stringWithFormat:@"费用明细：%@",_model.costsubjectName];
-    self.priceLabel.text = [NSString stringWithFormat:@"报销金额：￥%@",_model.amount];
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:self.priceLabel.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"报销金额："]];
-    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
-    self.priceLabel.attributedText = temgpStr;
-    if ([_model.initiatorName integerValue] >3) {
+    if (_model.initiatorName.length >3) {
         self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
     }else{
         self.iconNameLabel.text = _model.initiatorName;
     }
-    //先把返回的数据转成时间戳，再转成时间显示
+    self.titleLabel.text = [NSString stringWithFormat:@"%@的审批",_model.initiatorName];
+    self.subLabel.text = [NSString stringWithFormat:@"品名：%@",_model.productName];
+    self.priceLabel.text = [NSString stringWithFormat:@"需求量：%@",_model.number];
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 }
 
-- (void)yesBtnClick
-{
+- (void)yesBtnClick{
     if ([self.delegate respondsToSelector:@selector(didClickYesBtnInCell:)]) {
         [self.delegate didClickYesBtnInCell:self];
     }
 }
 
-- (void)noBtnClick
-{
-    if ([self.delegate respondsToSelector:@selector(didClickNoBtnInCell:)])
-    {
+- (void)noBtnClick{
+    if ([self.delegate respondsToSelector:@selector(didClickNoBtnInCell:)]) {
         [self.delegate didClickNoBtnInCell:self];
     }
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 @end

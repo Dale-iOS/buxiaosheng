@@ -7,10 +7,13 @@
 //  销售单（未审批）
 
 #import "NoAuditSellViewController.h"
-#import "AuditTableViewCell.h"
+#import "LZMarketCell.h"
+#import "LZMarketModel.h"
 
-@interface NoAuditSellViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoAuditSellViewController ()<UITableViewDelegate,UITableViewDataSource,LZMarketCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray <LZMarketModel *> *lists;
+
 @end
 
 @implementation NoAuditSellViewController
@@ -19,6 +22,11 @@
     [super viewDidLoad];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupListData];
 }
 
 - (void)setupUI
@@ -49,8 +57,8 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-//        _listDatas = [LZClientDemandModel LLMJParse:baseModel.data];
-//        [self.tableView reloadData];
+        _lists = [LZMarketModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         
     }];
@@ -59,7 +67,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,16 +83,98 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"AuditTableViewCell";
-    AuditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    LZMarketCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[AuditTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZMarketCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.delegate = self;
     }
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
+- (void)didClickYesBtnInCell:(UITableViewCell *)cell{
+    WEAKSELF;
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定同意该审批？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        NSLog(@"取消执行");
+        
+    }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        LZMarketModel *model = _lists[indexPath.row];
+        
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"approvalId":model.id,
+                                 @"orderId":model.orderId
+                                 };
+        [BXSHttp requestGETWithAppURL:@"approval/need_agree.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"提交成功"];
+            [weakSelf setupListData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
+- (void)didClickNoBtnInCell:(UITableViewCell *)cell{
+    WEAKSELF;
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定拒绝该审批？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        NSLog(@"取消执行");
+        
+    }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        LZMarketModel *model = _lists[indexPath.row];
+        
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"approvalId":model.id,
+                                 @"expendId":model.orderId
+                                 };
+        [BXSHttp requestGETWithAppURL:@"approval/need_refuse.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"提交成功"];
+            [weakSelf setupListData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

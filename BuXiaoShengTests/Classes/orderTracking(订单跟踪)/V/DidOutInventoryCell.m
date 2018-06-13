@@ -317,21 +317,30 @@
     self.nameLabel.text = _model.productName;
     self.demandLabel.text = [NSString stringWithFormat:@"需求量：%@",_model.needTotal];
     self.priceLabel.text = [NSString stringWithFormat:@"￥：%@",_model.price];
+   
+    
     NSString *temgpStr = [NSString stringWithFormat:@"%zd",[_model.needTotal integerValue]-[_model.number integerValue]];
     self.OutNumLabel.text = [NSString stringWithFormat:@"出库量：%@ - %@",_model.number,temgpStr ];
     NSMutableAttributedString *OutNumStr = [[NSMutableAttributedString alloc] initWithString:self.OutNumLabel.text];
      NSRange oneRange = [[OutNumStr string] rangeOfString:[NSString stringWithFormat:@"出库量："]];
     [OutNumStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
     self.OutNumLabel.attributedText = OutNumStr;
+    
+    
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 
     
     if ([_model.orderStatus integerValue] == 1) {
         self.didTransportLabel.hidden = NO;
+        self.receivingLabel.hidden = YES;
+        self.transportLabel.hidden = YES;
+        self.redLeftView.hidden = NO;
     }else if ([_model.orderStatus integerValue] == 2)
     {
+        self.didTransportLabel.hidden = YES;
         self.receivingLabel.hidden = NO;
         self.transportLabel.hidden = NO;
+        self.redLeftView.hidden = YES;
     }
 }
 

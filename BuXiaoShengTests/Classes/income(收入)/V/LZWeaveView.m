@@ -165,6 +165,7 @@
     }];
 }
 
+//接口名称 银行列表
 - (void)setupPayList{
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};

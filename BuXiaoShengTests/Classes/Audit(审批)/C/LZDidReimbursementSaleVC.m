@@ -1,21 +1,23 @@
 //
-//  LZNoBackOrderVC.m
+//  LZDidReimbursementSaleVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/12.
+//  Created by 罗镇浩 on 2018/6/13.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  销售单（未审批）
+//  报销单（已审批）
 
-#import "LZNoBackOrderVC.h"
-#import "LZNoBackOrderCell.h"
-#import "LZNoBackOrderModel.h"
+#import "LZDidReimbursementSaleVC.h"
+#import "LZDidReimbursementSaleCell.h"
+#import "LZReimbursementModel.h"
 
-@interface LZNoBackOrderVC ()<UITableViewDelegate,UITableViewDataSource,LZNoBackOrderCellDelegate>
+@interface LZDidReimbursementSaleVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property(nonatomic,strong)NSArray<LZNoBackOrderModel*> *lists;
+@property (nonatomic, strong) NSArray <LZReimbursementModel *> *lists;
+
+
 @end
 
-@implementation LZNoBackOrderVC
+@implementation LZDidReimbursementSaleVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,21 +42,22 @@
     
 }
 
+#pragma mark ------- 网络请求 --------
 //接口名称 销售单审批列表
 - (void)setupListData
 {
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@"1",
                             @"pageSize":@"15",
-                            @"status":@"0"
+                            @"status":@"1"
                             };
-    [BXSHttp requestGETWithAppURL:@"approval/refundy_list.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"approval/expend_list.do" param:param success:^(id response) {
         LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _lists = [LZNoBackOrderModel LLMJParse:baseModel.data];
+        _lists = [LZReimbursementModel LLMJParse:baseModel.data];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         
@@ -74,26 +77,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 185;
+    return 127;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"LZNoBackOrderCellId";
-    LZNoBackOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZDidReimbursementSaleCellId";
+    LZDidReimbursementSaleCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[LZNoBackOrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.delegate = self;
+        cell = [[LZDidReimbursementSaleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.model = _lists[indexPath.row];
     return cell;
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    // Dispose of any resources that can be recreated.
 }
 
+
 @end
+
