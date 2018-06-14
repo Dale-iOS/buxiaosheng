@@ -314,6 +314,10 @@
 		34D5EAF520D25483009D9D7C /* LZBankDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAF320D25483009D9D7C /* LZBankDetailModel.m */; };
 		34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */; };
 		34D5EB0120D26E13009D9D7C /* LZBankListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */; };
+		34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */; };
+		34D5EB0920D2B24D009D9D7C /* LZArrearClientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */; };
+		34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */; };
+		34D5EB0D20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */; };
 		34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B420BE85C700F0940C /* LZOutboundSectionView.m */; };
 		34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B720BE9D3000F0940C /* LZOutboundCell.m */; };
 		34D705BB20BED8B100F0940C /* LZOutboundListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705BA20BED8B100F0940C /* LZOutboundListCell.m */; };
@@ -1090,6 +1094,10 @@
 		34D5EAF320D25483009D9D7C /* LZBankDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBankDetailModel.m; sourceTree = "<group>"; };
 		34D5EAFE20D26E13009D9D7C /* LZBankListDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBankListDetailModel.h; sourceTree = "<group>"; };
 		34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBankListDetailModel.m; sourceTree = "<group>"; };
+		34D5EB0620D2B24D009D9D7C /* LZArrearClientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearClientView.h; sourceTree = "<group>"; };
+		34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearClientView.m; sourceTree = "<group>"; };
+		34D5EB0A20D2B270009D9D7C /* LZArrearCompanyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearCompanyView.h; sourceTree = "<group>"; };
+		34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearCompanyView.m; sourceTree = "<group>"; };
 		34D705B320BE85C700F0940C /* LZOutboundSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundSectionView.h; sourceTree = "<group>"; };
 		34D705B420BE85C700F0940C /* LZOutboundSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundSectionView.m; sourceTree = "<group>"; };
 		34D705B620BE9D3000F0940C /* LZOutboundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundCell.h; sourceTree = "<group>"; };
@@ -1645,8 +1653,6 @@
 				343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */,
 				343207D720A06AB5005A5D23 /* YesAuditSellViewController.h */,
 				343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */,
-				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
-				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
 				342D951E209063970018B363 /* CustomerReconciliationViewController.h */,
 				342D951F209063970018B363 /* CustomerReconciliationViewController.m */,
 				342D9524209076ED0018B363 /* ReconciliationDetailViewController.h */,
@@ -2725,6 +2731,43 @@
 			path = M;
 			sourceTree = "<group>";
 		};
+		34D5EB0220D2AA11009D9D7C /* CustomerArrears(客户欠款表) */ = {
+			isa = PBXGroup;
+			children = (
+				34D5EB0520D2AA31009D9D7C /* M */,
+				34D5EB0420D2AA2E009D9D7C /* V */,
+				34D5EB0320D2AA29009D9D7C /* C */,
+			);
+			path = "CustomerArrears(客户欠款表)";
+			sourceTree = "<group>";
+		};
+		34D5EB0320D2AA29009D9D7C /* C */ = {
+			isa = PBXGroup;
+			children = (
+				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
+				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		34D5EB0420D2AA2E009D9D7C /* V */ = {
+			isa = PBXGroup;
+			children = (
+				34D5EB0620D2B24D009D9D7C /* LZArrearClientView.h */,
+				34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */,
+				34D5EB0A20D2B270009D9D7C /* LZArrearCompanyView.h */,
+				34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		34D5EB0520D2AA31009D9D7C /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
 		34D705B220BE858600F0940C /* clientDemand(客户需求) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3155,6 +3198,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				34D5EB0220D2AA11009D9D7C /* CustomerArrears(客户欠款表) */,
 				34D5EAEE20D252E8009D9D7C /* bankDetail(银行明细) */,
 				344C48AB20D148D100BEC002 /* paymentReceipt(付款) */,
 				34EA490320CFE3340086FF79 /* Audit(审批) */,
@@ -3956,6 +4000,7 @@
 				34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
+				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				3455F69220CA7E9900579521 /* LZIncomeVC.m in Sources */,
@@ -4043,6 +4088,7 @@
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
+				34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
 				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
@@ -4248,6 +4294,7 @@
 				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				346992A920C6649500476CF0 /* LZVisitRecordCell.m in Sources */,
+				34D5EB0D20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				3479057720C51255008C835C /* AllOrderViewController.m in Sources */,
 				34D5EAF520D25483009D9D7C /* LZBankDetailModel.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
@@ -4308,6 +4355,7 @@
 				3427A4F320CE507600369650 /* BRDatePickerView.m in Sources */,
 				B531EF2A20BF8FE90028F18B /* FSCalendarCalculator.m in Sources */,
 				B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
+				34D5EB0920D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				3455F69720CAC60B00579521 /* LZClientReceiptVC.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				3455F69320CA7E9900579521 /* LZIncomeVC.m in Sources */,

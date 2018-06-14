@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomerArrearsViewController : UIViewController
+@interface CustomerArrearsViewController : BaseViewController
 
 @end
