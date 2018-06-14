@@ -55,7 +55,7 @@
 
 - (void)setupUI{
     
-    self.navigationItem.titleView = [Utility navTitleView:@"详情"];
+    self.navigationItem.titleView = [Utility navTitleView:@"收款单详情"];
     
     self.dataSource = [NSMutableArray array];
     [self.view addSubview:self.myTableView];

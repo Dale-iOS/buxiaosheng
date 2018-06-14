@@ -1,13 +1,13 @@
 //
-//  LZPaymentOrderListVC.h
+//  LZPaymentOrderListModel.m
 //  BuXiaoSheng
 //
 //  Created by 罗镇浩 on 2018/6/14.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LZPaymentOrderListModel.h"
 
-@interface LZPaymentOrderListVC : BaseViewController
+@implementation LZPaymentOrderListModel
 
 @end
