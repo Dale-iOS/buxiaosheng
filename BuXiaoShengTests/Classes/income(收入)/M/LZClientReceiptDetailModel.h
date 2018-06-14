@@ -15,4 +15,6 @@
 @property(nonatomic,strong)NSString *customerName;
 @property(nonatomic,strong)NSString *remark;
 @property(nonatomic,strong)NSString *createTime;
+@property(nonatomic,strong)NSString *factoryName;
+@property(nonatomic,strong)NSString *type;
 @end

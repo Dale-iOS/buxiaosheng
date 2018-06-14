@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/23.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  加工商付款单（付款单）
 
 #import "ProcessorsViewController.h"
 #import "LZHTableView.h"
@@ -223,7 +223,7 @@
                              @"bankId":self.payIdStr,
                              @"factoryId":_companyId,
                              @"remark":self.remarkTextView.textView.text,
-                             @"type":@"0"
+                             @"type":@"2"
                              };
     [BXSHttp requestGETWithAppURL:@"finance/payment_add.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

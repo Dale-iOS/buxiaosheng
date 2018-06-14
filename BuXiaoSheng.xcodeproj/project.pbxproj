@@ -308,6 +308,8 @@
 		34D5EAE120D21011009D9D7C /* LZPaymentOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EADF20D21011009D9D7C /* LZPaymentOrderListCell.m */; };
 		34D5EAE820D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAE620D23DB9009D9D7C /* LZPaymentOrderListVC.m */; };
 		34D5EAE920D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAE620D23DB9009D9D7C /* LZPaymentOrderListVC.m */; };
+		34D5EAEC20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAEB20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m */; };
+		34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAEB20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m */; };
 		34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B420BE85C700F0940C /* LZOutboundSectionView.m */; };
 		34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B720BE9D3000F0940C /* LZOutboundCell.m */; };
 		34D705BB20BED8B100F0940C /* LZOutboundListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705BA20BED8B100F0940C /* LZOutboundListCell.m */; };
@@ -1078,6 +1080,8 @@
 		34D5EADF20D21011009D9D7C /* LZPaymentOrderListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPaymentOrderListCell.m; sourceTree = "<group>"; };
 		34D5EAE620D23DB9009D9D7C /* LZPaymentOrderListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZPaymentOrderListVC.m; sourceTree = "<group>"; };
 		34D5EAE720D23DB9009D9D7C /* LZPaymentOrderListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZPaymentOrderListVC.h; sourceTree = "<group>"; };
+		34D5EAEA20D2484A009D9D7C /* LZPaymentOrderListDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPaymentOrderListDetailVC.h; sourceTree = "<group>"; };
+		34D5EAEB20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPaymentOrderListDetailVC.m; sourceTree = "<group>"; };
 		34D705B320BE85C700F0940C /* LZOutboundSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundSectionView.h; sourceTree = "<group>"; };
 		34D705B420BE85C700F0940C /* LZOutboundSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundSectionView.m; sourceTree = "<group>"; };
 		34D705B620BE9D3000F0940C /* LZOutboundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundCell.h; sourceTree = "<group>"; };
@@ -1973,6 +1977,8 @@
 				346B6AD8208D981700F4B054 /* ProcessorsViewController.m */,
 				34D5EAE720D23DB9009D9D7C /* LZPaymentOrderListVC.h */,
 				34D5EAE620D23DB9009D9D7C /* LZPaymentOrderListVC.m */,
+				34D5EAEA20D2484A009D9D7C /* LZPaymentOrderListDetailVC.h */,
+				34D5EAEB20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3862,6 +3868,7 @@
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34EA491120CFF4BB0086FF79 /* LZReimbursementModel.m in Sources */,
 				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
+				34D5EAEC20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
 				B50505A9209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,
 				B50505D9209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
 				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
@@ -4117,6 +4124,7 @@
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
+				34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
 				B58BF6F720A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,

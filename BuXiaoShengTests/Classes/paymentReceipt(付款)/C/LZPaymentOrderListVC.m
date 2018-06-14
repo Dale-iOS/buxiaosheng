@@ -11,6 +11,7 @@
 #import "LZPaymentOrderListModel.h"
 #import "LZPaymentOrderListCell.h"
 #import "BRPickerView.h"
+#import "LZPaymentOrderListDetailVC.h"
 
 @interface LZPaymentOrderListVC ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -166,14 +167,10 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    //获取cell
-    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-//    LZClientReceiptModel *model = _list[indexPath.row];
-//    LZClientReceiptDetailVC *vc = [[LZClientReceiptDetailVC alloc]init];
-//    vc.id = model.id;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
+    LZPaymentOrderListModel *model = _lists[indexPath.row];
+    LZPaymentOrderListDetailVC *vc = [[LZPaymentOrderListDetailVC alloc]init];
+    vc.id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ----- 点击事件 -----

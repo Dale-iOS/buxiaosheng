@@ -1,19 +1,19 @@
 //
-//  LZClientReceiptDetailVC.m
+//  LZPaymentOrderListDetailVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/9.
+//  Created by 罗镇浩 on 2018/6/14.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  详情页面
+//
 
-#import "LZClientReceiptDetailVC.h"
+#import "LZPaymentOrderListDetailVC.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
 #import "LZClientReceiptDetailModel.h"
 
-@interface LZClientReceiptDetailVC ()<LZHTableViewDelegate>
+@interface LZPaymentOrderListDetailVC ()<LZHTableViewDelegate>
 @property(nonatomic,weak)LZHTableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *dataSource;
 ///日期
@@ -29,9 +29,10 @@
 ///备注
 @property(nonatomic,strong)TextInputTextView *remarkTextView;
 @property(nonatomic,strong)LZClientReceiptDetailModel *model;
+
 @end
 
-@implementation LZClientReceiptDetailVC
+@implementation LZPaymentOrderListDetailVC
 @synthesize myTableView;
 
 - (void)viewDidLoad {
@@ -55,7 +56,7 @@
 
 - (void)setupUI{
     
-    self.navigationItem.titleView = [Utility navTitleView:@"收款单详情"];
+    self.navigationItem.titleView = [Utility navTitleView:@"付款单详情"];
     
     self.dataSource = [NSMutableArray array];
     [self.view addSubview:self.myTableView];
@@ -69,7 +70,7 @@
     _dateLbl.backgroundColor = [UIColor whiteColor];
     _dateLbl.textColor = CD_Text99;
     _dateLbl.font = FONT(12);
-    _dateLbl.text = @"12313213";
+//    _dateLbl.text = @"12313213";
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
     lineView.backgroundColor = LZHBackgroundColor;
@@ -78,7 +79,7 @@
     //名称
     self.nameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
     self.nameCell.lineView.hidden = YES;
-    self.nameCell.titleLabel.text = @"名称";
+    self.nameCell.titleLabel.text = @"供货商：";
     self.nameCell.userInteractionEnabled = NO;
     self.nameCell.contentTF.sd_layout
     .topEqualToView(self.nameCell.titleLabel)
@@ -86,11 +87,11 @@
     .heightRatioToView(self.nameCell, 1)
     .widthIs(LZHScale_WIDTH(270));
     
-    
     //    收款金额
     self.collectionCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
-    self.collectionCell.titleLabel.text = @"收款金额";
+    self.collectionCell.titleLabel.text = @"付款金额：";
     self.collectionCell.lineView.hidden = YES;
+    self.collectionCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
     self.collectionCell.userInteractionEnabled = NO;
     self.collectionCell.contentTF.sd_layout
     .topEqualToView(self.collectionCell.titleLabel)
@@ -98,11 +99,9 @@
     .heightRatioToView(self.collectionCell, 1)
     .widthIs(LZHScale_WIDTH(270));
     
-    
     //    现欠款
     self.arrearsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
-    self.arrearsCell.contentTF.textColor = [UIColor redColor];
-    self.arrearsCell.titleLabel.text = @"现欠款";
+    self.arrearsCell.titleLabel.text = @"付款方式：";
     self.arrearsCell.userInteractionEnabled = NO;
     self.arrearsCell.lineView.hidden = YES;
     self.arrearsCell.contentTF.sd_layout
@@ -111,23 +110,16 @@
     .heightRatioToView(self.arrearsCell, 1)
     .widthIs(LZHScale_WIDTH(270));
     
-    
-    //    收款账户
-    self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
-    self.accountCell.titleLabel.text = @"收款账户";
-    self.accountCell.contentTF.enabled = NO;
-    self.accountCell.lineView.hidden = YES;
-    self.accountCell.contentTF.sd_layout
-    .topEqualToView(self.accountCell.titleLabel)
-    .leftSpaceToView(self.accountCell.titleLabel, -10)
-    .heightRatioToView(self.accountCell, 1)
-    .widthIs(LZHScale_WIDTH(270));
-    
+//    //    收款账户
+//    self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
+//    self.accountCell.titleLabel.text = @"收款账户";
+//    self.accountCell.contentTF.enabled = NO;
+//    self.accountCell.lineView.hidden = YES;
     
     //    备注textView
     self.remarkTextView = [[TextInputTextView alloc]init];
     self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 98);
-    self.remarkTextView.titleLabel.text = @"备注";
+    self.remarkTextView.titleLabel.text = @"备注：";
     self.remarkTextView.lineView.hidden = YES;
     self.remarkTextView.userInteractionEnabled = NO;
     self.remarkTextView.textView.sd_layout
@@ -140,7 +132,7 @@
     headview.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[_dateLbl,lineView,self.nameCell,self.collectionCell,self.arrearsCell,self.accountCell,self.remarkTextView];
+    item.sectionRows = @[_dateLbl,lineView,self.nameCell,self.collectionCell,self.arrearsCell,self.remarkTextView];
     item.sectionView = headview;
     item.canSelected = NO;
     [self.dataSource addObject:item];
@@ -150,7 +142,7 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"id":self.id
                              };
-    [BXSHttp requestGETWithAppURL:@"finance/receipt_detail.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"finance/payment_detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
@@ -160,7 +152,14 @@
         
         //详情赋值
         _dateLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
-        self.nameCell.contentTF.text = _model.customerName;
+        if ([_model.type integerValue] == 0) {
+            self.nameCell.titleLabel.text = @"供货商：";
+        }else if ([_model.type integerValue] == 1){
+            self.nameCell.titleLabel.text = @"生产商：";
+        }else if ([_model.type integerValue] == 2){
+            self.nameCell.titleLabel.text = @"加工商：";
+        }
+        self.nameCell.contentTF.text = _model.factoryName;
         self.collectionCell.contentTF.text = _model.amount;
         self.arrearsCell.contentTF.text = _model.bankName;
         self.remarkTextView.textView.text = _model.remark;

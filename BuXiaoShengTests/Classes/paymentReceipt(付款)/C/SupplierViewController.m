@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/23.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  供货商（付款单）
+//  供货商付款单（付款单）
 
 #import "SupplierViewController.h"
 #import "LZHTableView.h"
