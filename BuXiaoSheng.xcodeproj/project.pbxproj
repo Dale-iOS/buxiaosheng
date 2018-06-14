@@ -1645,8 +1645,6 @@
 				343207D520A06AA6005A5D23 /* YesAuditApplyViewController.m */,
 				343207D720A06AB5005A5D23 /* YesAuditSellViewController.h */,
 				343207D820A06AB5005A5D23 /* YesAuditSellViewController.m */,
-				344F2294208EDEDB009ADA33 /* BankConversionViewController.h */,
-				344F2295208EDEDB009ADA33 /* BankConversionViewController.m */,
 				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
 				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
 				342D951E209063970018B363 /* CustomerReconciliationViewController.h */,
@@ -2701,6 +2699,8 @@
 				344F229E208F2569009ADA33 /* BankDetailListViewController.m */,
 				344F22A3208F403D009ADA33 /* DocumentBankDetailViewController.h */,
 				344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */,
+				344F2294208EDEDB009ADA33 /* BankConversionViewController.h */,
+				344F2295208EDEDB009ADA33 /* BankConversionViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";

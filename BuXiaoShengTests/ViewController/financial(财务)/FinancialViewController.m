@@ -26,6 +26,7 @@
 #import "CustomerReconciliationViewController.h"
 #import "LZHomeModel.h"
 #import "LZIncomeVC.h"
+#import "BankConversionViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -135,11 +136,11 @@
         BankDetailViewController *vc = [[BankDetailViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-//     if ([model.paramsIos isEqualToString:@"还没有设置"])
-//    {   //银行互转
-//        BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+     if ([model.paramsIos isEqualToString:@"banktransfer"])
+    {   //银行互转
+        BankConversionViewController *vc = [[BankConversionViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
      if ([model.paramsIos isEqualToString:@"customarrear"])
     {
         //客户欠款表

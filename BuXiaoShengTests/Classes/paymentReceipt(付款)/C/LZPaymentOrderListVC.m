@@ -175,7 +175,7 @@
 
 #pragma mark ----- 点击事件 -----
 - (void)navigationSetupClick{
-    [BRStringPickerView showStringPickerWithTitle:@"请筛选供货商" dataSource:@[@"全部", @"供货商", @"生厂商",@"加工商"] defaultSelValue:nil resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:@"请筛选厂商" dataSource:@[@"全部", @"供货商", @"生厂商",@"加工商"] defaultSelValue:nil resultBlock:^(id selectValue) {
 //        textField.text = self.infoModel.genderStr = selectValue;
         if ([selectValue isEqualToString:@"全部"]) {
             _selecStr = @"";
