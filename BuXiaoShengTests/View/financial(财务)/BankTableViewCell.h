@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LZBankDetailListModel;
 
 @interface BankTableViewCell : UITableViewCell
-
+@property(nonatomic,strong)LZBankDetailListModel *model;
 ///底图
 @property (nonatomic, strong) UIView *bgView;
 

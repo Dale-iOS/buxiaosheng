@@ -4,20 +4,23 @@
 //
 //  Created by 罗镇浩 on 2018/4/23.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  银行明细页面
+//  银行明细页面1
 
 #import "BankDetailViewController.h"
 #import "BankTableViewCell.h"
 #import "BankConversionViewController.h"
+#import "LZBankDetailModel.h"
+#import "BankDetailListViewController.h"
 
 @interface BankDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 ///金额显示
 @property (nonatomic, strong) UILabel *priceLbl;
-
 ///银行互转按钮
 @property (nonatomic, strong) UIButton *conversionBtn;
+@property(nonatomic,strong)LZBankDetailModel *model;
+@property(nonatomic,strong)NSArray<LZBankDetailListModel*> *lists;
 @end
 
 @implementation BankDetailViewController
@@ -32,7 +35,7 @@
 {
     [super viewWillAppear:YES];
     
-    self.navigationItem.titleView = [Utility navWhiteTitleView:@"银行明细2"];
+    self.navigationItem.titleView = [Utility navWhiteTitleView:@"银行明细"];
     //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     //    self.view.backgroundColor = [UIColor whiteColor];
     
@@ -60,6 +63,8 @@
     
     self.view.backgroundColor = LZHBackgroundColor;
     
+    
+    [self setupDetail];
 }
 
 - (void)setupUI
@@ -83,7 +88,7 @@
     self.priceLbl.font = [UIFont boldSystemFontOfSize:35];
     self.priceLbl.textColor = [UIColor whiteColor];
     self.priceLbl.textAlignment = NSTextAlignmentCenter;
-    self.priceLbl.text = @"2390.00";
+//    self.priceLbl.text = @"2390.00";
     [bgBlueView addSubview:self.priceLbl];
     
     //布局
@@ -119,10 +124,28 @@
     
 }
 
+#pragma mark --- 网络请求 ---
+- (void)setupDetail{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_index.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _model = [LZBankDetailModel LLMJParse:baseModel.data];
+        self.priceLbl.text = _model.totalAmount;
+        _lists = _model.itemList;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,7 +155,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 145;
+    return 88;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,6 +167,7 @@
         
         cell = [[BankTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
@@ -192,7 +216,7 @@
     rightButton.autoresizesSubviews = YES;
     rightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     rightButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
-    [rightButton addTarget:self action:@selector(backMethod) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(navSearchClick) forControlEvents:UIControlEventTouchUpInside];
     [rightButtonView addSubview:rightButton];
     UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButtonView];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -208,6 +232,11 @@
     NSLog(@"点击了银行互转");
     
     BankConversionViewController *vc = [[BankConversionViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)navSearchClick{
+    BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

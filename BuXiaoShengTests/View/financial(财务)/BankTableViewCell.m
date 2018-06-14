@@ -7,6 +7,7 @@
 //
 
 #import "BankTableViewCell.h"
+#import "LZBankDetailModel.h"
 
 @implementation BankTableViewCell
 @synthesize bgView,cornerWhiteBgView,iconImageView,titleLabel,lastLabel,addLabel,totalLabel,bottomBgView;
@@ -56,6 +57,7 @@
     {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.image = IMAGE(@"icbc");
+        imageView.hidden = YES;
         [contentView addSubview:(iconImageView = imageView)];
     }
     return iconImageView;
@@ -66,7 +68,7 @@
     if (titleLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"中国工商银行";
+//        label.text = @"中国工商银行";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont boldSystemFontOfSize:14];
         label.textColor = CD_Text33;
@@ -80,7 +82,7 @@
     if (lastLabel == nil)
     {
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"上期：5623.10";
+//        label.text = @"上期：5623.10";
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
@@ -98,6 +100,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
+        label.hidden = YES;
         [contentView addSubview:(addLabel = label)];
     }
     return addLabel;
@@ -112,6 +115,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
         label.textColor = CD_Text66;
+        label.hidden = YES;
         [contentView addSubview:(totalLabel = label)];
     }
     return totalLabel;
@@ -123,6 +127,7 @@
         
         UIView *view = [[UIView alloc]init];
         view.backgroundColor = [UIColor redColor];
+        view.hidden = YES;
         [contentView addSubview:(bottomBgView = view)];
     }
     return bottomBgView;
@@ -134,7 +139,7 @@
     .topSpaceToView(contentView, 5)
     .leftSpaceToView(contentView, 0)
     .widthIs(APPWidth -30)
-    .heightIs(133);
+    .heightIs(75);
     
     //    self.bottomBgView.sd_layout
     //    .bottomSpaceToView(self.bgView, -10)
@@ -156,7 +161,7 @@
     .heightIs(40);
     
     self.titleLabel.sd_layout
-    .leftSpaceToView(self.iconImageView, 15)
+    .leftSpaceToView(self.iconImageView, -25)
     .topSpaceToView(self.contentView, 20)
     .widthIs(250)
     .heightIs(15);
@@ -178,9 +183,13 @@
     .topSpaceToView(self.addLabel, 10)
     .widthIs(300)
     .heightIs(13);
-    
-    
-    
+
+}
+
+- (void)setModel:(LZBankDetailListModel *)model{
+    _model = model;
+    self.titleLabel.text = _model.bankName;
+    self.lastLabel.text = [NSString stringWithFormat:@"余额：%@",_model.amount];
 }
 
 

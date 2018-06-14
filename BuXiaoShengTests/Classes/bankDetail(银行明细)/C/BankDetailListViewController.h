@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BankDetailListViewController : UIViewController
+@interface BankDetailListViewController : BaseViewController
 
 @end

@@ -7,6 +7,7 @@
 //  银行明细cell
 
 #import "BankDetailListTableViewCell.h"
+#import "LZBankListDetailModel.h"
 
 @implementation BankDetailListTableViewCell
 @synthesize iconImageView,titleLabel,bankLabel,dateLabel,moneyLabel;
@@ -123,15 +124,27 @@
     .topSpaceToView(contentView, 20);
 }
 
+- (void)setModel:(LZBankListDetailModel *)model{
+    _model = model;
+    self.titleLabel.text = _model.objectName;
+    self.bankLabel.text = _model.bankName;
+    self.dateLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+    if ([_model.amount integerValue]>=0) {
+        self.moneyLabel.textColor = [UIColor colorWithHexString:@"#f26552"];
+        self.iconImageView.image = IMAGE(@"incomebank");
+    }else{
+        self.moneyLabel.textColor = CD_Text33;
+        self.iconImageView.image = IMAGE(@"spendingbank");
+    }
+    self.moneyLabel.text = _model.amount;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

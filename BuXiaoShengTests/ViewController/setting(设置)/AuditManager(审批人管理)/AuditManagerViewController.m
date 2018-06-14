@@ -145,7 +145,7 @@
         
         NSDictionary * param = @{
                                  @"companyId":[BXSUser currentUser].companyId,
-                                 @"id":self.names[indexP.row][@"id"]
+                                 @"id":self.names[indexP.row][@"approverId"]
                                  };
         [BXSHttp requestPOSTWithAppURL:@"approver/delete.do" param:param success:^(id response) {
             LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

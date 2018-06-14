@@ -4,26 +4,31 @@
 //
 //  Created by 罗镇浩 on 2018/4/24.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  银行明细页面
+//  银行明细页面2
 
 #import "BankDetailListViewController.h"
 #import "BankDetailListTableViewCell.h"
 #import "DocumentBankDetailViewController.h"
+#import "LZBankListDetailModel.h"
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *headDateLbl;
-
+@property(nonatomic,strong)NSArray<LZBankListDetailModel*> *lists;
 @end
 
 @implementation BankDetailListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupList];
 }
 
 - (void)setupUI
@@ -81,8 +86,9 @@
     .widthIs(APPWidth)
     .leftSpaceToView(self.tableViewHeadView, 0);
     
-    self.navigationItem.titleView = [Utility navTitleView:@"银行明细1"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
+    self.navigationItem.titleView = [Utility navTitleView:@"银行明细"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"screen1")];
+
     self.view.backgroundColor = LZHBackgroundColor;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 10 +64, APPWidth, APPHeight -64-10) style:UITableViewStylePlain];
@@ -95,10 +101,30 @@
     [self.view addSubview:self.tableView];
 }
 
+#pragma mark ---- 网络请求 ----
+- (void)setupList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15"
+                             };
+    [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _lists = [LZBankListDetailModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -120,13 +146,18 @@
         
         cell = [[BankDetailListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DocumentBankDetailViewController *vc = [[DocumentBankDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    DocumentBankDetailViewController *vc = [[DocumentBankDetailViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)navigationSetupClick{
+    
 }
 
 - (void)dateBtnOnClick
