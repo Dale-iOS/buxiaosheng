@@ -40,6 +40,8 @@
 @property (nonatomic, strong) TextInputCell *paymentMethodCell;
 ///备注
 @property (nonatomic, strong) TextInputCell *remarkTextView;
+
+@property (nonatomic,assign) NSInteger addCellCount;
 @end
 
 @implementation BackOrderViewController
@@ -47,10 +49,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.addCellCount = 1;
 
     [self setupUI];
-    
-    NSLog(@"%@",self.contenDataSource);
 }
 
 
@@ -66,21 +67,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.contenDataSource.count;
+    return self.addCellCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LLBackOrderCotentCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"LLBackOrderCotentCell"];
+    cell.dateModels = self.contenDataSource;
     return cell;
 }
 
-
-
--(void)textViewDidEndEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@"请输入备注内容"]) {
-        textView.textColor = [UIColor groupTableViewBackgroundColor];
-    }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 11 * 60 +(20*self.contenDataSource.count-1);
 }
+
+
+
+
 
 -(UITableView *)tableView {
     if (!_tableView) {
@@ -259,7 +261,7 @@
                 default:
                     break;
             }
-            [sectionOneModel addObject:model];
+            [sectionTwoModel addObject:model];
         }
         [_contenDataSource addObject:sectionTwoModel];
         
@@ -271,37 +273,37 @@
                     model.leftTitle = @"单价";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 case 1:
                     model.leftTitle = @"入库数量";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 case 2:
                     model.leftTitle = @"入库数量";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 case 3:
                     model.leftTitle = @"标签数量";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 case 4:
                     model.leftTitle = @"结算数量";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 case 5:
                     model.leftTitle = @"本单退款金额";
                     model.rightArrowHidden = true;
                     model.placeholder = @"";
-                    model.content = @"";
+                    model.content = @"0.0";
                     break;
                 default:
                     break;

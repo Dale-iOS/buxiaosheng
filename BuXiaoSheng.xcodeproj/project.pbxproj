@@ -518,6 +518,8 @@
 		B5244BF420D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */; };
 		B5244BF820D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */; };
 		B5244BF920D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */; };
+		B5244BFC20D3B974007BB83F /* LLBackOderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BFB20D3B974007BB83F /* LLBackOderDetailCell.m */; };
+		B5244BFD20D3B974007BB83F /* LLBackOderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BFB20D3B974007BB83F /* LLBackOderDetailCell.m */; };
 		B531EF2320BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */; };
 		B531EF2420BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */; };
 		B531EF2520BF8FE90028F18B /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0520BF8FE90028F18B /* FSCalendar.m */; };
@@ -1387,6 +1389,8 @@
 		B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBackOrderCotentCell.m; sourceTree = "<group>"; };
 		B5244BF620D3947E007BB83F /* LLBackOrdeContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBackOrdeContentModel.h; sourceTree = "<group>"; };
 		B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBackOrdeContentModel.m; sourceTree = "<group>"; };
+		B5244BFA20D3B974007BB83F /* LLBackOderDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBackOderDetailCell.h; sourceTree = "<group>"; };
+		B5244BFB20D3B974007BB83F /* LLBackOderDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBackOderDetailCell.m; sourceTree = "<group>"; };
 		B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
 		B531EF0420BF8FE90028F18B /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		B531EF0520BF8FE90028F18B /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -2609,6 +2613,8 @@
 				3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */,
 				B5244BF120D387A9007BB83F /* LLBackOrderCotentCell.h */,
 				B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */,
+				B5244BFA20D3B974007BB83F /* LLBackOderDetailCell.h */,
+				B5244BFB20D3B974007BB83F /* LLBackOderDetailCell.m */,
 			);
 			path = "Sale(销售)";
 			sourceTree = "<group>";
@@ -4041,6 +4047,7 @@
 				34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
+				B5244BFC20D3B974007BB83F /* LLBackOderDetailCell.m in Sources */,
 				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
@@ -4307,6 +4314,7 @@
 				B50505A4209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				B577CEAD20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				34847D4E20C7D235004485F1 /* LZUploadMomentImagesCell.m in Sources */,
+				B5244BFD20D3B974007BB83F /* LLBackOderDetailCell.m in Sources */,
 				3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
 				3427A4EF20CE507600369650 /* BRStringPickerView.m in Sources */,
 				34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */,

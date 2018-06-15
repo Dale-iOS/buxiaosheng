@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LLBackOrdeContentModel;
 @interface LLBackOrderCotentCell : UITableViewCell
-
+ @property (nonatomic,strong) NSMutableArray <NSMutableArray <LLBackOrdeContentModel*>*>* dateModels;
 @end
