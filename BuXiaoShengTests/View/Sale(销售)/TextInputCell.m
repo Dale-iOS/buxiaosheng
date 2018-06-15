@@ -127,7 +127,7 @@
     .widthIs(LZHScale_WIDTH(270));
     
     self.rightArrowImageVIew.sd_layout
-    .topSpaceToView(self, 17)
+    .centerYEqualToView(self)
     .rightSpaceToView(self, 15)
     .widthIs(8)
     .heightIs(14);

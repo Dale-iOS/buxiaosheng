@@ -508,6 +508,10 @@
 		B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505066F209ABEE200CE7E4D /* LLDyeingCell.m */; };
 		B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
 		B5050678209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */; };
+		B5244BF320D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */; };
+		B5244BF420D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */; };
+		B5244BF820D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */; };
+		B5244BF920D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */; };
 		B531EF2320BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */; };
 		B531EF2420BF8FE90028F18B /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */; };
 		B531EF2520BF8FE90028F18B /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B531EF0520BF8FE90028F18B /* FSCalendar.m */; };
@@ -1367,6 +1371,10 @@
 		B505066F209ABEE200CE7E4D /* LLDyeingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCell.m; sourceTree = "<group>"; };
 		B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDyeingCollectionViewCell.h; sourceTree = "<group>"; };
 		B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDyeingCollectionViewCell.m; sourceTree = "<group>"; };
+		B5244BF120D387A9007BB83F /* LLBackOrderCotentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBackOrderCotentCell.h; sourceTree = "<group>"; };
+		B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBackOrderCotentCell.m; sourceTree = "<group>"; };
+		B5244BF620D3947E007BB83F /* LLBackOrdeContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBackOrdeContentModel.h; sourceTree = "<group>"; };
+		B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBackOrdeContentModel.m; sourceTree = "<group>"; };
 		B531EF0320BF8FE90028F18B /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
 		B531EF0420BF8FE90028F18B /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		B531EF0520BF8FE90028F18B /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -2503,6 +2511,7 @@
 		34A92B47207DE93C00572648 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B5244BF520D39424007BB83F /* sale销售 */,
 				34F4B48920BBAC960017003E /* warehouse仓库 */,
 				3447A65F20B686B500F657B7 /* salesDemand(销售需求) */,
 				3433D0B120B50E99003FFC16 /* home(首页) */,
@@ -2586,6 +2595,8 @@
 				34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */,
 				3411F2A82085C50700C448FD /* ClientManagerTableViewCell.h */,
 				3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */,
+				B5244BF120D387A9007BB83F /* LLBackOrderCotentCell.h */,
+				B5244BF220D387A9007BB83F /* LLBackOrderCotentCell.m */,
 			);
 			path = "Sale(销售)";
 			sourceTree = "<group>";
@@ -3426,6 +3437,15 @@
 			path = "Dyeing制造染色";
 			sourceTree = "<group>";
 		};
+		B5244BF520D39424007BB83F /* sale销售 */ = {
+			isa = PBXGroup;
+			children = (
+				B5244BF620D3947E007BB83F /* LLBackOrdeContentModel.h */,
+				B5244BF720D3947E007BB83F /* LLBackOrdeContentModel.m */,
+			);
+			path = "sale销售";
+			sourceTree = "<group>";
+		};
 		B531EF0220BF8FE90028F18B /* FSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -4008,6 +4028,7 @@
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
+				B5244BF820D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */,
 				3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */,
 				34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
@@ -4071,6 +4092,7 @@
 				B50505DB209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
+				B5244BF320D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */,
 				34F6E77520C03EAC00FABC5F /* LZInventoryDetailCell.m in Sources */,
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
@@ -4214,6 +4236,7 @@
 				34A92B2D207DE86200572648 /* BuXiaoShengTests.m in Sources */,
 				344C488620D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
+				B5244BF420D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
@@ -4248,6 +4271,7 @@
 				B531EF4020BF8FE90028F18B /* FSCalendarTransitionCoordinator.m in Sources */,
 				3455F68B20CA7C8700579521 /* LZWeaveView.m in Sources */,
 				3427A4F720CE507600369650 /* BRAddressModel.m in Sources */,
+				B5244BF920D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */,
 				34EA48FA20CFAA8C0086FF79 /* LZStockTrackingVC.m in Sources */,
 				34195FB420CD441000524F20 /* LZSpendingListCell.m in Sources */,
 				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,

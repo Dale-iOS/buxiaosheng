@@ -12,39 +12,37 @@
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
+#import "LLBackOrderCotentCell.h"
 
-@interface BackOrderViewController ()<LZHTableViewDelegate,UITextViewDelegate>
-@property (weak, nonatomic) LZHTableView *mainTableView;
-@property (strong, nonatomic) NSMutableArray *datasource;
-///销售需求列表View
-@property (nonatomic, strong) SalesDemandListView *demandListView;
+@interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray * contenDataSource;
+/////销售需求列表View
+//@property (nonatomic, strong) SalesDemandListView *demandListView;
 
 ///客户名字
 @property (nonatomic, strong) TextInputCell *nameCell;
 ///客户电话
 @property (nonatomic, strong) TextInputCell *phoneCell;
-///预收定金
-@property (nonatomic, strong) TextInputCell *depositCell;
 
-///调整金额
-@property (nonatomic, strong) TextInputCell *adjustmentCell;
+
+///入仓库
+@property (nonatomic, strong) TextInputCell *putStorageCell;
+///应付金额
+@property (nonatomic, strong) TextInputCell *amountPayableCell;
 ///实收金额
 @property (nonatomic, strong) TextInputCell *actualCell;
-///本单欠款
-@property (nonatomic, strong) TextInputCell *arrearsCell;
-///收款方式
+
+///预收金额
+@property (nonatomic, strong) TextInputCell *amountPaymentCell;
+///付款方式
 @property (nonatomic, strong) TextInputCell *paymentMethodCell;
 ///备注
-@property (nonatomic, strong) TextInputTextView *remarkTextView;
-///仓库注意事项
-@property (nonatomic, strong) TextInputTextView *warehouseTextView;
-
-///下一步按钮
-@property (nonatomic, strong) UIButton *nextBtn;
+@property (nonatomic, strong) TextInputCell *remarkTextView;
 @end
 
 @implementation BackOrderViewController
-@synthesize mainTableView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,217 +50,173 @@
     [self setupUI];
 }
 
-- (LZHTableView *)mainTableView
-{
-    if (!mainTableView) {
-        LZHTableView *tabelView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -44)];
-        [self.view addSubview:(mainTableView = tabelView)];
-    }
-    return mainTableView;
-}
+
 
 - (void)setupUI
 {
-//    self.navigationItem.title = @"销售需求";
-//    self.view.backgroundColor = [UIColor whiteColor ];
-
     self.navigationItem.titleView = [Utility navTitleView:@"退单"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"search")];
-    
-    
-    self.datasource = [NSMutableArray array];
-    
-    self.mainTableView.delegate = self;
-    [self.view addSubview:self.mainTableView];
-    
-    [self setSectionOne];
-    [self setSectionTwo];
-    [self setSectionThree];
-//    [self setSectionFour];
-    
-    self.mainTableView.dataSoure = self.datasource;
-    
-    //下一步按钮
-    self.nextBtn = [UIButton new];
-    self.nextBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
-    self.nextBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
-    [self.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
-    [self.nextBtn addTarget:self action:@selector(nextBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
-    //    self.nextBtn.titleLabel.text = @"下一步";
-    self.nextBtn.titleLabel.textColor = [UIColor whiteColor];
-    
-    [self.view addSubview:self.nextBtn];
-    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-LLAddHeight);
+    }];
 }
 
-- (void)setSectionOne
-{
-    self.demandListView = [[SalesDemandListView alloc]init];
-    self.demandListView.frame = CGRectMake(0, 0, APPWidth, 250);
-    self.demandListView.backgroundColor = [UIColor blueColor];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.demandListView];
-    [self.datasource addObject:item];
+    return self.contenDataSource.count;
 }
 
-- (void)setSectionTwo
-{
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LLBackOrderCotentCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"LLBackOrderCotentCell"];
+    return cell;
+}
+
+
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@"请输入备注内容"]) {
+        textView.textColor = [UIColor groupTableViewBackgroundColor];
+    }
+}
+
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [self tableFooterView];
+        [self.view addSubview:_tableView];
+        [_tableView registerClass:[LLBackOrderCotentCell class] forCellReuseIdentifier:@"LLBackOrderCotentCell"];
+        _tableView.tableHeaderView = [self tableHeaderView];
+    }
+    return _tableView;
+}
+-(UIView *)tableHeaderView {
+    UIView * headerView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
+    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.nameCell = [[TextInputCell alloc] init];
+    self.nameCell.backgroundColor = [UIColor whiteColor];
+    [headerView addSubview:self.nameCell];
+    self.nameCell.titleLabel.text = @"客户姓名";
+    self.nameCell.contentTF.placeholder = @"请输入客户姓名";
+    [self.nameCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(headerView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(headerView).offset(20);
+    }];
     
-    self.nameCell = [[TextInputCell alloc]init];
-    self.nameCell.hidden = NO;
-    //    self.nameCell.backgroundColor = [UIColor redColor];
-    self.nameCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    self.phoneCell = [[TextInputCell alloc]init];
-    self.phoneCell.hidden = NO;
-    //    self.phoneCell.backgroundColor = [UIColor orangeColor];
-    self.phoneCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    
-//    self.depositCell = [[TextInputCell alloc]init];
-//    self.depositCell.hidden = NO;
-//    //    self.depositCell.backgroundColor = [UIColor greenColor];
-//    self.depositCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    
-    self.nameCell.titleLabel.text = @"客户名字";
-    self.nameCell.contentTF.text = @"周鹏";
-    
+    self.phoneCell = [[TextInputCell alloc] init];
+     self.phoneCell.backgroundColor = [UIColor whiteColor];
+    [headerView addSubview:self.phoneCell];
     self.phoneCell.titleLabel.text = @"客户电话";
-    self.phoneCell.contentTF.placeholder = @"请输入客户电话";
-    
-    self.depositCell.titleLabel.text = @"预收定金";
-    self.depositCell.contentTF.text = @"￥25,689";
-    
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.nameCell,self.phoneCell];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
-    
+    self.phoneCell.contentTF.userInteractionEnabled = false;
+    [self.phoneCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(headerView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.nameCell.mas_bottom);
+    }];
+    return headerView;
 }
 
-- (void)setSectionThree
-{
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
+-(UIView *)tableFooterView {
+    UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5*60+20+100)];
+    footView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    self.adjustmentCell = [[TextInputCell alloc]init];
-    self.adjustmentCell.hidden = NO;
-    self.adjustmentCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    self.actualCell = [[TextInputCell alloc]init];
-    self.actualCell.hidden = NO;
-    self.actualCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    self.arrearsCell = [[TextInputCell alloc]init];
-    self.arrearsCell.hidden = NO;
-    self.arrearsCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    self.paymentMethodCell = [[TextInputCell alloc]init];
-    self.paymentMethodCell.hintLabel.hidden = NO;
-    self.paymentMethodCell.rightArrowImageVIew.hidden = NO;
-    self.paymentMethodCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    
-    self.remarkTextView = [[TextInputTextView alloc]init];
-    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 80);
-    self.remarkTextView.textView.delegate = self;
+    self.putStorageCell = [[TextInputCell alloc] init];
+    self.putStorageCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.putStorageCell];
+    self.putStorageCell.titleLabel.text = @"入库仓";
+    self.putStorageCell.contentTF.placeholder = @"请选择入库仓";
+    self.putStorageCell.rightArrowImageVIew.hidden = false;
+    self.putStorageCell.contentTF.userInteractionEnabled = false;
+    [self.putStorageCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(footView).offset(20);
+    }];
     
     
-    self.adjustmentCell.titleLabel.text = @"调整金额";
-    self.adjustmentCell.contentTF.placeholder = @"请输入调整金额";
-    self.adjustmentCell.frame = CGRectMake(0, 0, APPWidth, 49);
+    self.amountPayableCell = [[TextInputCell alloc] init];
+    self.amountPayableCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.amountPayableCell];
+    self.amountPayableCell.titleLabel.text = @"应付金额";
+    self.amountPayableCell.contentTF.text = @"0.0";
+    self.amountPayableCell.contentTF.userInteractionEnabled = false;
+    [self.amountPayableCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.putStorageCell.mas_bottom);
+    }];
     
-    self.actualCell.titleLabel.text = @"实收金额";
-    self.actualCell.contentTF.text = @"500";
-    self.actualCell.frame = CGRectMake(0, 0, APPWidth, 49);
+    self.actualCell = [[TextInputCell alloc] init];
+    self.actualCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.actualCell];
+    self.actualCell.titleLabel.text = @"实付金额";
+    self.actualCell.contentTF.placeholder = @"请输入实付金额";
+    [self.actualCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.amountPayableCell.mas_bottom);
+    }];
     
-    self.arrearsCell.titleLabel.text = @"本单欠款";
-    self.arrearsCell.contentTF.text = @"100";
-    self.arrearsCell.contentTF.textColor = [UIColor redColor];
+    self.actualCell = [[TextInputCell alloc] init];
+    self.actualCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.actualCell];
+    self.actualCell.titleLabel.text = @"实付金额";
+    self.actualCell.contentTF.placeholder = @"请输入实付金额";
+    [self.actualCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.amountPayableCell.mas_bottom);
+    }];
     
+    self.amountPaymentCell = [[TextInputCell alloc] init];
+    self.amountPaymentCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.amountPaymentCell];
+    self.amountPaymentCell.titleLabel.text = @"预收金额";
+    self.amountPaymentCell.contentTF.text = @"0.0";
+    [self.amountPaymentCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.actualCell.mas_bottom);
+    }];
+    
+    self.paymentMethodCell = [[TextInputCell alloc] init];
+    self.paymentMethodCell.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.paymentMethodCell];
     self.paymentMethodCell.titleLabel.text = @"付款方式";
+    self.paymentMethodCell.contentTF.placeholder = @"请选择付款方式";
+    self.paymentMethodCell.rightArrowImageVIew.hidden = false;
+    self.paymentMethodCell.contentTF.userInteractionEnabled = false;
+    [self.paymentMethodCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(60);
+        make.top.equalTo(self.amountPaymentCell.mas_bottom);
+    }];
     
+    
+    self.remarkTextView = [[TextInputCell alloc] init];
+    self.remarkTextView.backgroundColor = [UIColor whiteColor];
+    [footView addSubview:self.remarkTextView];
     self.remarkTextView.titleLabel.text = @"备注";
-    self.remarkTextView.textView.placeholder = @"请输入备注内容";
+    self.remarkTextView.contentTF.placeholder = @"请输入备注内容";
+    [self.remarkTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(footView);
+        make.height.mas_equalTo(100);
+        make.top.equalTo(self.paymentMethodCell.mas_bottom);
+    }];
     
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.adjustmentCell,self.actualCell,self.arrearsCell,self.paymentMethodCell,self.remarkTextView];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
+    return footView;
 }
 
-- (void)setSectionFour
-{
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
-    
-    self.warehouseTextView = [[TextInputTextView alloc]init];
-    self.warehouseTextView.frame = CGRectMake(0, 0, APPWidth, 80);
-    self.warehouseTextView.textView.delegate = self;
-    
-    self.warehouseTextView.titleLabel.text = @"仓库注意事项";
-    self.warehouseTextView.textView.placeholder = @"请输入告知仓库事项";
-    
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPHeight, 60)];
-    footerView.backgroundColor = LZHBackgroundColor;
-    
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.warehouseTextView,footerView];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
-}
-
-
-#pragma mark -------- 点击事件 ----------
-- (void)nextBtnOnClickAction
-{
-    NSLog(@"点击了 下一步 按钮");
-}
-
-- (void)navigationSetupClick
-{
-    NSLog(@"点击了放大镜");
-}
-
-
-#pragma mark ----- uitextview delegate
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    //    限制textView最大字数
-#define MY_MAX 36
-    if ((textView.text.length - range.length + text.length) > MY_MAX)
-    {
-        NSString *substring = [text substringToIndex:MY_MAX - (textView.text.length - range.length)];
-        NSMutableString *lastString = [textView.text mutableCopy];
-        [lastString replaceCharactersInRange:range withString:substring];
-        textView.text = [lastString copy];
-        
-        //        [Utility showToastWithMessage:@"限制字数200以内"];
-        
-        return NO;
+-(NSMutableArray *)contenDataSource {
+    if (!_contenDataSource) {
+        _contenDataSource = [NSMutableArray array];
+        NSArray * sectionOneData = @[@{
+                                         @""
+                                         }];
     }
-    else
-    {
-        return YES;
-    }
+    return _contenDataSource;
 }
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
-
-
 
 @end
