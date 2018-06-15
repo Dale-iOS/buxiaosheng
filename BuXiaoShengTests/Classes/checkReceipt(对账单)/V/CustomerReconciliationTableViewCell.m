@@ -4,9 +4,10 @@
 //
 //  Created by 罗镇浩 on 2018/4/25.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户对账单cell
+//  客户对账biaocell
 
 #import "CustomerReconciliationTableViewCell.h"
+#import "LZCheckReceiptModel.h"
 #define contentView   self.contentView
 
 @implementation CustomerReconciliationTableViewCell
@@ -32,7 +33,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(14);
         label.textColor = CD_Text33;
-        label.text = @"2018-4-13";
+        //        label.text = @"2018-4-13";
         label.textAlignment = NSTextAlignmentLeft;
         [contentView addSubview:(dateLbl = label)];
     }
@@ -46,7 +47,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(12);
         label.textColor = CD_Text66;
-        label.text = @"魔术贴双层bab";
+        //        label.text = @"魔术贴双层bab";
         label.textAlignment = NSTextAlignmentLeft;
         [contentView addSubview:(titleLbl = label)];
     }
@@ -60,8 +61,8 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(12);
         label.textColor = CD_Text66;
-        label.text = @"sadfdsg";
-        label.textAlignment = NSTextAlignmentLeft;
+        //        label.text = @"sadfdsg";
+        label.textAlignment = NSTextAlignmentRight;
         [contentView addSubview:(numLbl = label)];
     }
     return numLbl;
@@ -107,13 +108,7 @@
     
     self.titleLbl.sd_layout
     .leftSpaceToView(contentView, 15)
-    .topSpaceToView(self.dateLbl, 10)
-    .widthIs(250)
-    .heightIs(14);
-    
-    self.numLbl.sd_layout
-    .leftSpaceToView(contentView, 15)
-    .topSpaceToView(self.titleLbl, 10)
+    .topSpaceToView(self.dateLbl, 15)
     .widthIs(250)
     .heightIs(14);
     
@@ -128,6 +123,46 @@
     .topEqualToView(self.bankLbl)
     .widthIs(250)
     .heightIs(18);
+    
+    self.numLbl.sd_layout
+    .rightSpaceToView(contentView, 15)
+    .topSpaceToView(self.priceLbl, 15)
+    .widthIs(150)
+    .heightIs(14);
+}
+
+- (void)setModel:(LZCheckReceiptModel *)model{
+    _model = model;
+    if (_model.createTime.length >8) {
+        self.dateLbl.text = [_model.createTime substringFromIndex:8];
+    }else{
+        self.dateLbl.text = _model.createTime;
+    }
+    self.dateLbl.text = [BXSTools stringFromTData:self.dateLbl.text];
+    self.titleLbl.text = _model.orderNo;
+    self.numLbl.text = _model.bankName;
+    //    单据类型（0：销售单 1：销售退货单 2：客户收款单 ）
+    switch ([_model.type integerValue]) {
+        case 0:
+            self.bankLbl.text = @"销售单";
+            break;
+        case 1:
+            self.bankLbl.text = @"销售退货单";
+            break;
+        case 2:
+            self.bankLbl.text = @"客户收款单";
+            break;
+        default:
+            break;
+    }
+    if ([_model.amount integerValue] >0) {
+        self.priceLbl.textColor = [UIColor colorWithHexString:@"#f26552"];
+        self.priceLbl.text = [NSString stringWithFormat:@"+%@",_model.amount];
+    }else{
+        self.priceLbl.textColor = CD_Text33;
+        self.priceLbl.text = _model.amount;
+    }
+    
 }
 
 - (void)awakeFromNib {
@@ -137,7 +172,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     
 }
 

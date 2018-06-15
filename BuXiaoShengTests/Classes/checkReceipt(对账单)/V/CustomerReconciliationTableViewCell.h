@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LZCheckReceiptModel;
 
 @interface CustomerReconciliationTableViewCell : UITableViewCell
-
+@property(nonatomic,strong)LZCheckReceiptModel *model;
 ///日期
 @property (nonatomic, strong) UILabel *dateLbl;
 

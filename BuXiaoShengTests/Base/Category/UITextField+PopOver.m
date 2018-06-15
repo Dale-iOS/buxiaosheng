@@ -238,7 +238,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
 #pragma mark -- 通知方法
 -(void)inputChange:(NSNotification*)notification{
     if (notification.name == UITextFieldTextDidChangeNotification && notification.object == self) {
-
+        
         if (self.text.length ==0 && !self.nonInputShow) {
             self.bgView.frame = CGRectMake(self.frame.origin.x, CGRectGetMaxY(self.frame), CGRectGetWidth(self.frame), 0);
             self.popList.frame = self.bgView.bounds;
@@ -252,26 +252,26 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
         
         /*
          //设置当完全输入时取消下拉框
-        if (array.count == 1) {
-            NSString *text = array[0];
-            if ([text isEqualToString:self.text]) {
-                [self hidePopOver];
-                return;
+         if (array.count == 1) {
+         NSString *text = array[0];
+         if ([text isEqualToString:self.text]) {
+         [self hidePopOver];
+         return;
+         }
+         }
+         */
+        array = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+            NSComparisonResult result = NSOrderedSame;
+            
+            NSRange range1 = [obj1 rangeOfString:self.text];
+            NSRange range2 = [obj2 rangeOfString:self.text];
+            if (range1.location < range2.location) {
+                result = NSOrderedAscending;
+            }else if(range1.location > range2.location){
+                result = NSOrderedDescending;
             }
-        }
-        */
-       array = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-           NSComparisonResult result = NSOrderedSame;
-           
-           NSRange range1 = [obj1 rangeOfString:self.text];
-           NSRange range2 = [obj2 rangeOfString:self.text];
-           if (range1.location < range2.location) {
-               result = NSOrderedAscending;
-           }else if(range1.location > range2.location){
-               result = NSOrderedDescending;
-           }
-           
-           return result;
+            
+            return result;
         }];
         
         if (array) {
@@ -409,7 +409,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
             }
             
             self.popList.frame = self.bgView.bounds;
- 
+            
         }
             break;
         case ZJPositionTop:
@@ -449,7 +449,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
             }
             
             self.popList.frame = self.bgView.bounds;
-
+            
         }
             break;
         case ZJPositionBottom:
@@ -535,6 +535,47 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
             
         }
             break;
+        case ZJPositionBottomThree:
+        {
+            if (self.keyString) {
+                //按照key进行排序
+                NSSortDescriptor *keyName = [NSSortDescriptor sortDescriptorWithKey:self.keyString ascending:YES];
+                changeArray = [changeArray sortedArrayUsingDescriptors:@[keyName]];
+            }
+            
+            CGFloat listY = 0;
+            if (self.scrollView) {
+                listY = self.rectXY.origin.y + CGRectGetHeight(self.frame)-NavH +65;
+            }else{
+                listY = self.rectXY.origin.y + CGRectGetHeight(self.frame);
+            }
+            
+            CGFloat heigt = 0;
+            if (self.isEditing) {
+                heigt =  [UIScreen mainScreen].bounds.size.height - listY - 280;
+            }else{
+                heigt =  [UIScreen mainScreen].bounds.size.height - listY;
+            }
+            if (self.scrollView){
+                heigt = CellH*changeArray.count > heigt - NavH? heigt - NavH:CellH*changeArray.count;
+            }else{
+                heigt = CellH*changeArray.count > heigt? heigt:CellH*changeArray.count;
+            }
+            
+            
+            if (CellH*changeArray.count > heigt) {
+                self.popList.scrollEnabled = YES;
+            }else{
+                self.popList.scrollEnabled = NO;
+            }
+            
+            self.bgView.frame = CGRectMake(self.rectXY.origin.x,listY, CGRectGetWidth(self.frame), heigt);
+            self.changeArray = changeArray;
+            [self.popList reloadData];
+            self.popList.frame = self.bgView.bounds;
+            
+        }
+            break;
             
         default:
             break;
@@ -561,7 +602,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
     if ([obj isKindOfClass:[NSString class]]) {
         cell.textLabel.attributedText = [self attributedWithString:obj];
     }else{
-       NSString *string = [(NSObject*)obj valueForKey:self.keyString];
+        NSString *string = [(NSObject*)obj valueForKey:self.keyString];
         
         cell.textLabel.attributedText = [self attributedWithString:string];
     }
@@ -615,7 +656,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
                 self.popList.frame = self.bgView.bounds;
                 [self.popList reloadData];
             }];
- 
+            
         }
             break;
         case ZJPositionTop:
@@ -632,7 +673,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
                 self.popList.frame = self.bgView.bounds;
                 [self.popList reloadData];
             }];
- 
+            
         }
             break;
         case ZJPositionBottom:
@@ -648,11 +689,28 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
                 self.popList.frame = self.bgView.bounds;
                 [self.popList reloadData];
             }];
- 
+            
         }
             break;
             
         case ZJPositionBottomTwo:
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                CGFloat listY = 0;
+                if (self.scrollView) {
+                    listY = self.rectXY.origin.y + CGRectGetHeight(self.frame)-NavH;
+                }else{
+                    listY = self.rectXY.origin.y + CGRectGetHeight(self.frame);
+                }
+                self.bgView.frame = CGRectMake(self.rectXY.origin.x, listY, CGRectGetWidth(self.frame), 0);
+                self.popList.frame = self.bgView.bounds;
+                [self.popList reloadData];
+            }];
+            
+        }
+            break;
+            
+        case ZJPositionBottomThree:
         {
             [UIView animateWithDuration:0.3 animations:^{
                 CGFloat listY = 0;
@@ -675,7 +733,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
     
 }
 
-#pragma mark -- 
+#pragma mark --
 -(NSMutableAttributedString*)attributedWithString:(NSString*)string {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:self.text];

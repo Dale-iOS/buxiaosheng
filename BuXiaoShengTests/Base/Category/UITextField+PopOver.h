@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, ZJPositionType) {
     ZJPositionTop,
     ZJPositionBottom,
     ZJPositionBottomTwo,
+    ZJPositionBottomThree,
 };
 @interface UITextField (PopOver)<UITableViewDelegate,UITableViewDataSource>
 /*

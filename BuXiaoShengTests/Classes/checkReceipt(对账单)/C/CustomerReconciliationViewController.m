@@ -9,10 +9,11 @@
 #import "CustomerReconciliationViewController.h"
 #import "CustomerReconciliationTableViewCell.h"
 #import "ReconciliationDetailViewController.h"
+#import "LZSearchBar.h"
+#import "UITextField+PopOver.h"
+#import "LZCheckReceiptModel.h"
 
-
-
-@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UILabel *companyLbl;
@@ -20,7 +21,13 @@
 @property (nonatomic, strong) UILabel *lastpayDateLbl;
 ///累计欠款
 @property (nonatomic ,strong) UILabel *totalborrowLbl;
-
+@property (nonatomic, strong) LZSearchBar * searchBar;
+@property(nonatomic,strong)UITextField *searchTF;
+@property(nonatomic,strong)NSMutableArray *customerList;
+@property(nonatomic,strong)NSMutableArray *customerNameAry;
+@property(nonatomic,strong)NSMutableArray *customerIdAry;
+@property(nonatomic,copy)NSString *customerId;///选择中的客户id
+@property(nonatomic,strong)NSArray<LZCheckReceiptModel*> *lists;
 @end
 
 @implementation CustomerReconciliationViewController
@@ -30,32 +37,71 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupCustomerList];
+}
+
 - (void)setupUI
 {
     [self setupTableviewHeadView];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"客户欠款表"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
+    self.navigationItem.titleView = [Utility navTitleView:@"客户对账表"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
     self.view.backgroundColor = [UIColor whiteColor];
-
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -44) style:UITableViewStylePlain];
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
+    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    //    [self.view addSubview:self.searchBar];
+    
+    //放大镜图标
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 45, 18)];
+    UIImageView *searchIM = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search1"]];
+    searchIM.frame = CGRectMake(15, 0, 18, 18);
+    [searchView addSubview:searchIM];
+    
+    _searchTF = [[UITextField alloc]init];
+    _searchTF.placeholder = @" 请先选择对账单";
+    _searchTF.delegate = self;
+    _searchTF.leftView = searchView;
+    _searchTF.borderStyle = UITextBorderStyleLine;
+    _searchTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _searchTF.leftViewMode = UITextFieldViewModeAlways;
+    _searchTF.scrollView = self.view;
+    _searchTF.positionType = ZJPositionBottomThree;
+    [self.view addSubview:_searchTF];
+    [_searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(LLNavViewHeight+10);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_offset(35);
+    }];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.tableViewHeadView;
     self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.tableFooterView = [UIView new];
     //隐藏分割线
     //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.bottom.equalTo(self.view);
+        make.top.equalTo(_searchTF.mas_bottom).offset(10);
+    }];
     
-    [self setupBottomView];
+    //    [self setupBottomView];
 }
 
 - (void)setupTableviewHeadView
 {
     //tableview顶部试图
-    self.tableViewHeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 39)];
+    self.tableViewHeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 30)];
     self.tableViewHeadView.backgroundColor = [UIColor whiteColor];
     
     //公司
@@ -143,10 +189,61 @@
     
 }
 
+#pragma mark ----- 网络请求 -----
+- (void)setupCustomerList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _customerList = baseModel.data;
+        _customerNameAry = [NSMutableArray array];
+        _customerIdAry = [NSMutableArray array];
+        for (int i = 0 ; i <_customerList.count; i++) {
+            [_customerNameAry addObject:_customerList[i][@"name"]];
+            [_customerIdAry addObject:_customerList[i][@"id"]];
+        }
+        //        名称cell设置数据源 获取客户id
+        WEAKSELF
+        [_searchTF popOverSource:_customerNameAry index:^(NSInteger index) {
+            //设置名称 前欠款
+            //            NSString *str = _customerList[index][@"arrear"];
+            //            weakSelf.titileCell.beforeLabel.text = [NSString stringWithFormat:@"前欠款:￥%@",str];
+            _customerId = _customerList[index][@"id"];
+            [weakSelf setupListData];
+        }];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+- (void)setupListData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"customerId":_customerId,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15"
+                             };
+    [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_bill_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+    
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -156,7 +253,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 95;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,6 +265,7 @@
         
         cell = [[CustomerReconciliationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
@@ -188,14 +286,13 @@
     NSLog(@"toScreenClick");
 }
 
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomerReconciliationViewController : UIViewController
+@interface CustomerReconciliationViewController : BaseViewController
 
 @end
