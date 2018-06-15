@@ -18,6 +18,10 @@
 		34195FB020CD430B00524F20 /* LZSpendingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FAE20CD430B00524F20 /* LZSpendingListVC.m */; };
 		34195FB320CD441000524F20 /* LZSpendingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FB220CD441000524F20 /* LZSpendingListCell.m */; };
 		34195FB420CD441000524F20 /* LZSpendingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34195FB220CD441000524F20 /* LZSpendingListCell.m */; };
+		3420774F20D3950C006EA057 /* LZArrearClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420774E20D3950C006EA057 /* LZArrearClientModel.m */; };
+		3420775020D3950C006EA057 /* LZArrearClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420774E20D3950C006EA057 /* LZArrearClientModel.m */; };
+		3420775320D39532006EA057 /* LZArrearClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775220D39532006EA057 /* LZArrearClientCell.m */; };
+		3420775420D39532006EA057 /* LZArrearClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775220D39532006EA057 /* LZArrearClientCell.m */; };
 		3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4CE20CE27C700369650 /* LZSpendingModel.m */; };
 		3427A4D020CE27C700369650 /* LZSpendingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4CE20CE27C700369650 /* LZSpendingModel.m */; };
 		3427A4EE20CE507600369650 /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4DD20CE507600369650 /* BRStringPickerView.m */; };
@@ -657,6 +661,10 @@
 		34195FAE20CD430B00524F20 /* LZSpendingListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingListVC.m; sourceTree = "<group>"; };
 		34195FB120CD441000524F20 /* LZSpendingListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSpendingListCell.h; sourceTree = "<group>"; };
 		34195FB220CD441000524F20 /* LZSpendingListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingListCell.m; sourceTree = "<group>"; };
+		3420774D20D3950C006EA057 /* LZArrearClientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LZArrearClientModel.h; path = "BuXiaoShengTests/Classes/CustomerArrears(客户欠款表)/V/LZArrearClientModel.h"; sourceTree = SOURCE_ROOT; };
+		3420774E20D3950C006EA057 /* LZArrearClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LZArrearClientModel.m; path = "BuXiaoShengTests/Classes/CustomerArrears(客户欠款表)/V/LZArrearClientModel.m"; sourceTree = SOURCE_ROOT; };
+		3420775120D39532006EA057 /* LZArrearClientCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearClientCell.h; sourceTree = "<group>"; };
+		3420775220D39532006EA057 /* LZArrearClientCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearClientCell.m; sourceTree = "<group>"; };
 		3427A4CD20CE27C700369650 /* LZSpendingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSpendingModel.h; sourceTree = "<group>"; };
 		3427A4CE20CE27C700369650 /* LZSpendingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingModel.m; sourceTree = "<group>"; };
 		3427A4DC20CE507600369650 /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
@@ -2768,6 +2776,8 @@
 				34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */,
 				34D5EB0A20D2B270009D9D7C /* LZArrearCompanyView.h */,
 				34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */,
+				3420775120D39532006EA057 /* LZArrearClientCell.h */,
+				3420775220D39532006EA057 /* LZArrearClientCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -2775,6 +2785,8 @@
 		34D5EB0520D2AA31009D9D7C /* M */ = {
 			isa = PBXGroup;
 			children = (
+				3420774D20D3950C006EA057 /* LZArrearClientModel.h */,
+				3420774E20D3950C006EA057 /* LZArrearClientModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3980,6 +3992,7 @@
 				B50505A9209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,
 				B50505D9209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
 				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
+				3420774F20D3950C006EA057 /* LZArrearClientModel.m in Sources */,
 				344C487520D0C35300BEC002 /* LZProcurementModel.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
@@ -4105,6 +4118,7 @@
 				34EE88DC20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
+				3420775320D39532006EA057 /* LZArrearClientCell.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
@@ -4316,6 +4330,7 @@
 				3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
+				3420775020D3950C006EA057 /* LZArrearClientModel.m in Sources */,
 				B5E288ED20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				346992A920C6649500476CF0 /* LZVisitRecordCell.m in Sources */,
 				34D5EB0D20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
@@ -4351,6 +4366,7 @@
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
 				344C488E20D1001800BEC002 /* LZDIdSaleAuditVC.m in Sources */,
+				3420775420D39532006EA057 /* LZArrearClientCell.m in Sources */,
 				B531EF4A20BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				34D5EAE920D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */,
 				B50505C6209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,

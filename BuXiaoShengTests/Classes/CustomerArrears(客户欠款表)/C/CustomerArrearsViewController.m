@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
 }
 
@@ -45,7 +45,9 @@
     [_sgc addTarget:self action:@selector(segClick:) forControlEvents:UIControlEventValueChanged];
     [self.SegmentedBgView addSubview:_sgc];
     [_sgc mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.SegmentedBgView);
+        //        make.center.equalTo(self.SegmentedBgView);
+        make.top.equalTo(self.SegmentedBgView).offset(6);
+        make.centerX.equalTo(self.SegmentedBgView);
         make.width.mas_offset(180);
         make.height.mas_offset(30);
     }];
@@ -59,35 +61,35 @@
     _scrollView.delegate = self;
     [self.view addSubview:_scrollView];
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.SegmentedBgView.mas_bottom).offset(10);
+        make.top.equalTo(self.SegmentedBgView.mas_bottom).offset(3);
         make.left.and.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
     
-//    _clienView = [[LZArrearClientView alloc]initWithFrame:CGRectZero];
-//    [_scrollView addSubview:_clienView];
-//    [_clienView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.top.equalTo(_scrollView);
-//        make.width.mas_offset(APPWidth);
-//        make.width.bottom.equalTo(_scrollView);
-//    }];
+    //    _clienView = [[LZArrearClientView alloc]initWithFrame:CGRectZero];
+    //    [_scrollView addSubview:_clienView];
+    //    [_clienView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.and.top.equalTo(_scrollView);
+    //        make.width.mas_offset(APPWidth);
+    //        make.width.bottom.equalTo(_scrollView);
+    //    }];
     _clienView = [[LZArrearClientView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight - LLNavViewHeight -35)];
     [_scrollView addSubview:_clienView];
-//    [_clienView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.top.equalTo(_scrollView);
-//        make.width.mas_offset(APPWidth);
-//        make.width.bottom.equalTo(_scrollView);
-//    }];
+    //    [_clienView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.and.top.equalTo(_scrollView);
+    //        make.width.mas_offset(APPWidth);
+    //        make.width.bottom.equalTo(_scrollView);
+    //    }];
     _companyView = [[LZArrearCompanyView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -LLNavViewHeight -35)];
     [_scrollView addSubview:_companyView];
-//    [_companyView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(_scrollView);
-//        make.left.equalTo(_scrollView.mas_left).offset(APPWidth);
-//        make.width.mas_offset(APPWidth);
-//        make.width.bottom.equalTo(_scrollView);
-//    }];
-//    [self setupHeadView];
-
+    //    [_companyView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.equalTo(_scrollView);
+    //        make.left.equalTo(_scrollView.mas_left).offset(APPWidth);
+    //        make.width.mas_offset(APPWidth);
+    //        make.width.bottom.equalTo(_scrollView);
+    //    }];
+    //    [self setupHeadView];
+    
 }
 
 //设置顶部
@@ -187,7 +189,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 
