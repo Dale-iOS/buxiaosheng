@@ -8,9 +8,15 @@
 
 #import "LZChooseArrearClientVC.h"
 #import "TTGTextTagCollectionView.h"
+#import "GBTagListView.h"
 
 @interface LZChooseArrearClientVC ()
-
+{
+    NSArray *_moneyAry;
+    NSArray *_dateAry;
+    GBTagListView *_moneyTag;
+    GBTagListView *_dateTag;
+}
 @end
 
 @implementation LZChooseArrearClientVC
@@ -22,6 +28,9 @@
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    _moneyAry = @[@"金额从高到低",@"金额从低到高"];
+    _dateAry = @[@"日期从远到近",@"日期从近到远"];
     
     //选择筛选
     UILabel *chooseLbl = [[UILabel alloc]init];
@@ -49,58 +58,109 @@
         make.height.mas_offset(29);
     }];
     
-    TTGTextTagCollectionView *tagMoneyCollectionView = [[TTGTextTagCollectionView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:tagMoneyCollectionView];
-    [tagMoneyCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    GBTagListView *tagList=[[GBTagListView alloc]initWithFrame:CGRectMake(10, 180, APPWidth, 0)];
+    /**允许点击 */
+    tagList.canTouch=YES;
+    /**可以控制允许点击的标签数 */
+    tagList.canTouchNum=2;
+    /**控制是否是单选模式 */
+    tagList.isSingleSelect=YES;
+    tagList.signalTagColor=[UIColor whiteColor];
+    [tagList setTagWithTagArray:_moneyAry];
+    __weak __typeof(self)weakSelf = self;
+    [tagList setDidselectItemBlock:^(NSArray *arr) {
+        NSLog(@"选中的标签%@",arr);
+        [_moneyTag removeFromSuperview];
+        GBTagListView*selectItems=[[GBTagListView alloc]initWithFrame:CGRectZero];
+        selectItems.signalTagColor=[UIColor whiteColor];
+        selectItems.canTouch=NO;
+        [selectItems setMarginBetweenTagLabel:20 AndBottomMargin:20];
+        [selectItems setTagWithTagArray:arr];
+        [weakSelf.view addSubview:selectItems];
+        _moneyTag=selectItems;
+    }];
+    [self.view addSubview:tagList];
+    [tagList mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(moneyLbl.mas_bottom).offset(10);
         make.left.and.right.equalTo(self.view);
-        make.height.mas_offset(50);
+        make.height.mas_offset(200);
     }];
-    [tagMoneyCollectionView addTags:@[@"金额从高到低", @"金额从低到高"]];
+//    UILabel*tip=[[UILabel alloc]initWithFrame:CGRectMake(0, tagList.frame.origin.y+tagList.frame.size.height+10, APPWidth, 20)];
+//    tip.text=@"选中的标签是：";
+//    tip.textAlignment=NSTextAlignmentCenter;
+//    tip.font=[UIFont boldSystemFontOfSize:18];
+//    [self.view addSubview:tip];
     
-    UIView *line1 = [[UIView alloc]init];
-    line1.backgroundColor = LZHBackgroundColor;
-    [self.view addSubview:line1];
-    [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tagMoneyCollectionView.mas_bottom).offset(10);
-        make.left.and.right.equalTo(self.view).offset(10);
-        make.height.mas_offset(0.5);
-    }];
     
-    //选择筛选
-    UILabel *dateLbl = [[UILabel alloc]init];
-    dateLbl.text = @" 最后还款日期";
-    dateLbl.font = FONT(12);
-    dateLbl.textColor = CD_Text99;
-    dateLbl.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:dateLbl];
-    [dateLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(line1.mas_bottom).offset(10);
-        make.left.and.right.equalTo(self.view);
-        make.height.mas_offset(29);
-    }];
     
-    TTGTextTagCollectionView *tagDateCollectionView = [[TTGTextTagCollectionView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:tagDateCollectionView];
-    [tagDateCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(dateLbl.mas_bottom).offset(10);
-        make.left.and.right.equalTo(self.view);
-        make.height.mas_offset(50);
-    }];
-    [tagDateCollectionView addTags:@[@"从远到进", @"从近到远"]];
     
-    UIView *line2 = [[UIView alloc]init];
-    line2.backgroundColor = LZHBackgroundColor;
-    [self.view addSubview:line2];
-    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tagDateCollectionView.mas_bottom).offset(10);
-        make.left.and.right.equalTo(self.view).offset(10);
-        make.height.mas_offset(0.5);
-    }];
+   
+    
+//    TTGTextTagCollectionView *tagMoneyCollectionView = [[TTGTextTagCollectionView alloc] initWithFrame:CGRectZero];
+//    [self.view addSubview:tagMoneyCollectionView];
+//    [tagMoneyCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(moneyLbl.mas_bottom).offset(10);
+//        make.left.and.right.equalTo(self.view);
+//        make.height.mas_offset(50);
+//    }];
+//    [tagMoneyCollectionView addTags:@[@"金额从高到低", @"金额从低到高"]];
+//
+//    UIView *line1 = [[UIView alloc]init];
+//    line1.backgroundColor = LZHBackgroundColor;
+//    [self.view addSubview:line1];
+//    [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(tagMoneyCollectionView.mas_bottom).offset(10);
+//        make.left.and.right.equalTo(self.view).offset(10);
+//        make.height.mas_offset(0.5);
+//    }];
+//
+//    //选择筛选
+//    UILabel *dateLbl = [[UILabel alloc]init];
+//    dateLbl.text = @" 最后还款日期";
+//    dateLbl.font = FONT(12);
+//    dateLbl.textColor = CD_Text99;
+//    dateLbl.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:dateLbl];
+//    [dateLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(line1.mas_bottom).offset(10);
+//        make.left.and.right.equalTo(self.view);
+//        make.height.mas_offset(29);
+//    }];
+//
+//    TTGTextTagCollectionView *tagDateCollectionView = [[TTGTextTagCollectionView alloc] initWithFrame:CGRectZero];
+//    [self.view addSubview:tagDateCollectionView];
+//    [tagDateCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(dateLbl.mas_bottom).offset(10);
+//        make.left.and.right.equalTo(self.view);
+//        make.height.mas_offset(50);
+//    }];
+//    [tagDateCollectionView addTags:@[@"从远到进", @"从近到远"]];
+//
+//    UIView *line2 = [[UIView alloc]init];
+//    line2.backgroundColor = LZHBackgroundColor;
+//    [self.view addSubview:line2];
+//    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(tagDateCollectionView.mas_bottom).offset(10);
+//        make.left.and.right.equalTo(self.view).offset(10);
+//        make.height.mas_offset(0.5);
+//    }];
     
     UIButton *saveBtn = [[UIButton alloc]init];
-    [saveBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [saveBtn setTitle:@"确 认" forState:UIControlStateNormal];
     saveBtn.titleLabel.font = FONT(15);
+    saveBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [saveBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [saveBtn setBackgroundColor:LZAppBlueColor];
+    [self.view addSubview:saveBtn];
+    [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.equalTo(self.view);
+        make.height.mas_offset(44);
+        make.bottom.equalTo(self.view);
+    }];
+}
+
+- (void)saveBtnClick{
+    
 }
 
 - (void)didReceiveMemoryWarning {

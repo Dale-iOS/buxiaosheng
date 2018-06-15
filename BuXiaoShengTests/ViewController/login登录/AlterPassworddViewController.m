@@ -95,7 +95,7 @@
     self.passwordNewTF.leftView = loginLeftView;
     self.passwordNewTF.leftViewMode = UITextFieldViewModeAlways;
     self.passwordNewTF.layer.cornerRadius = 22;
-    self.passwordNewTF.placeholder = @"设置新登录密码";
+    self.passwordNewTF.placeholder = @"设置6~16位新密码";
     [self.passwordNewTF setValue:[UIColor colorWithHexString:@"#cccccc"] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordNewTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
     self.passwordNewTF.layer.borderColor = [UIColor colorWithHexString:@"#cccccc"].CGColor;
