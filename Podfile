@@ -23,6 +23,7 @@ inhibit_all_warnings!
     pod 'IQKeyboardManager'
     pod 'EasyShowView'
     pod 'TZImagePickerController'
+    pod 'TTGTagCollectionView'
 #    pod 'BRPickerView'
 end
 

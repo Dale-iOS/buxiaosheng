@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LZArrearClientModel;
 
 @interface LZArrearClientCell : UITableViewCell
+@property(nonatomic,strong)LZArrearClientModel *model;
 @property(nonatomic,strong)UILabel *oneLbl;
 @property(nonatomic,strong)UILabel *twoLbl;
 @property(nonatomic,strong)UILabel *threeLbl;

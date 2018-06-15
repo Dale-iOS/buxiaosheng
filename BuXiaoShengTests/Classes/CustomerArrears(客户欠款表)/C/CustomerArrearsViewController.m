@@ -10,6 +10,8 @@
 #import "CustomerArrearsTableViewCell.h"
 #import "LZArrearClientView.h"
 #import "LZArrearCompanyView.h"
+#import "LZChooseArrearClientVC.h"
+
 
 @interface CustomerArrearsViewController ()<UIScrollViewDelegate>
 ///分段选择器背景
@@ -184,7 +186,9 @@
 
 - (void)toScreenClick
 {
-    NSLog(@"toScreenClick");
+    LZChooseArrearClientVC *vc = [[LZChooseArrearClientVC alloc]init];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 }
 
 - (void)didReceiveMemoryWarning {

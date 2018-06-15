@@ -22,6 +22,8 @@
 		3420775020D3950C006EA057 /* LZArrearClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420774E20D3950C006EA057 /* LZArrearClientModel.m */; };
 		3420775320D39532006EA057 /* LZArrearClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775220D39532006EA057 /* LZArrearClientCell.m */; };
 		3420775420D39532006EA057 /* LZArrearClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775220D39532006EA057 /* LZArrearClientCell.m */; };
+		3420775720D3A41E006EA057 /* LZChooseArrearClientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775620D3A41E006EA057 /* LZChooseArrearClientVC.m */; };
+		3420775820D3A41E006EA057 /* LZChooseArrearClientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3420775620D3A41E006EA057 /* LZChooseArrearClientVC.m */; };
 		3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4CE20CE27C700369650 /* LZSpendingModel.m */; };
 		3427A4D020CE27C700369650 /* LZSpendingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4CE20CE27C700369650 /* LZSpendingModel.m */; };
 		3427A4EE20CE507600369650 /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3427A4DD20CE507600369650 /* BRStringPickerView.m */; };
@@ -665,6 +667,8 @@
 		3420774E20D3950C006EA057 /* LZArrearClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LZArrearClientModel.m; path = "BuXiaoShengTests/Classes/CustomerArrears(客户欠款表)/V/LZArrearClientModel.m"; sourceTree = SOURCE_ROOT; };
 		3420775120D39532006EA057 /* LZArrearClientCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearClientCell.h; sourceTree = "<group>"; };
 		3420775220D39532006EA057 /* LZArrearClientCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearClientCell.m; sourceTree = "<group>"; };
+		3420775520D3A41E006EA057 /* LZChooseArrearClientVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseArrearClientVC.h; sourceTree = "<group>"; };
+		3420775620D3A41E006EA057 /* LZChooseArrearClientVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseArrearClientVC.m; sourceTree = "<group>"; };
 		3427A4CD20CE27C700369650 /* LZSpendingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSpendingModel.h; sourceTree = "<group>"; };
 		3427A4CE20CE27C700369650 /* LZSpendingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSpendingModel.m; sourceTree = "<group>"; };
 		3427A4DC20CE507600369650 /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
@@ -2765,6 +2769,8 @@
 			children = (
 				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
 				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
+				3420775520D3A41E006EA057 /* LZChooseArrearClientVC.h */,
+				3420775620D3A41E006EA057 /* LZChooseArrearClientVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3756,6 +3762,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TTGTagCollectionView/TTGTagCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
@@ -3777,6 +3784,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGTagCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
@@ -4038,6 +4046,7 @@
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				3455F69220CA7E9900579521 /* LZIncomeVC.m in Sources */,
 				344C48A120D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
+				3420775720D3A41E006EA057 /* LZChooseArrearClientVC.m in Sources */,
 				34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */,
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
@@ -4390,6 +4399,7 @@
 				3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				B531EF3220BF8FE90028F18B /* FSCalendarConstants.m in Sources */,
+				3420775820D3A41E006EA057 /* LZChooseArrearClientVC.m in Sources */,
 				B5CF350020A576BE0043D906 /* BXSTools.m in Sources */,
 				3427A4F520CE507600369650 /* BRBaseView.m in Sources */,
 				3427A4F320CE507600369650 /* BRDatePickerView.m in Sources */,

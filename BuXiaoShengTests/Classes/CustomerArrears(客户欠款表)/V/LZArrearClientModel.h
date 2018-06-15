@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LZArrearClientModel : NSObject
-@property(nonatomic,copy)NSString *amount;
+@property(nonatomic,copy)NSString *arrear;
 @property(nonatomic,copy)NSString *customerName;
 @property(nonatomic,copy)NSString *repayment;
 @property(nonatomic,copy)NSString *salesmanName;

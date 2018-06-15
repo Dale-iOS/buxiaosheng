@@ -8,6 +8,8 @@
 
 #import "LZArrearClientView.h"
 #import "LZArrearClientModel.h"
+#import "LZArrearClientCell.h"
+
 
 @interface LZArrearClientView()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -20,6 +22,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        [self setupListData];
         [self setupUI];
     }
     return self;
@@ -79,16 +82,21 @@
     [fourLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(threeLbl .mas_right);
         make.top.equalTo(_headView);
-        make.width.mas_offset(APPWidth *0.3);
+        make.width.mas_offset(APPWidth *0.2);
         make.height.mas_offset(39);
     }];
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableHeaderView = _headView;
+    _tableView.tableFooterView = [UIView new];
     [self addSubview:_tableView];
+//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self);
+//        make.top.equalTo()
+//    }];
 }
 
 #pragma mark ------- 网络请求 --------
@@ -128,18 +136,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"AuditTableViewCell";
-    LZMarketCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZArrearClientCell";
+    LZArrearClientCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
-        
-        cell = [[LZMarketCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.delegate = self;
+        cell = [[LZArrearClientCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.model = _lists[indexPath.row];
     return cell;
