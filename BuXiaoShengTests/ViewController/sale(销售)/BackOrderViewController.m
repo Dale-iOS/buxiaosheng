@@ -13,10 +13,11 @@
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
 #import "LLBackOrderCotentCell.h"
+#import "LLBackOrdeContentModel.h"
 
 @interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray * contenDataSource;
+@property (strong, nonatomic) NSMutableArray <NSMutableArray <LLBackOrdeContentModel*>*>* contenDataSource;
 /////销售需求列表View
 //@property (nonatomic, strong) SalesDemandListView *demandListView;
 
@@ -48,6 +49,8 @@
     [super viewDidLoad];
 
     [self setupUI];
+    
+    NSLog(@"%@",self.contenDataSource);
 }
 
 
@@ -212,9 +215,100 @@
 -(NSMutableArray *)contenDataSource {
     if (!_contenDataSource) {
         _contenDataSource = [NSMutableArray array];
-        NSArray * sectionOneData = @[@{
-                                         @""
-                                         }];
+        NSMutableArray * sectionOneModel = [NSMutableArray array];
+        for (int i = 0; i< 3; i++) {
+            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
+            switch (i) {
+                case 0:
+                    model.leftTitle = @"品名";
+                    model.rightArrowHidden = false;
+                    model.placeholder = @"选择品名";
+                    break;
+                case 1:
+                    model.leftTitle = @"颜色";
+                    model.rightArrowHidden = false;
+                    model.placeholder = @"选择颜色";
+                    break;
+                case 2:
+                    model.leftTitle = @"入库单位";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                default:
+                    break;
+            }
+              [sectionOneModel addObject:model];
+        }
+        [_contenDataSource addObject:sectionOneModel];
+        
+         NSMutableArray * sectionTwoModel = [NSMutableArray array];
+        for (int i = 0; i< 2; i++) {
+            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
+            switch (i) {
+                case 0:
+                    model.leftTitle = @"批号";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"请输入批号";
+                    break;
+                case 1:
+                    model.leftTitle = @"货架";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"请输入货架";
+                    break;
+                default:
+                    break;
+            }
+            [sectionOneModel addObject:model];
+        }
+        [_contenDataSource addObject:sectionTwoModel];
+        
+        NSMutableArray * sectionThreeModel = [NSMutableArray array];
+        for (int i = 0; i< 5; i++) {
+            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
+            switch (i) {
+                case 0:
+                    model.leftTitle = @"单价";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                case 1:
+                    model.leftTitle = @"入库数量";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                case 2:
+                    model.leftTitle = @"入库数量";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                case 3:
+                    model.leftTitle = @"标签数量";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                case 4:
+                    model.leftTitle = @"结算数量";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                case 5:
+                    model.leftTitle = @"本单退款金额";
+                    model.rightArrowHidden = true;
+                    model.placeholder = @"";
+                    model.content = @"";
+                    break;
+                default:
+                    break;
+            }
+            [sectionThreeModel addObject:model];
+        }
+        [_contenDataSource addObject:sectionThreeModel];
     }
     return _contenDataSource;
 }

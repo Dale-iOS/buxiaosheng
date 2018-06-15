@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface LLBackOrdeContentModel : NSObject
+@property (nonatomic,copy) NSString * leftTitle;
 
+@property (nonatomic,copy) NSString * placeholder;
+//default为隐藏
+@property (nonatomic,assign) BOOL rightArrowHidden;
+
+@property (nonatomic,copy) NSString * content;
 @end
