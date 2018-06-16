@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZDesignateVC : BaseViewController
-@property (nonatomic,strong) NSArray <NSString *> * segmentedTitles;
+//@property (nonatomic,strong) NSArray <NSString *> * segmentedTitles;
 @end

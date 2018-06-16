@@ -39,6 +39,8 @@
 @property (nonatomic, strong) TextInputCell *quotaCell;
 ///超额度操作
 @property (nonatomic, strong) TextInputCell *exceedQuotaCell;
+///初始欠款
+@property (nonatomic, strong) TextInputCell *arrearageCell;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 
@@ -128,6 +130,7 @@
         self.addressCell.contentTF.text = self.detailModel.address;
         self.tallyCell.contentTF.text = self.detailModel.labelName;
         self.labelslId = self.detailModel.labelId;
+        self.arrearageCell.contentTF.text = self.detailModel.initialValue;
         if ([self.detailModel.status integerValue] == 0) {
             self.stateCell.contentTF.text = @"启用";
         }else
@@ -225,8 +228,16 @@
     self.exceedQuotaCell.titleLabel.text = @"超额度操作";
     self.exceedQuotaCell.contentTF.enabled = NO;
     
+    
+    //初始欠款
+    self.arrearageCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.arrearageCell.contentTF.placeholder = @"请输入初始欠款";
+    self.arrearageCell.rightArrowImageVIew.hidden = YES;
+    self.arrearageCell.titleLabel.text = @"初始欠款";
+//    self.arrearageCell.contentTF.enabled = NO;
+    
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.tallyCell,self.stateCell,self.aliasCell,self.principalCell,self.quotaCell,self.exceedQuotaCell];
+    item.sectionRows = @[self.tallyCell,self.stateCell,self.aliasCell,self.principalCell,self.quotaCell,self.exceedQuotaCell,self.arrearageCell];
     item.canSelected = NO;
     item.sectionView = headView;
     [self.datasource addObject:item];
@@ -425,6 +436,10 @@
         return;
     }
     
+    if ([BXSTools stringIsNullOrEmpty:self.arrearageCell.contentTF.text]) {
+        BXS_Alert(@"请输入初始欠款");
+        return;
+    }
     NSInteger status = -1;
     if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
         status = 0;
@@ -450,6 +465,7 @@
                            @"memberId":self.priceipalId,
                            @"quota":self.quotaCell.contentTF.text,
                            @"excessOperation":@(exceedQuotas),
+                           @"initialValue":self.arrearageCell.contentTF.text,
                            @"remark":self.remarkTextView.textView.text
                            };
     

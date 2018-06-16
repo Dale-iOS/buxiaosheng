@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZChooseArrearClientVC : UIViewController
-
+@property(nonatomic,copy) void(^setectBlock)(NSString *money,NSString *date);
 @end

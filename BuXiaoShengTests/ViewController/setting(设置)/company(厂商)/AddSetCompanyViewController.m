@@ -30,6 +30,8 @@
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///别名
 @property (nonatomic, strong) TextInputCell *nicknameCell;
+///初始欠款
+@property (nonatomic, strong) TextInputCell *arrearageCell;
 ///联系人
 @property (nonatomic, strong) TextInputCell *contactCell;
 
@@ -128,7 +130,7 @@
         self.phoneNumberCell.contentTF.text = model.mobile;
         self.addressTextView.textView.text = model.address;
         self.remarkTextView.textView.text = model.remark;
-        
+        self.arrearageCell.contentTF.text = model.initialValue;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
     }];
@@ -204,11 +206,15 @@
     self.nicknameCell.titleLabel.text = @"别名";
     self.nicknameCell.contentTF.placeholder = @"请输入别名";
     
+    self.arrearageCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.arrearageCell.titleLabel.text = @"初始欠款";
+    self.arrearageCell.contentTF.placeholder = @"请输入初始欠款";
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.titleCell,self.typeCell,self.stateCell,self.nicknameCell];
+    item.sectionRows = @[self.titleCell,self.typeCell,self.stateCell,self.nicknameCell,self.arrearageCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -262,6 +268,10 @@
     }
     if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
         BXS_Alert(@"请选择状态");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.arrearageCell.contentTF.text]) {
+        BXS_Alert(@"请输入初始欠款");
         return;
     }
     if ([BXSTools stringIsNullOrEmpty:self.contactCell.contentTF.text]) {
@@ -322,7 +332,8 @@
                   @"remark" : self.remarkTextView.textView.text ? : @"",
                   @"status" : @(stauts),
                   @"tel" : self.phoneCell.contentTF.text ? :@"",
-                  @"type" : @(types)
+                  @"type" : @(types),
+                  @"initialValue":self.arrearageCell.contentTF.text ?:@"",
                   };
         AppURL = @"factory/add.do";
     }else
@@ -338,7 +349,8 @@
                   @"remark" : self.remarkTextView.textView.text ? : @"",
                   @"status" : @(stauts),
                   @"tel" : self.phoneCell.contentTF.text ? :@"",
-                  @"type" : @(types)
+                  @"type" : @(types),
+                  @"initialValue":self.arrearageCell.contentTF.text ?:@"",
                   };
         AppURL = @"factory/update.do";
     }

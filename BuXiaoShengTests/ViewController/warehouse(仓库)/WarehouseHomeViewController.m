@@ -19,6 +19,7 @@
 #import "InventoryViewController.h"
 #import "LZHomeModel.h"
 #import "DyeingViewController.h"
+#import "LZCheckReceiptModel.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UILabel *dateLbl;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
+@property(nonatomic,strong)NSArray<LZCheckReceiptModel*> *lists;
 @end
 
 @implementation WarehouseHomeViewController
@@ -48,6 +50,7 @@
 {
     [super viewWillAppear:animated];
     [self setupBtns];
+    [self setupListsData];
 }
 
 - (LZHTableView *)mainTabelView
@@ -342,10 +345,31 @@
     }];
 }
 
+//接口名称 仓库动态列表
+- (void)setupListsData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+//                             @"date":self.buttonId,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15"
+                             };
+    [BXSHttp requestGETWithAppURL:@"storehouse/house_dynamic_list.do" param:param success:^(id response) {
+        
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
 #pragma mark ------ tableViewDelegate ----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -367,6 +391,7 @@
         
         cell = [[WarehouserTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 

@@ -255,6 +255,7 @@
             return ;
         }
         [LLHudTools showWithMessage:@"新增成功"];
+        self.cusTF.text = @"";
         [self setupData];
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:@"新增失败"];

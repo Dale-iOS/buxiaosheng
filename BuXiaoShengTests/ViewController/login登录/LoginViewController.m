@@ -18,7 +18,7 @@
 ///密码输入框
 @property (nonatomic, strong)UITextField *passwordTF;
 @property (nonatomic, strong) LoginModel *loginModel;
-
+@property(nonatomic,strong)UIButton *loginBtn;
 @end
 
 @implementation LoginViewController
@@ -36,6 +36,8 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(loginBack)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(passwordNewTFChanged:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)setBackgroud
@@ -103,7 +105,7 @@
     //密码形式
     self.passwordTF.secureTextEntry = YES;
     [rightBtn setBackgroundImage:IMAGE(@"password1") forState:UIControlStateNormal];
-    rightBtn.frame = CGRectMake(0, 5, 30, 30);
+    rightBtn.frame = CGRectMake(0, 5, 28, 30);
     rightBtn.backgroundColor = [UIColor clearColor];
     [rightBtn addTarget:self action:@selector(passwordBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     UIView *rightView = [[UIView alloc]init];
@@ -115,18 +117,18 @@
     self.passwordTF.rightView = rightView;
     self.passwordTF.rightViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:self.passwordTF];
-    
+
     //登录按钮
-    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    loginBtn.frame = CGRectMake(30, 242, self.view.frame.size.width -60, 44);
-    loginBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
-    loginBtn.layer.cornerRadius = 22;
-    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [loginBtn setTitleColor:[UIColor colorWithRed:62.0f/255.0f green:178.0f/255.0f blue:247.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [loginBtn addTarget:self action:@selector(loginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _loginBtn.frame = CGRectMake(30, 242, self.view.frame.size.width -60, 44);
+    _loginBtn.backgroundColor = [UIColor colorWithHexString:@"#cccccc"];
+    _loginBtn.layer.cornerRadius = 22;
+    [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    _loginBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [_loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_loginBtn addTarget:self action:@selector(loginBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:loginBtn];
+    [self.view addSubview:_loginBtn];
     
     //最底下的版本号
     UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height -15 -14, self.view.frame.size.width, 14)];
@@ -142,6 +144,15 @@
 //登录事件
 - (void)loginBtnOnClickAction
 {
+    if ([BXSTools stringIsNullOrEmpty:self.loginTF.text]) {
+        BXS_Alert(@"请输入登录账号");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.passwordTF.text]) {
+        BXS_Alert(@"密码必须大于或等于6位数");
+        return;
+    }
+    
     NSDictionary *param = @{@"loginName":self.loginTF.text,
                            @"password":[BXSHttp makeMD5:self.passwordTF.text]
                            };
@@ -199,6 +210,28 @@
         self.passwordTF.secureTextEntry = NO;
     }
 //    [self.passwordTF becomeFirstResponder];
+}
+
+#pragma mark --------- 监听事件 -----------
+- (void)passwordNewTFChanged:(NSBlockOperation *)notify
+{
+    //监听输入框是否都有内容，确认按钮样式变化
+    if (self.loginTF.text.length >0 && self.passwordTF.text.length >=6) {
+        
+
+        _loginBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
+
+        [_loginBtn setTitleColor:[UIColor colorWithRed:62.0f/255.0f green:178.0f/255.0f blue:247.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+
+        
+    }else
+    {
+        _loginBtn.backgroundColor = [UIColor colorWithHexString:@"#cccccc"];
+        [_loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        
+        
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

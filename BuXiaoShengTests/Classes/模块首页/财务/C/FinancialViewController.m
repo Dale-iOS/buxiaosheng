@@ -27,6 +27,9 @@
 #import "LZHomeModel.h"
 #import "LZIncomeVC.h"
 #import "BankConversionViewController.h"
+#import "LZCustomerArrearsVC.h"
+#import "LZDetailCell.h"
+#import "CashBankViewController.h"
 
 @interface FinancialViewController ()<YANScrollMenuDelegate,YANScrollMenuDataSource,LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -34,6 +37,7 @@
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property (nonatomic, strong) UICollectionView *collectView;
+@property(nonatomic,strong)LZDetailCell *bankCell;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @end
 
@@ -75,7 +79,7 @@
     flow.itemSize = CGSizeMake(APPWidth /4, 100);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20, APPWidth, 200) collectionViewLayout:flow];
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 200) collectionViewLayout:flow];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
@@ -144,7 +148,7 @@
      if ([model.paramsIos isEqualToString:@"customarrear"])
     {
         //客户欠款表
-        CustomerArrearsViewController *vc = [[CustomerArrearsViewController alloc]init];
+        LZCustomerArrearsVC *vc = [[LZCustomerArrearsVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
      if ([model.paramsIos isEqualToString:@"reconciliation"])
@@ -185,11 +189,18 @@
     
     [self setCollectionView];
     
+    self.bankCell = [[LZDetailCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.bankCell.leftIMV.image = IMAGE(@"cashbank");
+    self.bankCell.titleLabel.text = @"现金银行";
+    self.bankCell.backgroundColor = [UIColor whiteColor];
+    UITapGestureRecognizer *tapBenkCell = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBenkCellClick)];
+    [self.bankCell addGestureRecognizer:tapBenkCell];
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.collectView];
+    item.sectionRows = @[self.collectView,self.bankCell];
     item.canSelected = YES;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -262,10 +273,10 @@
         }
         self.buttons = [LZHomeModel LLMJParse:baseModel.data];
         if (self.buttons.count <5) {
-            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+            self.collectView.frame = CGRectMake(0, 0, APPWidth, 110);
         }else
         {
-            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+            self.collectView.frame = CGRectMake(0, 0, APPWidth, 220);
         }
         [self.collectView reloadData];
         [self.mainTabelView reloadData];
@@ -282,6 +293,11 @@
 
 - (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+}
+
+- (void)tapBenkCellClick{
+    CashBankViewController *vc = [[CashBankViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backMethod

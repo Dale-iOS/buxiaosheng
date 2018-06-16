@@ -47,7 +47,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"龙纺布行"];
+    
+    self.navigationItem.titleView = [Utility navTitleView:[BXSUser currentUser].companyName];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"homesetup")];
 
     self.datasource = [NSMutableArray array];

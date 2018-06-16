@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/25.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户欠款表页面
+//  客户欠款表页面（旧）
 
 #import "CustomerArrearsViewController.h"
 #import "CustomerArrearsTableViewCell.h"
@@ -189,6 +189,9 @@
     LZChooseArrearClientVC *vc = [[LZChooseArrearClientVC alloc]init];
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    [vc setSetectBlock:^(NSString *money, NSString *date) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

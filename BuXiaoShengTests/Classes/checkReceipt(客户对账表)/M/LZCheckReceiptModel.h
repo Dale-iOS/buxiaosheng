@@ -15,4 +15,5 @@
 @property(nonatomic,copy)NSString *id;
 @property(nonatomic,copy)NSString *orderNo;
 @property(nonatomic,copy)NSString *type;
+@property(nonatomic,copy)NSString *operatorName;
 @end

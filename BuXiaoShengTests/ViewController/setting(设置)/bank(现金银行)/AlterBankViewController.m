@@ -4,14 +4,14 @@
 //
 //  Created by 罗镇浩 on 2018/5/11.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  修改银行页面
+//  修改银行页面 添加银行页面
 
 #import "AlterBankViewController.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "DefaultBankCell.h"
 #import "LLCashBankModel.h"
-@interface AlterBankViewController ()<LZHTableViewDelegate>
+@interface AlterBankViewController ()<LZHTableViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic,assign)BOOL isdefault;
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -59,7 +59,7 @@
         self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"暂无" :model.cardNumber;
         self.bankTitleCell.contentTF.text = model.name;
         self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
-        
+        self.belongStoreCell.contentTF.text = model.initialValue;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
     }];
@@ -100,7 +100,7 @@
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
     [self setupSectionOne];
-    //    [self setSectionTwo];
+    [self setSectionTwo];
     self.mainTabelView.dataSoure = self.datasource;
 }
 
@@ -121,10 +121,7 @@
     self.bankTitleCell.titleLabel.text = @"现金银行名称";
     self.bankTitleCell.contentTF.placeholder = @"请填写银行名称";
     
-    self.belongStoreCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.belongStoreCell.rightArrowImageVIew.hidden = NO;
-    self.belongStoreCell.titleLabel.text = @"所属分店";
-    self.belongStoreCell.contentTF.placeholder = @"请选择所属分店";
+    
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
@@ -137,7 +134,7 @@
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.accountCell,self.bankTitleCell,self.stateCell];
+    item.sectionRows = @[self.bankTitleCell,self.accountCell,self.stateCell];
     item.canSelected = true;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -151,11 +148,17 @@
     UITapGestureRecognizer *defaultCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(defaultCellAction)];
     [self.defaultCell addGestureRecognizer:defaultCellTap];
     
+    self.belongStoreCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.belongStoreCell.rightArrowImageVIew.hidden = YES;
+    self.belongStoreCell.titleLabel.text = @"初始金额";
+    self.belongStoreCell.contentTF.placeholder = @"请输入初始金额";
+    self.belongStoreCell.contentTF.delegate = self;
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.defaultCell];
+    item.sectionRows = @[self.belongStoreCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -182,23 +185,28 @@
 
 - (void)saveBtnClick
 {
+    if ([BXSTools stringIsNullOrEmpty:self.bankTitleCell.contentTF.text]) {
+        BXS_Alert(@"请输入银行名称");
+        return;
+    }
     if ([BXSTools stringIsNullOrEmpty:self.accountCell.contentTF.text]) {
          BXS_Alert(@"请输入您的银行卡号");
         return;
-       
     }
-    if (![BXSTools isBankCard:self.accountCell.contentTF.text]) {
-         BXS_Alert(@"请输入正确的银行卡号");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.bankTitleCell.contentTF.text]) {
-         BXS_Alert(@"请输入银行名称");
-        return;
-    }
+//    if (![BXSTools isBankCard:self.accountCell.contentTF.text]) {
+//         BXS_Alert(@"请输入正确的银行卡号");
+//        return;
+//    }
+
     if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
          BXS_Alert(@"请选择银行卡状态");
         return;
     }
+    if ([BXSTools stringIsNullOrEmpty:self.belongStoreCell.contentTF.text]) {
+        BXS_Alert(@"请输入初始金额");
+        return;
+    }
+    
     NSInteger status = -1;
     if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
         status = 0;
@@ -215,7 +223,8 @@
                              @"cardNumber":self.accountCell.contentTF.text,
                              @"companyId":[BXSUser currentUser].companyId,
                              @"name":self.bankTitleCell.contentTF.text,
-                             @"status":@(status)
+                             @"status":@(status),
+                        @"initialValue":self.belongStoreCell.contentTF.text
                              };
     [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -244,6 +253,30 @@
     {
         self.defaultCell.selectImageView.image = IMAGE(@"yesSelect");
     }
+}
+
+#pragma mark --- uitextfieldDelegate ---
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+  
+    if ([textField isEqual:self.belongStoreCell.contentTF]) {
+        NSUInteger lengthOfString = string.length;
+        for (NSInteger loopIndex = 0; loopIndex < lengthOfString; loopIndex++) {//只允许数字输入
+            unichar character = [string characterAtIndex:loopIndex];
+            if (character < 48) return NO; // 48 unichar for 0
+            if (character > 57) return NO; // 57 unichar for 9
+        }
+        // Check for total length
+        NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
+        if (proposedNewLength > 7) return NO;//限制长度
+        return YES;
+    }
+//    else{
+//        NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
+//        if ( proposedNewLength > 20) return NO;//限制长度
+        return YES;
+//    }
+//    }
+    
 }
 
 

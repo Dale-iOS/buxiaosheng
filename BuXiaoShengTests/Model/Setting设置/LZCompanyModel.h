@@ -20,6 +20,6 @@
 @property (nonatomic,copy) NSString * status;
 @property (nonatomic,copy) NSString * tel;
 @property (nonatomic,copy) NSString * type;
-
+@property (nonatomic,copy) NSString * initialValue;
 
 @end

@@ -62,7 +62,7 @@
     [self.view addSubview:self.remindView];
     
     UILabel *remindLbl1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 4, APPWidth, 27)];
-    remindLbl1.text = @"您的登录密码为默认";
+    remindLbl1.text = @"您的当前登录密码为系统默认";
     remindLbl1.textColor = [UIColor whiteColor];
     remindLbl1.font = FONT(12);
     remindLbl1.textAlignment = NSTextAlignmentCenter;
@@ -80,13 +80,13 @@
     //登录 左边图标
     UIView *loginLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 45, 18)];
     UIImageView *loginLeftImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newPassword"]];
-    loginLeftImageView.frame = CGRectMake(15, 0, 18, 18);
+    loginLeftImageView.frame = CGRectMake(15, 0, 16, 18);
     [loginLeftView addSubview:loginLeftImageView];
     
     //密码 左边图标
     UIView *passwordLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 45, 18)];
     UIImageView *passwordImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newPassword"]];
-    passwordImageView.frame = CGRectMake(15, 0, 18, 18);
+    passwordImageView.frame = CGRectMake(15, 0, 16, 18);
     [passwordLeftView addSubview:passwordImageView];
 
     //新密码输入框
@@ -96,6 +96,8 @@
     self.passwordNewTF.leftViewMode = UITextFieldViewModeAlways;
     self.passwordNewTF.layer.cornerRadius = 22;
     self.passwordNewTF.placeholder = @"设置6~16位新密码";
+    //密码形式
+    self.passwordNewTF.secureTextEntry = YES;
     [self.passwordNewTF setValue:[UIColor colorWithHexString:@"#cccccc"] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordNewTF setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
     self.passwordNewTF.layer.borderColor = [UIColor colorWithHexString:@"#cccccc"].CGColor;
@@ -164,7 +166,7 @@
 - (void)passwordNewTFChanged:(NSBlockOperation *)notify
 {
     //监听输入框是否都有内容，确认按钮样式变化
-    if (self.passwordAgainTF.text.length >0 && self.passwordNewTF.text.length >0) {
+    if (self.passwordAgainTF.text.length >=6 && self.passwordNewTF.text.length >=6) {
         
         self.affirmBtn.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
         self.affirmBtn.titleLabel.font = [UIFont systemFontOfSize:15];

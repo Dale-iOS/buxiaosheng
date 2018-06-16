@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LZCheckReceiptModel;
 @interface WarehouserTableViewCell : UITableViewCell
-
+@property(nonatomic,strong)LZCheckReceiptModel *model;
 ///标题
 @property (nonatomic, strong) UILabel *titleLbl;
 

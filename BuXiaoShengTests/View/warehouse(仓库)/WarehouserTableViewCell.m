@@ -7,6 +7,7 @@
 //
 
 #import "WarehouserTableViewCell.h"
+#import "LZCheckReceiptModel.h"
 
 @implementation WarehouserTableViewCell
 @synthesize titleLbl,colorLbl,weightLbl,stateLbl,timeLbl;
@@ -82,6 +83,8 @@
         label.textColor = [UIColor colorWithHexString:@"#25cce5"];
         label.text = @"入库";
         label.textAlignment = NSTextAlignmentCenter;
+        label.layer.cornerRadius = 2.0f;
+        label.layer.masksToBounds = YES;
         [contentView addSubview:(stateLbl = label)];
     }
     return stateLbl;
@@ -95,6 +98,7 @@
         label.font = FONT(12);
         label.textColor = CD_Text99;
         label.text = @"2018-4-3 13：14";
+        label.hidden = YES;
         label.textAlignment = NSTextAlignmentRight;
         [contentView addSubview:(timeLbl = label)];
     }
@@ -124,7 +128,7 @@
     self.stateLbl.sd_layout
     .topEqualToView(self.titleLbl)
     .rightSpaceToView(contentView, 15)
-    .widthIs(50)
+    .widthIs(65)
     .heightIs(20);
     
     self.timeLbl.sd_layout
@@ -132,6 +136,44 @@
     .rightSpaceToView(contentView, 15)
     .widthIs(150)
     .heightIs(13);
+}
+
+- (void)setModel:(LZCheckReceiptModel *)model{
+    _model = model;
+    self.titleLbl.text = _model.orderNo;
+    self.colorLbl.text = _model.operatorName;
+    self.weightLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+//    类型(0：销售出库 1：加工出库 2：退单入库 3：采购入库 4: 加工入库)
+    switch ([_model.type integerValue]) {
+        case 0:
+            self.stateLbl.text = @"销售出库";
+            self.stateLbl.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f];
+            self.stateLbl.textColor = [UIColor colorWithHexString:@"#ff6565"];
+            break;
+        case 1:
+            self.stateLbl.text = @"加工出库";
+            self.stateLbl.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f];
+            self.stateLbl.textColor = [UIColor colorWithHexString:@"#ff6565"];
+            break;
+        case 2:
+            self.stateLbl.text = @"退单入库";
+            self.stateLbl.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
+            self.stateLbl.textColor = [UIColor colorWithHexString:@"#25cce5"];
+            break;
+        case 3:
+            self.stateLbl.text = @"采购入库";
+            self.stateLbl.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
+            self.stateLbl.textColor = [UIColor colorWithHexString:@"#25cce5"];
+            break;
+        case 4:
+            self.stateLbl.text = @"加工入库";
+            self.stateLbl.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
+            self.stateLbl.textColor = [UIColor colorWithHexString:@"#25cce5"];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

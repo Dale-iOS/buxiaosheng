@@ -23,5 +23,5 @@
 @property (nonatomic,copy) NSString * quota;
 @property (nonatomic,copy) NSString * remark;
 @property (nonatomic,copy) NSString * status;
-
+@property (nonatomic,copy) NSString * initialValue;
 @end

@@ -89,7 +89,7 @@
     self.mainTabelView.dataSoure = self.datasource;
     
     self.changeUserBtn = [UIButton new];
-    [self.changeUserBtn setTitle:@"退出" forState:UIControlStateNormal];
+    [self.changeUserBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.changeUserBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     self.changeUserBtn.titleLabel.font = FONT(14);
     [self.changeUserBtn setBackgroundColor:[UIColor whiteColor]];

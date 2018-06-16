@@ -22,5 +22,6 @@
 @property(nonatomic,copy)NSString* userId;
 
 @property (nonatomic,copy) NSString * companyId;
+@property (nonatomic,copy) NSString * companyName;
 
 @end

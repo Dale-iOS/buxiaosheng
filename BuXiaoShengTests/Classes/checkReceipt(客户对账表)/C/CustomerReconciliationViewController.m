@@ -9,11 +9,10 @@
 #import "CustomerReconciliationViewController.h"
 #import "CustomerReconciliationTableViewCell.h"
 #import "ReconciliationDetailViewController.h"
-#import "LZSearchBar.h"
 #import "UITextField+PopOver.h"
 #import "LZCheckReceiptModel.h"
 
-@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,UITextFieldDelegate>
+@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UILabel *companyLbl;
@@ -21,7 +20,6 @@
 @property (nonatomic, strong) UILabel *lastpayDateLbl;
 ///累计欠款
 @property (nonatomic ,strong) UILabel *totalborrowLbl;
-@property (nonatomic, strong) LZSearchBar * searchBar;
 @property(nonatomic,strong)UITextField *searchTF;
 @property(nonatomic,strong)NSMutableArray *customerList;
 @property(nonatomic,strong)NSMutableArray *customerNameAry;
@@ -47,16 +45,9 @@
     [self setupTableviewHeadView];
     
     self.navigationItem.titleView = [Utility navTitleView:@"客户对账表"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
+//    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
-    self.searchBar.placeholder = @"输入搜索";
-    self.searchBar.textColor = Text33;
-    self.searchBar.delegate = self;
-    self.searchBar.iconImage = IMAGE(@"search1");
-    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
-    //    [self.view addSubview:self.searchBar];
     
     //放大镜图标
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 45, 18)];
@@ -220,6 +211,7 @@
     }];
 }
 
+//接口名称 客户对账列表
 - (void)setupListData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"customerId":_customerId,
@@ -286,9 +278,6 @@
     NSLog(@"toScreenClick");
 }
 
-- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

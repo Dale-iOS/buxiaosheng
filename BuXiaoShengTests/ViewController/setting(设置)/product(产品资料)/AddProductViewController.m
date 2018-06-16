@@ -242,7 +242,6 @@
     
     //返回的颜色
     UIView *colorsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.001)];
-//    _array = @[@"自由人",@"苗老板",@"销售员",@"资料员",@"采购员",@"设计师",@"工程师",@"甲方代表",@"+自定义"];
 
     _array = [NSArray array];
     

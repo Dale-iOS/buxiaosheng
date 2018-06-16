@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/22.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  添加人员页面
 
 #import "AddDeptWorkerVC.h"
 #import "LZHTableView.h"
@@ -136,17 +136,16 @@
         NSMutableArray *IdMuArray = [NSMutableArray array];
         NSMutableArray *NameMuArray = [NSMutableArray array];
         for (int i = 0; i < self.lists.count ; i++) {
-            LZDeptListModel *model = self.lists[0];
+            LZDeptListModel *model = self.lists[i];
             if (model.companyId.length > 0 && model.id.length > 0 && model.name.length > 0) {
                 [CompanyIdMuArray addObject:model.companyId];
                 [IdMuArray addObject:model.id];
                 [NameMuArray addObject:model.name];
             }
-            self.companyIdAry = [CompanyIdMuArray mutableCopy];
-            self.idAry = [IdMuArray mutableCopy];
-            self.nameAry = [NameMuArray mutableCopy];
         }
-
+        self.companyIdAry = [CompanyIdMuArray mutableCopy];
+        self.idAry = [IdMuArray mutableCopy];
+        self.nameAry = [NameMuArray mutableCopy];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
