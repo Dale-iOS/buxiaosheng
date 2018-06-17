@@ -32,6 +32,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+   
 //        self.backgroundColor = [UIColor whiteColor];
 //        [self setupCustomerList];
 //        [self setupPayList];
@@ -44,8 +45,8 @@
 {
     self.footerView = [[UIView alloc]init];
     self.footerView.userInteractionEnabled = YES;
-    self.footerView.frame = CGRectMake(0, 0, APPWidth, 519);
-    //    self.footerView.backgroundColor = [UIColor redColor];
+    self.footerView.frame = CGRectMake(0, 0, APPWidth, 420);
+    self.footerView.backgroundColor = [UIColor whiteColor];
     
     //新增一条底图view
     UIView *addView = [[UIView alloc]init];
@@ -70,7 +71,7 @@
     .heightIs(31);
     
     //第一条灰色line
-    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, addView.bottom, APPWidth, 10)];
     lineView1.backgroundColor = LZHBackgroundColor;
     lineView1.sd_layout
     .topSpaceToView(addView, 0)
@@ -103,7 +104,7 @@
     lineView2.backgroundColor = LZHBackgroundColor;
     
     //指派人
-    self.assignCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, self.phoneCell.bottom, APPWidth, 49)];
+    self.assignCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, lineView2.bottom, APPWidth, 49)];
     self.assignCell.titleLabel.text = @"指派人";
     self.assignCell.contentTF.placeholder = @"请选址指派人";
     self.assignCell.rightArrowImageVIew.hidden = NO;
@@ -114,7 +115,7 @@
     lineView3.backgroundColor = LZHBackgroundColor;
     
     //备注
-    self.remarkTextView = [[TextInputTextView alloc]initWithFrame:CGRectMake(0, self.assignCell.bottom, APPWidth, 79)];
+    self.remarkTextView = [[TextInputTextView alloc]initWithFrame:CGRectMake(0, lineView3.bottom, APPWidth, 79)];
     self.remarkTextView.titleLabel.text = @"备注";
     self.remarkTextView.textView.placeholder = @"请输入备注内容";
     
@@ -126,6 +127,8 @@
     [self.footerView addSubview:self.addresCell];
     [self.footerView addSubview:lineView2];
     [self.footerView addSubview:self.assignCell];
+    [self.footerView addSubview:lineView3];
+    [self.footerView addSubview:self.remarkTextView];
 
 }
 
@@ -133,11 +136,11 @@
     
     [self setupFooterView];
     
-    _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
-    _tableView.backgroundColor = LZHBackgroundColor;
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableFooterView = self.footerView;
+    self.tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
+    self.tableView.backgroundColor = LZHBackgroundColor;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = self.footerView;
     //隐藏分割线
 //    self.tableView .separatorStyle = NO;
     [self addSubview:self.tableView];
@@ -171,6 +174,11 @@
     }
 //    cell.model = _lists[indexPath.row];
     return cell;
+}
+
+#pragma mark ---- 点击事件 -----
+- (void)addBtnOnClickAction{
+    NSLog(@"点击了新增一条");
 }
 
 @end
