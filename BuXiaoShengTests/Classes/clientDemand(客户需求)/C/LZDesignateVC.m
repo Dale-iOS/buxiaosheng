@@ -68,7 +68,7 @@
     _purchaseView = [[LZPurchaseView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
     [_scrollView addSubview:_purchaseView];
     
-    _processView = [[LZProcessView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
+    _processView = [[LZProcessView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
     [_scrollView addSubview:_processView];
 }
 

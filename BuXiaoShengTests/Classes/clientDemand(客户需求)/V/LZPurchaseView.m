@@ -45,7 +45,7 @@
 {
     self.footerView = [[UIView alloc]init];
     self.footerView.userInteractionEnabled = YES;
-    self.footerView.frame = CGRectMake(0, 0, APPWidth, 420);
+    self.footerView.frame = CGRectMake(0, 0, APPWidth, 415);
     self.footerView.backgroundColor = [UIColor whiteColor];
     
     //新增一条底图view
@@ -149,7 +149,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 20;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -159,7 +159,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
