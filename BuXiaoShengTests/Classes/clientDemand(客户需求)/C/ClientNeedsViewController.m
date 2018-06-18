@@ -111,6 +111,17 @@
 }
 
 #pragma mark -------- AuditTableViewCellDelegate -------
+//指派按钮事件
+- (void)didClickNoBtnInCell:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    LZClientDemandModel *model = _listDatas[indexPath.row];
+    
+    LZDesignateVC *vc = [[LZDesignateVC alloc]init];
+    vc.orderId = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 //出库按钮事件
 - (void)didClickYesBtnInCell:(UITableViewCell *)cell
 {
@@ -122,12 +133,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//指派按钮事件
-- (void)didClickNoBtnInCell:(UITableViewCell *)cell
-{
-    LZDesignateVC *vc = [[LZDesignateVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+
 
 
 #pragma mark ------ 点击事件 -------

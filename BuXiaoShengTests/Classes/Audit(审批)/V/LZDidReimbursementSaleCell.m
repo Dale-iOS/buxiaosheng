@@ -32,6 +32,11 @@
     self.bgView = [[UIView alloc]init];
     self.bgView.backgroundColor = [UIColor whiteColor];
     self.bgView.layer.cornerRadius = 5.0f;
+    self.bgView.layer.shadowColor = [UIColor blackColor].CGColor;
+    //        阴影的透明度
+    self.bgView.layer.shadowOpacity = 0.7f;
+    //        阴影的偏移量
+    self.bgView.layer.shadowOffset = CGSizeMake(4,4);
     [contentView addSubview:self.bgView];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView).offset(15);

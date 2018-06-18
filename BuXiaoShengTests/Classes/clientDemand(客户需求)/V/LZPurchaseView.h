@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZPurchaseView : UIView
-
+@property(nonatomic,copy)NSString *orderId;
 @end

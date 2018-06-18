@@ -17,6 +17,8 @@
 @interface OrganizationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray <LLAuditMangerModel *> * manages;
+@property(nonatomic,copy)NSString *workersStr;//剩余的人数
+@property(nonatomic,strong)UILabel *headLbl;//tableview头部试图
 @end
 
 @implementation OrganizationViewController
@@ -31,11 +33,18 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupData];
+    [self setupWorkersData];
 }
 
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"组织架构"];
+    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    navRightBtn.titleLabel.font = FONT(15);
+    [navRightBtn setTitle:@"部门管理" forState:UIControlStateNormal];
+    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+    [navRightBtn addTarget:self action:@selector(navRightClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
     
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPHeight -49, APPWidth, 49)];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -115,6 +124,22 @@
     }];
 }
 
+- (void)setTableViewHeadView{
+    _headLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
+    _headLbl.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
+    _headLbl.textColor = CD_Text99;
+    _headLbl.font = FONT(12);
+    _headLbl.text = [NSString stringWithFormat:@"    %@（还剩%@个名额）",[BXSUser currentUser].companyName,_workersStr];
+    
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_headLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"    %@",[BXSUser currentUser].companyName]]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text33 range:oneRange];
+    _headLbl.attributedText = temgpStr;
+    
+    self.tableView.tableHeaderView = _headLbl;
+}
+
+#pragma mark --- 网络请求 ---
 -(void)setupData {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"member/list.do" param:param success:^(id response) {
@@ -130,6 +155,22 @@
             [LLHudTools showWithMessage:LLLoadNoMoreMessage];
         }
         
+    } failure:^(NSError *error) {
+        [LLHudTools showWithMessage:LLLoadErrorMessage];
+    }];
+}
+
+//接口名称 剩余用户数量
+- (void)setupWorkersData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"member/surplus_member_number.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _workersStr = baseModel.data;
+        [self setTableViewHeadView];
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:LLLoadErrorMessage];
     }];
@@ -199,6 +240,8 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:_tableView];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[LLAuditMangerCell class] forCellReuseIdentifier:@"LLAuditMangerCell"];
@@ -223,7 +266,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+- (void)navRightClick{
+    
+}
 
 
 @end

@@ -89,8 +89,9 @@
     
     [_foldingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-12);
-        make.top.equalTo(self.contentView).offset(40);
-         make.width.mas_equalTo(60);
+//        make.top.equalTo(self.contentView).offset(40);
+        make.centerY.equalTo(self.contentView);
+        make.width.mas_equalTo(60);
     }];
     [_foldingBtn layoutIfNeeded];
     
@@ -208,9 +209,12 @@
     _seletedBtn.selected = _model.checkOut;
     if ([model.stock isEqualToString:@"0"]) {
         [_foldingBtn setTitle:@"无库存" forState:UIControlStateNormal];
-        [_foldingBtn setBackgroundColor:[UIColor redColor]];
+        [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#ff6565"] forState:UIControlStateNormal];
+        [_foldingBtn setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:0.2f]];
         [_foldingBtn setImage:nil forState:UIControlStateNormal];
-         [_foldingBtn setImage:nil forState:UIControlStateSelected];
+        [_foldingBtn setImage:nil forState:UIControlStateSelected];
+        _foldingBtn.layer.cornerRadius = 2.0f;
+        _foldingBtn.layer.masksToBounds = YES;
         _foldingBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  0, 0, 0);
          _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));

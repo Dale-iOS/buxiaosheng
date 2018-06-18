@@ -10,4 +10,5 @@
 
 @interface LZDesignateVC : BaseViewController
 //@property (nonatomic,strong) NSArray <NSString *> * segmentedTitles;
+@property(nonatomic,copy)NSString *orderId;
 @end

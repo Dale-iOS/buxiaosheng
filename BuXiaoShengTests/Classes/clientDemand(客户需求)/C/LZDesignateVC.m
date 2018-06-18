@@ -32,8 +32,7 @@
 
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:@"指派"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"list")];
-    
+
     self.SegmentedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, 40)];
     self.SegmentedBgView.backgroundColor = [UIColor whiteColor];
     
@@ -66,17 +65,15 @@
     }];
     
     _purchaseView = [[LZPurchaseView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
+    _purchaseView.orderId = self.orderId;
     [_scrollView addSubview:_purchaseView];
     
     _processView = [[LZProcessView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
+    _processView.orderId = self.orderId;
     [_scrollView addSubview:_processView];
 }
 
 #pragma mark --- 点击事件 ---
-- (void)navigationSetupClick{
-
-}
-
 //分段选择器方法
 - (void)segClick:(UISegmentedControl *)sgc
 {
