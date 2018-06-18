@@ -9,8 +9,9 @@
 #import "ShipmentOrderViewController.h"
 #import "OrderTableViewCell.h"
 #import "LZOrderTrackingModel.h"
+#import "LZShipmentVC.h"
 
-@interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
@@ -141,15 +142,23 @@
     if (cell == nil) {
         
         cell = [[OrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
+        cell.delegate = self;
+        cell.isFromShipment = YES;
     }
     cell.model = _lists[indexPath.row];
     return cell;
 }
 
+//点击开单按钮
+- (void)didClickShipmentBtnInCell:(UITableViewCell *)cell{
+    LZShipmentVC *vc = [[LZShipmentVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)screenBtnClick
 {
     NSLog(@"点击了筛选时间");
+    
 }
 
 - (void)didReceiveMemoryWarning {

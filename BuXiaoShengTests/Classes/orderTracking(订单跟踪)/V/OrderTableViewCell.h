@@ -9,10 +9,14 @@
 @class LZOrderTrackingModel;
 #import <UIKit/UIKit.h>
 
+@protocol OrderTableViewCellDelegate <NSObject>
+- (void)didClickShipmentBtnInCell:(UITableViewCell *)cell;
+@end
+
 @interface OrderTableViewCell : UITableViewCell
 
 @property(nonatomic,strong)LZOrderTrackingModel *model;
-
+@property (nonatomic, weak) id<OrderTableViewCellDelegate> delegate;
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;
 
@@ -48,6 +52,8 @@
 
 ///图标名字
 @property (nonatomic, strong)UILabel *iconLabel;
-
-
+///是出货的cell（需要有开单按钮）
+@property(nonatomic,assign)BOOL isFromShipment;
+///开单按钮
+@property(nonatomic,strong)UIButton *shipmentBtn;
 @end

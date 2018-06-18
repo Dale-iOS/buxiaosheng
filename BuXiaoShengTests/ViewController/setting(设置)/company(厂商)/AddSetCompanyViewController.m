@@ -295,19 +295,24 @@
         return;
     }
     NSInteger stauts;
-    switch (self.type) {
-        case 0:
-            stauts = 0;
-            break;
-        case 1:
-            stauts = 1;
-            break;
-        case 2:
-            stauts = 2;
-            break;
-        default:
-            break;
+    if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
+        stauts = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
+        stauts = 1;
     }
+//    switch (self.type) {
+//        case 0:
+//            stauts = 0;
+//            break;
+//        case 1:
+//            stauts = 1;
+//            break;
+//        case 2:
+//            stauts = 2;
+//            break;
+//        default:
+//            break;
+//    }
     
     NSInteger types = -1;
     if ([self.typeCell.contentTF.text isEqualToString:@"供货商"]) {

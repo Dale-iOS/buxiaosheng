@@ -10,7 +10,7 @@
 #import "LZOrderTrackingModel.h"
 
 @implementation OrderTableViewCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,procurementLabel,procurementInfoLabel,processedLabel,iconLabel;
+@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,procurementLabel,procurementInfoLabel,processedLabel,iconLabel,shipmentBtn;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -204,6 +204,23 @@
     return iconLabel;
 }
 
+- (UIButton *)shipmentBtn{
+    if (!shipmentBtn) {
+        UIButton *btn = [[UIButton alloc]init];
+        [btn setTitle:@"开单开货" forState:UIControlStateNormal];
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btn.titleLabel.font = FONT(13);
+        [btn setBackgroundColor:LZAppBlueColor];
+        btn.layer.cornerRadius = 5.0f;
+        btn.layer.masksToBounds = YES;
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(shipmentBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        btn.hidden = YES;
+        [self.bgView addSubview:(shipmentBtn = btn)];
+    }
+    return shipmentBtn;
+}
+
 //自动布局
 - (void)setSDlayout
 {
@@ -283,6 +300,13 @@
     .heightIs(29)
     .rightSpaceToView(self.bgView, 15)
     .bottomSpaceToView(self.bgView, 15);
+    
+    self.shipmentBtn.sd_layout
+    .widthIs(69)
+    .heightIs(29)
+    .rightSpaceToView(self.bgView, 18)
+    .centerYEqualToView(self.bgView);
+    
 }
 
 - (void)setModel:(LZOrderTrackingModel *)model
@@ -307,17 +331,30 @@
         self.procurementLabel.hidden = NO;
         self.procurementInfoLabel.hidden = NO;
     }
+    
+    if (self.isFromShipment) {
+        [self.shipmentBtn setHidden:NO];
+    }else{
+        [self.shipmentBtn setHidden:YES];
+    }
+    
 }
+
+#pragma mark --- 点击事件 ---
+//开单按钮事件
+- (void)shipmentBtnClick{
+    if ([self.delegate respondsToSelector:@selector(didClickShipmentBtnInCell:)]) {
+        [self.delegate didClickShipmentBtnInCell:self];
+    }
+}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-   
 }
 
 @end
