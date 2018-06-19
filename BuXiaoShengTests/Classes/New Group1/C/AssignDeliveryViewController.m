@@ -10,11 +10,14 @@
 //#import "AddAuditManagerViewController.h"
 #import "LZAssignDeliveryModel.h"
 #import "AssignDeliveryCell.h"
-#import "LZPickerView.h"
 #import "LZHomeModel.h"
+#import "LZChoosseWorkerVC.h"
 
 @interface AssignDeliveryViewController ()<UITableViewDelegate, UITableViewDataSource>
-
+{
+    NSMutableArray *_selectArray;
+    NSString *_selectId;
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIImageView *allIM;
@@ -24,6 +27,8 @@
 @property(nonatomic,strong)NSMutableArray *workersNameAry;
 @property(nonatomic,strong)NSMutableArray *workersIdAry;
 @property(nonatomic,strong)NSString *workerId;
+@property(nonatomic,strong)UIView *allSelectView;
+@property(nonatomic,strong)UIButton *commitBtn;//提交按钮
 @end
 
 @implementation AssignDeliveryViewController
@@ -33,9 +38,11 @@
     
     self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
-    
+    _selectArray = [NSMutableArray array];
+   
+    [self setupData];
+    [self setupWorkerList];
     [self setupUI];
-    
     //    [self initData];
     //
     //    [self setupChildViews];
@@ -44,8 +51,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupData];
-    [self setupWorkerList];
+    
+//    [self setupData];
+//    [self setupWorkerList];
 }
 
 - (void)setupUI
@@ -79,6 +87,18 @@
         make.width.mas_offset(70);
     }];
     
+    _allSelectView = [[UIView alloc]init];
+    _allSelectView.backgroundColor = [UIColor clearColor];
+    _allSelectView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *allViewTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(allTapClick)];
+    [_allSelectView addGestureRecognizer:allViewTap];
+    [_headView addSubview:_allSelectView];
+    [_allSelectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_allIM.mas_left);
+        make.top.and.bottom.equalTo(_headView);
+        make.right.equalTo(allLbl.mas_right);
+    }];
+    
     _chooseLbl = [[UILabel alloc]init];
     _chooseLbl.textColor = CD_textCC;
     _chooseLbl.font = FONT(14);
@@ -95,6 +115,19 @@
         make.width.mas_offset(150);
     }];
     
+    _commitBtn = [[UIButton alloc]init];
+    [_commitBtn setBackgroundColor:LZAppBlueColor];
+    [_commitBtn setTitle:@"确 认" forState:UIControlStateNormal];
+    _commitBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _commitBtn.titleLabel.font = FONT(14);
+    [_commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_commitBtn addTarget:self action:@selector(commitBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_commitBtn];
+    [_commitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.bottom.and.right.equalTo(self.view);
+        make.height.mas_offset(44);
+    }];
+    
     _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -104,8 +137,8 @@
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_headView.mas_bottom);
-        make.left.right.bottom.equalTo(self.view);
-        
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(_commitBtn.mas_top);
     }];
 }
 
@@ -167,7 +200,6 @@
     return 1;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellId = @"AssignDeliveryCell";
@@ -179,27 +211,80 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZAssignDeliveryModel *model = _lists[indexPath.row];
+    if (model.isSelect == YES) {
+        model.isSelect = NO;
+        //从选中中去除
+        [_selectArray removeObject:model.id];
+        _selectId = [_selectArray componentsJoinedByString:@","];
+        NSLog(@"%@",_selectId);
+    }else{
+        
+        model.isSelect = YES;
+        [_selectArray addObject:model.id];
+        _selectId = [_selectArray componentsJoinedByString:@","];
+        NSLog(@"%@",_selectId);
+    }
+    [_tableView reloadData];
+}
+
 #pragma mark ------ 点击事件 -------
 - (void)ToSearch
 {
     NSLog(@"点击了search");
 }
 
-- (void)tapChooseClick
-{
-
-    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_workersNameAry titleDataArray:nil];
-    
-    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
-//        weakSelf.principalCell.contentTF.text = compoentString;
-        NSInteger row = [titileString integerValue];
-//        weakSelf.priceipalId = weakSelf.principalIdAry[row];
-        NSLog(@"%@++++%@",compoentString,titileString);
-    };
-    
-    [self.view addSubview:pickerView];
+//全选
+- (void)allTapClick{
+    NSLog(@"全部");
+    [_selectArray removeAllObjects];
+    [_tableView reloadData];
 }
 
+- (void)tapChooseClick
+{
+    LZChoosseWorkerVC *vc = [[LZChoosseWorkerVC alloc]init];
+    vc.navTitle = @"选择指派人";
+    [self.navigationController pushViewController:vc animated:YES];
+//    WEAKSELF;
+    [vc setChooseBlock:^(NSString *workerId, NSString *workerName) {
+        _workerId = workerId;
+        _chooseLbl.textColor = CD_Text33;
+        _chooseLbl.text = [NSString stringWithFormat:@"指派人：%@",workerName];
+    }];
+}
+
+//提交按钮
+//接口名称 设置订单送货人
+- (void)commitBtnClick{
+    if ([BXSTools stringIsNullOrEmpty:_workerId]) {
+        BXS_Alert(@"请选择指派人员");
+        return;
+    }
+    if (_selectArray.count <1) {
+        BXS_Alert(@"请至少勾选一项");
+        return;
+    }
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"delivererId":_workerId,
+                             @"orderIds":_selectId
+                             };
+    [BXSHttp requestGETWithAppURL:@"storehouse/set_deliverer.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [LLHudTools showWithMessage:@"指派成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+
+}
 
 
 - (void)didReceiveMemoryWarning {
