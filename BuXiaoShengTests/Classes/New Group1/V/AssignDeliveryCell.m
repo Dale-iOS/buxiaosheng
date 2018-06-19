@@ -184,9 +184,12 @@
     self.demandLbl.text = [NSString stringWithFormat:@"需求量：%@       出库数：%@",_model.needTotal,_model.number];
     self.timeLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
     
-    if (_model) {
-        <#statements#>
+    if (!_model.isSelect) {
+        self.selectIM.image = IMAGE(@"noSelect");
+    }else{
+        self.selectIM.image = IMAGE(@"yesSelect");
     }
+    
 }
 
 - (void)awakeFromNib {
