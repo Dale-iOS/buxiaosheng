@@ -16,6 +16,11 @@
     self.rightArrowImageVIew.hidden = _model.rightArrowHidden;
     self.contentTF.placeholder = model.placeholder;
     self.contentTF.text = model.content;
+    if (!_model.rightArrowHidden) {
+        self.contentTF.userInteractionEnabled = false;
+    }else {
+        self.contentTF.userInteractionEnabled = true;
+    }
     
     
 }

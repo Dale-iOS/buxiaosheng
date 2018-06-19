@@ -14,10 +14,11 @@
 #import "UITextView+Placeholder.h"
 #import "LLBackOrderCotentCell.h"
 #import "LLBackOrdeContentModel.h"
+#import "salesDemandModel.h"
 
 @interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray <NSMutableArray <LLBackOrdeContentModel*>*>* contenDataSource;
+
 /////销售需求列表View
 //@property (nonatomic, strong) SalesDemandListView *demandListView;
 
@@ -41,7 +42,11 @@
 ///备注
 @property (nonatomic, strong) TextInputCell *remarkTextView;
 
-@property (nonatomic,assign) NSInteger addCellCount;
+@property (nonatomic,strong) NSMutableArray <LLBackOrdeModel*> * backOrders;
+
+
+@property (nonatomic,strong) NSArray <productListModel*>* products;
+
 @end
 
 @implementation BackOrderViewController
@@ -49,12 +54,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.addCellCount = 1;
 
     [self setupUI];
+    [self setupProductData];
 }
-
-
 
 - (void)setupUI
 {
@@ -65,23 +68,77 @@
     }];
 }
 
+- (void)setupProductData
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             };
+    [BXSHttp requestGETWithAppURL:@"product/product_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        self.products = [productListModel LLMJParse:baseModel.data];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.backOrders.count) {
+        return 1;
+    }
     
-    return self.addCellCount;
+    if (section ==1) {
+        
+    }
+    
+    return  self.backOrders[section].seleted ? self.backOrders.count+1 :1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.backOrders.count == indexPath.row) {
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"addbtnCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addbtnCell"];
+            UIButton * addBtn = [UIButton new];
+            [addBtn setBackgroundImage:[UIImage imageNamed:@"addbtn"] forState:UIControlStateNormal];
+            [cell.contentView addSubview: addBtn];
+            [addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
+            [addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(cell.contentView);
+            }];
+        }
+        return cell;
+    }
     LLBackOrderCotentCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"LLBackOrderCotentCell"];
-    cell.dateModels = self.contenDataSource;
+    cell.dateModels = self.backOrders[indexPath.row].backOrderContents;
+    cell.indexPath = indexPath;
+    cell.products = self.products;
+    WEAKSELF;
+    cell.block = ^(LLBackOrderCotentCell *cell) {
+        weakSelf.backOrders[cell.indexPath.row].seleted =  ! weakSelf.backOrders[cell.indexPath.row].seleted;
+        [weakSelf.tableView reloadData];
+    };
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 11 * 60 +(20*self.contenDataSource.count-1);
+    if (self.backOrders.count == indexPath.row) {
+        return 50;
+    }
+    return self.backOrders[indexPath.row].seleted ?  (10 * 60 +(20*3)) : 0;
 }
 
-
-
+ /// MARK: ---- 新增一条的点击
+-(void)addBtnClick {
+    
+    LLBackOrdeModel * backOrder = [LLBackOrdeModel new];
+    backOrder.seleted = true;
+    backOrder.backOrderContents = [self contenDataSource];
+    [_backOrders addObject:backOrder];
+    [self.tableView reloadData];
+}
 
 
 -(UITableView *)tableView {
@@ -214,9 +271,16 @@
     return footView;
 }
 
+
+-(NSMutableArray<LLBackOrdeModel *> *)backOrders {
+    if (!_backOrders) {
+        _backOrders = [NSMutableArray array];
+    }
+    return _backOrders;
+}
+
 -(NSMutableArray *)contenDataSource {
-    if (!_contenDataSource) {
-        _contenDataSource = [NSMutableArray array];
+       NSMutableArray * _contenDataSource = [NSMutableArray array];
         NSMutableArray * sectionOneModel = [NSMutableArray array];
         for (int i = 0; i< 3; i++) {
             LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
@@ -311,7 +375,6 @@
             [sectionThreeModel addObject:model];
         }
         [_contenDataSource addObject:sectionThreeModel];
-    }
     return _contenDataSource;
 }
 

@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class LLBackOrdeContentModel;
+@interface LLBackOrdeModel:NSObject
+@property (nonatomic,assign) BOOL seleted;
+
+@property (nonatomic,strong) NSMutableArray <NSMutableArray <LLBackOrdeContentModel*>*>* backOrderContents;
+
+@end
+
 @interface LLBackOrdeContentModel : NSObject
 @property (nonatomic,copy) NSString * leftTitle;
 

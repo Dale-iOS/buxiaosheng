@@ -34,22 +34,31 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.tableView];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.bottom.equalTo(self.contentView);
+            make.edges.equalTo(self.contentView);
         }];
     }
     return self;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-     return self.dateModels.count;
+     return self.dateModels.count+1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+    if (section == self.dateModels.count) {
+        return 0;
+    }
     return self.dateModels[section].count;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
+    if (section == self.dateModels.count) {
+        UITableViewHeaderFooterView * view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UITableViewHeaderFooterSeletedView"];
+        if (!view) {
+            view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"UITableViewHeaderFooterSeletedView"];
+            view.backgroundColor = [UIColor redColor];
+        }
+        return view;
+    }
     UITableViewHeaderFooterView * view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UITableViewHeaderFooterView"];
     return view;
 }
@@ -59,16 +68,30 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return nil;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     LLBackOderDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLBackOderDetailCell"];
     cell.model = self.dateModels[indexPath.section][indexPath.row];
     return cell;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) { //选择品名
+        UIViewController * vc = [BXSTools viewWithViewController:self];
+        
+    }
+    
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+-(void)foldBtnClick {
+    self.block(self);
+}
 
 
 -(UITableView *)tableView {
@@ -77,24 +100,27 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.scrollEnabled = false;
-        _tableView.tableFooterView = [UIView new];
+       // _tableView.tableFooterView = [self tableViewFooterView];
         [_tableView registerClass:[LLBackOderDetailCell class] forCellReuseIdentifier:@"LLBackOderDetailCell"];
         [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"UITableViewHeaderFooterView"];
-        _tableView.tableFooterView = [self tableFooterView];
         
     }
     return _tableView;
 }
 
--(UIView *)tableFooterView  {
-    UIView * tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
+
+-(UIView*)tableViewFooterView  {
+    
+    UIView * tableViewFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
     UIButton * addBtn = [UIButton new];
-    [addBtn setBackgroundImage:[UIImage imageNamed:@"addbtn"] forState:UIControlStateNormal];
-    [tableFooterView addSubview: addBtn];
+    [addBtn setBackgroundImage:[UIImage imageNamed:@"fold"] forState:UIControlStateNormal];
+    [tableViewFooterView addSubview: addBtn];
+    [addBtn addTarget:self action:@selector(foldBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(tableFooterView);
+        make.center.equalTo(tableViewFooterView);
     }];
-    return tableFooterView;
+    return tableViewFooterView;
 }
+
 
 @end

@@ -8,6 +8,11 @@
 
 #import "LLBackOrdeContentModel.h"
 
+@implementation LLBackOrdeModel
+
+@end
+
+
 @implementation LLBackOrdeContentModel
 
 @end
