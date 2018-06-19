@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZPurchaseAskVC : BaseViewController
-
+@property(nonatomic,copy)NSString *bugId;
 @end

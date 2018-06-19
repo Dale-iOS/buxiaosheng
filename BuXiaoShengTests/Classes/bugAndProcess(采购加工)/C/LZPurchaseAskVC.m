@@ -16,6 +16,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupData];
+}
+
+- (void)setupUI{
+    self.navigationItem.titleView = [Utility navTitleView:@"采购询问"];
+}
+
+#pragma mark ---- 网络请求 ----
+- (void)setupData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buyId":self.bugId};
+    [BXSHttp requestGETWithAppURL:@"documentary/not_handle_detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
