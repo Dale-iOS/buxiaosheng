@@ -9,7 +9,8 @@
 #import "LZBugAndProcessBssView.h"
 #import "LZBugAndProcessUntreatedCell.h"
 #import "LZBugAndProcessBssModel.h"
-
+#import "LZPurchaseReceiptVC.h"
+#import "LZPurchaseAskVC.h"
 
 @interface LZBugAndProcessBssView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -90,15 +91,51 @@
 
 #pragma mark ---- 点击事件 ----
 - (void)didClickFirstBtnInCell:(UITableViewCell *)cell{
-//    [[self viewController].navigationController pushViewController:[[LZBugAndProcessListVC alloc]init] animated:YES];
+    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickSecondBtnInCell:(UITableViewCell *)cell{
-    
+    LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickThirdBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZBugAndProcessBssModel *model = _lists[indexP.row];
     
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"点击完成后将无法继续收货和询问" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        NSLog(@"取消执行");
+    }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        //        接口名称 采购完成
+        NSDictionary * param = @{
+                                 @"companyId":[BXSUser currentUser].companyId,
+                                 @"id":model.id
+                                 };
+        [BXSHttp requestPOSTWithAppURL:@"documentary/update_status.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            
+            if ([baseModel.code integerValue] != 200) {
+                return ;
+            }
+            [LLHudTools showWithMessage:@"提交成功"];
+            [self setupList];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [[self viewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 - (UIViewController *)viewController {

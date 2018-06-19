@@ -219,13 +219,13 @@
 
 - (void)secondBtnClick{
     if ([self.delegate respondsToSelector:@selector(didClickSecondBtnInCell:)]) {
-        [self.delegate didClickFirstBtnInCell:self];
+        [self.delegate didClickSecondBtnInCell:self];
     }
 }
 
 - (void)thridBtnClick{
     if ([self.delegate respondsToSelector:@selector(didClickThirdBtnInCell:)]) {
-        [self.delegate didClickFirstBtnInCell:self];
+        [self.delegate didClickThirdBtnInCell:self];
     }
 }
 
