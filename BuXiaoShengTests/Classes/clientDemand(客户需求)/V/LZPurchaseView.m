@@ -42,13 +42,17 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupProductDetail];
+        
         [self setupFactoryListData];
         [self setupUI];
     }
     return self;
 }
-
+- (void)setOrderId:(NSString *)orderId{
+    
+    _orderId = orderId;
+    [self setupProductDetail];
+}
 - (void)setupFooterView
 {
     self.footerView = [[UIView alloc]init];

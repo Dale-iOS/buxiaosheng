@@ -35,7 +35,7 @@
     //        阴影的颜色
     self.bgView.layer.shadowColor = [UIColor blackColor].CGColor;
     //        阴影的透明度
-    self.bgView.layer.shadowOpacity = 0.7f;
+    self.bgView.layer.shadowOpacity = 0.6f;
     //        阴影的偏移量
     self.bgView.layer.shadowOffset = CGSizeMake(4,4);
     [contentView addSubview:self.bgView];

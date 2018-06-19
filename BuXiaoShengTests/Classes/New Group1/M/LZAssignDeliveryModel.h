@@ -21,4 +21,5 @@
 @property(nonatomic,copy)NSString *productColorId;
 @property(nonatomic,copy)NSString *productId;
 @property(nonatomic,copy)NSString *productName;
+@property(nonatomic,assign)BOOL isSelect;//用于判断是否被选中
 @end

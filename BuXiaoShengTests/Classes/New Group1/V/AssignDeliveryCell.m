@@ -171,7 +171,7 @@
 - (void)setModel:(LZAssignDeliveryModel *)model
 {
     _model = model;
-    self.titleLbl.text = [NSString stringWithFormat:@"客户：%@",_model.drawerName];
+    self.titleLbl.text = [NSString stringWithFormat:@"客户：%@",_model.customerName];
     
     if (_model.drawerName.length >2) {
         self.iconName.text = [_model.drawerName substringFromIndex:2];
@@ -183,6 +183,10 @@
     self.subLbl.text = _model.productName;
     self.demandLbl.text = [NSString stringWithFormat:@"需求量：%@       出库数：%@",_model.needTotal,_model.number];
     self.timeLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+    
+    if (_model) {
+        <#statements#>
+    }
 }
 
 - (void)awakeFromNib {

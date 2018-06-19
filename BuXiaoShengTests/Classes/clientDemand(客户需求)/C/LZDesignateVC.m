@@ -64,10 +64,13 @@
         make.bottom.equalTo(self.view);
     }];
     
+//    采购view
     _purchaseView = [[LZPurchaseView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
-    _purchaseView.orderId = self.orderId;
+    [_purchaseView setOrderId:self.orderId];
+//    _purchaseView.orderId = self.orderId;
     [_scrollView addSubview:_purchaseView];
     
+//    指派view
     _processView = [[LZProcessView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -LLNavViewHeight -50)];
     _processView.orderId = self.orderId;
     [_scrollView addSubview:_processView];

@@ -53,6 +53,11 @@
     return self;
 }
 
+- (void)setOrderId:(NSString *)orderId{
+    _orderId = orderId;
+    [self setupProductDetail];
+}
+
 - (void)setupFooterView
 {
     self.footerView = [[UIView alloc]init];
@@ -213,6 +218,24 @@
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
+
+//接口名称 销售需求采购的产品的列表
+- (void)setupProductDetail{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"orderId":self.orderId
+                             };
+    [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
