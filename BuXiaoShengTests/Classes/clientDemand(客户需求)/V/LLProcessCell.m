@@ -13,16 +13,6 @@
     UILabel * _leftLable;
     UILabel * _rightLable;
 }
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 -(void)setIndexPath:(NSIndexPath *)indexPath {
     _indexPath = indexPath;
@@ -35,6 +25,9 @@
             switch (indexPath.row) {
                 case 0:
                     self.textField.placeholder = @"请输入厂商信息";
+                    break;
+                case 1:
+                    self.textField.placeholder = @"请输入联系人名称";
                     break;
                 case 2:
                     self.textField.placeholder = @"请输入电话";
@@ -116,5 +109,12 @@
     }];
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
 
 @end

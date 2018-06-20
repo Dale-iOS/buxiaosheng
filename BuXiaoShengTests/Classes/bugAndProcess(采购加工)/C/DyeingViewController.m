@@ -12,14 +12,10 @@
 #import "LLDyeingCollectionContainerCell.h"
 @interface DyeingViewController ()<UITableViewDelegate,UITableViewDataSource,sectionViewDelegate>
 @property (nonatomic,strong) UITableView * tableView;
-
 @property (nonatomic,strong) NSArray <NSDictionary*> * fristRowsInSectionData;
 @property (nonatomic,strong) NSArray <NSDictionary*> * secondRowsInSectionData;
-
 @property (nonatomic,strong) NSArray <NSDictionary*> * threeRowsInSectionData;
-
 @property (nonatomic,strong) NSArray <NSDictionary*> * fourRowsInSectionData;
-
 @property (nonatomic,strong) UILabel * totalNumberLable;
 @property (nonatomic,strong) UILabel * totalCountLable;
 
@@ -33,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"织造染色"];
+    self.navigationItem.titleView = [Utility navTitleView:@"采购收货"];
     UIView * bottomView = [self setupBottomView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);

@@ -4,7 +4,7 @@
 //
 //  Created by 周尊贤 on 2018/5/4.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  采购页面(指派)
 
 #import "LLProcessChildVc.h"
 #import "ProcessViewController.h"
@@ -12,13 +12,14 @@
 #import "LLProcessTitleCell.h"
 #import "LLProcessTitleDetailCell.h"
 #import "LLProcessCell.h"
+#import "LZPurchaseModel.h"
+
 @interface LLProcessChildVc ()<UITableViewDelegate,UITableViewDataSource,sectionViewDelegate>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray <NSDictionary *> * threeRowsInSectionData;
-
 @property (nonatomic,strong) NSArray <NSDictionary *> * fourRowsInSectionData;
-
 @property (nonatomic,strong) NSArray <NSDictionary *> * fiveRowsInSectionData;
+@property(nonatomic,strong)NSArray <LZPurchaseModel*> *models;
 @end
 
 @implementation LLProcessChildVc
@@ -40,13 +41,36 @@
         make.left.right.top.equalTo(self.view);
         make.height.mas_equalTo(SCREEN_HEIGHT - LLNavViewHeight - 45-50);
     }];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
+
+#pragma mark ---- 网络请求 ----
+- (void)setupData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"orderId":self.orderId
+                             };
+    [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _models = [LZPurchaseModel LLMJParse:baseModel.data];
+//        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 5;
 }
@@ -68,6 +92,7 @@
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0 || section == 1) {
+        //品名头
         LLProcessSectionView * sectionView  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLProcessSectionView"];
         sectionView.section = section;
         sectionView.delegate = self;
@@ -126,9 +151,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0|| section == 1) {
-         return 54+20;
+         return 54+10;
     }else {
-        return 20;
+        return 10;
     }
    
 }
@@ -137,7 +162,7 @@
 }
 
 -(void)sectionViewDelegate:(LLProcessSectionView *)sectionView {
-    _folding[sectionView.section] = ! _folding[sectionView.section];
+    _folding[sectionView.section] = !_folding[sectionView.section];
     [UIView animateWithDuration:0.0 animations:^{
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
     }];
@@ -162,8 +187,8 @@
     if (!_threeRowsInSectionData) {
         ///注: 所表type 0 代表文字黑   1 代表文字灰色 2 代表文字红色
         _threeRowsInSectionData = @[
-                                    @{@"key":@"厂商信息",@"type":@"1",@"value":@""},
-                                    @{@"key":@"联系人",@"type":@"0",@"value":@"万事达"},
+                                    @{@"key":@"供货商名称",@"type":@"1",@"value":@""},
+                                    @{@"key":@"联系人",@"type":@"0",@"value":@""},
                                     @{@"key":@"电话",@"type":@"0",@"value":@""},
                                     @{@"key":@"地址",@"type":@"1",@"value":@""},
                                     ];
@@ -191,15 +216,5 @@
     return _fiveRowsInSectionData;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

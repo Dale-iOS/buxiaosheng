@@ -40,10 +40,12 @@
     _leftcolorLable.textColor = CD_Text33;
     _leftcolorLable.font = [UIFont systemFontOfSize:15];
     _leftcolorLable.text = @"红色";
+    _leftcolorLable.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_leftcolorLable];
     [_leftcolorLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(15);
+        make.left.equalTo(self.contentView);
         make.centerY.equalTo(self.contentView);
+        make.width.mas_offset(APPWidth *0.25);
     }];
     
     _leftdemandLable = [UILabel new];
@@ -51,10 +53,12 @@
     _leftdemandLable.textColor = CD_Text33;
     _leftdemandLable.font = [UIFont systemFontOfSize:15];
     _leftdemandLable.text = @"698802";
+    _leftdemandLable.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_leftdemandLable];
     [_leftdemandLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_leftcolorLable.mas_right).offset(15);
+        make.left.equalTo(_leftcolorLable.mas_right);
         make.centerY.equalTo(self.contentView);
+        make.width.mas_offset(APPWidth *0.25);
     }];
     
     
@@ -63,10 +67,12 @@
     _rightdemandLable.textColor = CD_Text33;
     _rightdemandLable.font = [UIFont systemFontOfSize:15];
     _rightdemandLable.text = @"蓝色";
+    _rightdemandLable.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_rightdemandLable];
     [_rightdemandLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-30);
+        make.left.equalTo(_leftdemandLable.mas_right);
         make.centerY.equalTo(self.contentView);
+        make.width.mas_offset(APPWidth *0.25);
     }];
     
     _rightcolorLable = [UILabel new];
@@ -74,10 +80,12 @@
     _rightcolorLable.textColor = CD_Text33;
     _rightcolorLable.font = [UIFont systemFontOfSize:15];
     _rightcolorLable.text = @"123456";
+    _rightcolorLable.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_rightcolorLable];
     [_rightcolorLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_rightdemandLable.mas_left).offset(-15);
+        make.left.equalTo(_rightdemandLable.mas_right);
         make.centerY.equalTo(self.contentView);
+        make.width.mas_offset(APPWidth *0.25);
     }];
 }
 

@@ -14,13 +14,7 @@
     UILabel * _demandLable;//需求
     UIButton * _foldingBtn;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
@@ -59,8 +53,9 @@
     _foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [containerView addSubview:_foldingBtn];
     [_foldingBtn addTarget:self action:@selector(foldingBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal];
-    [_foldingBtn setTitle:@"展开    " forState:UIControlStateSelected];
+    [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
+    [_foldingBtn setTitle:@"收起    " forState:UIControlStateSelected];
+    _foldingBtn.titleLabel.font = FONT(12);
     [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateSelected];
     [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_close"] forState:UIControlStateNormal];

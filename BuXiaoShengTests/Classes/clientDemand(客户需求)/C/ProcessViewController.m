@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/27.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  加工页面
+//  指派页面（贤哥）
 
 #import "ProcessViewController.h"
 #import "LLProcessChildVc.h"
@@ -28,9 +28,9 @@
     [self setupBottomView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupProductDetail];
 }
 
 -(void)setupUI {
@@ -39,6 +39,7 @@
     [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         LLProcessChildVc * childVc = [LLProcessChildVc new];
         childVc.title = obj;
+        childVc.orderId = self.orderId;
         [self.containerView addSubview:childVc.view];
         [self addChildViewController:childVc];
     }];
@@ -73,7 +74,7 @@
     [bottomView addSubview:determineBtn];
     [determineBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.bottom.equalTo(bottomView);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(LLScale_WIDTH(340));
     }];
     return bottomView;
 }
@@ -101,7 +102,7 @@
     [self.view addSubview:segmentedView];
     [segmentedView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(64);
+        make.top.equalTo(self.view).offset(LLNavViewHeight);
         make.height.mas_equalTo(45);
     }];
     segmentedView.backgroundColor = [UIColor whiteColor];
@@ -111,7 +112,7 @@
     segmented.selectedSegmentIndex = 0;
     [segmented mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(segmentedView);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(LLScale_WIDTH(360));
     }];
     [segmented addTarget:self action:@selector(segmentedClick) forControlEvents:UIControlEventValueChanged];
     
@@ -125,7 +126,6 @@
     return _segmentedTitles;
 }
 
-
 -(UIScrollView *)containerView {
     if (!_containerView) {
         _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45-50)];
@@ -136,5 +136,25 @@
     return _containerView;
 }
 
+#pragma mark ---- 网络请求 ----
+//接口名称 销售需求采购的产品的列表
+- (void)setupProductDetail{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"orderId":self.orderId
+                             };
+    [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
 @end

@@ -11,6 +11,7 @@
 #import "LZBugAndProcessBssModel.h"
 #import "LZPurchaseReceiptVC.h"
 #import "LZPurchaseAskVC.h"
+#import "DyeingViewController.h"
 
 @interface LZBugAndProcessBssView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -23,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
-//        [self setupList];
+        [self setupList];
     }
     return self;
 }
@@ -91,15 +92,23 @@
 
 #pragma mark ---- 点击事件 ----
 - (void)didClickFirstBtnInCell:(UITableViewCell *)cell{
-    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+//    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+//    [[self viewController].navigationController pushViewController:vc animated:YES];
+    DyeingViewController *vc = [[DyeingViewController alloc]init];
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickSecondBtnInCell:(UITableViewCell *)cell{
+//    LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
+//    [[self viewController].navigationController pushViewController:vc animated:YES];
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZBugAndProcessBssModel *model = _lists[indexP.row];
     LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
+    vc.bugId = model.id;
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
+//完成事件
 - (void)didClickThirdBtnInCell:(UITableViewCell *)cell{
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     LZBugAndProcessBssModel *model = _lists[indexP.row];

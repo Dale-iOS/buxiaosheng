@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LZStockTrackingVC : UIViewController
+@interface LZStockTrackingVC : BaseViewController
 
 @end

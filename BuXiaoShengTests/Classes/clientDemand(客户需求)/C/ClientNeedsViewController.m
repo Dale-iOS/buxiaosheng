@@ -12,6 +12,7 @@
 #import "LZClientDemandModel.h"
 #import "LZSearchClientNeedsVC.h"
 #import "LZDesignateVC.h"
+#import "ProcessViewController.h"//贤哥写的指派
 
 @interface ClientNeedsViewController ()<UITableViewDelegate,UITableViewDataSource,AuditTableViewCellDelegate>
 
@@ -117,7 +118,11 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LZClientDemandModel *model = _listDatas[indexPath.row];
     
-    LZDesignateVC *vc = [[LZDesignateVC alloc]init];
+//    LZDesignateVC *vc = [[LZDesignateVC alloc]init];
+//    vc.orderId = model.id;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    ProcessViewController *vc = [[ProcessViewController alloc]init];
     vc.orderId = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }

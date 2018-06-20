@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LLProcessChildVc : BaseViewController
-
+@property(nonatomic,copy)NSString *orderId;
 @end

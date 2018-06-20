@@ -50,7 +50,7 @@
     
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-//    cell.backgroundColor = [UIColor redColor];
+    cell.backgroundColor = [UIColor redColor];
     
     if (indexPath.row == 0) {
 

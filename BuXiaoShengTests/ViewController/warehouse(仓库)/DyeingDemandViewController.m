@@ -58,7 +58,7 @@
 
 - (void)setupSegment
 {
-    self.SegmentedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, 40)];
+    self.SegmentedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 40)];
     self.SegmentedBgView.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.SegmentedBgView];
@@ -82,7 +82,7 @@
     
     SegmentProcessView *processView = [[SegmentProcessView alloc]initWithFrame:CGRectMake(self.view.width,0, self.view.width, self.view.height-64-49)];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64+40, self.view.width, self.view.height)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight+40, self.view.width, self.view.height)];
     
     scrollView.delegate = self;
     scrollView.bounces = NO;

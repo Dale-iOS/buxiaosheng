@@ -11,6 +11,7 @@
 #import "LZBugAndProcessBssModel.h"
 #import "LZPurchaseReceiptVC.h"
 #import "LZPurchaseAskVC.h"
+#import "DyeingViewController.h"
 
 @interface LZBugAndProcessUntreatedView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -93,14 +94,18 @@
 #pragma mark ---- 点击事件 ----
 //采购收货事件
 - (void)didClickFirstBtnInCell:(UITableViewCell *)cell{
-    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
-    LZBugAndProcessBssModel *model = _lists[indexP.row];
-    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
-    vc.bugId = model.id;
+//    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+//    LZBugAndProcessBssModel *model = _lists[indexP.row];
+//    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+//    vc.bugId = model.id;
+//    [[self viewController].navigationController pushViewController:vc animated:YES];
+    
+    DyeingViewController *vc = [[DyeingViewController alloc]init];
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 //采购询问事件
-- (void)didClickSecondBtnInCell:(UITableViewCell *)cell{NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+- (void)didClickSecondBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     LZBugAndProcessBssModel *model = _lists[indexP.row];
     LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
     vc.bugId = model.id;
