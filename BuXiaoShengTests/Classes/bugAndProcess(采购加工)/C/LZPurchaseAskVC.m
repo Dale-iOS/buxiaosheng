@@ -12,12 +12,17 @@
 #import "TextInputCell.h"
 #import "UITextView+Placeholder.h"
 #import "TextInputTextView.h"
+#import "BRPickerView.h"
+#import "NSDate+BRPickerView.h"
 
 @interface LZPurchaseAskVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
+{
+    NSString *_dateStr;
+}
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)LZPurchaseDetailModel *model;
 @property(nonatomic,strong)NSArray <LZPurchaseDetailItemListModel*> *lists;
-@property(nonatomic,strong)UICollectionReusableView *headerView;
+@property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UIView *footerView;
 @property(nonatomic,strong)UILabel *nameLbl;//品名
 ///供货商
@@ -34,10 +39,11 @@
 @property (nonatomic, strong) TextInputCell *estimateDateCell;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
-
+@property(nonatomic,strong)UIButton *saveBtn;//确认按钮
 @end
 
 @implementation LZPurchaseAskVC
+@synthesize footerView,headerView,nameLbl,supplierCell,contactsCell,phoneCell,addressCell,estimateNumCell,estimateDateCell,remarkTextView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,168 +58,34 @@
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:@"采购询问"];
     [self.view addSubview:self.collectionView];
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
-- (UICollectionReusableView *)headerView{
-    if (_headerView == nil) {
-        _headerView = [[UICollectionReusableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 30)];
-        _headerView.backgroundColor = [UIColor redColor];
-    }
-    return _headerView;
-}
-
-- (UIView *)footerView{
-    if (_footerView == nil) {
-        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 412)];
-        _footerView.backgroundColor = [UIColor orangeColor];
-        
-//        UIView *view0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-//        view0.backgroundColor = LZHBackgroundColor;
-//        [_footerView addSubview:view0];
-//
-//        _supplierCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view0.bottom, APPWidth, 49)];
-//        _supplierCell.titleLabel.text = @"供货商名称";
-//        _supplierCell.contentTF.placeholder = @"请输入供货商名称";
-//        [_footerView addSubview:_supplierCell];
-//
-//        _contactsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _supplierCell.bottom, APPWidth, 49)];
-//        _contactsCell.titleLabel.text = @"联系人";
-//        _contactsCell.contentTF.placeholder = @"请输入联系人";
-//        [_footerView addSubview:_contactsCell];
-//
-//        _phoneCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
-//        _phoneCell.titleLabel.text = @"电话";
-//        _phoneCell.contentTF.placeholder = @"请输入电话号码";
-//        [_footerView addSubview:_phoneCell];
-//
-//        _addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
-//        _addressCell.titleLabel.text = @"地址";
-//        _addressCell.contentTF.placeholder = @"请输入地址";
-//        [_footerView addSubview:_addressCell];
-//
-//        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, _addressCell.bottom, APPWidth, 10)];
-//        view1.backgroundColor = LZHBackgroundColor;
-//        [_footerView addSubview:view1];
-//
-//        _estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
-//        _estimateNumCell.titleLabel.text = @"预计到货数量";
-//        _estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
-//        [_footerView addSubview:_estimateNumCell];
-//
-//        _estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
-//        _estimateDateCell.titleLabel.text = @"预计到货日期";
-//        _estimateDateCell.contentTF.placeholder = @"请输入预计到货日期";
-//        [_footerView addSubview:_estimateDateCell];
-//
-//        _remarkTextView = [[TextInputTextView alloc]init];
-//        _remarkTextView.frame = CGRectMake(0, _estimateDateCell.bottom, APPWidth, 98);
-//        _remarkTextView.titleLabel.text = @"备注";
-//        _remarkTextView.textView.placeholder = @"请输入备注内容";
-    }
-    return _footerView;
-}
-
-- (UICollectionView *)collectionView{
-    if (_collectionView == nil) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) collectionViewLayout:flowLayout];
-        //定义每个UICollectionView 的大小
-        flowLayout.itemSize = CGSizeMake(APPWidth *0.485, 44);
-        //定义每个UICollectionView 横向的间距
-        flowLayout.minimumLineSpacing = 1;
-        //定义每个UICollectionView 纵向的间距
-        flowLayout.minimumInteritemSpacing = 1;
-        //定义每个UICollectionView 的边距距
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 5, 5);//上左下右
-        //定义头部高度
-        flowLayout.headerReferenceSize = CGSizeMake(APPWidth, 80);
-        //定义尾部高度
-        flowLayout.footerReferenceSize = CGSizeMake(APPWidth, 472);
-
-        //注册cell和ReusableView
-        [_collectionView registerClass:[LZPurchaseAskCell class] forCellWithReuseIdentifier:@"LZPurchaseAskCellId"];
-        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionElementKindSectionHeaderId"];
-        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionElementKindSectionFooterId"];
-        
-        
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        
-        //自适应大小
-        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    }
-    return _collectionView;
-}
-
-#pragma mark ---- 网络请求 ----
-- (void)setupData{
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"buyId":self.bugId};
-    [BXSHttp requestGETWithAppURL:@"documentary/not_handle_detail.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        _model = [LZPurchaseDetailModel LLMJParse:baseModel.data];
-        _lists = _model.itemList;
-        
-        //赋值
-        _nameLbl.text = _model.productName;
-        _supplierCell.contentTF.text = _model.factoryName;
-        _contactsCell.contentTF.text = _model.contactName;
-        _phoneCell.contentTF.text = _model.mobile;
-        _addressCell.contentTF.text = _model.address;
-        
-        [_collectionView reloadData];
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
+    self.view.backgroundColor = LZHBackgroundColor;
+    
+    _saveBtn = [[UIButton alloc]init];
+    [_saveBtn setBackgroundColor:LZAppBlueColor];
+    [_saveBtn setTitle:@"确 认" forState:UIControlStateNormal];
+    _saveBtn.titleLabel.font = FONT(15);
+    _saveBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_saveBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_saveBtn];
+    [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.bottom.and.right.equalTo(self.view);
+        make.height.mas_offset(50);
     }];
 }
 
-#pragma mark ---- UICollectionView delegate ----
-// 定义展示的UICollectionViewCell的个数
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return _lists.count;
-}
-
-// 定义展示的Section的个数
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-//每个UICollectionView展示的内容
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identify = @"LZPurchaseAskCellId";
-    LZPurchaseAskCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    [cell sizeToFit];
-    cell.model = _lists[indexPath.row];
-    //按钮事件就不实现了……
-    return cell;
-}
-
-//头部显示的内容
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    if([kind isEqualToString:UICollectionElementKindSectionHeader])
-    {
-        UICollectionReusableView *headerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionElementKindSectionHeaderId" forIndexPath:indexPath];
-        if(headerView == nil)
-        {
-            headerView = [[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 150)];
-        }
-        _nameLbl = [[UILabel alloc]init];
-        _nameLbl.textColor = CD_Text33;
-        _nameLbl.font = FONT(14);
-        _nameLbl.backgroundColor = [UIColor whiteColor];
-        _nameLbl.text = @"    品名：";
-        [headerView addSubview:_nameLbl];
-        [_nameLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+//设置头部试图
+- (UIView *)headerView{
+    if (headerView == nil) {
+        headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 30)];
+        headerView.backgroundColor = [UIColor redColor];
+        
+        nameLbl = [[UILabel alloc]init];
+        nameLbl.textColor = CD_Text33;
+        nameLbl.font = FONT(14);
+        nameLbl.backgroundColor = [UIColor whiteColor];
+        nameLbl.text = @"    品名：";
+        [headerView addSubview:nameLbl];
+        [nameLbl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.right.equalTo(headerView);
             make.height.mas_offset(45);
         }];
@@ -223,7 +95,7 @@
         [headerView addSubview:bottomView];
         [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(35);
-            make.top.equalTo(_nameLbl.mas_bottom);
+            make.top.equalTo(nameLbl.mas_bottom);
             make.left.and.right.equalTo(headerView);
         }];
         
@@ -273,73 +145,174 @@
             make.left.equalTo(rightColorLbl.mas_right);
             make.width.mas_offset(APPWidth *0.25);
         }];
+
+    }
+    return headerView;
+}
+
+//设置尾部试图
+- (UIView *)footerView{
+    if (footerView == nil) {
+        footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 412)];
+        footerView.backgroundColor = [UIColor whiteColor];
         
-//        headerView.backgroundColor = [UIColor redColor];
+        UIView *view0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        view0.backgroundColor = LZHBackgroundColor;
+        [footerView addSubview:view0];
+
+        supplierCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view0.bottom, APPWidth, 49)];
+        supplierCell.titleLabel.text = @"供货商名称";
+        supplierCell.contentTF.placeholder = @"请输入供货商名称";
+        supplierCell.contentTF.enabled = NO;
+        [footerView addSubview:supplierCell];
+
+        contactsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, supplierCell.bottom, APPWidth, 49)];
+        contactsCell.titleLabel.text = @"联系人";
+        contactsCell.contentTF.placeholder = @"请输入联系人";
+        contactsCell.contentTF.enabled = NO;
+        [footerView addSubview:contactsCell];
+
+        phoneCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, contactsCell.bottom, APPWidth, 49)];
+        phoneCell.titleLabel.text = @"电话";
+        phoneCell.contentTF.placeholder = @"请输入电话号码";
+        phoneCell.contentTF.enabled = NO;
+        [footerView addSubview:phoneCell];
+
+        addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, phoneCell.bottom, APPWidth, 49)];
+        addressCell.titleLabel.text = @"地址";
+        addressCell.contentTF.placeholder = @"请输入地址";
+        addressCell.contentTF.enabled = NO;
+        [footerView addSubview:addressCell];
+
+        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, addressCell.bottom, APPWidth, 10)];
+        view1.backgroundColor = LZHBackgroundColor;
+        [footerView addSubview:view1];
+
+        estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
+        estimateNumCell.titleLabel.text = @"预计到货数量";
+        estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
+        [footerView addSubview:estimateNumCell];
+
+        estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, estimateNumCell.bottom, APPWidth, 49)];
+        estimateDateCell.titleLabel.text = @"预计到货日期";
+        estimateDateCell.contentTF.placeholder = @"请输入预计到货日期";
+        estimateDateCell.contentTF.enabled = NO;
+        UITapGestureRecognizer *dateTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dateTapClickAciton)];
+        [estimateDateCell addGestureRecognizer:dateTap];
+        [footerView addSubview:estimateDateCell];
+
+        remarkTextView = [[TextInputTextView alloc]init];
+        remarkTextView.frame = CGRectMake(0, estimateDateCell.bottom, APPWidth, 98);
+        remarkTextView.titleLabel.text = @"备注";
+        remarkTextView.textView.placeholder = @"请输入备注内容";
+        [footerView addSubview:remarkTextView];
+        
+    }
+    return footerView;
+}
+
+//初始化collectionView
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight-50) collectionViewLayout:flowLayout];
+        //定义每个UICollectionView 的大小
+        flowLayout.itemSize = CGSizeMake(APPWidth *0.5, 44);
+        //定义每个UICollectionView 横向的间距
+        flowLayout.minimumLineSpacing = 0;
+        //定义每个UICollectionView 纵向的间距
+        flowLayout.minimumInteritemSpacing = 0;
+        //定义每个UICollectionView 的边距距
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右
+        //定义头部高度
+        flowLayout.headerReferenceSize = CGSizeMake(APPWidth, 80);
+        //定义尾部高度
+        flowLayout.footerReferenceSize = CGSizeMake(APPWidth, 403);
+
+        //注册cell和ReusableView
+        [_collectionView registerClass:[LZPurchaseAskCell class] forCellWithReuseIdentifier:@"LZPurchaseAskCellId"];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionElementKindSectionHeaderId"];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionElementKindSectionFooterId"];
+        
+        
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        
+        //自适应大小
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _collectionView.backgroundColor = LZHBackgroundColor;
+    }
+    return _collectionView;
+}
+
+#pragma mark ---- 网络请求 ----
+- (void)setupData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buyId":self.bugId};
+    [BXSHttp requestGETWithAppURL:@"documentary/not_handle_detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _model = [LZPurchaseDetailModel LLMJParse:baseModel.data];
+        _lists = _model.itemList;
+        
+        //赋值
+        nameLbl.text = [NSString stringWithFormat:@"    品名：%@",_model.productName];
+        supplierCell.contentTF.text = _model.factoryName;
+        contactsCell.contentTF.text = _model.contactName;
+        phoneCell.contentTF.text = _model.mobile;
+        addressCell.contentTF.text = _model.address;
+        
+        [_collectionView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+#pragma mark ---- UICollectionView delegate ----
+// 定义展示的UICollectionViewCell的个数
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _lists.count;
+}
+
+// 定义展示的Section的个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+//每个UICollectionView展示的内容
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identify = @"LZPurchaseAskCellId";
+    LZPurchaseAskCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+    [cell sizeToFit];
+    cell.model = _lists[indexPath.row];
+    //按钮事件就不实现了……
+    return cell;
+}
+
+//头部、尾部显示的内容
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        UICollectionReusableView *headerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionElementKindSectionHeaderId" forIndexPath:indexPath];
+        headerView.backgroundColor = [UIColor whiteColor];
+        [headerView addSubview:self.headerView];
         
         return headerView;
     }
     else if([kind isEqualToString:UICollectionElementKindSectionFooter])
     {
         UICollectionReusableView *footerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionElementKindSectionFooterId" forIndexPath:indexPath];
-        if(footerView == nil)
-        {
-            footerView = [[UICollectionReusableView alloc] init];
-            
-        }
         footerView.backgroundColor = [UIColor whiteColor];
-        
-        UIView *view0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-        view0.backgroundColor = LZHBackgroundColor;
-        [footerView addSubview:view0];
-        
-        _supplierCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view0.bottom, APPWidth, 49)];
-        _supplierCell.titleLabel.text = @"供货商名称";
-        _supplierCell.contentTF.placeholder = @"请输入供货商名称";
-        _supplierCell.contentTF.enabled = NO;
-        [footerView addSubview:_supplierCell];
-        
-        _contactsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _supplierCell.bottom, APPWidth, 49)];
-        _contactsCell.titleLabel.text = @"联系人";
-        _contactsCell.contentTF.placeholder = @"请输入联系人";
-        _contactsCell.contentTF.enabled = NO;
-        [footerView addSubview:_contactsCell];
-        
-        _phoneCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
-        _phoneCell.titleLabel.text = @"电话";
-        _phoneCell.contentTF.placeholder = @"请输入电话号码";
-        _phoneCell.contentTF.enabled = NO;
-        [footerView addSubview:_phoneCell];
-        
-        _addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _phoneCell.bottom, APPWidth, 49)];
-        _addressCell.titleLabel.text = @"地址";
-        _addressCell.contentTF.placeholder = @"请输入地址";
-        _addressCell.contentTF.enabled = NO;
-        [footerView addSubview:_addressCell];
-        
-        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, _addressCell.bottom, APPWidth, 10)];
-        view1.backgroundColor = LZHBackgroundColor;
-        [footerView addSubview:view1];
-        
-        _estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
-        _estimateNumCell.titleLabel.text = @"预计到货数量";
-        _estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
-        [footerView addSubview:_estimateNumCell];
-        
-        _estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _estimateNumCell.bottom, APPWidth, 49)];
-        _estimateDateCell.titleLabel.text = @"预计到货日期";
-        _estimateDateCell.contentTF.placeholder = @"请输入预计到货日期";
-        [footerView addSubview:_estimateDateCell];
-        
-        _remarkTextView = [[TextInputTextView alloc]init];
-        _remarkTextView.frame = CGRectMake(0, _estimateDateCell.bottom, APPWidth, 98);
-        _remarkTextView.titleLabel.text = @"备注";
-        _remarkTextView.textView.placeholder = @"请输入备注内容";
-        [footerView addSubview:_remarkTextView];
-        
-        UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(0, _remarkTextView.bottom, APPWidth, 60)];
-        view2.backgroundColor = LZHBackgroundColor;
-        [footerView addSubview:view2];
-        
+        [footerView addSubview:self.footerView];
+
         return footerView;
     }
     
@@ -352,7 +325,52 @@
     NSLog(@"选择%ld",indexPath.item);
 }
 
+#pragma mark ---- 点击事件 ----
+//确认按钮事件
+- (void)saveBtnClick{
+//    接口名称 更新采购进度信息
+    if ([BXSTools stringIsNullOrEmpty:self.estimateNumCell.contentTF.text]) {
+        BXS_Alert(@"请输入预计到货数量");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.estimateDateCell.contentTF.text]) {
+        BXS_Alert(@"请输入预计到货日期");
+        return;
+    }
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buyId":self.bugId,
+                             @"arrivalTime":_dateStr,
+                             @"number":self.estimateNumCell.contentTF.text,
+                             @"remark":self.remarkTextView.textView.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"documentary/insert_speed.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [LLHudTools showWithMessage:@"提交成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 
+}
+
+//选择日期
+- (void)dateTapClickAciton{
+    NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
+    //            NSDate *maxDate = [NSDate date];
+    NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
+    [BRDatePickerView showDatePickerWithTitle:@"选择到货时间" dateType:BRDatePickerModeYMD defaultSelValue:self.estimateDateCell.contentTF.text minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+        self.estimateDateCell.contentTF.text =  selectValue;
+        _dateStr = [selectValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    } cancelBlock:^{
+        NSLog(@"点击了背景或取消按钮");
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
