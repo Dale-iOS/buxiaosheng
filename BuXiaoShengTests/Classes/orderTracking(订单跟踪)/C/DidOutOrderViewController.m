@@ -10,7 +10,7 @@
 #import "LZOrderTrackingModel.h"
 #import "DidOutInventoryCell.h"
 
-@interface DidOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface DidOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource,DidOutInventoryCellDelegate>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
@@ -140,10 +140,50 @@
     if (cell == nil) {
         
         cell = [[DidOutInventoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
+        cell.delegate = self;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+//收货按钮事件
+- (void)didClickreceivingBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [_tableView indexPathForCell:cell];
+    LZOrderTrackingModel *model = _lists[indexP.row];
+    
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确认点击收货？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        NSLog(@"取消执行");
+        
+    }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        //        确定的执行事件
+        //        接口名称 收货
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"orderId":model.id
+                                 };
+        [BXSHttp requestGETWithAppURL:@"sale/collect_goods.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"提交成功"];
+            [self setupData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)screenBtnClick

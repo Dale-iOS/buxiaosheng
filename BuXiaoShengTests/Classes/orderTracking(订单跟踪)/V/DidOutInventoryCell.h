@@ -9,8 +9,12 @@
 @class LZOrderTrackingModel;
 #import <UIKit/UIKit.h>
 
-@interface DidOutInventoryCell : UITableViewCell
+@protocol DidOutInventoryCellDelegate <NSObject>
+- (void)didClickreceivingBtnInCell:(UITableViewCell *)cell;
+@end
 
+@interface DidOutInventoryCell : UITableViewCell
+@property (nonatomic, weak) id<DidOutInventoryCellDelegate> delegate;
 @property(nonatomic,strong)LZOrderTrackingModel *model;
 ///白色底图
 @property (nonatomic, strong)UIView *bgView;
@@ -34,6 +38,8 @@
 @property (nonatomic, strong)UILabel *didTransportLabel;
 ///收货
 @property (nonatomic, strong)UILabel *receivingLabel;
+///收货按钮
+@property (nonatomic, strong)UIButton *receivingBtn;
 ///图标名字
 @property (nonatomic, strong)UILabel *iconLabel;
 ///左边红view

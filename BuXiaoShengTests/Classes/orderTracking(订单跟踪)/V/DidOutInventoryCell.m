@@ -10,7 +10,7 @@
 #import "LZOrderTrackingModel.h"
 
 @implementation DidOutInventoryCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,transportLabel,didTransportLabel,receivingLabel,iconLabel,redLeftView;
+@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,transportLabel,didTransportLabel,receivingLabel,iconLabel,redLeftView,receivingBtn;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -187,7 +187,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FONT(13);
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor =[UIColor colorWithHexString:@"#3d9bfa"];
+        label.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
         label.layer.cornerRadius = 5.0f;
         label.layer.masksToBounds = YES;
         label.hidden = YES;
@@ -195,6 +195,23 @@
         [self.bgView addSubview:(receivingLabel = label)];
     }
     return receivingLabel;
+}
+
+- (UIButton *)receivingBtn{
+    if (!receivingBtn) {
+        UIButton *btn = [[UIButton alloc]init];
+        [btn setTitle:@"收货" forState:UIControlStateNormal];
+        btn.titleLabel.font = FONT(13);
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
+        btn.layer.cornerRadius = 5.0f;
+        btn.layer.masksToBounds = YES;
+        btn.hidden = YES;
+        [btn addTarget:self action:@selector(receivingBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:(receivingBtn = btn)];
+    }
+    return receivingBtn;
 }
 
 - (UILabel *)iconLabel
@@ -287,6 +304,13 @@
     .rightSpaceToView(self.bgView, 15)
     .bottomSpaceToView(self.bgView, 15);
     
+    self.receivingBtn.sd_layout
+    .widthIs(64)
+    .heightIs(29)
+    .rightSpaceToView(self.bgView, 15)
+    .bottomSpaceToView(self.bgView, 15);
+    
+    
     
     self.transportLabel.sd_layout
     .widthIs(80)
@@ -326,7 +350,7 @@
    
     
     NSString *temgpStr = [NSString stringWithFormat:@"%zd",[_model.needTotal integerValue]-[_model.number integerValue]];
-    self.OutNumLabel.text = [NSString stringWithFormat:@"出库量：%@ - %@",_model.number,temgpStr ];
+    self.OutNumLabel.text = [NSString stringWithFormat:@"出库量：%@ -%@",_model.number,temgpStr ];
     NSMutableAttributedString *OutNumStr = [[NSMutableAttributedString alloc] initWithString:self.OutNumLabel.text];
      NSRange oneRange = [[OutNumStr string] rangeOfString:[NSString stringWithFormat:@"出库量："]];
     [OutNumStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
@@ -344,9 +368,17 @@
     }else if ([_model.orderStatus integerValue] == 2)
     {
         self.didTransportLabel.hidden = YES;
-        self.receivingLabel.hidden = NO;
+        [self.receivingBtn setHidden:NO];
+//        self.receivingLabel.hidden = NO;
         self.transportLabel.hidden = NO;
         self.redLeftView.hidden = YES;
+    }
+}
+
+//收货按钮代理
+- (void)receivingBtnClick{
+    if ([self.delegate respondsToSelector:@selector(didClickreceivingBtnInCell:)]) {
+        [self.delegate didClickreceivingBtnInCell:self];
     }
 }
 
