@@ -15,6 +15,8 @@
 @property (nonatomic,copy) NSMutableArray <LLMonthModel*>* months;
 @property (nonatomic,strong) HYCGetDateAttribute * dateAttribute;
 @property (nonatomic,strong) UILabel * yearLable;
+@property(nonatomic,strong)UIButton *affirmBtn;//确认按钮
+@property(nonatomic,strong)UIButton *cancelBtn;//取消按钮
 @end
 
 @implementation LLMonthCalendarVc
@@ -38,6 +40,32 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(300);
     }];
+    
+    //取消按钮
+    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, seletedYearView.bottom -50, APPWidth *0.5, 50)];
+    [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
+    _cancelBtn.titleLabel.font = FONT(14);
+    [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
+    [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [seletedYearView addSubview:_cancelBtn];
+    [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    //确认按钮
+    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, seletedYearView.bottom -50, APPWidth *0.5, 50)];
+    [_affirmBtn setBackgroundColor:[UIColor whiteColor]];
+    _affirmBtn.titleLabel.font = FONT(14);
+    [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
+    [_affirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_affirmBtn addTarget:self action:@selector(affirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [seletedYearView addSubview:_affirmBtn];
+    
+    //中间分割线
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.5 -0.5, seletedYearView.bottom -50, 1, 50)];
+    lineView.backgroundColor = LZHBackgroundColor;
+    [seletedYearView addSubview:lineView];
 }
 
 - (void)didReceiveMemoryWarning {

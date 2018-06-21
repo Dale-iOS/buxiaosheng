@@ -20,6 +20,8 @@
 @property (nonatomic,strong) NSDate * selectedDate;
 
 @property (nonatomic,strong) NSMutableArray <NSDate*> * seletedWeekDates;
+@property(nonatomic,strong)UIButton *affirmBtn;//确认按钮
+@property(nonatomic,strong)UIButton *cancelBtn;//取消按钮
 @end
 
 @implementation LLWeekCalendarVc
@@ -75,10 +77,39 @@
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
     
+    //取消按钮
+    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom +1, APPWidth *0.5, 50)];
+    [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
+    _cancelBtn.titleLabel.font = FONT(14);
+    [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
+    [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_cancelBtn];
     
+    //确认按钮
+    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, calendar.bottom+1, APPWidth *0.5, 50)];
+    [_affirmBtn setBackgroundColor:[UIColor whiteColor]];
+    _affirmBtn.titleLabel.font = FONT(14);
+    [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
+    [_affirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_affirmBtn addTarget:self action:@selector(affirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_affirmBtn];
+    
+    //中间分割线
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.5 -0.5, calendar.bottom +1, 1, 50)];
+    lineView.backgroundColor = LZHBackgroundColor;
+    [self.view addSubview:lineView];
 }
 
-
+#pragma mark --- 点击事件 ---
+// 确认点击事件
+- (void)cancelBtnClick{
+    
+}
+// 取消点击事件
+- (void)affirmBtnClick{
+    
+}
 
 #pragma mark - FSCalendarDataSource
 
