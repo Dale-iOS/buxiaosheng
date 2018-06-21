@@ -9,6 +9,9 @@
 #import "LZPurchaseAskVC.h"
 #import "LZPurchaseDetailModel.h"
 #import "LZPurchaseAskCell.h"
+#import "TextInputCell.h"
+#import "UITextView+Placeholder.h"
+#import "TextInputTextView.h"
 
 @interface LZPurchaseAskVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property(nonatomic,strong)UICollectionView *collectionView;
@@ -17,6 +20,20 @@
 @property(nonatomic,strong)UICollectionReusableView *headerView;
 @property(nonatomic,strong)UIView *footerView;
 @property(nonatomic,strong)UILabel *nameLbl;//品名
+///供货商
+@property (nonatomic, strong) TextInputCell *supplierCell;
+///联系人
+@property (nonatomic, strong) TextInputCell *contactsCell;
+///电话
+@property (nonatomic, strong) TextInputCell *phoneCell;
+///地址
+@property (nonatomic, strong) TextInputCell *addressCell;
+///预计到货数量
+@property (nonatomic, strong) TextInputCell *estimateNumCell;
+///预计到货日期
+@property (nonatomic, strong) TextInputCell *estimateDateCell;
+///备注
+@property (nonatomic, strong) TextInputTextView *remarkTextView;
 
 @end
 
@@ -48,8 +65,51 @@
 
 - (UIView *)footerView{
     if (_footerView == nil) {
-        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 30)];
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 412)];
         _footerView.backgroundColor = [UIColor orangeColor];
+        
+//        UIView *view0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+//        view0.backgroundColor = LZHBackgroundColor;
+//        [_footerView addSubview:view0];
+//
+//        _supplierCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view0.bottom, APPWidth, 49)];
+//        _supplierCell.titleLabel.text = @"供货商名称";
+//        _supplierCell.contentTF.placeholder = @"请输入供货商名称";
+//        [_footerView addSubview:_supplierCell];
+//
+//        _contactsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _supplierCell.bottom, APPWidth, 49)];
+//        _contactsCell.titleLabel.text = @"联系人";
+//        _contactsCell.contentTF.placeholder = @"请输入联系人";
+//        [_footerView addSubview:_contactsCell];
+//
+//        _phoneCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
+//        _phoneCell.titleLabel.text = @"电话";
+//        _phoneCell.contentTF.placeholder = @"请输入电话号码";
+//        [_footerView addSubview:_phoneCell];
+//
+//        _addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
+//        _addressCell.titleLabel.text = @"地址";
+//        _addressCell.contentTF.placeholder = @"请输入地址";
+//        [_footerView addSubview:_addressCell];
+//
+//        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, _addressCell.bottom, APPWidth, 10)];
+//        view1.backgroundColor = LZHBackgroundColor;
+//        [_footerView addSubview:view1];
+//
+//        _estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
+//        _estimateNumCell.titleLabel.text = @"预计到货数量";
+//        _estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
+//        [_footerView addSubview:_estimateNumCell];
+//
+//        _estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
+//        _estimateDateCell.titleLabel.text = @"预计到货日期";
+//        _estimateDateCell.contentTF.placeholder = @"请输入预计到货日期";
+//        [_footerView addSubview:_estimateDateCell];
+//
+//        _remarkTextView = [[TextInputTextView alloc]init];
+//        _remarkTextView.frame = CGRectMake(0, _estimateDateCell.bottom, APPWidth, 98);
+//        _remarkTextView.titleLabel.text = @"备注";
+//        _remarkTextView.textView.placeholder = @"请输入备注内容";
     }
     return _footerView;
 }
@@ -70,7 +130,7 @@
         //定义头部高度
         flowLayout.headerReferenceSize = CGSizeMake(APPWidth, 80);
         //定义尾部高度
-        flowLayout.footerReferenceSize = CGSizeMake(APPWidth, 150);
+        flowLayout.footerReferenceSize = CGSizeMake(APPWidth, 472);
 
         //注册cell和ReusableView
         [_collectionView registerClass:[LZPurchaseAskCell class] forCellWithReuseIdentifier:@"LZPurchaseAskCellId"];
@@ -99,6 +159,14 @@
         }
         _model = [LZPurchaseDetailModel LLMJParse:baseModel.data];
         _lists = _model.itemList;
+        
+        //赋值
+        _nameLbl.text = _model.productName;
+        _supplierCell.contentTF.text = _model.factoryName;
+        _contactsCell.contentTF.text = _model.contactName;
+        _phoneCell.contentTF.text = _model.mobile;
+        _addressCell.contentTF.text = _model.address;
+        
         [_collectionView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -216,8 +284,61 @@
         if(footerView == nil)
         {
             footerView = [[UICollectionReusableView alloc] init];
+            
         }
-        footerView.backgroundColor = [UIColor orangeColor];
+        footerView.backgroundColor = [UIColor whiteColor];
+        
+        UIView *view0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        view0.backgroundColor = LZHBackgroundColor;
+        [footerView addSubview:view0];
+        
+        _supplierCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view0.bottom, APPWidth, 49)];
+        _supplierCell.titleLabel.text = @"供货商名称";
+        _supplierCell.contentTF.placeholder = @"请输入供货商名称";
+        _supplierCell.contentTF.enabled = NO;
+        [footerView addSubview:_supplierCell];
+        
+        _contactsCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _supplierCell.bottom, APPWidth, 49)];
+        _contactsCell.titleLabel.text = @"联系人";
+        _contactsCell.contentTF.placeholder = @"请输入联系人";
+        _contactsCell.contentTF.enabled = NO;
+        [footerView addSubview:_contactsCell];
+        
+        _phoneCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _contactsCell.bottom, APPWidth, 49)];
+        _phoneCell.titleLabel.text = @"电话";
+        _phoneCell.contentTF.placeholder = @"请输入电话号码";
+        _phoneCell.contentTF.enabled = NO;
+        [footerView addSubview:_phoneCell];
+        
+        _addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _phoneCell.bottom, APPWidth, 49)];
+        _addressCell.titleLabel.text = @"地址";
+        _addressCell.contentTF.placeholder = @"请输入地址";
+        _addressCell.contentTF.enabled = NO;
+        [footerView addSubview:_addressCell];
+        
+        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, _addressCell.bottom, APPWidth, 10)];
+        view1.backgroundColor = LZHBackgroundColor;
+        [footerView addSubview:view1];
+        
+        _estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
+        _estimateNumCell.titleLabel.text = @"预计到货数量";
+        _estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
+        [footerView addSubview:_estimateNumCell];
+        
+        _estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, _estimateNumCell.bottom, APPWidth, 49)];
+        _estimateDateCell.titleLabel.text = @"预计到货日期";
+        _estimateDateCell.contentTF.placeholder = @"请输入预计到货日期";
+        [footerView addSubview:_estimateDateCell];
+        
+        _remarkTextView = [[TextInputTextView alloc]init];
+        _remarkTextView.frame = CGRectMake(0, _estimateDateCell.bottom, APPWidth, 98);
+        _remarkTextView.titleLabel.text = @"备注";
+        _remarkTextView.textView.placeholder = @"请输入备注内容";
+        [footerView addSubview:_remarkTextView];
+        
+        UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(0, _remarkTextView.bottom, APPWidth, 60)];
+        view2.backgroundColor = LZHBackgroundColor;
+        [footerView addSubview:view2];
         
         return footerView;
     }
