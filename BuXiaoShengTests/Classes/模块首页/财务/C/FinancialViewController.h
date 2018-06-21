@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FinancialViewController : UIViewController
+@interface FinancialViewController : BaseViewController
 @property (nonatomic,copy)NSString *buttonId;
 @end

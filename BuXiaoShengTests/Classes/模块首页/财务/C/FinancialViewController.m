@@ -47,9 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    self.title = @"销售";
     self.navigationItem.titleView = [Utility navTitleView:@"财务"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
@@ -76,10 +74,11 @@
 - (void)setCollectionView
 {
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    flow.itemSize = CGSizeMake(APPWidth /4, 100);
+    flow.itemSize = CGSizeMake(APPWidth /5, 80);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 200) collectionViewLayout:flow];
+    flow.minimumLineSpacing = APPWidth *0.05;
+    flow.sectionInset = UIEdgeInsetsMake(0, APPWidth *0.05, 0,APPWidth *0.05);//上左下右
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0,10, APPWidth, 200) collectionViewLayout:flow];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
@@ -159,17 +158,17 @@
     }
 }
 
-//设置itme大小
--(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(APPWidth /5, 80);
-}
-
-//设置每个item的边距
--(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(1, 1, 1, 1);
-}
+////设置itme大小
+//-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(APPWidth /5, 80);
+//}
+//
+////设置每个item的边距
+//-(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(1, 1, 1, 1);
+//}
 
 - (void)setupUI
 {
@@ -177,7 +176,7 @@
     
     [self setSectionOne];
     [self setSectionTwo];
-//    [self setSectionThree];
+    [self setSectionThree];
     
     self.mainTabelView.dataSoure = self.datasource;
     
@@ -186,8 +185,21 @@
 
 - (void)setSectionOne
 {
-    
     [self setCollectionView];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.collectView];
+    item.canSelected = YES;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
+- (void)setSectionTwo
+{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
+    headerView.backgroundColor = LZHBackgroundColor;
     
     self.bankCell = [[LZDetailCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.bankCell.leftIMV.image = IMAGE(@"cashbank");
@@ -195,20 +207,15 @@
     self.bankCell.backgroundColor = [UIColor whiteColor];
     UITapGestureRecognizer *tapBenkCell = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBenkCellClick)];
     [self.bankCell addGestureRecognizer:tapBenkCell];
-    
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-    headerView.backgroundColor = LZHBackgroundColor;
-    
+
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.collectView,self.bankCell];
+    item.sectionRows = @[self.bankCell];
     item.canSelected = YES;
     item.sectionView = headerView;
     [self.datasource addObject:item];
-    
-    
 }
 
-- (void)setSectionTwo
+- (void)setSectionThree
 {
     UIView *ThreeBgView = [[UIView alloc]init];
     ThreeBgView.frame = CGRectMake(0, 0, APPWidth, 250);
@@ -272,12 +279,12 @@
             return ;
         }
         self.buttons = [LZHomeModel LLMJParse:baseModel.data];
-        if (self.buttons.count <5) {
-            self.collectView.frame = CGRectMake(0, 0, APPWidth, 110);
-        }else
-        {
-            self.collectView.frame = CGRectMake(0, 0, APPWidth, 220);
-        }
+//        if (self.buttons.count <5) {
+//            self.collectView.frame = CGRectMake(0, 0, APPWidth, 110);
+//        }else
+//        {
+//            self.collectView.frame = CGRectMake(0, 0, APPWidth, 220);
+//        }
         [self.collectView reloadData];
         [self.mainTabelView reloadData];
         
@@ -298,11 +305,6 @@
 - (void)tapBenkCellClick{
     CashBankViewController *vc = [[CashBankViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

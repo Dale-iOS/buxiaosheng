@@ -49,11 +49,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = [Utility navWhiteTitleView:@"银行互转"];
 //
     [self.navigationController.navigationBar setBackgroundImage:[Utility createImageWithColor:[UIColor colorWithHexString:@"#3d9bfa"]] forBarMetrics:UIBarMetricsDefault];
-
+    
     [self setCustomLeftButton];
     [self setupPayList];
     
@@ -93,7 +93,7 @@
 {
 
     //    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-        self.view.backgroundColor = [UIColor whiteColor];
+    
     
     self.datasource = [NSMutableArray array];
     

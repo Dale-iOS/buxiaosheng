@@ -15,8 +15,17 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.iconImageView];
+        [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.and.height.mas_offset(50);
+            make.top.equalTo(self.contentView);
+            make.centerX.equalTo(self.contentView);
+        }];
         [self.contentView addSubview:self.titileLabel];
-        [self setupUI];
+        [self.titileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.iconImageView.mas_bottom).offset(10);
+            make.left.and.right.equalTo(self.contentView);
+            make.height.mas_offset(15);
+        }];
     }
     return self;
 }
@@ -27,7 +36,7 @@
         UIImageView *imageView = [[UIImageView alloc]init];
         //        imageView.image = IMAGE(@"sale");
         imageView.backgroundColor = [UIColor clearColor];
-        imageView.frame = CGRectMake(0, 0, 50, 50);
+//        imageView.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:(iconImageView = imageView)];
     }
     return iconImageView;
@@ -51,23 +60,26 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.logo]];
     self.titileLabel.text = model.name;
+    if (model.name.length >4) {
+        self.titileLabel.font = FONT(12);
+    }
 }
 
-- (void)setupUI
-{
-    //    iconImageView.image = IMAGE(@"sale");
-    iconImageView.sd_layout
-    .leftSpaceToView(self.contentView, 22)
-    .topSpaceToView(self.contentView, 0)
-    .widthIs(50)
-    .heightIs(50);
-    
-    titileLabel.text = @"销售";
-    titileLabel.sd_layout
-    .centerXEqualToView(iconImageView)
-    .topSpaceToView(iconImageView, 10)
-    .widthIs(72)
-    .heightIs(15);
-}
+//- (void)setupUI
+//{
+//    //    iconImageView.image = IMAGE(@"sale");
+//    iconImageView.sd_layout
+//    .leftSpaceToView(self.contentView, 22)
+//    .topSpaceToView(self.contentView, 0)
+//    .widthIs(50)
+//    .heightIs(50);
+//    
+//    titileLabel.text = @"销售";
+//    titileLabel.sd_layout
+//    .centerXEqualToView(iconImageView)
+//    .topSpaceToView(iconImageView, 10)
+//    .widthIs(72)
+//    .heightIs(15);
+//}
 
 @end

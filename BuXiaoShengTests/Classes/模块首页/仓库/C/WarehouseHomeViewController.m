@@ -71,9 +71,10 @@
 - (void)setCollectionView
 {
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    flow.itemSize = CGSizeMake(APPWidth /4, 100);
+    flow.itemSize = CGSizeMake(APPWidth /5, 90);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
+    flow.minimumLineSpacing = APPWidth *0.05;
+    flow.sectionInset = UIEdgeInsetsMake(0, APPWidth *0.05, 0,APPWidth *0.05);//上左下右
     self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20, APPWidth, 200) collectionViewLayout:flow];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
@@ -199,17 +200,17 @@
     return self.buttons.count;
 }
 
-//设置itme大小
--(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(APPWidth /5, 80);
-}
-
-//设置每个item的边距
--(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(1, 1, 1, 1);
-}
+////设置itme大小
+//-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(APPWidth /5, 80);
+//}
+//
+////设置每个item的边距
+//-(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(1, 1, 1, 1);
+//}
 
 - (void)setupUI
 {
