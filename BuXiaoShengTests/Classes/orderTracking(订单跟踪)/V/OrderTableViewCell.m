@@ -10,7 +10,7 @@
 #import "LZOrderTrackingModel.h"
 
 @implementation OrderTableViewCell
-@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,procurementLabel,procurementInfoLabel,processedLabel,iconLabel,shipmentBtn;
+@synthesize bgView,iconImageView,companyLabel,nameLabel,demandLabel,OutNumLabel,priceLabel,timeLabel,procurementLabel,procurementInfoLabel,processedLabel,iconLabel,shipmentBtn,procurementInfoBtn;
 #define contentView   self.contentView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -178,6 +178,24 @@
     return procurementInfoLabel;
 }
 
+- (UIButton *)procurementInfoBtn{
+    if (!procurementInfoBtn) {
+        UIButton *btn = [[UIButton alloc]init];
+        [btn setTitle:@"采购信息" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = FONT(13);
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [btn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
+        btn.layer.cornerRadius = 5.0f;
+        btn.layer.masksToBounds = YES;
+        btn.hidden = YES;
+        [btn addTarget:self action:@selector(procurementInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:(procurementInfoBtn = btn)];
+    }
+    return procurementInfoBtn;
+}
+
+
 - (UILabel *)processedLabel
 {
     if (!processedLabel)
@@ -274,7 +292,7 @@
     .leftSpaceToView(self.iconImageView, 135)
     .topSpaceToView(self.nameLabel, 10)
     .heightIs(13);
-    [self.priceLabel setSingleLineAutoResizeWithMaxWidth:60];
+    [self.priceLabel setSingleLineAutoResizeWithMaxWidth:80];
     
     self.timeLabel.sd_layout
     .leftSpaceToView(self.iconImageView, 15)
@@ -307,6 +325,12 @@
     .rightSpaceToView(self.bgView, 15)
     .bottomSpaceToView(self.bgView, 15);
     
+    self.procurementInfoBtn.sd_layout
+    .widthIs(64)
+    .heightIs(29)
+    .rightSpaceToView(self.bgView, 15)
+    .bottomSpaceToView(self.bgView, 15);
+    
     self.shipmentBtn.sd_layout
     .widthIs(69)
     .heightIs(29)
@@ -332,10 +356,13 @@
 //采购状态（0：未采购 1：采购中）
     if ([_model.buyStatus isEqualToString:@"0"]) {
         self.processedLabel.hidden = NO;
+//        self.procurementInfoLabel.hidden = YES;
+        [self.procurementInfoBtn setHidden:YES];
     }else if ([_model.buyStatus isEqualToString:@"1"])
     {
         self.procurementLabel.hidden = NO;
-        self.procurementInfoLabel.hidden = NO;
+//        self.procurementInfoLabel.hidden = NO;
+        [self.procurementInfoBtn setHidden:NO];
     }
     
     if (self.isFromShipment) {
@@ -351,6 +378,13 @@
 - (void)shipmentBtnClick{
     if ([self.delegate respondsToSelector:@selector(didClickShipmentBtnInCell:)]) {
         [self.delegate didClickShipmentBtnInCell:self];
+    }
+}
+
+//采购信息按钮事件
+- (void)procurementInfoBtnClick{
+    if ([self.delegate respondsToSelector:@selector(didClickProcurementInfoBtnInCell:)]) {
+        [self.delegate didClickProcurementInfoBtnInCell:self];
     }
 }
 

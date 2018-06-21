@@ -258,6 +258,8 @@
 		34847D5A20C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */; };
 		34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
 		34871CFB20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
+		34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */; };
+		34871CFF20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */; };
 		348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64920B93C8C0051E842 /* LZRecipeModel.m */; };
 		348AC64E20B952580051E842 /* BaseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC64D20B952580051E842 /* BaseSearchViewController.m */; };
 		348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */; };
@@ -1030,6 +1032,8 @@
 		34847D5820C7D8F9004485F1 /* LZPictureBrowseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPictureBrowseVC.m; sourceTree = "<group>"; };
 		34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYEqualCellSpaceFlowLayout.m; sourceTree = "<group>"; };
 		34871CF920DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYEqualCellSpaceFlowLayout.h; sourceTree = "<group>"; };
+		34871CFC20DBB59600F7182C /* LZPurchasingInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchasingInfoVC.h; sourceTree = "<group>"; };
+		34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchasingInfoVC.m; sourceTree = "<group>"; };
 		348AC64820B93C8C0051E842 /* LZRecipeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZRecipeModel.h; sourceTree = "<group>"; };
 		348AC64920B93C8C0051E842 /* LZRecipeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZRecipeModel.m; sourceTree = "<group>"; };
 		348AC64C20B952580051E842 /* BaseSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSearchViewController.h; sourceTree = "<group>"; };
@@ -2519,6 +2523,8 @@
 				34EBACA7208451C40005BF77 /* DeliveryOrderViewController.m */,
 				3471DCA820D76218002052EE /* LZShipmentVC.h */,
 				3471DCA920D76218002052EE /* LZShipmentVC.m */,
+				34871CFC20DBB59600F7182C /* LZPurchasingInfoVC.h */,
+				34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4434,6 +4440,7 @@
 				34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
+				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
 				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
@@ -4602,6 +4609,7 @@
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				3455F69B20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,
+				34871CFF20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,

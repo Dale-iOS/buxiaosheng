@@ -11,6 +11,7 @@
 #import "ProcessViewController.h"
 #import "DyeingViewController.h"
 #import "LZBugAndProcessUntreatedVC.h"
+#import "JYEqualCellSpaceFlowLayout.h"
 
 @interface WithSingleViewControllerViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectView;
@@ -30,11 +31,14 @@
 #pragma mark -------- collectionView --------
 - (void)setCollectionView
 {
-    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    flow.itemSize = CGSizeMake(APPWidth /4, 10);
-    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+    JYEqualCellSpaceFlowLayout * flowLayout = [[JYEqualCellSpaceFlowLayout alloc]initWithType:AlignWithCenter betweenOfCell:5.0];
     
-    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight +20, APPWidth, 200) collectionViewLayout:flow];
+    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
+    flow.itemSize = CGSizeMake(APPWidth /4, 90);
+    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    flow.minimumLineSpacing = APPWidth *0.05;
+//    flow.sectionInset = UIEdgeInsetsMake(0, APPWidth *0.05, 0,APPWidth *0.05);//上左下右
+    self.collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight +20, APPWidth, 200) collectionViewLayout:flowLayout];
     
     [self.collectView registerClass:[FinancialCollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
     self.collectView.delegate = self;
@@ -50,12 +54,11 @@
     
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-    cell.backgroundColor = [UIColor redColor];
-    
     if (indexPath.row == 0) {
 
         cell.iconImageView.image = IMAGE(@"process");
         cell.titileLabel.text = @"采购加工";
+        cell.titileLabel.font = FONT(12);
         
     }
     else if (indexPath.row == 1)
@@ -94,20 +97,6 @@
 {
     return 1;
 }
-
-
-//设置itme大小
-//-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake(APPWidth /5, 90);
-//}
-
-//设置每个item的边距 上下左右
--(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(1, 1, 1, 1);
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

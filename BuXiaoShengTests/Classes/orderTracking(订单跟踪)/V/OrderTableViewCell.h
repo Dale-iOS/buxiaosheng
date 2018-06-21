@@ -11,6 +11,7 @@
 
 @protocol OrderTableViewCellDelegate <NSObject>
 - (void)didClickShipmentBtnInCell:(UITableViewCell *)cell;
+- (void)didClickProcurementInfoBtnInCell:(UITableViewCell *)cell;
 @end
 
 @interface OrderTableViewCell : UITableViewCell
@@ -46,6 +47,8 @@
 
 ///采购信息
 @property (nonatomic, strong)UILabel *procurementInfoLabel;
+///采购信息按钮
+@property (nonatomic, strong)UIButton *procurementInfoBtn;
 
 ///已下单待处理
 @property (nonatomic, strong)UILabel *processedLabel;

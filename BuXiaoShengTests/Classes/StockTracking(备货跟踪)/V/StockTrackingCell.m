@@ -265,9 +265,18 @@
 
     if (_model.initiatorName.length >3) {
         self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
-    }else{
+    }else if (_model.initiatorName.length >0 && _model.initiatorName.length <=3)
+    {
         self.iconNameLabel.text = _model.initiatorName;
     }
+    
+    if (_model.customerName.length >3) {
+        self.iconNameLabel.text = [_model.customerName substringFromIndex:3];
+    }else if (_model.customerName.length >0 && _model.customerName.length <=3)
+    {
+        self.iconNameLabel.text = _model.customerName;
+    }
+    
     self.titleLabel.text = [NSString stringWithFormat:@"供应商：%@",_model.factoryName];
     self.subLabel.text = [NSString stringWithFormat:@"品名：%@",_model.productName];
     self.demandNumLabel.text = [NSString stringWithFormat:@"需求量：%@",_model.number];

@@ -9,8 +9,9 @@
 #import "WaitOutOrderViewController.h"
 #import "OrderTableViewCell.h"
 #import "LZOrderTrackingModel.h"
+#import "LZPurchasingInfoVC.h"
 
-@interface WaitOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WaitOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
@@ -138,12 +139,21 @@
     OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
-        
         cell = [[OrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
+        cell.delegate = self;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+//采购信息按钮点击事件
+- (void)didClickProcurementInfoBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [_tableView indexPathForCell:cell];
+    LZOrderTrackingModel *model = _lists[indexP.row];
+    
+    LZPurchasingInfoVC *vc = [[LZPurchasingInfoVC alloc]init];
+    vc.orderId = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)screenBtnClick

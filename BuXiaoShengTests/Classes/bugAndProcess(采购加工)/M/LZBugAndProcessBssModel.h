@@ -10,6 +10,7 @@
 
 @interface LZBugAndProcessBssModel : NSObject
 @property(nonatomic,copy)NSString *createTime;
+@property(nonatomic,copy)NSString *customerName;
 @property(nonatomic,copy)NSString *factoryName;
 @property(nonatomic,copy)NSString *houseNum;
 @property(nonatomic,copy)NSString *id;
