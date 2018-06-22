@@ -124,8 +124,7 @@
 
 
 #pragma mark ----- searchBarDelegate --------
-- (void)searchBarSearchButtonClicked:(LZSearchBar *)searchBar
-{
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self setupData];
 }
 

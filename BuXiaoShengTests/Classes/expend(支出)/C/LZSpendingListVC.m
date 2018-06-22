@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/10.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  日出支出列表页面
 
 #import "LZSpendingListVC.h"
 #import "LZSpendingListCell.h"
@@ -13,7 +13,6 @@
 @interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource>
 //顶部试图
 @property(nonatomic,strong)UIView *headView;
-@property(nonatomic,strong)UILabel *dateText;
 @property(nonatomic,strong)UIView *rigthHeadView;
 @property(nonatomic,strong)UILabel *dateLbl;
 @property(nonatomic,strong)UITableView *tableView;
@@ -46,16 +45,6 @@
         make.height.mas_offset(39);
     }];
     
-    _dateText = [[UILabel alloc]init];
-    _dateText.textColor = CD_Text33;
-    _dateText.font = FONT(14);
-    _dateText.text = @"时间";
-    [_headView addSubview:_dateText];
-    [_dateText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_headView).offset(15);
-        make.centerY.equalTo(_headView);
-        make.width.mas_offset(100);
-    }];
     _rigthHeadView = [[UIView alloc]init];
     _rigthHeadView.backgroundColor = [UIColor whiteColor];
     _rigthHeadView.userInteractionEnabled = YES;
@@ -121,7 +110,6 @@
     }];
 }
 
-
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -174,6 +162,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 @end
