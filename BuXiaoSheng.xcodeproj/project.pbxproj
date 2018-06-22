@@ -238,6 +238,8 @@
 		3465CA0D20DCCCC900BAE415 /* LZChooseCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA0B20DCCCC900BAE415 /* LZChooseCalendarView.m */; };
 		3465CA1020DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA0F20DCE2A900BAE415 /* LZSearchClientNeedsCell.m */; };
 		3465CA1120DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA0F20DCE2A900BAE415 /* LZSearchClientNeedsCell.m */; };
+		3465CA1420DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */; };
+		3465CA1520DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */; };
 		346992A420C6610200476CF0 /* LZVisitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A320C6610200476CF0 /* LZVisitModel.m */; };
 		346992A520C6610200476CF0 /* LZVisitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A320C6610200476CF0 /* LZVisitModel.m */; };
 		346992A820C6649500476CF0 /* LZVisitRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A720C6649500476CF0 /* LZVisitRecordCell.m */; };
@@ -1010,6 +1012,8 @@
 		3465CA0B20DCCCC900BAE415 /* LZChooseCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseCalendarView.m; sourceTree = "<group>"; };
 		3465CA0E20DCE2A900BAE415 /* LZSearchClientNeedsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSearchClientNeedsCell.h; sourceTree = "<group>"; };
 		3465CA0F20DCE2A900BAE415 /* LZSearchClientNeedsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchClientNeedsCell.m; sourceTree = "<group>"; };
+		3465CA1220DD0C2200BAE415 /* LZChooseClientReceiptVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseClientReceiptVC.h; sourceTree = "<group>"; };
+		3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseClientReceiptVC.m; sourceTree = "<group>"; };
 		346992A220C6610200476CF0 /* LZVisitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitModel.h; sourceTree = "<group>"; };
 		346992A320C6610200476CF0 /* LZVisitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitModel.m; sourceTree = "<group>"; };
 		346992A620C6649500476CF0 /* LZVisitRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitRecordCell.h; sourceTree = "<group>"; };
@@ -2359,6 +2363,8 @@
 				3455F69520CAC60B00579521 /* LZClientReceiptVC.m */,
 				34EE88DA20CC03F90060D00B /* LZClientReceiptDetailVC.h */,
 				34EE88DB20CC03F90060D00B /* LZClientReceiptDetailVC.m */,
+				3465CA1220DD0C2200BAE415 /* LZChooseClientReceiptVC.h */,
+				3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4174,6 +4180,7 @@
 				34F6E77120C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				3492FD8C20DA6FAC008464BB /* LZPurchaseAskCell.m in Sources */,
+				3465CA1420DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */,
 				3492FD8720DA07E2008464BB /* LZPurchaseModel.m in Sources */,
 				34D5EAE820D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */,
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
@@ -4635,6 +4642,7 @@
 				3455F69B20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,
 				34871CFF20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */,
+				3465CA1520DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				B505066D209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,

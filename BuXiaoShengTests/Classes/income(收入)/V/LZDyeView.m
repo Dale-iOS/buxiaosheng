@@ -20,7 +20,7 @@
 @property(nonatomic,strong)NSMutableArray *dataSource;
 ///名称
 @property(nonatomic,strong)ArrearsNameTextInputCell *titileCell;
-///收款金额
+///调整金额
 @property(nonatomic,strong)TextInputCell *collectionCell;
 ///现欠款
 @property(nonatomic,strong)TextInputCell *arrearsCell;
@@ -93,7 +93,7 @@
     self.collectionCell = [[TextInputCell alloc]init];
     self.collectionCell.frame = CGRectMake(0, 0, APPWidth, 49);
     self.collectionCell.contentTF.placeholder = @"请输入收款金额";
-    self.collectionCell.titleLabel.text = @"收款金额";
+    self.collectionCell.titleLabel.text = @"调整金额";
     
     //    现欠款
     self.arrearsCell = [[TextInputCell alloc]init];
