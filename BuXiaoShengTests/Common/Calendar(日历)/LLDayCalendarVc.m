@@ -29,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self setupCalendarView];
 }
 
@@ -48,7 +47,7 @@
 {
     self.gregorian = [NSCalendar currentCalendar];
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateFormat = @"yyyy-MM-dd";
+    self.dateFormatter.dateFormat = @"yyyyMMdd";
     self.calendar.accessibilityIdentifier = @"calendar";
     
     //    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -92,7 +91,7 @@
     self.date1 = [calendar today];
     
     //取消按钮
-    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom +1, APPWidth *0.5, 50)];
+    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom , APPWidth *0.5, 50)];
     [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
     _cancelBtn.titleLabel.font = FONT(14);
     [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
@@ -103,7 +102,7 @@
     [self.view addSubview:_cancelBtn];
     
     //确认按钮
-    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, calendar.bottom+1, APPWidth *0.5, 50)];
+    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, calendar.bottom, APPWidth *0.5, 50)];
     [_affirmBtn setBackgroundColor:[UIColor whiteColor]];
     _affirmBtn.titleLabel.font = FONT(14);
     [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
@@ -116,12 +115,41 @@
 }
 
 #pragma mark --- 点击事件 ---
-// 确认点击事件
-- (void)cancelBtnClick{
-    
-}
 // 取消点击事件
+- (void)cancelBtnClick{
+    NSLog(@"点击了取消");
+    if ([self.delegate respondsToSelector:@selector(didCancelBtnInCalendar)]) {
+        [self.delegate didCancelBtnInCalendar];
+    }
+}
+// 确认点击事件
 - (void)affirmBtnClick{
+    
+    NSInteger startInteger = [[self.dateFormatter stringFromDate:self.date1]integerValue];
+    NSInteger endInteger = [[self.dateFormatter stringFromDate:self.date2]integerValue];
+    NSString *startStr = @"";
+    NSString *endStr = @"";
+    
+    if (startInteger < endInteger) {
+        startStr = [NSString stringWithFormat:@"%zd",startInteger];
+        endStr = [NSString stringWithFormat:@"%zd",endInteger];
+    }else{
+        startStr = [NSString stringWithFormat:@"%zd",endInteger];
+        endStr = [NSString stringWithFormat:@"%zd",startInteger];
+    }
+    
+//    NSString *dateStr = @"";
+//    if (self.date2 == nil) {
+//        NSLog(@"%@",[self.dateFormatter stringFromDate:self.date1]);
+//        dateStr = [self.dateFormatter stringFromDate:self.date1];
+//    }else{
+//        NSLog(@"%@-%@",[self.dateFormatter stringFromDate:self.date2],[self.dateFormatter stringFromDate:self.date1]);
+//        dateStr = [NSString stringWithFormat:@"%@-%@",[self.dateFormatter stringFromDate:self.date2],[self.dateFormatter stringFromDate:self.date1]];
+//    }
+//
+    if ([self.delegate respondsToSelector:@selector(didaffirmBtnInCalendarWithDateStartStr:andEndStr:)]) {
+        [self.delegate didaffirmBtnInCalendarWithDateStartStr:startStr andEndStr:endStr];
+    }
     
 }
 
@@ -301,16 +329,4 @@
     NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
     [self.calendar setCurrentPage:nextMonth animated:YES];
 }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 @end

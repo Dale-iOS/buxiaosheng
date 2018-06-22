@@ -54,7 +54,6 @@
 //配方列表
 - (void)setupData
 {
-
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@"1",
                             @"pageSize":@"15",

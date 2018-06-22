@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/28.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  我的订单页面
 
 #import "LZSearchClientNeedsVC.h"
 #import "LLDayCalendarVc.h"
@@ -12,13 +12,23 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZSearchBar.h"
+#import "LZOrderTrackingModel.h"
+#import "LZSearchClientNeedsCell.h"
 
-@interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
-//@property (nonatomic,strong)LZDrawerChooseView *chooseView;
-//@property (nonatomic,strong)UIView *bottomBlackView;//侧滑的黑色底图
+@interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+{
+    NSString *_startStr;//开始时间
+    NSString *_endStr;//结束时间
+}
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
+@property (nonatomic, strong) LZSearchBar * searchBar;
 @property(nonatomic,strong)UIView *bottomView;
+@property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic,strong)UIView *headerView;
+@property(nonatomic,strong)UILabel *headerLbl;
+@property(nonatomic,strong)NSArray<LZOrderTrackingModel*> *lists;
 @end
 
 @implementation LZSearchClientNeedsVC
@@ -29,22 +39,54 @@
     [self setupPageView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupList];
+}
+
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"我的订单"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screenDate")];
     
-//    _bottomBlackView = [[UIView alloc]initWithFrame:self.view.bounds];
-//    _bottomBlackView.backgroundColor = [UIColor blackColor];
-//    _bottomBlackView.hidden = YES;
-//    [self.view addSubview:_bottomBlackView];
-//
-//    [self setupChooseView];
+    _startStr = @"";
+    _endStr = @"";
+    
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
+    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.backgroundColor = [UIColor whiteColor];
+    self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
+    self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
+    [self.view addSubview:self.searchBar];
+    
+    _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
+    _headerView.backgroundColor = [UIColor whiteColor];
+    _headerLbl = [[UILabel alloc]initWithFrame:_headerView.bounds];
+    _headerLbl.text = @"   全部订单";
+    _headerLbl.textAlignment = NSTextAlignmentLeft;
+    _headerLbl.textColor = CD_Text99;
+    _headerLbl.font = FONT(13);
+    [_headerView addSubview:_headerLbl];
+
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.searchBar.bottom, APPWidth, APPHeight-49) style:UITableViewStylePlain];
+    _tableView.backgroundColor = LZHBackgroundColor;
+    _tableView.tableHeaderView = _headerView;
+    _tableView.tableFooterView = [UIView new];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.bottom.equalTo(self.view);
+        make.top.equalTo(self.searchBar.mas_bottom);
+    }];
 }
 
+//初始化日历
 - (void)setupPageView {
-    
-    
     CGFloat statusHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
     CGFloat pageTitleViewY = 0;
     if (statusHeight == 20.0) {
@@ -64,6 +106,7 @@
     //    [self.view addSubview:_pageTitleView];
     
     LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
+    dayVC.delegate = self;
     LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
     LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
     LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
@@ -79,9 +122,7 @@
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
-//    _bottomView.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
-//    [_bottomView addGestureRecognizer:tap];
+
     [_bottomView addSubview:_pageTitleView];
     [_bottomView addSubview:_pageContentView];
     [self.view addSubview:_bottomView];
@@ -95,39 +136,86 @@
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
 }
 
+#pragma mark ---- 网络请求 ----
+- (void)setupList{
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
+                            @"endDate":_endStr,
+                            @"startDate":_startStr,
+                            };
+    [BXSHttp requestGETWithAppURL:@"sale/need_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
+        }
+        _lists = [LZOrderTrackingModel LLMJParse:baseModel.data];
+        [_tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage)
+    }];
+}
 
-//- (void)setupChooseView
-//{
-//    //初始化抽屉
-//    _chooseView = [[LZDrawerChooseView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight)];
-//    _chooseView.delegate = self;
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    [window addSubview:_chooseView];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
-//    [_chooseView.alphaiView addGestureRecognizer:tap];
-//}
-//
-//#pragma mark ----- 点击事件 ------
-////滑出选择侧栏
+#pragma mark ----- tableviewdelegate -----
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _lists.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"LZSearchClientNeedsCellid";
+    LZSearchClientNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (cell == nil) {
+        
+        cell = [[LZSearchClientNeedsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.model = _lists[indexPath.row];
+    
+    return cell;
+}
+
+//点击cell触发此方法
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //获取cell
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    
+}
+
+#pragma mark --- 点击事件 ---
+//点击日历确定
+- (void)didaffirmBtnInCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = [BXSTools stringFromTData:StartStr];
+    _endStr = [BXSTools stringFromTData:EndStr];
+    _bottomView.hidden = YES;
+    [self setupList];
+}
+
+//点击日历取消
+- (void)didCancelBtnInCalendar{
+    _bottomView.hidden = YES;
+}
+
+
+///滑出选择侧栏
 - (void)navigationScreenClick
 {
     _bottomView.hidden = NO;
 }
-- (void)tapClick
-{
-//    _bottomView.hidden = YES;
-}
 
-//
-//- (void)dismiss
-//{
-//    [UIView animateWithDuration:0.35 animations:^{
-//        _bottomBlackView.alpha = 0;
-//        _chooseView .frame = CGRectMake(APPWidth, 0, APPWidth, APPHeight);
-//
-//    } completion:nil];
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

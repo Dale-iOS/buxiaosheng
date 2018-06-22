@@ -78,7 +78,7 @@
     [self.view addSubview:nextButton];
     
     //取消按钮
-    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom +1, APPWidth *0.5, 50)];
+    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom , APPWidth *0.5, 50)];
     [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
     _cancelBtn.titleLabel.font = FONT(14);
     _cancelBtn.layer.borderColor = [UIColor grayColor].CGColor;
@@ -89,7 +89,7 @@
     [self.view addSubview:_cancelBtn];
     
     //确认按钮
-    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, calendar.bottom+1, APPWidth *0.5, 50)];
+    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(_cancelBtn.right, calendar.bottom, APPWidth *0.5, 50)];
     [_affirmBtn setBackgroundColor:[UIColor whiteColor]];
     _affirmBtn.titleLabel.font = FONT(14);
     [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];

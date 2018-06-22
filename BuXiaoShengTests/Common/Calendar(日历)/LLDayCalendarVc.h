@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLDayCalendarVc : UIViewController
+@protocol LLDayCalendarVcDelegate <NSObject>
 
+- (void)didaffirmBtnInCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr;
+- (void)didCancelBtnInCalendar;
+
+@end
+
+@interface LLDayCalendarVc : UIViewController
+@property(nonatomic,weak)id<LLDayCalendarVcDelegate>delegate;
+@property(nonatomic,copy)void(^dateBlock)(NSString *dateStr);
 @end

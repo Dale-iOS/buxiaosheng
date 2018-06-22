@@ -248,7 +248,7 @@ static int32_t gLunarHolDay[]=
     _HYC_Date = date;
     NSDateFormatter  *dateformatterEEE=[[NSDateFormatter alloc] init];
     [dateformatterEEE setDateFormat:@"EEE"];
-    _HYC_EnglishWeek = [dateformatterEEE stringFromDate:date];
+    _HYC_ChineseWeek = [dateformatterEEE stringFromDate:date];
     
     _HYC_ChineseWeek = [self.HYC_EnglishWeek isEqualToString:@"Mon"]?@"星期一":
     [self.HYC_EnglishWeek isEqualToString:@"Tue"]?@"星期二":
