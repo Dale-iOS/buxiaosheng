@@ -15,6 +15,8 @@
 @property (nonatomic,copy) NSMutableArray <LLMonthModel*>* months;
 @property (nonatomic,strong) HYCGetDateAttribute * dateAttribute;
 @property (nonatomic,strong) UILabel * yearLable;
+@property(nonatomic,strong)UIButton *affirmBtn;//确认按钮
+@property(nonatomic,strong)UIButton *cancelBtn;//取消按钮
 @end
 
 @implementation LLQuarterCalendarVc
@@ -37,6 +39,49 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(300);
     }];
+    
+    //    取消按钮
+    _cancelBtn = [[UIButton alloc]initWithFrame:CGRectZero];
+    [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
+    _cancelBtn.titleLabel.font = FONT(14);
+    [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
+    [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    _cancelBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _cancelBtn.layer.borderWidth = 0.5;
+    [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.collectionView addSubview:_cancelBtn];
+    [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.collectionView);
+        make.bottom.equalTo(self.collectionView).offset(300);
+        make.width.mas_offset(APPWidth *0.5);
+        make.height.mas_offset(50);
+    }];
+    
+    //确认按钮
+    _affirmBtn = [[UIButton alloc]initWithFrame:CGRectZero];
+    [_affirmBtn setBackgroundColor:[UIColor whiteColor]];
+    _affirmBtn.titleLabel.font = FONT(14);
+    [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
+    [_affirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    _affirmBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _affirmBtn.layer.borderWidth = 0.5;
+    [_affirmBtn addTarget:self action:@selector(affirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.collectionView addSubview:_affirmBtn];
+    [_affirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.collectionView).offset(APPWidth*0.5);
+        make.bottom.equalTo(self.collectionView).offset(300);
+        make.width.mas_offset(APPWidth *0.5);
+        make.height.mas_offset(50);
+    }];
+}
+
+// 取消点击事件
+- (void)cancelBtnClick{
+    NSLog(@"取消事件");
+}
+// 确认点击事件
+- (void)affirmBtnClick{
+    NSLog(@"确认事件");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -163,15 +208,5 @@
     return _months;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

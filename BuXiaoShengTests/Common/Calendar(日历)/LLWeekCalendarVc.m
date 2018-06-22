@@ -41,9 +41,9 @@
 - (void)setupCalendarView
 {
     self.gregorian = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-//    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    view.backgroundColor = [UIColor whiteColor];
-//    self.view = view;
+    //    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    view.backgroundColor = [UIColor whiteColor];
+    //    self.view = view;
     
     CGFloat height = [[UIDevice currentDevice].model hasPrefix:@"iPad"] ? 650 : 300;
     FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), height)];
@@ -81,6 +81,8 @@
     _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, calendar.bottom +1, APPWidth *0.5, 50)];
     [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
     _cancelBtn.titleLabel.font = FONT(14);
+    _cancelBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _cancelBtn.layer.borderWidth = 0.5;
     [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -92,13 +94,11 @@
     _affirmBtn.titleLabel.font = FONT(14);
     [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
     [_affirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    _affirmBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _affirmBtn.layer.borderWidth = 0.5;
     [_affirmBtn addTarget:self action:@selector(affirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_affirmBtn];
     
-    //中间分割线
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.5 -0.5, calendar.bottom +1, 1, 50)];
-    lineView.backgroundColor = LZHBackgroundColor;
-    [self.view addSubview:lineView];
 }
 
 #pragma mark --- 点击事件 ---
@@ -211,9 +211,9 @@
                 NSDate *date = [self.calendar dateForCell:cellObj];
                 if ([dateObj compare:date] == NSOrderedSame ) {
                     cellObj.middleLayer.hidden = false;
-                      cellObj.titleLabel.textColor = [UIColor whiteColor];
+                    cellObj.titleLabel.textColor = [UIColor whiteColor];
                 }
-              
+                
                 if ([compareDates.firstObject compare:date]==NSOrderedSame) {
                     cellObj.markLable.hidden = false;
                     cellObj.markLable.text = @"开始";

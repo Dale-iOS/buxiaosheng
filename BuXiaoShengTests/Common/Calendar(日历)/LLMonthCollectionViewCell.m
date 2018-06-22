@@ -38,7 +38,7 @@
             make.center.equalTo(self.contentView);
         }];
         
-       
+        
     }
     return self;
 }

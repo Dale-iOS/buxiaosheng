@@ -48,12 +48,12 @@
 {
     self.gregorian = [NSCalendar currentCalendar];
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateFormat = @"yyyyMMdd";
+    self.dateFormatter.dateFormat = @"yyyy-MM-dd";
     self.calendar.accessibilityIdentifier = @"calendar";
     
-//    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    view.backgroundColor = [UIColor whiteColor];
-//    self.view = view;
+    //    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    view.backgroundColor = [UIColor whiteColor];
+    //    self.view = view;
     
     //CGFloat height = [[UIDevice currentDevice].model hasPrefix:@"iPad"] ? 450 : 300;
     CGFloat statusHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
@@ -97,6 +97,8 @@
     _cancelBtn.titleLabel.font = FONT(14);
     [_cancelBtn setTitleColor:CD_Text33 forState:UIControlStateNormal];
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    _cancelBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _cancelBtn.layer.borderWidth = 0.5;
     [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cancelBtn];
     
@@ -106,13 +108,11 @@
     _affirmBtn.titleLabel.font = FONT(14);
     [_affirmBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
     [_affirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    _affirmBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    _affirmBtn.layer.borderWidth = 0.5;
     [_affirmBtn addTarget:self action:@selector(affirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_affirmBtn];
     
-    //中间分割线
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.5 -0.5, calendar.bottom +1, 1, 50)];
-    lineView.backgroundColor = LZHBackgroundColor;
-    [self.view addSubview:lineView];
 }
 
 #pragma mark --- 点击事件 ---
@@ -120,7 +120,7 @@
 - (void)cancelBtnClick{
     
 }
-// 取消点击事件 
+// 取消点击事件
 - (void)affirmBtnClick{
     
 }
@@ -304,13 +304,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
