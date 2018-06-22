@@ -61,7 +61,7 @@
     self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
     self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
-    [self.view addSubview:self.searchBar];
+//    [self.view addSubview:self.searchBar];
     
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
     _headerView.backgroundColor = [UIColor whiteColor];
@@ -71,18 +71,26 @@
     _headerLbl.textColor = CD_Text99;
     _headerLbl.font = FONT(13);
     [_headerView addSubview:_headerLbl];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _headerView.bottom-0.5, APPWidth, 0.5)];
+    lineView.backgroundColor = LZHBackgroundColor;
+    [_headerView addSubview:lineView];
+//    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self.view);
+//        make.height.mas_offset(0.5);
+//        make.bottom.equalTo(_headerView.mas_bottom).offset(-0.5);
+//    }];
 
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.searchBar.bottom, APPWidth, APPHeight-49) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;
     _tableView.tableHeaderView = _headerView;
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.and.bottom.equalTo(self.view);
-        make.top.equalTo(self.searchBar.mas_bottom);
-    }];
+//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.and.bottom.equalTo(self.view);
+//        make.top.equalTo(self.searchBar.mas_bottom);
+//    }];
 }
 
 //初始化日历
@@ -202,6 +210,8 @@
     _endStr = [BXSTools stringFromTData:EndStr];
     _bottomView.hidden = YES;
     [self setupList];
+    _headerLbl.textColor = CD_Text33;
+    _headerLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
 }
 
 //点击日历取消
@@ -209,11 +219,14 @@
     _bottomView.hidden = YES;
 }
 
-
-///滑出选择侧栏
+///出现日历选择器
 - (void)navigationScreenClick
 {
     _bottomView.hidden = NO;
+}
+
+- (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
 }
 
 
