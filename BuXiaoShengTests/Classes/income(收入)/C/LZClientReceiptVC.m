@@ -252,8 +252,6 @@
     
 }
 
-
-
 //右上角筛选
 - (void)navigationRightClick{
     LZChooseClientReceiptVC *vc = [[LZChooseClientReceiptVC alloc]init];

@@ -250,7 +250,7 @@
     self.lineView.sd_layout
     .leftSpaceToView(self.bgView, 0)
     .bottomSpaceToView(self.bgView, 44)
-    .widthIs(APPWidth)
+    .widthRatioToView(self.bgView, 1)
     .heightIs(1);
     
     self.timeLabel.sd_layout

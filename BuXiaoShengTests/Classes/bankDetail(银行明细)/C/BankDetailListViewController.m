@@ -10,13 +10,25 @@
 #import "BankDetailListTableViewCell.h"
 #import "DocumentBankDetailViewController.h"
 #import "LZBankListDetailModel.h"
+#import "LZChooseBankVC.h"
+#import "LLDayCalendarVc.h"
+#import "LLWeekCalendarVc.h"
+#import "LLMonthCalendarVc.h"
+#import "LLQuarterCalendarVc.h"
+#import "SGPagingView.h"
 
-@interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate>
+{
+    NSString *_startStr;//开始时间
+    NSString *_endStr;//结束时间
+}
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *headDateLbl;
 @property(nonatomic,strong)NSArray<LZBankListDetailModel*> *lists;
+@property (nonatomic, strong) SGPageTitleView *pageTitleView;
+@property (nonatomic, strong) SGPageContentView *pageContentView;
+@property(nonatomic,strong)UIView *bottomView;
 @end
 
 @implementation BankDetailListViewController
@@ -24,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self setupPageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -37,18 +50,16 @@
     self.tableViewHeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.tableViewHeadView.backgroundColor = [UIColor whiteColor];
     
-    //本月
-    UILabel *monthLabel = [[UILabel alloc]init];
-    monthLabel.text = @"本月";
-    monthLabel.textColor = CD_Text33;
-    monthLabel.font = FONT(14);
-    [self.tableViewHeadView addSubview:monthLabel];
+    _startStr = @"";
+    _endStr = @"";
     
+
     //日期
     self.headDateLbl = [[UILabel alloc]init];
-    self.headDateLbl.text = @"2018-4-11";
+    self.headDateLbl.text = @"全部";
     self.headDateLbl.textAlignment = NSTextAlignmentRight;
     self.headDateLbl.textColor = CD_Text66;
+    self.headDateLbl.font = FONT(13);
     [self.tableViewHeadView addSubview:self.headDateLbl];
     
     UIButton *dateBtn = [[UIButton alloc]init];
@@ -61,12 +72,6 @@
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = LZHBackgroundColor;
     [self.tableViewHeadView addSubview:lineView];
-    
-    monthLabel.sd_layout
-    .leftSpaceToView(self.tableViewHeadView, 15)
-    .centerYEqualToView(self.tableViewHeadView)
-    .widthIs(40)
-    .heightIs(15);
     
     dateBtn.sd_layout
     .rightSpaceToView(self.tableViewHeadView, 15)
@@ -105,7 +110,9 @@
 - (void)setupList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageSize":@"15",
+                             @"startDate":_startStr,
+                             @"endDate":_endStr
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -158,17 +165,97 @@
 
 - (void)navigationSetupClick{
     
+    LZChooseBankVC *vc = [[LZChooseBankVC alloc]init];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+//    [vc setSelectBlock:^(NSString *type) {
+//        if ([type isEqualToString:@"客户收款单"]) {
+//            _type = @"0";
+//        }else if ([type isEqualToString:@"调整金额"]){
+//            _type = @"1";
+//        }
+//        [self setupListData];
+//    }];
 }
 
+#pragma mark --- 日历 ---
+//初始化日历
+- (void)setupPageView {
+    CGFloat statusHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    CGFloat pageTitleViewY = 0;
+    if (statusHeight == 20.0) {
+        pageTitleViewY = 64;
+    } else {
+        pageTitleViewY = 88;
+    }
+    
+    NSArray *titleArr = @[@"日历",@"周历",@"月历",@"季度"];
+    SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
+    configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
+    configure.titleSelectedColor = RGB(59, 177, 239);
+    configure.indicatorColor = RGB(59, 177, 239);;
+    /// pageTitleView
+    self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, pageTitleViewY, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
+    self.pageTitleView.backgroundColor = [UIColor whiteColor];
+    //    [self.view addSubview:_pageTitleView];
+    
+    LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
+    dayVC.delegate = self;
+    LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    
+    NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
+    /// pageContentView
+    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
+    _pageContentView.delegatePageContentView = self;
+    //    [self.view addSubview:_pageContentView];
+    
+    
+    _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
+    _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    _bottomView.hidden = YES;
+    
+    [_bottomView addSubview:_pageTitleView];
+    [_bottomView addSubview:_pageContentView];
+    [self.view addSubview:_bottomView];
+}
+
+- (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
+    [self.pageContentView setPageContentViewCurrentIndex:selectedIndex];
+}
+
+- (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
+    [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+}
+
+
+//点击日历确定
+- (void)didaffirmBtnInCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = [BXSTools stringFromTData:StartStr];
+    _endStr = [BXSTools stringFromTData:EndStr];
+    _bottomView.hidden = YES;
+    [self setupList];
+    if (![_startStr isEqualToString:@"0"]) {
+        self.headDateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+    }else{
+        self.headDateLbl.text = _endStr;
+    }
+    
+}
+
+//点击日历取消
+- (void)didCancelBtnInCalendar{
+    _bottomView.hidden = YES;
+}
+
+//点击选择日期按钮
 - (void)dateBtnOnClick
 {
-    NSLog(@"点击了dateBtnOnClick");
+   _bottomView.hidden = NO;
 }
 
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

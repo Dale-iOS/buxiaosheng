@@ -152,6 +152,8 @@
 		344C48AA20D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C48A820D12CB200BEC002 /* LZDidNoBackOrderCell.m */; };
 		344C48B120D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C48B020D1524C00BEC002 /* LZPaymentOrderModel.m */; };
 		344C48B220D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C48B020D1524C00BEC002 /* LZPaymentOrderModel.m */; };
+		344C512E20DE2B67003B8B57 /* LZChooseBankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C512D20DE2B67003B8B57 /* LZChooseBankVC.m */; };
+		344C512F20DE2B67003B8B57 /* LZChooseBankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C512D20DE2B67003B8B57 /* LZChooseBankVC.m */; };
 		344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2295208EDEDB009ADA33 /* BankConversionViewController.m */; };
 		344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F2298208F09F4009ADA33 /* BankConversionCell.m */; };
 		344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344F229B208F0A64009ADA33 /* BankTableViewCell.m */; };
@@ -900,6 +902,8 @@
 		344C48A820D12CB200BEC002 /* LZDidNoBackOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDidNoBackOrderCell.m; sourceTree = "<group>"; };
 		344C48AF20D1524C00BEC002 /* LZPaymentOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPaymentOrderModel.h; sourceTree = "<group>"; };
 		344C48B020D1524C00BEC002 /* LZPaymentOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPaymentOrderModel.m; sourceTree = "<group>"; };
+		344C512C20DE2B67003B8B57 /* LZChooseBankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseBankVC.h; sourceTree = "<group>"; };
+		344C512D20DE2B67003B8B57 /* LZChooseBankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseBankVC.m; sourceTree = "<group>"; };
 		344F2294208EDEDB009ADA33 /* BankConversionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionViewController.h; sourceTree = "<group>"; };
 		344F2295208EDEDB009ADA33 /* BankConversionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankConversionViewController.m; sourceTree = "<group>"; };
 		344F2297208F09F4009ADA33 /* BankConversionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankConversionCell.h; sourceTree = "<group>"; };
@@ -2398,8 +2402,8 @@
 		3461107420C11B940080579F /* HXTagsView */ = {
 			isa = PBXGroup;
 			children = (
-				3461107520C11B940080579F /* HXTagsView.m */,
 				3461107620C11B940080579F /* HXTagsView.h */,
+				3461107520C11B940080579F /* HXTagsView.m */,
 			);
 			path = HXTagsView;
 			sourceTree = "<group>";
@@ -3041,6 +3045,8 @@
 				344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */,
 				344F2294208EDEDB009ADA33 /* BankConversionViewController.h */,
 				344F2295208EDEDB009ADA33 /* BankConversionViewController.m */,
+				344C512C20DE2B67003B8B57 /* LZChooseBankVC.h */,
+				344C512D20DE2B67003B8B57 /* LZChooseBankVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4365,6 +4371,7 @@
 				342D9526209076ED0018B363 /* ReconciliationDetailViewController.m in Sources */,
 				34EE88D820CBBE590060D00B /* LZReceipCustomerModel.m in Sources */,
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
+				344C512E20DE2B67003B8B57 /* LZChooseBankVC.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
@@ -4593,6 +4600,7 @@
 				3465CA1120DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */,
 				B577CE9E20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
 				34A92B53207DECA200572648 /* LZHTableViewItem.m in Sources */,
+				344C512F20DE2B67003B8B57 /* LZChooseBankVC.m in Sources */,
 				3465C9F320DC9A9700BAE415 /* FSCalendarScopeHandle.m in Sources */,
 				34EE88DD20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				34A92B58207DEE6C00572648 /* HomeViewController.m in Sources */,
