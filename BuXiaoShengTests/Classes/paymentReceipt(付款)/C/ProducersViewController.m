@@ -137,14 +137,16 @@
     
     //保存按钮
     self.saveBtn = [UIButton new];
-    self.saveBtn.frame = CGRectMake(0, APPHeight -64-44-44 , APPWidth, 44);
     self.saveBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
     [self.saveBtn setTitle:@"保存" forState:UIControlStateNormal];
     [self.saveBtn addTarget:self action:@selector(saveBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
     //    self.nextBtn.titleLabel.text = @"下一步";
-    self.saveBtn.titleLabel.textColor = [UIColor whiteColor];
-    
+    self.saveBtn.titleLabel.textColor = [UIColor whiteColor]; 
     [self.view addSubview:self.saveBtn];
+    [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.bottom.equalTo(self.view);
+        make.height.mas_offset(50);
+    }];
 }
 
 #pragma mark ---- 网络请求 ----
@@ -206,36 +208,58 @@
 - (void)saveBtnOnClickAction
 {
     
-    if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
-        BXS_Alert(@"请输入并选择供货商");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.priceCell.contentTF.text]||[self.priceCell.contentTF.text isEqualToString:@"0"]) {
-        BXS_Alert(@"请输入有效金额");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.contactCell.contentTF.text]) {
-        BXS_Alert(@"请选择付款方式");
-        return;
-    }
+    //设置警告框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确认付款单信息正确？" preferredStyle:UIAlertControllerStyleAlert];
     
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"amount":self.priceCell.contentTF.text,
-                             @"bankId":self.payIdStr,
-                             @"factoryId":_companyId,
-                             @"remark":self.remarkTextView.textView.text,
-                             @"type":@"1"
-                             };
-    [BXSHttp requestGETWithAppURL:@"finance/payment_add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        [LLHudTools showWithMessage:@"提交成功"];
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        NSLog(@"取消执行");
+        
     }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
+            BXS_Alert(@"请输入并选择供货商");
+            return;
+        }
+        if ([BXSTools stringIsNullOrEmpty:self.priceCell.contentTF.text]||[self.priceCell.contentTF.text isEqualToString:@"0"]) {
+            BXS_Alert(@"请输入有效金额");
+            return;
+        }
+        if ([BXSTools stringIsNullOrEmpty:self.contactCell.contentTF.text]) {
+            BXS_Alert(@"请选择付款方式");
+            return;
+        }
+        
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"amount":self.priceCell.contentTF.text,
+                                 @"bankId":self.payIdStr,
+                                 @"factoryId":_companyId,
+                                 @"remark":self.remarkTextView.textView.text,
+                                 @"type":@"0"
+                                 };
+        [BXSHttp requestGETWithAppURL:@"finance/payment_add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"保存成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:true];
+            });
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 - (void)contactCellTapClick{
