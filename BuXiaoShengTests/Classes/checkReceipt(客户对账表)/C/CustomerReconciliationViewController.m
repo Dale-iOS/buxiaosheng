@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/25.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户对账
+//  客户对账表页面
 
 #import "CustomerReconciliationViewController.h"
 #import "CustomerReconciliationTableViewCell.h"
@@ -15,7 +15,7 @@
 @interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
-@property (nonatomic, strong) UILabel *companyLbl;
+//@property (nonatomic, strong) UILabel *companyLbl;
 ///最后还款
 @property (nonatomic, strong) UILabel *lastpayDateLbl;
 ///累计欠款
@@ -96,11 +96,11 @@
     self.tableViewHeadView.backgroundColor = [UIColor whiteColor];
     
     //公司
-    self.companyLbl = [[UILabel alloc]init];
-    self.companyLbl.text = @"蔡怕啥.灵类似经公司";
-    self.companyLbl.textColor = CD_Text99;
-    self.companyLbl.font = FONT(14);
-    [self.tableViewHeadView addSubview:self.companyLbl];
+//    self.companyLbl = [[UILabel alloc]init];
+//    self.companyLbl.text = @"蔡怕啥.灵类似经公司";
+//    self.companyLbl.textColor = CD_Text99;
+//    self.companyLbl.font = FONT(14);
+//    [self.tableViewHeadView addSubview:self.companyLbl];
     
     //导出
     UILabel *outLbl = [[UILabel alloc]init];
@@ -121,11 +121,11 @@
     lineView.backgroundColor = LZHBackgroundColor;
     [self.tableViewHeadView addSubview:lineView];
     
-    self.companyLbl.sd_layout
-    .leftSpaceToView(self.tableViewHeadView, 15)
-    .centerYEqualToView(self.tableViewHeadView)
-    .widthIs(APPWidth/3)
-    .heightIs(15);
+//    self.companyLbl.sd_layout
+//    .leftSpaceToView(self.tableViewHeadView, 15)
+//    .centerYEqualToView(self.tableViewHeadView)
+//    .widthIs(APPWidth/3)
+//    .heightIs(15);
     
     outBtn.sd_layout
     .rightSpaceToView(self.tableViewHeadView, 15)
