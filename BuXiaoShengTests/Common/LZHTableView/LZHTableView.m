@@ -164,7 +164,6 @@
     if (delegate && [delegate respondsToSelector:@selector(LzhTableView:didSelectRowAtIndexPath:)])
     {
         [delegate LzhTableView:self didSelectRowAtIndexPath:indexPath];
-        
     }
     
     

@@ -20,9 +20,12 @@
 #import "LZHomeModel.h"
 #import "DyeingViewController.h"
 #import "LZCheckReceiptModel.h"
+#import "BRPickerView.h"
 
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSString *_dateStr;
+}
 @property (nonatomic, weak) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (nonatomic, strong) UICollectionView *collectView;
@@ -42,7 +45,6 @@
     self.navigationItem.titleView = [Utility navTitleView:@"仓库"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self setupUI];
 }
 
@@ -57,10 +59,8 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 14+45, APPWidth, APPHeight)];
-        tableView.tableView.allowsSelection = YES;
-        //        tableView.tableHeaderView = self.headView;
-        //        tableView.backgroundColor = [UIColor yellowColor];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
+        [tableView setIsScrollEnable:NO];
         [self.view addSubview:(mainTabelView = tableView)];
     }
     return mainTabelView;
@@ -200,20 +200,10 @@
     return self.buttons.count;
 }
 
-////设置itme大小
-//-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake(APPWidth /5, 80);
-//}
-//
-////设置每个item的边距
-//-(UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    return UIEdgeInsetsMake(1, 1, 1, 1);
-//}
-
 - (void)setupUI
 {
+    _dateStr = @"";
+    
     [self.mainTabelView setIsScrollEnable:NO];
     
     self.datasource = [NSMutableArray array];
@@ -272,7 +262,7 @@
     //筛选按钮
     UIButton *dateBtn = [UIButton new];
     [dateBtn setImage:IMAGE(@"bankdate") forState:UIControlStateNormal];
-    [dateBtn addTarget:self action:@selector(dateBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [dateBtn addTarget:self action:@selector(dateBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tableViewHeadView addSubview:dateBtn];
     dateBtn.sd_layout
     .widthIs(16)
@@ -285,13 +275,24 @@
     self.dateLbl.font = FONT(14);
     self.dateLbl.textAlignment = NSTextAlignmentRight;
     self.dateLbl.textColor = CD_Text66;
-    self.dateLbl.text = @"2018-4-2";
+    self.dateLbl.text = @"全部";
     [self.tableViewHeadView addSubview:self.dateLbl];
     self.dateLbl.sd_layout
     .rightSpaceToView(self.tableViewHeadView, 40)
     .centerYEqualToView(self.tableViewHeadView)
-    .widthIs(150)
+    .widthIs(200)
     .heightIs(15);
+    
+    UIView *screenView = [[UIView alloc]init];
+    screenView.backgroundColor = [UIColor clearColor];
+    screenView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dateBtnClick)];
+    [screenView addGestureRecognizer:tap];
+    [self.tableViewHeadView addSubview:screenView];
+    screenView.sd_layout
+    .leftEqualToView(self.dateLbl)
+    .rightEqualToView(dateBtn)
+    .heightRatioToView(self.tableViewHeadView, 1);
     
     //线
     UIView *lineView = [[UIView alloc]init];
@@ -350,7 +351,7 @@
 //接口名称 仓库动态列表
 - (void)setupListsData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-//                             @"date":self.buttonId,
+                             @"date":_dateStr,
                              @"pageNo":@"1",
                              @"pageSize":@"15"
                              };
@@ -397,10 +398,20 @@
     return cell;
 }
 
-#pragma mark ----- 点击事件 -------
+ //点击选择日期按钮
 - (void)dateBtnClick
 {
-    NSLog(@"dateBtnClick");
+    NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
+    //            NSDate *maxDate = [NSDate date];
+    NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
+    WEAKSELF;
+    [BRDatePickerView showDatePickerWithTitle:@"选择日期" dateType:BRDatePickerModeYMD defaultSelValue:nil minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+        weakSelf.dateLbl.text =  selectValue;
+        _dateStr = selectValue;
+        [weakSelf setupListsData];
+    } cancelBlock:^{
+        NSLog(@"点击了背景或取消按钮");
+    }];
 }
 
 - (void)backMethod

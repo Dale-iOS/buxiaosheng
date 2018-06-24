@@ -23,6 +23,18 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    NSLog(@"✈️✈️ 界面新建= %@ ✈️✈️",[super class]);
+}
+
+
+-(void)dealloc{
+    NSLog(@"💣💣 界面销毁= %@ 💣💣",[super class]);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

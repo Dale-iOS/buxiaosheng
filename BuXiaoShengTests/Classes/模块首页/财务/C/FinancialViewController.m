@@ -62,8 +62,9 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 14+45, APPWidth, APPHeight)];
-        tableView.tableView.allowsSelection = YES;
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
+//        tableView.tableView.allowsSelection = NO;
+        [tableView setIsScrollEnable:NO];
         //        tableView.tableHeaderView = self.headView;
         //        tableView.backgroundColor = [UIColor yellowColor];
         [self.view addSubview:(mainTabelView = tableView)];
@@ -179,7 +180,7 @@
     [self setSectionThree];
     
     self.mainTabelView.dataSoure = self.datasource;
-    
+//    [self.mainTabelView setIsScrollEnable:NO];
 }
 
 
