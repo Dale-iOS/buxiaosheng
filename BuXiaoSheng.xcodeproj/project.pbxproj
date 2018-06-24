@@ -2460,6 +2460,41 @@
 			path = M;
 			sourceTree = "<group>";
 		};
+		346F6DD120DFA4210016FA8D /* product(产品资料) */ = {
+			isa = PBXGroup;
+			children = (
+				346F6DD420DFA4320016FA8D /* M */,
+				346F6DD320DFA42E0016FA8D /* V */,
+				346F6DD220DFA4270016FA8D /* C */,
+			);
+			path = "product(产品资料)";
+			sourceTree = "<group>";
+		};
+		346F6DD220DFA4270016FA8D /* C */ = {
+			isa = PBXGroup;
+			children = (
+				343025A6209BFA1F00869313 /* ProductViewController.h */,
+				343025A7209BFA1F00869313 /* ProductViewController.m */,
+				34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */,
+				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		346F6DD320DFA42E0016FA8D /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		346F6DD420DFA4320016FA8D /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
 		3471DCB420D787FA002052EE /* choose(各种选择) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3331,13 +3366,9 @@
 		34EE5D6520A689CE00A2C9B5 /* product(产品资料) */ = {
 			isa = PBXGroup;
 			children = (
-				343025A6209BFA1F00869313 /* ProductViewController.h */,
-				343025A7209BFA1F00869313 /* ProductViewController.m */,
 				3455F67F20CA4F0700579521 /* LZChooseProductVC.h */,
 				3455F68020CA4F0700579521 /* LZChooseProductVC.m */,
 				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
-				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
-				34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */,
 				34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */,
 				34EE5D7020A68B9900A2C9B5 /* AddColorViewController.h */,
 				34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */,
@@ -3537,6 +3568,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				346F6DD120DFA4210016FA8D /* product(产品资料) */,
 				342AF21320D51AAE00A1DDC4 /* 模块首页 */,
 				3420776120D3EBF3006EA057 /* checkReceipt(客户对账表) */,
 				34D5EB0220D2AA11009D9D7C /* CustomerArrears(客户欠款表) */,

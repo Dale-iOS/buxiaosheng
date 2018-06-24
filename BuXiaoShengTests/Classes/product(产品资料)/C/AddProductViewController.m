@@ -13,6 +13,7 @@
 #import "UITextView+Placeholder.h"
 #import "UIButton+EdgeInsets.h"
 #import "AddColorViewController.h"
+#import "BRPickerView.h"
 
 @interface AddProductViewController ()<LZHTableViewDelegate>
 {
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) TextInputCell *titleCell;
 ///分组
 @property (nonatomic, strong) TextInputCell *groupCell;
-///默认入库方式
+///入库方式
 @property (nonatomic, strong) TextInputCell *defaultJoinCell;
 ///单位
 @property (nonatomic, strong) TextInputCell *unitCell;
@@ -114,8 +115,11 @@
     
     self.defaultJoinCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.defaultJoinCell.rightArrowImageVIew.hidden = NO;
-    self.defaultJoinCell.titleLabel.text = @"默认入库方式";
-    self.defaultJoinCell.contentTF.placeholder = @"请选择默认入库方式";
+    self.defaultJoinCell.contentTF.enabled = NO;
+    self.defaultJoinCell.titleLabel.text = @"入库方式";
+    self.defaultJoinCell.contentTF.placeholder = @"请选择入库方式";
+    UITapGestureRecognizer *defaultJoinCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(defaultJoinCellTapClick)];
+    [self.defaultJoinCell addGestureRecognizer:defaultJoinCellTap];
     
     self.unitCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.unitCell.rightArrowImageVIew.hidden = NO;
@@ -329,7 +333,24 @@
     
     [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
     [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
-    
+}
+
+//入库方式点击事件
+- (void)defaultJoinCellTapClick{
+    [BRStringPickerView showStringPickerWithTitle:@"请选择入库方式" dataSource:@[@"细码", @"总码"] defaultSelValue:nil resultBlock:^(id selectValue) {
+        //        textField.text = self.infoModel.genderStr = selectValue;
+//        if ([selectValue isEqualToString:@"全部"]) {
+//            _selecStr = @"";
+//        }else if ([selectValue isEqualToString:@"供货商"]){
+//            _selecStr = @"0";
+//        }else if ([selectValue isEqualToString:@"生厂商"]){
+//            _selecStr = @"1";
+//        }else if ([selectValue isEqualToString:@"加工商"]){
+//            _selecStr = @"2";
+//        }
+        
+//        [self setupListData];
+    }];
 }
 
 - (void)addColorCellTapAction
