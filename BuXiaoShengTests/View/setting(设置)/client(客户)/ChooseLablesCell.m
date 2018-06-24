@@ -17,9 +17,10 @@
         self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 29)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+        self.titleLabel.textColor = CD_Text99;
         self.titleLabel.layer.cornerRadius = 5.0f;
         self.titleLabel.layer.masksToBounds = YES;
-        self.titleLabel.font = FONT(10);
+        self.titleLabel.font = FONT(12);
         [self addSubview:self.titleLabel];
     }
     return self;

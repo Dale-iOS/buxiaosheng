@@ -39,7 +39,7 @@
     [self.view addSubview:selectLabel];
     [selectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(34);
+        make.top.equalTo(self.view).offset(44);
         make.height.mas_offset(30);
     }];
     
@@ -178,6 +178,13 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"ChooseLablesCell" forIndexPath:indexPath];
     cell.model = self.labels[indexPath.row];
+//    UIView* selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
+//
+//    selectedBGView.backgroundColor = LZAppBlueColor;
+//
+//    cell.selectedBackgroundView = selectedBGView;
+    
+
     return cell;
 }
 
@@ -186,11 +193,13 @@
 {
     return UIEdgeInsetsMake(20, 20, 20, 20);
 }
+
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 8;
 }
+
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
@@ -200,12 +209,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    cell.selected = !cell.selected;
-//    if (cell.selected) {
-//        cell.titleLabel.backgroundColor = [UIColor blueColor];
-//    }else{
-//        cell.titleLabel.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-//    }
+
+    //选中之后的cell变颜色
+    [self updateCellStatus:cell selected:YES];
     
     LLFactoryModel *model = self.labels[indexPath.row];
     if (self.LabelsArrayBlock) {
@@ -214,30 +220,20 @@
     
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (kind == UICollectionElementKindSectionHeader) {
-//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader" forIndexPath:indexPath];
-//        headerView.backgroundColor =[UIColor grayColor];
-//        UILabel *label = [[UILabel alloc] initWithFrame:headerView.bounds];
-//        label.text=@"headerview";
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.font = [UIFont systemFontOfSize:20];
-//        [headerView addSubview:label];
-//
-//        return headerView;
-//    }else{
-//        UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"collectionViewFooter" forIndexPath:indexPath];
-//        footerView.backgroundColor =[UIColor grayColor];
-//        UILabel *footerlabel = [[UILabel alloc] initWithFrame:footerView.bounds];
-//        footerlabel.text=@"footerview";
-//        footerlabel.textAlignment = NSTextAlignmentCenter;
-//        footerlabel.font = [UIFont systemFontOfSize:20];
-//        [footerView addSubview:footerlabel];
-//
-//        return footerView;
-//    }
-//}
+
+//取消选中操作
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [self updateCellStatus:cell selected:NO];
+}
+// 改变cell的背景颜色
+-(void)updateCellStatus:(ChooseLablesCell *)cell selected:(BOOL)selected
+{
+//    cell.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
+    cell.titleLabel.backgroundColor = selected ? LZAppBlueColor : [UIColor colorWithHexString:@"#eeeeee"];
+    cell.titleLabel.textColor = selected ? [UIColor whiteColor] : CD_Text99;
+}
 
 #pragma mark ---- 点击事件 ----
 //添加自定义标签按钮事件

@@ -2442,8 +2442,6 @@
 				3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */,
 				3411F2B12085CEF700C448FD /* FreezeViewController.h */,
 				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
-				3434FCF620C90E8200A3B577 /* LZChooseLabelVC.h */,
-				3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2471,6 +2469,8 @@
 				3465CA0720DCB00300BAE415 /* LZChooseCalendarVC.m */,
 				3465CA0A20DCCCC900BAE415 /* LZChooseCalendarView.h */,
 				3465CA0B20DCCCC900BAE415 /* LZChooseCalendarView.m */,
+				3434FCF620C90E8200A3B577 /* LZChooseLabelVC.h */,
+				3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */,
 			);
 			path = "choose(各种选择)";
 			sourceTree = "<group>";
