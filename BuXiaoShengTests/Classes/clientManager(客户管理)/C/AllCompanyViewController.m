@@ -166,7 +166,7 @@
                                 @"labelName":labelString,
                                 @"memberId":@"",
                                 @"pageNo":@"1",
-                                @"pageSize":@"20",
+                                @"pageSize":@"15",
                                 @"searchName":@""
                                 
                                 };
