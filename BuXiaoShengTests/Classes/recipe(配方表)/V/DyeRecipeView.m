@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/8.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  染色配方表
+//  染色(配方表)
 
 #import "DyeRecipeView.h"
 #import "LZSearchBar.h"
@@ -12,7 +12,7 @@
 
 @interface DyeRecipeView()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) LZSearchBar * searchBar;
+@property (nonatomic, strong) LZSearchBar *searchBar;
 @property (nonatomic, strong) NSArray <LZRecipeModel *> *recipes;
 @end
 
@@ -96,6 +96,7 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     LZRecipeModel *model = self.recipes[indexPath.row];
@@ -116,9 +117,7 @@
 #pragma mark ---- searchBarDelegate -----
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if (self.searchBar.text.length < 1) {
-        return;
-    }
+
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@"1",
                             @"pageSize":@"15",

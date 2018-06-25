@@ -211,10 +211,11 @@
     UITapGestureRecognizer *recipeCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recipeCellTapAction)];
     [self.recipeCell addGestureRecognizer:recipeCellTap];
     
-    
+    //暂时隐藏配方表
    
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.companyCell,self.recipeCell];
+//    item.sectionRows = @[self.companyCell,self.recipeCell];
+    item.sectionRows = @[self.companyCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];

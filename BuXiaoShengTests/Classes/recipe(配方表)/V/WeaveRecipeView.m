@@ -4,11 +4,12 @@
 //
 //  Created by 罗镇浩 on 2018/5/8.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  织布配方表
+//  织布(配方表)
 
 #import "WeaveRecipeView.h"
 #import "LZSearchBar.h"
 #import "LZRecipeModel.h"
+#import "LZAddRecipeVC.h"
 
 @interface WeaveRecipeView()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -95,6 +96,7 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     LZRecipeModel *model = self.recipes[indexPath.row];
@@ -106,18 +108,16 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    LZRecipeModel *model = self.recipes[indexPath.row];
+    LZAddRecipeVC *vc = [[LZAddRecipeVC alloc]init];
+    vc.id = model.id;
+    [[self viewController].navigationController pushViewController:vc animated:YES];
     
 }
 
 #pragma mark ---- searchBarDelegate -----
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if (self.searchBar.text.length < 1) {
-        return;
-    }
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@"1",
                             @"pageSize":@"15",
@@ -134,6 +134,16 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
     }];
+}
+
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end

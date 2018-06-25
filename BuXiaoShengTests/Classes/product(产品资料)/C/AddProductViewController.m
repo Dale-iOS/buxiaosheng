@@ -609,7 +609,7 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"alias":self.nicknameCell.contentTF.text,
                              @"breadth":self.breadthCell.contentTF.text,
-                             @"colorItems":@"[{name:'红色'},{name:'紫色'}]",
+                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
                              @"largePrice":self.bigPriceCell.contentTF.text,

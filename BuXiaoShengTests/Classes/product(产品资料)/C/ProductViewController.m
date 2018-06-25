@@ -28,13 +28,13 @@
     [super viewDidLoad];
     
     [self setupUI];
-     [self setupData];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
+    [self setupData];
 }
 
 - (void)setupUI
