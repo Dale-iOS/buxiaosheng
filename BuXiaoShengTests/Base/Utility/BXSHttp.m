@@ -78,12 +78,9 @@
 //登录状态失效的情况下跳到登录页,从新登录
 +(void)setupLoginStateFildWithMsg:(NSString *)msg {
     [BXSUser deleteUser];
-   UINavigationController * navVC =  (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([navVC isKindOfClass:[UINavigationController class]]) {
-        [navVC popToRootViewControllerAnimated:true];
-        [navVC pushViewController:[LoginViewController new] animated:true];
-        [LLHudTools showWithMessage:msg];
-    }
+     [LLHudTools showWithMessage:msg];
+    UINavigationController * navVC =  [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+    [UIApplication sharedApplication].keyWindow.rootViewController = navVC;
    
 }
 

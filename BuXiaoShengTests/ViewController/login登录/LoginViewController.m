@@ -190,7 +190,7 @@
         
         
     } failure:^(NSError *error) {
-        
+        BXS_Alert(LLLoadErrorMessage);
     }];
 }
 

@@ -323,7 +323,7 @@
         if ([response[@"code"] integerValue] == 200) {
             [BXSUser deleteUser];
             [[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
-            [self.navigationController pushViewController:[LoginViewController new] animated:true];
+            //[self.navigationController pushViewController:[LoginViewController new] animated:true];
         }
          [LLHudTools showWithMessage:response[@"msg"]];
     } failure:^(NSError *error) {
