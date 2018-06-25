@@ -12,4 +12,5 @@
 @property (nonatomic,copy) NSString * id;
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,copy) NSString * status;
+@property (nonatomic,copy) NSString * systemItem;
 @end

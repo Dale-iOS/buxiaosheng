@@ -16,13 +16,25 @@
 @property(nonatomic,strong)UIButton *nextBtn;//确认按钮
 @property(nonatomic,strong)UIView *customView;//自定义View
 @property(nonatomic,strong)UITextField *cusTF;//自定义TF
+@property(nonatomic,strong)UILabel *selectLabel;//顶部文字
 @end
 
 @implementation LZChooseLabelVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupData];
+    
+    if (_ToSearchWhat == ToSearchGroup) {
+        //进来获取的是分组
+        [self setupGroupData];
+    }else if (_ToSearchWhat == ToSearchLabel) {
+        //进来获取的是标签
+        [self setupLableData];
+    }else if (_ToSearchWhat == ToSearchUnit){
+        //进来获取的是单位
+        [self setupUnitData];
+    }
+    
     [self setupUI];
 }
 
@@ -30,14 +42,25 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *selectLabel = [[UILabel alloc]init];
-    selectLabel.backgroundColor = LZHBackgroundColor;
-    selectLabel.text = @"  选择标签";
-    selectLabel.textColor = CD_Text99;
-    selectLabel.font = FONT(12);
-    selectLabel.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:selectLabel];
-    [selectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _selectLabel = [[UILabel alloc]init];
+    _selectLabel.backgroundColor = LZHBackgroundColor;
+   
+    if (_ToSearchWhat == ToSearchGroup) {
+        //进来获取的是分组
+        _selectLabel.text = @"  选择分组";
+    }else if (_ToSearchWhat == ToSearchLabel) {
+        //进来获取的是标签
+        _selectLabel.text = @"  选择标签";
+    }else if (_ToSearchWhat == ToSearchUnit){
+        //进来获取的是单位
+        _selectLabel.text = @"  选择单位";
+    }
+    
+    _selectLabel.textColor = CD_Text99;
+    _selectLabel.font = FONT(12);
+    _selectLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:_selectLabel];
+    [_selectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.equalTo(self.view);
         make.top.equalTo(self.view).offset(44);
         make.height.mas_offset(30);
@@ -129,27 +152,42 @@
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc]init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake(70, 29);
-//    layoutView.headerReferenceSize = CGSizeMake(APPWidth, 75);
-//    layoutView.footerReferenceSize = CGSizeMake(APPWidth, 10);
-//
+
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[ChooseLablesCell class] forCellWithReuseIdentifier:@"ChooseLablesCell"];
-//    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader"];
-//    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"collectionViewFooter"];
+
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(selectLabel.mas_bottom);
+        make.top.equalTo(_selectLabel.mas_bottom);
         make.left.and.right.equalTo(self.view);
         make.bottom.equalTo(_customView.mas_top);
     }];
 }
 
 #pragma mark ---- 网络请求 ------
+//接口名称 组别列表
+-(void)setupGroupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId
+                             };
+    [BXSHttp requestGETWithAppURL:@"product_group/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            BXS_Alert(baseModel.msg);
+            return ;
+        }
+        self.labels = [LLFactoryModel LLMJParse:baseModel.data];
+        [self.collectionView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 //获取标签聊表
--(void)setupData {
+-(void)setupLableData {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId
                              };
     [BXSHttp requestGETWithAppURL:@"customer_label/list.do" param:param success:^(id response) {
@@ -158,7 +196,6 @@
             BXS_Alert(baseModel.msg);
             return ;
         }
-        
         self.labels = [LLFactoryModel LLMJParse:baseModel.data];
         [self.collectionView reloadData];
         
@@ -166,6 +203,23 @@
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
+
+//接口名称 单位列表
+- (void)setupUnitData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"product_unit/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.labels = [LLFactoryModel LLMJParse:baseModel.data];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -218,6 +272,10 @@
         self.LabelsArrayBlock(model.name);
     }
     
+    if (self.LabelsDetailBlock) {
+        self.LabelsDetailBlock(model.name, model.id);
+    }
+    
 }
 
 
@@ -241,21 +299,57 @@
     if (!_cusTF.text) {
         return;
     }
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"name":_cusTF.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"customer_label/add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        [LLHudTools showWithMessage:@"新增成功"];
-        self.cusTF.text = @"";
-        [self setupData];
-    } failure:^(NSError *error) {
-        [LLHudTools showWithMessage:@"新增失败"];
-    }];
+    
+    if (_ToSearchWhat == ToSearchGroup) {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"name":_cusTF.text
+                                 };
+        [BXSHttp requestGETWithAppURL:@"product_group/add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"新增成功"];
+            self.cusTF.text = @"";
+            [self setupGroupData];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:@"新增失败"];
+        }];
+        
+    }else if (_ToSearchWhat == ToSearchLabel) {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"name":_cusTF.text
+                                 };
+        [BXSHttp requestGETWithAppURL:@"customer_label/add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"新增成功"];
+            self.cusTF.text = @"";
+            [self setupLableData];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:@"新增失败"];
+        }];
+    }else if (_ToSearchWhat == ToSearchUnit){
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"name":_cusTF.text
+                                 };
+        [BXSHttp requestGETWithAppURL:@"product_unit/add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"新增成功"];
+            self.cusTF.text = @"";
+            [self setupUnitData];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:@"新增失败"];
+        }];
+    }
 }
 
 //底部的确认按钮

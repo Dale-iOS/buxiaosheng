@@ -14,10 +14,13 @@
 #import "UIButton+EdgeInsets.h"
 #import "AddColorViewController.h"
 #import "BRPickerView.h"
+#import "LZChooseLabelVC.h"
 
 @interface AddProductViewController ()<LZHTableViewDelegate>
 {
     NSArray *_array;
+    NSString *_groupId;//分组id
+    NSString *_unitId;//单位id
 }
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -43,15 +46,20 @@
 @property (nonatomic, strong) TextInputCell *bigPriceCell;
 ///销售散剪价
 @property (nonatomic, strong) TextInputCell *dispersePriceCell;
+///成分
+@property (nonatomic, strong) TextInputCell *constituentCell;
+///幅宽
+@property (nonatomic, strong) TextInputCell *breadthCell;
+///克重
+@property (nonatomic, strong) TextInputCell *weightCell;
 
 
 ///添加颜色
 @property (nonatomic, strong) TextInputCell *addColorCell;
-///备注
-//@property (nonatomic, strong) TextInputTextView *remarkTextView;
-
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
+///备注
+@property (nonatomic, strong) TextInputTextView *remarkTextView;
 
 @end
 
@@ -60,7 +68,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupUI];
 }
 
@@ -98,6 +105,7 @@
     [self setupSectionTwo];
     [self setupSectionThree];
     [self setupSectionFour];
+    [self setupSectionFive];
     self.mainTabelView.dataSoure = self.datasource;
     
 }
@@ -112,6 +120,10 @@
     self.groupCell.rightArrowImageVIew.hidden = NO;
     self.groupCell.titleLabel.text = @"分组";
     self.groupCell.contentTF.placeholder = @"请选择分组";
+    self.groupCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *groupCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(groupCellTapClick)];
+    [self.groupCell addGestureRecognizer:groupCellTap];
+    
     
     self.defaultJoinCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.defaultJoinCell.rightArrowImageVIew.hidden = NO;
@@ -121,14 +133,23 @@
     UITapGestureRecognizer *defaultJoinCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(defaultJoinCellTapClick)];
     [self.defaultJoinCell addGestureRecognizer:defaultJoinCellTap];
     
+    
     self.unitCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.unitCell.rightArrowImageVIew.hidden = NO;
     self.unitCell.titleLabel.text = @"单位";
+    self.unitCell.contentTF.enabled = NO;
     self.unitCell.contentTF.placeholder = @"请选择单位";
+    UITapGestureRecognizer *unitCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(unitCellTapClick)];
+    [self.unitCell addGestureRecognizer:unitCellTap];
     
     self.quantizationCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.quantizationCell.titleLabel.text = @"量化";
     self.quantizationCell.contentTF.placeholder = @"请输入量化值";
+    self.quantizationCell.contentTF.sd_layout
+    .topEqualToView(self.quantizationCell)
+    .leftSpaceToView(self.quantizationCell.titleLabel, 50)
+    .heightRatioToView(self.quantizationCell, 1)
+    .widthIs(LZHScale_WIDTH(180));
     
     UIView *unitView = [[UIView alloc]init];
     unitView.backgroundColor = [UIColor clearColor];
@@ -138,6 +159,7 @@
     .widthIs(95)
     .heightIs(49)
     .topSpaceToView(self.quantizationCell, 0);
+    
     
     self.leftBtn = [UIButton new];
     self.leftBtn.titleLabel.font = FONT(15);
@@ -175,7 +197,7 @@
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell,self.quantizationCell];
+    item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -190,17 +212,30 @@
     
     self.bigPriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.bigPriceCell.titleLabel.text = @"销售大货价";
-    self.bigPriceCell.contentTF.placeholder = @"可选填";
+    self.bigPriceCell.contentTF.placeholder = @"请输入大货价";
     
     self.dispersePriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.dispersePriceCell.titleLabel.text = @"销售散剪价";
-    self.dispersePriceCell.contentTF.placeholder = @"可选填";
+    self.dispersePriceCell.contentTF.placeholder = @"请输入销售散剪价";
+    
+    self.constituentCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.constituentCell.titleLabel.text = @"成分";
+    self.constituentCell.contentTF.placeholder = @"请输入成分";
+    
+    self.breadthCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.breadthCell.titleLabel.text = @"幅宽";
+    self.breadthCell.contentTF.placeholder = @"请输入幅宽";
+    
+    self.weightCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.weightCell.titleLabel.text = @"克重";
+    self.weightCell.contentTF.placeholder = @"请输入克重";
+
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.nicknameCell,self.bigPriceCell,self.dispersePriceCell];
+    item.sectionRows = @[self.nicknameCell,self.bigPriceCell,self.dispersePriceCell,self.constituentCell,self.breadthCell,self.weightCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -299,6 +334,9 @@
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.titleLabel.text = @"状态";
     self.stateCell.contentTF.placeholder = @"请选择状态";
+    self.stateCell.contentTF.enabled = NO;
+    UITapGestureRecognizer *stateCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(stateCellTapClick)];
+    [self.stateCell addGestureRecognizer:stateCellTap];
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -308,10 +346,28 @@
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
-    
 }
 
+- (void)setupSectionFive{
+    //    备注textView
+    self.remarkTextView = [[TextInputTextView alloc]init];
+    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 98);
+    self.remarkTextView.titleLabel.text = @"备注";
+    self.remarkTextView.textView.placeholder = @"请输入备注内容";
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.remarkTextView];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
+
 #pragma mark ----- 点击事件 ------
+//量化按钮事件 左键
 - (void)leftBtnClick
 {
     NSLog(@"leftBtnClick");
@@ -323,7 +379,7 @@
     [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
     
 }
-
+//量化按钮事件 右键
 - (void)rightBtnClick
 {
     NSLog(@"rightBtnClick");
@@ -335,22 +391,74 @@
     [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
 }
 
-//入库方式点击事件
-- (void)defaultJoinCellTapClick{
-    [BRStringPickerView showStringPickerWithTitle:@"请选择入库方式" dataSource:@[@"细码", @"总码"] defaultSelValue:nil resultBlock:^(id selectValue) {
-        //        textField.text = self.infoModel.genderStr = selectValue;
-//        if ([selectValue isEqualToString:@"全部"]) {
-//            _selecStr = @"";
-//        }else if ([selectValue isEqualToString:@"供货商"]){
-//            _selecStr = @"0";
-//        }else if ([selectValue isEqualToString:@"生厂商"]){
-//            _selecStr = @"1";
-//        }else if ([selectValue isEqualToString:@"加工商"]){
-//            _selecStr = @"2";
-//        }
-        
-//        [self setupListData];
+//分组cell点击事件
+- (void)groupCellTapClick{
+    LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
+    vc.ToSearchWhat = ToSearchGroup;
+    
+    WEAKSELF
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+
+    [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
+        weakSelf.groupCell.contentTF.text = labelString;
+        _groupId = labelId;
     }];
+}
+
+//入库方式cell点击事件
+- (void)defaultJoinCellTapClick{
+    WEAKSELF;
+    [BRStringPickerView showStringPickerWithTitle:@"请选择入库方式" dataSource:@[@"细码", @"总码"] defaultSelValue:nil resultBlock:^(id selectValue) {
+
+        weakSelf.defaultJoinCell.contentTF.text = selectValue;
+    }];
+}
+
+//单位cell点击事件
+- (void)unitCellTapClick{
+    LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
+    vc.ToSearchWhat = ToSearchUnit;
+    WEAKSELF;
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    
+    [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
+        weakSelf.unitCell.contentTF.text = labelString;
+        _unitId = labelId;
+        UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        headerView.backgroundColor = LZHBackgroundColor;
+        
+        LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+        
+        if ([labelString isEqualToString:@"公斤"]) {
+            item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell,self.quantizationCell];
+        }else{
+            item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell];
+        }
+        
+        item.canSelected = NO;
+        item.sectionView = headerView;
+        [self.datasource replaceObjectAtIndex:0 withObject:item];
+        [self.mainTabelView reloadData];
+    }];
+}
+
+//状态cell点击事件
+- (void)stateCellTapClick{
+    WEAKSELF;
+    UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该产品启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.stateCell.contentTF.text = @"启用";
+    }];
+    UIAlertAction * disEnabled = [UIAlertAction actionWithTitle:@"未启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.stateCell.contentTF.text = @"未启用";
+    }];
+    UIAlertAction * cacanle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alterVc addAction:enabled];
+    [alterVc addAction:disEnabled];
+    [alterVc addAction:cacanle];
+    [self.navigationController presentViewController:alterVc animated:true completion:nil];
 }
 
 - (void)addColorCellTapAction
@@ -440,17 +548,96 @@
         item.canSelected = NO;
         item.sectionView = headerView;
         
-        
         [self.datasource replaceObjectAtIndex:2 withObject:item];
         [self.mainTabelView reloadData];
-
     }];
-
 }
 
+//右上角确认按钮事件
 - (void)selectornavRightBtnClick
 {
-    NSLog(@"selectornavRightBtnClick");
+//    接口名称 添加产品
+    if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
+        BXS_Alert(@"请输入品名");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.groupCell.contentTF.text]) {
+        BXS_Alert(@"请输入分组");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.defaultJoinCell.contentTF.text]) {
+        BXS_Alert(@"请选择入库方式");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.unitCell.contentTF.text]) {
+        BXS_Alert(@"请选择单位");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
+        BXS_Alert(@"请选择状态");
+        return;
+    }
+    
+    //量化所选的单位
+    NSInteger quantizationCellType = -1;
+    if ([self.unitCell.contentTF.text isEqualToString:@"公斤"]) {
+        if (_isSelLeftBtn) {
+            quantizationCellType = 1;
+        }else if (_isSelrightBtn){
+            quantizationCellType = 2;
+        }
+    }else{
+            quantizationCellType = 0;
+    }
+    
+    //状态所选的单位
+    NSInteger status = -1;
+    if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
+        status = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
+        status = 1;
+    }
+    
+    //入库类型所选的单位
+    NSInteger storageType = -1;
+    if ([self.defaultJoinCell.contentTF.text isEqualToString:@"总码"]) {
+        storageType = 0;
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"细码"]){
+        storageType = 1;
+    }
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"alias":self.nicknameCell.contentTF.text,
+                             @"breadth":self.breadthCell.contentTF.text,
+                             @"colorItems":@"[{name:'红色'},{name:'紫色'}]",
+                             @"component":self.constituentCell.contentTF.text,
+                             @"groupId":_groupId,
+                             @"largePrice":self.bigPriceCell.contentTF.text,
+                             @"name":self.titleCell.contentTF.text,
+                             @"rateType":@(quantizationCellType),
+                             @"rateValue":self.quantizationCell.contentTF.text,
+                             @"remark":self.remarkTextView.textView.text,
+                             @"shearPrice":self.dispersePriceCell.contentTF.text,
+                             @"status":@(status),
+                             @"storageType":@(storageType),
+                             @"unitId":_unitId,
+                             @"weight":self.weightCell.contentTF.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"product/add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        [LLHudTools showWithMessage:@"提交成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

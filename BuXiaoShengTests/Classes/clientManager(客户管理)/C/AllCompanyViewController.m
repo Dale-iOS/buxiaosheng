@@ -155,6 +155,7 @@
 {
 
     LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
+    vc.ToSearchWhat = ToSearchLabel;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];

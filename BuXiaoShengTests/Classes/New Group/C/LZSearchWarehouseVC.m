@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/31.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  查找全库存页面
 
 #import "LZSearchWarehouseVC.h"
 #import "LZSearchBar.h"

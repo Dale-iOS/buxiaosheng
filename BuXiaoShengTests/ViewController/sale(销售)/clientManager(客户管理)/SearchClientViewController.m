@@ -72,9 +72,7 @@
                             @"memberId":@"",
                             @"pageNo":@"1",
                             @"pageSize":@"15",
-                            @"searchName":self.searchBar.text,
-                            //                            @"status":@""
-                            
+                            @"searchName":self.searchBar.text
                             };
     [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
         

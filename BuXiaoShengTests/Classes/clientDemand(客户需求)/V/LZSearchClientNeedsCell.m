@@ -91,6 +91,7 @@
     self.priceLabel.font = FONT(12);
     self.priceLabel.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
     self.priceLabel.text = @"￥";
+    self.priceLabel.hidden = YES;
     [self.contentView addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLabel.mas_bottom).offset(10);

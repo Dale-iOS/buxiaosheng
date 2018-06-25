@@ -2476,6 +2476,8 @@
 				343025A6209BFA1F00869313 /* ProductViewController.h */,
 				343025A7209BFA1F00869313 /* ProductViewController.m */,
 				34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */,
+				34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */,
+				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
 				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
 			);
 			path = C;
@@ -3368,8 +3370,6 @@
 			children = (
 				3455F67F20CA4F0700579521 /* LZChooseProductVC.h */,
 				3455F68020CA4F0700579521 /* LZChooseProductVC.m */,
-				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
-				34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */,
 				34EE5D7020A68B9900A2C9B5 /* AddColorViewController.h */,
 				34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */,
 			);
