@@ -35,6 +35,8 @@
 
 #define LLLoginStateNotification  @"LLLoginStateNotification"
 
+#define LLUserSaveKey @"LLUserSaveKey"
+
 //#import "AdditionFrameworks.h"
 #endif /* BuXiaoSheng_Prefix_pch */
 

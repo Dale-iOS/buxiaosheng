@@ -139,6 +139,7 @@
     formatter.dateFormat = @"yyyy-MM-dd";
     self.dateAttribute.HYC_GLTime = [formatter stringFromDate:[self OneMothisUP:false]];
     self.yearLable.text = self.dateAttribute.HYC_GLYears;
+    [self.collectionView reloadData];
 }
 
 -(void)nextBtnClick {
@@ -146,6 +147,7 @@
     formatter.dateFormat = @"yyyy-MM-dd";
     self.dateAttribute.HYC_GLTime = [formatter stringFromDate:[self OneMothisUP:true]];
     self.yearLable.text = self.dateAttribute.HYC_GLYears;
+     [self.collectionView reloadData];
 }
 
 - (NSDate*)OneMothisUP:(BOOL)isUP{

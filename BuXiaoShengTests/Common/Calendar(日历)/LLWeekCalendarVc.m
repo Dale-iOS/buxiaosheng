@@ -160,6 +160,8 @@
     [self .seletedWeekDates removeAllObjects];
     self.selectedDate = date;
     [self configureVisibleCells];
+    
+    NSLog(@"%@",self.seletedWeekDates);
 }
 
 

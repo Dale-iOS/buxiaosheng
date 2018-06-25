@@ -76,6 +76,10 @@
     
     //登录输入框
     self.loginTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 124, self.view.frame.size.width -60, 45)];
+    NSString * saveUserID = [[NSUserDefaults standardUserDefaults] objectForKey:LLUserSaveKey];
+    if (saveUserID) {
+        self.loginTF.text = saveUserID;
+    }
     self.loginTF.leftView = loginLeftView;
     self.loginTF.leftViewMode = UITextFieldViewModeAlways;
     self.loginTF.layer.cornerRadius = 22;
@@ -166,6 +170,8 @@
                 return ;
             }
             
+            [[NSUserDefaults standardUserDefaults] setObject:self.loginTF.text forKey:LLUserSaveKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             if ([BXSTools stringIsNullOrEmpty:[BXSUser currentUser].userId]) {
                 [BXSUser deleteUser];
                 [BXSUser saveUser:self.loginModel];

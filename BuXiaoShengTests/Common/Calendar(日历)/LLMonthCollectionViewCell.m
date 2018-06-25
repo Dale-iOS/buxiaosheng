@@ -18,7 +18,12 @@
     _model = model;
     _monthLable.text = model.month;
     _seleteView.hidden = model.seleted ? false : true;
-    _monthLable.highlighted =  model.seleted;
+    if (model.seleted) {
+        _monthLable.textColor = [UIColor whiteColor];
+    }else {
+        _monthLable.textColor = [UIColor blackColor];
+    }
+   
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -30,7 +35,7 @@
         _seleteView.frame = self.contentView.bounds;
         
         _monthLable = [UILabel new];
-        _monthLable.highlightedTextColor = [UIColor whiteColor];
+       // _monthLable.highlightedTextColor = [UIColor whiteColor];
         _monthLable.textColor = [UIColor blackColor];
         _monthLable.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:_monthLable];
