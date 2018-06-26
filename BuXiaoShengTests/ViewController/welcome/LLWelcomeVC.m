@@ -9,6 +9,7 @@
 #import "LLWelcomeVC.h"
 #import "LLWelcomeCollectionViewCell.h"
 #import "HomeViewController.h"
+#import "LoginViewController.h"
 @interface LLWelcomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray <NSString*>* imageArr;
 @end
@@ -64,8 +65,16 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.imageArr.count-1) {
-        [UIApplication sharedApplication].keyWindow.rootViewController = [HomeViewController new];
-        
+        if ([BXSUser isLogin]) {
+            HomeViewController *vc = [[HomeViewController alloc]init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+            
+        }else {
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+             [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+        }
     }
     
     

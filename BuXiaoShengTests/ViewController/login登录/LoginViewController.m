@@ -33,7 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:true animated:animated];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(loginBack)];
     
@@ -172,18 +172,11 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:self.loginTF.text forKey:LLUserSaveKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            if ([BXSTools stringIsNullOrEmpty:[BXSUser currentUser].userId]) {
-                [BXSUser deleteUser];
-                [BXSUser saveUser:self.loginModel];
-                HomeViewController *vc = [[HomeViewController alloc]init];
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
-                return ;
-            }
             [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
-            [[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
-            [self.navigationController popToRootViewControllerAnimated:true];
+            HomeViewController *vc = [[HomeViewController alloc]init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
 
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
