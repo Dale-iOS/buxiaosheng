@@ -122,6 +122,10 @@
 		34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF62091A7A600BDB309 /* BaseViewController.m */; };
 		34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF92091B16C00BDB309 /* OutboundViewController.m */; };
 		34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */; };
+		344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2220E228950058E319 /* LZAlterProductDataVC.m */; };
+		344A5D2420E228950058E319 /* LZAlterProductDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2220E228950058E319 /* LZAlterProductDataVC.m */; };
+		344A5D2720E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
+		344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
 		344C487520D0C35300BEC002 /* LZProcurementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487420D0C35300BEC002 /* LZProcurementModel.m */; };
 		344C487620D0C35300BEC002 /* LZProcurementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487420D0C35300BEC002 /* LZProcurementModel.m */; };
 		344C487920D0C40400BEC002 /* LZProcurementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487820D0C40400BEC002 /* LZProcurementCell.m */; };
@@ -469,7 +473,6 @@
 		34EBACB22084A5070005BF77 /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EBACB12084A5070005BF77 /* OrderListTableViewCell.m */; };
 		34EE5D6920A68AC000A2C9B5 /* AddAuditManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D6820A68AC000A2C9B5 /* AddAuditManagerViewController.m */; };
 		34EE5D6C20A68B2600A2C9B5 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */; };
-		34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */; };
 		34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */; };
 		34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */; };
 		34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */; };
@@ -880,6 +883,10 @@
 		34494DF92091B16C00BDB309 /* OutboundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutboundViewController.m; sourceTree = "<group>"; };
 		34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignDeliveryViewController.h; sourceTree = "<group>"; };
 		34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignDeliveryViewController.m; sourceTree = "<group>"; };
+		344A5D2120E228950058E319 /* LZAlterProductDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAlterProductDataVC.h; sourceTree = "<group>"; };
+		344A5D2220E228950058E319 /* LZAlterProductDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAlterProductDataVC.m; sourceTree = "<group>"; };
+		344A5D2520E22D5C0058E319 /* LZProductDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProductDetailModel.h; sourceTree = "<group>"; };
+		344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProductDetailModel.m; sourceTree = "<group>"; };
 		344C487320D0C35300BEC002 /* LZProcurementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcurementModel.h; sourceTree = "<group>"; };
 		344C487420D0C35300BEC002 /* LZProcurementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProcurementModel.m; sourceTree = "<group>"; };
 		344C487720D0C40400BEC002 /* LZProcurementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcurementCell.h; sourceTree = "<group>"; };
@@ -1358,8 +1365,6 @@
 		34EE5D6820A68AC000A2C9B5 /* AddAuditManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAuditManagerViewController.m; sourceTree = "<group>"; };
 		34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
 		34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
-		34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterProductViewController.h; sourceTree = "<group>"; };
-		34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterProductViewController.m; sourceTree = "<group>"; };
 		34EE5D7020A68B9900A2C9B5 /* AddColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddColorViewController.h; sourceTree = "<group>"; };
 		34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddColorViewController.m; sourceTree = "<group>"; };
 		34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddDepartmentViewController.h; sourceTree = "<group>"; };
@@ -2527,10 +2532,10 @@
 			children = (
 				343025A6209BFA1F00869313 /* ProductViewController.h */,
 				343025A7209BFA1F00869313 /* ProductViewController.m */,
-				34EE5D6D20A68B5D00A2C9B5 /* AlterProductViewController.h */,
-				34EE5D6E20A68B5D00A2C9B5 /* AlterProductViewController.m */,
 				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
 				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
+				344A5D2120E228950058E319 /* LZAlterProductDataVC.h */,
+				344A5D2220E228950058E319 /* LZAlterProductDataVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2545,6 +2550,8 @@
 		346F6DD420DFA4320016FA8D /* M */ = {
 			isa = PBXGroup;
 			children = (
+				344A5D2520E22D5C0058E319 /* LZProductDetailModel.h */,
+				344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -4412,6 +4419,7 @@
 				34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
 				34EA5BB9208B1F010048CFE1 /* LGAlertView.m in Sources */,
+				344A5D2720E22D5C0058E319 /* LZProductDetailModel.m in Sources */,
 				34F4B4B220BC03120017003E /* LZDrawerChooseView.m in Sources */,
 				34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */,
 				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
@@ -4433,6 +4441,7 @@
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				344C48A920D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */,
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
+				344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */,
 				34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */,
 				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
@@ -4477,7 +4486,6 @@
 				B5244BF820D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */,
 				3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */,
 				3465C9F420DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
-				34EE5D6F20A68B5D00A2C9B5 /* AlterProductViewController.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
 				B577CEB020AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
@@ -4717,6 +4725,7 @@
 				B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3471DCA720D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
+				344A5D2420E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				3479058020C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
 				3465CA1120DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */,
 				B577CE9E20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
@@ -4826,6 +4835,7 @@
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				34847D5A20C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */,
+				344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */,
 				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				3465C9F920DC9A9700BAE415 /* FSCalendarStickyHeader.m in Sources */,
@@ -5051,7 +5061,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 48WVJV32K7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -5059,7 +5069,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "9a9a8296-ad0f-4379-8e3a-476d5b852903";
+				PROVISIONING_PROFILE_SPECIFIER = "布小生测试证书";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
@@ -5073,7 +5084,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 48WVJV32K7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -5081,7 +5092,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "9a9a8296-ad0f-4379-8e3a-476d5b852903";
+				PROVISIONING_PROFILE_SPECIFIER = "布小生测试证书";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};

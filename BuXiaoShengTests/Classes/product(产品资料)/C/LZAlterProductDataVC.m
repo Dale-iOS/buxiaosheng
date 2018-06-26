@@ -1,12 +1,12 @@
 //
-//  AddProductViewController.m
+//  LZAlterProductDataVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/12.
+//  Created by 罗镇浩 on 2018/6/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加产品资料页面
+//  修改产品资料页面
 
-#import "AddProductViewController.h"
+#import "LZAlterProductDataVC.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
@@ -15,8 +15,9 @@
 #import "AddColorViewController.h"
 #import "BRPickerView.h"
 #import "LZChooseLabelVC.h"
+#import "LZProductDetailModel.h"
 
-@interface AddProductViewController ()<LZHTableViewDelegate>
+@interface LZAlterProductDataVC ()<LZHTableViewDelegate>
 {
     NSArray *_array;
     NSString *_groupId;//分组id
@@ -24,7 +25,8 @@
 }
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
-
+@property(nonatomic,strong)LZProductDetailModel *detailModel;
+@property(nonatomic,strong)NSMutableArray *colorsNameMuArray;//颜色名字
 ///品名
 @property (nonatomic, strong) TextInputCell *titleCell;
 ///分组
@@ -63,12 +65,14 @@
 
 @end
 
-@implementation AddProductViewController
+@implementation LZAlterProductDataVC
 @synthesize mainTabelView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self setupData];
+    [self setupColorList];
 }
 
 - (LZHTableView *)mainTabelView
@@ -87,7 +91,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加产品资料"];
+    self.navigationItem.titleView = [Utility navTitleView:@"修改产品资料"];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
@@ -229,7 +233,7 @@
     self.weightCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.weightCell.titleLabel.text = @"克重";
     self.weightCell.contentTF.placeholder = @"请输入克重";
-
+    
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -249,7 +253,7 @@
     UIView *addColorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     addColorView.backgroundColor = [UIColor whiteColor];
     addColorView.userInteractionEnabled = YES;
-     UITapGestureRecognizer *addColorCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addColorCellTapAction)];
+    UITapGestureRecognizer *addColorCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addColorCellTapAction)];
     [addColorView addGestureRecognizer:addColorCellTap];
     UILabel *label = [[UILabel alloc]init];
     label.text = @"添加颜色";
@@ -281,7 +285,7 @@
     
     //返回的颜色
     UIView *colorsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.001)];
-
+    
     _array = [NSArray array];
     
     int col = 4;
@@ -316,7 +320,7 @@
         colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
         [colorsView addSubview:label];
     }
-
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
@@ -365,6 +369,109 @@
     [self.datasource addObject:item];
 }
 
+#pragma mark ---- 网络请求 ----
+//接口名称 产品详情
+- (void)setupData{
+    NSDictionary * param = @{@"id":self.id};
+    [BXSHttp requestGETWithAppURL:@"product/detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        LZProductDetailModel *model = [LZProductDetailModel LLMJParse:baseModel.data];
+    
+        //赋值
+        self.titleCell.contentTF.text = model.name;
+        self.groupCell.contentTF.text = model.groupName;
+        if ([model.storageType integerValue] == 0) {
+            self.defaultJoinCell.contentTF.text = @"总码";
+        }else if ([model.storageType integerValue] == 1){
+            self.defaultJoinCell.contentTF.text = @"细码";
+        }
+        self.nicknameCell.contentTF.text = model.alias;
+        self.bigPriceCell.contentTF.text = model.largePrice;
+        self.dispersePriceCell.contentTF.text = model.shearPrice;
+        self.quantizationCell.contentTF.text = model.rateValue;
+        
+        //当是公斤的时候，量化cell选择的是米还是码
+        if ([model.unitName isEqualToString:@"公斤"] && [model.rateType integerValue]==1) {
+            //米
+            _isSelLeftBtn = YES;
+            [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
+            _isSelrightBtn = NO;
+            [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
+    
+        }else if ([model.unitName isEqualToString:@"公斤"] && [model.rateType integerValue]==2){
+            //码
+            _isSelLeftBtn = NO;
+            [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
+            _isSelrightBtn = YES;
+            [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
+        }
+        
+        //单位是公斤的话，会多出一条量化cell
+        if ([model.unitName isEqualToString:@"公斤"]) {
+            UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+            headerView.backgroundColor = LZHBackgroundColor;
+            
+            LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+            item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell,self.quantizationCell];
+            item.canSelected = NO;
+            item.sectionView = headerView;
+            [self.datasource replaceObjectAtIndex:0 withObject:item];
+            [self.mainTabelView reloadData];
+        }else{
+            UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+            headerView.backgroundColor = LZHBackgroundColor;
+            
+            LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+            item.sectionRows = @[self.titleCell,self.groupCell,self.defaultJoinCell,self.unitCell];
+            item.canSelected = NO;
+            item.sectionView = headerView;
+            [self.datasource replaceObjectAtIndex:0 withObject:item];
+            [self.mainTabelView reloadData];
+        }
+        
+        
+        self.unitCell.contentTF.text = model.unitName;
+        self.constituentCell.contentTF.text = model.component;
+        self.breadthCell.contentTF.text = model.breadth;
+        self.weightCell.contentTF.text = model.weight;
+        if ([model.status integerValue] == 0) {
+            self.stateCell.contentTF.text = @"启用";
+        }else if ([model.status integerValue] == 1){
+            self.stateCell.contentTF.text = @"未启用";
+        }
+        self.remarkTextView.textView.text = model.remark;
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+- (void)setupColorList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"productId":self.id
+                             };
+    [BXSHttp requestGETWithAppURL:@"product_color/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSArray *tempArray = baseModel.data;
+        _colorsNameMuArray = [NSMutableArray array];
+        for (int i = 0; i < tempArray.count; i++) {
+            [_colorsNameMuArray addObject:tempArray[i][@"name"]];
+        }
+        
+        NSLog(@"1321");
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+
+}
 
 #pragma mark ----- 点击事件 ------
 //量化按钮事件 左键
@@ -399,7 +506,7 @@
     WEAKSELF
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
-
+    
     [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
         weakSelf.groupCell.contentTF.text = labelString;
         _groupId = labelId;
@@ -410,7 +517,7 @@
 - (void)defaultJoinCellTapClick{
     WEAKSELF;
     [BRStringPickerView showStringPickerWithTitle:@"请选择入库方式" dataSource:@[@"细码", @"总码"] defaultSelValue:nil resultBlock:^(id selectValue) {
-
+        
         weakSelf.defaultJoinCell.contentTF.text = selectValue;
     }];
 }
@@ -466,9 +573,9 @@
     
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-   
+    
     [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
-
+        
         //临时添加数据
         NSMutableArray *tempMuArray = [_array mutableCopy];
         [tempMuArray addObjectsFromArray:muColosArray];
@@ -520,7 +627,7 @@
             int index = i%col;
             
             UILabel *label = [[UILabel alloc]init];
-
+            
             if (APPWidth > IPHONE6PLUS_WIDTH) {
                 label = [[UILabel alloc]initWithFrame:CGRectMake(margin + index*(APPWidth - (col + 1)*margin)/col + margin*index,40*page + 5,(APPWidth *140 / 750),(APPWidth *90 / 750)*5/14)];
             }else{
@@ -533,7 +640,7 @@
             }
             
             label.layer.borderColor = CD_Text33.CGColor;
-//            label.layer.borderWidth = 1;
+            //            label.layer.borderWidth = 1;
             
             label.text = _array[i];
             label.textAlignment = NSTextAlignmentCenter;
@@ -557,7 +664,7 @@
 //右上角确认按钮事件
 - (void)selectornavRightBtnClick
 {
-//    接口名称 添加产品
+    //    接口名称 添加产品
     if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
         BXS_Alert(@"请输入品名");
         return;
@@ -593,7 +700,7 @@
             quantizationCellType = 2;
         }
     }else{
-            quantizationCellType = 0;
+        quantizationCellType = 0;
     }
     
     //状态所选的单位
@@ -608,18 +715,18 @@
     NSInteger storageType = -1;
     if ([self.defaultJoinCell.contentTF.text isEqualToString:@"总码"]) {
         storageType = 0;
-    }else if ([self.defaultJoinCell.contentTF.text isEqualToString:@"细码"]){
+    }else if ([self.stateCell.contentTF.text isEqualToString:@"细码"]){
         storageType = 1;
     }
     
     //颜色数组转换成字符串
     NSString *colors = [_colorArray mj_JSONString];
-
+    
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"alias":self.nicknameCell.contentTF.text,
                              @"breadth":self.breadthCell.contentTF.text,
-//                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
+                             //                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
                              @"colorItems":colors,
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
@@ -644,11 +751,11 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:true];
         });
-
+        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {

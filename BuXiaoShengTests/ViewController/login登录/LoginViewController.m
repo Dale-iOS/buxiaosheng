@@ -81,6 +81,7 @@
         self.loginTF.text = saveUserID;
     }
     self.loginTF.leftView = loginLeftView;
+    self.loginTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.loginTF.leftViewMode = UITextFieldViewModeAlways;
     self.loginTF.layer.cornerRadius = 22;
     self.loginTF.placeholder = @"手机号或ID";

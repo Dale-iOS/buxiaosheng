@@ -8,7 +8,7 @@
 
 #import "ProductViewController.h"
 #import "AddProductViewController.h"
-#import "AlterProductViewController.h"
+#import "LZAlterProductDataVC.h"
 #import "LZSearchBar.h"
 #import "LLFactoryModel.h"
 #import "LZChooseLabelVC.h"
@@ -147,6 +147,7 @@
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.textLabel.text = self.products[indexPath.row].name;
     
@@ -156,11 +157,9 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-//
-    AlterProductViewController *vc = [[AlterProductViewController alloc]init];
+    LLFactoryModel *model = self.products[indexPath.row];
+    LZAlterProductDataVC *vc = [[LZAlterProductDataVC alloc]init];
+    vc.id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
