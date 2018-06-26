@@ -211,7 +211,12 @@
     _bottomView.hidden = YES;
     [self setupList];
     _headerLbl.textColor = CD_Text33;
-    _headerLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+    
+    if (![_startStr isEqualToString:@"0"]) {
+        _headerLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+    }else{
+        _headerLbl.text = [NSString stringWithFormat:@"    %@",_endStr];
+    }
 }
 
 //点击日历取消

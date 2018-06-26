@@ -465,8 +465,7 @@
         for (int i = 0; i < tempArray.count; i++) {
             [_colorsNameMuArray addObject:tempArray[i][@"name"]];
         }
-        
-        NSLog(@"1321");
+
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

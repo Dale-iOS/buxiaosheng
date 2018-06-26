@@ -126,6 +126,8 @@
 		344A5D2420E228950058E319 /* LZAlterProductDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2220E228950058E319 /* LZAlterProductDataVC.m */; };
 		344A5D2720E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
 		344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
+		344A5D2B20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2A20E24B360058E319 /* LZAssignDeliveryListVC.m */; };
+		344A5D2C20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2A20E24B360058E319 /* LZAssignDeliveryListVC.m */; };
 		344C487520D0C35300BEC002 /* LZProcurementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487420D0C35300BEC002 /* LZProcurementModel.m */; };
 		344C487620D0C35300BEC002 /* LZProcurementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487420D0C35300BEC002 /* LZProcurementModel.m */; };
 		344C487920D0C40400BEC002 /* LZProcurementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C487820D0C40400BEC002 /* LZProcurementCell.m */; };
@@ -887,6 +889,8 @@
 		344A5D2220E228950058E319 /* LZAlterProductDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAlterProductDataVC.m; sourceTree = "<group>"; };
 		344A5D2520E22D5C0058E319 /* LZProductDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProductDetailModel.h; sourceTree = "<group>"; };
 		344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProductDetailModel.m; sourceTree = "<group>"; };
+		344A5D2920E24B360058E319 /* LZAssignDeliveryListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryListVC.h; sourceTree = "<group>"; };
+		344A5D2A20E24B360058E319 /* LZAssignDeliveryListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryListVC.m; sourceTree = "<group>"; };
 		344C487320D0C35300BEC002 /* LZProcurementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcurementModel.h; sourceTree = "<group>"; };
 		344C487420D0C35300BEC002 /* LZProcurementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProcurementModel.m; sourceTree = "<group>"; };
 		344C487720D0C40400BEC002 /* LZProcurementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcurementCell.h; sourceTree = "<group>"; };
@@ -2594,6 +2598,8 @@
 			children = (
 				34494DFD2091DDFD00BDB309 /* AssignDeliveryViewController.h */,
 				34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */,
+				344A5D2920E24B360058E319 /* LZAssignDeliveryListVC.h */,
+				344A5D2A20E24B360058E319 /* LZAssignDeliveryListVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4484,6 +4490,7 @@
 				349C09662088900100D2AC38 /* GetPlistArray.m in Sources */,
 				B577CEA820AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				B5244BF820D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */,
+				344A5D2B20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */,
 				3464458420AD6FF900D6A06B /* ChooseLabelsVC.m in Sources */,
 				3465C9F420DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
@@ -4853,6 +4860,7 @@
 				3471DCB820D7883A002052EE /* LZChoosseWorkerVC.m in Sources */,
 				3420775420D39532006EA057 /* LZArrearClientCell.m in Sources */,
 				3465C9FB20DC9A9700BAE415 /* FSCalendarCollectionView.m in Sources */,
+				344A5D2C20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */,
 				B531EF4A20BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				34D5EAE920D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */,
 				B50505C6209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,

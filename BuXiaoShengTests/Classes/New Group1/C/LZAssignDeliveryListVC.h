@@ -1,5 +1,5 @@
 //
-//  LZAlterProductDataVC.h
+//  LZAssignDeliveryListVC.h
 //  BuXiaoSheng
 //
 //  Created by 罗镇浩 on 2018/6/26.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LZAlterProductDataVC : BaseViewController
-@property(nonatomic,copy)NSString *id;
+@interface LZAssignDeliveryListVC : BaseViewController
+
 @end

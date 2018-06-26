@@ -12,6 +12,7 @@
 #import "AssignDeliveryCell.h"
 #import "LZHomeModel.h"
 #import "LZChoosseWorkerVC.h"
+#import "LZAssignDeliveryListVC.h"
 
 @interface AssignDeliveryViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -232,7 +233,7 @@
 #pragma mark ------ 点击事件 -------
 - (void)ToSearch
 {
-    NSLog(@"点击了search");
+    [self.navigationController pushViewController:[LZAssignDeliveryListVC new] animated:YES];
 }
 
 //全选

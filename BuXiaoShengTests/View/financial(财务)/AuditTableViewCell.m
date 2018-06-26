@@ -285,7 +285,7 @@
     
     self.titleLabel.text = _model.customerName;
     self.subLabel.text = [NSString stringWithFormat:@"品名：￥%@",_model.productName];
-    self.priceLabel.text = [NSString stringWithFormat:@"报销金额：￥%@",_model.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"需求量：￥%@",_model.number];
     NSString *tempStr =_model.drawerName;
     if (tempStr.length >3) {
         self.iconNameLabel.text = [tempStr substringFromIndex:3];
