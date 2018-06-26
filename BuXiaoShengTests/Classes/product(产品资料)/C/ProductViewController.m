@@ -11,7 +11,7 @@
 #import "AlterProductViewController.h"
 #import "LZSearchBar.h"
 #import "LLFactoryModel.h"
-#import "LZChooseProductVC.h"
+#import "LZChooseLabelVC.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 
@@ -28,14 +28,15 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupData];
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self setupData];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [self setupData];
+//}
 
 - (void)setupUI
 {
@@ -174,15 +175,16 @@
 
 - (void)navigationScreenClick
 {
-    LZChooseProductVC *vc = [[LZChooseProductVC alloc]init];
+    LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
+    vc.ToSearchWhat = ToSearchGroup;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
     
-    [vc setLabelsArrayBlock:^(NSString *labelString) {
+    [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
         
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 @"groupId":labelString,
+                                 @"groupId":labelId,
                                  @"pageNo":@"1",
                                  @"pageSize":@"15",
                                  @"searchName":self.searchBar.text
