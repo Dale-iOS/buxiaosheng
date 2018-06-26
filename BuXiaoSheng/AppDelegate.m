@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "HomeViewController.h"
 #import "IQKeyboardManager.h"
-
+#import "LLWelcomeVC.h"
 @interface AppDelegate ()
 
 @end
@@ -41,17 +41,26 @@
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    if ([BXSUser isLogin]) {
-        HomeViewController *vc = [[HomeViewController alloc]init];
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-        self.window.rootViewController = nav;
-        
+    
+    if ([BXSTools welcomeShow]) {
+        LLWelcomeVC *vc = [[LLWelcomeVC alloc]init];
+        self.window.rootViewController = vc;
+        //nav.navigationBarHidden = true;
     }else {
-        LoginViewController *loginVC = [[LoginViewController alloc]init];
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
-         self.window.rootViewController = nav;
-        nav.navigationBarHidden = NO;
+        if ([BXSUser isLogin]) {
+            HomeViewController *vc = [[HomeViewController alloc]init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            self.window.rootViewController = nav;
+            
+        }else {
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            self.window.rootViewController = nav;
+            nav.navigationBarHidden = NO;
+        }
     }
+    
+  
 
 //    nav.navigationBarHidden = NO;
     [self.window makeKeyAndVisible];

@@ -613,6 +613,10 @@
 		B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1120A555F2000F9C4A /* LLBaseModel.m */; };
 		B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
 		B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */; };
+		B56EF0EA20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EF0E820E1EB1E000A829F /* LLWelcomeCollectionViewCell.m */; };
+		B56EF0EB20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EF0E820E1EB1E000A829F /* LLWelcomeCollectionViewCell.m */; };
+		B56EF0EC20E1EB1E000A829F /* LLWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EF0E920E1EB1E000A829F /* LLWelcomeVC.m */; };
+		B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EF0E920E1EB1E000A829F /* LLWelcomeVC.m */; };
 		B577CE9020AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */; };
 		B577CE9120AA78550001B8B8 /* LLAddNewPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */; };
 		B577CE9520AA78640001B8B8 /* LLAddNewPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B577CE9420AA78640001B8B8 /* LLAddNewPeopleModel.m */; };
@@ -1534,6 +1538,10 @@
 		B55ADE1120A555F2000F9C4A /* LLBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseModel.m; sourceTree = "<group>"; };
 		B55ADE1420A556A0000F9C4A /* NSObject+LLMJParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LLMJParse.h"; sourceTree = "<group>"; };
 		B55ADE1520A556A0000F9C4A /* NSObject+LLMJParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LLMJParse.m"; sourceTree = "<group>"; };
+		B56EF0E620E1EB1E000A829F /* LLWelcomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWelcomeCollectionViewCell.h; sourceTree = "<group>"; };
+		B56EF0E720E1EB1E000A829F /* LLWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWelcomeVC.h; sourceTree = "<group>"; };
+		B56EF0E820E1EB1E000A829F /* LLWelcomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWelcomeCollectionViewCell.m; sourceTree = "<group>"; };
+		B56EF0E920E1EB1E000A829F /* LLWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWelcomeVC.m; sourceTree = "<group>"; };
 		B577CE8E20AA78550001B8B8 /* LLAddNewPeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeopleCell.h; sourceTree = "<group>"; };
 		B577CE8F20AA78550001B8B8 /* LLAddNewPeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAddNewPeopleCell.m; sourceTree = "<group>"; };
 		B577CE9320AA78640001B8B8 /* LLAddNewPeopleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddNewPeopleModel.h; sourceTree = "<group>"; };
@@ -2926,6 +2934,7 @@
 		34A92B45207DE91300572648 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B56EF0E520E1EAFD000A829F /* welcome */,
 				347D64C9207F05ED00407FC4 /* sale(销售) */,
 				342AF9372086F2070043EA2E /* financial(财务) */,
 				343B180020A419E400349A6D /* login登录 */,
@@ -3933,6 +3942,17 @@
 			path = "Setting设置";
 			sourceTree = "<group>";
 		};
+		B56EF0E520E1EAFD000A829F /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				B56EF0E620E1EB1E000A829F /* LLWelcomeCollectionViewCell.h */,
+				B56EF0E820E1EB1E000A829F /* LLWelcomeCollectionViewCell.m */,
+				B56EF0E720E1EB1E000A829F /* LLWelcomeVC.h */,
+				B56EF0E920E1EB1E000A829F /* LLWelcomeVC.m */,
+			);
+			path = welcome;
+			sourceTree = "<group>";
+		};
 		B577CE8D20AA78550001B8B8 /* organization(组织架构) */ = {
 			isa = PBXGroup;
 			children = (
@@ -4584,6 +4604,7 @@
 				3420777120D3F4B5006EA057 /* LZArrearClientModel.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				343207C720A05A8E005A5D23 /* BackOrderViewController.m in Sources */,
+				B56EF0EA20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
@@ -4636,6 +4657,7 @@
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34847D5920C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */,
 				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
+				B56EF0EC20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
 				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
@@ -4696,6 +4718,7 @@
 				3427A50020CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */,
 				34EE88E120CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
 				3465C9F520DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
+				B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3471DCA720D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
 				3479058020C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
@@ -4857,6 +4880,7 @@
 				342AF22320D51C7300A1DDC4 /* LZDetailCell.m in Sources */,
 				B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
 				34D5EB0920D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
+				B56EF0EB20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				3455F69720CAC60B00579521 /* LZClientReceiptVC.m in Sources */,
 				3420777220D3F4B5006EA057 /* LZArrearClientModel.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,

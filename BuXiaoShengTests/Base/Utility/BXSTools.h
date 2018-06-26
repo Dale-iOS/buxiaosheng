@@ -18,4 +18,6 @@
 ///后台返回的数据转日期带"-"
 +(NSString *)stringFromTData:(NSString*)str;
 + (UIViewController *)viewWithViewController:(UIView *)view;
+
++(BOOL)welcomeShow;
 @end

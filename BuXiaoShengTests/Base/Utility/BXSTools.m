@@ -102,4 +102,24 @@
     return nil;
 }
 
++(BOOL)welcomeShow {
+    
+    //判断app的版本号
+    NSString * key = @"CFBundleShortVersionString";
+    //获得当前软件的版本号
+    NSString * curentVersion = [NSBundle mainBundle].infoDictionary[key];
+    NSLog(@"%@",curentVersion);
+    //获得沙盒中的版本号
+    NSString * sanBoxVerison = [[NSUserDefaults standardUserDefaults]stringForKey:key];
+    NSLog(@"%@",sanBoxVerison);
+    if (![curentVersion isEqualToString:sanBoxVerison]) {
+        //存储当前的版本号
+        [[NSUserDefaults standardUserDefaults]setObject:curentVersion forKey:key];
+        //立即进行存储
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        return true;
+    }
+    return false;
+}
+
 @end
