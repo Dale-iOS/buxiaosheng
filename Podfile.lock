@@ -18,13 +18,10 @@ PODS:
   - CWLateralSlide (1.5.8)
   - EasyNavigation (1.0.5)
   - EasyShowView (2.1.1)
-  - FBRetainCycleDetector (0.1.4)
   - IQKeyboardManager (5.0.8)
   - Masonry (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
-  - MLeaksFinder (1.0.0):
-    - FBRetainCycleDetector
   - pop (1.0.10)
   - Reachability (3.2)
   - SDAutoLayout (2.2.0)
@@ -48,7 +45,6 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - MJRefresh
-  - MLeaksFinder
   - pop
   - Reachability
   - SDAutoLayout
@@ -65,12 +61,10 @@ SPEC REPOS:
     - CWLateralSlide
     - EasyNavigation
     - EasyShowView
-    - FBRetainCycleDetector
     - IQKeyboardManager
     - Masonry
     - MJExtension
     - MJRefresh
-    - MLeaksFinder
     - pop
     - Reachability
     - SDAutoLayout
@@ -86,12 +80,10 @@ SPEC CHECKSUMS:
   CWLateralSlide: 3af190c8ffa08040abfd9780f279dac94d531f8b
   EasyNavigation: 3414769a995d032e5dd9441f2bdd4eda7dd10089
   EasyShowView: d952911722bf8b17c1d715b58cc2ea8226b5d4af
-  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
@@ -101,6 +93,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 5fb82d92850c0c650a4fc504ef719e06344fc918
+PODFILE CHECKSUM: 72715f75a54a4a6448c366703f9d8735344012ce
 
 COCOAPODS: 1.5.0

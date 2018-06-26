@@ -19,7 +19,7 @@ inhibit_all_warnings!
     pod 'EasyNavigation'
     pod 'SVProgressHUD'
     pod 'MJExtension'
-    pod 'MLeaksFinder'
+    #pod 'MLeaksFinder'
     pod 'IQKeyboardManager'
     pod 'EasyShowView'
     pod 'TZImagePickerController'

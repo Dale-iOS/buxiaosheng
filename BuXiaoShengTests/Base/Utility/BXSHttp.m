@@ -79,6 +79,9 @@
 +(void)setupLoginStateFildWithMsg:(NSString *)msg {
     [BXSUser deleteUser];
      [LLHudTools showWithMessage:msg];
+    if ([[UIApplication sharedApplication].keyWindow.rootViewController isKindOfClass:[LoginViewController class]]) {
+        return;
+    }
     UINavigationController * navVC =  [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
     [UIApplication sharedApplication].keyWindow.rootViewController = navVC;
    

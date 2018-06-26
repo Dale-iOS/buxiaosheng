@@ -323,8 +323,10 @@
         [LLHudTools dismiss];
         if ([response[@"code"] integerValue] == 200) {
             [BXSUser deleteUser];
-            [[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:LLLoginStateNotification object:nil];
             //[self.navigationController pushViewController:[LoginViewController new] animated:true];
+            UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+            [UIApplication sharedApplication].keyWindow.rootViewController = navVc;
         }
          [LLHudTools showWithMessage:response[@"msg"]];
     } failure:^(NSError *error) {

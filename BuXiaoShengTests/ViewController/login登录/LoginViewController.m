@@ -92,6 +92,7 @@
     self.loginTF.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.loginTF];
     
+
     //密码输入框
     self.passwordTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 183, self.view.frame.size.width -60, 44)];
     self.passwordTF.layer.cornerRadius = 22;
@@ -212,7 +213,7 @@
 }
 
 #pragma mark --------- 监听事件 -----------
-- (void)passwordNewTFChanged:(NSBlockOperation *)notify
+- (void)passwordNewTFChanged:(NSNotification *)notify
 {
     //监听输入框是否都有内容，确认按钮样式变化
     if (self.loginTF.text.length >0 && self.passwordTF.text.length >=6) {
