@@ -10,16 +10,27 @@
 #import "OrderTableViewCell.h"
 #import "LZOrderTrackingModel.h"
 #import "LZShipmentVC.h"
+#import "LLDayCalendarVc.h"
+#import "LLWeekCalendarVc.h"
+#import "LLMonthCalendarVc.h"
+#import "LLQuarterCalendarVc.h"
+#import "SGPagingView.h"
 
-@interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate>
+
+@interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
     UITableView *_tableView;
     UIView *_rightHeadView;
     NSInteger _page;
+    NSString *_startStr;//开始时间
+    NSString *_endStr;//结束时间
 }
 @property(nonatomic,strong)NSArray<LZOrderTrackingModel *> *lists;
+@property(nonatomic,strong)SGPageTitleView *pageTitleView;
+@property(nonatomic,strong)SGPageContentView *pageContentView;
+@property(nonatomic,strong)UIView *bottomView;
 @end
 
 @implementation ShipmentOrderViewController
@@ -27,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-   
+    [self setupPageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,13 +49,15 @@
 
 - (void)setupUI
 {
+    _startStr = @"";
+    _endStr = @"";
     
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
     _headerView.backgroundColor = [UIColor whiteColor];
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.backgroundColor = [UIColor clearColor];
     _timeLabel.frame = CGRectMake(15, 12, APPWidth/2, 14);
-    _timeLabel.text = @"所有日期";
+    _timeLabel.text = @"全部";
     _timeLabel.font = FONT(13);
     _timeLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     [_headerView addSubview:_timeLabel];
@@ -102,7 +115,9 @@
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageSize":@"15",
+                             @"startDate":_startStr,
+                             @"endDate":_endStr
                              };
     [BXSHttp requestGETWithAppURL:@"sale/be_shipped_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -155,10 +170,82 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)screenBtnClick
-{
-    NSLog(@"点击了筛选时间");
+#pragma mark --- 日历 ---
+//初始化日历
+- (void)setupPageView {
+    CGFloat statusHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    CGFloat pageTitleViewY = 0;
+    if (statusHeight == 20.0) {
+        pageTitleViewY = 64;
+    } else {
+        pageTitleViewY = 88;
+    }
     
+    NSArray *titleArr = @[@"日历",@"周历",@"月历",@"季度"];
+    SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
+    configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
+    configure.titleSelectedColor = RGB(59, 177, 239);
+    configure.indicatorColor = RGB(59, 177, 239);;
+    /// pageTitleView
+    self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
+    self.pageTitleView.backgroundColor = [UIColor whiteColor];
+    //    [self.view addSubview:_pageTitleView];
+    
+    LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
+    dayVC.delegate = self;
+    LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    
+    NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
+    /// pageContentView
+    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
+    _pageContentView.delegatePageContentView = self;
+    //    [self.view addSubview:_pageContentView];
+    
+    
+    _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
+    _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    _bottomView.hidden = YES;
+    
+    [_bottomView addSubview:_pageTitleView];
+    [_bottomView addSubview:_pageContentView];
+    [self.view addSubview:_bottomView];
+}
+
+- (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
+    [self.pageContentView setPageContentViewCurrentIndex:selectedIndex];
+}
+
+- (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
+    [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+}
+
+//点击选择日期按钮
+- (void)screenBtnClick{
+    _bottomView.hidden = NO;
+}
+
+//点击日历确定
+- (void)didaffirmBtnInCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = [BXSTools stringFromTData:StartStr];
+    _endStr = [BXSTools stringFromTData:EndStr];
+    _bottomView.hidden = YES;
+    [self setupData];
+    if (![_startStr isEqualToString:@"0"]) {
+        _timeLabel.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _timeLabel.textColor = CD_Text33;
+    }else{
+        _timeLabel.text = _endStr;
+        _timeLabel.textColor = CD_Text33;
+    }
+    
+}
+
+//点击日历取消
+- (void)didCancelBtnInCalendar{
+    _bottomView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {

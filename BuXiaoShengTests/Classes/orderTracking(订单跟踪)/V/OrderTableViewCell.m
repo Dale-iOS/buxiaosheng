@@ -123,6 +123,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(14);
         label.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        label.hidden = YES;
         [self.bgView addSubview:(priceLabel = label)];
     }
     return priceLabel;
@@ -350,7 +351,7 @@
     self.nameLabel.text = _model.productName;
     self.companyLabel.text = _model.customerName;
     self.demandLabel.text = [NSString stringWithFormat:@"出库数:%@",_model.number];
-    self.priceLabel.text = [NSString stringWithFormat:@"￥:%@",_model.price];
+//    self.priceLabel.text = [NSString stringWithFormat:@"￥:%@",_model.price];
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
     
 //采购状态（0：未采购 1：采购中）

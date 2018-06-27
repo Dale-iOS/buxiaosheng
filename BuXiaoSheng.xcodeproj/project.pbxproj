@@ -297,6 +297,10 @@
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64D0207F0FB500407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
 		347D64D1207F127600407FC4 /* SalesDemandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CF207F0FB500407FC4 /* SalesDemandListView.m */; };
+		3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */; };
+		3480AA9820E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */; };
+		3480AA9B20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */; };
+		3480AA9C20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */; };
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
 		34847D4520C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
 		34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
@@ -1093,6 +1097,10 @@
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		347D64CE207F0FB500407FC4 /* SalesDemandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandListView.h; sourceTree = "<group>"; };
 		347D64CF207F0FB500407FC4 /* SalesDemandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandListView.m; sourceTree = "<group>"; };
+		3480AA9520E35B2A00053C5D /* LZAssignDeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryCell.h; sourceTree = "<group>"; };
+		3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryCell.m; sourceTree = "<group>"; };
+		3480AA9920E3690900053C5D /* LZAssignDeliveryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryListModel.h; sourceTree = "<group>"; };
+		3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryListModel.m; sourceTree = "<group>"; };
 		3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddClienViewController.h; sourceTree = "<group>"; };
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
 		34847D4320C7CE96004485F1 /* LZUploadImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZUploadImageView.h; sourceTree = "<group>"; };
@@ -2609,6 +2617,8 @@
 			children = (
 				3479056D20C509F1008C835C /* AssignDeliveryCell.h */,
 				3479056E20C509F1008C835C /* AssignDeliveryCell.m */,
+				3480AA9520E35B2A00053C5D /* LZAssignDeliveryCell.h */,
+				3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -2618,6 +2628,8 @@
 			children = (
 				3479056920C50973008C835C /* LZAssignDeliveryModel.h */,
 				3479056A20C50973008C835C /* LZAssignDeliveryModel.m */,
+				3480AA9920E3690900053C5D /* LZAssignDeliveryListModel.h */,
+				3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -4443,6 +4455,7 @@
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
 				34535F6B20AFFCB600D9D2C6 /* LZScreenAddressVC.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
+				3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */,
 				34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				344C48A920D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */,
@@ -4526,6 +4539,7 @@
 				343207D320A06A70005A5D23 /* YesAuditInStorageViewController.m in Sources */,
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				34A92B69207DF11B00572648 /* HomeEntranceView.m in Sources */,
+				3480AA9B20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */,
 				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
@@ -4698,6 +4712,7 @@
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				3465C9F120DC9A9700BAE415 /* FSCalendarExtensions.m in Sources */,
 				342AF22B20D5358600A1DDC4 /* LZProcessView.m in Sources */,
+				3480AA9820E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */,
 				344C489E20D1042100BEC002 /* LZDidToWarehouseAuditCell.m in Sources */,
 				B5E288E920A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
 				3479057620C51255008C835C /* DidOutOrderViewController.m in Sources */,
@@ -4795,6 +4810,7 @@
 				3427A50B20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
+				3480AA9C20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
 				34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				344C48A220D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
