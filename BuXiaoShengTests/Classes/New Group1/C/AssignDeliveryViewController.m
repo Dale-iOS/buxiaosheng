@@ -19,7 +19,7 @@
     NSMutableArray *_selectArray;
     NSString *_selectId;
 }
-@property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIImageView *allIM;
 @property(nonatomic,strong)UILabel *chooseLbl;
@@ -27,6 +27,7 @@
 @property(nonatomic,strong)NSMutableArray *workersAry;
 @property(nonatomic,strong)NSMutableArray *workersNameAry;
 @property(nonatomic,strong)NSMutableArray *workersIdAry;
+@property(nonatomic,strong)NSMutableArray *workersAllIdAry;//装着所有的cell的id
 @property(nonatomic,strong)NSString *workerId;
 @property(nonatomic,strong)UIView *allSelectView;
 @property(nonatomic,strong)UIButton *commitBtn;//提交按钮
@@ -126,7 +127,7 @@
     [self.view addSubview:_commitBtn];
     [_commitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.bottom.and.right.equalTo(self.view);
-        make.height.mas_offset(44);
+        make.height.mas_offset(50);
     }];
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -158,6 +159,11 @@
             return ;
         }
         _lists = [LZAssignDeliveryModel LLMJParse:baseModel.data];
+        NSMutableArray *tempAry = baseModel.data;
+        _workersAllIdAry = [NSMutableArray array];
+        for (int i = 0 ; i <_lists.count; i++) {
+            [_workersAllIdAry addObject:tempAry[i][@"id"]];
+        }
         [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -218,13 +224,14 @@
         model.isSelect = NO;
         //从选中中去除
         [_selectArray removeObject:model.id];
-        _selectId = [_selectArray componentsJoinedByString:@","];
+//        [_selectArray removeAllObjects];
+//        _selectId = [_selectArray componentsJoinedByString:@","];
         NSLog(@"%@",_selectId);
     }else{
         
         model.isSelect = YES;
         [_selectArray addObject:model.id];
-        _selectId = [_selectArray componentsJoinedByString:@","];
+//        _selectId = [_selectArray componentsJoinedByString:@","];
         NSLog(@"%@",_selectId);
     }
     [_tableView reloadData];
@@ -247,9 +254,12 @@
     
     if (!seleted) {
         _allIM.image = IMAGE(@"noSelect");
+        [_selectArray removeAllObjects];
     }else{
         _allIM.image = IMAGE(@"yesSelect");
+        _selectArray = _workersAllIdAry;
     }
+    _selectId = [_selectArray componentsJoinedByString:@","];
     [self.lists enumerateObjectsUsingBlock:^(LZAssignDeliveryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
           obj.isSelect = seleted;
     }];
@@ -281,6 +291,7 @@
         BXS_Alert(@"请至少勾选一项");
         return;
     }
+    _selectId = [_selectArray componentsJoinedByString:@","];
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"delivererId":_workerId,
                              @"orderIds":_selectId
