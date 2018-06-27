@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface AddDepartmentViewController : BaseViewController
-
+@property(nonatomic,assign)BOOL isFromAdd;
 @end

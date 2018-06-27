@@ -4,11 +4,12 @@
 //
 //  Created by 罗镇浩 on 2018/6/27.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  部门管理页面
 
 #import "LZDepartmentManagerVC.h"
 #import "LZDepartmentManagerModel.h"
 #import "LZDepartmentManagerCell.h"
+#import "AddDepartmentViewController.h"
 
 @interface LZDepartmentManagerVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -89,6 +90,12 @@
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AddDepartmentViewController *vc = [[AddDepartmentViewController alloc]init];
+    vc.isFromAdd = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  添加部门页面
+//  添加部门页面 修改部门页面
 
 #import "AddDepartmentViewController.h"
 
@@ -22,7 +22,12 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加部门"];
+    if (_isFromAdd) {
+        self.navigationItem.titleView = [Utility navTitleView:@"添加部门"];
+    }else{
+        self.navigationItem.titleView = [Utility navTitleView:@"修改部门"];
+    }
+    
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);

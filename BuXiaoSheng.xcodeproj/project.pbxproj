@@ -2739,6 +2739,10 @@
 				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
 				3480AAA220E3A80B00053C5D /* LZDepartmentManagerVC.h */,
 				3480AAA320E3A80B00053C5D /* LZDepartmentManagerVC.m */,
+				34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */,
+				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
+				34410EC520B3FBCB00CE490E /* AddDeptWorkerVC.h */,
+				34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3525,10 +3529,6 @@
 		34EE5D6420A689C100A2C9B5 /* organization(组织架构) */ = {
 			isa = PBXGroup;
 			children = (
-				34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */,
-				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
-				34410EC520B3FBCB00CE490E /* AddDeptWorkerVC.h */,
-				34410EC620B3FBCB00CE490E /* AddDeptWorkerVC.m */,
 				34EE5D7620A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.h */,
 				34EE5D7720A68C2800A2C9B5 /* LLUpdateNewPeopleViewController.m */,
 				B577CEAA20AAB4120001B8B8 /* LLAddPermissionsVc.h */,

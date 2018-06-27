@@ -252,8 +252,8 @@
 //添加部门点击事件
 - (void)addDepartmentViewTapAction
 {
-    
     AddDepartmentViewController *vc = [[AddDepartmentViewController alloc]init];
+    vc.isFromAdd = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

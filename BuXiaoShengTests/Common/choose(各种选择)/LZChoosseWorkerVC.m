@@ -145,6 +145,7 @@
 - (void)addDepartmentViewTapAction
 {
     AddDepartmentViewController *vc = [[AddDepartmentViewController alloc]init];
+    vc.isFromAdd = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
