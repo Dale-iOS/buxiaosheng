@@ -192,7 +192,7 @@
     _model = model;
     
     if (_model.initiatorName.length >3) {
-        _iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
+        _iconNameLabel.text = [_model.initiatorName substringToIndex:3];
     }else{
         _iconNameLabel.text = _model.initiatorName;
     }

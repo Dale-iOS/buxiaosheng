@@ -338,7 +338,7 @@
     
     _model = model;
     if (_model.drawerName.length >3 && _model.drawerName.length >0) {
-        self.iconLabel.text = [_model.drawerName substringFromIndex:3];
+        self.iconLabel.text = [_model.drawerName substringToIndex:3];
     }else
     {
         self.iconLabel.text = _model.drawerName;

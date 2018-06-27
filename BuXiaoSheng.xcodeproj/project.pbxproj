@@ -301,6 +301,12 @@
 		3480AA9820E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */; };
 		3480AA9B20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */; };
 		3480AA9C20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */; };
+		3480AAA420E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAA320E3A80B00053C5D /* LZDepartmentManagerVC.m */; };
+		3480AAA520E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAA320E3A80B00053C5D /* LZDepartmentManagerVC.m */; };
+		3480AAA820E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAA720E3A86A00053C5D /* LZDepartmentManagerCell.m */; };
+		3480AAA920E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAA720E3A86A00053C5D /* LZDepartmentManagerCell.m */; };
+		3480AAAC20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAAB20E3AA5C00053C5D /* LZDepartmentManagerModel.m */; };
+		3480AAAD20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AAAB20E3AA5C00053C5D /* LZDepartmentManagerModel.m */; };
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
 		34847D4520C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
 		34847D4620C7CE96004485F1 /* LZUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D4420C7CE96004485F1 /* LZUploadImageView.m */; };
@@ -1101,6 +1107,12 @@
 		3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryCell.m; sourceTree = "<group>"; };
 		3480AA9920E3690900053C5D /* LZAssignDeliveryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryListModel.h; sourceTree = "<group>"; };
 		3480AA9A20E3690900053C5D /* LZAssignDeliveryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryListModel.m; sourceTree = "<group>"; };
+		3480AAA220E3A80B00053C5D /* LZDepartmentManagerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDepartmentManagerVC.h; sourceTree = "<group>"; };
+		3480AAA320E3A80B00053C5D /* LZDepartmentManagerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDepartmentManagerVC.m; sourceTree = "<group>"; };
+		3480AAA620E3A86A00053C5D /* LZDepartmentManagerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDepartmentManagerCell.h; sourceTree = "<group>"; };
+		3480AAA720E3A86A00053C5D /* LZDepartmentManagerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDepartmentManagerCell.m; sourceTree = "<group>"; };
+		3480AAAA20E3AA5C00053C5D /* LZDepartmentManagerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDepartmentManagerModel.h; sourceTree = "<group>"; };
+		3480AAAB20E3AA5C00053C5D /* LZDepartmentManagerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDepartmentManagerModel.m; sourceTree = "<group>"; };
 		3483FDFB20ABCBCB00645B15 /* AddClienViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddClienViewController.h; sourceTree = "<group>"; };
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
 		34847D4320C7CE96004485F1 /* LZUploadImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZUploadImageView.h; sourceTree = "<group>"; };
@@ -1860,6 +1872,7 @@
 		342AF21320D51AAE00A1DDC4 /* 模块首页 */ = {
 			isa = PBXGroup;
 			children = (
+				3480AA9D20E3A73600053C5D /* 设置 */,
 				342AF21620D51AC600A1DDC4 /* 销售 */,
 				342AF21520D51AC200A1DDC4 /* 财务 */,
 				342AF21420D51ABD00A1DDC4 /* 仓库 */,
@@ -2141,8 +2154,6 @@
 		343747F3209460DF00C64F4C /* setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
-				343747F4209460F600C64F4C /* SetHomeViewController.h */,
-				343747F5209460F600C64F4C /* SetHomeViewController.m */,
 				34EE5D8520A68FBD00A2C9B5 /* store(店铺) */,
 				34EE5D6320A689B400A2C9B5 /* warehouse(仓库) */,
 				34EE5D6620A689D600A2C9B5 /* AuditManager(审批人管理) */,
@@ -2700,6 +2711,54 @@
 				343207C620A05A8E005A5D23 /* BackOrderViewController.m */,
 			);
 			path = "sale(销售)";
+			sourceTree = "<group>";
+		};
+		3480AA9D20E3A73600053C5D /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				343747F4209460F600C64F4C /* SetHomeViewController.h */,
+				343747F5209460F600C64F4C /* SetHomeViewController.m */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		3480AA9E20E3A7CD00053C5D /* organization(组织架构) */ = {
+			isa = PBXGroup;
+			children = (
+				3480AAA120E3A7D900053C5D /* M */,
+				3480AAA020E3A7D500053C5D /* V */,
+				3480AA9F20E3A7D100053C5D /* C */,
+			);
+			path = "organization(组织架构)";
+			sourceTree = "<group>";
+		};
+		3480AA9F20E3A7D100053C5D /* C */ = {
+			isa = PBXGroup;
+			children = (
+				348DB854209AEC0700CD36CD /* OrganizationViewController.h */,
+				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
+				3480AAA220E3A80B00053C5D /* LZDepartmentManagerVC.h */,
+				3480AAA320E3A80B00053C5D /* LZDepartmentManagerVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3480AAA020E3A7D500053C5D /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3480AAA620E3A86A00053C5D /* LZDepartmentManagerCell.h */,
+				3480AAA720E3A86A00053C5D /* LZDepartmentManagerCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3480AAA120E3A7D900053C5D /* M */ = {
+			isa = PBXGroup;
+			children = (
+				3480AAAA20E3AA5C00053C5D /* LZDepartmentManagerModel.h */,
+				3480AAAB20E3AA5C00053C5D /* LZDepartmentManagerModel.m */,
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */ = {
@@ -3466,8 +3525,6 @@
 		34EE5D6420A689C100A2C9B5 /* organization(组织架构) */ = {
 			isa = PBXGroup;
 			children = (
-				348DB854209AEC0700CD36CD /* OrganizationViewController.h */,
-				348DB855209AEC0700CD36CD /* OrganizationViewController.m */,
 				34EE5D7320A68BEF00A2C9B5 /* AddDepartmentViewController.h */,
 				34EE5D7420A68BEF00A2C9B5 /* AddDepartmentViewController.m */,
 				34410EC520B3FBCB00CE490E /* AddDeptWorkerVC.h */,
@@ -3670,6 +3727,7 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3480AA9E20E3A7CD00053C5D /* organization(组织架构) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
 				349938F320E0D5500036C8EE /* recipe(配方表) */,
 				346F6DD120DFA4210016FA8D /* product(产品资料) */,
@@ -4289,6 +4347,7 @@
 				34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */,
 				3427A50A20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				34FB1F2C20BD5072004D18C2 /* LLWeekCalendarVc.m in Sources */,
+				3480AAAC20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
@@ -4474,11 +4533,13 @@
 				3455F68A20CA7C8700579521 /* LZWeaveView.m in Sources */,
 				3455F69620CAC60B00579521 /* LZClientReceiptVC.m in Sources */,
 				34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */,
+				3480AAA420E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */,
 				B5050668209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				3465CA0C20DCCCC900BAE415 /* LZChooseCalendarView.m in Sources */,
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				B5E288E420A9332500D84196 /* LLAuditMangerModel.m in Sources */,
+				3480AAA820E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				B577CE9920AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
 				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
@@ -4860,6 +4921,7 @@
 				34847D5A20C7D8F9004485F1 /* LZPictureBrowseVC.m in Sources */,
 				344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */,
 				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
+				3480AAA520E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */,
 				B5050671209ABEE200CE7E4D /* LLDyeingCell.m in Sources */,
 				3465C9F920DC9A9700BAE415 /* FSCalendarStickyHeader.m in Sources */,
 				344C489220D1007A00BEC002 /* LZDidToWarehouseAuditVC.m in Sources */,
@@ -4898,8 +4960,10 @@
 				346992A520C6610200476CF0 /* LZVisitModel.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				344C48B220D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
+				3480AAAD20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				3492FD9120DA7422008464BB /* LZPurchaseDetailModel.m in Sources */,
 				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
+				3480AAA920E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */,
 				3465C9EB20DC9A9600BAE415 /* FSCalendarConstants.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,

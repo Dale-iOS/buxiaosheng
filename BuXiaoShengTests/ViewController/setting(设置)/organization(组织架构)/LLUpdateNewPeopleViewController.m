@@ -42,15 +42,15 @@
     [self setupUI];
     [self setupPartsList];
     [self setupData];
-    [self setupDepartmentData];
+//    [self setupDepartmentData];
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupSectionData) name:@"LLAddNewsdelete_role_buttonNotificationCenter" object:nil];
-    
-    
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupSectionData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,22 +102,23 @@
     }];
 }
 
--(void)setupDepartmentData {
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
-    [BXSHttp requestGETWithAppURL:@"dept/list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue]!=200) {
-            BXS_Alert(baseModel.msg);
-            return ;
-        }
-        
-        
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
-}
+//-(void)setupDepartmentData {
+//    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+//    [BXSHttp requestGETWithAppURL:@"dept/list.do" param:param success:^(id response) {
+//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue]!=200) {
+//            BXS_Alert(baseModel.msg);
+//            return ;
+//        }
+//
+//
+//    } failure:^(NSError *error) {
+//        BXS_Alert(LLLoadErrorMessage);
+//    }];
+//}
 
 -(void)setupSectionData {
+//    接口名称 已有权限
       NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                                @"memberId":self.model.id
                                };
@@ -138,6 +139,7 @@
 //获取部门列表数据
 - (void)setupPartsList
 {
+//    接口名称 部门列表
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].companyId
                              };

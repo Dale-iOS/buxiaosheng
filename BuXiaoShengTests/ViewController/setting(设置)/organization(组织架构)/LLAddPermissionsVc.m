@@ -23,7 +23,7 @@
     self.navigationItem.titleView = [Utility navTitleView:@"选择添加权限"];
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确 认" forState:UIControlStateNormal];
+    [navRightBtn setTitle:@"确认" forState:UIControlStateNormal];
     [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
     [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
@@ -162,6 +162,7 @@
         }
     }];
     
+//    接口名称 添加权限
     NSDictionary * param = @{@"bids":btnIdStrs,
                              @"companyId" :[BXSUser currentUser].companyId,
                              @"memberId" :self.model.id

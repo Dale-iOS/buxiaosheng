@@ -85,7 +85,7 @@
     _twoLbl.text = _model.arrear;
     //    _threeLbl.text = _model.repayment;
     if (_model.repayment.length >8) {
-        _threeLbl.text = [_model.repayment substringFromIndex:8];
+        _threeLbl.text = [_model.repayment substringToIndex:8];
     }else{
         _threeLbl.text = _model.repayment;
     }

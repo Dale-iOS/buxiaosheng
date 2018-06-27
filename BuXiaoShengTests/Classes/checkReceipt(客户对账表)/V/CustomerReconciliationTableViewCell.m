@@ -134,7 +134,7 @@
 - (void)setModel:(LZCheckReceiptModel *)model{
     _model = model;
     if (_model.createTime.length >8) {
-        self.dateLbl.text = [_model.createTime substringFromIndex:8];
+        self.dateLbl.text = [_model.createTime substringToIndex:8];
     }else{
         self.dateLbl.text = _model.createTime;
     }

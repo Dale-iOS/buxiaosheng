@@ -13,6 +13,7 @@
 #import "LLAuditMangerSectionView.h"
 #import "LLAuditMangerCell.h"
 #import "AddDeptWorkerVC.h"
+#import "LZDepartmentManagerVC.h"
 
 @interface OrganizationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -25,9 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupUI];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -267,7 +266,7 @@
 }
 
 - (void)navRightClick{
-    
+    [self.navigationController pushViewController:[LZDepartmentManagerVC new] animated:YES];
 }
 
 

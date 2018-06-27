@@ -57,8 +57,8 @@
     [_iconImageView addSubview:_addBtn];
     [_addBtn setBackgroundImage:[UIImage imageNamed:@"yesSelect"] forState:UIControlStateNormal];
     [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_iconImageView).offset(5);
-        make.right.equalTo(_iconImageView).offset(-5);
+        make.top.equalTo(_iconImageView).offset(-5);
+        make.left.equalTo(_iconImageView).offset(-5);
     }];
 }
 @end

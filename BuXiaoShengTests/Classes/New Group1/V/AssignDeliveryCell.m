@@ -174,7 +174,7 @@
     self.titleLbl.text = [NSString stringWithFormat:@"客户：%@",_model.customerName];
     
     if (_model.drawerName.length >2) {
-        self.iconName.text = [_model.drawerName substringFromIndex:2];
+        self.iconName.text = [_model.drawerName substringToIndex:2];
     }else
     {
         self.iconName.text = _model.drawerName;

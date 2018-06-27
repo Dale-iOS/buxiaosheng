@@ -129,7 +129,7 @@
 - (void)setModel:(LZAssignDeliveryListModel *)model{
     _model = model;
     if (_model.drawerName.length >3) {
-        self.iconNameLabel.text = [_model.drawerName substringFromIndex:3];
+        self.iconNameLabel.text = [_model.drawerName substringToIndex:3];
     }else{
         self.iconNameLabel.text = _model.drawerName;
     }

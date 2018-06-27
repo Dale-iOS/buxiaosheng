@@ -173,7 +173,7 @@
     _model = model;
     
     if (_model.memberName.length >3) {
-        self.iconLabel.text = [_model.memberName substringFromIndex:3];
+        self.iconLabel.text = [_model.memberName substringToIndex:3];
     }else{
         self.iconLabel.text = _model.memberName;
     }

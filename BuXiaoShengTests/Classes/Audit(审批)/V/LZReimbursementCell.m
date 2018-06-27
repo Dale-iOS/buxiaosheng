@@ -290,7 +290,7 @@
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
     self.priceLabel.attributedText = temgpStr;
     if ([_model.initiatorName integerValue] >3) {
-        self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
+        self.iconNameLabel.text = [_model.initiatorName substringToIndex:3];
     }else{
         self.iconNameLabel.text = _model.initiatorName;
     }

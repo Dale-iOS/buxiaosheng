@@ -264,14 +264,14 @@
     _model = model;
 
     if (_model.initiatorName.length >3) {
-        self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
+        self.iconNameLabel.text = [_model.initiatorName substringToIndex:3];
     }else if (_model.initiatorName.length >0 && _model.initiatorName.length <=3)
     {
         self.iconNameLabel.text = _model.initiatorName;
     }
     
     if (_model.customerName.length >3) {
-        self.iconNameLabel.text = [_model.customerName substringFromIndex:3];
+        self.iconNameLabel.text = [_model.customerName substringToIndex:3];
     }else if (_model.customerName.length >0 && _model.customerName.length <=3)
     {
         self.iconNameLabel.text = _model.customerName;

@@ -288,7 +288,7 @@
     self.priceLabel.text = [NSString stringWithFormat:@"需求量：￥%@",_model.number];
     NSString *tempStr =_model.drawerName;
     if (tempStr.length >3) {
-        self.iconNameLabel.text = [tempStr substringFromIndex:3];
+        self.iconNameLabel.text = [tempStr substringToIndex:3];
     }else{
         self.iconNameLabel.text = _model.drawerName;
     }

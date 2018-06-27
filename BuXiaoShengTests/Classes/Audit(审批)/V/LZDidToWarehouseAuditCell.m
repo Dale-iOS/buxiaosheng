@@ -160,7 +160,7 @@
 - (void)setModel:(LZProcurementModel *)model{
     _model = model;
     if (_model.initiatorName.length >3) {
-        self.iconNameLabel.text = [_model.initiatorName substringFromIndex:3];
+        self.iconNameLabel.text = [_model.initiatorName substringToIndex:3];
     }else{
         self.iconNameLabel.text = _model.initiatorName;
     }
