@@ -239,8 +239,22 @@
 //全选
 - (void)allTapClick{
     NSLog(@"全部");
-    [_selectArray removeAllObjects];
-    [_tableView reloadData];
+//    [_selectArray removeAllObjects];
+//    [_tableView reloadData];
+    
+    static BOOL seleted = false;
+    seleted = ! seleted;
+    
+    if (!seleted) {
+        _allIM.image = IMAGE(@"noSelect");
+    }else{
+        _allIM.image = IMAGE(@"yesSelect");
+    }
+    [self.lists enumerateObjectsUsingBlock:^(LZAssignDeliveryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+          obj.isSelect = seleted;
+    }];
+    
+    [self.tableView reloadData];
 }
 
 - (void)tapChooseClick
