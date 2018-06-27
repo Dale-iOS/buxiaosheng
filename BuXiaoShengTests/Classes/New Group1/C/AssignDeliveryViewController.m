@@ -15,10 +15,6 @@
 #import "LZAssignDeliveryListVC.h"
 
 @interface AssignDeliveryViewController ()<UITableViewDelegate, UITableViewDataSource>
-{
-    NSMutableArray *_selectArray;
-    NSString *_selectId;
-}
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIImageView *allIM;
@@ -27,7 +23,6 @@
 @property(nonatomic,strong)NSMutableArray *workersAry;
 @property(nonatomic,strong)NSMutableArray *workersNameAry;
 @property(nonatomic,strong)NSMutableArray *workersIdAry;
-@property(nonatomic,strong)NSMutableArray *workersAllIdAry;//装着所有的cell的id
 @property(nonatomic,strong)NSString *workerId;
 @property(nonatomic,strong)UIView *allSelectView;
 @property(nonatomic,strong)UIButton *commitBtn;//提交按钮
@@ -40,22 +35,10 @@
     
     self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
-    _selectArray = [NSMutableArray array];
    
     [self setupData];
     [self setupWorkerList];
     [self setupUI];
-    //    [self initData];
-    //
-    //    [self setupChildViews];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-//    [self setupData];
-//    [self setupWorkerList];
 }
 
 - (void)setupUI
@@ -159,11 +142,6 @@
             return ;
         }
         _lists = [LZAssignDeliveryModel LLMJParse:baseModel.data];
-        NSMutableArray *tempAry = baseModel.data;
-        _workersAllIdAry = [NSMutableArray array];
-        for (int i = 0 ; i <_lists.count; i++) {
-            [_workersAllIdAry addObject:tempAry[i][@"id"]];
-        }
         [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -232,21 +210,15 @@
 
 //全选
 - (void)allTapClick{
-    NSLog(@"全部");
-//    [_selectArray removeAllObjects];
-//    [_tableView reloadData];
     
     static BOOL seleted = false;
     seleted = ! seleted;
     
     if (!seleted) {
         _allIM.image = IMAGE(@"noSelect");
-        [_selectArray removeAllObjects];
     }else{
         _allIM.image = IMAGE(@"yesSelect");
-        _selectArray = _workersAllIdAry;
     }
-    _selectId = [_selectArray componentsJoinedByString:@","];
     [self.lists enumerateObjectsUsingBlock:^(LZAssignDeliveryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
           obj.isSelect = seleted;
     }];
@@ -274,20 +246,20 @@
         BXS_Alert(@"请选择指派人员");
         return;
     }
-    if (_selectArray.count <1) {
-        BXS_Alert(@"请至少勾选一项");
-        return;
-    }
     NSMutableArray * seletedArr = [NSMutableArray array];
     [self.lists enumerateObjectsUsingBlock:^(LZAssignDeliveryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.isSelect) {
             [seletedArr addObject:obj.id];
         }
     }];
-    _selectId = [_selectArray componentsJoinedByString:@","];
+    if (seletedArr.count <1) {
+        BXS_Alert(@"请至少勾选一项");
+        return;
+    }
+    NSString *selectId = [seletedArr componentsJoinedByString:@","];
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"delivererId":_workerId,
-                             @"orderIds":_selectId
+                             @"orderIds":selectId
                              };
     [BXSHttp requestGETWithAppURL:@"storehouse/set_deliverer.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
