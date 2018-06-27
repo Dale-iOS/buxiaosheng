@@ -100,7 +100,9 @@
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageSize":@"15",
+                             @"startDate":_startStr,
+                             @"endDate":_endStr
                              };
     [BXSHttp requestGETWithAppURL:@"storehouse/already_shipped_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

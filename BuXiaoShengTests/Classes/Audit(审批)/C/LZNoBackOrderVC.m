@@ -30,7 +30,7 @@
 - (void)setupUI
 {
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight-88) style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
     self.tableView .delegate = self;
     self.tableView .dataSource = self;
