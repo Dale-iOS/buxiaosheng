@@ -220,20 +220,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LZAssignDeliveryModel *model = _lists[indexPath.row];
-    if (model.isSelect == YES) {
-        model.isSelect = NO;
-        //从选中中去除
-        [_selectArray removeObject:model.id];
-//        [_selectArray removeAllObjects];
-//        _selectId = [_selectArray componentsJoinedByString:@","];
-        NSLog(@"%@",_selectId);
-    }else{
-        
-        model.isSelect = YES;
-        [_selectArray addObject:model.id];
-//        _selectId = [_selectArray componentsJoinedByString:@","];
-        NSLog(@"%@",_selectId);
-    }
+    model.isSelect = ! model.isSelect;
     [_tableView reloadData];
 }
 
@@ -291,6 +278,12 @@
         BXS_Alert(@"请至少勾选一项");
         return;
     }
+    NSMutableArray * seletedArr = [NSMutableArray array];
+    [self.lists enumerateObjectsUsingBlock:^(LZAssignDeliveryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isSelect) {
+            [seletedArr addObject:obj.id];
+        }
+    }];
     _selectId = [_selectArray componentsJoinedByString:@","];
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"delivererId":_workerId,
