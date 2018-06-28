@@ -16,6 +16,6 @@
 @end
 
 @interface LLDayCalendarVc : UIViewController
-@property(nonatomic,weak)id<LLDayCalendarVcDelegate>delegate;
-@property(nonatomic,copy)void(^dateBlock)(NSString *dateStr);
+@property(nonatomic,weak)id<LLDayCalendarVcDelegate> delegate;
+//@property(nonatomic,copy)void(^dateBlock)(NSString *dateStr);
 @end

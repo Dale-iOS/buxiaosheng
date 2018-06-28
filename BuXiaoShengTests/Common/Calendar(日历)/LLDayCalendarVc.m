@@ -117,7 +117,6 @@
 #pragma mark --- 点击事件 ---
 // 取消点击事件
 - (void)cancelBtnClick{
-    NSLog(@"点击了取消");
     if ([self.delegate respondsToSelector:@selector(didCancelBtnInCalendar)]) {
         [self.delegate didCancelBtnInCalendar];
     }

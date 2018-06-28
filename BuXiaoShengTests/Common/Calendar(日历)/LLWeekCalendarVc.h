@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLWeekCalendarVc : UIViewController
+@protocol LLWeekCalendarVcDelegate <NSObject>
 
+- (void)didaffirmBtnInWeekCalendarWithSelectArray:(NSMutableArray *)weekArray;
+- (void)didCancelBtnInCalendar;
+
+@end
+
+@interface LLWeekCalendarVc : UIViewController
+@property(nonatomic,weak)id<LLWeekCalendarVcDelegate> delegate;
 @end

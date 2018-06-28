@@ -11,6 +11,10 @@
 #import "HYCGetDateAttribute.h"
 #import "LLMonthCollectionViewCell.h"
 @interface LLMonthCalendarVc ()<UICollectionViewDelegate,UICollectionViewDataSource>
+{
+    NSString *_selectStr1;
+    NSString *_selectStr2;
+}
 @property (nonatomic,strong) UICollectionView * collectionView;
 @property (nonatomic,copy) NSMutableArray <LLMonthModel*>* months;
 @property (nonatomic,strong) HYCGetDateAttribute * dateAttribute;
@@ -78,11 +82,16 @@
 
 // 取消点击事件
 - (void)cancelBtnClick{
-    NSLog(@"取消事件");
+    if ([self.delegate respondsToSelector:@selector(didCancelBtnInCalendar)]) {
+        [self.delegate didCancelBtnInCalendar];
+    }
 }
+
 // 确认点击事件
 - (void)affirmBtnClick{
-    NSLog(@"确认事件");
+    if ([self.delegate respondsToSelector:@selector(didaffirmBtnInMonthCalendarWithDateStartStr:andEndStr:)]) {
+        [self.delegate didaffirmBtnInMonthCalendarWithDateStartStr:_selectStr1 andEndStr:_selectStr2];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,21 +142,37 @@
     return view;
 }
 
+//选择上一年
 -(void)prevBtnClick {
     
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd";
     self.dateAttribute.HYC_GLTime = [formatter stringFromDate:[self OneMothisUP:false]];
     self.yearLable.text = self.dateAttribute.HYC_GLYears;
-    [self.collectionView reloadData];
+   
+    //跟着年的变化跟新选中的日期
+    _selectStr1 = [_selectStr1 substringFromIndex:4];
+    _selectStr1 = [NSString stringWithFormat:@"%@%@",self.yearLable.text,_selectStr1];
+    NSLog(@"%@",_selectStr1);
+    _selectStr2 = [_selectStr2 substringFromIndex:4];
+    _selectStr2 = [NSString stringWithFormat:@"%@%@",self.yearLable.text,_selectStr2];
+    NSLog(@"%@",_selectStr2);
 }
 
+//选择下一年
 -(void)nextBtnClick {
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd";
     self.dateAttribute.HYC_GLTime = [formatter stringFromDate:[self OneMothisUP:true]];
     self.yearLable.text = self.dateAttribute.HYC_GLYears;
-     [self.collectionView reloadData];
+
+    //跟着年的变化跟新选中的日期
+    _selectStr1 = [_selectStr1 substringFromIndex:4];
+    _selectStr1 = [NSString stringWithFormat:@"%@%@",self.yearLable.text,_selectStr1];
+    NSLog(@"%@",_selectStr1);
+    _selectStr2 = [_selectStr2 substringFromIndex:4];
+    _selectStr2 = [NSString stringWithFormat:@"%@%@",self.yearLable.text,_selectStr2];
+    NSLog(@"%@",_selectStr2);
 }
 
 - (NSDate*)OneMothisUP:(BOOL)isUP{
@@ -186,6 +211,18 @@
             obj.seleted = true;
         }
     }];
+
+    NSInteger year = [self.yearLable.text integerValue];
+    NSString *month = [NSString stringWithFormat:@"%02ld",indexPath.row+1];
+    NSInteger days = [self howManyDaysInThisYear:year withMonth:indexPath.row+1];
+//    NSLog(@"%zd %@%zd",year,month,days);
+    
+    
+    //月初那一天
+    _selectStr1 = [NSString stringWithFormat:@"%zd-%@-01",year,month];
+    //月末那一天
+    _selectStr2 = [NSString stringWithFormat:@"%zd-%@-%zd",year,month,days];
+    NSLog(@"%@ - %@",_selectStr1,_selectStr2);
     [collectionView reloadData];
 }
 
@@ -212,15 +249,26 @@
     return _months;
 }
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - 获取某年某月的天数
+- (NSInteger)howManyDaysInThisYear:(NSInteger)year withMonth:(NSInteger)month{
+    if((month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12))
+        return 31 ;
+    
+    if((month == 4) || (month == 6) || (month == 9) || (month == 11))
+        return 30;
+    
+    if((year % 4 == 1) || (year % 4 == 2) || (year % 4 == 3))
+    {
+        return 28;
+    }
+    
+    if(year % 400 == 0)
+        return 29;
+    
+    if(year % 100 == 0)
+        return 28;
+    
+    return 29;
+}
 
 @end

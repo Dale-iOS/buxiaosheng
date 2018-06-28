@@ -10,15 +10,16 @@
 #import "FSCalendar.h"
 #import "LLWeekRangeCell.h"
 @interface LLWeekCalendarVc ()<FSCalendarDataSource,FSCalendarDelegate>
+{
+    NSMutableArray *_selectWeeks;
+    NSDateFormatter *_tempDateFormatter;
+}
 @property (weak, nonatomic) FSCalendar *calendar;
-
 @property (weak, nonatomic) UILabel *eventLabel;
 @property (strong, nonatomic) NSCalendar *gregorian;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
-
 //用作选择周历
 @property (nonatomic,strong) NSDate * selectedDate;
-
 @property (nonatomic,strong) NSMutableArray <NSDate*> * seletedWeekDates;
 @property(nonatomic,strong)UIButton *affirmBtn;//确认按钮
 @property(nonatomic,strong)UIButton *cancelBtn;//取消按钮
@@ -28,18 +29,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.seletedWeekDates = [NSMutableArray array];
+    _selectWeeks = [NSMutableArray array];
     [self setupCalendarView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setupCalendarView
 {
+    _tempDateFormatter = [[NSDateFormatter alloc] init];
+    _tempDateFormatter.dateFormat = @"yyyyMMdd";
+    
     self.gregorian = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     //    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //    view.backgroundColor = [UIColor whiteColor];
@@ -102,13 +105,17 @@
 }
 
 #pragma mark --- 点击事件 ---
-// 确认点击事件
-- (void)cancelBtnClick{
-    
-}
 // 取消点击事件
+- (void)cancelBtnClick{
+    if ([self.delegate respondsToSelector:@selector(didCancelBtnInCalendar)]) {
+        [self.delegate didCancelBtnInCalendar];
+    }
+}
+// 确定点击事件
 - (void)affirmBtnClick{
-    
+    if ([self.delegate respondsToSelector:@selector(didaffirmBtnInWeekCalendarWithSelectArray:)]) {
+        [self.delegate didaffirmBtnInWeekCalendarWithSelectArray:_selectWeeks];
+    }
 }
 
 #pragma mark - FSCalendarDataSource
@@ -158,10 +165,20 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     [self .seletedWeekDates removeAllObjects];
+    [_selectWeeks removeAllObjects];
+    
     self.selectedDate = date;
     [self configureVisibleCells];
     
-    NSLog(@"%@",self.seletedWeekDates);
+//    NSLog(@"%@",self.seletedWeekDates);
+    
+    //数组排序
+    NSArray *sortedArray = [_selectWeeks sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSComparisonResult result = [obj1 compare:obj2];
+        return result;
+    }];
+    _selectWeeks = [sortedArray mutableCopy];
+    NSLog(@"%@",_selectWeeks);
 }
 
 
@@ -182,8 +199,12 @@
     [self.calendar.visibleCells enumerateObjectsUsingBlock:^(__kindof LLWeekRangeCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDate *date = [self.calendar dateForCell:obj];
         if ([self isSameWeekWithDate:date withWeakDay:self.selectedDate]) {
-            NSLog(@"%@和选择日期为同一周%@\n",date,self.selectedDate);
+//            NSLog(@"%@和选择日期为同一周%@\n",date,self.selectedDate);
             [self .seletedWeekDates addObject:date];
+            
+            
+            NSNumber *number =[NSNumber numberWithInteger:[[_tempDateFormatter stringFromDate:date]integerValue]];
+            [_selectWeeks addObject:number];
         }
         FSCalendarMonthPosition position = [self.calendar monthPositionForCell:obj];
         [self configureCell:obj forDate:date atMonthPosition:position] ;

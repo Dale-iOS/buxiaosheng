@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLQuarterCalendarVc : UIViewController
+@protocol LLQuarterCalendarVcVcDelegate <NSObject>
 
+- (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr;
+- (void)didCancelBtnInCalendar;
+
+@end
+
+
+@interface LLQuarterCalendarVc : UIViewController
+@property(nonatomic,weak)id<LLQuarterCalendarVcVcDelegate> delegate;
 @end

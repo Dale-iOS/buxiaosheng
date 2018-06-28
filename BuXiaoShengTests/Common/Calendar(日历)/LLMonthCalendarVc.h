@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLMonthCalendarVc : UIViewController
+@protocol LLMonthCalendarVcDelegate <NSObject>
 
+- (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr;
+- (void)didCancelBtnInCalendar;
+
+@end
+
+@interface LLMonthCalendarVc : UIViewController
+@property(nonatomic,weak)id<LLMonthCalendarVcDelegate> delegate;
 @end
