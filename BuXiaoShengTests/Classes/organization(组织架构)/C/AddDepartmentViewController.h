@@ -11,4 +11,5 @@
 
 @interface AddDepartmentViewController : BaseViewController
 @property(nonatomic,assign)BOOL isFromAdd;
+@property(nonatomic,copy)NSString *id;
 @end

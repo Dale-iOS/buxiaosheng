@@ -93,8 +93,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZDepartmentManagerModel *model = _lists[indexPath.row];
     AddDepartmentViewController *vc = [[AddDepartmentViewController alloc]init];
     vc.isFromAdd = NO;
+    vc.id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -43,7 +43,12 @@
     [self.view addSubview:whiteBgView];
     
     UILabel *newDepartmentLbl = [[UILabel alloc]init];
-    newDepartmentLbl.text = @"新建部门";
+    if (_isFromAdd) {
+        newDepartmentLbl.text = @"新建部门";
+    }else{
+        newDepartmentLbl.text = @"修改部门名称";
+    }
+    
     newDepartmentLbl.font = FONT(14);
     newDepartmentLbl.textColor = CD_Text33;
     [whiteBgView addSubview:newDepartmentLbl];
@@ -71,25 +76,51 @@
 
 - (void)selectornavRightBtnClick
 {
-
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"name":self.nameTf.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"dept/add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-//        [LLHudTools showWithMessage:@"新增成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (_isFromAdd) {
+        //添加
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"name":self.nameTf.text
+                                 };
+        [BXSHttp requestGETWithAppURL:@"dept/add.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
             [LLHudTools showWithMessage:@"部门添加成功"];
-            [self.navigationController popViewControllerAnimated:true];
-        });
-       
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:true];
+            });
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }else{
+        //修改
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"name":self.nameTf.text,
+                                 @"id":self.id
+                                 };
+        [BXSHttp requestGETWithAppURL:@"dept/update.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:@"部门修改成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:true];
+            });
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
