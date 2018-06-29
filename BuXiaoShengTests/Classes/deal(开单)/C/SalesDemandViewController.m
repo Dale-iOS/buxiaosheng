@@ -20,6 +20,7 @@
 #import "LZDrawerChooseView.h"
 #import "LZSearchBar.h"
 #import "LZPickerView.h"
+#import "LZSaleOrderListVC.h"
 
 @interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -488,8 +489,8 @@
 
 - (void)navigationSetupClick
 {
-    NSLog(@"点击了放大镜");
-
+    LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -------- 新增一条数据 ----------
 -(void)addBtnOnClickAction

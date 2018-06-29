@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WarehouseHomeViewController : UIViewController
+@interface WarehouseHomeViewController : BaseViewController
 @property (nonatomic,copy)NSString *buttonId;
 @end

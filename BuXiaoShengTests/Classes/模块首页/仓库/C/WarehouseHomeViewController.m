@@ -304,7 +304,7 @@
     .heightIs(1)
     .leftSpaceToView(self.tableViewHeadView, 0);
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -20-200-64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -20-200-LLNavViewHeight-44) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
@@ -412,11 +412,6 @@
     } cancelBlock:^{
         NSLog(@"点击了背景或取消按钮");
     }];
-}
-
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

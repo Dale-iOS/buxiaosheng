@@ -290,6 +290,10 @@
 		3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479057A20C515C6008C835C /* LZOrderTrackingModel.m */; };
 		3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479057E20C53FA9008C835C /* DidOutInventoryCell.m */; };
 		3479058020C53FA9008C835C /* DidOutInventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479057E20C53FA9008C835C /* DidOutInventoryCell.m */; };
+		347B58C420E62273008911A2 /* LZSaleOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C320E62273008911A2 /* LZSaleOrderListVC.m */; };
+		347B58C520E62273008911A2 /* LZSaleOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C320E62273008911A2 /* LZSaleOrderListVC.m */; };
+		347B58C820E627FB008911A2 /* LZSaleOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */; };
+		347B58C920E627FB008911A2 /* LZSaleOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */; };
 		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
 		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
 		347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */; };
@@ -1093,6 +1097,10 @@
 		3479057A20C515C6008C835C /* LZOrderTrackingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingModel.m; sourceTree = "<group>"; };
 		3479057D20C53FA9008C835C /* DidOutInventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DidOutInventoryCell.h; sourceTree = "<group>"; };
 		3479057E20C53FA9008C835C /* DidOutInventoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DidOutInventoryCell.m; sourceTree = "<group>"; };
+		347B58C220E62273008911A2 /* LZSaleOrderListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSaleOrderListVC.h; sourceTree = "<group>"; };
+		347B58C320E62273008911A2 /* LZSaleOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSaleOrderListVC.m; sourceTree = "<group>"; };
+		347B58C620E627FB008911A2 /* LZSaleOrderListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSaleOrderListCell.h; sourceTree = "<group>"; };
+		347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSaleOrderListCell.m; sourceTree = "<group>"; };
 		347C309420A299030078BB69 /* InventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
 		347C309520A299030078BB69 /* InventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		347C309920A29DBC0078BB69 /* InventoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryCell.h; sourceTree = "<group>"; };
@@ -2081,10 +2089,9 @@
 		3433D0BB20B557EF003FFC16 /* deal(开单) */ = {
 			isa = PBXGroup;
 			children = (
-				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
-				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
-				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
-				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
+				347B58C120E62238008911A2 /* M */,
+				347B58C020E62234008911A2 /* V */,
+				347B58BF20E6222C008911A2 /* C */,
 			);
 			path = "deal(开单)";
 			sourceTree = "<group>";
@@ -2698,6 +2705,35 @@
 			children = (
 				3479057920C515C6008C835C /* LZOrderTrackingModel.h */,
 				3479057A20C515C6008C835C /* LZOrderTrackingModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		347B58BF20E6222C008911A2 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
+				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
+				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
+				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
+				347B58C220E62273008911A2 /* LZSaleOrderListVC.h */,
+				347B58C320E62273008911A2 /* LZSaleOrderListVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		347B58C020E62234008911A2 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				347B58C620E627FB008911A2 /* LZSaleOrderListCell.h */,
+				347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		347B58C120E62238008911A2 /* M */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -4637,6 +4673,7 @@
 				B50505DB209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				344F229C208F0A64009ADA33 /* BankTableViewCell.m in Sources */,
 				34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */,
+				347B58C420E62273008911A2 /* LZSaleOrderListVC.m in Sources */,
 				B5244BF320D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */,
 				34F6E77520C03EAC00FABC5F /* LZInventoryDetailCell.m in Sources */,
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
@@ -4749,6 +4786,7 @@
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				34195FB320CD441000524F20 /* LZSpendingListCell.m in Sources */,
+				347B58C820E627FB008911A2 /* LZSaleOrderListCell.m in Sources */,
 				34EA490920CFE59F0086FF79 /* LZNoBackOrderVC.m in Sources */,
 				3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */,
 				34535F6E20B0145300D9D2C6 /* LZClientDetailsModel.m in Sources */,
@@ -4828,6 +4866,7 @@
 				344C488220D0E9DA00BEC002 /* LZNoBackOrderCell.m in Sources */,
 				3465CA0920DCB00300BAE415 /* LZChooseCalendarVC.m in Sources */,
 				B577CE9A20AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
+				347B58C920E627FB008911A2 /* LZSaleOrderListCell.m in Sources */,
 				3479057520C51255008C835C /* ShipmentOrderViewController.m in Sources */,
 				34602EBE207F404200710F91 /* DemandListTableViewCell.m in Sources */,
 				B50505B4209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
@@ -4841,6 +4880,7 @@
 				B5244BF920D3947E007BB83F /* LLBackOrdeContentModel.m in Sources */,
 				3492FD8D20DA6FAC008464BB /* LZPurchaseAskCell.m in Sources */,
 				34EA48FA20CFAA8C0086FF79 /* LZStockTrackingVC.m in Sources */,
+				347B58C520E62273008911A2 /* LZSaleOrderListVC.m in Sources */,
 				34195FB420CD441000524F20 /* LZSpendingListCell.m in Sources */,
 				B577CE9620AA78650001B8B8 /* LLAddNewPeopleModel.m in Sources */,
 				344C489A20D100F800BEC002 /* LZDidNoBackOrderVC.m in Sources */,
