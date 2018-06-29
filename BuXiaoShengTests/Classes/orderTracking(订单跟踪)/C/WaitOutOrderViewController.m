@@ -98,7 +98,7 @@
     .topSpaceToView(_rightHeadView, 0)
     .bottomSpaceToView(_rightHeadView, 0);
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight-44) style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
