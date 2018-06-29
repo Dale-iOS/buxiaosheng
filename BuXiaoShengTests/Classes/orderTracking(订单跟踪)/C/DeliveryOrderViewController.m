@@ -16,7 +16,7 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 
-@interface DeliveryOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate>
+@interface DeliveryOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
     UIView *_headerView;
     UILabel *_timeLabel;
@@ -221,25 +221,24 @@
     configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
     configure.titleSelectedColor = RGB(59, 177, 239);
     configure.indicatorColor = RGB(59, 177, 239);;
-    /// pageTitleView
+
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
     self.pageTitleView.backgroundColor = [UIColor whiteColor];
-    //    [self.view addSubview:_pageTitleView];
     
     LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
     dayVC.delegate = self;
     LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    weekVC.delegate = self;
     LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    monthVC.delegate = self;
     LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
-    /// pageContentView
-    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
     _pageContentView.delegatePageContentView = self;
-    //    [self.view addSubview:_pageContentView];
-    
-    
+ 
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
@@ -275,7 +274,54 @@
         _timeLabel.text = _endStr;
         _timeLabel.textColor = CD_Text33;
     }
+}
+
+//点击周历确定
+- (void)didaffirmBtnInWeekCalendarWithSelectArray:(NSMutableArray *)weekArray{
+    NSString *str1 = [NSString stringWithFormat:@"%@",[weekArray firstObject]];
+    NSString *str2 = [NSString stringWithFormat:@"%@",[weekArray lastObject]];
     
+    _startStr = [BXSTools stringFromTData:str1];
+    _endStr = [BXSTools stringFromTData:str2];
+    [self setupData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _timeLabel.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _timeLabel.textColor = CD_Text33;
+    }else{
+        _timeLabel.text = _endStr;
+        _timeLabel.textColor = CD_Text33;
+    }
+}
+
+//点击月历确定
+- (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _timeLabel.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _timeLabel.textColor = CD_Text33;
+    }else{
+        _timeLabel.text = _endStr;
+        _timeLabel.textColor = CD_Text33;
+    }
+}
+
+//点击季度确定
+- (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _timeLabel.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _timeLabel.textColor = CD_Text33;
+    }else{
+        _timeLabel.text = _endStr;
+        _timeLabel.textColor = CD_Text33;
+    }
 }
 
 //点击日历取消

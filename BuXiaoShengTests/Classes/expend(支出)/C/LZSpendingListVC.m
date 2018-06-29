@@ -16,7 +16,7 @@
 #import "SGPagingView.h"
 #import "LZSearchBar.h"
 
-@interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LZSearchBarDelegate>
+@interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate>
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
@@ -210,17 +210,17 @@
     LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
     dayVC.delegate = self;
     LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    weekVC.delegate = self;
     LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    monthVC.delegate = self;
     LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
-    /// pageContentView
-    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
     _pageContentView.delegatePageContentView = self;
-    //    [self.view addSubview:_pageContentView];
-    
-    
+
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
@@ -250,10 +250,59 @@
     [self setupListData];
     if (![_startStr isEqualToString:@"0"]) {
         _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _dateLbl.textColor = CD_Text33;
     }else{
         _dateLbl.text = _endStr;
+        _dateLbl.textColor = CD_Text33;
     }
+}
+
+//点击周历确定
+- (void)didaffirmBtnInWeekCalendarWithSelectArray:(NSMutableArray *)weekArray{
+    NSString *str1 = [NSString stringWithFormat:@"%@",[weekArray firstObject]];
+    NSString *str2 = [NSString stringWithFormat:@"%@",[weekArray lastObject]];
     
+    _startStr = [BXSTools stringFromTData:str1];
+    _endStr = [BXSTools stringFromTData:str2];
+    [self setupListData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _dateLbl.textColor = CD_Text33;
+    }else{
+        _dateLbl.text = _endStr;
+        _dateLbl.textColor = CD_Text33;
+    }
+}
+
+//点击月历确定
+- (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupListData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _dateLbl.textColor = CD_Text33;
+    }else{
+        _dateLbl.text = _endStr;
+        _dateLbl.textColor = CD_Text33;
+    }
+}
+
+//点击季度确定
+- (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupListData];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        _dateLbl.textColor = CD_Text33;
+    }else{
+        _dateLbl.text = _endStr;
+        _dateLbl.textColor = CD_Text33;
+    }
 }
 
 //点击日历取消

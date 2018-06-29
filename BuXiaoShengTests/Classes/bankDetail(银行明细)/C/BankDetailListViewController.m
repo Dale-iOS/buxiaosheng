@@ -17,7 +17,7 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 
-@interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate>
+@interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
@@ -100,6 +100,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.tableViewHeadView;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor clearColor];
     //隐藏分割线
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -202,8 +203,11 @@
     LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
     dayVC.delegate = self;
     LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    weekVC.delegate = self;
     LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    monthVC.delegate = self;
     LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
     /// pageContentView
@@ -242,8 +246,56 @@
     }else{
         self.headDateLbl.text = _endStr;
     }
-    
 }
+
+//点击周历确定
+- (void)didaffirmBtnInWeekCalendarWithSelectArray:(NSMutableArray *)weekArray{
+    NSString *str1 = [NSString stringWithFormat:@"%@",[weekArray firstObject]];
+    NSString *str2 = [NSString stringWithFormat:@"%@",[weekArray lastObject]];
+    
+    _startStr = [BXSTools stringFromTData:str1];
+    _endStr = [BXSTools stringFromTData:str2];
+    [self setupList];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        self.headDateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        self.headDateLbl.textColor = CD_Text33;
+    }else{
+        self.headDateLbl.text = _endStr;
+        self.headDateLbl.textColor = CD_Text33;
+    }
+}
+
+//点击月历确定
+- (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupList];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        self.headDateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        self.headDateLbl.textColor = CD_Text33;
+    }else{
+        self.headDateLbl.text = _endStr;
+        self.headDateLbl.textColor = CD_Text33;
+    }
+}
+
+//点击季度确定
+- (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupList];
+    _bottomView.hidden = YES;
+    if (![_startStr isEqualToString:@"0"]) {
+        self.headDateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+        self.headDateLbl.textColor = CD_Text33;
+    }else{
+        self.headDateLbl.text = _endStr;
+        self.headDateLbl.textColor = CD_Text33;
+    }
+}
+
 
 //点击日历取消
 - (void)didCancelBtnInCalendar{
