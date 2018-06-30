@@ -7,11 +7,13 @@
 //  搜索页面
 
 #import "LZSearchVC.h"
+#import "LZSearchBar.h"
 
-@interface LZSearchVC ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface LZSearchVC ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,LZSearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray <LLSalesColorListModel *> *color_list;
-@property (nonatomic, strong) UISearchBar *searchBar;
+//@property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) LZSearchBar * searchBar;
 @end
 
 @implementation LZSearchVC
@@ -19,18 +21,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.searchBar = [UISearchBar
-                      new];
+//    self.searchBar = [UISearchBar
+//                      new];
+//    [self.view addSubview:self.searchBar];
+//    self.searchBar.delegate =self;
+//    self.searchBar.barTintColor = [UIColor groupTableViewBackgroundColor];
+//    self.searchBar.placeholder= @"请输入您要搜索的颜色";
+//    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(5);
+//        make.top.equalTo(self.view).offset(20);
+//        make.right.equalTo(self.view).offset(-5);
+//        make.height.mas_equalTo(35);
+//    }];
+    
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, 40, APPWidth *0.75, 40)];
+    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar.textColor = Text33;
+    self.searchBar.delegate = self;
+    self.searchBar.iconImage = IMAGE(@"search1");
+    self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self.view addSubview:self.searchBar];
-    self.searchBar.delegate =self;
-    self.searchBar.barTintColor = [UIColor groupTableViewBackgroundColor];
-    self.searchBar.placeholder= @"请输入您要搜索的颜色";
-    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(5);
-        make.top.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-5);
-        make.height.mas_equalTo(35);
-    }];
+//    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(self.view).offset(5);
+//                make.top.equalTo(self.view).offset(20);
+//                make.right.equalTo(self.view);
+//                make.height.mas_equalTo(35);
+//            }];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
         make.top.equalTo(self.searchBar.mas_bottom).offset(12);
@@ -118,12 +135,16 @@
 
 
 #pragma mark - UISearchBarDelegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-     [self setupProductColorData];
-}
+//-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+//     [self setupProductColorData];
+//}
+//
+//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+//     [self setupProductColorData];
+//}
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-     [self setupProductColorData];
+-(void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self setupProductColorData];
 }
 
 - (void)didReceiveMemoryWarning {
