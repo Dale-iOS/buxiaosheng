@@ -30,7 +30,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.2.5)
   - TTGTagCollectionView (1.9.0)
-  - TZImagePickerController (2.0.1)
+  - TZImagePickerController (2.1.6)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -90,7 +90,7 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TTGTagCollectionView: 958f20b946dee92a8ba20dc37d10a06737641ae9
-  TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
+  TZImagePickerController: bc25e933c9d970a622d052f0d4de16202bbcd863
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
 PODFILE CHECKSUM: 72715f75a54a4a6448c366703f9d8735344012ce

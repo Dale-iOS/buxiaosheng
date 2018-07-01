@@ -18,6 +18,8 @@
 #import "LZPictureBrowseVC.h"
 #import "NSArray+Utils.h"
 #import <Photos/Photos.h>
+#import "LZJIAVC.h"
+
 @interface VisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,TZImagePickerControllerDelegate,LZUploadImageViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LZPictureBrowseVCDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -485,8 +487,10 @@
 
 //跳转到拜访记录列表
 - (void)screenClick{
-    LZVisitRecordVC *vc = [[LZVisitRecordVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    LZVisitRecordVC *vc = [[LZVisitRecordVC alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    [self.navigationController pushViewController:[LZJIAVC new] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
