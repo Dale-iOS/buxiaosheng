@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "41DFCD8D7697C2971614C49868E8EC10"
+               BlueprintIdentifier = "87F35783489D61C228F33F472BA07A21"
                BlueprintName = "TTGTagCollectionView"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TTGTagCollectionView.framework">
