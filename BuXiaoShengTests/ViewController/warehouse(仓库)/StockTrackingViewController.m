@@ -18,13 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"备货跟踪"];
-    
     [self setupUI];
 }
 
 - (void)setupUI
 {
+    self.navigationItem.titleView = [Utility navTitleView:@"备货跟踪"];
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
     self.tableView .delegate = self;

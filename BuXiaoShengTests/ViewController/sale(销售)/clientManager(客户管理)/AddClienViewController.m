@@ -14,8 +14,8 @@
 #import "LZPickerView.h"
 #import "LLAuditMangerModel.h"
 #import "LZClientModel.h"
-#import "ChooseLabelsVC.h"
 #import "LZClientDetailsModel.h"
+#import "LZChooseLabelVC.h"
 
 @interface AddClienViewController ()<LZHTableViewDelegate,UITextFieldDelegate>
 
@@ -165,12 +165,12 @@
     self.titleCell.contentTF.placeholder = @"请输入客户名称";
     self.titleCell.titleLabel.text = @"名称";
     
-    //名称
+    //手机
     self.mobileCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.mobileCell.contentTF.placeholder = @"请输入客户手机号码";
     self.mobileCell.titleLabel.text = @"手机名称";
     
-    //名称
+    //地址
     self.addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.addressCell.contentTF.placeholder = @"请输入客户地址";
     self.addressCell.titleLabel.text = @"地址";
@@ -338,23 +338,15 @@
     
     if (indexPath.section == 1 && indexPath.row == 0) {
 //标签
-        ChooseLabelsVC *vc = [[ChooseLabelsVC alloc]init];
-        vc.drawerType = DrawerDefaultRight;
-        
-        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-        conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
-        conf.finishPercent = 0.2f;
-        conf.showAnimDuration = 0.2;
-        conf.HiddenAnimDuration = 0.2;
-        conf.maskAlpha = 0.1;
-        
-        [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
-        
-        [vc setLabelsArrayBlock:^(NSString *labelString, NSString *id) {
-            self.tallyCell.contentTF.text = labelString;
-            self.labelslId = id;
+        LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
+        vc.ToSearchWhat = ToSearchLabel;
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
+            weakSelf.tallyCell.contentTF.text = labelString;
+            weakSelf.labelslId = labelId;
         }];
-
+        
     }else if (indexPath.section == 1 && indexPath.row == 1){
 
 //状态

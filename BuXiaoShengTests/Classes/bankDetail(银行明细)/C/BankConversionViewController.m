@@ -275,6 +275,9 @@
 - (void)leftClick{
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.payNameAry titleDataArray:nil];
     pickerView.titleLabel.text = @"请选择转出银行";
+    pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -60, APPWidth, 44);
+    pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -45, APPWidth, 200);
+    
     WEAKSELF
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         weakSelf.leftLbl.textColor = CD_Text66;
@@ -290,6 +293,9 @@
 - (void)rightClick{
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.payNameAry titleDataArray:nil];
     pickerView.titleLabel.text = @"请选择到账银行";
+    pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -60, APPWidth, 44);
+    pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -45, APPWidth, 200);
+    
     WEAKSELF
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         weakSelf.rightLbl.textColor = CD_Text66;

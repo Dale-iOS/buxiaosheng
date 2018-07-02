@@ -342,6 +342,8 @@
 		3492FD9120DA7422008464BB /* LZPurchaseDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3492FD8F20DA7422008464BB /* LZPurchaseDetailModel.m */; };
 		349AAF6E20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349AAF6D20E9D1F6005EB74F /* LZVisitRecordViewController.m */; };
 		349AAF6F20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349AAF6D20E9D1F6005EB74F /* LZVisitRecordViewController.m */; };
+		349AAF7220EA5AC4005EB74F /* LZChangeNumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 349AAF7120EA5AC4005EB74F /* LZChangeNumVC.m */; };
+		349AAF7320EA5AC4005EB74F /* LZChangeNumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 349AAF7120EA5AC4005EB74F /* LZChangeNumVC.m */; };
 		349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */; };
 		349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C095E208872C900D2AC38 /* LZHHomeMenuCell.m */; };
 		349C09662088900100D2AC38 /* GetPlistArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 349C09652088900100D2AC38 /* GetPlistArray.m */; };
@@ -1164,6 +1166,8 @@
 		3492FD8F20DA7422008464BB /* LZPurchaseDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseDetailModel.m; sourceTree = "<group>"; };
 		349AAF6C20E9D1F6005EB74F /* LZVisitRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitRecordViewController.h; sourceTree = "<group>"; };
 		349AAF6D20E9D1F6005EB74F /* LZVisitRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitRecordViewController.m; sourceTree = "<group>"; };
+		349AAF7020EA5AC4005EB74F /* LZChangeNumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChangeNumVC.h; sourceTree = "<group>"; };
+		349AAF7120EA5AC4005EB74F /* LZChangeNumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChangeNumVC.m; sourceTree = "<group>"; };
 		349C095A2088725A00D2AC38 /* LZHMenuBtnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHMenuBtnView.h; sourceTree = "<group>"; };
 		349C095B2088725A00D2AC38 /* LZHMenuBtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHMenuBtnView.m; sourceTree = "<group>"; };
 		349C095D208872C900D2AC38 /* LZHHomeMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHHomeMenuCell.h; sourceTree = "<group>"; };
@@ -2607,6 +2611,8 @@
 				3465CA0B20DCCCC900BAE415 /* LZChooseCalendarView.m */,
 				3434FCF620C90E8200A3B577 /* LZChooseLabelVC.h */,
 				3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */,
+				349AAF7020EA5AC4005EB74F /* LZChangeNumVC.h */,
+				349AAF7120EA5AC4005EB74F /* LZChangeNumVC.m */,
 			);
 			path = "choose(各种选择)";
 			sourceTree = "<group>";
@@ -4795,6 +4801,7 @@
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
 				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				3427A4FA20CE507600369650 /* BRAddressPickerView.m in Sources */,
+				349AAF7220EA5AC4005EB74F /* LZChangeNumVC.m in Sources */,
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */,
 				34EE88D420CBB1440060D00B /* LZClientReceiptModel.m in Sources */,
@@ -4877,6 +4884,7 @@
 				34A92B53207DECA200572648 /* LZHTableViewItem.m in Sources */,
 				344C512F20DE2B67003B8B57 /* LZChooseBankVC.m in Sources */,
 				3465C9F320DC9A9700BAE415 /* FSCalendarScopeHandle.m in Sources */,
+				349AAF7320EA5AC4005EB74F /* LZChangeNumVC.m in Sources */,
 				34EE88DD20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				34A92B58207DEE6C00572648 /* HomeViewController.m in Sources */,
 				34EA48EE20CFA0350086FF79 /* LZDidBugAndProcessUntreatedVC.m in Sources */,

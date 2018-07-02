@@ -36,7 +36,7 @@
     
     //初始化搜索框
      self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 44)];
-    self.searchBar.placeholder = @"输入拜访对象名称搜索";
+    self.searchBar.placeholder = @"输入搜索";
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");

@@ -104,13 +104,13 @@
     [_commitBtn setBackgroundColor:LZAppBlueColor];
     [_commitBtn setTitle:@"确 认" forState:UIControlStateNormal];
     _commitBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _commitBtn.titleLabel.font = FONT(14);
+    _commitBtn.titleLabel.font = FONT(15);
     [_commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_commitBtn addTarget:self action:@selector(commitBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_commitBtn];
     [_commitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.bottom.and.right.equalTo(self.view);
-        make.height.mas_offset(50);
+        make.height.mas_offset(45);
     }];
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
