@@ -10,7 +10,7 @@
 #import "HomeEntranceCell.h"
 #import "SalesDemandViewController.h"
 #import "OrderTrackingViewController.h"
-#import "VisitRecordViewController.h"
+#import "LZVisitRecordViewController.h"
 #import "ClientManagerViewController.h"
 #import "LZHTableView.h"
 #import "FinancialCollectionViewCell.h"
@@ -140,7 +140,7 @@
     }
     if ([model.paramsIos isEqualToString:@"visitRecord"])
     {   //拜访记录
-        VisitRecordViewController *vc = [[VisitRecordViewController alloc]init];
+        LZVisitRecordViewController *vc = [[LZVisitRecordViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         
     }

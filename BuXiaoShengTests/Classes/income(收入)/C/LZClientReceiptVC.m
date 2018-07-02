@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/8.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户收款单列表
+//  客户收款单列表页面
 
 #import "LZClientReceiptVC.h"
 #import "LZClientReceiptModel.h"

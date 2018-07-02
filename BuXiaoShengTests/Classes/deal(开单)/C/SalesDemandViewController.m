@@ -427,6 +427,26 @@
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+- (void)didClickTitleTextField:(SalesDemandCell *)titleCell{
+    
+    self.markSeletedTableView = ! self.markSeletedTableView;
+    if (self.markSeletedTableView) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.tableViewIndexPath = titleCell.indexPath;
+            CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
+            CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
+            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, LZHScale_WIDTH(240), self.dataMuArray.count *44);
+            [self.view addSubview:_seletedTableView];
+        }];
+    }else {
+        [self.seletedTableView removeFromSuperview];
+        self.seletedTableView.delegate = nil;
+        self.seletedTableView.dataSource = nil;
+        self.seletedTableView = nil;
+    }
+    
+}
+
 - (void) didClickColorTextField:(SalesDemandCell *)colorCell{
     if (!colorCell.model.name) {
         [LLHudTools showWithMessage:@"请选择品名"];
@@ -450,25 +470,7 @@
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 }
-- (void)didClickTitleTextField:(SalesDemandCell *)titleCell{
-    
-    self.markSeletedTableView = ! self.markSeletedTableView;
-    if (self.markSeletedTableView) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.tableViewIndexPath = titleCell.indexPath;
-            CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
-            CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
-            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, LZHScale_WIDTH(240), self.dataMuArray.count *44);
-            [self.view addSubview:_seletedTableView];
-        }];
-    }else {
-        [self.seletedTableView removeFromSuperview];
-        self.seletedTableView.delegate = nil;
-        self.seletedTableView.dataSource = nil;
-        self.seletedTableView = nil;
-    }
-    
-}
+
 -(void)didClickNumberTextField:(SalesDemandCell *)colorCell {
     
     [self.listModels replaceObjectAtIndex:colorCell.indexPath.row withObject:colorCell.model];
