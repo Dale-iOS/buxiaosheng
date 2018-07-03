@@ -46,7 +46,56 @@
              [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
         }];
 }
-
+//上传图片
+-(void)POSTPotosArrayWithArray:(NSArray *)photosArray WithSucces:(success)successResult error:(error)errorResult {
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
+    //超时
+    manager.requestSerializer.timeoutInterval = 20;
+    //请求序列化器
+    manager.responseSerializer= [AFHTTPResponseSerializer serializer];
+    //解析序列化器
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //配置超时时长
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer.timeoutInterval = 15.f;
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = true;
+    
+    //根据当前系统时间生成图片名称
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    NSString *dateStr = [formatter stringFromDate:date];
+//    int i = 0;
+    
+    [manager POST:self.tempUrlString parameters:self.tempParam constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        // 上传多张图片
+        for(NSInteger i = 0; i < photosArray.count; i++)
+        {
+            //取出单张图片二进制数据
+            NSData * imageData = photosArray[i];
+            
+            // 上传的参数名，在服务器端保存文件的文件夹名
+            NSString * Name = [NSString stringWithFormat:@"%@%ld", dateStr, i+1];
+            // 上传filename
+            NSString * fileName = [NSString stringWithFormat:@"%@.jpg", Name];
+            
+            [formData appendPartWithFileData:imageData name:Name fileName:fileName mimeType:@"image/jpeg"];
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"进度");
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        successResult(responseObject);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        errorResult(error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
+    }];
+    
+}
 -(void )GETWithSucces:(success)successResult error:(error)errorResult {
     
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];

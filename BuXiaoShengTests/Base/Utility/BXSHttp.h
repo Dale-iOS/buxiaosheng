@@ -22,7 +22,7 @@
 +(void)requestGETWithAppURL:(NSString *) url param:(NSDictionary *) param  success:(void (^)(id response))success  failure:(void (^) (NSError * error)) failure ;
 
 +(void)downloadWithTaskUrl:(NSString *)downURL  downLoadBlock:(void (^) (NSString * filePath)) block;
-
++(void)requestPOSTPhotosWithArray:(NSArray *)photosArray WithAppURL:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 /**
  获取一些写死的签名值
 

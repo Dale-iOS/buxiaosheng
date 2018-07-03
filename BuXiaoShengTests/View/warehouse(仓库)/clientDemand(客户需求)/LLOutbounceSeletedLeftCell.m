@@ -36,7 +36,7 @@
         
         _seletedView = [UIView new];
         [self.contentView addSubview:_seletedView];
-        _seletedView.backgroundColor = [UIColor redColor];
+        _seletedView.backgroundColor = LZAppBlueColor;
         [_seletedView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.equalTo(self.contentView);
             make.width.mas_equalTo(2);

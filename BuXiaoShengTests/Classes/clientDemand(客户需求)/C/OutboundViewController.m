@@ -14,6 +14,7 @@
 #import "LZOutboundCell.h"
 #import "LLOutboundFooterView.h"
 #import "LZDrawerChooseView.h"
+
 @interface OutboundViewController ()<UITableViewDelegate,UITableViewDataSource,LZOutboundSectionViewDelegate>
 @property(nonatomic,strong)LZOutboundModel *model;
 
@@ -159,7 +160,6 @@
     return topView;
 }
 
-
 //底部部分
 -(UIView *)setupBottomView {
     //底部浮框
@@ -191,7 +191,7 @@
     
     UIButton * determineBtn = [UIButton new];
     [determineBtn addTarget:self action:@selector(determineBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [determineBtn setTitle:@"确  定" forState:UIControlStateNormal];
+    [determineBtn setTitle:@"确 定" forState:UIControlStateNormal];
     determineBtn.titleLabel.font = [UIFont systemFontOfSize:17];
     [determineBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [determineBtn setBackgroundColor:[UIColor colorWithHexString:@"#3d9bfa"]];
@@ -206,9 +206,11 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.listModels.count;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.listModels[section].seleted ? self.listModels[section].itemCellData.count :0;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
         LZOutboundSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LZOutboundSectionView"];
         sectionView.section = section;
@@ -217,6 +219,7 @@
         sectionView.model = _listModels[section];
         return sectionView;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     LLOutboundFooterView * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLOutboundFooterView"];
     footerView.selteds = self.rightSeleteds;
@@ -344,8 +347,6 @@
                            }];
 }
 
-
-
 /// MARK: ---- 懒加载
 -(UITableView *)tableView {
     if (!_tableView) {
@@ -365,6 +366,5 @@
     [super didReceiveMemoryWarning];
     
 }
-
 
 @end

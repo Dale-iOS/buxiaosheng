@@ -13,7 +13,7 @@
 -(void)setModel:(LLOutboundRightDetailModel *)model {
     _model = model;
     _totalCount.text = model.total;
-    model.seleted ? (self.contentView.layer.borderColor = [UIColor redColor].CGColor) : (self.contentView.layer.borderColor = [UIColor darkGrayColor].CGColor);
+    model.seleted ? (self.contentView.layer.borderColor = LZAppBlueColor.CGColor) : (self.contentView.layer.borderColor = [UIColor darkGrayColor].CGColor);
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -21,7 +21,7 @@
     if (self) {
         self.contentView.layer.cornerRadius = 6;
         self.contentView.layer.borderWidth = 1;
-        self.contentView.layer.borderColor = [UIColor redColor].CGColor;
+        self.contentView.layer.borderColor = LZAppBlueColor.CGColor;
         _totalCount =[ UILabel new];
         [self.contentView addSubview:_totalCount];
         _totalCount.textColor = [UIColor darkGrayColor];

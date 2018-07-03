@@ -106,7 +106,7 @@
     [self.view addSubview:bottomBtn];
     [bottomBtn setTitle:@"确 定" forState:UIControlStateNormal];
     bottomBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    bottomBtn.backgroundColor = [UIColor redColor];
+    bottomBtn.backgroundColor = LZAppBlueColor;
     [bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
         make.top.equalTo(self.leftTableView.mas_bottom);

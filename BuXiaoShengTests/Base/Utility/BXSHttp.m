@@ -58,7 +58,43 @@
          }
      }];
 }
-
++(void)requestPOSTPhotosWithArray:(NSArray *)photosArray WithAppURL:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure {
+    
+    NSString * requsetURL = [NSString stringWithFormat:@"%@%@?",BXSBaseURL,url];
+    NSMutableDictionary * baseParam =  [self getConstantParam];
+    [baseParam addEntriesFromDictionary:param];
+    baseParam[@"sign"] = [self sortObjectsAccordingToValueMD5With:baseParam];
+    [self logURL:requsetURL withDict:baseParam OnHttpType:@"POST"];
+    [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTPotosArrayWithArray:photosArray WithSucces:^(id responseObject) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+        if ([baseModel.code isEqualToString:@"9000"]) {
+            [self setupLoginStateFildWithMsg:baseModel.msg];
+            return ;
+        }
+        if (success) {
+            success(responseObject);
+        }
+    } error:^(NSError * error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+//    [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTWithSucces:^(id responseObject) {
+//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
+//        if ([baseModel.code isEqualToString:@"9000"]) {
+//            [self setupLoginStateFildWithMsg:baseModel.msg];
+//            return ;
+//        }
+//        if (success) {
+//            success(responseObject);
+//        }
+//    } error:^(NSError * error) {
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
+}
 +(void)downloadWithTaskUrl:(NSString *)downURL downLoadBlock:(void (^)(NSString *))block {
     
     NSString * newURL =    [self makeMD5:downURL];

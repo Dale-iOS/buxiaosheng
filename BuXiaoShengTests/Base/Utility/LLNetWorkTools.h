@@ -26,6 +26,9 @@ typedef void(^DownLoadBlock)(NSString * filePath);
 
 -(void)GETWithSucces:(success)successResult error:(error)errorResult;
 
+//上传图片
+-(void)POSTPotosArrayWithArray:(NSArray *)photosArray WithSucces:(success)successResult error:(error)errorResult;
+
 -(void)setDownloadWithTaskUrl:(NSString *)downURL saveName:(NSString *)filePathName downLoadBlock:(DownLoadBlock) block;
 
 @property (nonatomic,assign) AFNetworkReachabilityStatus  status;

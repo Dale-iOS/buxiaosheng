@@ -1,5 +1,28 @@
 PODS:
-  - Addition (0.1.5)
+  - Addition (0.2.5):
+    - Addition/NSArray (= 0.2.5)
+    - Addition/NSData (= 0.2.5)
+    - Addition/NSDate (= 0.2.5)
+    - Addition/NSDictionary (= 0.2.5)
+    - Addition/NSDictionary (= 0.2.5)
+    - Addition/NSMutableDictionary (= 0.2.5)
+    - Addition/NSObject (= 0.2.5)
+    - Addition/NSString (= 0.2.5)
+    - Addition/UIColor (= 0.2.5)
+    - Addition/UIImage (= 0.2.5)
+    - Addition/UIView (= 0.2.5)
+  - Addition/NSArray (0.2.5)
+  - Addition/NSData (0.2.5)
+  - Addition/NSDate (0.2.5)
+  - Addition/NSDictionary (0.2.5)
+  - Addition/NSMutableDictionary (0.2.5)
+  - Addition/NSObject (0.2.5):
+    - Addition/NSString
+  - Addition/NSString (0.2.5):
+    - Addition/NSData
+  - Addition/UIColor (0.2.5)
+  - Addition/UIImage (0.2.5)
+  - Addition/UIView (0.2.5)
   - AFNetworking (3.1.0):
     - AFNetworking/NSURLSession (= 3.1.0)
     - AFNetworking/Reachability (= 3.1.0)
@@ -75,7 +98,7 @@ SPEC REPOS:
     - YYKit
 
 SPEC CHECKSUMS:
-  Addition: 559c3a36779eac921f986824f7f135edd41c55ae
+  Addition: f7fb6b3a4e6525cbb646ccb7f2eb9b299dcfeebb
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CWLateralSlide: 3af190c8ffa08040abfd9780f279dac94d531f8b
   EasyNavigation: 3414769a995d032e5dd9441f2bdd4eda7dd10089

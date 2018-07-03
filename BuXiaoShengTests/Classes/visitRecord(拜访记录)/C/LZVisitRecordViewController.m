@@ -269,7 +269,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *str = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
     
     [LLHudTools showLoadingMessage:LLLoadingMessage];
     
@@ -290,7 +290,6 @@
 {//多张上传
     
     UIImage *pictureimage = [selectArray objectAtIndex:0];
-
     NSData *pictureData = UIImageJPEGRepresentation(pictureimage, 0.5);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -309,6 +308,15 @@
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+- (void)uploadPhotos:(NSString *)selectArray{
+    NSDictionary * param = @{@"file":pictureData};
+    [BXSHttp requestPOSTPhotosWithArray:selectArray WithAppURL:@"file/imageUpload.do" param:param success:^(id response) {
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 
@@ -833,7 +841,7 @@
         }
     }
     
-//    [self submitPhoto:_selectedPhotos];
+    [self submitPhotos:_selectedPhotos];
     
     /*
      // 3. 获取原图的示例，这样一次性获取很可能会导致内存飙升，建议获取1-2张，消费和释放掉，再获取剩下的

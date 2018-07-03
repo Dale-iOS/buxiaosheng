@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "AdditionFrameworks.h"
+#import "Addition.h"
 #import "NSArray+Addition.h"
 #import "NSData+Addition.h"
 #import "NSDate+Addition.h"
