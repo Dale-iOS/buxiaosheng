@@ -16,6 +16,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZChooseBankTypeVC.h"
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -53,7 +54,6 @@
     _startStr = @"";
     _endStr = @"";
     
-
     //日期
     self.headDateLbl = [[UILabel alloc]init];
     self.headDateLbl.text = @"全部";
@@ -101,7 +101,7 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.tableViewHeadView;
     self.tableView.tableFooterView = [UIView new];
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundColor = [UIColor clearColor];
     //隐藏分割线
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
@@ -166,7 +166,7 @@
 
 - (void)navigationSetupClick{
     
-    LZChooseBankVC *vc = [[LZChooseBankVC alloc]init];
+    LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 //    [vc setSelectBlock:^(NSString *type) {
@@ -195,10 +195,9 @@
     configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
     configure.titleSelectedColor = RGB(59, 177, 239);
     configure.indicatorColor = RGB(59, 177, 239);;
-    /// pageTitleView
+
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, pageTitleViewY, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
     self.pageTitleView.backgroundColor = [UIColor whiteColor];
-    //    [self.view addSubview:_pageTitleView];
     
     LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
     dayVC.delegate = self;
@@ -210,13 +209,10 @@
     quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
-    /// pageContentView
-    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
     _pageContentView.delegatePageContentView = self;
-    //    [self.view addSubview:_pageContentView];
-    
-    
+
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
@@ -296,7 +292,6 @@
     }
 }
 
-
 //点击日历取消
 - (void)didCancelBtnInCalendar{
     _bottomView.hidden = YES;
@@ -308,11 +303,7 @@
    _bottomView.hidden = NO;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
-
-
 @end

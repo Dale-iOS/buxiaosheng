@@ -252,6 +252,9 @@
 		3465CA1120DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA0F20DCE2A900BAE415 /* LZSearchClientNeedsCell.m */; };
 		3465CA1420DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */; };
 		3465CA1520DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */; };
+		3468B05720EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
+		3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
+		3468B05920EB84B1003726ED /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
 		346992A420C6610200476CF0 /* LZVisitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A320C6610200476CF0 /* LZVisitModel.m */; };
 		346992A520C6610200476CF0 /* LZVisitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A320C6610200476CF0 /* LZVisitModel.m */; };
 		346992A820C6649500476CF0 /* LZVisitRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346992A720C6649500476CF0 /* LZVisitRecordCell.m */; };
@@ -1062,6 +1065,8 @@
 		3465CA0F20DCE2A900BAE415 /* LZSearchClientNeedsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSearchClientNeedsCell.m; sourceTree = "<group>"; };
 		3465CA1220DD0C2200BAE415 /* LZChooseClientReceiptVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseClientReceiptVC.h; sourceTree = "<group>"; };
 		3465CA1320DD0C2200BAE415 /* LZChooseClientReceiptVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseClientReceiptVC.m; sourceTree = "<group>"; };
+		3468B05520EB8350003726ED /* LZChooseBankTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseBankTypeVC.h; sourceTree = "<group>"; };
+		3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseBankTypeVC.m; sourceTree = "<group>"; };
 		346992A220C6610200476CF0 /* LZVisitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitModel.h; sourceTree = "<group>"; };
 		346992A320C6610200476CF0 /* LZVisitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitModel.m; sourceTree = "<group>"; };
 		346992A620C6649500476CF0 /* LZVisitRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitRecordCell.h; sourceTree = "<group>"; };
@@ -2512,8 +2517,6 @@
 		3464458520AD71DE00D6A06B /* client(客户) */ = {
 			isa = PBXGroup;
 			children = (
-				3464458620AD73D100D6A06B /* ChooseLablesCell.h */,
-				3464458720AD73D100D6A06B /* ChooseLablesCell.m */,
 				3464458920AD78A800D6A06B /* ChooseLablesCollectionReusableView.h */,
 				3464458A20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m */,
 			);
@@ -2603,6 +2606,8 @@
 		3471DCB420D787FA002052EE /* choose(各种选择) */ = {
 			isa = PBXGroup;
 			children = (
+				3464458620AD73D100D6A06B /* ChooseLablesCell.h */,
+				3464458720AD73D100D6A06B /* ChooseLablesCell.m */,
 				3471DCB520D7883A002052EE /* LZChoosseWorkerVC.h */,
 				3471DCB620D7883A002052EE /* LZChoosseWorkerVC.m */,
 				3465CA0620DCB00300BAE415 /* LZChooseCalendarVC.h */,
@@ -2613,6 +2618,8 @@
 				3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */,
 				349AAF7020EA5AC4005EB74F /* LZChangeNumVC.h */,
 				349AAF7120EA5AC4005EB74F /* LZChangeNumVC.m */,
+				3468B05520EB8350003726ED /* LZChooseBankTypeVC.h */,
+				3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */,
 			);
 			path = "choose(各种选择)";
 			sourceTree = "<group>";
@@ -4657,6 +4664,7 @@
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
 				B50505E7209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				34DE25B02092C61A009E7589 /* DyeingViewController.m in Sources */,
+				3468B05720EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
 				3471DCAE20D77B93002052EE /* LZShipmentBigGoodsView.m in Sources */,
 				347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */,
 				3434FCF820C90E8200A3B577 /* LZChooseLabelVC.m in Sources */,
@@ -4863,6 +4871,7 @@
 				34A92B2D207DE86200572648 /* BuXiaoShengTests.m in Sources */,
 				344C488620D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
+				3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
 				B5244BF420D387A9007BB83F /* LLBackOrderCotentCell.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
@@ -5033,6 +5042,7 @@
 				346992A520C6610200476CF0 /* LZVisitModel.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				344C48B220D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
+				3468B05920EB84B1003726ED /* ChooseLablesCell.m in Sources */,
 				3480AAAD20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				3492FD9120DA7422008464BB /* LZPurchaseDetailModel.m in Sources */,
 				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,

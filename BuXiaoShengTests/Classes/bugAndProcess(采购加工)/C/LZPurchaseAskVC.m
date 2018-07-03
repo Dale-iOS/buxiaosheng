@@ -241,7 +241,7 @@
         
         //自适应大小
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _collectionView.backgroundColor = LZHBackgroundColor;
+        _collectionView.backgroundColor = [UIColor whiteColor];
     }
     return _collectionView;
 }

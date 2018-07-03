@@ -47,6 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"homesetup")];
 
     self.datasource = [NSMutableArray array];
@@ -70,8 +71,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-    self.navigationItem.leftBarButtonItem = nil;
-
+    
     self.navigationItem.titleView = [Utility navTitleView:[BXSUser currentUser].companyName];
 }
 
@@ -139,6 +139,9 @@
 
 - (void)setSectionOne
 {
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
     flow.itemSize = CGSizeMake(APPWidth /4, 100);
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -156,6 +159,7 @@
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
     item.sectionRows = @[self.collectView];
     item.canSelected = YES;
+    item.sectionView = headerView;
     [self.datasource addObject:item];
    
 }

@@ -22,12 +22,13 @@ typedef void(^DownLoadBlock)(NSString * filePath);
 /// 链接
 - (LLNetWorkTools *(^)(NSString * urlStr)) urlStr;
 
--(void )POSTWithSucces:(success)successResult error:(error)errorResult;
+-(void)POSTWithSucces:(success)successResult error:(error)errorResult;
 
 -(void)GETWithSucces:(success)successResult error:(error)errorResult;
 
 //上传图片
--(void)POSTPotosArrayWithArray:(NSArray *)photosArray WithSucces:(success)successResult error:(error)errorResult;
+//-(void)POSTPotosArrayWithArray:(NSArray *)photosArray WithSucces:(success)successResult error:(error)errorResult;
+-(void)POSTPhotosWithArray:(NSArray *)photosArray Succes:(success)successResult error:(error)errorResult;
 
 -(void)setDownloadWithTaskUrl:(NSString *)downURL saveName:(NSString *)filePathName downLoadBlock:(DownLoadBlock) block;
 

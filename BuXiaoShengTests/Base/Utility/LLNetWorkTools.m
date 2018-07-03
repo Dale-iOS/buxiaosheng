@@ -29,7 +29,7 @@
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
     //请求序列化器
-    manager.responseSerializer= [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     //解析序列化器
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //配置超时时长
@@ -47,55 +47,66 @@
         }];
 }
 //上传图片
--(void)POSTPotosArrayWithArray:(NSArray *)photosArray WithSucces:(success)successResult error:(error)errorResult {
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+-(void )POSTPhotosWithArray:(NSArray *)photosArray Succes:(success)successResult error:(error)errorResult {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf8" forHTTPHeaderField:@"Content-Type"];
-    //超时
-    manager.requestSerializer.timeoutInterval = 20;
     //请求序列化器
-    manager.responseSerializer= [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     //解析序列化器
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //配置超时时长
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = 15.f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = true;
+    manager.requestSerializer.timeoutInterval = 20;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
     
-    //根据当前系统时间生成图片名称
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy年MM月dd日"];
-    NSString *dateStr = [formatter stringFromDate:date];
-//    int i = 0;
+    NSString * requsetURL = [NSString stringWithFormat:@"%@%@?",BXSBaseURL,@"file/imageUpload.do"];
     
-    [manager POST:self.tempUrlString parameters:self.tempParam constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        // 上传多张图片
-        for(NSInteger i = 0; i < photosArray.count; i++)
-        {
-            //取出单张图片二进制数据
-            NSData * imageData = photosArray[i];
-            
-            // 上传的参数名，在服务器端保存文件的文件夹名
-            NSString * Name = [NSString stringWithFormat:@"%@%ld", dateStr, i+1];
-            // 上传filename
-            NSString * fileName = [NSString stringWithFormat:@"%@.jpg", Name];
-            
-            [formData appendPartWithFileData:imageData name:Name fileName:fileName mimeType:@"image/jpeg"];
-        }
+    [manager POST:requsetURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
+        // formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
+        // 这里的_photoArr是你存放图片的数组
+        for (int i = 0; i < photosArray.count; i++) {
+            
+            UIImage *image = photosArray[i];
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            
+            // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+            // 要解决此问题，
+            // 可以在上传时使用当前的系统事件作为文件名
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            // 设置时间格式
+            [formatter setDateFormat:@"yyyyMMddHHmmss"];
+            NSString *dateString = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
+            /*
+             *该方法的参数
+             1. appendPartWithFileData：要上传的照片[二进制流]
+             2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+             3. fileName：要保存在服务器上的文件名
+             4. mimeType：上传的文件的类型
+             */
+            [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"]; //
+        }
+        NSLog(@"+++++++++");
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"进度");
+        
+        //上传进度
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"progress is %@",uploadProgress);
+            
+        });
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successResult(responseObject);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         errorResult(error);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
+
     }];
-    
 }
+
 -(void )GETWithSucces:(success)successResult error:(error)errorResult {
     
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];

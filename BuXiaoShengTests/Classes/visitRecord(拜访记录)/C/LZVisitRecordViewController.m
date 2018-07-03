@@ -311,6 +311,17 @@
 //    }];
 //}
 
+- (void)uploadPhotos:(NSArray *)selectArray{
+    [BXSHttp requestPOSTPhotosWithArray:selectArray AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
+        NSLog(@"%@",response);
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:response options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"1133 %@",jsonStr);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 -(void)submitPhotos:(NSArray *)selectArray{
    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -352,11 +363,15 @@
         //上传进度
         dispatch_sync(dispatch_get_main_queue(), ^{
             NSLog(@"progress is %@",uploadProgress);
+            
         });
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-       
+//        NSLog(@"%@",responseObject);
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"1133 %@",jsonStr);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -886,7 +901,8 @@
         }
     }
     
-    [self submitPhotos:_selectedPhotos];
+//    [self submitPhotos:_selectedPhotos];
+    [self uploadPhotos:_selectedPhotos];
     
     /*
      // 3. 获取原图的示例，这样一次性获取很可能会导致内存飙升，建议获取1-2张，消费和释放掉，再获取剩下的
