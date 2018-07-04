@@ -15,4 +15,8 @@
 @property(nonatomic,copy)NSString *memberName;
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic,copy)NSString *type;
+@property(nonatomic,copy)NSString *img;
+@property(nonatomic,copy)NSString *remark;
+@property(nonatomic,copy)NSString *result;
+
 @end

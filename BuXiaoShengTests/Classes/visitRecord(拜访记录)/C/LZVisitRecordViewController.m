@@ -11,7 +11,7 @@
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
-#import "LZVisitRecordVC.h"
+#import "LZVisitRecordListVC.h"
 #import "LZPickerView.h"
 
 //图片:
@@ -204,7 +204,7 @@
 
 //跳转到拜访记录列表
 - (void)screenClick{
-    LZVisitRecordVC *vc = [[LZVisitRecordVC alloc]init];
+    LZVisitRecordListVC *vc = [[LZVisitRecordListVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     
 //    [self.navigationController pushViewController:[LZJIAVC new] animated:YES];

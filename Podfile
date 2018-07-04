@@ -11,6 +11,7 @@ inhibit_all_warnings!
     pod 'SDWebImage', '~> 4.0'
     pod 'AFNetworking', '~> 3.1.0'
     pod 'SDAutoLayout'
+#    pod 'SDPhotoBrowser'
     pod 'Addition'
     pod 'Reachability'
     pod 'CWLateralSlide'

@@ -1,23 +1,24 @@
 //
-//  LZVisitRecordVC.m
+//  LZVisitRecordListVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/5.
+//  Created by 罗镇浩 on 2018/7/4.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //  拜访记录列表页面
 
-#import "LZVisitRecordVC.h"
+#import "LZVisitRecordListVC.h"
 #import "LZSearchBar.h"
 #import "LZVisitModel.h"
 #import "LZVisitRecordCell.h"
+#import "LZVisitRecordDetailVC.h"
 
-@interface LZVisitRecordVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LZVisitRecordListVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)LZSearchBar *searchBar;
 @property(nonatomic,strong)NSArray<LZVisitModel*> *lists;
 @property(nonatomic,strong)UITableView *myTabelView;
 @end
 
-@implementation LZVisitRecordVC
+@implementation LZVisitRecordListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,14 +36,14 @@
     self.navigationItem.titleView = [Utility navTitleView:@"拜访记录列表"];
     
     //初始化搜索框
-     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 44)];
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 44)];
     self.searchBar.placeholder = @"输入搜索";
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self.view addSubview:self.searchBar];
-
+    
     self.myTabelView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.myTabelView.delegate = self;
     self.myTabelView.dataSource = self;
@@ -109,6 +110,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZVisitModel *model = _lists[indexPath.row];
+    LZVisitRecordDetailVC *vc = [[LZVisitRecordDetailVC alloc]init];
+    vc.id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self setupListData];
@@ -116,7 +124,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 @end
