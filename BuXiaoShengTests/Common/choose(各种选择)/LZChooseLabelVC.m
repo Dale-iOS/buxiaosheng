@@ -278,6 +278,13 @@
     
 }
 
+// 改变cell的背景颜色
+-(void)updateCellStatus:(ChooseLablesCell *)cell selected:(BOOL)selected
+{
+    //    cell.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
+    cell.titleLabel.backgroundColor = selected ? LZAppBlueColor : [UIColor colorWithHexString:@"#eeeeee"];
+    cell.titleLabel.textColor = selected ? [UIColor whiteColor] : CD_Text99;
+}
 
 //取消选中操作
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -285,13 +292,8 @@
     ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [self updateCellStatus:cell selected:NO];
 }
-// 改变cell的背景颜色
--(void)updateCellStatus:(ChooseLablesCell *)cell selected:(BOOL)selected
-{
-//    cell.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
-    cell.titleLabel.backgroundColor = selected ? LZAppBlueColor : [UIColor colorWithHexString:@"#eeeeee"];
-    cell.titleLabel.textColor = selected ? [UIColor whiteColor] : CD_Text99;
-}
+
+
 
 #pragma mark ---- 点击事件 ----
 //添加自定义标签按钮事件

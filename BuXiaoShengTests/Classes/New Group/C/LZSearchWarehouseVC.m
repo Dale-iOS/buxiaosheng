@@ -13,6 +13,7 @@
 #import "LZDrawerChooseView.h"
 #import "HXTagsView.h"
 #import "LLCashBankModel.h"
+#import "LZChooseInventoryVC.h"
 
 @interface LZSearchWarehouseVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource,LZDrawerChooseViewDelegate>
 @property(nonatomic,strong)LZSearchBar*searchBar;
@@ -130,7 +131,7 @@
     //        make.top.equalTo(_headView);
     //    }];
     
-    [self setupchooseView];
+//    [self setupchooseView];
 }
 
 #pragma mark ---- 网络请求 ----
@@ -212,105 +213,117 @@
 #pragma mark ---- 抽屉 -----
 //点击筛选
 - (void)screenAddClick{
-    _bottomBlackView.alpha = 0.65;
-    _bottomBlackView.hidden = NO;
-    [UIView animateWithDuration:0.35 animations:^{
-        _chooseView .frame = CGRectMake(0, 0, APPWidth, APPHeight);
-    }];
+//    _bottomBlackView.alpha = 0.65;
+//    _bottomBlackView.hidden = NO;
+//    [UIView animateWithDuration:0.35 animations:^{
+//        _chooseView .frame = CGRectMake(0, 0, APPWidth, APPHeight);
+//    }];
+//
+//    [_chooseView setColorTFBlock:^(NSString *colorName, NSString *colorId, NSString *productId) {
+//
+//    }];
     
-    [_chooseView setColorTFBlock:^(NSString *colorName, NSString *colorId, NSString *productId) {
-        
-    }];
+    LZChooseInventoryVC *vc = [[LZChooseInventoryVC alloc]init];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    //    [vc setSelectBlock:^(NSString *type) {
+    //        if ([type isEqualToString:@"客户收款单"]) {
+    //            _type = @"0";
+    //        }else if ([type isEqualToString:@"调整金额"]){
+    //            _type = @"1";
+    //        }
+    //        [self setupListData];
+    //    }];
 }
 
-//初始化抽屉
-- (void)setupchooseView{
-    
-    //抽屉时的黑色底图
-    _bottomBlackView = [[UIView alloc]initWithFrame:self.view.bounds];
-    _bottomBlackView.backgroundColor = [UIColor blackColor];
-    _bottomBlackView.hidden = YES;
-    [self.view addSubview:_bottomBlackView];
-    
-    _chooseView = [[LZDrawerChooseView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight)];
-    _chooseView.delegate = self;
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:_chooseView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
-    [_chooseView.alphaiView addGestureRecognizer:tap];
-    
-    //    抽屉UI
-    UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, LLNavViewHeight -29, APPWidth *0.75, 29)];
-    titleLbl.backgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
-    titleLbl.font = FONT(12);
-    titleLbl.textColor = CD_Text99;
-    titleLbl.text = @"  选择筛选";
-    [_chooseView addSubview:titleLbl];
-    //单行不滚动 ===============
-    NSArray *tagAry = @[@"从多到少",@"从少到多"];
-    
-    UILabel *titleLbl2 = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, titleLbl.bottom , APPWidth *0.75, 29)];
-    titleLbl2.backgroundColor = [UIColor whiteColor];
-    titleLbl2.font = FONT(12);
-    titleLbl2.textColor = CD_Text99;
-    titleLbl2.text = @"  数量排序";
-    [_chooseView addSubview:titleLbl2];
-    
-    //单行不需要设置高度,内部根据初始化参数自动计算高度
-    HXTagsView *tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(APPWidth *0.25, titleLbl2.bottom,  APPWidth *0.75, 0)];
-    tagsView.type = 1;
-    tagsView.masksToBounds = YES;
-    tagsView.isFixedTat = YES;
-    tagsView.fixedContentSize = CGSizeMake(APPWidth *0.25, 35);
-    [tagsView setTagAry:tagAry delegate:self];
-    [_chooseView addSubview:tagsView];
-    
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.25, tagsView.bottom, APPWidth *0.75, 1)];
-    lineView.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-    [_chooseView addSubview:lineView];
-    
-    _unitTitleLbl = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, lineView.bottom, APPWidth *0.75, 29)];
-    _unitTitleLbl.backgroundColor = [UIColor whiteColor];
-    _unitTitleLbl.font = FONT(12);
-    _unitTitleLbl.textColor = CD_Text99;
-    _unitTitleLbl.text = @"  单位";
-    [_chooseView addSubview:_unitTitleLbl];
-    
-}
-
-- (void)dismiss
-{
-    [UIView animateWithDuration:0.35 animations:^{
-        _bottomBlackView.alpha = 0;
-        _chooseView .frame = CGRectMake(APPWidth, 0, APPWidth, APPHeight);
-        
-    } completion:nil];
-    
-}
-
-//侧栏确定按钮方法
-- (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
-{
-    [self dismiss];
-}
+////初始化抽屉
+//- (void)setupchooseView{
+//
+//    //抽屉时的黑色底图
+//    _bottomBlackView = [[UIView alloc]initWithFrame:self.view.bounds];
+//    _bottomBlackView.backgroundColor = [UIColor blackColor];
+//    _bottomBlackView.hidden = YES;
+//    [self.view addSubview:_bottomBlackView];
+//
+//    _chooseView = [[LZDrawerChooseView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight)];
+//    _chooseView.delegate = self;
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    [window addSubview:_chooseView];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
+//    [_chooseView.alphaiView addGestureRecognizer:tap];
+//
+//    //    抽屉UI
+//    UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, LLNavViewHeight -29, APPWidth *0.75, 29)];
+//    titleLbl.backgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
+//    titleLbl.font = FONT(12);
+//    titleLbl.textColor = CD_Text99;
+//    titleLbl.text = @"  选择筛选";
+//    [_chooseView addSubview:titleLbl];
+//    //单行不滚动 ===============
+//    NSArray *tagAry = @[@"从多到少",@"从少到多"];
+//
+//    UILabel *titleLbl2 = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, titleLbl.bottom , APPWidth *0.75, 29)];
+//    titleLbl2.backgroundColor = [UIColor whiteColor];
+//    titleLbl2.font = FONT(12);
+//    titleLbl2.textColor = CD_Text99;
+//    titleLbl2.text = @"  数量排序";
+//    [_chooseView addSubview:titleLbl2];
+//
+//    //单行不需要设置高度,内部根据初始化参数自动计算高度
+//    HXTagsView *tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(APPWidth *0.25, titleLbl2.bottom,  APPWidth *0.75, 0)];
+//    tagsView.type = 1;
+//    tagsView.masksToBounds = YES;
+//    tagsView.isFixedTat = YES;
+//    tagsView.fixedContentSize = CGSizeMake(APPWidth *0.25, 35);
+//    [tagsView setTagAry:tagAry delegate:self];
+//    [_chooseView addSubview:tagsView];
+//
+//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(APPWidth *0.25, tagsView.bottom, APPWidth *0.75, 1)];
+//    lineView.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+//    [_chooseView addSubview:lineView];
+//
+//    _unitTitleLbl = [[UILabel alloc]initWithFrame:CGRectMake(APPWidth *0.25, lineView.bottom, APPWidth *0.75, 29)];
+//    _unitTitleLbl.backgroundColor = [UIColor whiteColor];
+//    _unitTitleLbl.font = FONT(12);
+//    _unitTitleLbl.textColor = CD_Text99;
+//    _unitTitleLbl.text = @"  单位";
+//    [_chooseView addSubview:_unitTitleLbl];
+//
+//}
+//
+//- (void)dismiss
+//{
+//    [UIView animateWithDuration:0.35 animations:^{
+//        _bottomBlackView.alpha = 0;
+//        _chooseView .frame = CGRectMake(APPWidth, 0, APPWidth, APPHeight);
+//
+//    } completion:nil];
+//
+//}
+//
+////侧栏确定按钮方法
+//- (void)didClickMakeSureBtnWithName:(NSString *)chooseStr WithId:(NSString *)chooseId WithProductId:(NSString *)chooseProductId
+//{
+//    [self dismiss];
+//}
 
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self setupData];
 }
 
-#pragma mark --- HXTagsViewDelegate ---
-
-/**
- *  tagsView代理方法
- *
- *  @param tagsView tagsView
- *  @param sender   tag:sender.titleLabel.text index:sender.tag
- */
-- (void)tagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender {
-    NSLog(@"tag:%@ index:%ld",sender.titleLabel.text,(long)sender.tag);
-    
-}
+//#pragma mark --- HXTagsViewDelegate ---
+//
+///**
+// *  tagsView代理方法
+// *
+// *  @param tagsView tagsView
+// *  @param sender   tag:sender.titleLabel.text index:sender.tag
+// */
+//- (void)tagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender {
+//    NSLog(@"tag:%@ index:%ld",sender.titleLabel.text,(long)sender.tag);
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

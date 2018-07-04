@@ -14,6 +14,7 @@
 #import "HXTagsView.h"
 #import "LLCashBankModel.h"
 
+
 @interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,LZDrawerChooseViewDelegate>
 ///总米数
 @property (nonatomic, strong) UILabel *meterLbl;
