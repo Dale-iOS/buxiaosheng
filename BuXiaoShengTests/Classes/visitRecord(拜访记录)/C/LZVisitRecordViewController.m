@@ -28,7 +28,7 @@
 #import "TZLocationManager.h"
 #import "TZAssetCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#define Max_Photos 9 //最大选择照片总数
+#define Max_Photos 1 //最大选择照片总数
 #define Max_LinePhotos 4 //选择图片页面每一行最大数
 
 @interface LZVisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
@@ -39,6 +39,8 @@
     
     CGFloat _itemWH;
     CGFloat _margin;
+    
+    NSString *_imageStr;
 }
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -200,45 +202,6 @@
     [self.datasource addObject:item];
 }
 
-#pragma mark ------ 点击事件 --------
-//提交点击按钮
-- (void)commitBtnOnClickAction
-{
-    if ([BXSTools stringIsNullOrEmpty:self.objectCell.contentTF.text]) {
-        BXS_Alert(@"请输入拜访对象名称");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.mainCell.contentTF.text]) {
-        BXS_Alert(@"请输入主要事宜");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.resultView.textView.text]) {
-        BXS_Alert(@"请输入拜访结果");
-        return;
-    }
-    
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"img":@"",
-                             @"matters":self.mainCell.contentTF.text,
-                             @"name":self.objectCell.contentTF.text,
-                             @"remark":self.remarkView.textView.text,
-                             @"result":self.resultView.textView.text,
-                             @"type":_typeStr
-                             };
-    [BXSHttp requestGETWithAppURL:@"record/add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        [LLHudTools showWithMessage:baseModel.msg];
-        if ([baseModel.code integerValue] != 200) {
-            return ;
-        }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:true];
-        });
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
-}
-
 //跳转到拜访记录列表
 - (void)screenClick{
     LZVisitRecordVC *vc = [[LZVisitRecordVC alloc]init];
@@ -263,123 +226,61 @@
 
 
 #pragma mark ---- 网络请求 ----
--(void)submitPhoto:(UIImage *)pictureimage;
-{//单张上传
-    NSData *pictureData = UIImageJPEGRepresentation(pictureimage, 0.5);
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *str = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-    
-    [LLHudTools showLoadingMessage:LLLoadingMessage];
-    
-    NSDictionary * param = @{@"file":pictureData};
-    [BXSHttp requestGETWithAppURL:@"file/imageUpload.do" param:param success:^(id response) {
+//图片上传
+//接口名称 图片上传
+- (void)uploadPhotos:(NSArray *)selectArray{
+    NSDictionary * param = @{@"file":@"0"};
+    [BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
-}
-
-//-(void)submitPhotos:(NSArray *)selectArray
-//{//多张上传
-//
-//    UIImage *pictureimage = [selectArray objectAtIndex:0];
-//    NSData *pictureData = UIImageJPEGRepresentation(pictureimage, 0.5);
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateFormat = @"yyyyMMddHHmmss";
-//    NSString *str = [formatter stringFromDate:[NSDate date]];
-//    NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-//
-//    [LLHudTools showLoadingMessage:LLLoadingMessage];
-//
-//    NSDictionary * param = @{@"file":pictureData};
-//    [BXSHttp requestGETWithAppURL:@"file/imageUpload.do" param:param success:^(id response) {
-//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-//        if ([baseModel.code integerValue] != 200) {
-//            [LLHudTools showWithMessage:baseModel.msg];
-//            return ;
-//        }
-//
-//    } failure:^(NSError *error) {
-//        BXS_Alert(LLLoadErrorMessage);
-//    }];
-//}
-
-- (void)uploadPhotos:(NSArray *)selectArray{
-    [BXSHttp requestPOSTPhotosWithArray:selectArray AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-        NSLog(@"%@",response);
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:response options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"1133 %@",jsonStr);
+        NSDictionary *tempDic = baseModel.data;
+        _imageStr = tempDic[@"path"];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 
--(void)submitPhotos:(NSArray *)selectArray{
-   
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 20;
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+//接口名称 添加拜访记录
+//提交点击按钮
+- (void)commitBtnOnClickAction
+{
+    if ([BXSTools stringIsNullOrEmpty:self.objectCell.contentTF.text]) {
+        BXS_Alert(@"请输入拜访对象名称");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.mainCell.contentTF.text]) {
+        BXS_Alert(@"请输入主要事宜");
+        return;
+    }
+    if ([BXSTools stringIsNullOrEmpty:self.resultView.textView.text]) {
+        BXS_Alert(@"请输入拜访结果");
+        return;
+    }
     
-     NSString * requsetURL = [NSString stringWithFormat:@"%@%@?",BXSBaseURL,@"file/imageUpload.do"];
-    
-    [manager POST:requsetURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-        // formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
-        // 这里的_photoArr是你存放图片的数组
-        for (int i = 0; i < selectArray.count; i++) {
-            
-            UIImage *image = selectArray[i];
-            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-            
-            // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
-            // 要解决此问题，
-            // 可以在上传时使用当前的系统事件作为文件名
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            // 设置时间格式
-            [formatter setDateFormat:@"yyyyMMddHHmmss"];
-            NSString *dateString = [formatter stringFromDate:[NSDate date]];
-            NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
-            /*
-             *该方法的参数
-             1. appendPartWithFileData：要上传的照片[二进制流]
-             2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
-             3. fileName：要保存在服务器上的文件名
-             4. mimeType：上传的文件的类型
-             */
-            [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"]; //
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"img":_imageStr,
+                             @"matters":self.mainCell.contentTF.text,
+                             @"name":self.objectCell.contentTF.text,
+                             @"remark":self.remarkView.textView.text,
+                             @"result":self.resultView.textView.text,
+                             @"type":_typeStr
+                             };
+    [BXSHttp requestGETWithAppURL:@"record/add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        [LLHudTools showWithMessage:baseModel.msg];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
         }
-        
-        
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-        //上传进度
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSLog(@"progress is %@",uploadProgress);
-            
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
         });
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-//        NSLog(@"%@",responseObject);
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"1133 %@",jsonStr);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-     
-        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
     }];
 }
-
 
 #pragma mark --- 选择图片 ---
 - (UIImagePickerController *)imagePickerVc{
@@ -901,7 +802,6 @@
         }
     }
     
-//    [self submitPhotos:_selectedPhotos];
     [self uploadPhotos:_selectedPhotos];
     
     /*

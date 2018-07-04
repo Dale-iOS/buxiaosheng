@@ -62,7 +62,7 @@
     
     NSString * requsetURL = [NSString stringWithFormat:@"%@%@?",BXSBaseURL,@"file/imageUpload.do"];
     
-    [manager POST:requsetURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:requsetURL parameters:self.tempParam constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         // formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
         // 这里的_photoArr是你存放图片的数组
@@ -88,7 +88,6 @@
              */
             [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"]; //
         }
-        NSLog(@"+++++++++");
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
         //上传进度

@@ -184,10 +184,10 @@
     
     AAChartModel *chartModel= AAObject(AAChartModel)
     .chartTypeSet(AAChartTypeLine)//设置图表的类型(这里以设置的为柱状图为例)
-    .titleSet(@"编程语言热度")//设置图表标题
+    .titleSet(@"销售排行榜")//设置图表标题
     .subtitleSet(@"虚拟数据")//设置图表副标题
-    .categoriesSet(@[@"Java",@"Swift",@"Python",@"Ruby", @"PHP",@"Go",@"C",@"C#",@"C++"])//设置图表横轴的内容
-    .yAxisTitleSet(@"摄氏度")//设置图表 y 轴的单位
+    .categoriesSet(@[@"销售员1",@"销售员2",@"销售员3",@"销售员4", @"销售员5",@"销售员6",@"销售员7",@"销售员8",@"销售员9"])//设置图表横轴的内容
+    .yAxisTitleSet(@"销售额")//设置图表 y 轴的单位
     .seriesSet(@[
                  AAObject(AASeriesElement)
                  .nameSet(@"2017")

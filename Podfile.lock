@@ -48,9 +48,9 @@ PODS:
   - pop (1.0.10)
   - Reachability (3.2)
   - SDAutoLayout (2.2.0)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
   - TTGTagCollectionView (1.9.0)
   - TZImagePickerController (2.1.6)
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - pop
   - Reachability
   - SDAutoLayout
-  - SDWebImage (~> 3.8.2)
+  - SDWebImage (~> 4.0)
   - SVProgressHUD
   - TTGTagCollectionView
   - TZImagePickerController
@@ -110,12 +110,12 @@ SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TTGTagCollectionView: 958f20b946dee92a8ba20dc37d10a06737641ae9
   TZImagePickerController: bc25e933c9d970a622d052f0d4de16202bbcd863
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 72715f75a54a4a6448c366703f9d8735344012ce
+PODFILE CHECKSUM: 861ab7ca8566cd4ab76294bf280cdfeceab4127c
 
 COCOAPODS: 1.5.0
