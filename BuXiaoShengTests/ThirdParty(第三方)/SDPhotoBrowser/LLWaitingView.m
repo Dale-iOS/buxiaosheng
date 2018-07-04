@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 GSD. All rights reserved.
 //
 
-#import "SDWaitingView.h"
+#import "LLWaitingView.h"
 
 //// 图片下载进度指示器背景色
 //#define SDWaitingViewBackgroundColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
@@ -16,7 +16,7 @@
 //#define SDWaitingViewItemMargin 10
 
 
-@implementation SDWaitingView
+@implementation LLWaitingView
 
 
 - (id)initWithFrame:(CGRect)frame

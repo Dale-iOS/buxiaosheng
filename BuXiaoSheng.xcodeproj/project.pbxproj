@@ -257,12 +257,6 @@
 		3467BA4A20ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4820ECAE6C004C0B24 /* LZVisitRecordDetailVC.m */; };
 		3467BA4D20ECB170004C0B24 /* LZVisitRecordListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */; };
 		3467BA4E20ECB170004C0B24 /* LZVisitRecordListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */; };
-		3467BA6520ECC771004C0B24 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA5F20ECC771004C0B24 /* SDPhotoBrowser.m */; };
-		3467BA6620ECC771004C0B24 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA5F20ECC771004C0B24 /* SDPhotoBrowser.m */; };
-		3467BA6720ECC771004C0B24 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA6020ECC771004C0B24 /* SDWaitingView.m */; };
-		3467BA6820ECC771004C0B24 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA6020ECC771004C0B24 /* SDWaitingView.m */; };
-		3467BA6920ECC771004C0B24 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA6120ECC771004C0B24 /* SDBrowserImageView.m */; };
-		3467BA6A20ECC771004C0B24 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA6120ECC771004C0B24 /* SDBrowserImageView.m */; };
 		3468B05720EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
 		3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
 		3468B05920EB84B1003726ED /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
@@ -547,6 +541,12 @@
 		34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2320BD5071004D18C2 /* LLMonthCollectionViewCell.m */; };
 		34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */; };
 		34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */; };
+		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
+		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
+		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
+		A08748C320ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
+		A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
+		A08748C520ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050551209AB2DA00CE7E4D /* XLFormButtonCell.m */; };
@@ -1072,13 +1072,6 @@
 		3467BA4820ECAE6C004C0B24 /* LZVisitRecordDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitRecordDetailVC.m; sourceTree = "<group>"; };
 		3467BA4B20ECB170004C0B24 /* LZVisitRecordListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitRecordListVC.h; sourceTree = "<group>"; };
 		3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitRecordListVC.m; sourceTree = "<group>"; };
-		3467BA5E20ECC771004C0B24 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
-		3467BA5F20ECC771004C0B24 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
-		3467BA6020ECC771004C0B24 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
-		3467BA6120ECC771004C0B24 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
-		3467BA6220ECC771004C0B24 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
-		3467BA6320ECC771004C0B24 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
-		3467BA6420ECC771004C0B24 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
 		3468B05520EB8350003726ED /* LZChooseBankTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseBankTypeVC.h; sourceTree = "<group>"; };
 		3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseBankTypeVC.m; sourceTree = "<group>"; };
 		346992A220C6610200476CF0 /* LZVisitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitModel.h; sourceTree = "<group>"; };
@@ -1497,6 +1490,13 @@
 		34FB1F2820BD5072004D18C2 /* LLWeekCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWeekCalendarVc.h; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
+		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
+		A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBrowserImageView.m; sourceTree = "<group>"; };
+		A08748BD20ECCDF7001FF98E /* LLWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWaitingView.h; sourceTree = "<group>"; };
+		A08748BE20ECCDF7001FF98E /* LLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowser.h; sourceTree = "<group>"; };
+		A08748BF20ECCDF7001FF98E /* LLBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBrowserImageView.h; sourceTree = "<group>"; };
 		B505054E209AB2DA00CE7E4D /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
 		B5050550209AB2DA00CE7E4D /* XLFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormButtonCell.h; sourceTree = "<group>"; };
@@ -2029,7 +2029,7 @@
 		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
-				3467BA5D20ECC771004C0B24 /* SDPhotoBrowser */,
+				A08748B820ECCDF7001FF98E /* SDPhotoBrowser */,
 				34BCABF120E7325B00C25BE5 /* TZImagePicker控件 */,
 				34871CF720DB9A6900F7182C /* EqualSpaceWithCell(collectionViewCell对齐方式) */,
 				3427A4DA20CE507600369650 /* BRPickerView */,
@@ -2580,20 +2580,6 @@
 				B56EF0E920E1EB1E000A829F /* LLWelcomeVC.m */,
 			);
 			path = welcome;
-			sourceTree = "<group>";
-		};
-		3467BA5D20ECC771004C0B24 /* SDPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				3467BA5E20ECC771004C0B24 /* SDPhotoBrowserConfig.h */,
-				3467BA5F20ECC771004C0B24 /* SDPhotoBrowser.m */,
-				3467BA6020ECC771004C0B24 /* SDWaitingView.m */,
-				3467BA6120ECC771004C0B24 /* SDBrowserImageView.m */,
-				3467BA6220ECC771004C0B24 /* SDWaitingView.h */,
-				3467BA6320ECC771004C0B24 /* SDPhotoBrowser.h */,
-				3467BA6420ECC771004C0B24 /* SDBrowserImageView.h */,
-			);
-			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		346992AA20C6756C00476CF0 /* clientManager(客户管理) */ = {
@@ -3912,6 +3898,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A08748B820ECCDF7001FF98E /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */,
+				A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */,
+				A08748BE20ECCDF7001FF98E /* LLPhotoBrowser.h */,
+				A08748BD20ECCDF7001FF98E /* LLWaitingView.h */,
+				A08748BB20ECCDF7001FF98E /* LLWaitingView.m */,
+				A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */,
+				A08748BF20ECCDF7001FF98E /* LLBrowserImageView.h */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		B505054B209AB2DA00CE7E4D /* XLForm */ = {
 			isa = PBXGroup;
 			children = (
@@ -4508,7 +4508,7 @@
 				34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				B58BF6FC20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m in Sources */,
-				3467BA6720ECC771004C0B24 /* SDWaitingView.m in Sources */,
+				A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */,
 				3465CA0220DC9A9700BAE415 /* FSCalendarCell.m in Sources */,
 				3465C9EA20DC9A9600BAE415 /* FSCalendarConstants.m in Sources */,
 				346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */,
@@ -4660,7 +4660,7 @@
 				B5244BFC20D3B974007BB83F /* LLBackOderDetailCell.m in Sources */,
 				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
-				3467BA6920ECC771004C0B24 /* SDBrowserImageView.m in Sources */,
+				A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */,
 				3411F2B62086026600C448FD /* DrawerAddressViewController.m in Sources */,
 				3455F69220CA7E9900579521 /* LZIncomeVC.m in Sources */,
 				344C48A120D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
@@ -4828,7 +4828,7 @@
 				3464A93620A1894A00307C1A /* DyeRecipeView.m in Sources */,
 				B50505C7209AB2DA00CE7E4D /* XLFormDescriptor.m in Sources */,
 				34EA5BB1208B1F010048CFE1 /* LGAlertViewWindowContainer.m in Sources */,
-				3467BA6520ECC771004C0B24 /* SDPhotoBrowser.m in Sources */,
+				A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */,
 				344C489920D100F800BEC002 /* LZDidNoBackOrderVC.m in Sources */,
 				3465CA0820DCB00300BAE415 /* LZChooseCalendarVC.m in Sources */,
 				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,
@@ -4895,7 +4895,7 @@
 				34BCABF720E732A500C25BE5 /* TZTestCell.m in Sources */,
 				34D5EAE120D21011009D9D7C /* LZPaymentOrderListCell.m in Sources */,
 				3427A4F120CE507600369650 /* NSDate+BRPickerView.m in Sources */,
-				3467BA6A20ECC771004C0B24 /* SDBrowserImageView.m in Sources */,
+				A08748C520ECCDF7001FF98E /* LLBrowserImageView.m in Sources */,
 				34A92B61207DEF9900572648 /* HomeEntranceView.m in Sources */,
 				34A0ED9B20809E9700659190 /* UITextView+Placeholder.m in Sources */,
 				B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
@@ -4972,7 +4972,7 @@
 				3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
 				3427A4EF20CE507600369650 /* BRStringPickerView.m in Sources */,
 				34195FB020CD430B00524F20 /* LZSpendingListVC.m in Sources */,
-				3467BA6620ECC771004C0B24 /* SDPhotoBrowser.m in Sources */,
+				A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */,
 				34A92B5B207DEEEB00572648 /* LoginViewController.m in Sources */,
 				B50505B8209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				3455F69B20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,
@@ -4994,7 +4994,7 @@
 				B58BF6F320A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */,
 				3465C9E720DC9A9600BAE415 /* FSCalendarCollectionViewLayout.m in Sources */,
-				3467BA6820ECC771004C0B24 /* SDWaitingView.m in Sources */,
+				A08748C320ECCDF7001FF98E /* LLWaitingView.m in Sources */,
 				B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				B50505E6209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				342AF21220D4C09900A1DDC4 /* LZCustomerArrearsVC.m in Sources */,

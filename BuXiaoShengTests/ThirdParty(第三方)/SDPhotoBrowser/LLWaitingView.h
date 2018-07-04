@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDPhotoBrowserConfig.h"
+#import "LLPhotoBrowserConfig.h"
 
-@interface SDWaitingView : UIView
+@interface LLWaitingView : UIView
 
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, assign) int mode;

@@ -6,13 +6,12 @@
 //  Copyright (c) 2015年 GSD. All rights reserved.
 //
 
-#import "SDBrowserImageView.h"
-#import "UIImageView+WebCache.h"
-#import "SDPhotoBrowserConfig.h"
+#import "LLBrowserImageView.h"
+#import "LLPhotoBrowserConfig.h"
 
-@implementation SDBrowserImageView
+@implementation LLBrowserImageView
 {
-    __weak SDWaitingView *_waitingView;
+    __weak LLWaitingView *_waitingView;
     BOOL _didCheckSize;
     UIScrollView *_scroll;
     UIImageView *_scrollImageView;
@@ -93,22 +92,18 @@
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
 {
-    SDWaitingView *waiting = [[SDWaitingView alloc] init];
+    LLWaitingView *waiting = [[LLWaitingView alloc] init];
     waiting.bounds = CGRectMake(0, 0, 100, 100);
     waiting.mode = SDWaitingViewProgressMode;
     _waitingView = waiting;
     [self addSubview:waiting];
     
     
-    __weak SDBrowserImageView *imageViewWeak = self;
+    __weak LLBrowserImageView *imageViewWeak = self;
 
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        imageViewWeak.progress = (CGFloat)receivedSize / expectedSize;
-        
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [imageViewWeak removeWaitingView];
-        
-        
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+         imageViewWeak.progress = (CGFloat)receivedSize / expectedSize;
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error) {
             UILabel *label = [[UILabel alloc] init];
             label.bounds = CGRectMake(0, 0, 160, 30);
@@ -125,8 +120,8 @@
             _scrollImageView.image = image;
             [_scrollImageView setNeedsDisplay];
         }
-   
     }];
+   
 }
 
 - (void)zoomImage:(UIPinchGestureRecognizer *)recognizer

@@ -6,9 +6,8 @@
 //  Copyright (c) 2015年 aier. All rights reserved.
 //
 
-#import "SDPhotoBrowser.h"
-#import "UIImageView+WebCache.h"
-#import "SDBrowserImageView.h"
+#import "LLPhotoBrowser.h"
+#import "LLBrowserImageView.h"
 
  
 //  ============在这里方便配置样式相关设置===========
@@ -19,11 +18,11 @@
 //                     \\//
 //                      \/
 
-#import "SDPhotoBrowserConfig.h"
+#import "LLPhotoBrowserConfig.h"
 
 //  =============================================
 
-@implementation SDPhotoBrowser 
+@implementation LLPhotoBrowser
 {
     UIScrollView *_scrollView;
     BOOL _hasShowedFistView;
@@ -132,7 +131,7 @@
     [self addSubview:_scrollView];
     
     for (int i = 0; i < self.imageCount; i++) {
-        SDBrowserImageView *imageView = [[SDBrowserImageView alloc] init];
+        LLBrowserImageView *imageView = [[LLBrowserImageView alloc] init];
         imageView.tag = i;
 
         // 单击图片
@@ -156,7 +155,7 @@
 // 加载图片
 - (void)setupImageOfImageViewForIndex:(NSInteger)index
 {
-    SDBrowserImageView *imageView = _scrollView.subviews[index];
+    LLBrowserImageView *imageView = _scrollView.subviews[index];
     self.currentImageIndex = index;
     if (imageView.hasLoadedImage) return;
     if ([self highQualityImageURLForIndex:index]) {
@@ -172,7 +171,7 @@
     _scrollView.hidden = YES;
     _willDisappear = YES;
     
-    SDBrowserImageView *currentImageView = (SDBrowserImageView *)recognizer.view;
+    LLBrowserImageView *currentImageView = (LLBrowserImageView *)recognizer.view;
     NSInteger currentIndex = currentImageView.tag;
     
     UIView *sourceView = nil;
@@ -216,7 +215,7 @@
 
 - (void)imageViewDoubleTaped:(UITapGestureRecognizer *)recognizer
 {
-    SDBrowserImageView *imageView = (SDBrowserImageView *)recognizer.view;
+    LLBrowserImageView *imageView = (LLBrowserImageView *)recognizer.view;
     CGFloat scale;
     if (imageView.isScaled) {
         scale = 1.0;
@@ -224,7 +223,7 @@
         scale = 2.0;
     }
     
-    SDBrowserImageView *view = (SDBrowserImageView *)recognizer.view;
+    LLBrowserImageView *view = (LLBrowserImageView *)recognizer.view;
 
     [view doubleTapToZommWithScale:scale];
 }
@@ -245,7 +244,7 @@
     
     
     
-    [_scrollView.subviews enumerateObjectsUsingBlock:^(SDBrowserImageView *obj, NSUInteger idx, BOOL *stop) {
+    [_scrollView.subviews enumerateObjectsUsingBlock:^(LLBrowserImageView *obj, NSUInteger idx, BOOL *stop) {
         CGFloat x = SDPhotoBrowserImageViewMargin + idx * (SDPhotoBrowserImageViewMargin * 2 + w);
         obj.frame = CGRectMake(x, y, w, h);
     }];
@@ -274,8 +273,8 @@
 {
     if ([keyPath isEqualToString:@"frame"]) {
         self.frame = object.bounds;
-        SDBrowserImageView *currentImageView = _scrollView.subviews[_currentImageIndex];
-        if ([currentImageView isKindOfClass:[SDBrowserImageView class]]) {
+        LLBrowserImageView *currentImageView = _scrollView.subviews[_currentImageIndex];
+        if ([currentImageView isKindOfClass:[LLBrowserImageView class]]) {
             [currentImageView clear];
         }
     }
@@ -342,7 +341,7 @@
     CGFloat margin = 150;
     CGFloat x = scrollView.contentOffset.x;
     if ((x - index * self.bounds.size.width) > margin || (x - index * self.bounds.size.width) < - margin) {
-        SDBrowserImageView *imageView = _scrollView.subviews[index];
+        LLBrowserImageView *imageView = _scrollView.subviews[index];
         if (imageView.isScaled) {
             [UIView animateWithDuration:0.5 animations:^{
                 imageView.transform = CGAffineTransformIdentity;

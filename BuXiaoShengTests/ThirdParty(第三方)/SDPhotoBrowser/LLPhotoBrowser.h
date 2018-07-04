@@ -9,22 +9,22 @@
 #import <UIKit/UIKit.h>
 
 
-@class SDButton, SDPhotoBrowser;
+@class SDButton, LLPhotoBrowser;
 
 @protocol SDPhotoBrowserDelegate <NSObject>
 
 @required
 
-- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index;
+- (UIImage *)photoBrowser:(LLPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index;
 
 @optional
 
-- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index;
+- (NSURL *)photoBrowser:(LLPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index;
 
 @end
 
 
-@interface SDPhotoBrowser : UIView <UIScrollViewDelegate>
+@interface LLPhotoBrowser : UIView <UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIView *sourceImagesContainerView;
 @property (nonatomic, assign) NSInteger currentImageIndex;

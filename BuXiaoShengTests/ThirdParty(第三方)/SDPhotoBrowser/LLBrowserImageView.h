@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDWaitingView.h"
+#import "LLWaitingView.h"
 
 
-@interface SDBrowserImageView : UIImageView <UIGestureRecognizerDelegate>
+@interface LLBrowserImageView : UIImageView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, assign, readonly) BOOL isScaled;
