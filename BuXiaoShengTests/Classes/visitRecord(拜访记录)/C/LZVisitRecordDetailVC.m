@@ -205,7 +205,7 @@
     
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
     browser.showStyle = GKPhotoBrowserShowStyleNone;
-    browser.loadStyle = GKPhotoBrowserLoadStyleDeterminate;
+//    browser.loadStyle = GKPhotoBrowserLoadStyleDeterminate;
     [browser showFromVC:self];
 }
 
