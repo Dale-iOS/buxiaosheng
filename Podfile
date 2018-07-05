@@ -3,6 +3,7 @@ platform :ios, '9.0'
 
 target 'BuXiaoSheng' do
 
+#去掉多余的警告
 inhibit_all_warnings!
 
     use_frameworks!
@@ -25,6 +26,7 @@ inhibit_all_warnings!
     pod 'EasyShowView'
     pod 'TZImagePickerController'
     pod 'TTGTagCollectionView'
+    pod 'GKPhotoBrowser'
 #    pod 'BRPickerView'
 end
 

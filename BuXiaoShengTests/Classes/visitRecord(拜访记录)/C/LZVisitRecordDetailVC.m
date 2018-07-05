@@ -13,7 +13,7 @@
 #import "UITextView+Placeholder.h"
 #import "LZVisitModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-//#import "SDPhotoBrowser.h"
+#import "GKPhotoBrowser.h"
 
 
 @interface LZVisitRecordDetailVC ()<LZHTableViewDelegate,UITextViewDelegate>
@@ -33,6 +33,7 @@
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkView;
 @property (nonatomic, strong) UIImageView *visitIMV;
+@property(nonatomic,strong)NSMutableArray *photosArrayUrl;
 @end
 
 @implementation LZVisitRecordDetailVC
@@ -60,6 +61,7 @@
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:@"拜访记录详情"];
     
+    _photosArrayUrl = [NSMutableArray array];
     self.dataSource = [NSMutableArray array];
     [self.view addSubview:self.myTableView];
     [self setSectionOne];
@@ -183,22 +185,29 @@
         self.resultView.textView.text = _model.result;
         self.remarkView.textView.text = _model.remark;
         [self.visitIMV sd_setImageWithURL:[NSURL URLWithString:_model.img]];
+        [_photosArrayUrl addObject:_model.img];
+        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
 
-//- (void)visitIMVTapOnClick{
-//    SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
-//    photoBrowser.delegate = self;
-//    //图片总数
-//    photoBrowser.currentImageIndex = 1;
-//    //当前图片数
-//    photoBrowser.imageCount = 1;
-//    photoBrowser.sourceImagesContainerView = self.view;
-//
-//    [photoBrowser show];
-//}
+//展示图片
+- (void)visitIMVTapOnClick{
+
+    NSMutableArray *photos = [NSMutableArray new];
+    [_photosArrayUrl enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:obj];
+        
+        [photos addObject:photo];
+    }];
+    
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    browser.loadStyle = GKPhotoBrowserLoadStyleDeterminate;
+    [browser showFromVC:self];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
