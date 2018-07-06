@@ -10,7 +10,6 @@
 #import "BankDetailListTableViewCell.h"
 #import "DocumentBankDetailViewController.h"
 #import "LZBankListDetailModel.h"
-#import "LZChooseBankVC.h"
 #import "LLDayCalendarVc.h"
 #import "LLWeekCalendarVc.h"
 #import "LLMonthCalendarVc.h"

@@ -274,15 +274,10 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
-
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
-
-
 
 @end

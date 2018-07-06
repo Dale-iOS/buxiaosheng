@@ -7,7 +7,8 @@
 //
 
 #import "LZChooseBankTypeVC.h"
-#import "ChooseLablesCell.h"
+#import "LZChooseBankTypeCell.h"
+#import "LZChooseBankTypeModel.h"
 
 @interface LZChooseBankTypeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextFieldDelegate>
 {
@@ -21,12 +22,14 @@
     NSMutableArray *_payNameAry;//银行名称数组
     NSMutableArray *_payIdAry;//银行id数组
     NSString *_bankStr;
-    
+    NSMutableArray *_totalNameArray;//name总数组
+    NSMutableArray *_totalIdArray;//id总数组
 }
+@property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists;
 @end
 
 @implementation LZChooseBankTypeVC
-static NSString *ItemIdentifier = @"ChooseLablesCellID";
+static NSString *ItemIdentifier = @"LZChooseBankTypeCellID";
 static NSString *leaveDetailsHeadID = @"leaveDetailsHeadID";
 static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 
@@ -35,17 +38,22 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupPayList];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupPayList];
+    
 }
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
     _titleArray = [NSArray arrayWithObjects:@"类型",@"银行",@"收入支出", nil];
+    
     _Array1 = [NSArray arrayWithObjects:@"预收款单",@"销售单",@"退货单",@"客户收款单",@"费用单",@"加工商付款单",@"供货商付款单",@"生产商付款单",@"采购入库结算",@"现金银行互转",@"其他收入", nil];
+    
+    _lists = [NSMutableArray new];
+    
 //    _totalMuArray = [NSMutableArray arrayWithObjects:_Array1,_Array2, nil];
     _Array2 = [NSArray arrayWithObjects:@"收入",@"支出", nil];
     _selectLabel = [[UILabel alloc]init];
@@ -85,10 +93,10 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
-    [_collectionView registerClass:[ChooseLablesCell class] forCellWithReuseIdentifier:ItemIdentifier];
-    //一定要注册headview
+    [_collectionView registerClass:[LZChooseBankTypeCell class] forCellWithReuseIdentifier:ItemIdentifier];
+    //注册headview
     [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:leaveDetailsHeadID];
-    //一定要注册footerview
+    //注册footerview
     [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:leaveDetailsFooterID];
     
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,6 +105,26 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
         make.bottom.equalTo(_saveBtn.mas_top);
     }];
     [self.view addSubview:_collectionView];
+}
+
+- (void)setupDataArray{
+    _totalNameArray = [NSMutableArray array];
+    [_totalNameArray addObjectsFromArray:_Array1];
+    [_totalNameArray addObjectsFromArray:_payNameAry];
+    [_totalNameArray addObjectsFromArray:_Array2];
+    
+    _totalIdArray = [NSMutableArray array];
+    [_totalIdArray addObjectsFromArray:_Array1];
+    [_totalIdArray addObjectsFromArray:_payIdAry];
+    [_totalIdArray addObjectsFromArray:_Array2];
+    
+    for (int i = 0; i < _totalNameArray.count; i++) {
+        LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
+        model.name = _totalNameArray[i];
+        model.id = _totalIdArray[i];
+        model.isSelect = NO;
+        [_lists addObject:model];
+    }
 }
 
 //接口名称 银行列表
@@ -116,12 +144,12 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
             [_payIdAry addObject:tempAry[i][@"id"]];
             [_payNameAry addObject:tempAry[i][@"name"]];
         }
+        [self setupDataArray];
         [_collectionView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
-
 
 #pragma mark ---- collectionDelegate ----
 //设置每个item的UIEdgeInsets
@@ -166,30 +194,29 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 //section X item X位置处应该显示什么内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //自定义cell
-    ChooseLablesCell *cell=nil;
     
-    if (cell==nil) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
-        
+    LZChooseBankTypeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
+    if (_lists.count >0) {
+        cell.model = _lists[indexPath.row];
     }
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-//    if (indexPath.row/2 == 0) {
-//        cell.imgView.backgroundColor = [UIColor redColor];
-//    }else{
+    
+    
+//    //自定义cell
+//    ChooseLablesCell *cell=nil;
 //
-//        cell.imgView.backgroundColor = [UIColor greenColor];
+//    if (cell==nil) {
+//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
 //    }
-    
-//        cell.nameLabel.text = dataArray[indexPath.row];
-    if (indexPath.section == 0) {
-        cell.titleLabel.text = _Array1[indexPath.row];
-    }else if (indexPath.section == 1){
-        cell.titleLabel.text = _payNameAry[indexPath.row];
-    }else if (indexPath.section == 2){
-        cell.titleLabel.text = _Array2[indexPath.row];
-    }
-//    cell.titleLabel.text = _totalMuArray[indexPath.section][indexPath.row];
+//    cell.contentView.backgroundColor = [UIColor whiteColor];
+//
+//    if (indexPath.section == 0) {
+//        cell.titleLabel.text = _Array1[indexPath.row];
+//    }else if (indexPath.section == 1){
+//        cell.titleLabel.text = _payNameAry[indexPath.row];
+//    }else if (indexPath.section == 2){
+//        cell.titleLabel.text = _Array2[indexPath.row];
+//    }
+
     return cell;
 }
 
@@ -217,11 +244,7 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
             }
             
             label.text = _titleArray[indexPath.section];
-            
-            
         }
-        
-        
         return reusableHeaderView;
         
     }else if (kind == UICollectionElementKindSectionFooter){
@@ -233,7 +256,6 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
             reusableFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter  withReuseIdentifier:leaveDetailsFooterID forIndexPath:indexPath];
             reusableFooterView.backgroundColor = LZHBackgroundColor;
         }
-        
         return reusableFooterView;
     }
     return nil;
@@ -241,27 +263,13 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 }
 //点击cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"indexPath.r==%ld",(long)indexPath.row);
     
-    ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    //选中之后的cell变颜色
-    [self updateCellStatus:cell selected:YES];
+    LZChooseBankTypeModel *model = _lists[indexPath.row];
+    model.isSelect = !model.isSelect;
+    [_collectionView reloadData];
+
 }
 
-// 改变cell的背景颜色
--(void)updateCellStatus:(ChooseLablesCell *)cell selected:(BOOL)selected
-{
-    //    cell.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
-    cell.titleLabel.backgroundColor = selected ? LZAppBlueColor : [UIColor colorWithHexString:@"#eeeeee"];
-    cell.titleLabel.textColor = selected ? [UIColor whiteColor] : CD_Text99;
-}
-
-//取消选中操作
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ChooseLablesCell *cell = (ChooseLablesCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [self updateCellStatus:cell selected:NO];
-}
 
 #pragma mark ---- 点击事件 ----
 - (void)nextBtnClick{

@@ -149,7 +149,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"OrderTableViewCell";
+    static NSString *cellID = @"DidOutInventoryCellId";
     DidOutInventoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
