@@ -147,7 +147,7 @@
             self.bankLbl.text = @"销售单";
             break;
         case 1:
-            self.bankLbl.text = @"销售退货单";
+            self.bankLbl.text = @"退货单";
             break;
         case 2:
             self.bankLbl.text = @"客户收款单";

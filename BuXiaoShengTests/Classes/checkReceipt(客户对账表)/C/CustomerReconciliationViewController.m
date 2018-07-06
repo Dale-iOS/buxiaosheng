@@ -11,6 +11,7 @@
 #import "ReconciliationDetailViewController.h"
 #import "UITextField+PopOver.h"
 #import "LZCheckReceiptModel.h"
+#import "LZCollectionCheckVC.h"
 
 @interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -263,8 +264,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReconciliationDetailViewController *vc = [[ReconciliationDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    ReconciliationDetailViewController *vc = [[ReconciliationDetailViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    LZCheckReceiptModel *model = _lists[indexPath.row];
+
+    if ([model.type integerValue] == 0) {
+        //销售单
+    }
+    if ([model.type integerValue] == 1) {
+        //退货单
+    }
+    if ([model.type integerValue] == 2) {
+        //客户收款单
+        LZCollectionCheckVC *vc = [[LZCollectionCheckVC alloc]init];
+        vc.orderNo = model.orderNo;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 #pragma mark ------- 点击事件 ---------
