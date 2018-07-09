@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LZChangeNumVC : UIViewController
-
+//原始值
+@property(nonatomic,assign)NSInteger originalValue;
 @end

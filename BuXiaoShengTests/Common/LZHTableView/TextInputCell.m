@@ -122,7 +122,7 @@
     
     self.contentTF.sd_layout
     .topEqualToView(self)
-    .leftSpaceToView(self.titleLabel, 50)
+    .leftSpaceToView(self.titleLabel, 10)
     .heightRatioToView(self, 1)
     .widthIs(LZHScale_WIDTH(270));
     

@@ -43,7 +43,6 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
 
 - (void)setupUI{
@@ -216,7 +215,6 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 //    }else if (indexPath.section == 2){
 //        cell.titleLabel.text = _Array2[indexPath.row];
 //    }
-
     return cell;
 }
 
@@ -259,15 +257,12 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
         return reusableFooterView;
     }
     return nil;
-    
 }
 //点击cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     LZChooseBankTypeModel *model = _lists[indexPath.row];
     model.isSelect = !model.isSelect;
     [_collectionView reloadData];
-
 }
 
 

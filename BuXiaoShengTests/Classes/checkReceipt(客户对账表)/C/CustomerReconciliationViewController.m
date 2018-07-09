@@ -230,7 +230,6 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
-    
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -266,7 +265,6 @@
 {
 //    ReconciliationDetailViewController *vc = [[ReconciliationDetailViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
-    
     LZCheckReceiptModel *model = _lists[indexPath.row];
 
     if ([model.type integerValue] == 0) {
@@ -281,7 +279,6 @@
         vc.orderNo = model.orderNo;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
 }
 
 #pragma mark ------- 点击事件 ---------

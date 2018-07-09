@@ -16,6 +16,7 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 #import "LZChooseBankTypeVC.h"
+#import "LZChangeNumVC.h"
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -165,9 +166,19 @@
 
 - (void)navigationSetupClick{
     
-    LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
-    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        LZChangeNumVC *vc = [[LZChangeNumVC alloc]init];
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    
+    
+    
+    
+    
+//    LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
+//    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+//    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    
+    
 //    [vc setSelectBlock:^(NSString *type) {
 //        if ([type isEqualToString:@"客户收款单"]) {
 //            _type = @"0";

@@ -21,6 +21,7 @@
 #import "LZSearchBar.h"
 #import "LZPickerView.h"
 #import "LZSaleOrderListVC.h"
+#import "UITextField+PopOver.h"
 
 @interface SalesDemandViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -71,6 +72,12 @@
 @property (nonatomic, strong) NSMutableArray *payIdAry;
 @property (nonatomic, copy) NSString *payIdStr;///选择中的付款方式id
 
+//客户数组
+@property(nonatomic,strong)NSMutableArray *customerList;
+@property(nonatomic,strong)NSMutableArray *customerNameAry;
+@property(nonatomic,strong)NSMutableArray *customerPhoneAry;
+@property(nonatomic,strong)NSMutableArray *customerIdAry;
+
 @end
 
 @implementation SalesDemandViewController
@@ -86,6 +93,7 @@
 {
     [super viewWillAppear:animated];
     [self setupProductData];
+    [self setupCustomerList];
     [self setupPayList];
 }
 
@@ -299,9 +307,43 @@
             return ;
         }
         self.dataMuArray = [productListModel LLMJParse:baseModel.data];
-       
+  
     } failure:^(NSError *error) {
         
+    }];
+}
+
+//功能用到客户列表
+- (void)setupCustomerList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _customerList = baseModel.data;
+        _customerNameAry = [NSMutableArray array];
+        _customerIdAry = [NSMutableArray array];
+        _customerPhoneAry = [NSMutableArray array];
+        for (int i = 0 ; i <_customerList.count; i++) {
+            [_customerNameAry addObject:_customerList[i][@"name"]];
+            [_customerIdAry addObject:_customerList[i][@"id"]];
+            [_customerPhoneAry addObject:_customerList[i][@"mobile"]];
+        }
+        WEAKSELF;
+        self.nameCell.contentTF.delegate = self;
+        self.nameCell.contentTF.scrollView = self.view;
+        self.nameCell.contentTF.positionType = ZJPositionBottomThree;
+        [self.nameCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
+            //        _ProductColorId = _productsIdMTArray[index];
+            //        [self setupProductColorData];
+            weakSelf.phoneCell.contentTF.text = _customerPhoneAry[index];
+        }];
+
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
     }];
 }
 
@@ -616,6 +658,7 @@
         cell.titleLabel.text = @"客户电话";
         cell.contentTF.placeholder = @"请输入客户电话";
         cell.backgroundColor = [UIColor whiteColor];
+        cell.contentTF.enabled = NO;
         [self.footerView addSubview:(phoneCell = cell)];
     }
     return phoneCell;
@@ -626,8 +669,9 @@
     if (!arrearsCell) {
         TextInputCell *cell = [[TextInputCell alloc]init];
         cell.titleLabel.text = @"本单应收";
-        cell.contentTF.placeholder = @"请输入本单赢收";
+        cell.contentTF.placeholder = @"请输入本单应收";
         cell.backgroundColor = [UIColor whiteColor];
+        cell.contentTF.enabled = NO;
         [self.footerView addSubview:(arrearsCell = cell)];
     }
     return arrearsCell;
