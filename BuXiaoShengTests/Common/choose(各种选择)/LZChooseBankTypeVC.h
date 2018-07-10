@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZChooseBankTypeVC : UIViewController
-
+@property (nonatomic,copy) void(^selectIDBlock)(NSString *typeId,NSString *bankId,NSString *incomeId);
 @end

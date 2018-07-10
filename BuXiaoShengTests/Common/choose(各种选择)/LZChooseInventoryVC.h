@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZChooseInventoryVC : UIViewController
-
+@property (nonatomic,copy) void(^selectIDBlock)(NSString *sortId,NSString *unitId);
 @end

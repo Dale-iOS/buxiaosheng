@@ -22,6 +22,9 @@
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
+    NSString *_bankId;//银行id
+    NSString *_typeId;//单据来源id
+    NSString *_incometypeId;//消费id
 }
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -53,6 +56,9 @@
     
     _startStr = @"";
     _endStr = @"";
+    _bankId = @"";
+    _incometypeId = @"";
+    _typeId = @"";
     
     //日期
     self.headDateLbl = [[UILabel alloc]init];
@@ -113,7 +119,10 @@
                              @"pageNo":@"1",
                              @"pageSize":@"15",
                              @"startDate":_startStr,
-                             @"endDate":_endStr
+                             @"endDate":_endStr,
+                             @"type":_typeId == nil ? @"" : _typeId,
+                             @"bankId":_bankId == nil ? @"" : _bankId,
+                             @"incomeType":_incometypeId == nil ? @"" : _incometypeId
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -126,7 +135,6 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
-
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -174,16 +182,11 @@
     LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
-    
-    
-//    [vc setSelectBlock:^(NSString *type) {
-//        if ([type isEqualToString:@"客户收款单"]) {
-//            _type = @"0";
-//        }else if ([type isEqualToString:@"调整金额"]){
-//            _type = @"1";
-//        }
-//        [self setupListData];
-//    }];
+    [vc setSelectIDBlock:^(NSString *typeId, NSString *bankId, NSString *incomeId) {
+        _typeId = typeId;
+        _bankId = bankId;
+        _incometypeId = incomeId;
+    }];
 }
 
 #pragma mark --- 日历 ---

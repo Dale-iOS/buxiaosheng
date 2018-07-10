@@ -16,14 +16,11 @@
     NSArray *_titleArray;//分组标题头
     NSArray *_Array1;//类型数组
     NSArray *_Array2;//收入支出数组
-//    NSMutableArray *_totalMuArray;//总数组
     UIButton *_saveBtn;//确认按钮
     UICollectionView *_collectionView;
     NSMutableArray *_payNameAry;//银行名称数组
     NSMutableArray *_payIdAry;//银行id数组
     NSString *_bankStr;
-//    NSMutableArray *_totalNameArray;//name总数组
-//    NSMutableArray *_totalIdArray;//id总数组
 }
 @property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists1;
 @property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists2;
@@ -43,10 +40,6 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     [self setupPayList];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
     _titleArray = [NSArray arrayWithObjects:@"类型",@"银行",@"收入支出", nil];
@@ -57,7 +50,6 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     _lists2 = [NSMutableArray new];
     _lists3 = [NSMutableArray new];
     
-//    _totalMuArray = [NSMutableArray arrayWithObjects:_Array1,_Array2, nil];
     _Array2 = [NSArray arrayWithObjects:@"收入",@"支出", nil];
     _selectLabel = [[UILabel alloc]init];
     _selectLabel.backgroundColor = LZHBackgroundColor;
@@ -111,21 +103,12 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 }
 
 - (void)setupDataArray{
-//    _totalNameArray = [NSMutableArray array];
-//    [_totalNameArray addObjectsFromArray:_Array1];
-//    [_totalNameArray addObjectsFromArray:_payNameAry];
-//    [_totalNameArray addObjectsFromArray:_Array2];
-//
-//    _totalIdArray = [NSMutableArray array];
-//    [_totalIdArray addObjectsFromArray:_Array1];
-//    [_totalIdArray addObjectsFromArray:_payIdAry];
-//    [_totalIdArray addObjectsFromArray:_Array2];
-    
+
     //拼接类型模型
     for (int i = 0; i < _Array1.count; i++) {
         LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
         model.name = _Array1[i];
-        model.id = _Array1[i];
+        model.id = [NSString stringWithFormat:@"%d",i];
         model.isSelect = NO;
         [_lists1 addObject:model];
     }
@@ -143,7 +126,7 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     for (int i = 0; i < _Array2.count; i++) {
         LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
         model.name = _Array2[i];
-        model.id = _Array2[i];
+        model.id = [NSString stringWithFormat:@"%d",i];
         model.isSelect = NO;
         [_lists3 addObject:model];
     }
@@ -324,7 +307,33 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 
 #pragma mark ---- 点击事件 ----
 - (void)nextBtnClick{
+    LZChooseBankTypeModel *model1 = [[LZChooseBankTypeModel alloc]init];
+    LZChooseBankTypeModel *model2 = [[LZChooseBankTypeModel alloc]init];
+    LZChooseBankTypeModel *model3 = [[LZChooseBankTypeModel alloc]init];
     
+    //过滤出已选中的
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"isSelect == 1"];
+    NSArray *arrar1 = [_lists1 filteredArrayUsingPredicate:predicate1];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"isSelect == 1"];
+    NSArray *arrar2 = [_lists2 filteredArrayUsingPredicate:predicate2];
+    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"isSelect == 1"];
+    NSArray *arrar3 = [_lists3 filteredArrayUsingPredicate:predicate3];
+    
+    if (arrar1.count >0) {
+        model1 = [LZChooseBankTypeModel LLMJParse:arrar1[0]];
+    }
+    if (arrar2.count >0) {
+        model2 = [LZChooseBankTypeModel LLMJParse:arrar2[0]];
+    }
+    if (arrar3.count >0) {
+        model3 = [LZChooseBankTypeModel LLMJParse:arrar3[0]];
+    }
+    
+    if (self.selectIDBlock) {
+        self.selectIDBlock(model1.id, model2.id, model3.id);
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
