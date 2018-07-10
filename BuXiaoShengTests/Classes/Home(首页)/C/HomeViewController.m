@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "LZHTableView.h"
-//#import "HomeEntranceView.h"
 #import "SaleViewController.h"
 #import "SGPagingView.h"
 #import "NowDayViewController.h"
@@ -27,10 +26,6 @@
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
-@property (nonatomic, strong) UIView *headView;
-///首页入口cell
-//@property (nonatomic, strong) HomeEntranceView *entranceViewCell;
-
 ///折线图
 @property (nonatomic, strong) AAChartView  *aaChartView;
 @property (nonatomic, strong) AAChartModel *aaChartModel;
@@ -42,7 +37,7 @@
 @end
 
 @implementation HomeViewController
-@synthesize mainTabelView,headView;
+@synthesize mainTabelView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +46,6 @@
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"homesetup")];
 
     self.datasource = [NSMutableArray array];
-    self.mainTabelView.tableHeaderView = self.headView;
     self.mainTabelView.delegate = self;
     [self setSectionOne];
     [self setSectionTwo];
@@ -102,28 +96,6 @@
 }
 
 #pragma mark -------- lazy loading --------
-- (UIView *)headView
-{
-    if (!headView) {
-        
-        //首页自定义导航栏底图View
-        UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 14, self.view.frame.size.width, 45)];
-        headerView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:(headView = headerView)];
-
-        //阴影
-        CAGradientLayer *layer = [CAGradientLayer layer];
-        layer.startPoint = CGPointMake(0.5, 0);
-        layer.endPoint = CGPointMake(0.5, 1);
-        layer.colors = [NSArray arrayWithObjects:(id)[UIColor colorWithHexString:@"#eeeeee"].CGColor,(id)[UIColor whiteColor].CGColor, nil];
-        layer.locations = @[@0.0f,@0.9f];
-        layer.frame = CGRectMake(0, 45, self.view.frame.size.width, 5);
-        
-        [headerView.layer insertSublayer:layer atIndex:0];
-    }
-    return headView;
-}
-
 - (LZHTableView *)mainTabelView
 {
     if (!mainTabelView) {

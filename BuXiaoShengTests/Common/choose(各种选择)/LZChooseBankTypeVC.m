@@ -196,25 +196,21 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     
     LZChooseBankTypeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
     if (_lists.count >0) {
-        cell.model = _lists[indexPath.row];
+    
+    switch (indexPath.section) {
+        case 0:
+            cell.model = _lists[indexPath.row];
+            break;
+        case 1:
+            cell.model = _lists[indexPath.row +_Array1.count];
+            break;
+        case 2:
+            cell.model = _lists[indexPath.row +_Array1.count +_payNameAry.count];
+            break;
+        default:
+            break;
     }
-    
-    
-//    //自定义cell
-//    ChooseLablesCell *cell=nil;
-//
-//    if (cell==nil) {
-//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
-//    }
-//    cell.contentView.backgroundColor = [UIColor whiteColor];
-//
-//    if (indexPath.section == 0) {
-//        cell.titleLabel.text = _Array1[indexPath.row];
-//    }else if (indexPath.section == 1){
-//        cell.titleLabel.text = _payNameAry[indexPath.row];
-//    }else if (indexPath.section == 2){
-//        cell.titleLabel.text = _Array2[indexPath.row];
-//    }
+}
     return cell;
 }
 
@@ -260,9 +256,26 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 }
 //点击cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    LZChooseBankTypeModel *model = _lists[indexPath.row];
-    model.isSelect = !model.isSelect;
+    LZChooseBankTypeModel *model = [[LZChooseBankTypeModel alloc]init];;
+    
+    switch (indexPath.section) {
+        case 0:
+            model = _lists[indexPath.row];
+            model.isSelect = !model.isSelect;
+            break;
+        case 1:
+            model = _lists[indexPath.row +_Array1.count];
+            model.isSelect = !model.isSelect;
+            break;
+        case 2:
+            model = _lists[indexPath.row +_Array1.count+_payNameAry.count];
+            model.isSelect = !model.isSelect;
+            break;
+        default:
+            break;
+    }
     [_collectionView reloadData];
+    
 }
 
 
