@@ -22,10 +22,12 @@
     NSMutableArray *_payNameAry;//银行名称数组
     NSMutableArray *_payIdAry;//银行id数组
     NSString *_bankStr;
-    NSMutableArray *_totalNameArray;//name总数组
-    NSMutableArray *_totalIdArray;//id总数组
+//    NSMutableArray *_totalNameArray;//name总数组
+//    NSMutableArray *_totalIdArray;//id总数组
 }
-@property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists;
+@property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists1;
+@property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists2;
+@property (nonatomic,strong)NSMutableArray <LZChooseBankTypeModel*> *lists3;
 @end
 
 @implementation LZChooseBankTypeVC
@@ -51,7 +53,9 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     
     _Array1 = [NSArray arrayWithObjects:@"预收款单",@"销售单",@"退货单",@"客户收款单",@"费用单",@"加工商付款单",@"供货商付款单",@"生产商付款单",@"采购入库结算",@"现金银行互转",@"其他收入", nil];
     
-    _lists = [NSMutableArray new];
+    _lists1 = [NSMutableArray new];
+    _lists2 = [NSMutableArray new];
+    _lists3 = [NSMutableArray new];
     
 //    _totalMuArray = [NSMutableArray arrayWithObjects:_Array1,_Array2, nil];
     _Array2 = [NSArray arrayWithObjects:@"收入",@"支出", nil];
@@ -107,22 +111,41 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 }
 
 - (void)setupDataArray{
-    _totalNameArray = [NSMutableArray array];
-    [_totalNameArray addObjectsFromArray:_Array1];
-    [_totalNameArray addObjectsFromArray:_payNameAry];
-    [_totalNameArray addObjectsFromArray:_Array2];
+//    _totalNameArray = [NSMutableArray array];
+//    [_totalNameArray addObjectsFromArray:_Array1];
+//    [_totalNameArray addObjectsFromArray:_payNameAry];
+//    [_totalNameArray addObjectsFromArray:_Array2];
+//
+//    _totalIdArray = [NSMutableArray array];
+//    [_totalIdArray addObjectsFromArray:_Array1];
+//    [_totalIdArray addObjectsFromArray:_payIdAry];
+//    [_totalIdArray addObjectsFromArray:_Array2];
     
-    _totalIdArray = [NSMutableArray array];
-    [_totalIdArray addObjectsFromArray:_Array1];
-    [_totalIdArray addObjectsFromArray:_payIdAry];
-    [_totalIdArray addObjectsFromArray:_Array2];
-    
-    for (int i = 0; i < _totalNameArray.count; i++) {
+    //拼接类型模型
+    for (int i = 0; i < _Array1.count; i++) {
         LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
-        model.name = _totalNameArray[i];
-        model.id = _totalIdArray[i];
+        model.name = _Array1[i];
+        model.id = _Array1[i];
         model.isSelect = NO;
-        [_lists addObject:model];
+        [_lists1 addObject:model];
+    }
+    
+    //拼接银行模型
+    for (int i = 0; i < _payNameAry.count; i++) {
+        LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
+        model.name = _payNameAry[i];
+        model.id = _payIdAry[i];
+        model.isSelect = NO;
+        [_lists2 addObject:model];
+    }
+    
+    //拼接收入支出模型
+    for (int i = 0; i < _Array2.count; i++) {
+        LZChooseBankTypeModel *model = [LZChooseBankTypeModel new];
+        model.name = _Array2[i];
+        model.id = _Array2[i];
+        model.isSelect = NO;
+        [_lists3 addObject:model];
     }
 }
 
@@ -195,17 +218,17 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
 {
     
     LZChooseBankTypeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemIdentifier forIndexPath:indexPath];
-    if (_lists.count >0) {
+    if (_lists2.count >0) {
     
     switch (indexPath.section) {
         case 0:
-            cell.model = _lists[indexPath.row];
+            cell.model = _lists1[indexPath.row];
             break;
         case 1:
-            cell.model = _lists[indexPath.row +_Array1.count];
+            cell.model = _lists2[indexPath.row];
             break;
         case 2:
-            cell.model = _lists[indexPath.row +_Array1.count +_payNameAry.count];
+            cell.model = _lists3[indexPath.row];
             break;
         default:
             break;
@@ -254,22 +277,42 @@ static NSString *leaveDetailsFooterID = @"leaveDetailsFooterID";
     }
     return nil;
 }
+
 //点击cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     LZChooseBankTypeModel *model = [[LZChooseBankTypeModel alloc]init];;
     
     switch (indexPath.section) {
         case 0:
-            model = _lists[indexPath.row];
+            model = _lists1[indexPath.row];
+            
+            [_lists1 enumerateObjectsUsingBlock:^(LZChooseBankTypeModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.isSelect = NO;
+            }];
+
             model.isSelect = !model.isSelect;
+            
             break;
         case 1:
-            model = _lists[indexPath.row +_Array1.count];
+            
+            model = _lists2[indexPath.row];
+            
+            [_lists2 enumerateObjectsUsingBlock:^(LZChooseBankTypeModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.isSelect = NO;
+            }];
             model.isSelect = !model.isSelect;
+            
             break;
         case 2:
-            model = _lists[indexPath.row +_Array1.count+_payNameAry.count];
+            
+            model = _lists3[indexPath.row];
+            
+            [_lists3 enumerateObjectsUsingBlock:^(LZChooseBankTypeModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.isSelect = NO;
+            }];
+            
             model.isSelect = !model.isSelect;
+            
             break;
         default:
             break;
