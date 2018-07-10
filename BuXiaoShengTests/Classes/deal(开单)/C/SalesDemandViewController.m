@@ -477,7 +477,7 @@
             self.tableViewIndexPath = titleCell.indexPath;
             CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
             CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
-            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, LZHScale_WIDTH(240), self.dataMuArray.count *44);
+            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, APPWidth, self.dataMuArray.count *44);
             [self.view addSubview:_seletedTableView];
         }];
     }else {

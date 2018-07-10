@@ -9,7 +9,10 @@
 #import "LZChangeNumVC.h"
 
 @interface LZChangeNumVC ()
-
+{
+    UILabel *_hintLbl;//总数量
+    double _total;//计算中的数量值
+}
 @end
 
 @implementation LZChangeNumVC
@@ -21,7 +24,10 @@
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.originalValue = 33;
+    self.originalValue = 10;
+    
+    NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
+    _total = [tempStr doubleValue];
     
     UILabel *titleLbl = [[UILabel alloc]init];
     titleLbl.backgroundColor = LZHBackgroundColor;
@@ -36,23 +42,50 @@
         make.height.mas_offset(30);
     }];
     
-    UILabel *hintLbl = [[UILabel alloc]init];
-    hintLbl.text = [NSString stringWithFormat:@"全部加减 总数量： %ld",self.originalValue];
-//    hintLbl.text = @"全部加减 总数量 33.0";
-    hintLbl.textColor = LZAppBlueColor;
-    hintLbl.font = FONT(12);
-    
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:hintLbl.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"全部加减 总数量："]];
+    //总数量 用于改变
+    _hintLbl = [[UILabel alloc]init];
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %ld",self.originalValue];
+    _hintLbl.textColor = LZAppRedColor;
+    _hintLbl.font = FONT(12);
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-    hintLbl.attributedText = temgpStr;
-    
-    [self.view addSubview:hintLbl];
-    [hintLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    _hintLbl.attributedText = temgpStr;
+    [self.view addSubview:_hintLbl];
+    [_hintLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.top.equalTo(titleLbl.mas_bottom).offset(15);
         make.width.mas_offset(250);
         make.height.mas_offset(15);
+    }];
+    
+    //原始总数量
+    UILabel *firstLbl = [[UILabel alloc]init];
+    firstLbl.text = [NSString stringWithFormat:@"初始 总数量： %ld",self.originalValue];
+    firstLbl.textColor = LZAppBlueColor;
+    firstLbl.font = FONT(12);
+    NSMutableAttributedString *temgpStr1 = [[NSMutableAttributedString alloc] initWithString:firstLbl.text];
+    NSRange oneRange1 = [[temgpStr1 string] rangeOfString:[NSString stringWithFormat:@"初始 总数量："]];
+    [temgpStr1 addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange1];
+    firstLbl.attributedText = temgpStr1;
+    [self.view addSubview:firstLbl];
+    [firstLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.top.equalTo(_hintLbl.mas_bottom).offset(5);
+        make.width.mas_offset(250);
+        make.height.mas_offset(15);
+    }];
+    
+    //重置按钮
+    UIButton *restartBtn = [[UIButton alloc]init];
+    [restartBtn setBackgroundImage:IMAGE(@"restart") forState:UIControlStateNormal];
+    [restartBtn addTarget:self action:@selector(restartClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:restartBtn];
+    [restartBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-15);
+        make.top.equalTo(_hintLbl.mas_bottom).offset(5);
+        make.width.mas_offset(50);
+        make.height.mas_offset(19);
     }];
     
     
@@ -63,7 +96,7 @@
     [self.view addSubview:additionBtn];
     [additionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
-        make.top.equalTo(hintLbl.mas_bottom).offset(15);
+        make.top.equalTo(firstLbl.mas_bottom).offset(15);
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
@@ -75,7 +108,7 @@
     [self.view addSubview:subtractionBtn];
     [subtractionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(additionBtn.mas_right).offset(15);
-        make.top.equalTo(hintLbl.mas_bottom).offset(15);
+        make.top.equalTo(firstLbl.mas_bottom).offset(15);
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
@@ -87,7 +120,7 @@
     [self.view addSubview:multiplicationBtn];
     [multiplicationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(subtractionBtn.mas_right).offset(15);
-        make.top.equalTo(hintLbl.mas_bottom).offset(15);
+        make.top.equalTo(firstLbl.mas_bottom).offset(15);
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
@@ -99,27 +132,60 @@
     [self.view addSubview:divisionBtn];
     [divisionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(multiplicationBtn.mas_right).offset(15);
-        make.top.equalTo(hintLbl.mas_bottom).offset(15);
+        make.top.equalTo(firstLbl.mas_bottom).offset(15);
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
 }
 
 #pragma mark ---- 点击事件 ----
+//加号方法
 - (void)additionBtnClick{
-    
+    _total++;
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+    _hintLbl.attributedText = temgpStr;
 }
-
+//减号方法
 - (void)subtractionBtnClick{
-    
+    _total--;
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+    _hintLbl.attributedText = temgpStr;
 }
-
+//乘号方法
 - (void)multiplicationBtnClick{
-    
+    _total = _total *0.9;
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+    _hintLbl.attributedText = temgpStr;
 }
-
+//除号方法
 - (void)divisionBtnClick{
+    _total = _total /0.9;
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+    _hintLbl.attributedText = temgpStr;
+}
+//重置方法
+- (void)restartClick{
+ 
+    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %zd",self.originalValue];
+
+    _total = [[NSString stringWithFormat:@"%zd",self.originalValue] doubleValue];
     
+    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+    _hintLbl.attributedText = temgpStr;
 }
 
 - (void)didReceiveMemoryWarning {
