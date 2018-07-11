@@ -290,6 +290,8 @@
 		3475420920F5AD3B007F384B /* SalesDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */; };
 		3475421820F5B1BA007F384B /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421720F5B1BA007F384B /* LZChooseProductVC.m */; };
 		3475421920F5B1BA007F384B /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421720F5B1BA007F384B /* LZChooseProductVC.m */; };
+		3475421E20F5D9A7007F384B /* LLProcessChildViewVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421D20F5D9A7007F384B /* LLProcessChildViewVc.m */; };
+		3475421F20F5D9A7007F384B /* LLProcessChildViewVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421D20F5D9A7007F384B /* LLProcessChildViewVc.m */; };
 		3479056B20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
 		3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
 		3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056E20C509F1008C835C /* AssignDeliveryCell.m */; };
@@ -1090,6 +1092,8 @@
 		3471DCB620D7883A002052EE /* LZChoosseWorkerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChoosseWorkerVC.m; sourceTree = "<group>"; };
 		3475421620F5B1BA007F384B /* LZChooseProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseProductVC.h; sourceTree = "<group>"; };
 		3475421720F5B1BA007F384B /* LZChooseProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseProductVC.m; sourceTree = "<group>"; };
+		3475421C20F5D9A7007F384B /* LLProcessChildViewVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLProcessChildViewVc.h; sourceTree = "<group>"; };
+		3475421D20F5D9A7007F384B /* LLProcessChildViewVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLProcessChildViewVc.m; sourceTree = "<group>"; };
 		3479056920C50973008C835C /* LZAssignDeliveryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryModel.h; sourceTree = "<group>"; };
 		3479056A20C50973008C835C /* LZAssignDeliveryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryModel.m; sourceTree = "<group>"; };
 		3479056D20C509F1008C835C /* AssignDeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignDeliveryCell.h; sourceTree = "<group>"; };
@@ -1981,7 +1985,7 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		343008C12081A03C00447992 /* ThirdParty(第三方) */ = {
+		343008C12081A03C00447992 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				A08748B820ECCDF7001FF98E /* SDPhotoBrowser */,
@@ -1996,7 +2000,7 @@
 				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
 			);
-			path = "ThirdParty(第三方)";
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		343008C22081A07200447992 /* SGPageView */ = {
@@ -2836,6 +2840,40 @@
 			path = M;
 			sourceTree = "<group>";
 		};
+		3475421B20F5D9A7007F384B /* warehouse(仓库) */ = {
+			isa = PBXGroup;
+			children = (
+				3475421C20F5D9A7007F384B /* LLProcessChildViewVc.h */,
+				3475421D20F5D9A7007F384B /* LLProcessChildViewVc.m */,
+			);
+			path = "warehouse(仓库)";
+			sourceTree = "<group>";
+		};
+		3475422020F5D9ED007F384B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				34A92B4D207DEA7B00572648 /* BuXiaoSheng-Prefix.pch */,
+				34A92B13207DE86200572648 /* AppDelegate.h */,
+				34A92B14207DE86200572648 /* AppDelegate.m */,
+				34A92B16207DE86200572648 /* ViewController.h */,
+				34A92B17207DE86200572648 /* ViewController.m */,
+				34A92B19207DE86200572648 /* Main.storyboard */,
+				34A92B1C207DE86200572648 /* Assets.xcassets */,
+				34A92B1E207DE86200572648 /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		3475422120F5DC5E007F384B /* PreviousFile */ = {
+			isa = PBXGroup;
+			children = (
+				34A92B47207DE93C00572648 /* Model */,
+				34A92B45207DE91300572648 /* ViewController */,
+				34A92B46207DE93600572648 /* View */,
+			);
+			path = PreviousFile;
+			sourceTree = "<group>";
+		};
 		3479056520C50930008C835C /* assign(指派发货) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3032,8 +3070,7 @@
 				3411F2B42086026600C448FD /* DrawerAddressViewController.h */,
 				3411F2B52086026600C448FD /* DrawerAddressViewController.m */,
 			);
-			name = "clientManager(客户管理)";
-			path = "../ViewController/sale(销售)/clientManager(客户管理)";
+			path = "clientManager(客户管理)";
 			sourceTree = "<group>";
 		};
 		34871CF720DB9A6900F7182C /* EqualSpaceWithCell(collectionViewCell对齐方式) */ = {
@@ -3180,7 +3217,6 @@
 		34A92B07207DE86200572648 = {
 			isa = PBXGroup;
 			children = (
-				34A92B4D207DEA7B00572648 /* BuXiaoSheng-Prefix.pch */,
 				34A92B12207DE86200572648 /* BuXiaoSheng */,
 				34A92B2B207DE86200572648 /* BuXiaoShengTests */,
 				34A92B36207DE86200572648 /* BuXiaoShengUITests */,
@@ -3203,13 +3239,12 @@
 		34A92B12207DE86200572648 /* BuXiaoSheng */ = {
 			isa = PBXGroup;
 			children = (
-				34A92B13207DE86200572648 /* AppDelegate.h */,
-				34A92B14207DE86200572648 /* AppDelegate.m */,
-				34A92B16207DE86200572648 /* ViewController.h */,
-				34A92B17207DE86200572648 /* ViewController.m */,
-				34A92B19207DE86200572648 /* Main.storyboard */,
-				34A92B1C207DE86200572648 /* Assets.xcassets */,
-				34A92B1E207DE86200572648 /* LaunchScreen.storyboard */,
+				34F6E76E20C01B9F00FABC5F /* Classes */,
+				34A92B49207DE9EB00572648 /* Base */,
+				34A92B48207DE95600572648 /* Common */,
+				343008C12081A03C00447992 /* ThirdParty */,
+				3475422120F5DC5E007F384B /* PreviousFile */,
+				3475422020F5D9ED007F384B /* Other */,
 				34A92B21207DE86200572648 /* Info.plist */,
 				34A92B22207DE86200572648 /* main.m */,
 			);
@@ -3219,13 +3254,6 @@
 		34A92B2B207DE86200572648 /* BuXiaoShengTests */ = {
 			isa = PBXGroup;
 			children = (
-				34F6E76E20C01B9F00FABC5F /* Classes */,
-				34A92B47207DE93C00572648 /* Model */,
-				34A92B45207DE91300572648 /* ViewController */,
-				34A92B46207DE93600572648 /* View */,
-				343008C12081A03C00447992 /* ThirdParty(第三方) */,
-				34A92B49207DE9EB00572648 /* Base */,
-				34A92B48207DE95600572648 /* Common */,
 				34A92B2C207DE86200572648 /* BuXiaoShengTests.m */,
 				34A92B2E207DE86200572648 /* Info.plist */,
 			);
@@ -3244,6 +3272,8 @@
 		34A92B45207DE91300572648 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3475421B20F5D9A7007F384B /* warehouse(仓库) */,
+				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
 				343747F3209460DF00C64F4C /* setting(设置) */,
 			);
 			path = ViewController;
@@ -3896,7 +3926,6 @@
 				34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */,
 				34195FA520CD1C4800524F20 /* expend(支出) */,
 				3455F68320CA799500579521 /* incomeOrder(收入单) */,
-				3483FDFA20ABCB7100645B15 /* clientManager(客户管理) */,
 				3433D0BB20B557EF003FFC16 /* deal(开单) */,
 				34F4B48820BBA46B0017003E /* clientDemand(客户需求) */,
 				343008D62081AC3D00447992 /* Home(首页) */,
@@ -3906,8 +3935,9 @@
 				3479056520C50930008C835C /* assign(指派发货) */,
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
 			);
-			path = Classes;
-			sourceTree = "<group>";
+			name = Classes;
+			path = BuXiaoShengTests/Classes;
+			sourceTree = SOURCE_ROOT;
 		};
 		34FB1E7120BD4A9D004D18C2 /* Calendar(日历) */ = {
 			isa = PBXGroup;
@@ -4504,6 +4534,7 @@
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				344C488920D0F07200BEC002 /* LZMarketModel.m in Sources */,
 				34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */,
+				3475421E20F5D9A7007F384B /* LLProcessChildViewVc.m in Sources */,
 				342AF21120D4C09900A1DDC4 /* LZCustomerArrearsVC.m in Sources */,
 				34EA48F920CFAA8C0086FF79 /* LZStockTrackingVC.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
@@ -5060,6 +5091,7 @@
 				B58BF6F520A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
 				B5050669209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				3465C9FD20DC9A9700BAE415 /* FSCalendarAppearance.m in Sources */,
+				3475421F20F5D9A7007F384B /* LLProcessChildViewVc.m in Sources */,
 				B50505BA209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				34EA48F220CFA1690086FF79 /* LZDidBugAndProcessUntreatedCell.m in Sources */,
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
@@ -5303,7 +5335,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 48WVJV32K7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5326,7 +5358,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 48WVJV32K7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
