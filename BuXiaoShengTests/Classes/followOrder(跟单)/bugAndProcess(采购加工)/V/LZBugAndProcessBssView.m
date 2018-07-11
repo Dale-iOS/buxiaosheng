@@ -30,13 +30,17 @@
 }
 
 - (void)setupUI{
-    self.tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
     self.tableView .delegate = self;
     self.tableView .dataSource = self;
     //隐藏分割线
     self.tableView .separatorStyle = NO;
     [self addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.and.right.equalTo(self);
+        make.bottom.equalTo(self).offset(-45);
+    }];
 }
 
 #pragma mark ---- 网络请求 ----

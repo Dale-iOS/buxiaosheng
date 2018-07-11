@@ -17,7 +17,7 @@
 
 @interface LLDyeingSectionView : UITableViewHeaderFooterView
 @property (nonatomic,assign) NSInteger  section;
-@property (nonatomic,weak) id<sectionViewDelegate>  delegate;
+@property (nonatomic,weak) id<sectionViewDelegate> delegate;
 
 @property (nonatomic,strong) UIButton * foldingBtn;
 @end
