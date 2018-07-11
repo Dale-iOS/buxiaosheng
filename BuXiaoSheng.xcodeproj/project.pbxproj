@@ -1864,7 +1864,7 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		342AF21320D51AAE00A1DDC4 /* 模块首页 */ = {
+		342AF21320D51AAE00A1DDC4 /* PartHome(模块首页) */ = {
 			isa = PBXGroup;
 			children = (
 				3480AA9D20E3A73600053C5D /* 设置 */,
@@ -1872,7 +1872,7 @@
 				342AF21520D51AC200A1DDC4 /* 财务 */,
 				342AF21420D51ABD00A1DDC4 /* 仓库 */,
 			);
-			path = "模块首页";
+			path = "PartHome(模块首页)";
 			sourceTree = "<group>";
 		};
 		342AF21420D51ABD00A1DDC4 /* 仓库 */ = {
@@ -2010,7 +2010,7 @@
 			isa = PBXGroup;
 			children = (
 				3467BA3B20EC9BE8004C0B24 /* M */,
-				3467BA3A20EC9BE4004C0B24 /* V */,
+				3475425320F5F5E6007F384B /* V */,
 				3467BA3920EC9BDF004C0B24 /* C */,
 			);
 			path = "Home(首页)";
@@ -2019,7 +2019,7 @@
 		3433D0BB20B557EF003FFC16 /* deal(开单) */ = {
 			isa = PBXGroup;
 			children = (
-				347B58C120E62238008911A2 /* M */,
+				3475425220F5F5DA007F384B /* M */,
 				347B58C020E62234008911A2 /* V */,
 				347B58BF20E6222C008911A2 /* C */,
 			);
@@ -2322,13 +2322,6 @@
 			path = C;
 			sourceTree = "<group>";
 		};
-		3467BA3A20EC9BE4004C0B24 /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
 		3467BA3B20EC9BE8004C0B24 /* M */ = {
 			isa = PBXGroup;
 			children = (
@@ -2341,10 +2334,10 @@
 		3467BA3C20EC9C38004C0B24 /* login(登录) */ = {
 			isa = PBXGroup;
 			children = (
-				3467BA4020EC9C89004C0B24 /* welcome */,
 				3467BA3F20EC9C4B004C0B24 /* M */,
-				3467BA3E20EC9C47004C0B24 /* V */,
+				3475425020F5F5A7007F384B /* V */,
 				3467BA3D20EC9C43004C0B24 /* C */,
+				3467BA4020EC9C89004C0B24 /* welcome */,
 			);
 			path = "login(登录)";
 			sourceTree = "<group>";
@@ -2358,13 +2351,6 @@
 				343B180520A421FF00349A6D /* AlterPassworddViewController.m */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		3467BA3E20EC9C47004C0B24 /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		3467BA3F20EC9C4B004C0B24 /* M */ = {
@@ -2475,14 +2461,14 @@
 			path = "choose(各种选择)";
 			sourceTree = "<group>";
 		};
-		347541F920F5A63A007F384B /* 退单(backOrder) */ = {
+		347541F920F5A63A007F384B /* backOrder(退单) */ = {
 			isa = PBXGroup;
 			children = (
 				347541FC20F5A64C007F384B /* M */,
 				347541FB20F5A647007F384B /* V */,
 				347541FA20F5A642007F384B /* C */,
 			);
-			path = "退单(backOrder)";
+			path = "backOrder(退单)";
 			sourceTree = "<group>";
 		};
 		347541FA20F5A642007F384B /* C */ = {
@@ -2520,7 +2506,7 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475420020F5A8D9007F384B /* 跟单(followOrder) */ = {
+		3475420020F5A8D9007F384B /* followOrder(跟单) */ = {
 			isa = PBXGroup;
 			children = (
 				3475420420F5A9BF007F384B /* M */,
@@ -2528,7 +2514,7 @@
 				3475420220F5A9B0007F384B /* C */,
 				3427A4FC20CE6CBC00369650 /* bugAndProcess(采购加工) */,
 			);
-			path = "跟单(followOrder)";
+			path = "followOrder(跟单)";
 			sourceTree = "<group>";
 		};
 		3475420220F5A9B0007F384B /* C */ = {
@@ -2547,14 +2533,14 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475420520F5AB7E007F384B /* 织染需求(DyeingDemand) */ = {
+		3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */ = {
 			isa = PBXGroup;
 			children = (
-				3475420820F5AB91007F384B /* M */,
+				3475424F20F5F596007F384B /* M */,
 				3475420720F5AB8C007F384B /* V */,
 				3475420620F5AB88007F384B /* C */,
 			);
-			path = "织染需求(DyeingDemand)";
+			path = "DyeingDemand(织染需求)";
 			sourceTree = "<group>";
 		};
 		3475420620F5AB88007F384B /* C */ = {
@@ -2579,21 +2565,14 @@
 			path = V;
 			sourceTree = "<group>";
 		};
-		3475420820F5AB91007F384B /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3475420A20F5AD5C007F384B /* 仓库(warehouse) */ = {
+		3475420A20F5AD5C007F384B /* warehouse(仓库) */ = {
 			isa = PBXGroup;
 			children = (
 				3475420D20F5AD72007F384B /* M */,
-				3475420C20F5AD6E007F384B /* V */,
+				3475424E20F5F57E007F384B /* V */,
 				3475420B20F5AD6A007F384B /* C */,
 			);
-			path = "仓库(warehouse)";
+			path = "warehouse(仓库)";
 			sourceTree = "<group>";
 		};
 		3475420B20F5AD6A007F384B /* C */ = {
@@ -2605,13 +2584,6 @@
 				34EE5D9B20A6D32600A2C9B5 /* AlterWarehouseViewController.m */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		3475420C20F5AD6E007F384B /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		3475420D20F5AD72007F384B /* M */ = {
@@ -2888,14 +2860,14 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475423520F5EC4E007F384B /* 已隐藏store(店铺) */ = {
+		3475423520F5EC4E007F384B /* store(已隐藏的店铺) */ = {
 			isa = PBXGroup;
 			children = (
 				3475423820F5EC72007F384B /* M */,
 				3475423720F5EC6E007F384B /* V */,
 				3475423620F5EC69007F384B /* C */,
 			);
-			path = "已隐藏store(店铺)";
+			path = "store(已隐藏的店铺)";
 			sourceTree = "<group>";
 		};
 		3475423620F5EC69007F384B /* C */ = {
@@ -2990,6 +2962,48 @@
 			sourceTree = "<group>";
 		};
 		3475424D20F5F4A6007F384B /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3475424E20F5F57E007F384B /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3475424F20F5F596007F384B /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3475425020F5F5A7007F384B /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3475425120F5F5CF007F384B /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3475425220F5F5DA007F384B /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3475425320F5F5E6007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -3119,13 +3133,6 @@
 				347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */,
 			);
 			path = V;
-			sourceTree = "<group>";
-		};
-		347B58C120E62238008911A2 /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
 			sourceTree = "<group>";
 		};
 		3480AA9D20E3A73600053C5D /* 设置 */ = {
@@ -3640,7 +3647,7 @@
 		34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */ = {
 			isa = PBXGroup;
 			children = (
-				34EA48F620CFAA680086FF79 /* M */,
+				3475425120F5F5CF007F384B /* M */,
 				34EA48F520CFAA640086FF79 /* V */,
 				34EA48F420CFAA600086FF79 /* C */,
 			);
@@ -3665,13 +3672,6 @@
 				343747EE2094207F00C64F4C /* StockTrackingCell.m */,
 			);
 			path = V;
-			sourceTree = "<group>";
-		};
-		34EA48F620CFAA680086FF79 /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
 			sourceTree = "<group>";
 		};
 		34EA490320CFE3340086FF79 /* Audit(审批) */ = {
@@ -3859,23 +3859,23 @@
 		34F6E76E20C01B9F00FABC5F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3475423520F5EC4E007F384B /* 已隐藏store(店铺) */,
+				3475423520F5EC4E007F384B /* store(已隐藏的店铺) */,
 				3475423020F5E783007F384B /* recipe(配方表) */,
 				3475422C20F5E6A0007F384B /* company(厂商) */,
 				3475422820F5E631007F384B /* client(客户) */,
 				3475422420F5E576007F384B /* product(产品资料) */,
 				3475421220F5AF2A007F384B /* subject(科目) */,
 				3475420E20F5AE1A007F384B /* AuditManager(审批人管理) */,
-				3475420A20F5AD5C007F384B /* 仓库(warehouse) */,
-				3475420520F5AB7E007F384B /* 织染需求(DyeingDemand) */,
-				3475420020F5A8D9007F384B /* 跟单(followOrder) */,
-				347541F920F5A63A007F384B /* 退单(backOrder) */,
+				3475420A20F5AD5C007F384B /* warehouse(仓库) */,
+				3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */,
+				3475420020F5A8D9007F384B /* followOrder(跟单) */,
+				347541F920F5A63A007F384B /* backOrder(退单) */,
 				3467BA3C20EC9C38004C0B24 /* login(登录) */,
 				3480AA9E20E3A7CD00053C5D /* organization(组织架构) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
 				349938F320E0D5500036C8EE /* recipe(配方表) */,
 				346F6DD120DFA4210016FA8D /* product(产品资料) */,
-				342AF21320D51AAE00A1DDC4 /* 模块首页 */,
+				342AF21320D51AAE00A1DDC4 /* PartHome(模块首页) */,
 				3420776120D3EBF3006EA057 /* checkReceipt(客户对账表) */,
 				34D5EB0220D2AA11009D9D7C /* CustomerArrears(客户欠款表) */,
 				34D5EAEE20D252E8009D9D7C /* bankDetail(银行明细) */,
