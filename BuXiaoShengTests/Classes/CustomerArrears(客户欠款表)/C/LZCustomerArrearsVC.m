@@ -7,7 +7,6 @@
 //  客户欠款表页面
 
 #import "LZCustomerArrearsVC.h"
-#import "CustomerArrearsTableViewCell.h"
 #import "LZChooseArrearClientVC.h"
 #import "LZArrearClientModel.h"
 #import "LZArrearClientCell.h"
