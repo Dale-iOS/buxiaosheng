@@ -1831,6 +1831,14 @@
 		3427A50220CE6D6D00369650 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				B5050666209ABE2300CE7E4D /* LLDyeingSectionView.h */,
+				B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */,
+				B505066A209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.h */,
+				B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */,
+				B505066E209ABEE200CE7E4D /* LLDyeingCell.h */,
+				B505066F209ABEE200CE7E4D /* LLDyeingCell.m */,
+				B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */,
+				B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */,
 				3427A50420CE918F00369650 /* LZBugAndProcessUntreatedCell.h */,
 				3427A50520CE918F00369650 /* LZBugAndProcessUntreatedCell.m */,
 				34EA48EF20CFA1690086FF79 /* LZDidBugAndProcessUntreatedCell.h */,
@@ -2145,14 +2153,6 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		34494DEE20917A0F00BDB309 /* warehouse(仓库) */ = {
-			isa = PBXGroup;
-			children = (
-				B5050665209ABDF600CE7E4D /* Dyeing制造染色 */,
-			);
-			path = "warehouse(仓库)";
-			sourceTree = "<group>";
-		};
 		344C48AB20D148D100BEC002 /* paymentReceipt(付款) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2418,7 +2418,7 @@
 			isa = PBXGroup;
 			children = (
 				346F6DD420DFA4320016FA8D /* M */,
-				346F6DD320DFA42E0016FA8D /* V */,
+				3475424D20F5F4A6007F384B /* V */,
 				346F6DD220DFA4270016FA8D /* C */,
 			);
 			path = "product(产品资料)";
@@ -2435,13 +2435,6 @@
 				344A5D2220E228950058E319 /* LZAlterProductDataVC.m */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		346F6DD320DFA42E0016FA8D /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		346F6DD420DFA4320016FA8D /* M */ = {
@@ -2726,14 +2719,6 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		3475422120F5DC5E007F384B /* PreviousFile */ = {
-			isa = PBXGroup;
-			children = (
-				34A92B46207DE93600572648 /* View */,
-			);
-			path = PreviousFile;
-			sourceTree = "<group>";
-		};
 		3475422220F5DFA1007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
@@ -3002,6 +2987,13 @@
 			children = (
 			);
 			path = M;
+			sourceTree = "<group>";
+		};
+		3475424D20F5F4A6007F384B /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
 			sourceTree = "<group>";
 		};
 		3479056520C50930008C835C /* assign(指派发货) */ = {
@@ -3366,7 +3358,6 @@
 				34A92B49207DE9EB00572648 /* Base */,
 				34A92B48207DE95600572648 /* Common */,
 				343008C12081A03C00447992 /* ThirdParty */,
-				3475422120F5DC5E007F384B /* PreviousFile */,
 				3475422020F5D9ED007F384B /* Other */,
 				34A92B21207DE86200572648 /* Info.plist */,
 				34A92B22207DE86200572648 /* main.m */,
@@ -3390,14 +3381,6 @@
 				34A92B39207DE86200572648 /* Info.plist */,
 			);
 			path = BuXiaoShengUITests;
-			sourceTree = "<group>";
-		};
-		34A92B46207DE93600572648 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				34494DEE20917A0F00BDB309 /* warehouse(仓库) */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		34A92B48207DE95600572648 /* Common */ = {
@@ -4111,21 +4094,6 @@
 				B505059D209AB2DA00CE7E4D /* XLFormValidatorProtocol.h */,
 			);
 			path = Validation;
-			sourceTree = "<group>";
-		};
-		B5050665209ABDF600CE7E4D /* Dyeing制造染色 */ = {
-			isa = PBXGroup;
-			children = (
-				B5050666209ABE2300CE7E4D /* LLDyeingSectionView.h */,
-				B5050667209ABE2300CE7E4D /* LLDyeingSectionView.m */,
-				B505066A209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.h */,
-				B505066B209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m */,
-				B505066E209ABEE200CE7E4D /* LLDyeingCell.h */,
-				B505066F209ABEE200CE7E4D /* LLDyeingCell.m */,
-				B5050675209AE57A00CE7E4D /* LLDyeingCollectionViewCell.h */,
-				B5050676209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m */,
-			);
-			path = "Dyeing制造染色";
 			sourceTree = "<group>";
 		};
 		B531EF0220BF8FE90028F18B /* FSCalendar */ = {
