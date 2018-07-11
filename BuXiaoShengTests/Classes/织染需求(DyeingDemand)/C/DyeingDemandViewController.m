@@ -7,9 +7,6 @@
 //  织染需求页面
 
 #import "DyeingDemandViewController.h"
-#import "HRTabView.h"
-#import "HRTableViewOne.h"
-
 #import "SegmentDyeingViewController.h"
 #import "SegmentDyeingView.h"
 #import "SegmentProcessView.h"

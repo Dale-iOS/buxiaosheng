@@ -8,7 +8,6 @@
 
 #import "CustomerReconciliationViewController.h"
 #import "CustomerReconciliationTableViewCell.h"
-#import "ReconciliationDetailViewController.h"
 #import "UITextField+PopOver.h"
 #import "LZCheckReceiptModel.h"
 #import "LZCollectionCheckVC.h"
@@ -263,8 +262,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ReconciliationDetailViewController *vc = [[ReconciliationDetailViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
     LZCheckReceiptModel *model = _lists[indexPath.row];
 
     if ([model.type integerValue] == 0) {

@@ -16,7 +16,6 @@
 #import "NowQuarterViewController.h"
 #import "NowYearViewController.h"
 #import "FinancialCollectionViewCell.h"
-#import "IncomeViewController.h"
 #import "SpendingViewController.h"
 #import "AuditViewController.h"
 #import "PaymentOrderViewController.h"
