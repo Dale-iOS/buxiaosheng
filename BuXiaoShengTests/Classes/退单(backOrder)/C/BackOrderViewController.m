@@ -7,7 +7,6 @@
 //  退单页面
 
 #import "BackOrderViewController.h"
-#import "SalesDemandListView.h"
 #import "LZHTableView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
@@ -19,9 +18,6 @@
 
 @interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
-
-/////销售需求列表View
-//@property (nonatomic, strong) SalesDemandListView *demandListView;
 
 ///客户名字
 @property (nonatomic, strong) TextInputCell *nameCell;

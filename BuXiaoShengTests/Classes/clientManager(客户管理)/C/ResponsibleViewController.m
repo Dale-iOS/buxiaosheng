@@ -12,7 +12,6 @@
 #import "ClientManagerTableViewCell.h"
 #import "SearchClientViewController.h"
 #import "AddClienViewController.h"
-#import "ChooseAddressVC.h"
 #import "LZChooseLabelVC.h"
 
 @interface ResponsibleViewController ()<UITableViewDelegate,UITableViewDataSource>

@@ -13,7 +13,6 @@
 #import "LLDyeingCollectionContainerCell.h"
 #import "LZOutboundCell.h"
 #import "LLOutboundFooterView.h"
-#import "LZDrawerChooseView.h"
 
 @interface OutboundViewController ()<UITableViewDelegate,UITableViewDataSource,LZOutboundSectionViewDelegate>
 @property(nonatomic,strong)LZOutboundModel *model;

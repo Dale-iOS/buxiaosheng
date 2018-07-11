@@ -8,7 +8,6 @@
 
 #import "SalesDemandViewController.h"
 #import "SalesDemandCell.h"
-#import "SalesDemandListView.h"
 #import "TextInputCell.h"
 #import "TextInputTextView.h"
 #import "UITextView+Placeholder.h"
@@ -17,7 +16,6 @@
 #import "LZSearchVC.h"
 #import "UITextField+PopOver.h"
 #import "salesDemandModel.h"
-#import "LZDrawerChooseView.h"
 #import "LZSearchBar.h"
 #import "LZPickerView.h"
 #import "LZSaleOrderListVC.h"
@@ -28,9 +26,6 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) NSMutableArray <productListModel *>* dataMuArray;
-///销售需求列表View
-@property (nonatomic, strong) SalesDemandListView *demandListView;
-
 ///客户名字
 @property (nonatomic, strong) TextInputCell *nameCell;
 ///客户电话

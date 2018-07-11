@@ -9,7 +9,6 @@
 #import "SetCompanyViewController.h"
 #import "SGPagingView.h"
 #import "SupplierCompanyViewController.h"
-
 #import "AddSetCompanyViewController.h"
 
 @interface SetCompanyViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>

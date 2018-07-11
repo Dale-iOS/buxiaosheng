@@ -10,7 +10,6 @@
 #import "LZSearchBar.h"
 #import "LZInventoryDetailCell.h"
 #import "LZInventoryDetailModel.h"
-//#import "LZDrawerChooseView.h"
 #import "HXTagsView.h"
 #import "LLCashBankModel.h"
 #import "LZChooseInventoryVC.h"
