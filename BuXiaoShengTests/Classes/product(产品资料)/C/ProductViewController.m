@@ -28,19 +28,18 @@
     [super viewDidLoad];
     
     [self setupUI];
-    [self setupData];
+//    [self setupData];
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self setupData];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupData];
+}
 
 - (void)setupUI
 {
-
     self.navigationItem.titleView = [Utility navTitleView:@"产品资料"];
     
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screen3")];
@@ -210,7 +209,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 

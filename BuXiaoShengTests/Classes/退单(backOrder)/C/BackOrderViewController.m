@@ -15,6 +15,7 @@
 #import "LLBackOrderCotentCell.h"
 #import "LLBackOrdeContentModel.h"
 #import "salesDemandModel.h"
+#import "LZChooseProductVC.h"
 
 @interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
@@ -128,6 +129,10 @@
         return 50;
     }
     return self.backOrders[indexPath.row].seleted ?  (10 * 60 +(20*3)) : 0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.navigationController pushViewController:[LZChooseProductVC new] animated:YES];
 }
 
  /// MARK: ---- 新增一条的点击

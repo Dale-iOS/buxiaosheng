@@ -288,6 +288,8 @@
 		347541FE20F5A840007F384B /* LZClientDemandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F4B48E20BBAE650017003E /* LZClientDemandModel.m */; };
 		347541FF20F5A867007F384B /* LZOutboundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346EF4A020BE73D60078C087 /* LZOutboundModel.m */; };
 		3475420920F5AD3B007F384B /* SalesDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */; };
+		3475421820F5B1BA007F384B /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421720F5B1BA007F384B /* LZChooseProductVC.m */; };
+		3475421920F5B1BA007F384B /* LZChooseProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3475421720F5B1BA007F384B /* LZChooseProductVC.m */; };
 		3479056B20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
 		3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056A20C50973008C835C /* LZAssignDeliveryModel.m */; };
 		3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479056E20C509F1008C835C /* AssignDeliveryCell.m */; };
@@ -1086,6 +1088,8 @@
 		3471DCB120D77BB9002052EE /* LZShipmentBigBoardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZShipmentBigBoardView.m; sourceTree = "<group>"; };
 		3471DCB520D7883A002052EE /* LZChoosseWorkerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChoosseWorkerVC.h; sourceTree = "<group>"; };
 		3471DCB620D7883A002052EE /* LZChoosseWorkerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChoosseWorkerVC.m; sourceTree = "<group>"; };
+		3475421620F5B1BA007F384B /* LZChooseProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseProductVC.h; sourceTree = "<group>"; };
+		3475421720F5B1BA007F384B /* LZChooseProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseProductVC.m; sourceTree = "<group>"; };
 		3479056920C50973008C835C /* LZAssignDeliveryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryModel.h; sourceTree = "<group>"; };
 		3479056A20C50973008C835C /* LZAssignDeliveryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAssignDeliveryModel.m; sourceTree = "<group>"; };
 		3479056D20C509F1008C835C /* AssignDeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignDeliveryCell.h; sourceTree = "<group>"; };
@@ -2608,6 +2612,8 @@
 				343207C620A05A8E005A5D23 /* BackOrderViewController.m */,
 				B58BF6FA20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.h */,
 				B58BF6FB20A17CBC00A8B92B /* LLSalesDemandSideSlipVc.m */,
+				3475421620F5B1BA007F384B /* LZChooseProductVC.h */,
+				3475421720F5B1BA007F384B /* LZChooseProductVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4791,6 +4797,7 @@
 				34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
 				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
+				3475421820F5B1BA007F384B /* LZChooseProductVC.m in Sources */,
 				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
@@ -5103,6 +5110,7 @@
 				3468B05920EB84B1003726ED /* ChooseLablesCell.m in Sources */,
 				3480AAAD20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				347541FD20F5A803007F384B /* salesDemandModel.m in Sources */,
+				3475421920F5B1BA007F384B /* LZChooseProductVC.m in Sources */,
 				3492FD9120DA7422008464BB /* LZPurchaseDetailModel.m in Sources */,
 				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
 				3480AAA920E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
