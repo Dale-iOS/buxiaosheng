@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol OrderTableViewCellDelegate <NSObject>
-- (void)didClickShipmentBtnInCell:(UITableViewCell *)cell;
 - (void)didClickProcurementInfoBtnInCell:(UITableViewCell *)cell;
+- (void)didClickShipmentBtnInCell:(LZOrderTrackingModel *)model;
 @end
 
 @interface OrderTableViewCell : UITableViewCell

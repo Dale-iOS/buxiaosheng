@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZOrderTrackingModel.h"
+#import "BigGoodsAndBoardModel.h"
 
 @interface LZShipmentBigGoodsView : UIView
-
+@property (nonatomic, strong) LZOrderTrackingModel *model;
+@property (nonatomic, copy) void(^didClickCompltBlock)(BigGoodsAndBoardModel *boardModel);
 @end

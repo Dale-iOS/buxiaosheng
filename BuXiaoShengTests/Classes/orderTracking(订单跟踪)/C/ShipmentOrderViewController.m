@@ -165,8 +165,9 @@
 }
 
 //点击开单按钮
-- (void)didClickShipmentBtnInCell:(UITableViewCell *)cell{
-    LZShipmentVC *vc = [[LZShipmentVC alloc]init];
+- (void)didClickShipmentBtnInCell:(LZOrderTrackingModel *)model{
+    LZShipmentVC *vc = [[LZShipmentVC alloc] init];
+    vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

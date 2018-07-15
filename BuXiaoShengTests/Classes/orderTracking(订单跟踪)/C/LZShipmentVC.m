@@ -9,12 +9,15 @@
 #import "LZShipmentVC.h"
 #import "LZShipmentBigGoodsView.h"
 #import "LZShipmentBigBoardView.h"
+#import "BigGoodsAndBoardModel.h"
 
 @interface LZShipmentVC ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UISegmentedControl *sgc;
 @property(nonatomic,strong)LZShipmentBigGoodsView *shipmentBigGoodsView;//大货
-@property(nonatomic,strong)LZShipmentBigBoardView *shipmentBigBoardView;//板布
+@property(nonatomic,strong)LZShipmentBigGoodsView *shipmentBigBoardView;//板布
+//@property(nonatomic,strong)LZShipmentBigBoardView *shipmentBigBoardView;//板布
+@property(nonatomic,strong)BigGoodsAndBoardModel *bigGoodsAndBoardModel;
 @end
 
 @implementation LZShipmentVC
@@ -72,11 +75,47 @@
         make.bottom.equalTo(self.view);
     }];
     
+    WEAKSELF;
     _shipmentBigGoodsView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -50)];
+    _shipmentBigGoodsView.model = _model;
+    /// 网络请求 在VC 里面操作最好
+    _shipmentBigGoodsView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
+        weakSelf.bigGoodsAndBoardModel = boardModel;
+        [weakSelf submitRequest];
+        
+    };
     [_scrollView addSubview:_shipmentBigGoodsView];
-    _shipmentBigBoardView = [[LZShipmentBigBoardView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -50)];
+    
+    
+    
+    _shipmentBigBoardView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -50)];
+    _shipmentBigBoardView.model = _model;
+    _shipmentBigBoardView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
+        weakSelf.bigGoodsAndBoardModel = boardModel;
+        [weakSelf submitRequest];
+        
+    };
     [_scrollView addSubview:_shipmentBigBoardView];
     
+}
+
+#pragma mark --- 网络请求 ---
+- (void)submitRequest
+{
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:[BXSUser currentUser].companyId forKey:@"companyId"];
+    [param setObject:_sgc.selectedSegmentIndex == 0? @"大货":@"板布" forKey:@"type"];
+    
+    [BXSHttp requestPOSTWithAppURL:@"sale/outproduct_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 #pragma mark --- 点击事件 ----

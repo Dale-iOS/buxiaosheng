@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZOrderTrackingModel.h"
 
 @interface LZShipmentVC : BaseViewController
-
+@property (nonatomic, strong) LZOrderTrackingModel *model;
 @end

@@ -377,8 +377,9 @@
 #pragma mark --- 点击事件 ---
 //开单按钮事件
 - (void)shipmentBtnClick{
+
     if ([self.delegate respondsToSelector:@selector(didClickShipmentBtnInCell:)]) {
-        [self.delegate didClickShipmentBtnInCell:self];
+        [self.delegate didClickShipmentBtnInCell:_model];
     }
 }
 
