@@ -27,12 +27,12 @@
 {
     [super viewWillAppear:YES];
     
-    NSLog(@"✈️✈️ 界面新建= %@ ✈️✈️",[super class]);
+//    NSLog(@"✈️✈️ 界面新建= %@ ✈️✈️",[super class]);
 }
 
 
 -(void)dealloc{
-    NSLog(@"💣💣 界面销毁= %@ 💣💣",[super class]);
+//    NSLog(@"💣💣 界面销毁= %@ 💣💣",[super class]);
 }
 
 - (void)didReceiveMemoryWarning {

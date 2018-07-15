@@ -21,6 +21,11 @@
     baseParam[@"sign"] = [self sortObjectsAccordingToValueMD5With:baseParam];
      [self logURL:requsetURL withDict:baseParam OnHttpType:@"POST"];
     [LLNetWorkTools.shareTools.param(baseParam).urlStr(requsetURL) POSTWithSucces:^(id responseObject) {
+        
+#ifdef DEBUG
+        [self debug:responseObject];
+#endif
+        
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
         if ([baseModel.code isEqualToString:@"9000"]) {
             [self setupLoginStateFildWithMsg:baseModel.msg];
@@ -44,6 +49,12 @@
     [self logURL:requsetURL withDict:baseParam OnHttpType:@"GET"];
     [LLNetWorkTools.shareTools.urlStr(requsetURL).param(baseParam) GETWithSucces:^(id responseObject)
      {
+         
+#ifdef DEBUG
+         [self debug:responseObject];
+         
+#endif
+         
          LLBaseModel * baseModel = [LLBaseModel LLMJParse:responseObject];
          if ([baseModel.code isEqualToString:@"9000"]) {
              [self setupLoginStateFildWithMsg:baseModel.msg];
@@ -179,12 +190,18 @@
     }];
     
     if (dict) {
-        NSLog(@"\n===================================\n    .---- -. -. .  .   .\n   ( .',----- - - ' '\n    |_/      ;--:-|         __-------%@---------__\n    %@\n c(_ ..(_ ..(_ ..( /,,,,,,] | |___||___||___||___| |\n ,____________'_|,L______],|______________________|\n/;_(@)(@)==(@)(@)   (o)(o)      (o)^(o)--(o)^(o)\n%@\n===================================\n",POSTandGET,urlMStr,dict);
+        NSLog(@"\n============== 😍😍我是分割线😍😍 ==============\n--------- %@ ---------\n请求链接：\n<<<<<<<<<<<<<<<<\n%@\n>>>>>>>>>>>>>>>>> \n%@ \n============== 🌹🌹完结撒花🌹🌹 ==============\n",POSTandGET,urlMStr,dict);
     }else{
-        NSLog(@"\n    .---- -. -. .  .   .\n   ( .',----- - - ' '\n    |_/      ;--:-|         __-------%@---------__\n    %@\n c(_ ..(_ ..(_ ..( /,,,,,,] | |___||___||___||___| |\n ,____________'_|,L______],|______________________|\n/;_(@)(@)==(@)(@)   (o)(o)      (o)^(o)--(o)^(o)\n",POSTandGET,urlMStr);
+        NSLog(@"\n============== 😱😱我是分割线😱😱 ==============\n--------- %@ ---------\n请求链接：\n<<<<<<<<<<<<<<<<\n%@\n>>>>>>>>>>>>>>>>> \n============== 🥀🥀完结撒花🥀🥀 ==============\n",POSTandGET,urlMStr);
     }
     return urlMStr;
+}
+
++(void)debug:(NSString *)strdata {
     
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:strdata options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"\n============== 🔥🔥我是分割线🔥🔥 ==============\n《《《《《 请求后台返回的数 》》》》》\n%@\n============== 🌹🌹完结撒花🌹🌹 ==============\n",jsonStr);
 }
 
 @end
