@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340E208820FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
+		340E208920FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
 		3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */; };
 		3411F2A72085C3B800C448FD /* ResponsibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A62085C3B800C448FD /* ResponsibleViewController.m */; };
 		3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A92085C50700C448FD /* ClientManagerTableViewCell.m */; };
@@ -743,6 +745,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		340E208620FC8CB800E2602D /* LZSalesDemandVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSalesDemandVC.h; sourceTree = "<group>"; };
+		340E208720FC8CB800E2602D /* LZSalesDemandVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSalesDemandVC.m; sourceTree = "<group>"; };
 		3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientManagerViewController.h; sourceTree = "<group>"; };
 		3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientManagerViewController.m; sourceTree = "<group>"; };
 		3411F2A52085C3B800C448FD /* ResponsibleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResponsibleViewController.h; sourceTree = "<group>"; };
@@ -3170,6 +3174,8 @@
 			children = (
 				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
 				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
+				340E208620FC8CB800E2602D /* LZSalesDemandVC.h */,
+				340E208720FC8CB800E2602D /* LZSalesDemandVC.m */,
 				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
 				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
 				347B58C220E62273008911A2 /* LZSaleOrderListVC.h */,
@@ -4773,6 +4779,7 @@
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
 				3420775320D39532006EA057 /* LZArrearClientCell.m in Sources */,
+				340E208820FC8CB800E2602D /* LZSalesDemandVC.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
@@ -4908,6 +4915,7 @@
 				B577CEB520AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */,
 				34871CFB20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */,
 				3475420920F5AD3B007F384B /* SalesDemandCell.m in Sources */,
+				340E208920FC8CB800E2602D /* LZSalesDemandVC.m in Sources */,
 				34BCABF720E732A500C25BE5 /* TZTestCell.m in Sources */,
 				34D5EAE120D21011009D9D7C /* LZPaymentOrderListCell.m in Sources */,
 				3427A4F120CE507600369650 /* NSDate+BRPickerView.m in Sources */,

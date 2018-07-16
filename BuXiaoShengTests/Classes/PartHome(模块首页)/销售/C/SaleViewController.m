@@ -7,7 +7,8 @@
 //  销售首页
 
 #import "SaleViewController.h"
-#import "SalesDemandViewController.h"
+//#import "SalesDemandViewController.h"
+#import "LZSalesDemandVC.h"
 #import "OrderTrackingViewController.h"
 #import "LZVisitRecordViewController.h"
 #import "ClientManagerViewController.h"
@@ -127,7 +128,8 @@
     
     if ([model.paramsIos isEqualToString:@"beginOrder"]) {
         //开单
-        SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
+//        SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
+        LZSalesDemandVC *vc = [[LZSalesDemandVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         
     }
