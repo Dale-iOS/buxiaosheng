@@ -27,6 +27,7 @@ inhibit_all_warnings!
     pod 'TZImagePickerController'
     pod 'TTGTagCollectionView'
     pod 'GKPhotoBrowser'
+    pod 'Charts'
 #    pod 'BRPickerView'
 end
 
