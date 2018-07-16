@@ -11,8 +11,10 @@
 #import "LoginModel.h"
 #import "AlterPassworddViewController.h"
 
-@interface LoginViewController ()
-
+@interface LoginViewController ()<UITextFieldDelegate>
+{
+    UIButton *_emptyBtn;
+}
 ///登录输入框
 @property (nonatomic, strong)UITextField *loginTF;
 ///密码输入框
@@ -37,6 +39,7 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(loginBack)];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginTFChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(passwordNewTFChanged:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
@@ -81,7 +84,7 @@
         self.loginTF.text = saveUserID;
     }
     self.loginTF.leftView = loginLeftView;
-    self.loginTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    self.loginTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.loginTF.leftViewMode = UITextFieldViewModeAlways;
     self.loginTF.layer.cornerRadius = 22;
     self.loginTF.placeholder = @"手机号或ID";
@@ -91,8 +94,28 @@
     self.loginTF.textColor = [UIColor whiteColor];
     self.loginTF.layer.borderWidth = 0.5;
     self.loginTF.keyboardType = UIKeyboardTypeNumberPad;
+    self.loginTF.delegate = self;
+    //清空账号按钮
+    _emptyBtn = [[UIButton alloc]init];
+    //密码形式
+    [_emptyBtn setBackgroundImage:IMAGE(@"del_passworld") forState:UIControlStateNormal];
+    _emptyBtn.frame = CGRectMake(0, 5, 20, 20);
+    _emptyBtn.backgroundColor = [UIColor clearColor];
+    [_emptyBtn addTarget:self action:@selector(emptyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIView *emptyView = [[UIView alloc]init];
+    emptyView.backgroundColor = [UIColor clearColor];
+    emptyView.frame = CGRectMake(0, 0, 40, 40);
+    emptyView.userInteractionEnabled = YES;
+    emptyView.centerY = self.passwordTF.centerY;
+    [emptyView addSubview:_emptyBtn];
+    [_emptyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.and.centerY.equalTo(emptyView);
+        make.width.and.height.mas_offset(20);
+    }];
+    self.loginTF.rightView = emptyView;
+    self.loginTF.rightViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:self.loginTF];
-    
+
 
     //密码输入框
     self.passwordTF = [[UITextField alloc]initWithFrame:CGRectMake(30, 183, self.view.frame.size.width -60, 44)];
@@ -120,6 +143,11 @@
     rightView.userInteractionEnabled = YES;
     rightView.centerY = self.passwordTF.centerY;
     [rightView addSubview:rightBtn];
+    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.and.centerY.equalTo(rightView);
+        make.height.mas_offset(28);
+        make.width.mas_offset(23);
+    }];
     self.passwordTF.rightView = rightView;
     self.passwordTF.rightViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:self.passwordTF];
@@ -199,6 +227,11 @@
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 
+- (void)emptyBtnClick:(UIButton *)btn{
+    self.loginTF.text = nil;
+    [_emptyBtn setHidden:YES];
+}
+
 - (void)passwordBtnClick:(UIButton *)btn
 {
 //    [self.passwordTF resignFirstResponder];
@@ -213,7 +246,18 @@
 //    [self.passwordTF becomeFirstResponder];
 }
 
+
 #pragma mark --------- 监听事件 -----------
+- (void)loginTFChanged:(NSNotification *)notify
+{
+    //监听登录账号是否有输入 ->loginTF的右侧删除按钮的显示
+    if (self.loginTF.text.length >0) {
+        [_emptyBtn setHidden:NO];
+    }else if (self.loginTF.text.length ==0){
+        [_emptyBtn setHidden:YES];
+    }
+}
+
 - (void)passwordNewTFChanged:(NSNotification *)notify
 {
     //监听输入框是否都有内容，确认按钮样式变化
@@ -228,10 +272,17 @@
         _loginBtn.backgroundColor = [UIColor colorWithHexString:@"#cccccc"];
         [_loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         
-        
     }
-
 }
+
+//#pragma mark ---- uitextfielddelegate ----
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    if ([textField isEqual:self.loginTF]) {
+//        self.loginTF.rightView.hidden = NO;
+//        return YES;
+//    }
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
