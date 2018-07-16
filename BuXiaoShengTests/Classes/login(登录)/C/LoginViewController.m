@@ -218,12 +218,10 @@
 {
     //监听输入框是否都有内容，确认按钮样式变化
     if (self.loginTF.text.length >0 && self.passwordTF.text.length >=6) {
-        
 
         _loginBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
 
         [_loginBtn setTitleColor:[UIColor colorWithRed:62.0f/255.0f green:178.0f/255.0f blue:247.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-
         
     }else
     {
