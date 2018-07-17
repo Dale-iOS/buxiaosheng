@@ -5,7 +5,7 @@
 //  Created by lanlan on 2018/7/17.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //
-static NSString  *JPuchAppKey = @"928c89dbf2c75d7bb4581d97";
+static NSString  *JPuchAppKey = @"928c89dbf2c75wd7bb4581d97";
 static NSString  *channel = @"appStore";
 static BOOL isProduction = TRUE;
 #import "AppDelegate+LLJPuchAppDelegate.h"
