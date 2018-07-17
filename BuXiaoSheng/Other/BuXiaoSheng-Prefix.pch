@@ -38,6 +38,8 @@
 
 #define LLUserSaveKey @"LLUserSaveKey"
 
+#define LLJPushRegistrationID @"LLJPushRegistrationID"
+
 //#import "AdditionFrameworks.h"
 #endif /* BuXiaoSheng_Prefix_pch */
 

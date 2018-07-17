@@ -187,9 +187,10 @@
         BXS_Alert(@"密码必须大于或等于6位数");
         return;
     }
-    
+    NSString * JPushId = [[NSUserDefaults standardUserDefaults] objectForKey:LLJPushRegistrationID] ? : @"";
     NSDictionary *param = @{@"loginName":self.loginTF.text,
-                           @"password":[BXSHttp makeMD5:self.passwordTF.text]
+                           @"password":[BXSHttp makeMD5:self.passwordTF.text],
+                            @"registrationId" : JPushId
                            };
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         if ([[response objectForKey:@"code"] integerValue] == 200) {
