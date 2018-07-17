@@ -101,6 +101,7 @@
     [_emptyBtn setBackgroundImage:IMAGE(@"del_passworld") forState:UIControlStateNormal];
     _emptyBtn.frame = CGRectMake(0, 5, 20, 20);
     _emptyBtn.backgroundColor = [UIColor clearColor];
+    _emptyBtn.hidden = YES;
     [_emptyBtn addTarget:self action:@selector(emptyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     UIView *emptyView = [[UIView alloc]init];
     emptyView.backgroundColor = [UIColor clearColor];

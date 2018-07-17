@@ -34,23 +34,17 @@
 //        make.height.mas_equalTo(35);
 //    }];
     
-    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, 40, APPWidth *0.75, 40)];
-    self.searchBar.placeholder = @"输入搜索";
+    self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight -30, APPWidth *0.75, 40)];
+    self.searchBar.placeholder = @"输入颜色搜索";
     self.searchBar.textColor = Text33;
     self.searchBar.delegate = self;
     self.searchBar.iconImage = IMAGE(@"search1");
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self.view addSubview:self.searchBar];
-//    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(self.view).offset(5);
-//                make.top.equalTo(self.view).offset(20);
-//                make.right.equalTo(self.view);
-//                make.height.mas_equalTo(35);
-//            }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
-        make.top.equalTo(self.searchBar.mas_bottom).offset(12);
+        make.top.equalTo(self.searchBar.mas_bottom).offset(10);
     }];
     
     [self setupProductColorData];
