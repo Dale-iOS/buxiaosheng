@@ -37,7 +37,7 @@
 #define LLLoginStateNotification  @"LLLoginStateNotification"
 
 #define LLUserSaveKey @"LLUserSaveKey"
-
+#define LLUserPassWordSaveKey @"LLUserPassWordSaveKey"
 #define LLJPushRegistrationID @"LLJPushRegistrationID"
 
 //#import "AdditionFrameworks.h"

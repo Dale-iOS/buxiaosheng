@@ -203,6 +203,7 @@
             }
             
             [[NSUserDefaults standardUserDefaults] setObject:self.loginTF.text forKey:LLUserSaveKey];
+            [[NSUserDefaults standardUserDefaults]setObject:[BXSHttp makeMD5:self.passwordTF.text] forKey:LLUserPassWordSaveKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [BXSUser deleteUser];
             [BXSUser saveUser:self.loginModel];
