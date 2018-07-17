@@ -211,10 +211,7 @@
             UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
             [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
-
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
-        
-        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

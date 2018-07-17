@@ -114,7 +114,7 @@
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"收款单"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationRightClick) image:IMAGE(@"list")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationRightClick) image:IMAGE(@"new_lists")];
     
     [self setupSgc];
 }

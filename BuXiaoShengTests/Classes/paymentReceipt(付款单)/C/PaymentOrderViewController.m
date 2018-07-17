@@ -31,7 +31,7 @@
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"付款单"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"list")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"new_lists")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     NSArray *titleArr = @[@"供货商付款单", @"生产商付款单", @"加工商付款单"];

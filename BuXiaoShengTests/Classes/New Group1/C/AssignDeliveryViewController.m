@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"new_lists")];
    
     [self setupData];
     [self setupWorkerList];

@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"客户需求-未出库"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"search")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"new_lists")];
     
     [self setupUI];
 }

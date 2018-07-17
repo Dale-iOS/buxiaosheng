@@ -31,7 +31,7 @@
 
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:@"备货跟踪"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationRightClick) image:IMAGE(@"list")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationRightClick) image:IMAGE(@"new_lists")];
     
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;

@@ -35,12 +35,12 @@
         UIView *view = [[UIView alloc]init];
         view.backgroundColor = [UIColor whiteColor];
         view.layer.cornerRadius = 5.0f;
-        //        阴影的颜色
-        view.layer.shadowColor = [UIColor blackColor].CGColor;
-        //        阴影的透明度
-        view.layer.shadowOpacity = 0.6f;
-        //        阴影的偏移量
-        view.layer.shadowOffset = CGSizeMake(4,4);
+//        //        阴影的颜色
+//        view.layer.shadowColor = [UIColor blackColor].CGColor;
+//        //        阴影的透明度
+//        view.layer.shadowOpacity = 0.6f;
+//        //        阴影的偏移量
+//        view.layer.shadowOffset = CGSizeMake(4,4);
         [contentView addSubview:(bgView = view)];
     }
     return bgView;
@@ -232,7 +232,7 @@
 - (UIButton *)shipmentBtn{
     if (!shipmentBtn) {
         UIButton *btn = [[UIButton alloc]init];
-        [btn setTitle:@"开单开货" forState:UIControlStateNormal];
+        [btn setTitle:@"开单出货" forState:UIControlStateNormal];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.titleLabel.font = FONT(13);
         [btn setBackgroundColor:LZAppBlueColor];

@@ -28,7 +28,7 @@
     [super viewDidLoad];
    
     self.navigationItem.titleView = [Utility navTitleView:@"订单跟踪"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toSearch) image:IMAGE(@"search")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toSearch) image:IMAGE(@"new_lists")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setSgPageTitleView];

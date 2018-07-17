@@ -72,7 +72,7 @@
     
     self.navigationItem.titleView = [Utility navTitleView:@"日常支出登记"];
     self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toList) image:IMAGE(@"list")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toList) image:IMAGE(@"new_lists")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.datasource = [NSMutableArray array];

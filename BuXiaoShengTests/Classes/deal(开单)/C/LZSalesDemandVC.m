@@ -101,7 +101,7 @@
 {
     self.navigationItem.title = @"销售需求";
     self.view.backgroundColor = [UIColor whiteColor ];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"search")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"new_lists")];
     [self setupHeaderView];
     [self setupFooterView];
     

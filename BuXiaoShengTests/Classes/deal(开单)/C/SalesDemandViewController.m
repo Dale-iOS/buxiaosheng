@@ -92,7 +92,6 @@
     [self setupPayList];
 }
 
-
 - (void)setupUI
 {
     self.navigationItem.title = @"销售需求";
@@ -117,7 +116,6 @@
     self.nextBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
     [self.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [self.nextBtn addTarget:self action:@selector(nextBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.nextBtn.titleLabel.text = @"下一步";
     self.nextBtn.titleLabel.textColor = [UIColor whiteColor];
     
     [self.view addSubview:self.nextBtn];
@@ -481,7 +479,6 @@
         self.seletedTableView.dataSource = nil;
         self.seletedTableView = nil;
     }
-    
 }
 
 - (void) didClickColorTextField:(SalesDemandCell *)colorCell{

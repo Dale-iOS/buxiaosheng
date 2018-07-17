@@ -154,7 +154,7 @@
         _pieChartView.usePercentValuesEnabled = YES;//是否根据所提供的数据, 将显示数据转换为百分比格式
         _pieChartView.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
         _pieChartView.drawCenterTextEnabled = true;//是否显示区块文本
-        _pieChartView.drawHoleEnabled = true;//饼状图是否是空心
+        _pieChartView.drawHoleEnabled = false;//饼状图是否是空心
         _pieChartView.holeRadiusPercent = 0.6;//空心半径占比
         _pieChartView.holeColor = [UIColor clearColor];//空心颜色
         _pieChartView.transparentCircleRadiusPercent = 0.4;//半透明空心半径占比

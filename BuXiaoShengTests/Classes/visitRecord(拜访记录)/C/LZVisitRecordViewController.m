@@ -80,7 +80,7 @@
 - (void)setupUI{
     
     self.navigationItem.titleView = [Utility navTitleView:@"拜访记录"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(screenClick) image:IMAGE(@"list")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(screenClick) image:IMAGE(@"new_lists")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     //数据初始化
