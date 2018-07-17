@@ -35,25 +35,25 @@ static BOOL isProduction = TRUE;
             NSLog(@"registrationID获取成功：%@",registrationID);
             [[NSUserDefaults standardUserDefaults] setObject:registrationID forKey:LLJPushRegistrationID];
             [[NSUserDefaults standardUserDefaults] synchronize];
-//            //没有登录就不在操作
-//            if (![BXSUser currentUser].userId) {
-//                return ;
-//            }
-//            NSString * JPushId = [[NSUserDefaults standardUserDefaults] objectForKey:LLJPushRegistrationID] ? : @"";
-//            NSString * passWordKey = [[NSUserDefaults standardUserDefaults] objectForKey:LLUserPassWordSaveKey] ? : @"";
-//            NSString * loginName = [[NSUserDefaults standardUserDefaults] objectForKey:LLUserSaveKey] ? : @"";
-//            NSDictionary *param = @{@"loginName":loginName,
-//                                    @"password":passWordKey,
-//                                    @"registrationId" : JPushId
-//                                    };
-//            [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
+            //没有登录就不在操作
+            if (![BXSUser currentUser].userId) {
+                return ;
+            }
+            NSString * JPushId = [[NSUserDefaults standardUserDefaults] objectForKey:LLJPushRegistrationID] ? : @"";
+            NSString * passWordKey = [[NSUserDefaults standardUserDefaults] objectForKey:LLUserPassWordSaveKey] ? : @"";
+            NSString * loginName = [[NSUserDefaults standardUserDefaults] objectForKey:LLUserSaveKey] ? : @"";
+            NSDictionary *param = @{@"loginName":loginName,
+                                    @"password":passWordKey,
+                                    @"registrationId" : JPushId
+                                    };
+            [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
 //                if ([[response objectForKey:@"code"] integerValue] == 200) {
 //                    LoginModel * loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
 //                    [BXSUser deleteUser];
 //                    [BXSUser saveUser:loginModel];
 //                }
-//            } failure:^(NSError *error) {
-//            }];
+            } failure:^(NSError *error) {
+            }];
         }
         else{
             NSLog(@"registrationID获取失败，code：%d",resCode);
