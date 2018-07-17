@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-            timestampString = "553509768.102645"
+            timestampString = "553509941.98514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "AppDelegate(LLJPuchAppDelegate)"
             landmarkType = "3">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-            timestampString = "553509768.102939"
+            timestampString = "553509941.985467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "AppDelegate(LLJPuchAppDelegate)"
             landmarkType = "3">
          </BreakpointContent>

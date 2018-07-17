@@ -18,26 +18,6 @@ static BOOL isProduction = TRUE;
     //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
     entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        // 可以添加自定义categories
-        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
-        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
-    }
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-        center.delegate = self;
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge)
-                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                                  // Enable or disable features based on authorization.
-                                  NSLog(@"%@",[NSThread currentThread]);
-                                  dispatch_sync(dispatch_get_main_queue(), ^{
-                                      if (granted) {
-                                          [application registerForRemoteNotifications];
-                                      }
-                                  });
-                                  
-                              }];
-    }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
     
 #ifdef DEBUG
