@@ -9,10 +9,7 @@ static NSString  *JPuchAppKey = @"928c89dbf2c75d7bb4581d97";
 static NSString  *channel = @"appStore";
 static BOOL isProduction = TRUE;
 #import "AppDelegate+LLJPuchAppDelegate.h"
-// iOS10注册APNs所需头文件
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-#import <UserNotifications/UserNotifications.h>
-#endif
+
 
 @implementation AppDelegate (LLJPuchAppDelegate)
  
@@ -25,6 +22,21 @@ static BOOL isProduction = TRUE;
         // 可以添加自定义categories
         // NSSet<UNNotificationCategory *> *categories for iOS10 or later
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    if (@available(iOS 10.0, *)) {
+        UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge)
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  // Enable or disable features based on authorization.
+                                  NSLog(@"%@",[NSThread currentThread]);
+                                  dispatch_sync(dispatch_get_main_queue(), ^{
+                                      if (granted) {
+                                          [application registerForRemoteNotifications];
+                                      }
+                                  });
+                                  
+                              }];
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
     

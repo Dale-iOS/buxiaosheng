@@ -42,6 +42,7 @@
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
+    
     //初始化激光推送
     [self setupJPuchWith:application Options:launchOptions];
     

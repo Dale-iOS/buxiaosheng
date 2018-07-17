@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import <JPush/JPUSHService.h>
-@interface AppDelegate (LLJPuchAppDelegate)<JPUSHRegisterDelegate>
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+@interface AppDelegate (LLJPuchAppDelegate)<JPUSHRegisterDelegate,UNUserNotificationCenterDelegate>
 -(void)setupJPuchWith:(UIApplication*)application Options:(NSDictionary *)launchOptions;
 @end
