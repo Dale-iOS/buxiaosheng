@@ -20,23 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-            timestampString = "553492824.099854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "AppDelegate(LLJPuchAppDelegate)"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-            timestampString = "553492824.100227"
+            timestampString = "553509768.102645"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -52,60 +36,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-            timestampString = "553492824.1004961"
+            timestampString = "553509768.102939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-setupJPuchWith:Options:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__58-[AppDelegate(LLJPuchAppDelegate) setupJPuchWith:Options:]_block_invoke"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-                  timestampString = "553492713.391237"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "156">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__58-[AppDelegate(LLJPuchAppDelegate) setupJPuchWith:Options:]_block_invoke_2"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-                  timestampString = "553492713.393441"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoSheng/Base/Category/AppDelegate+LLJPuchAppDelegate.m"
-                  timestampString = "553492713.3953021"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "AppDelegate(LLJPuchAppDelegate)"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
