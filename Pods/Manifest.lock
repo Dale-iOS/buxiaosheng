@@ -49,6 +49,9 @@ PODS:
     - SDWebImage
     - SDWebImage/GIF
   - IQKeyboardManager (5.0.8)
+  - JCore (1.2.0)
+  - JPush (3.0.9):
+    - JCore (~> 1.2.0)
   - Masonry (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
@@ -77,6 +80,7 @@ DEPENDENCIES:
   - EasyShowView
   - GKPhotoBrowser
   - IQKeyboardManager
+  - JPush
   - Masonry
   - MJExtension
   - MJRefresh
@@ -100,6 +104,8 @@ SPEC REPOS:
     - FLAnimatedImage
     - GKPhotoBrowser
     - IQKeyboardManager
+    - JCore
+    - JPush
     - Masonry
     - MJExtension
     - MJRefresh
@@ -122,6 +128,8 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GKPhotoBrowser: ef7f61c060a4c93f54814422e3bb278758dac0ec
   IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
+  JCore: b52e3dd73625eec70afd1244bb9c41038aa06087
+  JPush: 48041e8c5ad2ef9b48709eb0888af9640b36e9b0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
@@ -134,6 +142,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: bc25e933c9d970a622d052f0d4de16202bbcd863
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b896ea26d465b88f24dee2636c20e3fb6c239e64
+PODFILE CHECKSUM: a248456d0c39144bc5d173e56c94ab9f7645a3cc
 
 COCOAPODS: 1.5.3

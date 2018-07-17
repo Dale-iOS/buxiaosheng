@@ -28,6 +28,7 @@ inhibit_all_warnings!
     pod 'TTGTagCollectionView'
     pod 'GKPhotoBrowser'
     pod 'Charts'
+    pod 'JPush'
 #    pod 'BRPickerView'
 end
 

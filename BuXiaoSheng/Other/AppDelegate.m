@@ -11,6 +11,7 @@
 #import "HomeViewController.h"
 #import "IQKeyboardManager.h"
 #import "LLWelcomeVC.h"
+#import "AppDelegate+LLJPuchAppDelegate.h"
 @interface AppDelegate ()
 
 @end
@@ -41,6 +42,8 @@
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
+    //初始化激光推送
+    [self setupJPuchWith:application Options:launchOptions];
     
     if ([BXSTools welcomeShow]) {
         LLWelcomeVC *vc = [[LLWelcomeVC alloc]init];
@@ -68,7 +71,20 @@
     return YES;
 }
 
+    
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application  didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+        NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+    }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [JPUSHService handleRemoteNotification:userInfo];
 
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
