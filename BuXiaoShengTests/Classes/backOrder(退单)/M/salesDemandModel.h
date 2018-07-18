@@ -33,6 +33,8 @@
 @property (nonatomic, copy) NSString *productId;
 @property (nonatomic,copy) NSString  * number;
 @property (nonatomic,strong) LLSalesColorListModel  * colorModel;
+@property (nonatomic,copy) NSString  * productColorId;
+@property (nonatomic,copy) NSString  * price;
 @end
 
 @interface LLSalesColorListModel : NSObject

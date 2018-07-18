@@ -517,6 +517,33 @@
 - (void)nextBtnOnClickAction
 {
     NSLog(@"123");
+    
+    if ([BXSTools stringIsNullOrEmpty:self.nameCell.contentTF.text]) {
+        BXS_Alert(@"请输入客户名称再选择");
+        return;
+    }
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"bankId":_payIdStr,
+                             @"customerId":_customerIdStr,
+                             @"deposit":self.depositCell.contentTF.text,
+                             @"imgs":@"",
+                             @"matter":self.warehouseTextView.textView.text,
+//                             @"orderNeedItems":[self.listModels mj_JSONString],
+                             @"remark":self.remarkTextView.textView.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"settle/create_order.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 - (void)navigationSetupClick
@@ -524,6 +551,7 @@
     LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 #pragma mark -------- 新增一条数据 ----------
 -(void)addBtnOnClickAction
 {

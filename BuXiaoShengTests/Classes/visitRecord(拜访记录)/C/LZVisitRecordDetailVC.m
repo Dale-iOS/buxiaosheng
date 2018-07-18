@@ -50,7 +50,7 @@
     if (myTableView == nil) {
         
         LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:self.view.bounds];
-        tableView.backgroundColor = [UIColor whiteColor];
+        tableView.backgroundColor = LZHBackgroundColor;
         tableView.delegate = self;
         [self.view addSubview:(myTableView = tableView)];
         
@@ -153,13 +153,17 @@
     textLbl.font = FONT(14);
     textLbl.text = @"图片";
     
-    self.visitIMV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, 80, 80)];
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 104)];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    
+    self.visitIMV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 14, 80, 80)];
     self.visitIMV.userInteractionEnabled = YES;
     UITapGestureRecognizer *visitIMVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(visitIMVTapOnClick)];
     [self.visitIMV addGestureRecognizer:visitIMVTap];
+    [bottomView addSubview:self.visitIMV];
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[textLbl,self.visitIMV];
+    item.sectionRows = @[textLbl,bottomView];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.dataSource addObject:item];
