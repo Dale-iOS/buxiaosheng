@@ -156,8 +156,11 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.titleTF]) {
-        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
-            [self.delegate didClickTitleTextField:self.titleTF];
+//        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:)]) {
+//            [self.delegate didClickTitleTextField:self.titleTF];
+//        }
+        if ([self.delegate respondsToSelector:@selector(didClickTitleTextField:andCell:)]) {
+            [self.delegate didClickTitleTextField:self.titleTF andCell:self];
         }
     }
     if ([textField isEqual:self.colorTF]) {

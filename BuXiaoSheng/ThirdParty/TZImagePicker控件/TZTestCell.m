@@ -31,9 +31,9 @@
         [self addSubview:_videoImageView];
         
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_deleteBtn setImage:[UIImage imageNamed:@"del_image"] forState:UIControlStateNormal];
+        [_deleteBtn setImage:[UIImage imageNamed:@"delete_jurisdiction"] forState:UIControlStateNormal];
         _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, -10);
-        _deleteBtn.alpha = 0.6;
+//        _deleteBtn.alpha = 0.6;
         [self addSubview:_deleteBtn];
         
         _gifLable = [[UILabel alloc] init];

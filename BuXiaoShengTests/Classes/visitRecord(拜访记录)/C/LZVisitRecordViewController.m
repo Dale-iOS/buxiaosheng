@@ -190,7 +190,7 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
-    _textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+    _textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, APPWidth -15*2, 40)];
     _textLbl.textColor = CD_Text33;
     _textLbl.font = FONT(14);
     _textLbl.text = @"图片";

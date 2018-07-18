@@ -32,7 +32,6 @@
 @property (nonatomic, strong) TextInputCell *phoneCell;
 ///预收定金
 @property (nonatomic, strong) TextInputCell *depositCell;
-
 ///调整金额
 @property (nonatomic, strong) TextInputCell *adjustmentCell;
 ///实收金额
@@ -45,33 +44,25 @@
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 ///仓库注意事项
 @property (nonatomic, strong) TextInputTextView *warehouseTextView;
-
 @property (nonatomic,strong) UITableView  * seletedTableView;
-
 @property (nonatomic, strong) UIView *lineView1;
 @property (nonatomic, strong) UIView *lineView2;
-
 ///下一步按钮
 @property (nonatomic, strong) UIButton *nextBtn;
-
 @property (nonatomic,strong) NSMutableArray <productListModel*>  * listModels;
-
 @property (nonatomic,strong) productListModel  * fristAddModel;
-
 @property (nonatomic,assign) BOOL  markSeletedTableView;
-
 @property (nonatomic,strong) NSIndexPath  * tableViewIndexPath;
-
 //付款方式数组
 @property (nonatomic, strong) NSMutableArray *payNameAry;
 @property (nonatomic, strong) NSMutableArray *payIdAry;
-@property (nonatomic, copy) NSString *payIdStr;///选择中的付款方式id
-
+@property (nonatomic, copy) NSString *payIdStr;///选中的付款方式id
 //客户数组
 @property(nonatomic,strong)NSMutableArray *customerList;
 @property(nonatomic,strong)NSMutableArray *customerNameAry;
 @property(nonatomic,strong)NSMutableArray *customerPhoneAry;
 @property(nonatomic,strong)NSMutableArray *customerIdAry;
+@property (nonatomic, copy)NSString *customerIdStr;///选中的客户id
 //产品数组
 @property (nonatomic, strong) NSMutableArray <productListModel *> *products;
 @property (nonatomic, strong) NSMutableArray *productsListMTArray;//展示图产品列表名称数组
@@ -347,9 +338,11 @@
         self.nameCell.contentTF.scrollView = self.view;
         self.nameCell.contentTF.positionType = ZJPositionBottomThree;
         [self.nameCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
+//            [weakSelf.tableView reloadData];
             //        _ProductColorId = _productsIdMTArray[index];
             //        [self setupProductColorData];
             weakSelf.phoneCell.contentTF.text = _customerPhoneAry[index];
+            _customerIdStr = _customerIdAry[index];
         }];
         
         
@@ -454,13 +447,13 @@
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)didClickTitleTextField:(UITextField *)titleTF{
+- (void)didClickTitleTextField:(UITextField *)titleTF andCell:(SalesDemandCell*)titleCell{
     titleTF.delegate = self;
     titleTF.scrollView = self.view;
     titleTF.positionType = ZJPositionAuto;
     WEAKSELF;
     [titleTF popOverSource:_productsListMTArray index:^(NSInteger index) {
-        [weakSelf.listModels replaceObjectAtIndex:_tableViewIndexPath.row withObject:self.dataMuArray[index]];
+        [weakSelf.listModels replaceObjectAtIndex:titleCell.indexPath.row withObject:self.dataMuArray[index]];
         [weakSelf.tableView reloadData];
     }];
     
@@ -490,6 +483,7 @@
     }
     LZSearchVC * rightSeletedVc = [LZSearchVC new];
     WEAKSELF;
+//    回调
     rightSeletedVc.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
         LLSalesColorListModel * model = [LLSalesColorListModel new];
         model.id = seletedModel.id;
@@ -522,7 +516,7 @@
 #pragma mark -------- 点击事件 ----------
 - (void)nextBtnOnClickAction
 {
-//    NSLog(@"%@",self.);
+    NSLog(@"123");
 }
 
 - (void)navigationSetupClick
@@ -696,7 +690,7 @@
 
 -(NSMutableArray<productListModel *> *)listModels {
     if (!_listModels) {
-        
+
         _listModels = [NSMutableArray array];
     }
     return _listModels;

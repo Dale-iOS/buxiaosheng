@@ -10,7 +10,7 @@
 #import "salesDemandModel.h"
 @class SalesDemandCell;
 @protocol SalesDemandCellDelegate <NSObject>
-- (void) didClickTitleTextField:(UITextField *)titleTF;
+- (void) didClickTitleTextField:(UITextField *)titleTF andCell:(SalesDemandCell*)titleCell;
 //- (void) didClickTitleBtn:(UIButton *)titleBtn;
 
 //- (void) didClickTitleTextField:(SalesDemandCell*)titleCell;
