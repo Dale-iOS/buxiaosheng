@@ -42,3 +42,11 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *productId;
 @end
+
+@class LZSaveSaleModel;
+@interface LZSaveSaleModel : NSObject
+@property (nonatomic, copy) NSString *productId;
+@property (nonatomic, copy) NSString *productColorId;
+@property (nonatomic, copy) NSString *number;
+@property (nonatomic, copy) NSString *price;
+@end

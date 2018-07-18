@@ -19,3 +19,5 @@
 @implementation LLSalesColorListModel
 @end
 
+@implementation LZSaveSaleModel
+@end

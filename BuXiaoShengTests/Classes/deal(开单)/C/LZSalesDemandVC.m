@@ -516,8 +516,24 @@
 #pragma mark -------- 点击事件 ----------
 - (void)nextBtnOnClickAction
 {
-    NSLog(@"123");
     
+    NSMutableArray <NSDictionary *> * produstsItems = [NSMutableArray array];
+    
+    [self.listModels enumerateObjectsUsingBlock:^(productListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+                NSDictionary * param = @{
+                                         @"productId":obj.id,
+                                         @"productColorId":obj.colorModel.id,
+                                         @"number":obj.number,
+                                         @"price":obj.shearPrice,
+                                         };
+                [produstsItems addObject:param];
+    }];
+    
+    if (produstsItems.count < 1) {
+        BXS_Alert(@"请输入品名");
+        return;
+    }
     if ([BXSTools stringIsNullOrEmpty:self.nameCell.contentTF.text]) {
         BXS_Alert(@"请输入客户名称再选择");
         return;
@@ -529,7 +545,7 @@
                              @"deposit":self.depositCell.contentTF.text,
                              @"imgs":@"",
                              @"matter":self.warehouseTextView.textView.text,
-//                             @"orderNeedItems":[self.listModels mj_JSONString],
+                             @"orderNeedItems":[produstsItems mj_JSONString],
                              @"remark":self.remarkTextView.textView.text
                              };
     [BXSHttp requestGETWithAppURL:@"settle/create_order.do" param:param success:^(id response) {
