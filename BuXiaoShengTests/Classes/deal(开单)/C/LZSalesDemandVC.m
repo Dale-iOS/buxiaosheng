@@ -20,8 +20,12 @@
 #import "LZPickerView.h"
 #import "LZSaleOrderListVC.h"
 #import "UITextField+PopOver.h"
+#import "LZWKWebViewVC.h"
 
-@interface LZSalesDemandVC ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>
+@interface LZSalesDemandVC ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>{
+    NSString *_orderId;//开单成功后返回的本订单的单号
+    NSString *_printerState;//打印机状态
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
@@ -77,6 +81,7 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self setupPrinterData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,6 +98,7 @@
     self.navigationItem.title = @"销售需求";
     self.view.backgroundColor = [UIColor whiteColor ];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"new_lists")];
+    
     [self setupHeaderView];
     [self setupFooterView];
     
@@ -540,7 +546,7 @@
     }
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"bankId":_payIdStr,
+                             @"bankId":_payIdStr == nil ? @"" : _payIdStr,
                              @"customerId":_customerIdStr,
                              @"deposit":self.depositCell.contentTF.text,
                              @"imgs":@"",
@@ -554,9 +560,32 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:true];
-        });
+        
+        NSDictionary *dic1 = baseModel.data;
+        _orderId = [dic1 objectForKey:@"orderId"];
+        
+        NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,_orderId,_printerState];
+        
+        LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
+        webVC.url = url;
+        [self.navigationController pushViewController:webVC animated:YES];
+            } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+//接口名称 仓库打印机配置状态
+
+- (void)setupPrinterData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"printer/house_printer_status.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _printerState = [NSString stringWithFormat:@"%@",baseModel.data];
+
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -564,8 +593,10 @@
 
 - (void)navigationSetupClick
 {
-    LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    [self.navigationController pushViewController:[LZWKWebViewVC new] animated:YES];
 }
 
 #pragma mark -------- 新增一条数据 ----------
@@ -739,6 +770,13 @@
     }
     return _listModels;
 }
+
+//- (NSString *)payIdStr{
+//    if (!_payIdStr) {
+//        _payIdStr = @"";
+//    }
+//    return _payIdStr;
+//}
 
 -(UITableView *)seletedTableView {
     if (!_seletedTableView) {

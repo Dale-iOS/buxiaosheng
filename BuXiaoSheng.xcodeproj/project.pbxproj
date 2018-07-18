@@ -396,6 +396,8 @@
 		34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B5D207DEF2400572648 /* SaleViewController.m */; };
 		34A92B67207DF11200572648 /* LZHTableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B52207DECA200572648 /* LZHTableViewItem.m */; };
 		34A92B68207DF11500572648 /* LZHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B4F207DEC6D00572648 /* LZHTableView.m */; };
+		34B1944C20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
+		34B1944D20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
 		34B8730E2081EEEC00B05EBF /* AAHighchartsLib.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CB2081EEEC00B05EBF /* AAHighchartsLib.js */; };
 		34B8730F2081EEEC00B05EBF /* AAHighchartsMore.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CC2081EEEC00B05EBF /* AAHighchartsMore.js */; };
 		34B873102081EEEC00B05EBF /* AAFunnel.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CD2081EEEC00B05EBF /* AAFunnel.js */; };
@@ -1228,6 +1230,8 @@
 		34A92B5A207DEEEB00572648 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		34A92B5C207DEF2400572648 /* SaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleViewController.h; sourceTree = "<group>"; };
 		34A92B5D207DEF2400572648 /* SaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleViewController.m; sourceTree = "<group>"; };
+		34B1944A20FF42380095BBFD /* LZWKWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWKWebViewVC.h; sourceTree = "<group>"; };
+		34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZWKWebViewVC.m; sourceTree = "<group>"; };
 		34B872CB2081EEEC00B05EBF /* AAHighchartsLib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsLib.js; sourceTree = "<group>"; };
 		34B872CC2081EEEC00B05EBF /* AAHighchartsMore.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsMore.js; sourceTree = "<group>"; };
 		34B872CD2081EEEC00B05EBF /* AAFunnel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAFunnel.js; sourceTree = "<group>"; };
@@ -3186,6 +3190,8 @@
 				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
 				340E208620FC8CB800E2602D /* LZSalesDemandVC.h */,
 				340E208720FC8CB800E2602D /* LZSalesDemandVC.m */,
+				34B1944A20FF42380095BBFD /* LZWKWebViewVC.h */,
+				34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */,
 				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
 				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
 				347B58C220E62273008911A2 /* LZSaleOrderListVC.h */,
@@ -4475,6 +4481,7 @@
 				A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */,
 				342398D120FB3908002B81E1 /* BigGoodsFootView.m in Sources */,
 				B5E288E820A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
+				34B1944C20FF42380095BBFD /* LZWKWebViewVC.m in Sources */,
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
@@ -5073,6 +5080,7 @@
 				34D5EB0D20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				3479057720C51255008C835C /* AllOrderViewController.m in Sources */,
 				34D5EAF520D25483009D9D7C /* LZBankDetailModel.m in Sources */,
+				34B1944D20FF42380095BBFD /* LZWKWebViewVC.m in Sources */,
 				B50505DC209AB2DA00CE7E4D /* XLFormRightImageButton.m in Sources */,
 				B58BF72920A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B55ADE1720A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
