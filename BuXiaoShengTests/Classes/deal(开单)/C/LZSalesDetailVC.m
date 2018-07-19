@@ -20,6 +20,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 ///日期
 @property(nonatomic,strong)UILabel *dateLbl;
+@property(nonatomic,strong)UIView *lineView;
 ///客户名称
 @property(nonatomic,strong)TextInputCell *nameCell;
 ///客户电话
@@ -81,8 +82,8 @@
     _dateLbl.font = FONT(12);
     _dateLbl.text = @"12313213";
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
-    lineView.backgroundColor = LZHBackgroundColor;
+    _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
+    _lineView.backgroundColor = LZHBackgroundColor;
     
     
     //客户
@@ -148,7 +149,7 @@
     
     //备注
     self.remarkTextView = [[TextInputTextView alloc]init];
-    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 70);
+    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 98);
     self.remarkTextView.titleLabel.text = @"备注";
     self.remarkTextView.lineView.hidden = YES;
     self.remarkTextView.userInteractionEnabled = NO;
@@ -161,7 +162,7 @@
     
     //仓库注意事项
     self.noticeTextView = [[TextInputTextView alloc]init];
-    self.noticeTextView.frame = CGRectMake(0, 0, APPWidth, 70);
+    self.noticeTextView.frame = CGRectMake(0, 0, APPWidth, 98);
     self.noticeTextView.titleLabel.text = @"仓库注意事项";
     self.noticeTextView.lineView.hidden = YES;
     self.noticeTextView.userInteractionEnabled = NO;
@@ -175,7 +176,7 @@
     headview.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[_dateLbl,lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView,self.noticeTextView];
+    item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView,self.noticeTextView];
     item.sectionView = headview;
     item.canSelected = NO;
     [self.dataSource addObject:item];
@@ -201,12 +202,12 @@
     colorLabel.textColor = CD_Text33;
     [_headerView addSubview:colorLabel];
     
-    UILabel *lineNumLabel = [[UILabel alloc]init];
-    lineNumLabel.font = FONT(14);
-    lineNumLabel.text = @"条数";
-    lineNumLabel.textAlignment = NSTextAlignmentCenter;
-    lineNumLabel.textColor = CD_Text33;
-    [_headerView addSubview:lineNumLabel];
+    UILabel *unitLabel = [[UILabel alloc]init];
+    unitLabel.font = FONT(14);
+    unitLabel.text = @"单位";
+    unitLabel.textAlignment = NSTextAlignmentCenter;
+    unitLabel.textColor = CD_Text33;
+    [_headerView addSubview:unitLabel];
     
     UILabel *numLabel = [[UILabel alloc]init];
     numLabel.font = FONT(14);
@@ -234,7 +235,7 @@
     .heightRatioToView(_headerView, 1)
     .widthIs(LZHScale_WIDTH(150));
     
-    lineNumLabel.sd_layout
+    unitLabel.sd_layout
     .topSpaceToView(_headerView, 0)
     .leftSpaceToView(colorLabel, 0)
     .heightRatioToView(_headerView, 1)
@@ -242,7 +243,7 @@
     
     numLabel.sd_layout
     .topSpaceToView(_headerView, 0)
-    .leftSpaceToView(lineNumLabel, 0)
+    .leftSpaceToView(unitLabel, 0)
     .heightRatioToView(_headerView, 1)
     .widthIs(LZHScale_WIDTH(150));
     
@@ -258,7 +259,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[LZSalesDetailCell class] forCellReuseIdentifier:@"LZSalesDetailCell"];
-    _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
     
     
     UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
@@ -284,8 +284,7 @@
             return ;
         }
         _model = [LZSalesDetailModel LLMJParse:baseModel.data];
-        _lists = _model.itemList;
-        [_tableView reloadData];
+        _lists = [LZSalesDetailItemListModel LLMJParse:_model.itemList];
         
         //赋值
         _dateLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
@@ -297,7 +296,31 @@
         self.remarkTextView.textView.text = _model.remark;
         self.noticeTextView.textView.text = _model.matter;
         
-       
+        //更新第一部分
+        UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        headview.backgroundColor = LZHBackgroundColor;
+        LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+        if ([self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]) {
+            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell];
+        }else if ([self.remarkTextView.textView.text isEqualToString:@""] && ![self.noticeTextView.textView.text isEqualToString:@""]){
+            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.noticeTextView];
+        }else if (![self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]){
+            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView];
+        }else{
+            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView,self.noticeTextView];
+        }
+        item.sectionView = headview;
+        [self.dataSource replaceObjectAtIndex:0 withObject:item];
+        
+        //更新第二部分
+        _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
+        [_tableView reloadData];
+        LZHTableViewItem *item1 = [[LZHTableViewItem alloc]init];
+        item1.sectionRows = @[_headerView,_tableView];
+        item1.sectionView = headview;
+        [self.dataSource replaceObjectAtIndex:1 withObject:item1];
+        [self.myTableView reloadData];
+        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

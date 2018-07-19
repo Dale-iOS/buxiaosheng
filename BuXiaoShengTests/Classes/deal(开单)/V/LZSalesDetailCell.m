@@ -7,7 +7,7 @@
 //
 
 #import "LZSalesDetailCell.h"
-
+#import "LZSalesDetailModel.h"
 
 @implementation LZSalesDetailCell
 @synthesize titleLBL,colorLBL,unitLBL,numberLBL,priceLBL;
@@ -16,7 +16,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = [UIColor redColor];
         [self setupUI];
     }
     return self;
