@@ -97,7 +97,7 @@
     self.priceLabel = [[UILabel alloc]init];
     self.priceLabel.textAlignment = NSTextAlignmentLeft;
     self.priceLabel.font = FONT(12);
-    self.priceLabel.textColor = [UIColor colorWithHexString:@"#fa3d3d"];;
+    self.priceLabel.textColor = LZAppRedColor;;
     [self.bgView addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10);

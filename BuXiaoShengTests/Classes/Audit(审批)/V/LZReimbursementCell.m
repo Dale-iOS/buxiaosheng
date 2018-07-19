@@ -105,7 +105,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = FONT(12);
-        label.textColor = [UIColor colorWithHexString:@"#fa3d3d"];;
+        label.textColor = LZAppRedColor;;
         [self.bgView addSubview:(priceLabel = label)];
     }
     return priceLabel;

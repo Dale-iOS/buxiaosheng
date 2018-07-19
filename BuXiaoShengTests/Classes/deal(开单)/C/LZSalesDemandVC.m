@@ -568,6 +568,7 @@
         
         LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
         webVC.url = url;
+        NSLog(@"即将进入的页面链接：%@",url);
         [self.navigationController pushViewController:webVC animated:YES];
             } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -575,7 +576,6 @@
 }
 
 //接口名称 仓库打印机配置状态
-
 - (void)setupPrinterData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"printer/house_printer_status.do" param:param success:^(id response) {
@@ -593,10 +593,10 @@
 
 - (void)navigationSetupClick
 {
-//    LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    LZSaleOrderListVC *vc = [[LZSaleOrderListVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
-    [self.navigationController pushViewController:[LZWKWebViewVC new] animated:YES];
+//    [self.navigationController pushViewController:[LZWKWebViewVC new] animated:YES];
 }
 
 #pragma mark -------- 新增一条数据 ----------

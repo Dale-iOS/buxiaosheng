@@ -122,7 +122,7 @@
 //        make.height.offset(65);
 //    }];
     
-    self.self.titleTF.sd_layout
+    self.titleTF.sd_layout
     .leftSpaceToView(contentView, 0)
     .centerYEqualToView(contentView)
     .widthIs(LZHScale_WIDTH(240))

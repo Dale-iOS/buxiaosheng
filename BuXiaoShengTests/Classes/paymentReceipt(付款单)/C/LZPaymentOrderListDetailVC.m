@@ -91,7 +91,7 @@
     self.collectionCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
     self.collectionCell.titleLabel.text = @"付款金额：";
     self.collectionCell.lineView.hidden = YES;
-    self.collectionCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    self.collectionCell.contentTF.textColor = LZAppRedColor;
     self.collectionCell.userInteractionEnabled = NO;
     self.collectionCell.contentTF.sd_layout
     .topEqualToView(self.collectionCell.titleLabel)

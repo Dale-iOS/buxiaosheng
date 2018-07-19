@@ -109,22 +109,22 @@
     NSLog(@"%@",defaultText);
     NSLog(@"%@",frame);
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:prompt message:defaultText preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        //这里必须执行不然页面会加载不出来
-        completionHandler(@"");
-    }];
-    UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"%@",
-             [alert.textFields firstObject].text);
-        completionHandler([alert.textFields firstObject].text);
-    }];
-    [alert addAction:a1];
-    [alert addAction:a2];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        NSLog(@"%@",textField.text);
-    }];
-    [self presentViewController:alert animated:YES completion:nil];
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:prompt message:defaultText preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        //这里必须执行不然页面会加载不出来
+//        completionHandler(@"");
+//    }];
+//    UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"%@",
+//             [alert.textFields firstObject].text);
+//        completionHandler([alert.textFields firstObject].text);
+//    }];
+//    [alert addAction:a1];
+//    [alert addAction:a2];
+//    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+//        NSLog(@"%@",textField.text);
+//    }];
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 //显示一个确认框（JS的）
@@ -134,16 +134,16 @@
     NSLog(@"%@",frame);
     
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(NO);
-    }];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(YES);
-    }];
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        completionHandler(NO);
+//    }];
+//    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        completionHandler(YES);
+//    }];
+//    [alertController addAction:cancelAction];
+//    [alertController addAction:okAction];
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 //重写左上角返回按钮，这个很重要，用户体验影响很大

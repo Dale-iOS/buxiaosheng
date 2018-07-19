@@ -122,7 +122,7 @@
         _rightArrowImageVIew.hidden = NO;
     }
     if (_model.isContentColorRed) {
-        _contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+        _contentTF.textColor = LZAppRedColor;
     }
     
 }

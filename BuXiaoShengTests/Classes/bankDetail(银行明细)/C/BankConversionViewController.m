@@ -111,7 +111,7 @@
     self.intoPriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.intoPriceCell.titleLabel.text = @"转入金额";
     self.intoPriceCell.contentTF.placeholder = @"请输入金额";
-    self.intoPriceCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    self.intoPriceCell.contentTF.textColor = LZAppRedColor;
     
      self.conversionCell = [[BankConversionCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 75)];
     

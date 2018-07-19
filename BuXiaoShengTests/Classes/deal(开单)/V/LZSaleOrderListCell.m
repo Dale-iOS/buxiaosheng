@@ -90,7 +90,7 @@
     //    self.priceLabel.backgroundColor = [UIColor grayColor];
     self.priceLabel.textAlignment = NSTextAlignmentLeft;
     self.priceLabel.font = FONT(12);
-    self.priceLabel.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    self.priceLabel.textColor = LZAppRedColor;
     self.priceLabel.text = @"￥";
 //    self.priceLabel.hidden = YES;
     [self.contentView addSubview:self.priceLabel];

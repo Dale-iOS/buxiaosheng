@@ -140,7 +140,7 @@
     self.assignCell.titleLabel.text = @"指派人";
     self.assignCell.contentTF.placeholder = @"请选址指派人";
     self.assignCell.rightArrowImageVIew.hidden = NO;
-    self.assignCell.titleLabel.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    self.assignCell.titleLabel.textColor = LZAppRedColor;
     self.assignCell.contentTF.enabled = NO;
     UITapGestureRecognizer *tapAssignCell = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAssignCellClick)];
     [self.assignCell addGestureRecognizer:tapAssignCell];

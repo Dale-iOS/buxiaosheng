@@ -15,6 +15,7 @@
 #import "LZOrderTrackingModel.h"
 #import "LZSaleOrderListCell.h"
 #import "LZPickerView.h"
+#import "LZSalesDetailVC.h"
 
 @interface LZSaleOrderListVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSaleOrderListCellDelegate>
 {
@@ -169,8 +170,13 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    LZSalesDetailVC *vc = [[LZSalesDetailVC alloc]init];
+    vc.orderId = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //点击cell的撤销按钮事件

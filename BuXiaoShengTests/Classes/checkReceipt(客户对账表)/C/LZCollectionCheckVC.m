@@ -109,7 +109,7 @@
     self.oweLblCell.lineView.hidden = YES;
     self.oweLblCell.titleLabel.text = @"现欠款";
     self.oweLblCell.userInteractionEnabled = NO;
-    self.oweLblCell.contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    self.oweLblCell.contentTF.textColor = LZAppRedColor;
     
     //收款账户
     self.accountLblCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 32)];
