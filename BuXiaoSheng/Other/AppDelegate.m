@@ -53,12 +53,12 @@
     }else {
         if ([BXSUser isLogin]) {
             HomeViewController *vc = [[HomeViewController alloc]init];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
             self.window.rootViewController = nav;
             
         }else {
             LoginViewController *loginVC = [[LoginViewController alloc]init];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:loginVC];
             self.window.rootViewController = nav;
             nav.navigationBarHidden = NO;
         }

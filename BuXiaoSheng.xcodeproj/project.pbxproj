@@ -112,6 +112,8 @@
 		343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207C920A068BC005A5D23 /* NoAuditSellViewController.m */; };
 		343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207CC20A06968005A5D23 /* NoAuditInStorageViewController.m */; };
 		343207D020A069A3005A5D23 /* NoAuditApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343207CF20A069A3005A5D23 /* NoAuditApplyViewController.m */; };
+		3432C51A2101D68D00DE9E22 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3432C5192101D68D00DE9E22 /* BaseNavigationController.m */; };
+		3432C51B2101D68D00DE9E22 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3432C5192101D68D00DE9E22 /* BaseNavigationController.m */; };
 		3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0B620B5105B003FFC16 /* LZHomeModel.m */; };
 		3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0B920B53B8C003FFC16 /* UITextField+rightView.m */; };
 		3433D0BF20B56CE0003FFC16 /* SalesDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */; };
@@ -892,6 +894,8 @@
 		343207CC20A06968005A5D23 /* NoAuditInStorageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoAuditInStorageViewController.m; sourceTree = "<group>"; };
 		343207CE20A069A3005A5D23 /* NoAuditApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoAuditApplyViewController.h; sourceTree = "<group>"; };
 		343207CF20A069A3005A5D23 /* NoAuditApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoAuditApplyViewController.m; sourceTree = "<group>"; };
+		3432C5182101D68D00DE9E22 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		3432C5192101D68D00DE9E22 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		3433D0B520B5105B003FFC16 /* LZHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZHomeModel.h; sourceTree = "<group>"; };
 		3433D0B620B5105B003FFC16 /* LZHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZHomeModel.m; sourceTree = "<group>"; };
 		3433D0B820B53B8C003FFC16 /* UITextField+rightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+rightView.h"; sourceTree = "<group>"; };
@@ -3317,6 +3321,8 @@
 		348AC64B20B950B30051E842 /* PublicVC */ = {
 			isa = PBXGroup;
 			children = (
+				3432C5182101D68D00DE9E22 /* BaseNavigationController.h */,
+				3432C5192101D68D00DE9E22 /* BaseNavigationController.m */,
 				34494DF52091A7A600BDB309 /* BaseViewController.h */,
 				34494DF62091A7A600BDB309 /* BaseViewController.m */,
 				348AC64C20B952580051E842 /* BaseSearchViewController.h */,
@@ -4531,6 +4537,7 @@
 				34F6100820A957CF009A29A5 /* LZSubjectModel.m in Sources */,
 				3427A50A20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				34FB1F2C20BD5072004D18C2 /* LLWeekCalendarVc.m in Sources */,
+				3432C51A2101D68D00DE9E22 /* BaseNavigationController.m in Sources */,
 				3480AAAC20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
@@ -5137,6 +5144,7 @@
 				344C489620D100B800BEC002 /* LZDidReimbursementSaleVC.m in Sources */,
 				34EA490220CFDD640086FF79 /* LZDidStockTrackingVC.m in Sources */,
 				B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
+				3432C51B2101D68D00DE9E22 /* BaseNavigationController.m in Sources */,
 				34719B4D20D8E81900C46F06 /* LZPurchaseAskVC.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				342398DE20FB394C002B81E1 /* LZBigGoodsHeadView.m in Sources */,

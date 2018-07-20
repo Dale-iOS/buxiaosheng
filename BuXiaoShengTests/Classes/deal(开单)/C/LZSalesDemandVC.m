@@ -87,6 +87,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self setupProductData];
     [self setupCustomerList];
     [self setupPayList];
@@ -570,6 +571,7 @@
         webVC.url = url;
         NSLog(@"即将进入的页面链接：%@",url);
         [self.navigationController pushViewController:webVC animated:YES];
+        
             } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -782,6 +784,22 @@
         [_seletedTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"seletedTableView"];
     }
     return _seletedTableView;
+}
+
+#pragma mark ----横屏设置 ----
+//支持旋转
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+//
+//支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+//一开始的方向  很重要
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationUnknown;
 }
 
 - (void)didReceiveMemoryWarning {

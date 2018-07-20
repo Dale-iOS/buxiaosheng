@@ -14,6 +14,7 @@
 #import "BigGoodsFootView.h"
 #import "LZBigGoodsHeadView.h"
 #import "UIButton+EdgeInsets.h"
+#import "LZPickerView.h"
 
 @interface LZShipmentBigGoodsView ()<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property(strong, nonatomic) UITableView *tableView;
@@ -23,6 +24,10 @@
 @property (nonatomic, strong) UIButton *showBtn;
 @property (nonatomic, strong) UIButton *submitBtn;
 @property (nonatomic, strong) BigGoodsAndBoardModel *bigGoodsAndBoardModel;
+//付款方式数组
+@property (nonatomic, strong) NSMutableArray *payNameAry;
+@property (nonatomic, strong) NSMutableArray *payIdAry;
+@property (nonatomic, copy) NSString *payIdStr;///选中的付款方式id
 @end
 
 @implementation LZShipmentBigGoodsView
@@ -44,7 +49,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     [self requestListNetWork];
 }
 
-#pragma mark - request
+#pragma mark - 网络请求
 - (void)requestListNetWork
 {
     WEAKSELF;
@@ -124,7 +129,6 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }];
 }
 
-#pragma mark - request
 - (void)requestCustomerInfo
 {
     WEAKSELF;
@@ -184,10 +188,34 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }];
 }
 
+- (void)setupPayList{
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"bank/pay_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSMutableArray *tempAry = baseModel.data;
+        _payNameAry = [NSMutableArray array];
+        _payIdAry = [NSMutableArray array];
+        for (int i = 0; i <tempAry.count; i++) {
+            [_payIdAry addObject:tempAry[i][@"id"]];
+            [_payNameAry addObject:tempAry[i][@"name"]];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+
 
 #pragma mark - private
 - (void)setup
 {
+    [self setupPayList];
+    
     [self addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"LZGoodValueCell" bundle:nil] forCellReuseIdentifier:LZGoodValueCellID];
     [self.tableView registerClass:[LZGoodsDetailCell class] forCellReuseIdentifier:LZGoodsDetailCellID];
@@ -414,7 +442,24 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 {
     if (indexPath.section ==  _dataSource.count-1 ) {
         ItemList *model = _infoArr[indexPath.row];
+        
         if ([model.key isEqualToString:@"收款方式"]) {
+            if (_payNameAry.count <1) {
+                [LLHudTools showWithMessage:@"暂无收款方式，请在“设置 - 现金银行”中添加"];
+                return;
+            }
+            
+            LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_payNameAry titleDataArray:nil];
+            pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -150, APPWidth, 44);
+            pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -135, APPWidth, 200);
+            pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+//                self.paymentMethodCell.contentTF.text = compoentString;
+                model.value = compoentString;
+                NSInteger row = [titileString integerValue];
+                _payIdStr = _payIdAry[row];
+                [tableView reloadData];
+            };
+            [self addSubview:pickerView];
         }
     }
 }

@@ -20,8 +20,26 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSNumber *orientationUnknown = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+    [[UIDevice currentDevice] setValue:orientationUnknown forKey:@"orientation"];
+    
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    NSNumber *orientationUnknown = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:orientationUnknown forKey:@"orientation"];
+    
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+}
+
 - (void)setupUI{
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, APPHeight, APPWidth)];
     NSURL *url = [NSURL URLWithString:self.url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     self.webView.navigationDelegate = self;
@@ -29,8 +47,28 @@
     //开了支持滑动返回
     self.webView.allowsBackForwardNavigationGestures = YES;
     [self.view addSubview:self.webView];
+//    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.and.bottom.and.left.and.right.equalTo(self);
+//    }];
     
 }
+
+#pragma mark ---- 默认横屏 ----
+//支持旋转
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+//
+//支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+//一开始的方向  很重要
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
 
 #pragma mark ----- WKUIDelegate代理事件 -----
 // 页面开始加载时调用

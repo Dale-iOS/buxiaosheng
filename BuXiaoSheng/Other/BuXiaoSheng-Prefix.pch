@@ -24,6 +24,7 @@
 #import "CWLateralSlide-umbrella.h"
 #import "UIView+Extensions.h"
 #import "BaseViewController.h"
+#import "BaseNavigationController.h"
 #import "BXSHttp.h"
 #import "SVProgressHUD.h"
 #import "LLHudTools.h"

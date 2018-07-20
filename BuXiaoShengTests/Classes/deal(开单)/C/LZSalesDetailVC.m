@@ -348,6 +348,22 @@
     }];
 }
 
+#pragma mark ----横屏设置 ----
+//支持旋转
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+//
+//支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+//一开始的方向  很重要
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationUnknown;
+}
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
