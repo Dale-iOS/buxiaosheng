@@ -17,6 +17,7 @@
 
 @property (nonatomic , assign) BOOL              isSelect;
 @property (nonatomic , assign) BOOL              isContentColorRed;
+@property (nonatomic , assign) BOOL              isEditor;
 
 @end
 

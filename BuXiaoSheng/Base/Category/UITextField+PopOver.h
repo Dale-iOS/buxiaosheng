@@ -10,6 +10,7 @@
 typedef NS_ENUM(NSUInteger, ZJPositionType) {
     ZJPositionAuto,
     ZJPositionTop,
+    ZJPositionTopTwo,
     ZJPositionBottom,
     ZJPositionBottomTwo,
     ZJPositionBottomThree,

@@ -397,7 +397,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
                     self.popList.scrollEnabled = NO;
                 }
                 
-                self.bgView.frame = CGRectMake(self.rectXY.origin.x +CGRectGetWidth(self.frame),listY, CGRectGetWidth(self.frame), heigt);
+                self.bgView.frame = CGRectMake(self.rectXY.origin.x +CGRectGetWidth(self.frame),listY, APPWidth *0.6, heigt);
             }
             
             self.changeArray = changeArray;
@@ -430,6 +430,46 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
             }
             
             self.bgView.frame = CGRectMake(self.rectXY.origin.x,listY, CGRectGetWidth(self.frame), heigt);
+            self.bgView.layer.shadowOffset = CGSizeMake(0,-3);
+            if (self.keyString) {
+                //按照key进行排序
+                NSSortDescriptor *keyName = [NSSortDescriptor sortDescriptorWithKey:self.keyString ascending:NO];
+                changeArray = [changeArray sortedArrayUsingDescriptors:@[keyName]];
+            }else{
+                NSEnumerator *enumer = [changeArray reverseObjectEnumerator];
+                changeArray = [enumer allObjects];
+                
+            }
+            
+            self.changeArray = changeArray;
+            [self.popList reloadData];
+            if (self.changeArray.count>=1) {
+                //滑动到底部
+                [self.popList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.changeArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+            }
+            
+            self.popList.frame = self.bgView.bounds;
+            
+        }
+            break;
+        case ZJPositionTopTwo:
+        {
+            CGFloat heigt = CellH*changeArray.count>self.rectXY.origin.y-NavH ?self.rectXY.origin.y-NavH:CellH*changeArray.count;
+            CGFloat listY = 0;
+            if (self.scrollView) {
+                listY = self.rectXY.origin.y - heigt-NavH+54;
+            }else{
+                listY = self.rectXY.origin.y - heigt;
+            }
+            
+            
+            if (CellH*changeArray.count > heigt) {
+                self.popList.scrollEnabled = YES;
+            }else{
+                self.popList.scrollEnabled = NO;
+            }
+            
+            self.bgView.frame = CGRectMake(self.rectXY.origin.x,listY, APPWidth *0.5, heigt);
             self.bgView.layer.shadowOffset = CGSizeMake(0,-3);
             if (self.keyString) {
                 //按照key进行排序
@@ -660,6 +700,23 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
         }
             break;
         case ZJPositionTop:
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                CGFloat listY = 0;
+                if (self.scrollView){
+                    listY = self.rectXY.origin.y - NavH;
+                }else{
+                    listY = self.rectXY.origin.y;
+                }
+                
+                self.bgView.frame = CGRectMake(self.rectXY.origin.x, listY, CGRectGetWidth(self.frame), 0);
+                self.popList.frame = self.bgView.bounds;
+                [self.popList reloadData];
+            }];
+            
+        }
+            break;
+        case ZJPositionTopTwo:
         {
             [UIView animateWithDuration:0.3 animations:^{
                 CGFloat listY = 0;

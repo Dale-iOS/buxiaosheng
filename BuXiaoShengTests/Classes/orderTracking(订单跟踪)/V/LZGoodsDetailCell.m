@@ -121,6 +121,9 @@
     if (_model.isSelect) {
         _rightArrowImageVIew.hidden = NO;
     }
+    if (!_model.isEditor) {
+        _contentTF.enabled = NO;
+    }
     if (_model.isContentColorRed) {
         _contentTF.textColor = LZAppRedColor;
     }

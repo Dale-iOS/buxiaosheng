@@ -78,7 +78,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             ItemListModel = [ItemList LLMJParse:[BatchNumberListModel.itemList firstObject]];
         }
         
-        NSLog(@"%@",ItemListModel.total);
+//        NSLog(@"%@",ItemListModel.total);
         
         int batchNumber = 0;
         NSString  *batchNumberStr; /// 总条数
@@ -107,6 +107,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             ItemList *item = [ItemList new];
             item.key =titlesArr[i];
             item.value =detailArr[i];
+            item.isEditor = NO;
             
             if ([titlesArr[i] isEqualToString:@"本单应收金额"]) {
                 item.isContentColorRed = YES;
@@ -115,8 +116,6 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             [weakSelf.consumptionArr addObject:item];
         }//// 具体 颜色，是否点击，的等等操作 可以用 以下判断方法显示
         [weakSelf.dataSource addObject:weakSelf.consumptionArr ];
-        
-        
         
         [weakSelf requestCustomerInfo];
         
@@ -142,9 +141,19 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
         _bigGoodsAndBoardModel.customerName = response[@"data"][@"customerName"];
         _bigGoodsAndBoardModel.deposit = response[@"data"][@"deposit"];
         
+        
+        //单价 x 结算数量
+        NSInteger allPriceInteger = [_bigGoodsAndBoardModel.price integerValue] * [_bigGoodsAndBoardModel.total integerValue];
+        //本单应收金额
+        NSString *allPriceStr = [NSString stringWithFormat:@"%zd",allPriceInteger];
+        
+        
         NSArray *titles1Arr = @[@"客户名字",@"客户电话",@"实收金额",@"预收定金",@"调整金额",@"本单欠款",@"收款方式",@"备注"];
         
-        NSArray *detail1Arr = @[_bigGoodsAndBoardModel.customerName,_bigGoodsAndBoardModel.customerMobile,@"",[NSString stringWithFormat:@"%@",_bigGoodsAndBoardModel.deposit],@"",@"",@"",@"",@""];
+
+        NSArray *detail1Arr = @[_bigGoodsAndBoardModel.customerName,_bigGoodsAndBoardModel.customerMobile,@"",[NSString stringWithFormat:@"%@",_bigGoodsAndBoardModel.deposit],@"",allPriceStr,@"",@"",@""];
+        
+        
         
         NSArray *placeholderArr = @[@"请输入客户名字",@"请输入客户电话",@"请输入实收金额",@"请输入预收定金",@"请输入调整金额",@"请输入本单欠款",@"请选择收款方式",@"请输入备注"];
         
@@ -154,6 +163,8 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             item.value =detail1Arr[i];
             item.placeholder = placeholderArr[i];
             item.isSelect = NO;
+            item.isEditor = NO;
+            
             // 具体 颜色，是否点击，的等等操作 可以用 以下判断方法显示
             if ([titles1Arr[i] isEqualToString:@"收款方式"]) {
                 item.isSelect = YES;
@@ -363,9 +374,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     /// 返回标题栏
     headView.backgroundColor = LZHBackgroundColor;
     return headView;
-    
-    
-    
+
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -401,8 +410,6 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 }
 
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section ==  _dataSource.count-1 ) {
@@ -419,9 +426,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     if ([model.key isEqualToString:@"客户姓名"]) {
         _bigGoodsAndBoardModel.customerName =  textField.text; //举例子 通过这样的赋值 填充 _bigGoodsAndBoardModel
     }
-    
 }
-
 
 
 @end

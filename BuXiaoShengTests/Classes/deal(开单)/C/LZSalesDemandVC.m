@@ -342,7 +342,7 @@
         WEAKSELF;
         self.nameCell.contentTF.delegate = self;
         self.nameCell.contentTF.scrollView = self.view;
-        self.nameCell.contentTF.positionType = ZJPositionBottomThree;
+        self.nameCell.contentTF.positionType = ZJPositionTopTwo;
         [self.nameCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
 //            [weakSelf.tableView reloadData];
             //        _ProductColorId = _productsIdMTArray[index];
@@ -771,12 +771,6 @@
     return _listModels;
 }
 
-//- (NSString *)payIdStr{
-//    if (!_payIdStr) {
-//        _payIdStr = @"";
-//    }
-//    return _payIdStr;
-//}
 
 -(UITableView *)seletedTableView {
     if (!_seletedTableView) {

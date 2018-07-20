@@ -13,8 +13,12 @@
 #import "UITextView+Placeholder.h"
 #import "LZSalesDetailModel.h"
 #import "LZSalesDetailCell.h"
+#import "LZWKWebViewVC.h"
 
 @interface LZSalesDetailVC ()<LZHTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
+{
+    NSString *_url;
+}
 @property(nonatomic,weak)LZHTableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *dataSource;
 @property(nonatomic,strong)UITableView *tableView;
@@ -336,8 +340,8 @@
             return ;
         }
         NSString *printerState = [NSString stringWithFormat:@"%@",baseModel.data];
-        NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,self.orderId,printerState];
-        NSLog(@"拼接得到的打印机网址：%@",url);
+        _url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,self.orderId,printerState];
+        NSLog(@"拼接得到的打印机网址：%@",_url);
         self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"print")];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -362,7 +366,9 @@
 }
 
 - (void)navigationSetupClick{
-    
+    LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
+    webVC.url = _url;
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
