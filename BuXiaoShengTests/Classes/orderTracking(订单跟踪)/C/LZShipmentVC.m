@@ -29,7 +29,6 @@
 
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:@"开单"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toSearch) image:IMAGE(@"search")];
 
     [self setupSgc];
 }
@@ -142,10 +141,6 @@
         _sgc.selectedSegmentIndex = 0;
     }
     
-}
-
-- (void)toSearch{
-    NSLog(@"点击了搜索");
 }
 
 - (void)didReceiveMemoryWarning {

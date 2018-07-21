@@ -15,6 +15,7 @@
 #import "LZBigGoodsHeadView.h"
 #import "UIButton+EdgeInsets.h"
 #import "LZPickerView.h"
+#import "LZChangeNumVC.h"
 
 @interface LZShipmentBigGoodsView ()<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property(strong, nonatomic) UITableView *tableView;
@@ -47,6 +48,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 {
     _model = model;
     [self requestListNetWork];
+    [self setupPayList];
 }
 
 #pragma mark - 网络请求
@@ -214,7 +216,6 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 #pragma mark - private
 - (void)setup
 {
-    [self setupPayList];
     
     [self addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"LZGoodValueCell" bundle:nil] forCellReuseIdentifier:LZGoodValueCellID];
@@ -440,10 +441,26 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section ==  _dataSource.count-2 ) {
+        ItemList *model = _consumptionArr[indexPath.row];
+        if ([model.key isEqualToString:@"标签数量"]) {
+            
+            LZChangeNumVC *vc = [[LZChangeNumVC alloc]init];
+            vc.originalValue = [model.value integerValue];
+            [vc setNumValueBlock:^(NSString *ValueStr) {
+                model.value = ValueStr;
+                [tableView reloadData];
+            }];
+            CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+            [[self viewController].navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        }
+
+    }
+    
     if (indexPath.section ==  _dataSource.count-1 ) {
-        ItemList *model = _infoArr[indexPath.row];
+        ItemList *model1 = _infoArr[indexPath.row];
         
-        if ([model.key isEqualToString:@"收款方式"]) {
+        if ([model1.key isEqualToString:@"收款方式"]) {
             if (_payNameAry.count <1) {
                 [LLHudTools showWithMessage:@"暂无收款方式，请在“设置 - 现金银行”中添加"];
                 return;
@@ -453,8 +470,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -150, APPWidth, 44);
             pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -135, APPWidth, 200);
             pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
-//                self.paymentMethodCell.contentTF.text = compoentString;
-                model.value = compoentString;
+                model1.value = compoentString;
                 NSInteger row = [titileString integerValue];
                 _payIdStr = _payIdAry[row];
                 [tableView reloadData];
@@ -473,5 +489,14 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }
 }
 
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 
 @end

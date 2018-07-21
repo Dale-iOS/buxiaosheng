@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/21.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  采购信息列表页面
 
 #import "LZPurchasingInfoVC.h"
 #import "LZBugAndProcessBssModel.h"

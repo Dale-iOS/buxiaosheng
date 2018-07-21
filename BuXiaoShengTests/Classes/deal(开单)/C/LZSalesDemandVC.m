@@ -570,7 +570,7 @@
         LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
         webVC.url = url;
         NSLog(@"即将进入的页面链接：%@",url);
-        [self.navigationController pushViewController:webVC animated:YES];
+        [self.navigationController pushViewController:webVC animated:NO];
         
             } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);

@@ -12,6 +12,7 @@
 {
     UILabel *_hintLbl;//总数量
     double _total;//计算中的数量值
+    UIButton *_verifyBtn;//确认按钮
 }
 @end
 
@@ -24,7 +25,7 @@
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.originalValue = 10;
+//    self.originalValue = 10;
     
     NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
     _total = [tempStr doubleValue];
@@ -136,6 +137,19 @@
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
+    
+    
+    //确认按钮
+    _verifyBtn = [[UIButton alloc]init];
+    _verifyBtn.backgroundColor = LZAppBlueColor;
+    [_verifyBtn setTitle:@"确 认" forState:UIControlStateNormal];
+    [_verifyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_verifyBtn addTarget:self action:@selector(verifyBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_verifyBtn];
+    [_verifyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.bottom.and.right.equalTo(self.view);
+        make.height.mas_offset(44);
+    }];
 }
 
 #pragma mark ---- 点击事件 ----
@@ -147,6 +161,9 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
+    if (self.NumValueBlock) {
+        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+    }
 }
 //减号方法
 - (void)subtractionBtnClick{
@@ -156,6 +173,9 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
+    if (self.NumValueBlock) {
+        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+    }
 }
 //乘号方法
 - (void)multiplicationBtnClick{
@@ -165,6 +185,9 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
+    if (self.NumValueBlock) {
+        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+    }
 }
 //除号方法
 - (void)divisionBtnClick{
@@ -174,6 +197,9 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
+    if (self.NumValueBlock) {
+        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+    }
 }
 //重置方法
 - (void)restartClick{
@@ -186,6 +212,11 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
+}
+
+//确认按钮方法
+- (void)verifyBtnClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

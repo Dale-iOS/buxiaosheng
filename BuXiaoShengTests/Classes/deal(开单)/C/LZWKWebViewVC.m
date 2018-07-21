@@ -39,6 +39,7 @@
 }
 
 - (void)setupUI{
+    self.view.backgroundColor = [UIColor whiteColor];
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, APPHeight, APPWidth)];
     NSURL *url = [NSURL URLWithString:self.url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
@@ -111,7 +112,8 @@
     WKNavigationActionPolicy actionPolicy = WKNavigationActionPolicyAllow;
     
     
-    if (navigationAction.navigationType==WKNavigationTypeBackForward) {//判断是返回类型
+    if (navigationAction.navigationType==WKNavigationTypeBackForward) {
+        //判断是返回类型
         
         //同时设置返回按钮和关闭按钮为导航栏左边的按钮 这里可以监听左滑返回事件，仿微信添加关闭按钮。
 //        self.navigationItem.leftBarButtonItems = @[self.backBtn, self.closeBtn];
@@ -196,6 +198,11 @@
 //        [self closeNative];
 //    }
 //}
+
+- (void)backMethod
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

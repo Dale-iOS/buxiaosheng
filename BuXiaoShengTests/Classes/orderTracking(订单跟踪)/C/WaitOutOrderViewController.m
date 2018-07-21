@@ -15,6 +15,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZSalesDetailVC.h"
 
 @interface WaitOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -158,6 +159,13 @@
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    LZSalesDetailVC *vc = [[LZSalesDetailVC alloc]init];
+    vc.orderId = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //采购信息按钮点击事件
