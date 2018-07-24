@@ -29,7 +29,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)setupUI {
-    UISearchBar * searchBar = [UISearchBar new];
+    UISearchBar *searchBar = [UISearchBar new];
     [self.view addSubview:searchBar];
     searchBar.placeholder = @"搜索颜色";
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {

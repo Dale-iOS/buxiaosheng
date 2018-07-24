@@ -7,376 +7,601 @@
 //  退单页面
 
 #import "BackOrderViewController.h"
-#import "LZHTableView.h"
-#import "TextInputCell.h"
-#import "TextInputTextView.h"
-#import "UITextView+Placeholder.h"
-#import "LLBackOrderCotentCell.h"
-#import "LLBackOrdeContentModel.h"
-#import "salesDemandModel.h"
-#import "LZChooseProductVC.h"
+#import "IQKeyboardManager.h"
+#import "LZBackOrderCell.h"
+#import "LZBackOrderGroup.h"
+#import "LZBackOrderItem.h"
+#import "LZSelectItemViewController.h"
+#import "LZAddItemViewController.h"
 
-@interface BackOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
-@property (strong, nonatomic) UITableView *tableView;
+@interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate>
 
-///客户名字
-@property (nonatomic, strong) TextInputCell *nameCell;
-///客户电话
-@property (nonatomic, strong) TextInputCell *phoneCell;
-
-
-///入仓库
-@property (nonatomic, strong) TextInputCell *putStorageCell;
-///应付金额
-@property (nonatomic, strong) TextInputCell *amountPayableCell;
-///实收金额
-@property (nonatomic, strong) TextInputCell *actualCell;
-
-///预收金额
-@property (nonatomic, strong) TextInputCell *amountPaymentCell;
-///付款方式
-@property (nonatomic, strong) TextInputCell *paymentMethodCell;
-///备注
-@property (nonatomic, strong) TextInputCell *remarkTextView;
-
-@property (nonatomic,strong) NSMutableArray <LLBackOrdeModel*> * backOrders;
-
-
-@property (nonatomic,strong) NSArray <productListModel*>* products;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
+@property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
+@property (weak, nonatomic) IBOutlet UILabel *totalNumLb;
+@property (weak, nonatomic) IBOutlet UILabel *totalCountLb;
 
 @end
 
 @implementation BackOrderViewController
 
-
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setupUI];
-    [self setupProductData];
-}
-
-- (void)setupUI
-{
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = [Utility navTitleView:@"退单"];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-LLAddHeight);
-    }];
+    //拖动tableView回收键盘
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
-- (void)setupProductData
-{
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             };
-    [BXSHttp requestGETWithAppURL:@"product/product_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            return ;
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (@available(iOS 11.0, *)) {
+        self.bottomConstraint.constant = self.view.safeAreaInsets.bottom;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].shouldShowToolbarPlaceholder = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [IQKeyboardManager sharedManager].shouldShowToolbarPlaceholder = YES;
+}
+
+- (void)dealloc {
+    NSLog(@"%s",__func__);
+}
+
+#pragma mark - Private Methods
+- (LZBackOrderGroup *)createSectionGroupItem {
+    NSArray *sectionArr = @[@{@"textTitle":@"*品名",
+                              @"detailTitle":@"",
+                              @"placeHolder":@"选择品名",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(1),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(YES),
+                              @"mandatoryOption":@(YES),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"*颜色",
+                              @"detailTitle":@"",
+                              @"placeHolder":@"选择颜色",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(2),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(YES),
+                              @"mandatoryOption":@(YES),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"入库单位",
+                              @"detailTitle":@" ",
+                              @"placeHolder":@" ",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"批号",
+                              @"detailTitle":@"",
+                              @"placeHolder":@"请输入批号",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(YES),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"货架",
+                              @"detailTitle":@"",
+                              @"placeHolder":@"请输入货架号",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(YES),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"*单价",
+                              @"detailTitle":@"",
+                              @"placeHolder":@"0",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(YES),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(YES),
+                              @"numericKeyboard":@(YES)
+                              },
+                            @{@"textTitle":@"入库数量",
+                              @"detailTitle":@"0",
+                              @"placeHolder":@"",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"标签数量",
+                              @"detailTitle":@"0",
+                              @"placeHolder":@"",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"结算数量",
+                              @"detailTitle":@"0",
+                              @"placeHolder":@"",
+                              @"detailColor":[UIColor blackColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"本单退款金额",
+                              @"detailTitle":@"0",
+                              @"placeHolder":@"",
+                              @"detailColor":[UIColor redColor],
+                              @"clickType":@(0),
+                              @"cellType":@(0),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              },
+                            @{@"textTitle":@"",
+                              @"detailTitle":@"0",
+                              @"placeHolder":@"",
+                              @"detailColor":[UIColor redColor],
+                              @"clickType":@(0),
+                              @"cellType":@(1),
+                              @"canInput":@(NO),
+                              @"showArrow":@(NO),
+                              @"mandatoryOption":@(NO),
+                              @"numericKeyboard":@(NO)
+                              }];
+    LZBackOrderGroup *group = [LZBackOrderGroup groupWithFlod:NO items:sectionArr];
+    return  group;
+}
+
+//计算底部总数量 总条数
+- (void)calculateTotal {
+    NSInteger total = 0;
+    NSInteger count = 0;
+    //应付金额 预收金额
+    NSInteger totalNum = 0;
+    for (int i = 1; i < self.dataSource.count - 1; i++) {
+        LZBackOrderGroup *group = self.dataSource[i];
+        NSInteger totalCount = group.items.count;
+        LZBackOrderItem *item = group.items[totalCount - 2];
+        totalNum += item.detailTitle.integerValue;
+        for (NSString *itemStr in group.itemStrings) {
+            total += itemStr.integerValue;
+            count += 1;
         }
-        self.products = [productListModel LLMJParse:baseModel.data];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (!self.backOrders.count) {
-        return 1;
+    }
+    //应付金额
+    LZBackOrderGroup *lastGroup = self.dataSource.lastObject;
+    [lastGroup.items[1] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum]];
+    if ([BXSTools isEmptyString:[lastGroup.items[2] detailTitle]]) {
+        //预收付款
+        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum]];
+    } else {
+        NSInteger realPay = lastGroup.items[2].detailTitle.integerValue;
+        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum - realPay]];
     }
     
-    if (section ==1) {
-        
-    }
-    
-    return  self.backOrders[section].seleted ? self.backOrders.count+1 :1;
+    _totalNumLb.text = [NSString stringWithFormat:@"总数量: %ld", total];
+    _totalCountLb.text = [NSString stringWithFormat:@"总条数: %ld", count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.backOrders.count == indexPath.row) {
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"addbtnCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addbtnCell"];
-            UIButton * addBtn = [UIButton new];
-            [addBtn setBackgroundImage:[UIImage imageNamed:@"addbtn"] forState:UIControlStateNormal];
-            [cell.contentView addSubview: addBtn];
-            [addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            [addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.center.equalTo(cell.contentView);
-            }];
+//计算分区的相关数据
+- (void)caculateSectionDataWithGroup:(LZBackOrderGroup *)group indexPath:(NSIndexPath *)indexPath {
+    NSInteger total = 0;
+    for (NSString *string in group.itemStrings) {
+        total += string.integerValue;
+    }
+    if (group.items.count > 11 && group.itemStrings.count > 0) {
+        if (indexPath.row == 3) {
+            LZBackOrderItem *item = group.items[indexPath.row];
+            item.textTitle = [NSString stringWithFormat:@"细码 (总条数: %ld )", group.itemStrings.count];
         }
-        return cell;
+        
+        NSInteger itemCount = group.items.count;
+        //单价
+        NSInteger price = [[group.items[itemCount - 6] detailTitle] integerValue];
+        //入库数量
+        group.items[itemCount - 5].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        //标签数量
+        group.items[itemCount - 4].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        //结算数量
+        group.items[itemCount - 3].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        //本单退款金额
+        group.items[itemCount - 2].detailTitle = [NSString stringWithFormat:@"%ld", price * total];
     }
-    LLBackOrderCotentCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"LLBackOrderCotentCell"];
-    cell.dateModels = self.backOrders[indexPath.row].backOrderContents;
-    cell.indexPath = indexPath;
-    cell.products = self.products;
-    WEAKSELF;
-    cell.block = ^(LLBackOrderCotentCell *cell) {
-        weakSelf.backOrders[cell.indexPath.row].seleted =  ! weakSelf.backOrders[cell.indexPath.row].seleted;
-        [weakSelf.tableView reloadData];
-    };
-    return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.backOrders.count == indexPath.row) {
-        return 50;
-    }
-    return self.backOrders[indexPath.row].seleted ?  (10 * 60 +(20*3)) : 0;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[LZChooseProductVC new] animated:YES];
-}
-
- /// MARK: ---- 新增一条的点击
--(void)addBtnClick {
-    
-    LLBackOrdeModel * backOrder = [LLBackOrdeModel new];
-    backOrder.seleted = true;
-    backOrder.backOrderContents = [self contenDataSource];
-    [_backOrders addObject:backOrder];
+    [self calculateTotal];
     [self.tableView reloadData];
 }
 
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataSource.count;
+}
 
--(UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableFooterView = [self tableFooterView];
-        [self.view addSubview:_tableView];
-        [_tableView registerClass:[LLBackOrderCotentCell class] forCellReuseIdentifier:@"LLBackOrderCotentCell"];
-        _tableView.tableHeaderView = [self tableHeaderView];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    LZBackOrderGroup *group = self.dataSource[section];
+    if (group.fold) return 4;
+    return group.items.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LZBackOrderGroup *group = self.dataSource[indexPath.section];
+    LZBackOrderItem *item = group.items[indexPath.row];
+    LZBackOrderCell *cell = [LZBackOrderCell cellWithTableView:tableView cellType:item.cellType];
+    cell.group = group;
+    cell.item = item;
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView sd_clearSubviewsAutoLayoutFrameCaches];
+    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:tableView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 15;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = RGBColor(223, 224, 231);
+    return view;
+}
+
+#pragma mark - LZBackOrderCellDelegate
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell btnClickType:(BtnClickType)type forIndexPath:(NSIndexPath *)indexPath {
+    LZBackOrderGroup *group = self.dataSource[indexPath.section];
+    switch (type) {
+        case BtnClickTypeFold:
+            {
+                group.fold = !group.isFold;
+                [group.items exchangeObjectAtIndex:3 withObjectAtIndex:(group.items.count - 1)];
+                [self.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:indexPath.section newDataCount:group.items.count];
+            }
+            break;
+        case BtnClickTypeAddYard:
+        {
+            [self.dataSource enumerateObjectsUsingBlock:^(LZBackOrderGroup * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.hiddenAddYard = YES;
+            }];
+            [self.dataSource insertObject:[self createSectionGroupItem] atIndex:(indexPath.section + 1)];
+            [self.tableView reloadData];
+        }
+            break;
+        case BtnClickTypeAddItem:
+        {
+            LZAddItemViewController *vc = [[LZAddItemViewController alloc] init];
+            vc.selectItems = ^(NSArray *items) {
+                for (NSString *string in items) {
+                    [group.itemStrings addObject:string];
+                }
+                [self caculateSectionDataWithGroup:group indexPath:indexPath];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        default:
+            break;
     }
-    return _tableView;
-}
--(UIView *)tableHeaderView {
-    UIView * headerView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
-    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.nameCell = [[TextInputCell alloc] init];
-    self.nameCell.backgroundColor = [UIColor whiteColor];
-    [headerView addSubview:self.nameCell];
-    self.nameCell.titleLabel.text = @"客户姓名";
-    self.nameCell.contentTF.placeholder = @"请输入客户姓名";
-    [self.nameCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(headerView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(headerView).offset(20);
-    }];
-    
-    self.phoneCell = [[TextInputCell alloc] init];
-     self.phoneCell.backgroundColor = [UIColor whiteColor];
-    [headerView addSubview:self.phoneCell];
-    self.phoneCell.titleLabel.text = @"客户电话";
-    self.phoneCell.contentTF.userInteractionEnabled = false;
-    [self.phoneCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(headerView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.nameCell.mas_bottom);
-    }];
-    return headerView;
 }
 
--(UIView *)tableFooterView {
-    UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5*60+20+100)];
-    footView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
+    LZBackOrderGroup *group = self.dataSource[indexPath.section];
+    LZBackOrderItem *item = group.items[indexPath.row];
     
-    self.putStorageCell = [[TextInputCell alloc] init];
-    self.putStorageCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.putStorageCell];
-    self.putStorageCell.titleLabel.text = @"入库仓";
-    self.putStorageCell.contentTF.placeholder = @"请选择入库仓";
-    self.putStorageCell.rightArrowImageVIew.hidden = false;
-    self.putStorageCell.contentTF.userInteractionEnabled = false;
-    [self.putStorageCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(footView).offset(20);
-    }];
-    
-    
-    self.amountPayableCell = [[TextInputCell alloc] init];
-    self.amountPayableCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.amountPayableCell];
-    self.amountPayableCell.titleLabel.text = @"应付金额";
-    self.amountPayableCell.contentTF.text = @"0.0";
-    self.amountPayableCell.contentTF.userInteractionEnabled = false;
-    [self.amountPayableCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.putStorageCell.mas_bottom);
-    }];
-    
-    self.actualCell = [[TextInputCell alloc] init];
-    self.actualCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.actualCell];
-    self.actualCell.titleLabel.text = @"实付金额";
-    self.actualCell.contentTF.placeholder = @"请输入实付金额";
-    [self.actualCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.amountPayableCell.mas_bottom);
-    }];
-    
-    self.actualCell = [[TextInputCell alloc] init];
-    self.actualCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.actualCell];
-    self.actualCell.titleLabel.text = @"实付金额";
-    self.actualCell.contentTF.placeholder = @"请输入实付金额";
-    [self.actualCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.amountPayableCell.mas_bottom);
-    }];
-    
-    self.amountPaymentCell = [[TextInputCell alloc] init];
-    self.amountPaymentCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.amountPaymentCell];
-    self.amountPaymentCell.titleLabel.text = @"预收金额";
-    self.amountPaymentCell.contentTF.text = @"0.0";
-    [self.amountPaymentCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.actualCell.mas_bottom);
-    }];
-    
-    self.paymentMethodCell = [[TextInputCell alloc] init];
-    self.paymentMethodCell.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.paymentMethodCell];
-    self.paymentMethodCell.titleLabel.text = @"付款方式";
-    self.paymentMethodCell.contentTF.placeholder = @"请选择付款方式";
-    self.paymentMethodCell.rightArrowImageVIew.hidden = false;
-    self.paymentMethodCell.contentTF.userInteractionEnabled = false;
-    [self.paymentMethodCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(60);
-        make.top.equalTo(self.amountPaymentCell.mas_bottom);
-    }];
-    
-    
-    self.remarkTextView = [[TextInputCell alloc] init];
-    self.remarkTextView.backgroundColor = [UIColor whiteColor];
-    [footView addSubview:self.remarkTextView];
-    self.remarkTextView.titleLabel.text = @"备注";
-    self.remarkTextView.contentTF.placeholder = @"请输入备注内容";
-    [self.remarkTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(footView);
-        make.height.mas_equalTo(100);
-        make.top.equalTo(self.paymentMethodCell.mas_bottom);
-    }];
-    
-    return footView;
+    LZSelectItemViewController *vc = [[LZSelectItemViewController alloc] init];
+    vc.type = (LZSelectItemVCSelectType)item.clickType;
+    vc.title = item.placeHolder;
+    __weak typeof(self) weakSelf = self;
+    vc.selectItemBlock = ^(NSString *itemStr) {
+        if (ClickTypeProduct == item.clickType && [BXSTools isEmptyString:item.detailTitle]) {
+            
+            LZBackOrderItem *threeItem = group.items[2];
+            threeItem.detailTitle = @"公斤";
+            
+            NSDictionary *dic = @{@"textTitle":@"细码 (总条数: 0 )",
+                                  @"detailTitle":@" ",
+                                  @"placeHolder":@"",
+                                  @"detailColor":[UIColor blackColor],
+                                  @"clickType":@(0),
+                                  @"cellType":@(2),
+                                  @"canInput":@(NO),
+                                  @"showArrow":@(NO),
+                                  @"mandatoryOption":@(NO),
+                                  @"numericKeyboard":@(NO)
+                                  };
+            LZBackOrderItem *tmpItem = [[LZBackOrderItem alloc] init];
+            [tmpItem setValuesForKeysWithDictionary:dic];
+            [group.items insertObject:tmpItem atIndex:3];
+            
+            if (group.isFold) {
+                NSInteger rowCount = [weakSelf tableView:weakSelf.tableView numberOfRowsInSection:indexPath.section];
+                [group.items exchangeObjectAtIndex:(group.items.count - 1) withObjectAtIndex:(rowCount - 1)];
+                [group.items exchangeObjectAtIndex:3 withObjectAtIndex:rowCount];
+            }
+        }
+        item.detailTitle = itemStr;
+        NSInteger section = [weakSelf.dataSource indexOfObject:group];
+        [weakSelf.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:section newDataCount:group.items.count];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell reloadForIndexPath:(NSIndexPath *)indexPath {
+    LZBackOrderGroup *group = self.dataSource[indexPath.section];
+    NSInteger count = group.items.count;
+    //单价
+    NSInteger price = [[group.items[count - 6] detailTitle] integerValue];
+    //入库数量
+    NSInteger storage = [[group.items[count - 5] detailTitle] integerValue];
+    
+    group.items[count - 2].detailTitle = [NSString stringWithFormat:@"%ld", price * storage];
+    [self caculateSectionDataWithGroup:group indexPath:indexPath];
+    [self.tableView reloadData];
+//    [self.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:indexPath.section newDataCount:group.items.count];
+}
 
--(NSMutableArray<LLBackOrdeModel *> *)backOrders {
-    if (!_backOrders) {
-        _backOrders = [NSMutableArray array];
+//修改细码
+-(void)backOrderCell:(LZBackOrderCell *)backOrderCell modifyItemForIndexPath:(NSIndexPath *)indexPath index:(NSInteger)index {
+    LZBackOrderGroup *group = self.dataSource[indexPath.section];
+    LZAddItemViewController *vc = [[LZAddItemViewController alloc] init];
+    vc.itemDetail = group.itemStrings[index];
+    vc.modifyItem = YES;
+    vc.selectItems = ^(NSArray *items) {
+        [group.itemStrings replaceObjectAtIndex:index withObject:items.firstObject];
+        [self caculateSectionDataWithGroup:group indexPath:indexPath];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray *)dataSource {
+    if (_dataSource == nil) {
+        _dataSource = @[].mutableCopy;
+        NSArray *tempArr = @[
+                             @[@{@"textTitle":@"*客户名字",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请输入客户名称",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(YES),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"客户电话",
+                                 @"detailTitle":@" ",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 }],
+                             @[@{@"textTitle":@"*品名",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"选择品名",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(1),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(YES),
+                                 @"mandatoryOption":@(YES),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"*颜色",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"选择颜色",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(2),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(YES),
+                                 @"mandatoryOption":@(YES),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"入库单位",
+                                 @"detailTitle":@" ",
+                                 @"placeHolder":@" ",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"批号",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请输入批号",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"货架",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请输入货架号",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"*单价",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"0",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(YES),
+                                 @"numericKeyboard":@(YES)
+                                 },
+                               @{@"textTitle":@"入库数量",
+                                 @"detailTitle":@"0",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"标签数量",
+                                 @"detailTitle":@"0",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"结算数量",
+                                 @"detailTitle":@"0",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"本单退款金额",
+                                 @"detailTitle":@"0",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor redColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"",
+                                 @"detailTitle":@"0",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor redColor],
+                                 @"clickType":@(0),
+                                 @"cellType":@(1),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 }],
+                             @[@{@"textTitle":@"*入仓库",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请选择入仓库",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(3),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(YES),
+                                 @"mandatoryOption":@(YES),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"应付金额",
+                                 @"detailTitle":@" ",
+                                 @"placeHolder":@" ",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"实付金额",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"输入实付金额",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(YES)
+                                 },
+                               @{@"textTitle":@"预收付款",
+                                 @"detailTitle":@" ",
+                                 @"placeHolder":@"",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"付款方式",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请选择付款方式",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(4),
+                                 @"canInput":@(NO),
+                                 @"showArrow":@(YES),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 },
+                               @{@"textTitle":@"备注",
+                                 @"detailTitle":@"",
+                                 @"placeHolder":@"请输入备注内容",
+                                 @"detailColor":[UIColor blackColor],
+                                 @"clickType":@(0),
+                                 @"canInput":@(YES),
+                                 @"showArrow":@(NO),
+                                 @"mandatoryOption":@(NO),
+                                 @"numericKeyboard":@(NO)
+                                 }]
+                             ];
+        for (NSArray *array in tempArr) {
+            LZBackOrderGroup *group = [LZBackOrderGroup groupWithFlod:NO items:array];
+            [_dataSource addObject:group];
+        }
     }
-    return _backOrders;
-}
-
--(NSMutableArray *)contenDataSource {
-       NSMutableArray * _contenDataSource = [NSMutableArray array];
-        NSMutableArray * sectionOneModel = [NSMutableArray array];
-        for (int i = 0; i< 3; i++) {
-            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
-            switch (i) {
-                case 0:
-                    model.leftTitle = @"品名";
-                    model.rightArrowHidden = false;
-                    model.placeholder = @"选择品名";
-                    break;
-                case 1:
-                    model.leftTitle = @"颜色";
-                    model.rightArrowHidden = false;
-                    model.placeholder = @"选择颜色";
-                    break;
-                case 2:
-                    model.leftTitle = @"入库单位";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"";
-                    break;
-                default:
-                    break;
-            }
-              [sectionOneModel addObject:model];
-        }
-        [_contenDataSource addObject:sectionOneModel];
-        
-         NSMutableArray * sectionTwoModel = [NSMutableArray array];
-        for (int i = 0; i< 2; i++) {
-            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
-            switch (i) {
-                case 0:
-                    model.leftTitle = @"批号";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"请输入批号";
-                    break;
-                case 1:
-                    model.leftTitle = @"货架";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"请输入货架";
-                    break;
-                default:
-                    break;
-            }
-            [sectionTwoModel addObject:model];
-        }
-        [_contenDataSource addObject:sectionTwoModel];
-        
-        NSMutableArray * sectionThreeModel = [NSMutableArray array];
-        for (int i = 0; i< 5; i++) {
-            LLBackOrdeContentModel * model = [LLBackOrdeContentModel new];
-            switch (i) {
-                case 0:
-                    model.leftTitle = @"单价";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                case 1:
-                    model.leftTitle = @"入库数量";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                case 2:
-                    model.leftTitle = @"入库数量";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                case 3:
-                    model.leftTitle = @"标签数量";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                case 4:
-                    model.leftTitle = @"结算数量";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                case 5:
-                    model.leftTitle = @"本单退款金额";
-                    model.rightArrowHidden = true;
-                    model.placeholder = @"";
-                    model.content = @"0.0";
-                    break;
-                default:
-                    break;
-            }
-            [sectionThreeModel addObject:model];
-        }
-        [_contenDataSource addObject:sectionThreeModel];
-    return _contenDataSource;
+    return _dataSource;
 }
 
 @end

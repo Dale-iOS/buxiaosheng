@@ -20,4 +20,8 @@
 + (UIViewController *)viewWithViewController:(UIView *)view;
 
 +(BOOL)welcomeShow;
+
+//字符串为空检查
++ (BOOL)isEmptyString:(NSString *)sourceStr;
+
 @end

@@ -122,4 +122,39 @@
     return false;
 }
 
+//字符串为空检查
++ (BOOL)isEmptyString:(NSString *)sourceStr {
+    if ((NSNull *)sourceStr == [NSNull null]) {
+        return YES;
+    }
+    if (sourceStr == nil) {
+        return YES;
+    }
+    if (sourceStr == NULL) {
+        return YES;
+    }
+    if ([sourceStr isEqual:[NSNull null]]) {
+        return YES;
+    }
+    if (![sourceStr isKindOfClass:[NSString class]]) {
+        return YES;
+    }
+    if([sourceStr isEqualToString:@"<null>"]){
+        return YES;
+    }
+    if ([sourceStr isEqualToString:@"null"]) {
+        return YES;
+    }
+    if ([sourceStr isEqualToString:@"(null)"]) {
+        return YES;
+    }
+    if ([sourceStr isEqualToString:@""]) {
+        return YES;
+    }
+    if (sourceStr.length == 0) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

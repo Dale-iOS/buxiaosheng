@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LZBackOrderCellOne" rowHeight="69" id="KGk-i7-Jjw" customClass="LZBackOrderCell">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="68.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DC-kT-zhR">
+                        <rect key="frame" x="15" y="0.0" width="110" height="68.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="QRy-ZH-r94"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Afb-wu-4Ik">
+                        <rect key="frame" x="145" y="10" width="230" height="48.5"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="ZX9-rV-gEj"/>
+                        </connections>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4DC-kT-zhR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0z4-cQ-qLi"/>
+                    <constraint firstItem="Afb-wu-4Ik" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8tb-sX-fsR"/>
+                    <constraint firstAttribute="bottom" secondItem="Afb-wu-4Ik" secondAttribute="bottom" constant="10" id="G6W-gj-0bX"/>
+                    <constraint firstItem="Afb-wu-4Ik" firstAttribute="leading" secondItem="4DC-kT-zhR" secondAttribute="trailing" constant="20" id="Q6e-Qo-sAS"/>
+                    <constraint firstAttribute="bottom" secondItem="4DC-kT-zhR" secondAttribute="bottom" id="j7x-ER-bcV"/>
+                    <constraint firstItem="4DC-kT-zhR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jhV-TY-QNz"/>
+                    <constraint firstAttribute="trailing" secondItem="Afb-wu-4Ik" secondAttribute="trailing" constant="40" id="z0W-Bb-gXY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="textField" destination="Afb-wu-4Ik" id="V7I-J5-8dW"/>
+                <outlet property="titleLb" destination="4DC-kT-zhR" id="OpO-2z-y0v"/>
+            </connections>
+            <point key="canvasLocation" x="-302" y="-70"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LZBackOrderCellTwo" rowHeight="95" id="ldE-TX-n4c" customClass="LZBackOrderCell">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldE-TX-n4c" id="xYo-nv-zFN">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="94.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSL-z6-fc0">
+                        <rect key="frame" x="192.5" y="15" width="30" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="5Vs-QF-bZY"/>
+                            <constraint firstAttribute="width" secondItem="SSL-z6-fc0" secondAttribute="height" constant="10" id="J3H-Df-CRx"/>
+                        </constraints>
+                        <connections>
+                            <action selector="handleFoldBtnAction:" destination="ldE-TX-n4c" eventType="touchUpInside" id="TK3-3z-D6e"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pet-Ty-sW2">
+                        <rect key="frame" x="161.5" y="45" width="92" height="31"/>
+                        <state key="normal" image="addbtn"/>
+                        <connections>
+                            <action selector="handleAddYardAction:" destination="ldE-TX-n4c" eventType="touchUpInside" id="7Qy-gy-oSH"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pet-Ty-sW2" firstAttribute="centerX" secondItem="xYo-nv-zFN" secondAttribute="centerX" id="1wr-1c-KED"/>
+                    <constraint firstItem="SSL-z6-fc0" firstAttribute="top" secondItem="xYo-nv-zFN" secondAttribute="top" constant="15" id="Bcv-2w-x9M"/>
+                    <constraint firstItem="SSL-z6-fc0" firstAttribute="centerX" secondItem="xYo-nv-zFN" secondAttribute="centerX" id="Q3p-JF-3Dw"/>
+                    <constraint firstItem="pet-Ty-sW2" firstAttribute="top" secondItem="SSL-z6-fc0" secondAttribute="bottom" constant="10" id="ciK-Q4-Aqy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addBtn" destination="pet-Ty-sW2" id="FZw-yn-58c"/>
+                <outlet property="foldBtn" destination="SSL-z6-fc0" id="N6i-eF-YuK"/>
+            </connections>
+            <point key="canvasLocation" x="-303" y="83"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LZBackOrderCellThree" rowHeight="129" id="C0t-aP-duJ" customClass="LZBackOrderCell">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C0t-aP-duJ" id="obu-3W-Dh2">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="细码 (总条数: 0 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="be9-A6-y3p">
+                        <rect key="frame" x="15" y="15" width="113" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-CA-mx9">
+                        <rect key="frame" x="375" y="15" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.38823529410000002" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="handleAddItemAction:" destination="C0t-aP-duJ" eventType="touchUpInside" id="h1l-8L-tK3"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addYardBtn" destination="7Gj-CA-mx9" id="QWD-4v-B4Q"/>
+                <outlet property="titleLbThree" destination="be9-A6-y3p" id="NI2-DN-HGG"/>
+            </connections>
+            <point key="canvasLocation" x="-304.5" y="259.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="addbtn" width="92" height="31"/>
+    </resources>
+</document>
