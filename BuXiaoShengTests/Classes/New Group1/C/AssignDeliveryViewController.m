@@ -44,7 +44,7 @@
 - (void)setupUI
 {
     _headView = [[UIView alloc]init];
-    _headView.backgroundColor = [UIColor whiteColor];
+//    _headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_headView];
     [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(LLNavViewHeight);

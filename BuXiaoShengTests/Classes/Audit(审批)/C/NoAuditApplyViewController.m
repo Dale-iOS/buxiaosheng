@@ -131,8 +131,8 @@
     }
     WEAKSELF;
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.payNameAry titleDataArray:nil];
-    pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -80, APPWidth, 44);
-    pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -65, APPWidth, 200);
+    pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -180, APPWidth, 44);
+    pickerView.picerView.frame = CGRectMake(0, APPHeight - 220 -165, APPWidth, 200);
     
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         

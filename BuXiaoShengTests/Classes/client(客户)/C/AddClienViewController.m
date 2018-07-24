@@ -94,7 +94,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加客户资料"];
+    self.navigationItem.titleView = self.isFormSelect ? [Utility navTitleView:@"修改客户资料"] : [Utility navTitleView:@"添加客户资料"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(makeSureClick) title:@"确认"];
     
     self.datasource = [NSMutableArray array];

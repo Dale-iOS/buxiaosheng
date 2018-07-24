@@ -93,6 +93,7 @@
         make.width.mas_equalTo(60);
     }];
     [_foldingBtn layoutIfNeeded];
+    _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     
     
     UIView * _headView = [[UIView alloc]init];
@@ -230,6 +231,7 @@
         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
         
          _model.seleted ? (_foldingBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_foldingBtn.imageView.transform = CGAffineTransformIdentity);
+        _model.seleted ? [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal] :[_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];;
     }
     
     
