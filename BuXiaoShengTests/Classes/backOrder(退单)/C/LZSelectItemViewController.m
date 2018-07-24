@@ -8,12 +8,20 @@
 
 #import "LZSelectItemViewController.h"
 #import "UIBarButtonItem+CJExtension.h"
+#import "salesDemandModel.h"
 
 @interface LZSelectItemViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray<NSMutableDictionary *> *dataSource;
-
+//产品数组
+@property (nonatomic, strong) NSMutableArray <productListModel *> *products;
+@property (nonatomic, strong) NSMutableArray *productsListMTArray;//产品列表名称数组
+@property (nonatomic, strong) NSMutableArray *productsIdMTArray;//产品列表ID数组
+//颜色数组
+@property (nonatomic, strong) NSMutableArray <productListModel *> *colors;
+@property (nonatomic, strong) NSMutableArray *colorsListMTArray;//颜色列表名称数组
+@property (nonatomic, strong) NSMutableArray *colorsIdMTArray;//颜色列表ID数组
 @end
 
 static NSString *cellId = @"UITableViewCell";
@@ -22,10 +30,21 @@ static NSString *cellId = @"UITableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     [self setupNavigationItem];
     [self removeExtraCellLine];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
+    
+    if (LZSelectItemVCSelectProduct == _type) {
+        //选择产品
+        [self setupProductData];
+    } else if (LZSelectItemVCSelectColor == _type) {
+        [self setupColorData];
+    } else if (LZSelectItemVCSelectWarehouse == _type) {
+//        datas = @[@"入仓1", @"入仓2", @"入仓3", @"入仓4", @"入仓5"];
+    } else if (LZSelectItemVCSelectPayMentWay == _type) {
+//        datas = @[@"方式1", @"方式2", @"方式3", @"方式4", @"方式5"];
+    }
 }
 
 - (void)dealloc {
@@ -104,6 +123,74 @@ static NSString *cellId = @"UITableViewCell";
     [dic setDictionary:tmpDic];
     //3.刷新表格
     [tableView reloadData];
+    
+    [self handleSureBtnAction];
+}
+
+#pragma mark ----- 网络请求 ------
+//功能用到产品列表
+- (void)setupProductData
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"searchName":@""
+                             };
+    [BXSHttp requestGETWithAppURL:@"product/product_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+//        文档接口网址
+//        http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#288
+        _products = [productListModel LLMJParse:baseModel.data];
+        //拼接要展示的列表数据
+        //产品名字
+        _productsListMTArray = [NSMutableArray array];
+        //产品id
+        _productsIdMTArray = [NSMutableArray array];
+        if (_products) {
+            for (int i = 0; i <_products.count; i++) {
+                productListModel *model = [productListModel LLMJParse:_products[i]];
+                [_productsListMTArray addObject:model.name];
+                [_productsIdMTArray addObject:model.id];
+            }
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+//功能用到颜色列表
+- (void)setupColorData
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"searchName":@"",
+                             @"productId":@""
+                             };
+    [BXSHttp requestGETWithAppURL:@"product_color/color_list.do" param:param success:^(id response) {
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            return ;
+        }
+        //        文档接口网址
+        //        http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#293
+        _colors = [productListModel LLMJParse:baseModel.data];
+        //拼接要展示的列表数据
+        //颜色名字
+        _colorsListMTArray = [NSMutableArray array];
+        //颜色id
+        _colorsIdMTArray = [NSMutableArray array];
+        if (_colors) {
+            for (int i = 0; i <_products.count; i++) {
+                productListModel *model = [productListModel LLMJParse:_products[i]];
+                [_colorsListMTArray addObject:model.name];
+                [_colorsIdMTArray addObject:model.id];
+            }
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - Getter && Setter
@@ -112,7 +199,8 @@ static NSString *cellId = @"UITableViewCell";
 #warning to do ...此处为假数据,应从接口获取
         NSArray *datas = @[];
         if (LZSelectItemVCSelectProduct == _type) {
-            datas = @[@"品名1", @"品名2", @"品名3", @"品名4", @"品名5"];
+//            datas = _productsListMTArray;
+            datas = @[@"产品1", @"产品2", @"产品3", @"产品4", @"产品5"];
         } else if (LZSelectItemVCSelectColor == _type) {
             datas = @[@"颜色1", @"颜色2", @"颜色3", @"颜色4", @"颜色5"];
         } else if (LZSelectItemVCSelectWarehouse == _type) {

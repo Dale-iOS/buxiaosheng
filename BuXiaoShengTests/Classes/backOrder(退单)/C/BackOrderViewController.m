@@ -13,15 +13,29 @@
 #import "LZBackOrderItem.h"
 #import "LZSelectItemViewController.h"
 #import "LZAddItemViewController.h"
+#import "LZPickerView.h"
+#import "LZSearchVC.h"
+#import "LZChooseProductsVC.h"
+#import "LZChangeNumVC.h"
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate>
-
+{
+    NSString *_productId;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
 @property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
 @property (weak, nonatomic) IBOutlet UILabel *totalNumLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLb;
+//仓库方式数组
+@property (nonatomic, strong) NSMutableArray *warehouseNameAry;
+@property (nonatomic, strong) NSMutableArray *warehouseIdAry;
+@property (nonatomic, copy) NSString *warehouseIdStr;///选中的仓库id
+//付款方式数组
+@property (nonatomic, strong) NSMutableArray *payNameAry;
+@property (nonatomic, strong) NSMutableArray *payIdAry;
+@property (nonatomic, copy) NSString *payIdStr;///选中的付款方式id
 
 @end
 
@@ -34,6 +48,10 @@
     self.navigationItem.titleView = [Utility navTitleView:@"退单"];
     //拖动tableView回收键盘
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
+    //网络请求
+    [self setupWarehouseLists];
+    [self setupPayList];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -62,7 +80,7 @@
     NSArray *sectionArr = @[@{@"textTitle":@"*品名",
                               @"detailTitle":@"",
                               @"placeHolder":@"选择品名",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(1),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -73,7 +91,7 @@
                             @{@"textTitle":@"*颜色",
                               @"detailTitle":@"",
                               @"placeHolder":@"选择颜色",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(2),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -84,7 +102,7 @@
                             @{@"textTitle":@"入库单位",
                               @"detailTitle":@" ",
                               @"placeHolder":@" ",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -95,7 +113,7 @@
                             @{@"textTitle":@"批号",
                               @"detailTitle":@"",
                               @"placeHolder":@"请输入批号",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(YES),
@@ -106,7 +124,7 @@
                             @{@"textTitle":@"货架",
                               @"detailTitle":@"",
                               @"placeHolder":@"请输入货架号",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(YES),
@@ -117,7 +135,7 @@
                             @{@"textTitle":@"*单价",
                               @"detailTitle":@"",
                               @"placeHolder":@"0",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(YES),
@@ -128,7 +146,7 @@
                             @{@"textTitle":@"入库数量",
                               @"detailTitle":@"0",
                               @"placeHolder":@"",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -139,7 +157,7 @@
                             @{@"textTitle":@"标签数量",
                               @"detailTitle":@"0",
                               @"placeHolder":@"",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -150,7 +168,7 @@
                             @{@"textTitle":@"结算数量",
                               @"detailTitle":@"0",
                               @"placeHolder":@"",
-                              @"detailColor":[UIColor blackColor],
+                              @"detailColor":CD_Text33,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -161,7 +179,7 @@
                             @{@"textTitle":@"本单退款金额",
                               @"detailTitle":@"0",
                               @"placeHolder":@"",
-                              @"detailColor":[UIColor redColor],
+                              @"detailColor":LZAppRedColor,
                               @"clickType":@(0),
                               @"cellType":@(0),
                               @"canInput":@(NO),
@@ -172,7 +190,7 @@
                             @{@"textTitle":@"",
                               @"detailTitle":@"0",
                               @"placeHolder":@"",
-                              @"detailColor":[UIColor redColor],
+                              @"detailColor":LZAppRedColor,
                               @"clickType":@(0),
                               @"cellType":@(1),
                               @"canInput":@(NO),
@@ -318,46 +336,128 @@
     }
 }
 
+// 点击事件
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
+    WEAKSELF;
     
-    LZSelectItemViewController *vc = [[LZSelectItemViewController alloc] init];
-    vc.type = (LZSelectItemVCSelectType)item.clickType;
-    vc.title = item.placeHolder;
-    __weak typeof(self) weakSelf = self;
-    vc.selectItemBlock = ^(NSString *itemStr) {
-        if (ClickTypeProduct == item.clickType && [BXSTools isEmptyString:item.detailTitle]) {
-            
-            LZBackOrderItem *threeItem = group.items[2];
-            threeItem.detailTitle = @"公斤";
-            
-            NSDictionary *dic = @{@"textTitle":@"细码 (总条数: 0 )",
-                                  @"detailTitle":@" ",
-                                  @"placeHolder":@"",
-                                  @"detailColor":[UIColor blackColor],
-                                  @"clickType":@(0),
-                                  @"cellType":@(2),
-                                  @"canInput":@(NO),
-                                  @"showArrow":@(NO),
-                                  @"mandatoryOption":@(NO),
-                                  @"numericKeyboard":@(NO)
-                                  };
-            LZBackOrderItem *tmpItem = [[LZBackOrderItem alloc] init];
-            [tmpItem setValuesForKeysWithDictionary:dic];
-            [group.items insertObject:tmpItem atIndex:3];
-            
-            if (group.isFold) {
-                NSInteger rowCount = [weakSelf tableView:weakSelf.tableView numberOfRowsInSection:indexPath.section];
-                [group.items exchangeObjectAtIndex:(group.items.count - 1) withObjectAtIndex:(rowCount - 1)];
-                [group.items exchangeObjectAtIndex:3 withObjectAtIndex:rowCount];
-            }
+//    LZSelectItemViewController *vc = [[LZSelectItemViewController alloc] init];
+//    vc.type = (LZSelectItemVCSelectType)item.clickType;
+//    vc.title = item.placeHolder;
+//    vc.selectItemBlock = ^(NSString *itemStr) {
+//        if (ClickTypeProduct == item.clickType && [BXSTools isEmptyString:item.detailTitle]) {
+//
+//            LZBackOrderItem *threeItem = group.items[2];
+//            threeItem.detailTitle = @"公斤";
+//
+//            NSDictionary *dic = @{@"textTitle":@"细码 (总条数: 0 )",
+//                                  @"detailTitle":@" ",
+//                                  @"placeHolder":@"",
+//                                  @"detailColor":[UIColor blackColor],
+//                                  @"clickType":@(0),
+//                                  @"cellType":@(2),
+//                                  @"canInput":@(NO),
+//                                  @"showArrow":@(NO),
+//                                  @"mandatoryOption":@(NO),
+//                                  @"numericKeyboard":@(NO)
+//                                  };
+//            LZBackOrderItem *tmpItem = [[LZBackOrderItem alloc] init];
+//            [tmpItem setValuesForKeysWithDictionary:dic];
+//            [group.items insertObject:tmpItem atIndex:3];
+//
+//            if (group.isFold) {
+//                NSInteger rowCount = [weakSelf tableView:weakSelf.tableView numberOfRowsInSection:indexPath.section];
+//                [group.items exchangeObjectAtIndex:(group.items.count - 1) withObjectAtIndex:(rowCount - 1)];
+//                [group.items exchangeObjectAtIndex:3 withObjectAtIndex:rowCount];
+//            }
+//        }
+//        item.detailTitle = itemStr;
+//        NSInteger section = [weakSelf.dataSource indexOfObject:group];
+//        [weakSelf.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:section newDataCount:group.items.count];
+//    };
+//
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    if ((LZSelectItemVCSelectType)item.clickType == ClickTypeProduct) {
+        
+        //选择产品
+        LZChooseProductsVC * vc = [LZChooseProductsVC new];
+        [vc setSelectVCBlock:^(LZProductDetailModel *seletedModel) {
+            item.detailTitle = seletedModel.name;
+            _productId = seletedModel.id;
+//            seletedModel.unitName 产品单位
+//            seletedModel.unitId 产品id
+//            seletedModel.storageType 为0是总码 为1是细码
+            [weakSelf.tableView reloadData];
+        }];
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        
+    }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeColor){
+        
+        //选择颜色
+        if ([BXSTools isEmptyString:_productId]) {
+            [LLHudTools showWithMessage:@"请选择品名"];
+            return;
         }
-        item.detailTitle = itemStr;
-        NSInteger section = [weakSelf.dataSource indexOfObject:group];
-        [weakSelf.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:section newDataCount:group.items.count];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+        LZSearchVC * colorVC = [LZSearchVC new];
+        colorVC.productId = _productId;
+        colorVC.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
+            item.detailTitle = seletedModel.name;
+            [weakSelf.tableView reloadData];
+        };
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:colorVC animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        
+    }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeWarehouse){
+        
+        //选择仓库
+        if (_warehouseNameAry.count <1) {
+            [LLHudTools showWithMessage:@"暂无仓库，请在“设置 - 仓库”中添加"];
+            return;
+        }
+        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_warehouseNameAry titleDataArray:nil];
+        
+        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+            item.detailTitle = compoentString;
+            NSInteger row = [titileString integerValue];
+            _warehouseIdStr = _payIdAry[row];
+            [weakSelf.tableView reloadData];
+        };
+        [self.view addSubview:pickerView];
+        
+    }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypePayMentWay){
+        
+        //选择支付方式
+        if (_payNameAry.count <1) {
+            [LLHudTools showWithMessage:@"暂无收款方式，请在“设置 - 现金银行”中添加"];
+            return;
+        }
+        LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_payNameAry titleDataArray:nil];
+        
+        pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+            item.detailTitle = compoentString;
+            NSInteger row = [titileString integerValue];
+            _payIdStr = _payIdAry[row];
+            [weakSelf.tableView reloadData];
+        };
+         [self.view addSubview:pickerView];
+    }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeChangeNum){
+        
+        //标签数量
+        LZChangeNumVC *vc = [LZChangeNumVC new];
+        vc.originalValue = [item.detailTitle integerValue];
+//        vc.lineValue = 细码条数
+        [vc setNumValueBlock:^(NSString *ValueStr) {
+            item.detailTitle = ValueStr;
+            [weakSelf.tableView reloadData];
+            //假如有5条细码，加减就是加减5，然后每条细码各加减1。
+        }];
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+    }
+
 }
 
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell reloadForIndexPath:(NSIndexPath *)indexPath {
@@ -395,7 +495,7 @@
                              @[@{@"textTitle":@"*客户名字",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请输入客户名称",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(YES),
@@ -406,7 +506,7 @@
                                @{@"textTitle":@"客户电话",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -417,7 +517,7 @@
                              @[@{@"textTitle":@"*品名",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"选择品名",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(1),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -428,7 +528,7 @@
                                @{@"textTitle":@"*颜色",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"选择颜色",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(2),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -439,7 +539,7 @@
                                @{@"textTitle":@"入库单位",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@" ",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -450,7 +550,7 @@
                                @{@"textTitle":@"批号",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请输入批号",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(YES),
@@ -461,7 +561,7 @@
                                @{@"textTitle":@"货架",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请输入货架号",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(YES),
@@ -472,7 +572,7 @@
                                @{@"textTitle":@"*单价",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"0",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(YES),
@@ -483,7 +583,7 @@
                                @{@"textTitle":@"入库数量",
                                  @"detailTitle":@"0",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -494,18 +594,18 @@
                                @{@"textTitle":@"标签数量",
                                  @"detailTitle":@"0",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor blackColor],
-                                 @"clickType":@(0),
+                                 @"detailColor":CD_Text33,
+                                 @"clickType":@(5),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
-                                 @"showArrow":@(NO),
+                                 @"showArrow":@(YES),
                                  @"mandatoryOption":@(NO),
                                  @"numericKeyboard":@(NO)
                                  },
                                @{@"textTitle":@"结算数量",
                                  @"detailTitle":@"0",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -516,7 +616,7 @@
                                @{@"textTitle":@"本单退款金额",
                                  @"detailTitle":@"0",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor redColor],
+                                 @"detailColor":LZAppRedColor,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
                                  @"canInput":@(NO),
@@ -527,7 +627,7 @@
                                @{@"textTitle":@"",
                                  @"detailTitle":@"0",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor redColor],
+                                 @"detailColor":LZAppRedColor,
                                  @"clickType":@(0),
                                  @"cellType":@(1),
                                  @"canInput":@(NO),
@@ -538,7 +638,7 @@
                              @[@{@"textTitle":@"*入仓库",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请选择入仓库",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(3),
                                  @"canInput":@(NO),
                                  @"showArrow":@(YES),
@@ -548,7 +648,7 @@
                                @{@"textTitle":@"应付金额",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@" ",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"canInput":@(NO),
                                  @"showArrow":@(NO),
@@ -558,7 +658,7 @@
                                @{@"textTitle":@"实付金额",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"输入实付金额",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"canInput":@(YES),
                                  @"showArrow":@(NO),
@@ -568,7 +668,7 @@
                                @{@"textTitle":@"预收付款",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@"",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"canInput":@(NO),
                                  @"showArrow":@(NO),
@@ -578,7 +678,7 @@
                                @{@"textTitle":@"付款方式",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请选择付款方式",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(4),
                                  @"canInput":@(NO),
                                  @"showArrow":@(YES),
@@ -588,7 +688,7 @@
                                @{@"textTitle":@"备注",
                                  @"detailTitle":@"",
                                  @"placeHolder":@"请输入备注内容",
-                                 @"detailColor":[UIColor blackColor],
+                                 @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"canInput":@(YES),
                                  @"showArrow":@(NO),
@@ -603,5 +703,52 @@
     }
     return _dataSource;
 }
+
+#pragma mark --- 网络请求 ---
+//接口名称 仓库列表
+- (void)setupWarehouseLists
+{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestPOSTWithAppURL:@"house/list.do" param:param success:^(id response) {
+        
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSMutableArray *tempAry = baseModel.data;
+        _warehouseNameAry = [NSMutableArray array];
+        _warehouseIdAry = [NSMutableArray array];
+        for (int i = 0; i <tempAry.count; i++) {
+            [_warehouseIdAry addObject:tempAry[i][@"id"]];
+            [_warehouseNameAry addObject:tempAry[i][@"name"]];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+//接口名称 付款方式
+- (void)setupPayList{
+    
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"bank/pay_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSMutableArray *tempAry = baseModel.data;
+        _payNameAry = [NSMutableArray array];
+        _payIdAry = [NSMutableArray array];
+        for (int i = 0; i <tempAry.count; i++) {
+            [_payIdAry addObject:tempAry[i][@"id"]];
+            [_payNameAry addObject:tempAry[i][@"name"]];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 
 @end

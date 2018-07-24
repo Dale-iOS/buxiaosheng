@@ -11,8 +11,9 @@
 typedef NS_ENUM(NSInteger, ClickType) {
     ClickTypeProduct    = 1,
     ClickTypeColor      = 2,
-    ClickTypeWarehouse = 3,
-    ClickTypePayMentWay = 4
+    ClickTypeWarehouse  = 3,
+    ClickTypePayMentWay = 4,
+    ClickTypeChangeNum  = 5
 };
 
 typedef NS_ENUM(NSInteger, CellType) {

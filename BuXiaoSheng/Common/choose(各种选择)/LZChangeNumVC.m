@@ -11,6 +11,7 @@
 @interface LZChangeNumVC ()
 {
     UILabel *_hintLbl;//总数量
+    UILabel *_lineLbl;//总条数
     double _total;//计算中的数量值
     UIButton *_verifyBtn;//确认按钮
 }
@@ -25,7 +26,9 @@
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.originalValue = 10;
+
+    //要删掉
+    self.lineValue = 5;
     
     NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
     _total = [tempStr doubleValue];
@@ -57,6 +60,24 @@
         make.left.equalTo(self.view).offset(15);
         make.top.equalTo(titleLbl.mas_bottom).offset(15);
         make.width.mas_offset(250);
+        make.height.mas_offset(15);
+    }];
+    
+    //总条数 用于相加减
+    _lineLbl = [[UILabel alloc]init];
+    _lineLbl.text = [NSString stringWithFormat:@"总条数： %ld",self.lineValue];
+    _lineLbl.textColor = LZAppBlueColor;
+    _lineLbl.textAlignment = NSTextAlignmentRight;
+    _lineLbl.font = FONT(12);
+    NSMutableAttributedString *lineStr = [[NSMutableAttributedString alloc] initWithString:_lineLbl.text];
+    NSRange oneRange2 = [[lineStr string] rangeOfString:[NSString stringWithFormat:@"总条数："]];
+    [lineStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange2];
+    _lineLbl.attributedText = lineStr;
+    [self.view addSubview:_lineLbl];
+    [_lineLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-15);
+        make.top.equalTo(titleLbl.mas_bottom).offset(15);
+        make.width.mas_offset(100);
         make.height.mas_offset(15);
     }];
     
@@ -155,7 +176,7 @@
 #pragma mark ---- 点击事件 ----
 //加号方法
 - (void)additionBtnClick{
-    _total++;
+    _total+=self.lineValue;
     _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
     NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
@@ -167,7 +188,7 @@
 }
 //减号方法
 - (void)subtractionBtnClick{
-    _total--;
+    _total-=self.lineValue;
     _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
     NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];

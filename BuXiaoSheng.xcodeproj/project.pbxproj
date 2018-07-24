@@ -363,6 +363,9 @@
 		347AE5702106E48D00372042 /* LZSelectItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 347AE5612106E48D00372042 /* LZSelectItemViewController.xib */; };
 		347AE5712106E48D00372042 /* LZSelectItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347AE5622106E48D00372042 /* LZSelectItemViewController.m */; };
 		347AE5722106E48D00372042 /* LZSelectItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347AE5622106E48D00372042 /* LZSelectItemViewController.m */; };
+		347AE573210713D400372042 /* LZSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3448D88620B7FB1B00C11120 /* LZSearchVC.m */; };
+		347AE5762107141A00372042 /* LZChooseProductsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347AE5752107141A00372042 /* LZChooseProductsVC.m */; };
+		347AE5772107141A00372042 /* LZChooseProductsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347AE5752107141A00372042 /* LZChooseProductsVC.m */; };
 		347B58C420E62273008911A2 /* LZSaleOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C320E62273008911A2 /* LZSaleOrderListVC.m */; };
 		347B58C520E62273008911A2 /* LZSaleOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C320E62273008911A2 /* LZSaleOrderListVC.m */; };
 		347B58C820E627FB008911A2 /* LZSaleOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B58C720E627FB008911A2 /* LZSaleOrderListCell.m */; };
@@ -1202,6 +1205,8 @@
 		347AE5602106E48D00372042 /* LZChooseProductVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZChooseProductVC.h; sourceTree = "<group>"; };
 		347AE5612106E48D00372042 /* LZSelectItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZSelectItemViewController.xib; sourceTree = "<group>"; };
 		347AE5622106E48D00372042 /* LZSelectItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZSelectItemViewController.m; sourceTree = "<group>"; };
+		347AE5742107141A00372042 /* LZChooseProductsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseProductsVC.h; sourceTree = "<group>"; };
+		347AE5752107141A00372042 /* LZChooseProductsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseProductsVC.m; sourceTree = "<group>"; };
 		347B58C220E62273008911A2 /* LZSaleOrderListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSaleOrderListVC.h; sourceTree = "<group>"; };
 		347B58C320E62273008911A2 /* LZSaleOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSaleOrderListVC.m; sourceTree = "<group>"; };
 		347B58C620E627FB008911A2 /* LZSaleOrderListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSaleOrderListCell.h; sourceTree = "<group>"; };
@@ -2557,6 +2562,8 @@
 		3471DCB420D787FA002052EE /* choose(各种选择) */ = {
 			isa = PBXGroup;
 			children = (
+				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
+				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
 				3464458620AD73D100D6A06B /* ChooseLablesCell.h */,
 				3464458720AD73D100D6A06B /* ChooseLablesCell.m */,
 				344358D020EF465C004A5E6E /* LZChooseBankTypeModel.h */,
@@ -2579,6 +2586,8 @@
 				3467BA4320ECA024004C0B24 /* LZChooseInventoryVC.m */,
 				34F4B4B020BC03120017003E /* LZDrawerChooseView.h */,
 				34F4B4B120BC03120017003E /* LZDrawerChooseView.m */,
+				347AE5742107141A00372042 /* LZChooseProductsVC.h */,
+				347AE5752107141A00372042 /* LZChooseProductsVC.m */,
 			);
 			path = "choose(各种选择)";
 			sourceTree = "<group>";
@@ -3274,8 +3283,6 @@
 				340E208720FC8CB800E2602D /* LZSalesDemandVC.m */,
 				34B1944A20FF42380095BBFD /* LZWKWebViewVC.h */,
 				34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */,
-				3448D88520B7FB1B00C11120 /* LZSearchVC.h */,
-				3448D88620B7FB1B00C11120 /* LZSearchVC.m */,
 				347B58C220E62273008911A2 /* LZSaleOrderListVC.h */,
 				347B58C320E62273008911A2 /* LZSaleOrderListVC.m */,
 				34F83981210079CA00CDC8E2 /* LZSalesDetailVC.h */,
@@ -4873,6 +4880,7 @@
 				B5B07506209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
 				34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */,
+				347AE5762107141A00372042 /* LZChooseProductsVC.m in Sources */,
 				3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
 				3465CA0020DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
@@ -5049,6 +5057,7 @@
 				B55ADE1320A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				3427A4FB20CE507600369650 /* BRAddressPickerView.m in Sources */,
 				344C48A620D114B800BEC002 /* LZDidReimbursementSaleCell.m in Sources */,
+				347AE5772107141A00372042 /* LZChooseProductsVC.m in Sources */,
 				B50505E8209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				345E747D20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
 				3465C9F120DC9A9700BAE415 /* FSCalendarExtensions.m in Sources */,
@@ -5064,6 +5073,7 @@
 				34871CFB20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */,
 				3475420920F5AD3B007F384B /* SalesDemandCell.m in Sources */,
 				340E208920FC8CB800E2602D /* LZSalesDemandVC.m in Sources */,
+				347AE573210713D400372042 /* LZSearchVC.m in Sources */,
 				34BCABF720E732A500C25BE5 /* TZTestCell.m in Sources */,
 				34D5EAE120D21011009D9D7C /* LZPaymentOrderListCell.m in Sources */,
 				3427A4F120CE507600369650 /* NSDate+BRPickerView.m in Sources */,

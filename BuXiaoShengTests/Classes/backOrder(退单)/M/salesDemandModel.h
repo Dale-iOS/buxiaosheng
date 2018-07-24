@@ -32,6 +32,7 @@
 @property (nonatomic, copy) NSString *unitName;
 @property (nonatomic, copy) NSString *productId;
 @property (nonatomic,copy) NSString  * number;
+@property (nonatomic,copy) NSString  * storageType;
 @property (nonatomic,strong) LLSalesColorListModel  * colorModel;
 @property (nonatomic,copy) NSString  * productColorId;
 @property (nonatomic,copy) NSString  * price;
