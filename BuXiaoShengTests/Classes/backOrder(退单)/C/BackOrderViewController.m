@@ -17,6 +17,7 @@
 #import "LZSearchVC.h"
 #import "LZChooseProductsVC.h"
 #import "LZChangeNumVC.h"
+#import "LZBackOrderListsVC.h"
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate>
 {
@@ -46,6 +47,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = [Utility navTitleView:@"退单"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toListClisk) image:IMAGE(@"new_lists")];
     //拖动tableView回收键盘
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
@@ -750,5 +752,9 @@
     }];
 }
 
+#pragma mark ---- ActionClick ----
+- (void)toListClisk{
+    [self.navigationController pushViewController:[LZBackOrderListsVC new] animated:YES];
+}
 
 @end

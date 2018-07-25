@@ -1,22 +1,22 @@
 //
-//  LZSpendingListVC.m
+//  LZBackOrderListsVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/6/10.
+//  Created by 罗镇浩 on 2018/7/25.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  日常支出列表页面
+//
 
-#import "LZSpendingListVC.h"
-#import "LZSpendingListCell.h"
-#import "LZSpendingModel.h"
+#import "LZBackOrderListsVC.h"
 #import "LLDayCalendarVc.h"
 #import "LLWeekCalendarVc.h"
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 #import "LZSearchBar.h"
+#import "LZBackOrderListsModel.h"
+#import "LZBackOrderLIstsCell.h"
 
-@interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate>
+@interface LZBackOrderListsVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate>
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
@@ -25,29 +25,24 @@
 @property(nonatomic,strong)UIView *rigthHeadView;
 @property(nonatomic,strong)UILabel *dateLbl;
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)NSArray<LZSpendingDetailModel*> *lists;
+@property(nonatomic,strong)NSArray<LZBackOrderListsModel*> *lists;
 @property(nonatomic,strong)SGPageTitleView *pageTitleView;
 @property(nonatomic,strong)SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
 @property(nonatomic,strong)LZSearchBar * searchBar;
 @end
 
-@implementation LZSpendingListVC
+@implementation LZBackOrderListsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
     [self setupPageView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     [self setupListData];
 }
 
 - (void)setupUI{
-    self.navigationItem.titleView = [Utility navTitleView:@"日常支出列表"];
+    self.navigationItem.titleView = [Utility navTitleView:@"退单列表"];
     _startStr = @"";
     _endStr = @"";
     
@@ -68,7 +63,7 @@
     _headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_headView];
     [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).offset(LLNavViewHeight);
+        //        make.top.equalTo(self.view).offset(LLNavViewHeight);
         make.top.equalTo(self.searchBar.mas_bottom);
         make.left.and.right.equalTo(self.view);
         make.height.mas_offset(39);
@@ -120,28 +115,6 @@
     }];
 }
 
-#pragma mark ----- 网络请求 -----
-- (void)setupListData{
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
-                             @"startDate":_startStr,
-                             @"endDate":_endStr,
-                             @"searchName":self.searchBar.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"finance/expend_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        _lists = [LZSpendingDetailModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
-}
-
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -160,29 +133,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"LZSpendingListCellid";
-    LZSpendingListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZBackOrderLIstsCellid";
+    LZBackOrderLIstsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[LZSpendingListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZBackOrderLIstsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.model = _lists[indexPath.row];
     return cell;
 }
 
-//点击cell触发此方法
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    //获取cell
-    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
-    
-//    LZClientReceiptModel *model = _list[indexPath.row];
-//    LZClientReceiptDetailVC *vc = [[LZClientReceiptDetailVC alloc]init];
-//    vc.id = model.id;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
+#pragma mark ----- 网络请求 -----
+- (void)setupListData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"pageNo":@"1",
+                             @"pageSize":@"15",
+                             @"startDate":_startStr,
+                             @"endDate":_endStr,
+                             @"customerName":self.searchBar.text
+                             };
+    [BXSHttp requestGETWithAppURL:@"refund/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _lists = [LZBackOrderListsModel LLMJParse:baseModel.data];
+        [_tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 #pragma mark --- 日历 ---
@@ -216,10 +197,10 @@
     quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
-
+    
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
     _pageContentView.delegatePageContentView = self;
-
+    
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
@@ -319,5 +300,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 
 @end
