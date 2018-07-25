@@ -351,6 +351,9 @@
     
     NSString *temgpStr = [NSString stringWithFormat:@"%zd",[_model.needTotal integerValue]-[_model.number integerValue]];
     self.OutNumLabel.text = [NSString stringWithFormat:@"出库量：%@ -%@",_model.number,temgpStr ];
+    if ([self.OutNumLabel.text containsString:@"--"]) {
+        self.OutNumLabel.text = [self.OutNumLabel.text stringByReplacingOccurrencesOfString:@"--" withString:@" "];
+    }
     NSMutableAttributedString *OutNumStr = [[NSMutableAttributedString alloc] initWithString:self.OutNumLabel.text];
      NSRange oneRange = [[OutNumStr string] rangeOfString:[NSString stringWithFormat:@"出库量："]];
     [OutNumStr addAttribute:NSForegroundColorAttributeName value:CD_Text66 range:oneRange];
