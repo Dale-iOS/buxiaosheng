@@ -361,7 +361,7 @@
     
     
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
-
+    
     
     if ([_model.orderStatus integerValue] == 1) {
         self.didTransportLabel.hidden = NO;
