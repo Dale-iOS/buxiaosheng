@@ -37,6 +37,7 @@
     if (_titleLb && _textField) {
         _titleLb.sd_layout.leftSpaceToView(self.contentView, 10).topSpaceToView(self.contentView, 10).widthIs(110).heightIs(40);
         _textField.sd_layout.leftSpaceToView(_titleLb, 20).topSpaceToView(self.contentView, 10).rightSpaceToView(self.contentView, 40).heightIs(40);
+        [_textField addTarget:self action:@selector(handleTextChange) forControlEvents:UIControlEventEditingChanged];
     }
     
     if (_foldBtn && _addBtn) {
@@ -153,6 +154,7 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
     [_foldBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
+#pragma mark - Events
 //修改细码
 - (void)handleItemAction:(UIButton *)btn {
     if ([_delegate respondsToSelector:@selector(backOrderCell:modifyItemForIndexPath:index:)]) {
@@ -193,11 +195,19 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    _item.detailTitle = [BXSTools isEmptyString:textField.text] ? @"" : textField.text;
     //此处只有出现添加细码的cell样式后,才需要回调
     if ((_item.mandatoryOption && _item.canInput && _group.items.count > 11) || _group.items.count == 6) {
+         _item.detailTitle = [BXSTools isEmptyString:textField.text] ? @"" : textField.text;
         if ([_delegate respondsToSelector:@selector(backOrderCell:reloadForIndexPath:)]) {
             [_delegate backOrderCell:self reloadForIndexPath:_indexPath];
+        }
+    }
+}
+
+- (void)handleTextChange {
+    if (_indexPath.section == 0 && _indexPath.row == 0) {
+        if ([_delegate respondsToSelector:@selector(backOrderCell:popViewForIndexPath:textField:)]) {
+            [_delegate backOrderCell:self popViewForIndexPath:_indexPath textField:_textField];
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D05CD432108A07000F6E594 /* ZWCustomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D05CD422108A07000F6E594 /* ZWCustomPopView.m */; };
 		340E208820FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
 		340E208920FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
 		3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */; };
@@ -793,6 +794,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D05CD412108A06F00F6E594 /* ZWCustomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWCustomPopView.h; sourceTree = "<group>"; };
+		2D05CD422108A07000F6E594 /* ZWCustomPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWCustomPopView.m; sourceTree = "<group>"; };
 		340E208620FC8CB800E2602D /* LZSalesDemandVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSalesDemandVC.h; sourceTree = "<group>"; };
 		340E208720FC8CB800E2602D /* LZSalesDemandVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSalesDemandVC.m; sourceTree = "<group>"; };
 		3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientManagerViewController.h; sourceTree = "<group>"; };
@@ -2639,6 +2642,8 @@
 		347541FB20F5A647007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
+				2D05CD412108A06F00F6E594 /* ZWCustomPopView.h */,
+				2D05CD422108A07000F6E594 /* ZWCustomPopView.m */,
 				347AE5392106E3DD00372042 /* LLBackOderDetailCell.h */,
 				347AE53A2106E3DD00372042 /* LLBackOderDetailCell.m */,
 				347AE5372106E3DD00372042 /* LLBackOrderCotentCell.h */,
@@ -4424,7 +4429,7 @@
 				TargetAttributes = {
 					34A92B0F207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4869,6 +4874,7 @@
 				345D5F07209D664400126C40 /* SupplierCompanyViewController.m in Sources */,
 				34EE88D820CBBE590060D00B /* LZReceipCustomerModel.m in Sources */,
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
+				2D05CD432108A07000F6E594 /* ZWCustomPopView.m in Sources */,
 				347AE5352106E38800372042 /* UIBarButtonItem+CJExtension.m in Sources */,
 				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
@@ -5504,17 +5510,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48WVJV32K7;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BKFCG7KQ82;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57f71daf-1d09-4f4c-8610-c657cafe4512";
-				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
@@ -5528,17 +5534,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48WVJV32K7;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BKFCG7KQ82;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9a9a8296-ad0f-4379-8e3a-476d5b852903";
-				PROVISIONING_PROFILE_SPECIFIER = "布小生测试证书";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};

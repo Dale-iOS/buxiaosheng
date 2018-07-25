@@ -18,17 +18,24 @@
 #import "LZChooseProductsVC.h"
 #import "LZChangeNumVC.h"
 #import "LZBackOrderListsVC.h"
+#import "ZWCustomPopView.h"
 
-@interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate>
+@interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
 {
     NSString *_productId;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
-@property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
 @property (weak, nonatomic) IBOutlet UILabel *totalNumLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLb;
+@property (weak, nonatomic) ZWCustomPopView *popView;
+@property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
+@property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
+//存放客户姓名
+@property (nonatomic,strong) NSArray *nameArray;
+//存放模糊匹配的客户姓名
+@property (nonatomic,strong) NSArray *tempNameArray;
+
 //仓库方式数组
 @property (nonatomic, strong) NSMutableArray *warehouseNameAry;
 @property (nonatomic, strong) NSMutableArray *warehouseIdAry;
@@ -489,6 +496,44 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@", textField.text];
+    _tempNameArray = [self.nameArray filteredArrayUsingPredicate:predicate];
+    NSLog(@"%@", _tempNameArray);
+    NSInteger count = _tempNameArray.count;
+    if (_popView) {
+        if (count == 0) {
+            [_popView dismiss];
+            return;
+        }
+        CGFloat height = count * 44;
+        if (count >= 4) height = 4 * 44;
+        _popView.table.height = height;
+        _popView.containerView.height = height;
+        _popView.height = height;
+        [_popView.table reloadData];
+    } else {
+        if (count == 0) return;
+        CGFloat height = count * 44;
+        if (count >= 4) height = 4 * 44;
+        ZWCustomPopView *popView = [[ZWCustomPopView alloc]initWithBounds:CGRectMake(0, 0, 120, height) titleMenus:_tempNameArray maskAlpha:0.0];
+        popView.delegate = self;
+        popView.containerBackgroudColor = [UIColor whiteColor];
+        [popView showFrom:textField alignStyle:CPAlignStyleCenter];
+        _popView = popView;
+    }
+}
+
+#pragma mark - ZWCustomPopViewDelegate
+- (void)popOverView:(ZWCustomPopView *)pView didClickMenuIndex:(NSInteger)index {
+    NSString *name = _tempNameArray[index];
+    LZBackOrderGroup *group = self.dataSource.firstObject;
+    LZBackOrderItem *item = group.items.firstObject;
+    item.detailTitle = name;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+}
+
 #pragma mark - Getter && Setter
 - (NSMutableArray *)dataSource {
     if (_dataSource == nil) {
@@ -704,6 +749,13 @@
         }
     }
     return _dataSource;
+}
+
+- (NSArray *)nameArray {
+    if (_nameArray == nil) {
+        _nameArray = @[@"客户一", @"客户二", @"zhangsan", @"lisi", @"kehu1", @"kehu2", @"kehu3", @"zhsan"];
+    }
+    return _nameArray;
 }
 
 #pragma mark --- 网络请求 ---

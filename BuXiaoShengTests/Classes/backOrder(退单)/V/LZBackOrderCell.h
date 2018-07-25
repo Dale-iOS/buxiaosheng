@@ -30,6 +30,9 @@ typedef NS_ENUM(NSInteger, BtnClickType) {
 //修改细码
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell modifyItemForIndexPath:(NSIndexPath *)indexPath index:(NSInteger)index;
 
+//输入客户名字
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell  popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField;
+
 @end
 
 @interface LZBackOrderCell : UITableViewCell

@@ -24,7 +24,9 @@ typedef NS_ENUM(NSInteger, CellType) {
 
 @interface LZBackOrderItem : NSObject
 
-//标题
+/**
+ 标题
+ */
 @property (nonatomic,strong) NSString *textTitle;
 //输入的内容或者选择的内容
 @property (nonatomic,strong) NSString *detailTitle;
