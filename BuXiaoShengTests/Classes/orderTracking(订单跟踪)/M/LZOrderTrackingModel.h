@@ -21,5 +21,6 @@
 @property(nonatomic,copy)NSString *total;
 @property(nonatomic,copy)NSString *needTotal;
 @property(nonatomic,copy)NSString *orderStatus;
+@property(nonatomic,copy)NSString *orderNo;
 
 @end

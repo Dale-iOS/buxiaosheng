@@ -7,21 +7,23 @@
 //  大货（开单）
 
 #import "LZShipmentBigGoodsView.h"
-#import "LZGoodValueCell.h"
-#import "BigGoodsAndBoardModel.h"
 #import "BigGoodsAndBoardModel.h"
 #import "LZGoodsDetailCell.h"
+#import "LZGoodValueCell.h"
 #import "BigGoodsFootView.h"
 #import "LZBigGoodsHeadView.h"
 #import "UIButton+EdgeInsets.h"
 #import "LZPickerView.h"
 #import "LZChangeNumVC.h"
+#import "LZSaveOrderModel.h"
 
 @interface LZShipmentBigGoodsView ()<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property(strong, nonatomic) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *consumptionArr;
+@property (nonatomic, strong) NSArray *consumptionArr;
 @property (nonatomic, strong) NSMutableArray *infoArr;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSArray *dataList;
+
 @property (nonatomic, strong) UIButton *showBtn;
 @property (nonatomic, strong) UIButton *submitBtn;
 @property (nonatomic, strong) BigGoodsAndBoardModel *bigGoodsAndBoardModel;
@@ -29,16 +31,25 @@
 @property (nonatomic, strong) NSMutableArray *payNameAry;
 @property (nonatomic, strong) NSMutableArray *payIdAry;
 @property (nonatomic, copy) NSString *payIdStr;///选中的付款方式id
+@property (nonatomic, strong) LZSaveOrderModel *tureModel;//真单提交数据
+@property (nonatomic, strong) LZSaveOrderModel *falseModel;//假单提交数据
 @end
 
+
 @implementation LZShipmentBigGoodsView
+{
+    int allPrice;
+    int all_number ;
+    int all_total ;
+    int arrearValue;
+    
+}
 static NSString * const LZGoodValueCellID = @"LZGoodValueCell";
 static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-//        self.backgroundColor = [UIColor redColor];
         [self setup];
     }
     return self;
@@ -51,7 +62,8 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     [self setupPayList];
 }
 
-#pragma mark - 网络请求
+#pragma mark - request
+//接口名称 已出库的产品信息
 - (void)requestListNetWork
 {
     WEAKSELF;
@@ -64,63 +76,57 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        
         NSArray *dataList = [BigGoodsAndBoardModel mj_objectArrayWithKeyValuesArray:response[@"data"]];
-        
-        _bigGoodsAndBoardModel = dataList.firstObject;
-        
-        _bigGoodsAndBoardModel.batchNumberList = [BatchNumberList mj_objectArrayWithKeyValuesArray: _bigGoodsAndBoardModel.batchNumberList];
-        NSArray *batchNumberListTempArray = [BatchNumberList mj_objectArrayWithKeyValuesArray: _bigGoodsAndBoardModel.batchNumberList];
-        //        NSMutableArray *goodsDetail = [NSMutableArray ]
-        
-        //标签数量~结算数量
-        BatchNumberList *BatchNumberListModel = [[BatchNumberList alloc]init];
-        if (batchNumberListTempArray.count >0) {
-            BatchNumberListModel = [BatchNumberList LLMJParse:[batchNumberListTempArray firstObject]];
+        weakSelf.dataList = dataList;
+        /// 这个可以不用解析 外面的一层 是一样的数据
+        for (BigGoodsAndBoardModel *boardModel in dataList) {
+            boardModel.batchNumberList = [BatchNumberList mj_objectArrayWithKeyValuesArray: boardModel.batchNumberList];
+                        for (BatchNumberList *batchNumberList in  boardModel.batchNumberList) {
+                            batchNumberList.itemList = [ItemList mj_objectArrayWithKeyValuesArray: batchNumberList.itemList];
+                        }
         }
         
         
-        //出库条数合计~出库数量
-        ItemList *ItemListModel = [[ItemList alloc]init];;
-        if (BatchNumberListModel.itemList.count >0) {
-            ItemListModel = [ItemList LLMJParse:[BatchNumberListModel.itemList firstObject]];
-        }
-        
-//        NSLog(@"%@",ItemListModel.total);
-        
-        int batchNumber = 0;
-        NSString  *batchNumberStr; /// 总条数
-        int allPrice = 0;
+        NSString  *all_numberStr; /// 总条数
         NSString  *allPriceStr;  /// 总价格
-        
-        for (BatchNumberList *bathcModel in _bigGoodsAndBoardModel.batchNumberList) {
-            bathcModel.price = _bigGoodsAndBoardModel.price;
-            bathcModel.itemList =  [ItemList mj_objectArrayWithKeyValuesArray: bathcModel.itemList];
-            bathcModel.productColorName = _bigGoodsAndBoardModel.productColorName;
-            bathcModel.productName = _bigGoodsAndBoardModel.productName;
-            batchNumber+= bathcModel.total.integerValue;
-            allPrice+= bathcModel.price.integerValue * bathcModel.total.integerValue;
-            [weakSelf.consumptionArr addObject:bathcModel];
+        NSMutableArray *listArr = [NSMutableArray new];
+        for (BigGoodsAndBoardModel *goodsAndBoardModel in dataList) {
+            all_number+= goodsAndBoardModel.number.integerValue;
+            all_total += goodsAndBoardModel.total.integerValue;
+            allPrice+= goodsAndBoardModel.price.integerValue * goodsAndBoardModel.total.integerValue;
+            [listArr addObject:goodsAndBoardModel];
         }
-        batchNumberStr = [NSString stringWithFormat:@"%d",batchNumber];
+        
+        //        计算金额
+        all_numberStr = [NSString stringWithFormat:@"%d",all_number];
         
         //单价 x 结算数量
-        NSInteger allPriceInteger = [_bigGoodsAndBoardModel.price integerValue] * [BatchNumberListModel.number integerValue];
+        NSInteger allPriceInteger = allPrice;
         //本单应收金额
         allPriceStr = [NSString stringWithFormat:@"%zd",allPriceInteger];
         
         NSArray *titlesArr = @[@"出库条数合计",@"出库数量",@"标签数量",@"结算数量",@"本单应收金额"];
-        NSArray *detailArr = @[ItemListModel.total,ItemListModel.value,BatchNumberListModel.number,BatchNumberListModel.number,allPriceStr];
+        NSArray *detailArr = @[[NSString stringWithFormat:@"%d",all_total],all_numberStr,all_numberStr,all_numberStr,allPriceStr];
+        
         for (int i =0 ; i<titlesArr.count; i++) {
             ItemList *item = [ItemList new];
             item.key =titlesArr[i];
             item.value =detailArr[i];
+            item.isSelect = NO; /// 这地方自己调整
             item.isEditor = NO;
             
+            if ([titlesArr[i] isEqualToString:@"标签数量"]) {
+                item.isSelect = YES;
+            }
             if ([titlesArr[i] isEqualToString:@"本单应收金额"]) {
                 item.isContentColorRed = YES;
             }
             
-            [weakSelf.consumptionArr addObject:item];
+            [listArr addObject:item];
+            
+            weakSelf.consumptionArr = [listArr copy];
+            
         }//// 具体 颜色，是否点击，的等等操作 可以用 以下判断方法显示
         [weakSelf.dataSource addObject:weakSelf.consumptionArr ];
         
@@ -131,6 +137,8 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }];
 }
 
+//接口名称 已出库的客户信息
+#pragma mark - request
 - (void)requestCustomerInfo
 {
     WEAKSELF;
@@ -143,35 +151,32 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _bigGoodsAndBoardModel.customerMobile = response[@"data"][@"customerMobile"];
-        _bigGoodsAndBoardModel.customerName = response[@"data"][@"customerName"];
-        _bigGoodsAndBoardModel.deposit = response[@"data"][@"deposit"];
-        
-        
-        //单价 x 结算数量
-        NSInteger allPriceInteger = [_bigGoodsAndBoardModel.price integerValue] * [_bigGoodsAndBoardModel.total integerValue];
-        //本单应收金额
-        NSString *allPriceStr = [NSString stringWithFormat:@"%zd",allPriceInteger];
-        
+        //客户电话
+        self.bigGoodsAndBoardModel.customerMobile = response[@"data"][@"customerMobile"];
+        //客户名字
+        self.bigGoodsAndBoardModel.customerName = response[@"data"][@"customerName"];
+        //预收定金
+        self.bigGoodsAndBoardModel.deposit = response[@"data"][@"deposit"];
+        //本单欠款
+        arrearValue = allPrice - self.bigGoodsAndBoardModel.deposit.intValue;
         
         NSArray *titles1Arr = @[@"客户名字",@"客户电话",@"实收金额",@"预收定金",@"调整金额",@"本单欠款",@"收款方式",@"备注"];
-        
-
-        NSArray *detail1Arr = @[_bigGoodsAndBoardModel.customerName,_bigGoodsAndBoardModel.customerMobile,@"",[NSString stringWithFormat:@"%@",_bigGoodsAndBoardModel.deposit],@"",allPriceStr,@"",@"",@""];
-        
-        
-        
+        NSArray *detail1Arr = @[self.bigGoodsAndBoardModel.customerName,self.bigGoodsAndBoardModel.customerMobile,@"",[NSString stringWithFormat:@"%@",self.bigGoodsAndBoardModel.deposit],@"",[NSString stringWithFormat:@"%d",arrearValue],@"",@"",@""];
         NSArray *placeholderArr = @[@"请输入客户名字",@"请输入客户电话",@"请输入实收金额",@"请输入预收定金",@"请输入调整金额",@"请输入本单欠款",@"请选择收款方式",@"请输入备注"];
         
+        //        cell的操作
         for (int i =0 ; i<titles1Arr.count; i++) {
             ItemList *item = [ItemList new];
             item.key =titles1Arr[i];
             item.value =detail1Arr[i];
             item.placeholder = placeholderArr[i];
             item.isSelect = NO;
-            item.isEditor = NO;
-            
+            //            item.isEditor = NO;
             // 具体 颜色，是否点击，的等等操作 可以用 以下判断方法显示
+            if ([titles1Arr[i] isEqualToString:@"实收金额"] || [titles1Arr[i] isEqualToString:@"调整金额"] || [titles1Arr[i] isEqualToString:@"备注"]) {
+                item.isEditor = YES;
+            }
+            
             if ([titles1Arr[i] isEqualToString:@"收款方式"]) {
                 item.isSelect = YES;
             }
@@ -182,6 +187,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             
             [weakSelf.infoArr addObject:item];
         }
+        //        加入单据数据
         [weakSelf.dataSource addObject:weakSelf.infoArr ];
         [_tableView reloadData];
         
@@ -191,7 +197,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 }
 
 - (void)setupPayList{
-    
+    //    付款方式
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"bank/pay_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -211,16 +217,14 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }];
 }
 
-
-
 #pragma mark - private
 - (void)setup
 {
-    
+    //注册
     [self addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"LZGoodValueCell" bundle:nil] forCellReuseIdentifier:LZGoodValueCellID];
     [self.tableView registerClass:[LZGoodsDetailCell class] forCellReuseIdentifier:LZGoodsDetailCellID];
-    
+    //    提交按钮
     [self addSubview:self.submitBtn];
     [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.equalTo(self);
@@ -229,11 +233,11 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     }];
 }
 
-/// 添加
+/// 新增一条
 - (void)addMoreAction
 {
-    [_dataSource insertObject:[_consumptionArr mutableCopy]  atIndex:1];
-    
+    NSMutableArray *list  = [[NSMutableArray alloc] initWithArray:_consumptionArr copyItems:YES]; /// 这个操作是为了 避免真假单同时改变
+    [_dataSource insertObject:list  atIndex:1];
     [self.tableView reloadData];
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -247,14 +251,112 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 }
 
 
-///提交操作
+///提交按钮点击事件
 - (void)didClickSubmitAction
 {
+    if (_dataSource.count == 2) {
+        //没假单,只有真单
+        
+        NSMutableArray *productListMuAry = [NSMutableArray array];
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        for (int i = 0; i < _dataList.count; i++) {
+            
+            BigGoodsAndBoardModel *bigGoodsAndBoardModel = _dataList[i];
+            LZSaveOrderProductList *LZSaveOrderProductListModel = [LZSaveOrderProductList new];
+            LZSaveOrderProductListModel.productId = bigGoodsAndBoardModel.productId;
+            LZSaveOrderProductListModel.productColorId = bigGoodsAndBoardModel.productColorId;
+            LZSaveOrderProductListModel.total = bigGoodsAndBoardModel.total;
+            LZSaveOrderProductListModel.number = bigGoodsAndBoardModel.number;
+            LZSaveOrderProductListModel.price = bigGoodsAndBoardModel.price;
+            
+            for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
+                BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
+                
+                for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
+                    ItemList *itemListModel = batchNumberListModel.itemList[k];
+                    LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+                    LZSaveOrderItemListModel.value = itemListModel.value;
+                    LZSaveOrderItemListModel.total = itemListModel.total;
+                    [itemListMuAry addObject:LZSaveOrderItemListModel];
+                }
+            }
+            
+            LZSaveOrderProductListModel.itemList = [itemListMuAry copy];
+            [productListMuAry addObject:LZSaveOrderProductListModel];
+        }
+        self.tureModel.productList = [productListMuAry copy];
+        
+        NSMutableArray *detailValueMuAry = [NSMutableArray array];
+        for (NSInteger i = _dataList.count ; i <_consumptionArr.count; i++) {
+            ItemList *model = _consumptionArr[i];
+            [detailValueMuAry addObject:model.value];
+        }
+        if (detailValueMuAry.count == 5) {
+//            出库条数合计
+            self.tureModel.total = detailValueMuAry[0];
+//            出库数量
+            self.tureModel.outNumber = detailValueMuAry[1];
+//            标签数量
+            self.tureModel.labelNumber = detailValueMuAry[2];
+//            结算数量
+            self.tureModel.settleNumber = detailValueMuAry[3];
+//            本单应收金额
+            self.tureModel.receivablePrice = detailValueMuAry[4];
+        }
+        
+        NSMutableArray *tureValueMuAry = [NSMutableArray array];
+        for (int i = 0; i <_infoArr.count; i++) {
+            ItemList *model = _infoArr[i];
+            [tureValueMuAry addObject:model.value];
+        }
+        if (tureValueMuAry.count == 8) {
+            //实收金额
+            self.tureModel.netreceiptsPrice = tureValueMuAry[2];
+            //预收定金
+            self.tureModel.depositPrice = tureValueMuAry[3];
+            //调整金额
+            self.tureModel.trimPrice = tureValueMuAry[4];
+            //本单欠款
+            self.tureModel.arrearsPrice = tureValueMuAry[5];
+            //预收定金
+            self.tureModel.depositPrice = tureValueMuAry[3];
+            //备注内容
+            self.tureModel.remark = tureValueMuAry[7];
+            //属于真假单
+            self.tureModel.type = @"0";
+        }
+//        self.tureModel.singleType = self.singleType;
+        
+    }else if (_dataSource.count == 3){
+        //有假单
+    }
+    
     if (_didClickCompltBlock) {
-        _didClickCompltBlock(_bigGoodsAndBoardModel);
+        _didClickCompltBlock(self.tureModel);
     }
 }
 
+/// 刷新欠款 数据
+- (void)refreshArrearsValue
+{
+    
+    arrearValue = allPrice - self.bigGoodsAndBoardModel.deposit.intValue; /// 欠款
+    for (ItemList *item in _infoArr ) {
+        if ([item isKindOfClass:[ItemList class]]) {
+            if ([item.key isEqualToString:@"实收金额"]) {
+                arrearValue =  arrearValue- item.value.intValue;
+            }
+            if ([item.key isEqualToString:@"调整金额"]) {
+                arrearValue =  arrearValue - item.value.intValue;
+            }
+            if ([item.key isEqualToString:@"本单欠款"]) {
+                item.value = [NSString stringWithFormat:@"%d",arrearValue];
+            }
+        }
+    }
+    [self.tableView reloadData];
+    
+}
 
 #pragma mark - set & get
 - (UITableView *)tableView
@@ -280,16 +382,16 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     return _dataSource;
 }
 
-- (NSMutableArray *)consumptionArr
-{
+- (NSArray *)consumptionArr
+{//费用
     if (_consumptionArr == nil) {
-        _consumptionArr = [[NSMutableArray alloc] init];
+        _consumptionArr = [[NSArray alloc] init];
     }
     return _consumptionArr;
 }
 
 - (NSMutableArray *)infoArr
-{
+{//信息
     if (_infoArr == nil) {
         _infoArr = [[NSMutableArray alloc] init];
     }
@@ -330,6 +432,28 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     return _submitBtn;
 }
 
+- (BigGoodsAndBoardModel *)bigGoodsAndBoardModel
+{
+    if (_bigGoodsAndBoardModel == nil) {
+        _bigGoodsAndBoardModel = [BigGoodsAndBoardModel new];
+    }
+    return _bigGoodsAndBoardModel;
+}
+
+- (LZSaveOrderModel *)tureModel{
+    if (_tureModel == nil) {
+        _tureModel = [LZSaveOrderModel new];
+    }
+    return _tureModel;
+}
+
+- (LZSaveOrderModel *)falseModel{
+    if (_falseModel == nil) {
+        _falseModel = [LZSaveOrderModel new];
+    }
+    return _falseModel;
+}
+
 #pragma mark - delegate
 #pragma mark - tableview delegate / dataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -348,21 +472,51 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.dataSource[indexPath.section][indexPath.row] isKindOfClass:[BatchNumberList class]]) {
+    WEAKSELF;
+    if ([self.dataSource[indexPath.section][indexPath.row] isKindOfClass:[BigGoodsAndBoardModel class]]) {
+        //单据详细板块
         LZGoodValueCell *cell = [tableView dequeueReusableCellWithIdentifier:LZGoodValueCellID forIndexPath:indexPath];
-        cell.model = self.dataSource[indexPath.section][indexPath.row];
-        cell.didClickCompltBlock = ^{
+        BigGoodsAndBoardModel *model = self.dataSource[indexPath.section][indexPath.row];
+        cell.indexPath = indexPath;
+        cell.model = model;
+        cell.didClickCompltBlock = ^(NSInteger index,BigGoodsAndBoardModel *boardModel ,NSIndexPath *indexP){
+            if (index == 0) {
+                
+            }else
+            {
+                for (ItemList *item in _dataSource[indexP.section] ) {
+                    if ([item isKindOfClass:[ItemList class]]) {
+                        if ([item.key isEqualToString:@"本单应收金额"]) {
+                            allPrice = 0;
+                            for (BigGoodsAndBoardModel *goodsAndBoardModel in _dataSource[indexP.section] ) {
+                                if ([goodsAndBoardModel isKindOfClass:[BigGoodsAndBoardModel class]] ) {
+                                    allPrice+= goodsAndBoardModel.price.integerValue * goodsAndBoardModel.total.integerValue;
+                                }
+                            }
+                            item.value = [NSString stringWithFormat:@"%d",allPrice];
+                            
+                            [weakSelf.tableView reloadData];
+                            break;
+                        }
+                    }
+                }
+                if (indexP.section == 0) {
+                    [self refreshArrearsValue];
+                }
+                
+                
+            }
             /// 选择价数量
             /// _bigGoodsAndBoardModel.total = @"你选择后的数据"
-            /// [self.tableView reloadData];
+            ///
         };
         return cell;
     }else{
+        //        客户金额板块
         LZGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:LZGoodsDetailCellID ];
         if (cell == nil) {
             cell = [[LZGoodsDetailCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LZGoodsDetailCellID];
         }
-        
         cell.contentTF.delegate = self;
         cell.contentTF.tag = 100+indexPath.row;
         cell.model = self.dataSource[indexPath.section][indexPath.row];
@@ -403,7 +557,9 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     /// 返回标题栏
     headView.backgroundColor = LZHBackgroundColor;
     return headView;
-
+    
+    
+    
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -439,6 +595,8 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 }
 
 
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section ==  _dataSource.count-2 ) {
@@ -454,7 +612,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
             [[self viewController].navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
         }
-
+        
     }
     
     if (indexPath.section ==  _dataSource.count-1 ) {
@@ -473,6 +631,8 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
                 model1.value = compoentString;
                 NSInteger row = [titileString integerValue];
                 _payIdStr = _payIdAry[row];
+                self.tureModel.bankId = _payIdStr;
+                self.falseModel.bankId = _payIdStr;
                 [tableView reloadData];
             };
             [self addSubview:pickerView];
@@ -485,8 +645,17 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     ItemList *model = _infoArr[textField.tag - 100];
     model.value = textField.text;
     if ([model.key isEqualToString:@"客户姓名"]) {
-        _bigGoodsAndBoardModel.customerName =  textField.text; //举例子 通过这样的赋值 填充 _bigGoodsAndBoardModel
+        //        _bigGoodsAndBoardModel.customerName =  textField.text; //举例子 通过这样的赋值 填充 _bigGoodsAndBoardModel
     }
+    
+    if ([model.key isEqualToString:@"实收金额"]) {
+        self.tureModel.netreceiptsPrice = textField.text;
+    }
+    if ([model.key isEqualToString:@"调整金额"]) {
+        //        _bigGoodsAndBoardModel.@"调整金额" = textField.text
+    }
+    [self refreshArrearsValue];
+    
 }
 
 - (UIViewController *)viewController {

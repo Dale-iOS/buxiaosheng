@@ -9,7 +9,7 @@
 #import "LZShipmentVC.h"
 #import "LZShipmentBigGoodsView.h"
 #import "LZShipmentBigBoardView.h"
-#import "BigGoodsAndBoardModel.h"
+#import "LZSaveOrderModel.h"
 
 @interface LZShipmentVC ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
@@ -17,7 +17,7 @@
 @property(nonatomic,strong)LZShipmentBigGoodsView *shipmentBigGoodsView;//大货
 @property(nonatomic,strong)LZShipmentBigGoodsView *shipmentBigBoardView;//板布
 //@property(nonatomic,strong)LZShipmentBigBoardView *shipmentBigBoardView;//板布
-@property(nonatomic,strong)BigGoodsAndBoardModel *bigGoodsAndBoardModel;
+@property(nonatomic,strong)LZSaveOrderModel *saveOrderModel;
 @end
 
 @implementation LZShipmentVC
@@ -76,10 +76,12 @@
     
     WEAKSELF;
     _shipmentBigGoodsView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -50)];
+    //大货
+//    _shipmentBigGoodsView.singleType = @"0";
     _shipmentBigGoodsView.model = _model;
     /// 网络请求 在VC 里面操作最好
-    _shipmentBigGoodsView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
-        weakSelf.bigGoodsAndBoardModel = boardModel;
+    _shipmentBigGoodsView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
+        weakSelf.saveOrderModel = boardModel;
         [weakSelf submitRequest];
         
     };
@@ -88,9 +90,11 @@
     
     
     _shipmentBigBoardView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -50)];
+    //板布
+//    _shipmentBigBoardView.singleType = @"1";
     _shipmentBigBoardView.model = _model;
-    _shipmentBigBoardView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
-        weakSelf.bigGoodsAndBoardModel = boardModel;
+    _shipmentBigBoardView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
+        weakSelf.saveOrderModel = boardModel;
         [weakSelf submitRequest];
         
     };
@@ -99,13 +103,19 @@
 }
 
 #pragma mark --- 网络请求 ---
+//接口名称 开单
 - (void)submitRequest
 {
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObject:[BXSUser currentUser].companyId forKey:@"companyId"];
-    [param setObject:_sgc.selectedSegmentIndex == 0? @"大货":@"板布" forKey:@"type"];
+
+    self.saveOrderModel.singleType = [NSString stringWithFormat:@"%ld",(long)_sgc.selectedSegmentIndex];
+
     
-    [BXSHttp requestPOSTWithAppURL:@"sale/outproduct_list.do" param:param success:^(id response) {
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"orderDetailItems":[self.saveOrderModel mj_JSONString],
+                            @"orderId":self.model.id
+                                   };
+    
+    [BXSHttp requestPOSTWithAppURL:@"settle/create_order_detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
