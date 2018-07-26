@@ -136,6 +136,7 @@
 }
 
 #pragma mark ----- 网络请求 -----
+//接口名称 功能用到客户列表
 - (void)setupCustomerList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {

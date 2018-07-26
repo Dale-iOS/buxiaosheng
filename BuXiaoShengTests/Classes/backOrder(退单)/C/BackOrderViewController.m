@@ -35,7 +35,10 @@
 @property (nonatomic,strong) NSArray *nameArray;
 //存放模糊匹配的客户姓名
 @property (nonatomic,strong) NSArray *tempNameArray;
-
+//客户数组
+@property(nonatomic,strong)NSMutableArray *customerNameAry;
+@property(nonatomic,strong)NSMutableArray *customerIdAry;
+@property(nonatomic,strong)NSMutableArray *customerMobileAry;
 //仓库方式数组
 @property (nonatomic, strong) NSMutableArray *warehouseNameAry;
 @property (nonatomic, strong) NSMutableArray *warehouseIdAry;
@@ -59,6 +62,7 @@
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     //网络请求
+    [self setupCustomerList];
     [self setupWarehouseLists];
     [self setupPayList];
 }
@@ -497,6 +501,7 @@
 }
 
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField {
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@", textField.text];
     _tempNameArray = [self.nameArray filteredArrayUsingPredicate:predicate];
     NSLog(@"%@", _tempNameArray);
@@ -753,12 +758,36 @@
 
 - (NSArray *)nameArray {
     if (_nameArray == nil) {
-        _nameArray = @[@"客户一", @"客户二", @"zhangsan", @"lisi", @"kehu1", @"kehu2", @"kehu3", @"zhsan"];
+        _nameArray = @[];
     }
     return _nameArray;
 }
 
 #pragma mark --- 网络请求 ---
+//接口名称 功能用到客户列表
+- (void)setupCustomerList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        NSArray *customerListAry = baseModel.data;
+        _customerNameAry = [NSMutableArray array];
+        _customerIdAry = [NSMutableArray array];
+        for (int i = 0 ; i <customerListAry.count; i++) {
+            [_customerNameAry addObject:customerListAry[i][@"name"]];
+            [_customerIdAry addObject:customerListAry[i][@"id"]];
+            [_customerMobileAry addObject:customerListAry[i][@"mobile"]];
+        }
+        self.nameArray = [_customerNameAry copy];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 //接口名称 仓库列表
 - (void)setupWarehouseLists
 {
