@@ -325,14 +325,14 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             //属于真假单
             self.tureModel.type = @"0";
         }
-        self.tureModel.singleType = self.singleType;
+//        self.tureModel.singleType = self.singleType;
         
     }else if (_dataSource.count == 3){
         //有假单
     }
     
     if (_didClickCompltBlock) {
-        _didClickCompltBlock(_bigGoodsAndBoardModel);
+        _didClickCompltBlock(self.tureModel);
     }
 }
 
