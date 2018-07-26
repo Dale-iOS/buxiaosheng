@@ -40,7 +40,7 @@
  
 }
 
-- (void)setModel:(BatchNumberList *)model
+- (void)setModel:(BigGoodsAndBoardModel *)model
 {
     _model = model;
     goodNameLB.text = _model.productName;
@@ -52,11 +52,15 @@
 
 }
 
+- (void)setIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+}
 
 - (IBAction)didClicknumberAction:(UIButton *)sender {
     
     if (_didClickCompltBlock) {
-        _didClickCompltBlock();
+        _didClickCompltBlock(0,_model,_indexPath);
     }
 }
 
@@ -64,6 +68,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _model.price = textField.text;
+    
+    if (_didClickCompltBlock) {
+        _didClickCompltBlock(1,_model,_indexPath);
+    }
 }
 
 

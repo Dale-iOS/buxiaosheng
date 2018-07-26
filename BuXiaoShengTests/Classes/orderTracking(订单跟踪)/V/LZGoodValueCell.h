@@ -10,7 +10,7 @@
 #import "BigGoodsAndBoardModel.h"
 
 @interface LZGoodValueCell : UITableViewCell
-@property (nonatomic, strong) BatchNumberList *model;
-@property (nonatomic, copy) void(^didClickCompltBlock)(void);
-
+@property (nonatomic, strong) BigGoodsAndBoardModel *model;
+@property (nonatomic, copy) void(^didClickCompltBlock)(NSInteger index,BigGoodsAndBoardModel *model, NSIndexPath *indexPath);
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @end

@@ -118,14 +118,27 @@
     _titleLabel.text = _model.key;
     _contentTF.text = _model.value;
     _contentTF.placeholder = _model.placeholder;
-    if (_model.isSelect) {
+    if (_model.isSelect) {  /// 只用一个 状态就可以判断 是否 是选择 还是 编辑
         _rightArrowImageVIew.hidden = NO;
+        _contentTF.userInteractionEnabled = NO;
+        
     }
-    if (!_model.isEditor) {
+    else{
+        _contentTF.userInteractionEnabled = YES;
+        _rightArrowImageVIew.hidden = YES;
+
+    }
+    if (_model.isEditor) {
+        _contentTF.enabled = YES;
+    }else{
         _contentTF.enabled = NO;
     }
+
     if (_model.isContentColorRed) {
-        _contentTF.textColor = LZAppRedColor;
+        _contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
+    }else{
+        _contentTF.textColor = [UIColor blackColor];
+
     }
     
 }
