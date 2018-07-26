@@ -76,6 +76,8 @@
     
     WEAKSELF;
     _shipmentBigGoodsView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -50)];
+    //大货
+    _shipmentBigGoodsView.singleType = @"0";
     _shipmentBigGoodsView.model = _model;
     /// 网络请求 在VC 里面操作最好
     _shipmentBigGoodsView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
@@ -88,6 +90,8 @@
     
     
     _shipmentBigBoardView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -50)];
+    //板布
+    _shipmentBigBoardView.singleType = @"1";
     _shipmentBigBoardView.model = _model;
     _shipmentBigBoardView.didClickCompltBlock = ^(BigGoodsAndBoardModel *boardModel) {
         weakSelf.bigGoodsAndBoardModel = boardModel;

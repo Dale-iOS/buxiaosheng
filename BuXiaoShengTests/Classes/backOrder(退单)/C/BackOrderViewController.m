@@ -398,6 +398,7 @@
         LZChooseProductsVC * vc = [LZChooseProductsVC new];
         [vc setSelectVCBlock:^(LZProductDetailModel *seletedModel) {
             item.detailTitle = seletedModel.name;
+            //        侧栏弹出后的回调
             _productId = seletedModel.id;
 //            seletedModel.unitName 产品单位
 //            seletedModel.unitId 产品id
@@ -416,6 +417,7 @@
         }
         LZSearchVC * colorVC = [LZSearchVC new];
         colorVC.productId = _productId;
+//        侧栏弹出后的回调
         colorVC.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
             item.detailTitle = seletedModel.name;
             [weakSelf.tableView reloadData];

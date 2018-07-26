@@ -10,7 +10,7 @@
 
 @interface LZSaveOrderItemList :NSObject
 @property (nonatomic,copy) NSString *value;//细码值
-@property (nonatomic,copy) NSString *outNumber;//条数
+@property (nonatomic,copy) NSString *total;//条数
 @end
 
 @interface LZSaveOrderProductList :NSObject
