@@ -83,7 +83,6 @@
     _shipmentBigGoodsView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
         weakSelf.saveOrderModel = boardModel;
         [weakSelf submitRequest];
-        
     };
     [_scrollView addSubview:_shipmentBigGoodsView];
     
@@ -96,7 +95,6 @@
     _shipmentBigBoardView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
         weakSelf.saveOrderModel = boardModel;
         [weakSelf submitRequest];
-        
     };
     [_scrollView addSubview:_shipmentBigBoardView];
     
@@ -141,7 +139,6 @@
     {
         _scrollView.contentOffset = CGPointMake(APPWidth, 0);
     }
-    
 }
 
 //轮播图偏移方法

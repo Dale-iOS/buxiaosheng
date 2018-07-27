@@ -220,6 +220,9 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 #pragma mark - private
 - (void)setup
 {
+    self.tureModel = [[LZSaveOrderModel alloc]init];
+    self.falseModel = [[LZSaveOrderModel alloc]init];
+    
     //注册
     [self addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"LZGoodValueCell" bundle:nil] forCellReuseIdentifier:LZGoodValueCellID];
@@ -254,14 +257,16 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 ///提交按钮点击事件
 - (void)didClickSubmitAction
 {
-    if (_dataSource.count == 2) {
+    
         //没假单,只有真单
-        
-        NSMutableArray *productListMuAry = [NSMutableArray array];
-        NSMutableArray *itemListMuAry = [NSMutableArray array];
+    NSMutableArray *productListMuAry = [NSMutableArray array];
+    NSMutableArray *itemListMuAry = [NSMutableArray array];
+    
+    //真单数据
+    NSArray *tureAry = _dataSource[0];
         for (int i = 0; i < _dataList.count; i++) {
             
-            BigGoodsAndBoardModel *bigGoodsAndBoardModel = _dataList[i];
+            BigGoodsAndBoardModel *bigGoodsAndBoardModel = tureAry[i];
             LZSaveOrderProductList *LZSaveOrderProductListModel = [LZSaveOrderProductList new];
             LZSaveOrderProductListModel.productId = bigGoodsAndBoardModel.productId;
             LZSaveOrderProductListModel.productColorId = bigGoodsAndBoardModel.productColorId;
@@ -325,14 +330,135 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             //属于真假单
             self.tureModel.type = @"0";
         }
-//        self.tureModel.singleType = self.singleType;
-        
-    }else if (_dataSource.count == 3){
-        //有假单
-    }
+    
+    
+     if (_dataSource.count == 3){
+         //有假单
+         NSMutableArray *productListMuAry = [NSMutableArray array];
+         NSMutableArray *itemListMuAry = [NSMutableArray array];
+         
+         //真单数据
+         NSArray *falseAry = _dataSource[1];
+         for (int i = 0; i < _dataList.count; i++) {
+             
+             BigGoodsAndBoardModel *bigGoodsAndBoardModel = falseAry[i];
+             LZSaveOrderProductList *LZSaveOrderProductListModel = [LZSaveOrderProductList new];
+             LZSaveOrderProductListModel.productId = bigGoodsAndBoardModel.productId;
+             LZSaveOrderProductListModel.productColorId = bigGoodsAndBoardModel.productColorId;
+             LZSaveOrderProductListModel.total = bigGoodsAndBoardModel.total;
+             LZSaveOrderProductListModel.number = bigGoodsAndBoardModel.number;
+             LZSaveOrderProductListModel.price = bigGoodsAndBoardModel.price;
+             
+             for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
+                 BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
+                 
+                 for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
+                     ItemList *itemListModel = batchNumberListModel.itemList[k];
+                     LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+                     LZSaveOrderItemListModel.value = itemListModel.value;
+                     LZSaveOrderItemListModel.total = itemListModel.total;
+                     [itemListMuAry addObject:LZSaveOrderItemListModel];
+                 }
+             }
+             
+             LZSaveOrderProductListModel.itemList = [itemListMuAry copy];
+             [productListMuAry addObject:LZSaveOrderProductListModel];
+         }
+         self.falseModel.productList = [productListMuAry copy];
+         
+         NSMutableArray *detailValueMuAry = [NSMutableArray array];
+         for (NSInteger i = _dataList.count ; i <_consumptionArr.count; i++) {
+             ItemList *model = falseAry[i];
+             [detailValueMuAry addObject:model.value];
+         }
+         if (detailValueMuAry.count == 5) {
+             //            出库条数合计
+             self.falseModel.total = detailValueMuAry[0];
+             //            出库数量
+             self.falseModel.outNumber = detailValueMuAry[1];
+             //            标签数量
+             self.falseModel.labelNumber = detailValueMuAry[2];
+             //            结算数量
+             self.falseModel.settleNumber = detailValueMuAry[3];
+             //            本单应收金额
+             self.falseModel.receivablePrice = detailValueMuAry[4];
+         }
+         
+         NSMutableArray *tureValueMuAry = [NSMutableArray array];
+         for (int i = 0; i <_infoArr.count; i++) {
+             ItemList *model = _infoArr[i];
+             [tureValueMuAry addObject:model.value];
+         }
+         if (tureValueMuAry.count == 8) {
+             //实收金额
+             self.falseModel.netreceiptsPrice = tureValueMuAry[2];
+             //预收定金
+             self.falseModel.depositPrice = tureValueMuAry[3];
+             //调整金额
+             self.falseModel.trimPrice = tureValueMuAry[4];
+             //本单欠款
+             self.falseModel.arrearsPrice = tureValueMuAry[5];
+             //预收定金
+             self.falseModel.depositPrice = tureValueMuAry[3];
+             //备注内容
+             self.falseModel.remark = tureValueMuAry[7];
+             //属于真假单
+             self.falseModel.type = @"1";
+         }
+//         self.falseModel = self.tureModel;
+//         self.falseModel.type = @"1";
+//
+//         NSMutableArray *falseProductListMuAry = [NSMutableArray array];
+//         NSMutableArray *falseItemListMuAry = [NSMutableArray array];
+//         //假单数据
+//         NSArray *falseAry = _dataSource[1];
+//
+//         for (int q = 0 ; q < _dataList.count; q++) {
+//             BigGoodsAndBoardModel *falseModel = falseAry[q];
+//             LZSaveOrderProductList *LZSaveOrderProductListModel = [LZSaveOrderProductList new];
+//             LZSaveOrderProductListModel.productId = falseModel.productId;
+//             LZSaveOrderProductListModel.productColorId = falseModel.productColorId;
+//             LZSaveOrderProductListModel.total = falseModel.total;
+//             LZSaveOrderProductListModel.number = falseModel.number;
+//             LZSaveOrderProductListModel.price = falseModel.price;
+//
+//             for (int j = 0; j < falseModel.batchNumberList.count; j++) {
+//                 BatchNumberList *batchNumberListModel = falseModel.batchNumberList[j];
+//
+//                 for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
+//                     ItemList *itemListModel = batchNumberListModel.itemList[k];
+//                     LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+//                     LZSaveOrderItemListModel.value = itemListModel.value;
+//                     LZSaveOrderItemListModel.total = itemListModel.total;
+//                     [falseItemListMuAry addObject:LZSaveOrderItemListModel];
+//                 }
+//             }
+//             LZSaveOrderProductListModel.itemList = [falseItemListMuAry copy];
+//             [falseProductListMuAry addObject:LZSaveOrderProductListModel];
+//         }
+//         self.falseModel.productList = [falseProductListMuAry copy];
+//
+//         NSMutableArray *detailValueMuAry1 = [NSMutableArray array];
+//         for (NSInteger i = _dataList.count ; i <falseAry.count; i++) {
+//             ItemList *model = falseAry[i];
+//             [detailValueMuAry1 addObject:model.value];
+//         }
+//         if (detailValueMuAry1.count == 5) {
+//             //            出库条数合计
+//             self.falseModel.total = detailValueMuAry1[0];
+//             //            出库数量
+//             self.falseModel.outNumber = detailValueMuAry1[1];
+//             //            标签数量
+//             self.falseModel.labelNumber = detailValueMuAry1[2];
+//             //            结算数量
+//             self.falseModel.settleNumber = detailValueMuAry1[3];
+//             //            本单应收金额
+//             self.falseModel.receivablePrice = detailValueMuAry1[4];
+//         }
+     }
     
     if (_didClickCompltBlock) {
-        _didClickCompltBlock(self.tureModel);
+//        _didClickCompltBlock(self.tureModel);
     }
 }
 
@@ -440,19 +566,19 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     return _bigGoodsAndBoardModel;
 }
 
-- (LZSaveOrderModel *)tureModel{
-    if (_tureModel == nil) {
-        _tureModel = [LZSaveOrderModel new];
-    }
-    return _tureModel;
-}
-
-- (LZSaveOrderModel *)falseModel{
-    if (_falseModel == nil) {
-        _falseModel = [LZSaveOrderModel new];
-    }
-    return _falseModel;
-}
+//- (LZSaveOrderModel *)tureModel{
+//    if (_tureModel == nil) {
+//        _tureModel = [LZSaveOrderModel new];
+//    }
+//    return _tureModel;
+//}
+//
+//- (LZSaveOrderModel *)falseModel{
+//    if (_falseModel == nil) {
+//        _falseModel = [LZSaveOrderModel new];
+//    }
+//    return _falseModel;
+//}
 
 #pragma mark - delegate
 #pragma mark - tableview delegate / dataSource
