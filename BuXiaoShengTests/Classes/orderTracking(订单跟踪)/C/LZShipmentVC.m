@@ -109,9 +109,11 @@
 
     self.saveOrderModel.singleType = [NSString stringWithFormat:@"%ld",(long)_sgc.selectedSegmentIndex];
 
+    NSMutableArray <NSString *> *saveMuAry = [NSMutableArray array];
+    [saveMuAry addObject:[self.saveOrderModel mj_JSONObject]];
     
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"orderDetailItems":[self.saveOrderModel mj_JSONString],
+                            @"orderDetailItems":[saveMuAry mj_JSONString],
                             @"orderId":self.model.id
                                    };
     
