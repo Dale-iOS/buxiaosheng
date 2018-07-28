@@ -400,9 +400,9 @@
             item.detailTitle = seletedModel.name;
             //        侧栏弹出后的回调
             _productId = seletedModel.id;
-//            seletedModel.unitName 产品单位
-//            seletedModel.unitId 产品id
-//            seletedModel.storageType 为0是总码 为1是细码
+            //            seletedModel.unitName 产品单位
+            //            seletedModel.unitId 产品id
+            //            seletedModel.storageType 为0是总码 为1是细码
             [weakSelf.tableView reloadData];
         }];
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
@@ -417,7 +417,7 @@
         }
         LZSearchVC * colorVC = [LZSearchVC new];
         colorVC.productId = _productId;
-//        侧栏弹出后的回调
+        //        侧栏弹出后的回调
         colorVC.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
             item.detailTitle = seletedModel.name;
             [weakSelf.tableView reloadData];
@@ -457,13 +457,13 @@
             _payIdStr = _payIdAry[row];
             [weakSelf.tableView reloadData];
         };
-         [self.view addSubview:pickerView];
+        [self.view addSubview:pickerView];
     }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeChangeNum){
         
         //标签数量
         LZChangeNumVC *vc = [LZChangeNumVC new];
         vc.originalValue = [item.detailTitle integerValue];
-//        vc.lineValue = 细码条数
+        //        vc.lineValue = 细码条数
         [vc setNumValueBlock:^(NSString *ValueStr) {
             item.detailTitle = ValueStr;
             [weakSelf.tableView reloadData];
@@ -472,7 +472,7 @@
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
         [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
     }
-
+    
 }
 
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell reloadForIndexPath:(NSIndexPath *)indexPath {
@@ -523,6 +523,7 @@
         if (count == 0) return;
         CGFloat height = count * 44;
         if (count >= 4) height = 4 * 44;
+        
         ZWCustomPopView *popView = [[ZWCustomPopView alloc]initWithBounds:CGRectMake(0, 0, 120, height) titleMenus:_tempNameArray maskAlpha:0.0];
         popView.delegate = self;
         popView.containerBackgroudColor = [UIColor whiteColor];

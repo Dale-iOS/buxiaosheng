@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LZOrderTrackingModel.h"
-#import "BigGoodsAndBoardModel.h"
-#import "LZSaveOrderModel.h"
 
 @interface LZShipmentBigGoodsView : UIView
 @property (nonatomic, strong) LZOrderTrackingModel *model;
-@property (nonatomic, copy) void(^didClickCompltBlock)(LZSaveOrderModel *boardModel);
+@property (nonatomic, copy) void(^didClickCompltBlock)(NSMutableArray *boardModelAry);
 @end

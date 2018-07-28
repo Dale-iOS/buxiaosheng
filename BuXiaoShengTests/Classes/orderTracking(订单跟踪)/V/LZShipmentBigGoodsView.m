@@ -257,6 +257,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
 ///提交按钮点击事件
 - (void)didClickSubmitAction
 {
+    NSMutableArray *saveAry = [NSMutableArray array];
     
         //没假单,只有真单
     NSMutableArray *productListMuAry = [NSMutableArray array];
@@ -331,6 +332,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             self.tureModel.type = @"0";
         }
     
+    [saveAry addObject:self.tureModel];
     
      if (_dataSource.count == 3){
          //有假单
@@ -405,60 +407,12 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
              //属于真假单
              self.falseModel.type = @"1";
          }
-//         self.falseModel = self.tureModel;
-//         self.falseModel.type = @"1";
-//
-//         NSMutableArray *falseProductListMuAry = [NSMutableArray array];
-//         NSMutableArray *falseItemListMuAry = [NSMutableArray array];
-//         //假单数据
-//         NSArray *falseAry = _dataSource[1];
-//
-//         for (int q = 0 ; q < _dataList.count; q++) {
-//             BigGoodsAndBoardModel *falseModel = falseAry[q];
-//             LZSaveOrderProductList *LZSaveOrderProductListModel = [LZSaveOrderProductList new];
-//             LZSaveOrderProductListModel.productId = falseModel.productId;
-//             LZSaveOrderProductListModel.productColorId = falseModel.productColorId;
-//             LZSaveOrderProductListModel.total = falseModel.total;
-//             LZSaveOrderProductListModel.number = falseModel.number;
-//             LZSaveOrderProductListModel.price = falseModel.price;
-//
-//             for (int j = 0; j < falseModel.batchNumberList.count; j++) {
-//                 BatchNumberList *batchNumberListModel = falseModel.batchNumberList[j];
-//
-//                 for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
-//                     ItemList *itemListModel = batchNumberListModel.itemList[k];
-//                     LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
-//                     LZSaveOrderItemListModel.value = itemListModel.value;
-//                     LZSaveOrderItemListModel.total = itemListModel.total;
-//                     [falseItemListMuAry addObject:LZSaveOrderItemListModel];
-//                 }
-//             }
-//             LZSaveOrderProductListModel.itemList = [falseItemListMuAry copy];
-//             [falseProductListMuAry addObject:LZSaveOrderProductListModel];
-//         }
-//         self.falseModel.productList = [falseProductListMuAry copy];
-//
-//         NSMutableArray *detailValueMuAry1 = [NSMutableArray array];
-//         for (NSInteger i = _dataList.count ; i <falseAry.count; i++) {
-//             ItemList *model = falseAry[i];
-//             [detailValueMuAry1 addObject:model.value];
-//         }
-//         if (detailValueMuAry1.count == 5) {
-//             //            出库条数合计
-//             self.falseModel.total = detailValueMuAry1[0];
-//             //            出库数量
-//             self.falseModel.outNumber = detailValueMuAry1[1];
-//             //            标签数量
-//             self.falseModel.labelNumber = detailValueMuAry1[2];
-//             //            结算数量
-//             self.falseModel.settleNumber = detailValueMuAry1[3];
-//             //            本单应收金额
-//             self.falseModel.receivablePrice = detailValueMuAry1[4];
-//         }
+         
+         [saveAry addObject:self.falseModel];
      }
     
     if (_didClickCompltBlock) {
-//        _didClickCompltBlock(self.tureModel);
+        _didClickCompltBlock(saveAry);
     }
 }
 

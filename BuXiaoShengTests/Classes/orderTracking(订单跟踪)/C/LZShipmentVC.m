@@ -18,6 +18,7 @@
 @property(nonatomic,strong)LZShipmentBigGoodsView *shipmentBigBoardView;//板布
 //@property(nonatomic,strong)LZShipmentBigBoardView *shipmentBigBoardView;//板布
 @property(nonatomic,strong)LZSaveOrderModel *saveOrderModel;
+@property (nonatomic, strong) NSMutableArray *saveMuAry;
 @end
 
 @implementation LZShipmentVC
@@ -77,25 +78,25 @@
     WEAKSELF;
     _shipmentBigGoodsView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -50)];
     //大货
-//    _shipmentBigGoodsView.singleType = @"0";
     _shipmentBigGoodsView.model = _model;
     /// 网络请求 在VC 里面操作最好
-    _shipmentBigGoodsView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
-        weakSelf.saveOrderModel = boardModel;
+    _shipmentBigGoodsView.didClickCompltBlock = ^(NSMutableArray *boardModelAry) {
+
+        weakSelf.saveMuAry = boardModelAry;
         [weakSelf submitRequest];
-    };
+    } ;
     [_scrollView addSubview:_shipmentBigGoodsView];
     
-    
-    
+ 
     _shipmentBigBoardView = [[LZShipmentBigGoodsView alloc]initWithFrame:CGRectMake(APPWidth, 0, APPWidth, APPHeight -50)];
     //板布
 //    _shipmentBigBoardView.singleType = @"1";
     _shipmentBigBoardView.model = _model;
-    _shipmentBigBoardView.didClickCompltBlock = ^(LZSaveOrderModel *boardModel) {
-        weakSelf.saveOrderModel = boardModel;
+    _shipmentBigBoardView.didClickCompltBlock = ^(NSMutableArray *boardModelAry) {
+        
+        weakSelf.saveMuAry = boardModelAry;
         [weakSelf submitRequest];
-    };
+    } ;
     [_scrollView addSubview:_shipmentBigBoardView];
     
 }
@@ -104,11 +105,14 @@
 //接口名称 开单
 - (void)submitRequest
 {
-
-    self.saveOrderModel.singleType = [NSString stringWithFormat:@"%ld",(long)_sgc.selectedSegmentIndex];
-
     NSMutableArray <NSString *> *saveMuAry = [NSMutableArray array];
-    [saveMuAry addObject:[self.saveOrderModel mj_JSONObject]];
+    
+    for (int i = 0 ; i < self.saveMuAry.count; i++) {
+        LZSaveOrderModel *model = self.saveMuAry[i];
+        model.singleType = [NSString stringWithFormat:@"%ld",(long)_sgc.selectedSegmentIndex];
+        [saveMuAry addObject:[model mj_JSONObject]];
+    }
+    
     
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"orderDetailItems":[saveMuAry mj_JSONString],
@@ -150,6 +154,13 @@
         _sgc.selectedSegmentIndex = 0;
     }
     
+}
+
+- (NSMutableArray *)saveMuAry{
+    if (_saveMuAry == nil) {
+        _saveMuAry = [NSMutableArray array];
+    }
+    return _saveMuAry;
 }
 
 - (void)didReceiveMemoryWarning {
