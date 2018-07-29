@@ -43,4 +43,7 @@ typedef NS_ENUM(NSInteger, BtnClickType) {
 @property (nonatomic,strong) LZBackOrderGroup *group;
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
+//是否是输入细码cell
+@property (nonatomic,assign,getter=isInputCell) BOOL inputCell;
+
 @end

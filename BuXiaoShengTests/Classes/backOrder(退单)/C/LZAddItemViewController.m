@@ -81,6 +81,7 @@
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
     LZBackOrderCell *cell = [LZBackOrderCell cellWithTableView:tableView cellType:item.cellType];
+    cell.inputCell = YES;
     cell.group = group;
     cell.item = item;
     return cell;

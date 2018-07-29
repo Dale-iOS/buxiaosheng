@@ -34,6 +34,9 @@
  */
 @property (nonatomic,strong) NSMutableArray *itemStrings;
 
+//总码 or 细码
+@property (nonatomic,strong) NSString *storageType;
+
 + (instancetype)groupWithFlod:(BOOL)flod items:(NSArray *)items;
 
 @end
