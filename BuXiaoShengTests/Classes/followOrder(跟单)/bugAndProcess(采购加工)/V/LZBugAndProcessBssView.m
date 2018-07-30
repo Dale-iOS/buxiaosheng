@@ -12,6 +12,8 @@
 #import "LZPurchaseReceiptVC.h"
 #import "LZPurchaseAskVC.h"
 #import "DyeingViewController.h"
+#import "LZPurchaseReceiptVC.h"
+
 
 @interface LZBugAndProcessBssView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -96,9 +98,13 @@
 
 #pragma mark ---- 点击事件 ----
 - (void)didClickFirstBtnInCell:(UITableViewCell *)cell{
-//    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
-//    [[self viewController].navigationController pushViewController:vc animated:YES];
-    DyeingViewController *vc = [[DyeingViewController alloc]init];
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    
+    LZBugAndProcessBssModel *model = _lists[indexP.row];
+    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+    vc.bugId = model.id;
+#warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
+    vc.isFindCode = indexP.row %2 >0;
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
