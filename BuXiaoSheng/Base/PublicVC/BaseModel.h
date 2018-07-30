@@ -10,5 +10,6 @@
 
 @interface BaseModel : NSObject
 @property (nonatomic,assign)CGFloat baseCellHeight;
+@property (assign,nonatomic) BOOL select;
 
 @end

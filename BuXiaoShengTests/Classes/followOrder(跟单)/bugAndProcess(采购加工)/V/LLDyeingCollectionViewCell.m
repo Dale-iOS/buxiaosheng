@@ -28,4 +28,10 @@
     }
     return self;
 }
+
+-(void)setCodeModel:(LZFindCodeModel *)codeModel {
+    
+    _codeModel = codeModel;
+    _numberLable.text = HandleNilStringToZone(codeModel.code);
+}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LZFindCodeModel.h"
 @interface LLDyeingCollectionViewCell : UICollectionViewCell
-
+@property (strong,nonatomic)LZFindCodeModel *codeModel;
 @end
