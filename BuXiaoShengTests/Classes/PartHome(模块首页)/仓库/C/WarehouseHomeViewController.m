@@ -170,8 +170,9 @@
     else if ([model.paramsIos isEqualToString:@"weavdyedemand"])
     {
         //织染需求
-        DyeingDemandViewController *vc = [[DyeingDemandViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [LLHudTools showWithMessage:@"功能正在开发中~~"];
+//        DyeingDemandViewController *vc = [[DyeingDemandViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
 //    else if (indexPath.row == 5)
 //    {
@@ -182,8 +183,9 @@
     else if ([model.paramsIos isEqualToString:@"stockdemand"])
     {
         //备货需求
-        DyeingViewController *vc = [[DyeingViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [LLHudTools showWithMessage:@"功能正在开发中~~"];
+//        DyeingViewController *vc = [[DyeingViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
     else if ([model.paramsIos isEqualToString:@"stocktrack"])
     {

@@ -8,6 +8,8 @@
 
 #import "ProcessViewController.h"
 #import "LLProcessChildVc.h"
+// 加工
+#import "BXSMachiningVC.h"
 
 @interface ProcessViewController ()<UIScrollViewDelegate>
 
@@ -25,7 +27,7 @@
     self.navigationItem.titleView = [Utility navTitleView:@"指派"];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
-    [self setupBottomView];
+//    [self setupBottomView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -37,16 +39,26 @@
     UIView * segmentedView = [self segmentedView];
     [segmentedView layoutIfNeeded];
     [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        LLProcessChildVc * childVc = [LLProcessChildVc new];
-        childVc.title = obj;
-        childVc.orderId = self.orderId;
-        [self.containerView addSubview:childVc.view];
-        [self addChildViewController:childVc];
+        if (idx == 0) {
+            LLProcessChildVc *childVc = [[LLProcessChildVc alloc]init];
+            childVc.orderId = self.orderId;
+            childVc.title = obj;
+            childVc.view.frame = CGRectMake(0, 0, APPWidth, self.containerView.height);
+            [self.containerView addSubview:childVc.view];
+            [self addChildViewController:childVc];
+        }else{
+            BXSMachiningVC *childVc = [[BXSMachiningVC alloc]init];
+            childVc.orderId = self.orderId;
+            childVc.title = obj;
+            childVc.view.frame = CGRectMake(APPWidth, 0, APPWidth, self.containerView.height);
+            [self.containerView addSubview:childVc.view];
+            [self addChildViewController:childVc];
+        }
     }];
     
     LLProcessChildVc * fristVc = self.childViewControllers.firstObject;
     fristVc.view.frame = CGRectMake(0 , 0, SCREEN_WIDTH, CGRectGetHeight(self.containerView.frame));
-    self.containerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.segmentedTitles.count, 0);
+    self.containerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.segmentedTitles.count, self.containerView.height);
 }
 
 -(UIView *)setupBottomView {
@@ -128,9 +140,11 @@
 
 -(UIScrollView *)containerView {
     if (!_containerView) {
-        _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45-50)];
+        _containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, LLNavViewHeight + 45, SCREEN_WIDTH, SCREEN_HEIGHT - LLNavViewHeight - 45)];
         _containerView.delegate = self;
         _containerView.pagingEnabled = true;
+        _containerView.bounces = NO;
+        _containerView.scrollEnabled = NO;
         [self.view addSubview:_containerView];
     }
     return _containerView;

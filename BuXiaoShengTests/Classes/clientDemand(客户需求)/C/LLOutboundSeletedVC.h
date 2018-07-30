@@ -10,6 +10,7 @@ typedef void(^OutboundSeletedVCBlock)(NSArray <LLOutboundRightModel*>* seleteds,
 #import <UIKit/UIKit.h>
 
 @interface LLOutboundSeletedVC : BaseViewController
+
 @property (nonatomic,strong) LZOutboundItemListModel * itemModel;
 @property (nonatomic,copy) OutboundSeletedVCBlock  block;
 @end

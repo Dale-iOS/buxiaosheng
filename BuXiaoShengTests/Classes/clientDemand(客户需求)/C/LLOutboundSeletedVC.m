@@ -44,8 +44,13 @@
     [BXSHttp requestPOSTWithAppURL:@"product/house_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
-             [LLHudTools showWithMessage:baseModel.msg];
+            [LLHudTools showWithMessage:baseModel.msg];
             return ;
+        }
+        if ([baseModel.data count] == 0) {
+            
+            [self dismissViewControllerAnimated:YES completion:^{}];
+            return;
         }
         self.leftListModel = [LLOutboundlistModel LLMJParse:baseModel.data];
         self.leftListModel.firstObject.seleted = true;
@@ -106,7 +111,7 @@
     [self.view addSubview:bottomBtn];
     [bottomBtn setTitle:@"确 定" forState:UIControlStateNormal];
     bottomBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    bottomBtn.backgroundColor = LZAppBlueColor;
+    bottomBtn.backgroundColor = [UIColor redColor];
     [bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
         make.top.equalTo(self.leftTableView.mas_bottom);
@@ -184,7 +189,7 @@
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-     return CGSizeMake(CGRectGetWidth(self.view.frame)-100, 45);
+    return CGSizeMake(CGRectGetWidth(self.view.frame)-100, 45);
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,7 +205,7 @@
     [collectionView reloadData];
 }
 -(void)bottomBtnClick {
-   
+    
     NSMutableArray <LLOutboundRightModel *> * seleteds = [NSMutableArray array];
     [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -216,8 +221,9 @@
     self.block(seleteds.mutableCopy,self.itemModel);
     [self dismissViewControllerAnimated:true completion:nil];
     
-   
+    
 }
+
 
 
 
