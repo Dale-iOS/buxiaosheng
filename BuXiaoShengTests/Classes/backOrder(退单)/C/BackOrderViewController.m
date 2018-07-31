@@ -340,8 +340,14 @@
         vc.originalValue = [item.detailTitle integerValue];
         //        vc.lineValue = 细码条数
         [vc setNumValueBlock:^(NSString *ValueStr) {
+            //修改标签数量
             item.detailTitle = ValueStr;
+            //修改结算数量
+            LZBackOrderGroup *group1 = self.dataSource[indexPath.section];
+            LZBackOrderItem *item1 = group1.items[indexPath.row+1];
+            item1.detailTitle = ValueStr;
             [weakSelf.tableView reloadData];
+//            [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath];
             //假如有5条细码，加减就是加减5，然后每条细码各加减1。
         }];
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
@@ -531,7 +537,7 @@
                                  @"detailColor":CD_Text33,
                                  @"clickType":@(0),
                                  @"cellType":@(0),
-                                 @"canInput":@(NO),
+                                 @"canInput":@(YES),
                                  @"showArrow":@(NO),
                                  @"mandatoryOption":@(NO),
                                  @"numericKeyboard":@(NO)
@@ -571,7 +577,7 @@
                                @{@"textTitle":@"应付金额",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@" ",
-                                 @"detailColor":CD_Text33,
+                                 @"detailColor":LZAppRedColor,
                                  @"clickType":@(0),
                                  @"canInput":@(NO),
                                  @"showArrow":@(NO),
@@ -591,7 +597,7 @@
                                @{@"textTitle":@"预收付款",
                                  @"detailTitle":@" ",
                                  @"placeHolder":@"",
-                                 @"detailColor":CD_Text33,
+                                 @"detailColor":LZAppRedColor,
                                  @"clickType":@(0),
                                  @"canInput":@(NO),
                                  @"showArrow":@(NO),
@@ -625,6 +631,10 @@
         }
     }
     return _dataSource;
+}
+
+- (IBAction)saveClick:(id)sender {
+    NSLog(@"123");
 }
 
 - (NSArray *)nameArray {

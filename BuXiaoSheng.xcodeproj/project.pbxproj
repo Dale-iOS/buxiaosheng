@@ -383,6 +383,8 @@
 		346C228E210E03E2004AAC88 /* LZBackOrderListsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2284210E03E2004AAC88 /* LZBackOrderListsModel.m */; };
 		346C228F210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2285210E03E2004AAC88 /* LLBackOrdeContentModel.m */; };
 		346C2290210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2285210E03E2004AAC88 /* LLBackOrdeContentModel.m */; };
+		346E02312110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346E02302110567B005D4D50 /* LZBackOrderSaveModel.m */; };
+		346E02322110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346E02302110567B005D4D50 /* LZBackOrderSaveModel.m */; };
 		346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346EF4A020BE73D60078C087 /* LZOutboundModel.m */; };
 		34719B4820D8E7D500C46F06 /* LZPurchaseReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34719B4720D8E7D500C46F06 /* LZPurchaseReceiptVC.m */; };
 		34719B4920D8E7D500C46F06 /* LZPurchaseReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34719B4720D8E7D500C46F06 /* LZPurchaseReceiptVC.m */; };
@@ -1305,6 +1307,8 @@
 		346C2284210E03E2004AAC88 /* LZBackOrderListsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderListsModel.m; sourceTree = "<group>"; };
 		346C2285210E03E2004AAC88 /* LLBackOrdeContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBackOrdeContentModel.m; sourceTree = "<group>"; };
 		346C2286210E03E2004AAC88 /* salesDemandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = salesDemandModel.h; sourceTree = "<group>"; };
+		346E022F2110567B005D4D50 /* LZBackOrderSaveModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBackOrderSaveModel.h; sourceTree = "<group>"; };
+		346E02302110567B005D4D50 /* LZBackOrderSaveModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderSaveModel.m; sourceTree = "<group>"; };
 		346EF49F20BE73D60078C087 /* LZOutboundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundModel.h; sourceTree = "<group>"; };
 		346EF4A020BE73D60078C087 /* LZOutboundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundModel.m; sourceTree = "<group>"; };
 		34719B4620D8E7D500C46F06 /* LZPurchaseReceiptVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptVC.h; sourceTree = "<group>"; };
@@ -2858,6 +2862,8 @@
 				346C2284210E03E2004AAC88 /* LZBackOrderListsModel.m */,
 				346C2286210E03E2004AAC88 /* salesDemandModel.h */,
 				346C227D210E03E1004AAC88 /* salesDemandModel.m */,
+				346E022F2110567B005D4D50 /* LZBackOrderSaveModel.h */,
+				346E02302110567B005D4D50 /* LZBackOrderSaveModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5068,6 +5074,7 @@
 				3465C9E820DC9A9600BAE415 /* FSCalendarHeaderView.m in Sources */,
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
 				34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */,
+				346E02312110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
@@ -5340,6 +5347,7 @@
 				344C488620D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
+				346E02322110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
