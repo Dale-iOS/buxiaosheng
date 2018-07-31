@@ -33,10 +33,6 @@
 @property (weak, nonatomic) ZWCustomPopView *popView;
 @property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
 @property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
-////存放客户姓名
-//@property (nonatomic,strong) NSArray *nameArray;
-////存放模糊匹配的客户姓名
-//@property (nonatomic,strong) NSArray *tempNameArray;
 
 @end
 
@@ -406,6 +402,11 @@
     LZBackOrderItem *item = group.items.firstObject;
     item.detailTitle = name;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+    
+    NSString *mobile = self.customerMobileAry[index];
+    LZBackOrderItem *item2 = group.items.lastObject;
+    item2.detailTitle = mobile;
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
 

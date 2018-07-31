@@ -17,7 +17,6 @@
 @property(nonatomic,strong)NSMutableArray *customerNameAry;
 @property(nonatomic,strong)NSMutableArray *customerIdAry;
 @property(nonatomic,strong)NSMutableArray *customerMobileAry;
-
 //仓库方式数组
 @property (nonatomic, strong) NSMutableArray *warehouseNameAry;
 @property (nonatomic, strong) NSMutableArray *warehouseIdAry;

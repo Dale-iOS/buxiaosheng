@@ -25,6 +25,7 @@
         NSArray *customerListAry = baseModel.data;
         self.customerNameAry = [NSMutableArray array];
         self.customerIdAry = [NSMutableArray array];
+        self.customerMobileAry = [NSMutableArray array];
         for (int i = 0 ; i <customerListAry.count; i++) {
             [self.customerNameAry addObject:customerListAry[i][@"name"]];
             [self.customerIdAry addObject:customerListAry[i][@"id"]];
