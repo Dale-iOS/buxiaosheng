@@ -87,76 +87,94 @@
 
 //计算底部总数量 总条数
 - (void)calculateTotal {
-    NSInteger total = 0;
-    NSInteger count = 0;
+    //总数量
+    NSInteger totalCount = 0;
+    //总条数
+    NSInteger totalNumber = 0;
     //应付金额 预收金额
-    NSInteger totalNum = 0;
+    NSInteger totalPrice = 0;
     for (int i = 1; i < self.dataSource.count - 1; i++) {
         LZBackOrderGroup *group = self.dataSource[i];
-        NSInteger totalCount = group.items.count;
-        LZBackOrderItem *item = group.items[totalCount - 2];
-        totalNum += item.detailTitle.integerValue;
         if ([group.storageType isEqualToString:@"1"]) {
             //细码
             for (NSString *itemStr in group.itemStrings) {
-                total += itemStr.integerValue;
-                count += 1;
+                totalCount += itemStr.integerValue;
             }
+            totalNumber += group.itemStrings.count;
         } else {
             //总码
-            total += group.items[3].detailTitle.integerValue;
-            count += group.items[3].detailTitle.integerValue;
+            totalCount += group.items[3].detailTitle.integerValue;
+            totalNumber += group.items[4].detailTitle.integerValue;
         }
+        NSInteger itemCount = group.items.count;
         
+        LZBackOrderItem *item = group.items[itemCount - 2];
+        totalPrice += item.detailTitle.integerValue;
     }
     //应付金额
     LZBackOrderGroup *lastGroup = self.dataSource.lastObject;
-    [lastGroup.items[1] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum]];
+    [lastGroup.items[1] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice]];
     if ([BXSTools isEmptyString:[lastGroup.items[2] detailTitle]]) {
         //预收付款
-        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum]];
+        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice]];
     } else {
         NSInteger realPay = lastGroup.items[2].detailTitle.integerValue;
-        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalNum - realPay]];
+        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice - realPay]];
     }
     
-    _totalNumLb.text = [NSString stringWithFormat:@"总数量: %ld", total];
-    _totalCountLb.text = [NSString stringWithFormat:@"总条数: %ld", count];
+    _totalNumLb.text = [NSString stringWithFormat:@"总数量: %ld", totalCount];
+    _totalCountLb.text = [NSString stringWithFormat:@"总条数: %ld", totalNumber];
 }
 
 //计算分区的相关数据
 - (void)caculateSectionDataWithGroup:(LZBackOrderGroup *)group indexPath:(NSIndexPath *)indexPath {
-    NSInteger total = 0;
-    
-    if (group.items.count > 11 && group.itemStrings.count > 0) {
-        if (group.itemStrings.count > 0) {
-            //细码的个数
-            for (NSString *string in group.itemStrings) {
-                total += string.integerValue;
-            }
-            if (indexPath.row == 3) {
-                LZBackOrderItem *item = group.items[indexPath.row];
-                item.textTitle = [NSString stringWithFormat:@"细码 (总条数: %ld )", group.itemStrings.count];
+    if (group.items.count > 11) {
+        //数量
+        NSInteger totalCount = 0;
+        //条数
+        NSString *totalNumberStr = @"0";
+        if ([group.storageType isEqualToString:@"1"]) {
+            //细码
+            if (group.itemStrings.count > 0) {
+                if (indexPath.row == 3) {
+                    LZBackOrderItem *item = group.items[3];
+                    item.textTitle = [NSString stringWithFormat:@"细码 (总条数: %ld )", group.itemStrings.count];
+                }
+                //细码的个数
+                for (NSString *string in group.itemStrings) {
+                    totalCount += string.integerValue;
+                }
+                totalNumberStr = [NSString stringWithFormat:@"%ld", totalCount];
             }
         } else {
             //总码
-            if (indexPath.row == 3) {
-                LZBackOrderItem *item = group.items[indexPath.row];
-                total = item.detailTitle.integerValue;
+            totalCount = group.items[3].detailTitle.integerValue;
+            LZBackOrderItem *item = group.items[3];
+            if (![BXSTools isEmptyString:item.detailTitle]) {
+                totalNumberStr = item.detailTitle;
             }
+            
         }
-        
-        NSInteger itemCount = group.items.count;
         //单价
-        NSInteger price = [[group.items[itemCount - 6] detailTitle] integerValue];
+        __block LZBackOrderItem *priceItem = nil;
+        __block NSInteger priceItenIndex;
+        [group.items enumerateObjectsUsingBlock:^(LZBackOrderItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.isCanInput && obj.isMandatoryOption) {
+                priceItem = obj;
+                priceItenIndex = idx;
+                *stop = YES;
+            }
+        }];
+        NSInteger price = [priceItem.detailTitle integerValue];
+    
         //入库数量
-        group.items[itemCount - 5].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        group.items[priceItenIndex + 1].detailTitle = totalNumberStr;
         //标签数量
-        group.items[itemCount - 4].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        group.items[priceItenIndex + 2].detailTitle = totalNumberStr;
         //结算数量
-        group.items[itemCount - 3].detailTitle = [NSString stringWithFormat:@"%ld", total];
+        group.items[priceItenIndex + 3].detailTitle = totalNumberStr;
         //本单退款金额
-        group.items[itemCount - 2].detailTitle = [NSString stringWithFormat:@"%ld", price * total];
+        group.items[priceItenIndex + 4].detailTitle = [NSString stringWithFormat:@"%ld", price * totalCount];
     }
     [self calculateTotal];
     [self.tableView reloadData];

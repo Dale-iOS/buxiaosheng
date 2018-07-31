@@ -232,10 +232,16 @@
 
 //添加细码样式
 - (void)createFineYardsItemWithGroup:(LZBackOrderGroup *)group {
+    NSLog(@"createFineYardsItemWithGroup:%ld", group.items.count);
     if (group.items.count == 13) {
         [group.items removeObjectAtIndex:3];
         [group.items removeObjectAtIndex:4];
+        for (int i = 5; i < 10; i++) {
+            LZBackOrderItem *item = [group.items objectAtIndex:i];
+            item.detailTitle = @"0";
+        }
     }
+    NSLog(@"createFineYardsItemWithGroup:%ld", group.items.count);
     //本身之前已经选择细码
     if (group.items.count == 12) {
         return;
@@ -254,12 +260,18 @@
     LZBackOrderItem *tmpItem = [[LZBackOrderItem alloc] init];
     [tmpItem setValuesForKeysWithDictionary:dic];
     [group.items insertObject:tmpItem atIndex:3];
+    NSLog(@"createFineYardsItemWithGroup:%ld", group.items.count);
 }
 
 //添加总码样式的模型
 - (void)createTotalSizeItemWithGroup:(LZBackOrderGroup *)group {
+    NSLog(@"createTotalSizeItemWithGroup:%ld", group.items.count);
     if (group.items.count == 12) {
         [group.items removeObjectAtIndex:3];
+        for (int i = 5; i < 10; i++) {
+            LZBackOrderItem *item = [group.items objectAtIndex:i];
+            item.detailTitle = @"0";
+        }
     }
     //本身之前已经选择总码
     if (group.items.count == 13) {
@@ -294,6 +306,7 @@
     LZBackOrderItem *tmpItem1 = [[LZBackOrderItem alloc] init];
     [tmpItem1 setValuesForKeysWithDictionary:dic1];
     [group.items insertObject:tmpItem1 atIndex:4];
+    NSLog(@"createTotalSizeItemWithGroup:%ld", group.items.count);
 }
 
 @end

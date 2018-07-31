@@ -202,7 +202,7 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
             _item.detailTitle = [BXSTools isEmptyString:textField.text] ? @"" : textField.text;
         }
         //此处只有出现添加细码的cell样式后,才需要回调
-        if ((_item.mandatoryOption && _item.canInput && _group.items.count > 11) || _group.items.count == 6) {
+        if (((_item.mandatoryOption && _item.canInput) || _group.items.count > 11) || _group.items.count == 6) {
             if ([_delegate respondsToSelector:@selector(backOrderCell:reloadForIndexPath:)]) {
                 [_delegate backOrderCell:self reloadForIndexPath:_indexPath];
             }
