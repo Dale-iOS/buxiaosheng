@@ -20,10 +20,14 @@
 //仓库方式数组
 @property (nonatomic, strong) NSMutableArray *warehouseNameAry;
 @property (nonatomic, strong) NSMutableArray *warehouseIdAry;
-@property (nonatomic, copy) NSString *warehouseIdStr;///选中的仓库id
+@property (nonatomic, copy) NSString *warehouseIdStr;//选中的仓库id
 //付款方式数组
 @property (nonatomic, strong) NSMutableArray *payNameAry;
 @property (nonatomic, strong) NSMutableArray *payIdAry;
-@property (nonatomic, copy) NSString *payIdStr;///选中的付款方式id
-
+@property (nonatomic, copy) NSString *payIdStr;//选中的付款方式id
+//审批人
+@property(nonatomic,strong)NSMutableArray *approverList;
+@property(nonatomic,strong)NSMutableArray *approverNameAry;
+@property(nonatomic,strong)NSMutableArray *approverIdAry;
+@property(nonatomic,copy)NSString *approverId;
 @end

@@ -83,6 +83,27 @@
     }];
 }
 
+-(void)setupApproverList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"approver/list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.approverList = baseModel.data;
+        self.approverNameAry = [NSMutableArray array];
+        self.approverIdAry = [NSMutableArray array];
+        for (int i = 0; i <self.approverList.count; i++) {
+            [self.approverIdAry addObject:self.approverList[i][@"approverId"]];
+            [self.approverNameAry addObject:self.approverList[i][@"memberName"]];
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 - (LZBackOrderGroup *)createSectionGroupItem {
     NSArray *sectionArr = @[@{@"textTitle":@"*品名",
                               @"detailTitle":@"",

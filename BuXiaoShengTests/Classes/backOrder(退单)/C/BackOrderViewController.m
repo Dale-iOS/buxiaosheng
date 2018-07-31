@@ -24,7 +24,15 @@
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
 {
-    NSString *_productId;
+    NSString *_productId;//产品id
+    
+    //银行id->_payIdStr
+    NSString *_copewithPrice;//应付金额
+    NSString *_customerId;//客户id
+    NSString *_deposit;//预收付款
+    //入库仓id -> _warehouseIdStr
+    NSString *_realpayPrice;//实付金额
+    NSString *_remark;//备注
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
@@ -51,6 +59,7 @@
     [self setupCustomerList];
     [self setupWarehouseLists];
     [self setupPayList];
+    [self setupApproverList];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -251,7 +260,7 @@
     }
 }
 
-// 点击事件
+#pragma mark ---- 点击事件 ----
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
@@ -312,7 +321,7 @@
         pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
             item.detailTitle = compoentString;
             NSInteger row = [titileString integerValue];
-            _warehouseIdStr = _payIdAry[row];
+            _warehouseIdStr = _warehouseIdAry[row];
             [weakSelf.tableView reloadData];
         };
         [self.view addSubview:pickerView];
@@ -403,6 +412,7 @@
 
 #pragma mark - ZWCustomPopViewDelegate
 - (void)popOverView:(ZWCustomPopView *)pView didClickMenuIndex:(NSInteger)index {
+    _customerId = self.customerIdAry[index];
     NSString *name = _tempNameArray[index];
     LZBackOrderGroup *group = self.dataSource.firstObject;
     LZBackOrderItem *item = group.items.firstObject;
@@ -633,8 +643,45 @@
     return _dataSource;
 }
 
+//接口名称 退单
 - (IBAction)saveClick:(id)sender {
-    NSLog(@"123");
+    
+    LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.approverNameAry titleDataArray:nil];
+    WEAKSELF;
+    pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
+        NSInteger row = [titileString integerValue];
+        weakSelf.approverId = weakSelf.approverIdAry[row];
+        [weakSelf.tableView reloadData];
+//        [weakSelf submitData];
+    };
+    [self.view addSubview:pickerView];
+    
+    
+}
+
+//提交请求
+- (void)submitData{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"approverId":_approverId,
+                             @"bankId":_payIdStr,
+                             @"copewithPrice":@"",
+                             @"customerId":_customerId,
+                             @"deposit":@"",
+                             @"houseId":_warehouseIdStr,
+                             @"productItems":@"",
+                             @"realpayPrice":@"",
+                             @"remark":@""
+                             };
+    [BXSHttp requestGETWithAppURL:@"refund/add.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 
 - (NSArray *)nameArray {

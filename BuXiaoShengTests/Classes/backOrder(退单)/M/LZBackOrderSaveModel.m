@@ -8,6 +8,11 @@
 
 #import "LZBackOrderSaveModel.h"
 
+@implementation LZBackOrderSaveItemList
+
+@end
+
+
 @implementation LZBackOrderSaveModel
 
 @end

@@ -18,7 +18,8 @@
 - (void)setupPayList;
 //接口名称 功能用到客户列表
 - (void)setupCustomerList;
-
+//接口名称 审批人列表
+-(void)setupApproverList;
 //新增一条的数据模型
 - (LZBackOrderGroup *)createSectionGroupItem;
 
