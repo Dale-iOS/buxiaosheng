@@ -54,7 +54,8 @@ static NSString *cellId = @"UITableViewCell";
 #pragma mark - Private Methods
 //设置导航条内容
 - (void)setupNavigationItem {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"确定" norColor:RGB(0, 99, 251) targer:self action:@selector(handleSureBtnAction)];
+
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(handleSureBtnAction) title:@"确定"];
 }
 
 //移除多余cell的分割线

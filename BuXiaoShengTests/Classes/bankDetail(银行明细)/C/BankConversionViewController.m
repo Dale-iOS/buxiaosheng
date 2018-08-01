@@ -225,18 +225,18 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     UIView* rightButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 50, 40)];
+    
     UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
     rightButton.backgroundColor = [UIColor clearColor];
     rightButton.frame = rightButtonView.frame;
-//    [rightButton setImage:[UIImage imageNamed:@"wihtesearch"] forState:UIControlStateNormal];
     [rightButton setTitle:@"确认" forState:UIControlStateNormal];
-    //    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     rightButton.tintColor = [UIColor whiteColor];
     rightButton.autoresizesSubviews = YES;
     rightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     rightButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     [rightButton addTarget:self action:@selector(saveClick) forControlEvents:UIControlEventTouchUpInside];
     [rightButtonView addSubview:rightButton];
+//    UIview来做导航栏右按钮
     UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButtonView];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }

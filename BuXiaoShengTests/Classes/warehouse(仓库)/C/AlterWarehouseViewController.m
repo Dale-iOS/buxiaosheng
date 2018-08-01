@@ -50,26 +50,7 @@
 {
 
     self.navigationItem.titleView = self.isFormWarehouseAdd ? [Utility navTitleView:@"添加分店"] : [Utility navTitleView:@"修改分店"];
-//    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(saveBtnClick) title:@"保存"];
-    
-    
-    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.frame = CGRectMake(0, 0, 31, 44);
-//    [navRightBtn setBackgroundColor:[UIColor redColor]];
-    navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"保存" forState:UIControlStateNormal];
-    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
-//    [navRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.mas_equalTo(35);
-//        make.height.mas_equalTo(30);
-//    }];
-//
-
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
-    
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(saveBtnClick) title:@"保存"];
     
     self.datasource = [NSMutableArray array];
     
