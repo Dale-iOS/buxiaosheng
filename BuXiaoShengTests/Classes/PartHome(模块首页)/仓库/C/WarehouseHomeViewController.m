@@ -59,7 +59,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
         [tableView setIsScrollEnable:NO];
         [self.view addSubview:(mainTabelView = tableView)];
     }
@@ -81,7 +81,7 @@
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
     self.collectView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectView];
+//    [self.view addSubview:self.collectView];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

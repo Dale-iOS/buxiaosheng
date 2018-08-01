@@ -43,7 +43,7 @@
 - (void)setupUI
 {
     self.mainTabelView.delegate = self;
-    [self.mainTabelView setIsScrollEnable:NO];
+//    [self.mainTabelView setIsScrollEnable:NO];
     self.datasource = [NSMutableArray array];
     [self setupSectionOne];
     self.mainTabelView.dataSoure = self.datasource;
@@ -54,7 +54,9 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
+        tableView.tableView.allowsSelection = YES;
+        [tableView setIsScrollEnable:NO];
 //        tableView.tableView.allowsSelection = NO;
         //        tableView.tableHeaderView = self.headView;
         //        tableView.backgroundColor = [UIColor yellowColor];
@@ -107,7 +109,6 @@
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
     self.collectView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectView];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -169,10 +170,11 @@
 
 - (void)setupSectionOne
 {
-    [self setCollectionView];
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
+    
+    [self setCollectionView];
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
     item.sectionRows = @[self.collectView];

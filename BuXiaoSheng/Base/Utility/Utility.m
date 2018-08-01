@@ -114,11 +114,10 @@
 + (UIBarButtonItem *)navButton:(id)_target action:(SEL)selector title:(NSString *)string
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    btn.backgroundColor = [UIColor greenColor];
-    btn.frame = CGRectMake(0, 0, 25, 44);
+    btn.frame = CGRectMake(0, 0, 31, 44);
     [btn setTitle:string forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    btn.titleLabel.font = FONT(14);
+    btn.titleLabel.font = FONT(15);
     [btn addTarget:_target action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;
@@ -154,7 +153,7 @@
  *  @param color 颜色
  *  @param size  尺寸
  *
- *  @return
+ *
  */
 + (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size
 {

@@ -61,7 +61,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
 //        tableView.tableView.allowsSelection = NO;
         [tableView setIsScrollEnable:NO];
         //        tableView.tableHeaderView = self.headView;
@@ -84,7 +84,7 @@
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
     self.collectView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectView];
+//    [self.view addSubview:self.collectView];
 }
 
 //一组返回item数量

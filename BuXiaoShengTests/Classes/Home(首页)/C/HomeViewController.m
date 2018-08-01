@@ -100,7 +100,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 14+45, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight)];
         tableView.tableView.allowsSelection = YES;
         [tableView setIsScrollEnable:NO];
         //        tableView.tableHeaderView = self.headView;
