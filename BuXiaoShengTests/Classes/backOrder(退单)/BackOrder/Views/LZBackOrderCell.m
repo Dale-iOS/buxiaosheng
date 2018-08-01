@@ -89,7 +89,11 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
         _textField.text = item.detailTitle;
         
     }
-    _textField.textColor = item.detailColor;
+    if ([item.detailColor isEqualToString:@"0"]) {
+        _textField.textColor = CD_Text99;
+    } else {
+        _textField.textColor = LZAppRedColor;
+    }
     
     //开始自动布局
     if (CellTypeNormal == item.cellType) {

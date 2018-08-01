@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8FAAD21115A71009F152C /* BackOrder.plist */; };
+		2DDA92212111884D00DB7765 /* LogCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA92202111884C00DB7765 /* LogCategory.m */; };
 		340E208820FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
 		340E208920FC8CB800E2602D /* LZSalesDemandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340E208720FC8CB800E2602D /* LZSalesDemandVC.m */; };
 		3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2A32085A6FE00C448FD /* ClientManagerViewController.m */; };
@@ -853,6 +855,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DA8FAAD21115A71009F152C /* BackOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BackOrder.plist; sourceTree = "<group>"; };
+		2DDA921F2111884C00DB7765 /* LogCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogCategory.h; sourceTree = "<group>"; };
+		2DDA92202111884C00DB7765 /* LogCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogCategory.m; sourceTree = "<group>"; };
 		340E208620FC8CB800E2602D /* LZSalesDemandVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSalesDemandVC.h; sourceTree = "<group>"; };
 		340E208720FC8CB800E2602D /* LZSalesDemandVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSalesDemandVC.m; sourceTree = "<group>"; };
 		3411F2A22085A6FE00C448FD /* ClientManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientManagerViewController.h; sourceTree = "<group>"; };
@@ -1908,6 +1913,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DDA921B211183BD00DB7765 /* BackOrder */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8FAAD21115A71009F152C /* BackOrder.plist */,
+				2DDA921C211183BD00DB7765 /* Models */,
+				2DDA921D211183BD00DB7765 /* Controllers */,
+				2DDA921E211183BD00DB7765 /* Views */,
+			);
+			path = BackOrder;
+			sourceTree = "<group>";
+		};
+		2DDA921C211183BD00DB7765 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				346C2283210E03E2004AAC88 /* LZBackOrderGroup.h */,
+				346C227F210E03E1004AAC88 /* LZBackOrderGroup.m */,
+				346C2281210E03E1004AAC88 /* LZBackOrderItem.h */,
+				346C227E210E03E1004AAC88 /* LZBackOrderItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2DDA921D211183BD00DB7765 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				346C224D210E03D2004AAC88 /* BackOrderViewController.h */,
+				346C2241210E03D0004AAC88 /* BackOrderViewController.m */,
+				346C224F210E03D2004AAC88 /* BackOrderViewController.xib */,
+				346C2244210E03D1004AAC88 /* BackOrderViewController+Request.h */,
+				346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2DDA921E211183BD00DB7765 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				346C226F210E03DA004AAC88 /* LZBackOrderCell.h */,
+				346C226D210E03D9004AAC88 /* LZBackOrderCell.m */,
+				346C2270210E03DA004AAC88 /* LZBackOrderCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		34195FA520CD1C4800524F20 /* expend(支出) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2800,6 +2849,7 @@
 		347541F920F5A63A007F384B /* backOrder(退单) */ = {
 			isa = PBXGroup;
 			children = (
+				2DDA921B211183BD00DB7765 /* BackOrder */,
 				347541FC20F5A64C007F384B /* M */,
 				347541FB20F5A647007F384B /* V */,
 				347541FA20F5A642007F384B /* C */,
@@ -2810,11 +2860,6 @@
 		347541FA20F5A642007F384B /* C */ = {
 			isa = PBXGroup;
 			children = (
-				346C224D210E03D2004AAC88 /* BackOrderViewController.h */,
-				346C2241210E03D0004AAC88 /* BackOrderViewController.m */,
-				346C224F210E03D2004AAC88 /* BackOrderViewController.xib */,
-				346C2244210E03D1004AAC88 /* BackOrderViewController+Request.h */,
-				346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */,
 				346C2250210E03D2004AAC88 /* LLSalesDemandSideSlipVc.h */,
 				346C2251210E03D2004AAC88 /* LLSalesDemandSideSlipVc.m */,
 				346C2247210E03D1004AAC88 /* LZAddItemViewController.h */,
@@ -2838,9 +2883,6 @@
 				346C2266210E03D9004AAC88 /* LLBackOderDetailCell.m */,
 				346C2269210E03D9004AAC88 /* LLBackOrderCotentCell.h */,
 				346C226A210E03D9004AAC88 /* LLBackOrderCotentCell.m */,
-				346C226F210E03DA004AAC88 /* LZBackOrderCell.h */,
-				346C226D210E03D9004AAC88 /* LZBackOrderCell.m */,
-				346C2270210E03DA004AAC88 /* LZBackOrderCell.xib */,
 				346C226C210E03D9004AAC88 /* LZBackOrderLIstsCell.h */,
 				346C2268210E03D9004AAC88 /* LZBackOrderLIstsCell.m */,
 				346C226E210E03D9004AAC88 /* ZWCustomPopView.h */,
@@ -2854,10 +2896,6 @@
 			children = (
 				346C2282210E03E2004AAC88 /* LLBackOrdeContentModel.h */,
 				346C2285210E03E2004AAC88 /* LLBackOrdeContentModel.m */,
-				346C2283210E03E2004AAC88 /* LZBackOrderGroup.h */,
-				346C227F210E03E1004AAC88 /* LZBackOrderGroup.m */,
-				346C2281210E03E1004AAC88 /* LZBackOrderItem.h */,
-				346C227E210E03E1004AAC88 /* LZBackOrderItem.m */,
 				346C2280210E03E1004AAC88 /* LZBackOrderListsModel.h */,
 				346C2284210E03E2004AAC88 /* LZBackOrderListsModel.m */,
 				346C2286210E03E2004AAC88 /* salesDemandModel.h */,
@@ -3679,6 +3717,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				2DDA921F2111884C00DB7765 /* LogCategory.h */,
+				2DDA92202111884C00DB7765 /* LogCategory.m */,
 				344E4D62210EAF770031DCE8 /* UILabel+Extension.h */,
 				344E4D63210EAF780031DCE8 /* UILabel+Extension.m */,
 				344E4D5E210EAF1E0031DCE8 /* UIViewExt.h */,
@@ -4692,6 +4732,7 @@
 				34B873122081EEEC00B05EBF /* AAChartView.html in Resources */,
 				34A92B1D207DE86200572648 /* Assets.xcassets in Resources */,
 				346C2262210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
+				2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */,
 				34A92B1B207DE86200572648 /* Main.storyboard in Resources */,
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				34B8730E2081EEEC00B05EBF /* AAHighchartsLib.js in Resources */,
@@ -4909,6 +4950,7 @@
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				344358CA20EF1F19004A5E6E /* LZCollectionCheckVC.m in Sources */,
 				A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */,
+				2DDA92212111884D00DB7765 /* LogCategory.m in Sources */,
 				3465CA0220DC9A9700BAE415 /* FSCalendarCell.m in Sources */,
 				3465C9EA20DC9A9600BAE415 /* FSCalendarConstants.m in Sources */,
 				346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */,

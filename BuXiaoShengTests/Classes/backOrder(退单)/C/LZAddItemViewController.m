@@ -12,6 +12,7 @@
 #import "LZBackOrderCell.h"
 #import "LZBackOrderGroup.h"
 #import "LZBackOrderItem.h"
+#import "NSObject+YYModel.h"
 
 @interface LZAddItemViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -136,10 +137,14 @@
         }
         [dicArray addObject:sectionArray];
         
-        for (NSArray *array in dicArray) {
-            LZBackOrderGroup *group = [LZBackOrderGroup groupWithFlod:NO items:array];
-            [_dataSource addObject:group];
-        }
+        NSDictionary *groupDict = @{@"fold":@(NO),
+                                    @"hiddenAddYard":@"",
+                                    @"itemStrings":@[],
+                                    @"storageType":@"",
+                                    @"items":dicArray.firstObject};
+        
+        LZBackOrderGroup *group = [LZBackOrderGroup modelWithDictionary:groupDict];
+        [_dataSource addObject:group];
     }
     return _dataSource;
 }

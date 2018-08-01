@@ -24,26 +24,33 @@ typedef NS_ENUM(NSInteger, CellType) {
 
 @interface LZBackOrderItem : NSObject
 
-/**
- 标题
- */
+//标题
 @property (nonatomic,strong) NSString *textTitle;
+
 //输入的内容或者选择的内容
 @property (nonatomic,strong) NSString *detailTitle;
+
 //占位符
 @property (nonatomic,strong) NSString *placeHolder;
-//输入内容或选择内容的颜色
-@property (nonatomic,strong) UIColor *detailColor;
+
+//输入内容或选择内容的颜色 0: 黑色  1:红色
+@property (nonatomic,strong) NSString *detailColor;
+
 //cell点击需要跳转的类型(比如选择品名,颜色)
 @property (nonatomic,assign) ClickType clickType;
+
 //cell的样式
 @property (nonatomic,assign) CellType cellType;
+
 //是否可以输入内容
 @property (nonatomic,assign,getter=isCanInput) BOOL canInput;
+
 //是否需要显示右侧箭头
 @property (nonatomic,assign,getter=isShowArrow) BOOL showArrow;
+
 //是否是必填项
 @property (nonatomic,assign,getter=isMandatoryOption) BOOL mandatoryOption;
+
 //是否是数字键盘
 @property (nonatomic,assign,getter=isNumericKeyboard) BOOL numericKeyboard;
 

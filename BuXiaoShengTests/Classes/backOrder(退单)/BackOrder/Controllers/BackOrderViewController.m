@@ -21,6 +21,8 @@
 #import "ZWCustomPopView.h"
 
 #import "BackOrderViewController+Request.h"
+#import "NSObject+YYModel.h"
+
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
 {
@@ -278,7 +280,6 @@
     }
 }
 
-#pragma mark ---- 点击事件 ----
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
@@ -288,7 +289,6 @@
         //选择产品
         LZChooseProductsVC * vc = [LZChooseProductsVC new];
         [vc setSelectVCBlock:^(LZProductDetailModel *seletedModel) {
-            NSLog(@"%@ + %@", seletedModel.name, seletedModel.storageType);
             item.detailTitle = seletedModel.name;
             _productId = seletedModel.id;
             //            seletedModel.unitName 产品单位
@@ -297,6 +297,7 @@
             LZBackOrderItem *threeItem = group.items[2];
             if ([BXSTools isEmptyString:threeItem.detailTitle] || ![group.storageType isEqualToString:seletedModel.storageType]) {
                 group.storageType = seletedModel.storageType;
+                [group.itemStrings removeAllObjects];
                 if ([seletedModel.storageType isEqualToString:@"1"]) {
                     threeItem.detailTitle = @"公斤";
                     [weakSelf addFineYardsStyleWithGroup:group];
@@ -448,213 +449,10 @@
 - (NSMutableArray *)dataSource {
     if (_dataSource == nil) {
         _dataSource = @[].mutableCopy;
-        NSArray *tempArr = @[
-                             @[@{@"textTitle":@"*客户名字",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请输入客户名称",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(YES),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"客户电话",
-                                 @"detailTitle":@" ",
-                                 @"placeHolder":@"",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 }],
-                             @[@{@"textTitle":@"*品名",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"选择品名",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(1),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(YES),
-                                 @"mandatoryOption":@(YES),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"*颜色",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"选择颜色",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(2),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(YES),
-                                 @"mandatoryOption":@(YES),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"入库单位",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@" ",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"批号",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请输入批号",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"货架",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请输入货架号",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"*单价",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"0",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(YES),
-                                 @"numericKeyboard":@(YES)
-                                 },
-                               @{@"textTitle":@"入库数量",
-                                 @"detailTitle":@"0",
-                                 @"placeHolder":@"",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"标签数量",
-                                 @"detailTitle":@"0",
-                                 @"placeHolder":@"",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(5),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(YES),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"结算数量",
-                                 @"detailTitle":@"0",
-                                 @"placeHolder":@"",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"本单退款金额",
-                                 @"detailTitle":@"0",
-                                 @"placeHolder":@"",
-                                 @"detailColor":LZAppRedColor,
-                                 @"clickType":@(0),
-                                 @"cellType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"",
-                                 @"detailTitle":@"0",
-                                 @"placeHolder":@"",
-                                 @"detailColor":LZAppRedColor,
-                                 @"clickType":@(0),
-                                 @"cellType":@(1),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 }],
-                             @[@{@"textTitle":@"*入仓库",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请选择入仓库",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(3),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(YES),
-                                 @"mandatoryOption":@(YES),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"应付金额",
-                                 @"detailTitle":@" ",
-                                 @"placeHolder":@" ",
-                                 @"detailColor":LZAppRedColor,
-                                 @"clickType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"实付金额",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"输入实付金额",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(YES)
-                                 },
-                               @{@"textTitle":@"预收付款",
-                                 @"detailTitle":@" ",
-                                 @"placeHolder":@"",
-                                 @"detailColor":LZAppRedColor,
-                                 @"clickType":@(0),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"付款方式",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请选择付款方式",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(4),
-                                 @"canInput":@(NO),
-                                 @"showArrow":@(YES),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 },
-                               @{@"textTitle":@"备注",
-                                 @"detailTitle":@"",
-                                 @"placeHolder":@"请输入备注内容",
-                                 @"detailColor":CD_Text33,
-                                 @"clickType":@(0),
-                                 @"canInput":@(YES),
-                                 @"showArrow":@(NO),
-                                 @"mandatoryOption":@(NO),
-                                 @"numericKeyboard":@(NO)
-                                 }]
-                             ];
-        for (NSArray *array in tempArr) {
-            LZBackOrderGroup *group = [LZBackOrderGroup groupWithFlod:NO items:array];
+        NSString *plistString = [[NSBundle mainBundle] pathForResource:@"BackOrder" ofType:@"plist"];
+        NSArray *groupDictArray = [NSArray arrayWithContentsOfFile:plistString];
+        for (NSDictionary *groupDict in groupDictArray) {
+            LZBackOrderGroup *group = [LZBackOrderGroup modelWithDictionary:groupDict];
             [_dataSource addObject:group];
         }
     }
