@@ -83,7 +83,7 @@
     _shipmentBigGoodsView.didClickCompltBlock = ^(NSMutableArray *boardModelAry) {
 
         weakSelf.saveMuAry = boardModelAry;
-        [weakSelf submitRequest];
+        [weakSelf requestData];
     } ;
     [_scrollView addSubview:_shipmentBigGoodsView];
     
@@ -95,7 +95,7 @@
     _shipmentBigBoardView.didClickCompltBlock = ^(NSMutableArray *boardModelAry) {
         
         weakSelf.saveMuAry = boardModelAry;
-        [weakSelf submitRequest];
+        [weakSelf requestData];
     } ;
     [_scrollView addSubview:_shipmentBigBoardView];
     
@@ -103,7 +103,7 @@
 
 #pragma mark --- 网络请求 ---
 //接口名称 开单
-- (void)submitRequest
+- (void)requestData
 {
     NSMutableArray <NSString *> *saveMuAry = [NSMutableArray array];
     

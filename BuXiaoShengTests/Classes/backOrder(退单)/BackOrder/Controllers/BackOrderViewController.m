@@ -22,7 +22,7 @@
 
 #import "BackOrderViewController+Request.h"
 #import "NSObject+YYModel.h"
-
+#import "LZBackOrderSaveModel.h"
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
 {
@@ -43,7 +43,7 @@
 @property (weak, nonatomic) ZWCustomPopView *popView;
 @property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
 @property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
-
+@property (nonatomic,strong) NSMutableArray *saveMuAry;
 @end
 
 @implementation BackOrderViewController
@@ -280,6 +280,7 @@
     }
 }
 
+#pragma mark ---- 点击事件 ----
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
@@ -295,14 +296,15 @@
             //            seletedModel.unitId 产品id
             //            seletedModel.storageType 为0是总码 为1是细码
             LZBackOrderItem *threeItem = group.items[2];
+            item.selectId = seletedModel.id;
+            threeItem.detailTitle = seletedModel.unitName;
+            
             if ([BXSTools isEmptyString:threeItem.detailTitle] || ![group.storageType isEqualToString:seletedModel.storageType]) {
                 group.storageType = seletedModel.storageType;
                 [group.itemStrings removeAllObjects];
                 if ([seletedModel.storageType isEqualToString:@"1"]) {
-                    threeItem.detailTitle = @"公斤";
                     [weakSelf addFineYardsStyleWithGroup:group];
                 } else {
-                    threeItem.detailTitle = @"米";
                     [weakSelf addTotalSizeItemWithGroup:group];
                 }
             } else {
@@ -323,6 +325,7 @@
         colorVC.productId = _productId;
         colorVC.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
             item.detailTitle = seletedModel.name;
+            item.selectId = seletedModel.id;
             [weakSelf.tableView reloadData];
         };
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
@@ -462,21 +465,73 @@
 //接口名称 退单
 - (IBAction)saveClick:(id)sender {
     
+    _saveMuAry = [NSMutableArray array];
+    
+    for (int i = 1; i <= _dataSource.count -2; i++) {
+        LZBackOrderGroup *group = [LZBackOrderGroup new];
+        LZBackOrderSaveModel *backOrderSaveModel = [LZBackOrderSaveModel new];
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        group = _dataSource[i];
+        NSArray *groupAry = group.items;
+        NSMutableArray *detailMuAry = [NSMutableArray array];
+        for (int j = 0; j <groupAry.count; j++) {
+            LZBackOrderItem *item = groupAry[j];
+            if (item.selectId != nil) {
+                [detailMuAry addObject:item.selectId];
+            }else{
+                [detailMuAry addObject:item.detailTitle];
+            }
+        }
+
+            backOrderSaveModel.productId = detailMuAry[0];
+            backOrderSaveModel.productColorId = detailMuAry[1];
+            backOrderSaveModel.batchNumber = detailMuAry[4];
+            backOrderSaveModel.shelves = detailMuAry[5];
+            backOrderSaveModel.price = detailMuAry[6];
+            backOrderSaveModel.houseNum = detailMuAry[7];
+            backOrderSaveModel.labelNum = detailMuAry[8];
+            backOrderSaveModel.settlementNum = detailMuAry[9];
+            backOrderSaveModel.refundAmount = detailMuAry[10];
+            if (group.itemStrings.count >0) {
+                for (int k = 0 ; k < group.itemStrings.count; k++) {
+                    LZBackOrderSaveItemList *backOrderSaveItemList = [LZBackOrderSaveItemList new];
+                    backOrderSaveItemList.value = group.itemStrings[k];
+                    backOrderSaveItemList.total = @"1";
+                    [itemListMuAry addObject:backOrderSaveItemList];
+                }
+            }else{
+                LZBackOrderSaveItemList *backOrderSaveItemList = [LZBackOrderSaveItemList new];
+                backOrderSaveItemList.value = detailMuAry[3];
+                backOrderSaveItemList.total = detailMuAry[4];
+                [itemListMuAry addObject:backOrderSaveItemList];
+            }
+            backOrderSaveModel.itemList = [itemListMuAry copy];
+        
+        [_saveMuAry addObject:backOrderSaveModel];
+    }
+
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.approverNameAry titleDataArray:nil];
     WEAKSELF;
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         NSInteger row = [titileString integerValue];
         weakSelf.approverId = weakSelf.approverIdAry[row];
         [weakSelf.tableView reloadData];
-//        [weakSelf submitData];
+        [weakSelf requestData];
     };
     [self.view addSubview:pickerView];
-    
     
 }
 
 //提交请求
-- (void)submitData{
+- (void)requestData{
+    
+    NSMutableArray <NSString *> *tempSaveMuAry = [NSMutableArray array];
+    for (int i = 0; i < _saveMuAry.count; i++) {
+        LZBackOrderSaveModel *model = _saveMuAry[i];
+        [tempSaveMuAry addObject:[model mj_JSONObject]];
+    }
+    NSString *str = [tempSaveMuAry mj_JSONString];
+    
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"approverId":_approverId,
                              @"bankId":_payIdStr,
@@ -484,7 +539,7 @@
                              @"customerId":_customerId,
                              @"deposit":@"",
                              @"houseId":_warehouseIdStr,
-                             @"productItems":@"",
+                             @"productItems":[tempSaveMuAry mj_JSONString],
                              @"realpayPrice":@"",
                              @"remark":@""
                              };

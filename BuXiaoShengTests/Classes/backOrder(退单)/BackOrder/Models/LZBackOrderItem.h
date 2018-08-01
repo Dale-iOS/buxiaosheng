@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, CellType) {
 //占位符
 @property (nonatomic,strong) NSString *placeHolder;
 
+//选中的id
+@property (nonatomic,strong) NSString *selectId;
+
 //输入内容或选择内容的颜色 0: 黑色  1:红色
 @property (nonatomic,strong) NSString *detailColor;
 

@@ -90,7 +90,7 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
         
     }
     if ([item.detailColor isEqualToString:@"0"]) {
-        _textField.textColor = CD_Text99;
+        _textField.textColor = CD_Text33;
     } else {
         _textField.textColor = LZAppRedColor;
     }
