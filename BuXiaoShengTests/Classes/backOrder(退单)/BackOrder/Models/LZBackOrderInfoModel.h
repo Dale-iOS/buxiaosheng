@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface LZBackOrderInfoModel : NSObject
-@property (nonatomic, copy) NSString *approverId;
-@property (nonatomic, copy) NSString *bankId;
-@property (nonatomic, copy) NSString *copewithPrice;
-@property (nonatomic, copy) NSString *customerId;
-@property (nonatomic, copy) NSString *deposit;
-@property (nonatomic, copy) NSString *houseId;
-@property (nonatomic, copy) NSString *realpayPrice;
-@property (nonatomic, copy) NSString *remark;
+@property (nonatomic, strong) NSString *approverId;
+@property (nonatomic, strong) NSString *bankId;
+@property (nonatomic, strong) NSString *copewithPrice;
+@property (nonatomic, strong) NSString *customerId;
+@property (nonatomic, strong) NSString *deposit;
+@property (nonatomic, strong) NSString *houseId;
+@property (nonatomic, strong) NSString *realpayPrice;
+@property (nonatomic, strong) NSString *remark;
 @end

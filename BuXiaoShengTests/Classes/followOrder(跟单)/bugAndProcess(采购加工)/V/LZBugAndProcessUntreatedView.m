@@ -13,6 +13,8 @@
 #import "LZPurchaseAskVC.h"
 #import "DyeingViewController.h"
 #import "LZPurchaseReceiptVC.h"
+#import "LZProcessReceiptVC.h"
+#import "LZProcessAskVC.h"
 
 @interface LZBugAndProcessUntreatedView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
 @property(nonatomic,strong)UITableView *tableView;
@@ -102,19 +104,35 @@
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     
     LZBugAndProcessBssModel *model = _lists[indexP.row];
-    LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
-    vc.bugId = model.id;
+    if ([model.purchaseType integerValue] == 0) {
+        //采购类型
+        LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
+        vc.bugId = model.id;
 #warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
-    vc.isFindCode = indexP.row %2 >0;
-    [[self viewController].navigationController pushViewController:vc animated:YES];
+        vc.isFindCode = indexP.row %2 >0;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+    }else{
+        //加工类型
+        LZProcessReceiptVC *vc = [[LZProcessReceiptVC alloc]init];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 //采购询问事件
 - (void)didClickSecondBtnInCell:(UITableViewCell *)cell{
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     LZBugAndProcessBssModel *model = _lists[indexP.row];
-    LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
-    vc.bugId = model.id;
-    [[self viewController].navigationController pushViewController:vc animated:YES];
+    if ([model.purchaseType integerValue] == 0) {
+        //采购类型
+        LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
+        vc.bugId = model.id;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+    }else{
+        //加工类型
+        LZProcessAskVC *vc = [[LZProcessAskVC alloc]init];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 //完成事件
 - (void)didClickThirdBtnInCell:(UITableViewCell *)cell{

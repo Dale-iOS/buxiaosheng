@@ -345,6 +345,10 @@
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
 		346BA4342112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */; };
 		346BA4352112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */; };
+		346BA43C2112E860000488D2 /* LZProcessReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA43B2112E860000488D2 /* LZProcessReceiptVC.m */; };
+		346BA43D2112E860000488D2 /* LZProcessReceiptVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA43B2112E860000488D2 /* LZProcessReceiptVC.m */; };
+		346BA4402112E8B8000488D2 /* LZProcessAskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA43F2112E8B8000488D2 /* LZProcessAskVC.m */; };
+		346BA4412112E8B8000488D2 /* LZProcessAskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA43F2112E8B8000488D2 /* LZProcessAskVC.m */; };
 		346C2252210E03D3004AAC88 /* BackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2241210E03D0004AAC88 /* BackOrderViewController.m */; };
 		346C2253210E03D3004AAC88 /* BackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2241210E03D0004AAC88 /* BackOrderViewController.m */; };
 		346C2254210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */; };
@@ -1278,6 +1282,10 @@
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
 		346BA4322112AF52000488D2 /* LZBackOrderInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBackOrderInfoModel.h; sourceTree = "<group>"; };
 		346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderInfoModel.m; sourceTree = "<group>"; };
+		346BA43A2112E860000488D2 /* LZProcessReceiptVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcessReceiptVC.h; sourceTree = "<group>"; };
+		346BA43B2112E860000488D2 /* LZProcessReceiptVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProcessReceiptVC.m; sourceTree = "<group>"; };
+		346BA43E2112E8B8000488D2 /* LZProcessAskVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProcessAskVC.h; sourceTree = "<group>"; };
+		346BA43F2112E8B8000488D2 /* LZProcessAskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProcessAskVC.m; sourceTree = "<group>"; };
 		346C2241210E03D0004AAC88 /* BackOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackOrderViewController.m; sourceTree = "<group>"; };
 		346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BackOrderViewController+Request.m"; sourceTree = "<group>"; };
 		346C2243210E03D1004AAC88 /* LZBackOrderListsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderListsVC.m; sourceTree = "<group>"; };
@@ -2138,6 +2146,10 @@
 				34719B4720D8E7D500C46F06 /* LZPurchaseReceiptVC.m */,
 				34719B4A20D8E81900C46F06 /* LZPurchaseAskVC.h */,
 				34719B4B20D8E81900C46F06 /* LZPurchaseAskVC.m */,
+				346BA43A2112E860000488D2 /* LZProcessReceiptVC.h */,
+				346BA43B2112E860000488D2 /* LZProcessReceiptVC.m */,
+				346BA43E2112E8B8000488D2 /* LZProcessAskVC.h */,
+				346BA43F2112E8B8000488D2 /* LZProcessAskVC.m */,
 				34DE25AE2092C61A009E7589 /* DyeingViewController.h */,
 				34DE25AF2092C61A009E7589 /* DyeingViewController.m */,
 			);
@@ -2785,6 +2797,37 @@
 				3411F2B22085CEF700C448FD /* FreezeViewController.m */,
 			);
 			path = C;
+			sourceTree = "<group>";
+		};
+		346BA4362112DE29000488D2 /* directstorage(直接入库) */ = {
+			isa = PBXGroup;
+			children = (
+				346BA4392112DE90000488D2 /* M */,
+				346BA4382112DE8C000488D2 /* V */,
+				346BA4372112DE84000488D2 /* C */,
+			);
+			path = "directstorage(直接入库)";
+			sourceTree = "<group>";
+		};
+		346BA4372112DE84000488D2 /* C */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		346BA4382112DE8C000488D2 /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		346BA4392112DE90000488D2 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		346F6DD120DFA4210016FA8D /* product(产品资料) */ = {
@@ -4336,6 +4379,7 @@
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
 				3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */,
 				34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */,
+				346BA4362112DE29000488D2 /* directstorage(直接入库) */,
 				3475420A20F5AD5C007F384B /* warehouse(仓库) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
 				3475421220F5AF2A007F384B /* subject(科目) */,
@@ -4883,6 +4927,7 @@
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */,
 				A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */,
+				346BA4402112E8B8000488D2 /* LZProcessAskVC.m in Sources */,
 				B50505C1209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				34EE5D6C20A68B2600A2C9B5 /* AddProductViewController.m in Sources */,
 				34EE5D9320A6974200A2C9B5 /* SetBranchCell.m in Sources */,
@@ -5119,6 +5164,7 @@
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				344C489D20D1042100BEC002 /* LZDidToWarehouseAuditCell.m in Sources */,
+				346BA43C2112E860000488D2 /* LZProcessReceiptVC.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
 				3465C9E820DC9A9600BAE415 /* FSCalendarHeaderView.m in Sources */,
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
@@ -5597,6 +5643,7 @@
 				3434FCF920C90E8200A3B577 /* LZChooseLabelVC.m in Sources */,
 				3475424B20F5F43B007F384B /* LZOutboundListCell.m in Sources */,
 				B50505AA209AB2DA00CE7E4D /* XLFormDatePickerCell.m in Sources */,
+				346BA43D2112E860000488D2 /* LZProcessReceiptVC.m in Sources */,
 				343008D92081AC9700447992 /* NowDayViewController.m in Sources */,
 				34D5EB0120D26E13009D9D7C /* LZBankListDetailModel.m in Sources */,
 				34EE88D520CBB1440060D00B /* LZClientReceiptModel.m in Sources */,
@@ -5641,6 +5688,7 @@
 				346C225F210E03D3004AAC88 /* LZChooseProductVC.m in Sources */,
 				3420777220D3F4B5006EA057 /* LZArrearClientModel.m in Sources */,
 				342398E420FB3AEA002B81E1 /* BigGoodsAndBoardModel.m in Sources */,
+				346BA4412112E8B8000488D2 /* LZProcessAskVC.m in Sources */,
 				B50505CA209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				344E4D57210EADAD0031DCE8 /* BXSMachiningBottomView.m in Sources */,
 				346C228E210E03E2004AAC88 /* LZBackOrderListsModel.m in Sources */,
