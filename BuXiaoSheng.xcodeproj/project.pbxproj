@@ -343,6 +343,8 @@
 		346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD5208D97DC00F4B054 /* ProducersViewController.m */; };
 		346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6AD8208D981700F4B054 /* ProcessorsViewController.m */; };
 		346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */; };
+		346BA4342112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */; };
+		346BA4352112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */; };
 		346C2252210E03D3004AAC88 /* BackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2241210E03D0004AAC88 /* BackOrderViewController.m */; };
 		346C2253210E03D3004AAC88 /* BackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2241210E03D0004AAC88 /* BackOrderViewController.m */; };
 		346C2254210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */; };
@@ -1274,6 +1276,8 @@
 		346B6AD8208D981700F4B054 /* ProcessorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessorsViewController.m; sourceTree = "<group>"; };
 		346B6ADA208DBE2100F4B054 /* BankDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankDetailViewController.h; sourceTree = "<group>"; };
 		346B6ADB208DBE2100F4B054 /* BankDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankDetailViewController.m; sourceTree = "<group>"; };
+		346BA4322112AF52000488D2 /* LZBackOrderInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBackOrderInfoModel.h; sourceTree = "<group>"; };
+		346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderInfoModel.m; sourceTree = "<group>"; };
 		346C2241210E03D0004AAC88 /* BackOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackOrderViewController.m; sourceTree = "<group>"; };
 		346C2242210E03D1004AAC88 /* BackOrderViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BackOrderViewController+Request.m"; sourceTree = "<group>"; };
 		346C2243210E03D1004AAC88 /* LZBackOrderListsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZBackOrderListsVC.m; sourceTree = "<group>"; };
@@ -1931,6 +1935,8 @@
 				346C227F210E03E1004AAC88 /* LZBackOrderGroup.m */,
 				346C2281210E03E1004AAC88 /* LZBackOrderItem.h */,
 				346C227E210E03E1004AAC88 /* LZBackOrderItem.m */,
+				346BA4322112AF52000488D2 /* LZBackOrderInfoModel.h */,
+				346BA4332112AF52000488D2 /* LZBackOrderInfoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -5074,6 +5080,7 @@
 				3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */,
 				34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */,
 				344E4D4C210EADA30031DCE8 /* ApproverModel.m in Sources */,
+				346BA4342112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
 				344C48A920D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */,
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
@@ -5540,6 +5547,7 @@
 				3475424720F5F357007F384B /* ArrearsNameTextInputCell.m in Sources */,
 				3465CA0D20DCCCC900BAE415 /* LZChooseCalendarView.m in Sources */,
 				3465C9FF20DC9A9700BAE415 /* FSCalendarTransitionCoordinator.m in Sources */,
+				346BA4352112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */,
 				3450B02320E0DE4900429570 /* LZAddRecipeVC.m in Sources */,
 				3465CA0320DC9A9700BAE415 /* FSCalendarCell.m in Sources */,
 				B58BF6F520A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,

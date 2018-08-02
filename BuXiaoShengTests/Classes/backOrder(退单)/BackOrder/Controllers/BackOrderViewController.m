@@ -23,27 +23,21 @@
 #import "BackOrderViewController+Request.h"
 #import "NSObject+YYModel.h"
 #import "LZBackOrderSaveModel.h"
+#import "LZBackOrderInfoModel.h"
 
 @interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
 {
     NSString *_productId;//产品id
-    
-    //银行id->_payIdStr
-    NSString *_copewithPrice;//应付金额
-    NSString *_customerId;//客户id
-    NSString *_deposit;//预收付款
-    //入库仓id -> _warehouseIdStr
-    NSString *_realpayPrice;//实付金额
-    NSString *_remark;//备注
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *totalNumLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLb;
 @property (weak, nonatomic) ZWCustomPopView *popView;
-@property (nonatomic,strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
-@property (nonatomic,strong) LZBackOrderGroup *sectionGroup;
-@property (nonatomic,strong) NSMutableArray *saveMuAry;
+@property (nonatomic, strong) NSMutableArray<LZBackOrderGroup *> *dataSource;
+@property (nonatomic, strong) LZBackOrderGroup *sectionGroup;
+@property (nonatomic, strong) NSMutableArray *saveMuAry;
+@property (nonatomic, strong) LZBackOrderInfoModel *infoModel;
 @end
 
 @implementation BackOrderViewController
@@ -343,7 +337,7 @@
         pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
             item.detailTitle = compoentString;
             NSInteger row = [titileString integerValue];
-            _warehouseIdStr = _warehouseIdAry[row];
+            item.selectId = _warehouseIdAry[row];
             [weakSelf.tableView reloadData];
         };
         [self.view addSubview:pickerView];
@@ -360,7 +354,7 @@
         pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
             item.detailTitle = compoentString;
             NSInteger row = [titileString integerValue];
-            _payIdStr = _payIdAry[row];
+            item.selectId = _payIdAry[row];
             [weakSelf.tableView reloadData];
         };
         [self.view addSubview:pickerView];
@@ -434,7 +428,7 @@
 
 #pragma mark - ZWCustomPopViewDelegate
 - (void)popOverView:(ZWCustomPopView *)pView didClickMenuIndex:(NSInteger)index {
-    _customerId = self.customerIdAry[index];
+    self.infoModel.customerId = self.customerIdAry[index];
     NSString *name = _tempNameArray[index];
     LZBackOrderGroup *group = self.dataSource.firstObject;
     LZBackOrderItem *item = group.items.firstObject;
@@ -509,12 +503,39 @@
         
         [_saveMuAry addObject:backOrderSaveModel];
     }
+    
+    //入库存到备注之间的信息
+    //把信息存到model
+    LZBackOrderGroup *infoGroup = [LZBackOrderGroup new];
+    infoGroup = _dataSource.lastObject;
+    for (int i = 0 ; i <infoGroup.items.count ; i++) {
+        LZBackOrderItem *item = infoGroup.items[i];
+        if ([item.textTitle isEqualToString:@"*入仓库"]) {
+            self.infoModel.houseId = item.selectId;
+        }
+        if ([item.textTitle isEqualToString:@"应付金额"]) {
+            self.infoModel.copewithPrice = item.detailTitle;
+        }
+        if ([item.textTitle isEqualToString:@"实付金额"]) {
+            self.infoModel.realpayPrice = item.detailTitle;
+        }
+        if ([item.textTitle isEqualToString:@"预收付款"]) {
+            self.infoModel.deposit = item.detailTitle;
+        }
+        if ([item.textTitle isEqualToString:@"付款方式"]) {
+            self.infoModel.bankId = item.selectId;
+        }
+        if ([item.textTitle isEqualToString:@"备注"]) {
+            self.infoModel.remark = item.detailTitle;
+        }
+    }
+    
 
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.approverNameAry titleDataArray:nil];
     WEAKSELF;
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         NSInteger row = [titileString integerValue];
-        weakSelf.approverId = weakSelf.approverIdAry[row];
+        _infoModel.approverId = weakSelf.approverIdAry[row];
         [weakSelf.tableView reloadData];
         [weakSelf requestData];
     };
@@ -530,18 +551,17 @@
         LZBackOrderSaveModel *model = _saveMuAry[i];
         [tempSaveMuAry addObject:[model mj_JSONObject]];
     }
-    NSString *str = [tempSaveMuAry mj_JSONString];
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"approverId":_approverId,
-                             @"bankId":_payIdStr,
-                             @"copewithPrice":@"",
-                             @"customerId":_customerId,
-                             @"deposit":@"",
-                             @"houseId":_warehouseIdStr,
+                             @"approverId":self.infoModel.approverId,
+                             @"bankId":self.infoModel.bankId,
+                             @"copewithPrice":self.infoModel.copewithPrice,
+                             @"customerId":self.infoModel.customerId,
+                             @"deposit":self.infoModel.deposit,
+                             @"houseId":self.infoModel.houseId,
                              @"productItems":[tempSaveMuAry mj_JSONString],
-                             @"realpayPrice":@"",
-                             @"remark":@""
+                             @"realpayPrice":self.infoModel.realpayPrice,
+                             @"remark":self.infoModel.remark
                              };
     [BXSHttp requestGETWithAppURL:@"refund/add.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -549,8 +569,11 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
     } failure:^(NSError *error) {
-        
+        BXS_Alert(LLLoadErrorMessage);
     }];
 
 }
@@ -562,6 +585,12 @@
     return _nameArray;
 }
 
+- (LZBackOrderInfoModel *)infoModel{
+    if (_infoModel == nil) {
+        _infoModel = [LZBackOrderInfoModel new];
+    }
+    return _infoModel;
+}
 
 #pragma mark ---- ActionClick ----
 - (void)toListClisk{
