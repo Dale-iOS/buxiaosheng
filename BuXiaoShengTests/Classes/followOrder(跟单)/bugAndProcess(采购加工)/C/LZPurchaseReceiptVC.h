@@ -11,6 +11,5 @@
 @interface LZPurchaseReceiptVC : BaseTableVC
 @property(nonatomic,copy)NSString *bugId;
 
-
 @property (assign,nonatomic) BOOL isFindCode;
 @end

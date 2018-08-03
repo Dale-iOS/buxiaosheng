@@ -114,6 +114,9 @@
     }else{
         //加工类型
         LZProcessReceiptVC *vc = [[LZProcessReceiptVC alloc]init];
+        vc.bugId = model.id;
+#warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
+        vc.isFindCode = indexP.row %2 >0;
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }
     
@@ -130,6 +133,7 @@
     }else{
         //加工类型
         LZProcessAskVC *vc = [[LZProcessAskVC alloc]init];
+        vc.bugId = model.id;
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }
     

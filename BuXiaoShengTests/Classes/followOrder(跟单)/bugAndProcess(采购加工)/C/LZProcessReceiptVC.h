@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LZProcessReceiptVC : BaseViewController
+@interface LZProcessReceiptVC : BaseTableVC
+@property(nonatomic,copy)NSString *bugId;
 
+
+@property (assign,nonatomic) BOOL isFindCode;
 @end
