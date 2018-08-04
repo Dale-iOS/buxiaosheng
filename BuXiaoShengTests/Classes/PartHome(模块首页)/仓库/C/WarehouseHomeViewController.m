@@ -22,6 +22,8 @@
 #import "LZCheckReceiptModel.h"
 #import "BRPickerView.h"
 
+#import "LZDirectStorageVC.h"//直接入库
+
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *_dateStr;
@@ -191,6 +193,11 @@
     {
         //备货跟踪
         LZStockTrackingVC *vc = [[LZStockTrackingVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([model.paramsIos isEqualToString:@"directstorage"]) {
+        //直接入库
+        LZDirectStorageVC *vc = [[LZDirectStorageVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

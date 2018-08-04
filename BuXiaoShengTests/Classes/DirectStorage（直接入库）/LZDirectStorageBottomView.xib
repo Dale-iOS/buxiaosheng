@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Z5n-FM-Sm2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3i-bt-3P1">
+                    <rect key="frame" x="255.5" y="0.0" width="119.5" height="60"/>
+                    <color key="backgroundColor" red="0.0" green="0.21960784310000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="INW-0m-2y5"/>
+                        <constraint firstAttribute="width" secondItem="a3i-bt-3P1" secondAttribute="height" multiplier="2" id="W6e-eP-q28"/>
+                    </constraints>
+                    <state key="normal" title="确定"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总数量: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jl-LG-Hpu">
+                    <rect key="frame" x="10" y="0.0" width="235.5" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总条数: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fv4-ou-BLY">
+                    <rect key="frame" x="10" y="30" width="235.5" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Fv4-ou-BLY" firstAttribute="trailing" secondItem="1Jl-LG-Hpu" secondAttribute="trailing" id="4uJ-yv-qeh"/>
+                <constraint firstAttribute="trailing" secondItem="a3i-bt-3P1" secondAttribute="trailing" id="94j-uX-1rb"/>
+                <constraint firstItem="1Jl-LG-Hpu" firstAttribute="top" secondItem="Z5n-FM-Sm2" secondAttribute="top" id="Hkd-tG-c4I"/>
+                <constraint firstItem="Fv4-ou-BLY" firstAttribute="leading" secondItem="1Jl-LG-Hpu" secondAttribute="leading" id="JzP-A8-RDS"/>
+                <constraint firstItem="Fv4-ou-BLY" firstAttribute="top" secondItem="1Jl-LG-Hpu" secondAttribute="bottom" id="Kro-Lo-Da0"/>
+                <constraint firstItem="a3i-bt-3P1" firstAttribute="leading" secondItem="1Jl-LG-Hpu" secondAttribute="trailing" constant="10" id="R0j-Bm-Fox"/>
+                <constraint firstItem="1Jl-LG-Hpu" firstAttribute="leading" secondItem="Z5n-FM-Sm2" secondAttribute="leading" constant="10" id="YXF-B3-tzg"/>
+                <constraint firstItem="Fv4-ou-BLY" firstAttribute="height" secondItem="1Jl-LG-Hpu" secondAttribute="height" id="pXi-7n-l6E"/>
+                <constraint firstItem="a3i-bt-3P1" firstAttribute="top" secondItem="Z5n-FM-Sm2" secondAttribute="top" id="q65-A2-wRQ"/>
+                <constraint firstItem="Fv4-ou-BLY" firstAttribute="bottom" secondItem="a3i-bt-3P1" secondAttribute="bottom" id="x6W-d4-DCt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-294.5" y="632"/>
+        </view>
+    </objects>
+</document>
