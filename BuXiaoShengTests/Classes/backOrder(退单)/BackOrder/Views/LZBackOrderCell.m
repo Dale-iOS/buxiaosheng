@@ -138,7 +138,7 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
             for (int i = 0; i < _group.itemStrings.count; i++) {
                 UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
                 btn.tag = i;
-                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [btn setTitleColor:CD_Text99 forState:UIControlStateNormal];
                 btn.titleLabel.textAlignment = NSTextAlignmentCenter;
                 [btn setTitle:_group.itemStrings[i] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(handleItemAction:) forControlEvents:UIControlEventTouchUpInside];
