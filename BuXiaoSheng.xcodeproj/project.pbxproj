@@ -2802,32 +2802,32 @@
 		346BA4362112DE29000488D2 /* directstorage(直接入库) */ = {
 			isa = PBXGroup;
 			children = (
-				346BA4392112DE90000488D2 /* M */,
-				346BA4382112DE8C000488D2 /* V */,
-				346BA4372112DE84000488D2 /* C */,
+				346BA4392112DE90000488D2 /* M1 */,
+				346BA4382112DE8C000488D2 /* V1 */,
+				346BA4372112DE84000488D2 /* C1 */,
 			);
 			path = "directstorage(直接入库)";
 			sourceTree = "<group>";
 		};
-		346BA4372112DE84000488D2 /* C */ = {
+		346BA4372112DE84000488D2 /* C1 */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = C;
+			path = C1;
 			sourceTree = "<group>";
 		};
-		346BA4382112DE8C000488D2 /* V */ = {
+		346BA4382112DE8C000488D2 /* V1 */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = V;
+			path = V1;
 			sourceTree = "<group>";
 		};
-		346BA4392112DE90000488D2 /* M */ = {
+		346BA4392112DE90000488D2 /* M1 */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = M;
+			path = M1;
 			sourceTree = "<group>";
 		};
 		346F6DD120DFA4210016FA8D /* product(产品资料) */ = {
