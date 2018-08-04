@@ -125,7 +125,7 @@
             NSDictionary *dic = @{@"textTitle":textTitle,
                                   @"detailTitle":detailTitle,
                                   @"placeHolder":@"请输入细码",
-                                  @"detailColor":[UIColor blackColor],
+                                  @"detailColor":@"0",
                                   @"clickType":@(0),
                                   @"cellType":@(0),
                                   @"canInput":@(YES),
