@@ -469,6 +469,8 @@
 		3483FDFD20ABCBCB00645B15 /* AddClienViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */; };
 		34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5020C7D3FC004485F1 /* NSArray+Utils.m */; };
 		34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5020C7D3FC004485F1 /* NSArray+Utils.m */; };
+		3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51821196729004F419F /* LZAuditDetailModel.m */; };
+		3484F51A21196729004F419F /* LZAuditDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51821196729004F419F /* LZAuditDetailModel.m */; };
 		34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
 		34871CFB20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
 		34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */; };
@@ -1376,6 +1378,8 @@
 		3483FDFC20ABCBCB00645B15 /* AddClienViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddClienViewController.m; sourceTree = "<group>"; };
 		34847D4F20C7D3FC004485F1 /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
 		34847D5020C7D3FC004485F1 /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
+		3484F51721196729004F419F /* LZAuditDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAuditDetailModel.h; sourceTree = "<group>"; };
+		3484F51821196729004F419F /* LZAuditDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAuditDetailModel.m; sourceTree = "<group>"; };
 		34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYEqualCellSpaceFlowLayout.m; sourceTree = "<group>"; };
 		34871CF920DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYEqualCellSpaceFlowLayout.h; sourceTree = "<group>"; };
 		34871CFC20DBB59600F7182C /* LZPurchasingInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchasingInfoVC.h; sourceTree = "<group>"; };
@@ -2032,6 +2036,8 @@
 			children = (
 				3427A4CD20CE27C700369650 /* LZSpendingModel.h */,
 				3427A4CE20CE27C700369650 /* LZSpendingModel.m */,
+				3484F51721196729004F419F /* LZAuditDetailModel.h */,
+				3484F51821196729004F419F /* LZAuditDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5050,6 +5056,7 @@
 				3453791C21099CD300830DF8 /* LZGoodValueCell.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				3471DCA620D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
+				3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */,
 				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
@@ -5410,6 +5417,7 @@
 				3455F68F20CA7CB600579521 /* LZDyeView.m in Sources */,
 				344C487E20D0E69400BEC002 /* LZMarketCell.m in Sources */,
 				3465CA0120DC9A9700BAE415 /* FSCalendar.m in Sources */,
+				3484F51A21196729004F419F /* LZAuditDetailModel.m in Sources */,
 				344E4D49210EAD4D0031DCE8 /* GridTableView.m in Sources */,
 				3455F68B20CA7C8700579521 /* LZWeaveView.m in Sources */,
 				3427A4F720CE507600369650 /* BRAddressModel.m in Sources */,

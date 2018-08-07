@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LZAuditDetailVC : BaseViewController
-
+@property (nonatomic, strong) NSString *id;
 @end

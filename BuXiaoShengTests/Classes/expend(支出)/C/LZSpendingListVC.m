@@ -15,6 +15,7 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 #import "LZSearchBar.h"
+#import "LZAuditDetailVC.h"
 
 @interface LZSpendingListVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate>
 {
@@ -174,15 +175,12 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    //获取cell
-    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
+    LZSpendingDetailModel *model = _lists[indexPath.row];
     
-//    LZClientReceiptModel *model = _list[indexPath.row];
-//    LZClientReceiptDetailVC *vc = [[LZClientReceiptDetailVC alloc]init];
-//    vc.id = model.id;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
+    LZAuditDetailVC *vc = [[LZAuditDetailVC alloc]init];
+    vc.id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 #pragma mark --- 日历 ---
