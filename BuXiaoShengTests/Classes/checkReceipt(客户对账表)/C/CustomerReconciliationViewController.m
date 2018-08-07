@@ -11,8 +11,19 @@
 #import "UITextField+PopOver.h"
 #import "LZCheckReceiptModel.h"
 #import "LZCollectionCheckVC.h"
+#import "LLDayCalendarVc.h"
+#import "LLWeekCalendarVc.h"
+#import "LLMonthCalendarVc.h"
+#import "LLQuarterCalendarVc.h"
+#import "SGPagingView.h"
 
-@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
+{
+    NSString *_startStr;//开始时间
+    NSString *_endStr;//结束时间
+    NSString *_arrear;//欠款金额
+    NSString *_repaymentTime;//最后还款时间
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
 //@property (nonatomic, strong) UILabel *companyLbl;
@@ -26,6 +37,10 @@
 @property(nonatomic,strong)NSMutableArray *customerIdAry;
 @property(nonatomic,copy)NSString *customerId;///选择中的客户id
 @property(nonatomic,strong)NSArray<LZCheckReceiptModel*> *lists;
+@property(nonatomic,strong)NSString *selecStr;
+@property (nonatomic, strong) SGPageTitleView *pageTitleView;
+@property (nonatomic, strong) SGPageContentView *pageContentView;
+@property(nonatomic,strong)UIView *bottomView;
 @end
 
 @implementation CustomerReconciliationViewController
@@ -33,6 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self setupPageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -45,7 +61,7 @@
     [self setupTableviewHeadView];
     
     self.navigationItem.titleView = [Utility navTitleView:@"客户对账表"];
-//    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     
@@ -86,7 +102,7 @@
         make.top.equalTo(_searchTF.mas_bottom).offset(10);
     }];
     
-    //    [self setupBottomView];
+        [self setupBottomView];
 }
 
 - (void)setupTableviewHeadView
@@ -155,7 +171,7 @@
     self.lastpayDateLbl.backgroundColor = [UIColor whiteColor];
     self.lastpayDateLbl.textAlignment = NSTextAlignmentCenter;
     self.lastpayDateLbl.font = FONT(12);
-    self.lastpayDateLbl.textColor = CD_Text99;
+    self.lastpayDateLbl.textColor = CD_Text33;
     self.lastpayDateLbl.text = @"最后还款：2018-3-30";
     [self.view addSubview:self.lastpayDateLbl];
     self.lastpayDateLbl.sd_layout
@@ -169,7 +185,7 @@
     self.totalborrowLbl.backgroundColor = [UIColor whiteColor];
     self.totalborrowLbl.textAlignment = NSTextAlignmentCenter;
     self.totalborrowLbl.font = FONT(12);
-    self.totalborrowLbl.textColor = CD_Text99;
+    self.totalborrowLbl.textColor = CD_Text33;
     self.totalborrowLbl.text = @"累计欠款：454541.00";
     [self.view addSubview:self.totalborrowLbl];
     self.totalborrowLbl.sd_layout
@@ -181,6 +197,7 @@
 }
 
 #pragma mark ----- 网络请求 -----
+//接口名称 功能用到客户列表
 - (void)setupCustomerList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
@@ -199,9 +216,6 @@
         //        名称cell设置数据源 获取客户id
         WEAKSELF
         [_searchTF popOverSource:_customerNameAry index:^(NSInteger index) {
-            //设置名称 前欠款
-            //            NSString *str = _customerList[index][@"arrear"];
-            //            weakSelf.titileCell.beforeLabel.text = [NSString stringWithFormat:@"前欠款:￥%@",str];
             _customerId = _customerList[index][@"id"];
             [weakSelf setupListData];
         }];
@@ -216,7 +230,9 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"customerId":_customerId,
                              @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageSize":@"15",
+                             @"startDate":_startStr == nil ? @"" : _startStr,
+                             @"endDate":_endStr == nil ? @"" : _endStr
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_bill_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -225,6 +241,26 @@
             return ;
         }
         _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
+        
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
+//接口名称 对账单客户信息
+- (void)setupCoustomerInfo{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"customerId":_customerId == nil ? @"" : _customerId
+                             };
+    [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_bill_info.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
+        
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -286,7 +322,133 @@
 
 - (void)toScreenClick
 {
-    NSLog(@"toScreenClick");
+    _bottomView.hidden = NO;
+}
+
+
+#pragma mark --- 日历 ---
+//初始化日历
+- (void)setupPageView {
+    CGFloat statusHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    CGFloat pageTitleViewY = 0;
+    if (statusHeight == 20.0) {
+        pageTitleViewY = 64;
+    } else {
+        pageTitleViewY = 88;
+    }
+    
+    NSArray *titleArr = @[@"日历",@"周历",@"月历",@"季度"];
+    SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
+    configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
+    configure.titleSelectedColor = RGB(59, 177, 239);
+    configure.indicatorColor = RGB(59, 177, 239);;
+    /// pageTitleView
+    self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, pageTitleViewY, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
+    self.pageTitleView.backgroundColor = [UIColor whiteColor];
+    //    [self.view addSubview:_pageTitleView];
+    
+    LLDayCalendarVc *dayVC = [[LLDayCalendarVc alloc] init];
+    dayVC.delegate = self;
+    LLWeekCalendarVc *weekVC = [[LLWeekCalendarVc alloc] init];
+    weekVC.delegate = self;
+    LLMonthCalendarVc *monthVC = [[LLMonthCalendarVc alloc] init];
+    monthVC.delegate = self;
+    LLQuarterCalendarVc *quarterVC = [[LLQuarterCalendarVc alloc] init];
+    quarterVC.delegate = self;
+    
+    NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
+    /// pageContentView
+    //    CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
+    _pageContentView.delegatePageContentView = self;
+    //    [self.view addSubview:_pageContentView];
+    
+    
+    _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
+    _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    _bottomView.hidden = YES;
+    
+    [_bottomView addSubview:_pageTitleView];
+    [_bottomView addSubview:_pageContentView];
+    [self.view addSubview:_bottomView];
+}
+
+- (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {
+    [self.pageContentView setPageContentViewCurrentIndex:selectedIndex];
+}
+
+- (void)pageContentView:(SGPageContentView *)pageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
+    [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+}
+
+//点击选择日期按钮
+- (void)headerTapClick{
+    _bottomView.hidden = NO;
+}
+//点击日历确定
+- (void)didaffirmBtnInCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = [BXSTools stringFromTData:StartStr];
+    _endStr = [BXSTools stringFromTData:EndStr];
+    _bottomView.hidden = YES;
+    [self setupListData];
+//    if (![_startStr isEqualToString:@"0"]) {
+//        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+//    }else{
+//        _dateLbl.text = _endStr;
+//    }
+}
+
+//点击周历确定
+- (void)didaffirmBtnInWeekCalendarWithSelectArray:(NSMutableArray *)weekArray{
+    NSString *str1 = [NSString stringWithFormat:@"%@",[weekArray firstObject]];
+    NSString *str2 = [NSString stringWithFormat:@"%@",[weekArray lastObject]];
+    
+    _startStr = [BXSTools stringFromTData:str1];
+    _endStr = [BXSTools stringFromTData:str2];
+    [self setupListData];
+    _bottomView.hidden = YES;
+//    if (![_startStr isEqualToString:@"0"]) {
+//        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+//        _dateLbl.textColor = CD_Text33;
+//    }else{
+//        _dateLbl.text = _endStr;
+//        _dateLbl.textColor = CD_Text33;
+//    }
+}
+
+//点击月历确定
+- (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupListData];
+    _bottomView.hidden = YES;
+//    if (![_startStr isEqualToString:@"0"]) {
+//        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+//        _dateLbl.textColor = CD_Text33;
+//    }else{
+//        _dateLbl.text = _endStr;
+//        _dateLbl.textColor = CD_Text33;
+//    }
+}
+
+//点击季度确定
+- (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
+    _startStr = StartStr;
+    _endStr = EndStr;
+    [self setupListData];
+    _bottomView.hidden = YES;
+//    if (![_startStr isEqualToString:@"0"]) {
+//        _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
+//        _dateLbl.textColor = CD_Text33;
+//    }else{
+//        _dateLbl.text = _endStr;
+//        _dateLbl.textColor = CD_Text33;
+//    }
+}
+
+//点击日历取消
+- (void)didCancelBtnInCalendar{
+    _bottomView.hidden = YES;
 }
 
 

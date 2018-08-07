@@ -16,15 +16,16 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 #import "LZChooseBankTypeVC.h"
-#import "LZChangeNumVC.h"
 #import "LZBankListModel.h"
+
+#define pageSize  5
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
     NSString *_bankId;//银行id
-    NSString *_typeId;//单据来源id
+//    NSString *_typeId;//单据来源id
     NSString *_incometypeId;//消费id
 }
 @property (nonatomic, strong) UIView *tableViewHeadView;
@@ -62,7 +63,7 @@
     _endStr = @"";
     _bankId = @"";
     _incometypeId = @"";
-    _typeId = @"";
+//    _typeId = @"";
     
     //日期
     self.headDateLbl = [[UILabel alloc]init];
@@ -133,7 +134,7 @@
 - (void)setupList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"pageNo":@(self.pageIndex),
-                             @"pageSize":@"6",
+                             @"pageSize":@(pageSize),
                              @"startDate":_startStr,
                              @"endDate":_endStr,
                              @"type":_typeId == nil ? @"" : _typeId,
@@ -201,12 +202,7 @@
 }
 
 - (void)navigationSetupClick{
-    //测试改变数量侧栏
-//        LZChangeNumVC *vc = [[LZChangeNumVC alloc]init];
-//        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
-//        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 
-    
     LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];

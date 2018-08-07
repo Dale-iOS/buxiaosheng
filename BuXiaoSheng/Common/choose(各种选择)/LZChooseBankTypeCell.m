@@ -30,6 +30,11 @@
 {
     _model = model;
     self.titleLabel.text = model.name;
+    if (self.titleLabel.text.length >4) {
+        self.titleLabel.font = FONT(10);
+    }else{
+        self.titleLabel.font = FONT(12);
+    }
     self.id = model.id;
     
     if (_model.isSelect) {

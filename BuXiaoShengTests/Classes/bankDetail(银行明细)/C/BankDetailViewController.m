@@ -176,6 +176,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZBankDetailListModel *model = _lists[indexPath.row];
+    BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
+    vc.typeId = model.bankId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 //恢复到设置背景图之前的外观
 - (void)viewWillDisappear:(BOOL)animated {
     

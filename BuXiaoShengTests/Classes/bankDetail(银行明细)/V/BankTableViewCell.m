@@ -195,7 +195,7 @@
 - (void)setModel:(LZBankDetailListModel *)model{
     _model = model;
     self.titleLabel.text = _model.bankName;
-    self.lastLabel.text = [NSString stringWithFormat:@"余额：%@",_model.amount];
+    self.lastLabel.text = [NSString stringWithFormat:@"余额：%.2f",_model.amount.floatValue];
 }
 
 

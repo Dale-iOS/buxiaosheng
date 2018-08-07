@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BankDetailListViewController : BaseViewController
-
+@property (nonatomic ,strong) NSString *typeId;//单据来源id
 @end
