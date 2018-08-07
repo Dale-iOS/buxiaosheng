@@ -662,6 +662,11 @@
 		34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */; };
 		A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
+		A01690BB2119DA8500A7D8F9 /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690AF2119DA8400A7D8F9 /* MFPageView.m */; };
+		A01690BC2119DA8500A7D8F9 /* MFAllowGestureEventPassTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B32119DA8400A7D8F9 /* MFAllowGestureEventPassTableView.m */; };
+		A01690BD2119DA8500A7D8F9 /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B42119DA8400A7D8F9 /* MFNestTableView.m */; };
+		A01690BE2119DA8500A7D8F9 /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B92119DA8400A7D8F9 /* MFSegmentView.m */; };
+		A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */; };
 		A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */; };
 		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
 		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
@@ -1673,6 +1678,16 @@
 		A012E61F20FD965700329D69 /* BuXiaoSheng.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuXiaoSheng.entitlements; sourceTree = "<group>"; };
 		A012E62020FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+LLJPuchAppDelegate.h"; sourceTree = "<group>"; };
 		A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+LLJPuchAppDelegate.m"; sourceTree = "<group>"; };
+		A01690AF2119DA8400A7D8F9 /* MFPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPageView.m; sourceTree = "<group>"; };
+		A01690B02119DA8400A7D8F9 /* MFPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPageView.h; sourceTree = "<group>"; };
+		A01690B22119DA8400A7D8F9 /* MFNestTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNestTableView.h; sourceTree = "<group>"; };
+		A01690B32119DA8400A7D8F9 /* MFAllowGestureEventPassTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFAllowGestureEventPassTableView.m; sourceTree = "<group>"; };
+		A01690B42119DA8400A7D8F9 /* MFNestTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFNestTableView.m; sourceTree = "<group>"; };
+		A01690B52119DA8400A7D8F9 /* MFAllowGestureEventPassTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFAllowGestureEventPassTableView.h; sourceTree = "<group>"; };
+		A01690B72119DA8400A7D8F9 /* MFSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSegmentView.h; sourceTree = "<group>"; };
+		A01690B82119DA8400A7D8F9 /* MFSegmentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
+		A01690B92119DA8400A7D8F9 /* MFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
+		A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
 		A0395ED320FC950E00554CDC /* LLHomePieChartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomePieChartModel.h; sourceTree = "<group>"; };
 		A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomePieChartModel.m; sourceTree = "<group>"; };
 		A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTurnoverChatView.h; sourceTree = "<group>"; };
@@ -3517,6 +3532,9 @@
 		3475425320F5F5E6007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
+				A01690B12119DA8400A7D8F9 /* MFNestTableView */,
+				A01690AE2119DA8400A7D8F9 /* MFPageView */,
+				A01690B62119DA8400A7D8F9 /* MFSegmentView */,
 				A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */,
 				A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */,
 				A04F6FF721198D4E00CFDE1C /* LLHomeTableHeaderView.h */,
@@ -4419,6 +4437,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A01690AE2119DA8400A7D8F9 /* MFPageView */ = {
+			isa = PBXGroup;
+			children = (
+				A01690AF2119DA8400A7D8F9 /* MFPageView.m */,
+				A01690B02119DA8400A7D8F9 /* MFPageView.h */,
+			);
+			path = MFPageView;
+			sourceTree = "<group>";
+		};
+		A01690B12119DA8400A7D8F9 /* MFNestTableView */ = {
+			isa = PBXGroup;
+			children = (
+				A01690B22119DA8400A7D8F9 /* MFNestTableView.h */,
+				A01690B32119DA8400A7D8F9 /* MFAllowGestureEventPassTableView.m */,
+				A01690B42119DA8400A7D8F9 /* MFNestTableView.m */,
+				A01690B52119DA8400A7D8F9 /* MFAllowGestureEventPassTableView.h */,
+			);
+			path = MFNestTableView;
+			sourceTree = "<group>";
+		};
+		A01690B62119DA8400A7D8F9 /* MFSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				A01690B72119DA8400A7D8F9 /* MFSegmentView.h */,
+				A01690B82119DA8400A7D8F9 /* MFSegmentViewCell.h */,
+				A01690B92119DA8400A7D8F9 /* MFSegmentView.m */,
+				A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */,
+			);
+			path = MFSegmentView;
+			sourceTree = "<group>";
+		};
 		A08748B820ECCDF7001FF98E /* SDPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -4901,6 +4950,7 @@
 				34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */,
 				344E4D3C210EAD4D0031DCE8 /* kVoid.m in Sources */,
 				346C2289210E03E2004AAC88 /* LZBackOrderItem.m in Sources */,
+				A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
 				3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */,
 				A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */,
@@ -4949,6 +4999,7 @@
 				343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */,
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				3455F68E20CA7CB600579521 /* LZDyeView.m in Sources */,
+				A01690BB2119DA8500A7D8F9 /* MFPageView.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
 				3465C9EE20DC9A9700BAE415 /* FSCalendar+Deprecated.m in Sources */,
@@ -5005,6 +5056,7 @@
 				34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */,
 				3465CA1020DCE2A900BAE415 /* LZSearchClientNeedsCell.m in Sources */,
 				3476D40B2103327D00FDB6F7 /* LZOrderFollowDetailVC.m in Sources */,
+				A01690BC2119DA8500A7D8F9 /* MFAllowGestureEventPassTableView.m in Sources */,
 				B5C73EC020C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				344E4D56210EADAD0031DCE8 /* BXSMachiningBottomView.m in Sources */,
 				344C48A520D114B800BEC002 /* LZDidReimbursementSaleCell.m in Sources */,
@@ -5153,6 +5205,7 @@
 				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */,
+				A01690BD2119DA8500A7D8F9 /* MFNestTableView.m in Sources */,
 				3455F69220CA7E9900579521 /* LZIncomeVC.m in Sources */,
 				344C48A120D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
 				3420775720D3A41E006EA057 /* LZChooseArrearClientVC.m in Sources */,
@@ -5212,6 +5265,7 @@
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
+				A01690BE2119DA8500A7D8F9 /* MFSegmentView.m in Sources */,
 				344C488520D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3427A50620CE918F00369650 /* LZBugAndProcessUntreatedCell.m in Sources */,
 				34EE88E020CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,

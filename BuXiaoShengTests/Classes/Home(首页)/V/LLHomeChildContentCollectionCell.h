@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class LLHomePieChartModel;
+@class LLHomeChidVC;
 @interface LLHomeChildContentCollectionCell : UICollectionViewCell
 @property(nonatomic ,assign)NSInteger selectIndex;
 @property(nonatomic ,strong)LLHomePieChartModel * model;
+@property(nonatomic ,strong)LLHomeChidVC * childVc;
 @end

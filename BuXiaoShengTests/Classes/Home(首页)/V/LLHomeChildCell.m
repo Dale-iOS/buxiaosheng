@@ -105,7 +105,7 @@
                     break;
             }
     
-    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithValues:yVals label:@"Election Results"];
+    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithValues:yVals label:@""];
     
     dataSet.drawIconsEnabled = NO;
     
