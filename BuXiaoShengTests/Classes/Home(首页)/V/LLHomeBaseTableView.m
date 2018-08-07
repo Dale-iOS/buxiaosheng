@@ -18,7 +18,10 @@
 }
 */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    if ([gestureRecognizer.view isKindOfClass:[self class]]) {
+        return true;
+    }
+    return false;
 }
 
 @end
