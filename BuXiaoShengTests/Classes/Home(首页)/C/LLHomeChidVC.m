@@ -8,40 +8,52 @@
 
 #import "LLHomeChidVC.h"
 #import "LLHomeChildCell.h"
+#import "LLHomePieChartModel.h"
 @interface LLHomeChidVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic ,strong)UITableView * tableView;
-@property(nonatomic ,strong)id currentModel;
+@property(nonatomic ,strong)NSMutableArray * models;
 @end
 
 @implementation LLHomeChidVC
 
 -(void)setSelectIndex:(NSInteger)selectIndex {
     _selectIndex = selectIndex;
-    switch (selectIndex) {
-        case 0://本日
-        {
-            
-        }
-            break;
-        case 1://本月
-        {
-            
-        }
-            break;
-        case 2://季度
-        {
-            
-        }
-            break;
-        case 3://全年
-        {
-            
-        }
-            break;
-        default:
-            break;
+    
+    if (!self.model) {
+        return;
     }
+    [self.models removeAllObjects];
+    [self.models addObject:self.model.bigGoodsList];
+    [self.models addObject:self.model.sheetClothList];
+    [self.models addObject:self.model.saleList];
     [self.tableView reloadData];
+//    switch (selectIndex) {
+//        case 0://本日
+//        {
+//            [self.models addObject:self.model.bigGoodsList];
+//            [self.models addObject:self.model.saleList];
+//            [self.models addObject:self.model.sheetClothList];
+//        }
+//            break;
+//        case 1://本月
+//        {
+//            [self.models addObject:self.model.bigGoodsList];
+//        }
+//            break;
+//        case 2://季度
+//        {
+//
+//        }
+//            break;
+//        case 3://全年
+//        {
+//
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+    
 }
 
 - (void)viewDidLoad {
@@ -50,6 +62,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    self.models = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,12 +71,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.models.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLHomeChildCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLHomeChildCell"];
-    cell.model = nil;
+    cell.datas = self.models[indexPath.row];
     cell.indexPath = indexPath;
     
     return cell;

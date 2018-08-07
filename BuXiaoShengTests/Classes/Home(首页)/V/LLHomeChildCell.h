@@ -10,5 +10,5 @@
 @class LLHomePieChartModel;
 @interface LLHomeChildCell : UITableViewCell
 @property(nonatomic ,assign)NSIndexPath * indexPath;
-@property(nonatomic ,strong)LLHomePieChartModel * model;
+@property(nonatomic ,strong)NSArray * datas;
 @end

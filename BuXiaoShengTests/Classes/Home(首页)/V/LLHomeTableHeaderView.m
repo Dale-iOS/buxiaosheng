@@ -36,7 +36,7 @@
 
 -(void)setButtons:(NSArray<LZHomeModel *> *)buttons {
     _buttons = buttons;
-    if (buttons.count < 3) {
+    if (buttons.count < 4) {
         [self.collectView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(110);
         }];

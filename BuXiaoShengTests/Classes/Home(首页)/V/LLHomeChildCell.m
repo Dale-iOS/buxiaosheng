@@ -11,6 +11,7 @@
 @interface LLHomeChildCell()
 @property(nonatomic ,strong)PieChartView * pieChartView;
 @property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
+@property(nonatomic ,strong)UILabel * titleLable;
 @end
 @implementation LLHomeChildCell
 
@@ -28,17 +29,18 @@
     _indexPath = indexPath;
     switch (indexPath.row) {
         case 0:
-            
+            self.titleLable.text = @"大货销售TOP5";
             break;
         case 1:
-            
+             self.titleLable.text = @"板布销售TOP5";
             break;
         case 2:
-            
+                self.titleLable.text = @"销售人员销售TOP5";
             break;
         default:
             break;
     }
+    [self setupPieCharData];
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -51,7 +53,22 @@
     [self.contentView addSubview:self.pieChartView];
     [self.pieChartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
-        
+    }];
+    self.titleLable = [UILabel new];
+    [self.contentView addSubview:self.titleLable];
+    self.titleLable.font = [UIFont systemFontOfSize:16];
+    self.titleLable.textColor = [UIColor darkGrayColor];
+    [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.contentView).offset(12);
+    }];
+    UIButton * detailBtn = [UIButton new];
+    [self.contentView addSubview:detailBtn];
+    [detailBtn setTitle:@"详细" forState:UIControlStateNormal];
+    detailBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [detailBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [detailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-12);
+        make.top.equalTo(self.contentView).offset(12);
     }];
 }
 
@@ -59,43 +76,35 @@
     //每个区块的数据
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
     
-    [self.pieChartModel.bigGoodsList enumerateObjectsUsingBlock:^(LLBigGoodsListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:obj.productName icon: nil]];
-    }];
-    //    for (int i = 0; i < count; i++) {
-    //        switch (i) {//大货列表
-    //            case 0:
-    //            {
-    //                [self.pieChartModel.bigGoodsList enumerateObjectsUsingBlock:^(LLBigGoodsListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //                   [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"大货列表" icon: nil]];
-    //                }];
-    //            }
-    //                break;
-    //            case 1://销售业绩列表
-    //            {
-    //                [self.pieChartModel.saleList enumerateObjectsUsingBlock:^(LLSaleListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //                    [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"销售业绩列表" icon: nil]];
-    //                }];
-    //            }
-    //                break;
-    //            case 2://板布列表
-    //            {
-    //                [self.pieChartModel.sheetClothList enumerateObjectsUsingBlock:^(LLSheetClothListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //                  [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"板布列表" icon: nil]];
-    //                }];
-    //            }
-    //                break;
-    //            case 3://最近半年营业额度列表
-    //            {
-    //                [self.pieChartModel.turnoverList enumerateObjectsUsingBlock:^(LLTurnoverListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //                    [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.amount label:@"最近半年营业额度列表" icon: nil]];
-    //                }];
-    //            }
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
+//    [self.pieChartModel.bigGoodsList enumerateObjectsUsingBlock:^(LLBigGoodsListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:obj.productName icon: nil]];
+//    }];
+            switch (_indexPath.row) {//大货列表
+                case 0:
+                {
+                    [self.datas enumerateObjectsUsingBlock:^(LLBigGoodsListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                       [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"大货列表" icon: nil]];
+                    }];
+                }
+                    break;
+                case 1://销售业绩列表
+                {
+                    [self.datas enumerateObjectsUsingBlock:^(LLSaleListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"板布销售列表" icon: nil]];
+                    }];
+                }
+                    break;
+                case 2://板布列表
+                {
+                    [self.datas enumerateObjectsUsingBlock:^(LLSheetClothListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                      [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:@"销售人员列表" icon: nil]];
+                    }];
+                }
+                    break;
+                default:
+                    break;
+            }
+    
     PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithValues:yVals label:@"Election Results"];
     
     dataSet.drawIconsEnabled = NO;
@@ -129,8 +138,8 @@
     _pieChartView.data = data;
     [_pieChartView highlightValues:nil];
     
-    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"大货列表"];
-    _pieChartView.centerAttributedText = centerText;
+//    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"大货列表"];
+//    _pieChartView.centerAttributedText = centerText;
     
 }
 

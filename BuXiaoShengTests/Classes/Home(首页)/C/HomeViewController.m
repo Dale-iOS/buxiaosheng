@@ -74,18 +74,14 @@
             return ;
         }
        NSArray * buttons = [LZHomeModel LLMJParse:baseModel.data];
-       
-        NSMutableArray * array = [NSMutableArray array];
-        [array addObjectsFromArray:buttons];
-         [array addObjectsFromArray:buttons];
-        if (array.count< 3) {
+        if (buttons.count< 4) {
             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10 + 55 );
              self.tableView.tableHeaderView = self.headerView;
         }else {
              self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55);
              self.tableView.tableHeaderView = self.headerView;
         }
-         self.headerView.buttons = array;
+         self.headerView.buttons = buttons;
 //        [self.collectView reloadData];
 //        [self.mainTabelView reloadData];
         
