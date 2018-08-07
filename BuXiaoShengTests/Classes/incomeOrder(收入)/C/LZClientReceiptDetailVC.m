@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/9.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  详情页面
+//  收款单详情页面
 
 #import "LZClientReceiptDetailVC.h"
 #import "LZHTableView.h"
@@ -162,7 +162,8 @@
         _dateLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
         self.nameCell.contentTF.text = _model.customerName;
         self.collectionCell.contentTF.text = _model.amount;
-        self.arrearsCell.contentTF.text = _model.bankName;
+        self.arrearsCell.contentTF.text = _model.arrears;
+        self.accountCell.contentTF.text = _model.bankName;
         self.remarkTextView.textView.text = _model.remark;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);

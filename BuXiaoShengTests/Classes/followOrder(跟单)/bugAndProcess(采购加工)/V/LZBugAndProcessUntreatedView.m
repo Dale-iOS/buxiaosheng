@@ -109,7 +109,7 @@
         LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
         vc.bugId = model.id;
 #warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
-        vc.isFindCode = indexP.row %2 >0;
+        vc.isFindCode = 1;
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }else{
         //加工类型

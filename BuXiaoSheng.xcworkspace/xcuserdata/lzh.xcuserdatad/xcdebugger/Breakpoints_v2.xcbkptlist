@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/followOrder(&#x8ddf;&#x5355;)/bugAndProcess(&#x91c7;&#x8d2d;&#x52a0;&#x5de5;)/C/LZPurchaseReceiptVC.m"
-            timestampString = "555044265.252453"
+            timestampString = "555215445.646569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "320"
@@ -36,60 +36,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/followOrder(&#x8ddf;&#x5355;)/bugAndProcess(&#x91c7;&#x8d2d;&#x52a0;&#x5de5;)/C/LZPurchaseReceiptVC.m"
-            timestampString = "555044265.252967"
+            timestampString = "555215445.646668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "323"
             endingLineNumber = "323"
             landmarkName = "-clickBottom"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LZPurchaseReceiptVC clickBottom]"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/followOrder(%E8%B7%9F%E5%8D%95)/bugAndProcess(%E9%87%87%E8%B4%AD%E5%8A%A0%E5%B7%A5)/C/LZPurchaseReceiptVC.m"
-                  timestampString = "555044265.351397"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "323"
-                  endingLineNumber = "323"
-                  offsetFromSymbolStart = "222">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__34-[LZPurchaseReceiptVC clickBottom]_block_invoke"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/followOrder(%E8%B7%9F%E5%8D%95)/bugAndProcess(%E9%87%87%E8%B4%AD%E5%8A%A0%E5%B7%A5)/C/LZPurchaseReceiptVC.m"
-                  timestampString = "555044265.354266"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "324"
-                  endingLineNumber = "324"
-                  offsetFromSymbolStart = "47">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.379"
-                  moduleName = "BuXiaoSheng"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/followOrder(%E8%B7%9F%E5%8D%95)/bugAndProcess(%E9%87%87%E8%B4%AD%E5%8A%A0%E5%B7%A5)/C/LZPurchaseReceiptVC.m"
-                  timestampString = "555044265.357821"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "323"
-                  endingLineNumber = "323"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

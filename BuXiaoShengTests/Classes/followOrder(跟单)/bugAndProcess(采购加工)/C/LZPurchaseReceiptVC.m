@@ -15,6 +15,7 @@
 #import "ApproverModel.h"
 
 #import "BXSPurchaChangeWarehousingView.h"
+#import "LZSaveOrderModel.h"
 
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -315,6 +316,12 @@
 #pragma mark ---- Click ----
 /// 底部确认
 - (void)clickBottom {
+    
+    NSMutableArray *saveAry = [NSMutableArray array];
+    for (int i = 0; i <_allCodeArray.count; i++) {
+        
+        
+    }
     
     /// 选择人员
     NSDictionary * param = @{
