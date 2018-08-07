@@ -11,12 +11,18 @@
 #import "LZHomeModel.h"
 #import "SetHomeViewController.h"
 #import "LLHomeTableHeaderView.h"
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "LLHomeChidVC.h"
+#import "LLHomeChildContentCollectionCell.h"
+#import "LLHomeBaseTableView.h"
+#import "SGPageTitleView.h"
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
-@property(nonatomic ,strong)UITableView * tableView;
+@property(nonatomic ,strong)LLHomeBaseTableView * tableView;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @property(nonatomic ,strong)LLHomeTableHeaderView * headerView;
+@property(nonatomic ,strong)UICollectionView * contentCollectView;
+@property(nonatomic ,assign)NSInteger selectIndex;
 @end
 
 @implementation HomeViewController
@@ -49,7 +55,12 @@
         make.edges.equalTo(self.view);
     }];
     self.headerView = [[LLHomeTableHeaderView alloc] init];
-   
+    WEAKSELF;
+    self.headerView.pageTitleblock = ^(NSInteger selectIndex) {
+        weakSelf.selectIndex = selectIndex;
+        [weakSelf.contentCollectView setContentOffset:CGPointMake(APPWidth * selectIndex, 0) animated:true];
+        [weakSelf setupData];
+    };
 }
 
 #pragma mark ----- 网络请求 -------
@@ -57,7 +68,6 @@
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"home/button_home.do" param:param success:^(id response) {
-        
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
             [LLHudTools showWithMessage:baseModel.msg];
@@ -69,10 +79,10 @@
         [array addObjectsFromArray:buttons];
          [array addObjectsFromArray:buttons];
         if (array.count< 3) {
-            self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10);
+            self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10 + 55 );
              self.tableView.tableHeaderView = self.headerView;
         }else {
-             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10);
+             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55);
              self.tableView.tableHeaderView = self.headerView;
         }
          self.headerView.buttons = array;
@@ -85,9 +95,24 @@
 }
 
 -(void)setupData {
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"dateType":@"1"
-                             };
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    switch (_selectIndex) {
+        case 0:
+            param[@"dateType"] = @"1";
+            break;
+        case 1:
+            param[@"dateType"] = @"2";
+            break;
+        case 2:
+            param[@"dateType"] = @"3";
+            break;
+        case 3:
+            param[@"dateType"] = @"4";
+            break;
+        default:
+            break;
+    }
     [BXSHttp requestGETWithAppURL:@"data_report/index.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
@@ -96,12 +121,10 @@
         }
         self.pieChartModel = [LLHomePieChartModel LLMJParse:baseModel.data];
         self.headerView.chartModels =  self.pieChartModel.turnoverList;
+        [self.contentCollectView reloadData];
     } failure:^(NSError *error) {
          BXS_Alert(LLLoadErrorMessage)
     }];
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -110,9 +133,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        [cell.contentView addSubview:self.contentCollectView];
+        [self.contentCollectView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(cell.contentView);
+        }];
+    }
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 260 * 3;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 4;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    LLHomeChildContentCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLHomeChildContentCollectionCell" forIndexPath:indexPath];
+    cell.model = self.pieChartModel;
+    cell.selectIndex = _selectIndex;
+    return cell;
+}
+
+
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+      self.selectIndex = scrollView.contentOffset.x/APPWidth;
+    self.headerView.pageTitleView.resetSelectedIndex = scrollView.contentOffset.x/APPWidth;
+}
+
+//-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+//    [self scrollViewDidEndDecelerating:scrollView];
+//}
 
 
 
@@ -126,14 +184,30 @@
 
 
 /// MARK: ---- 懒加载
--(UITableView *)tableView {
+-(LLHomeBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[LLHomeBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
+}
+-(UICollectionView *)contentCollectView {
+    if (!_contentCollectView) {
+        UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
+        layout.scrollDirection =  UICollectionViewScrollDirectionHorizontal;
+        layout.minimumLineSpacing = 0;
+        layout.minimumInteritemSpacing = 0;
+        layout.itemSize = CGSizeMake(SCREEN_WIDTH, 260 * 3);
+        _contentCollectView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        _contentCollectView.delegate = self;
+        _contentCollectView.dataSource = self;
+        _contentCollectView.backgroundColor = [UIColor whiteColor];
+        [_contentCollectView registerClass:[LLHomeChildContentCollectionCell class] forCellWithReuseIdentifier:@"LLHomeChildContentCollectionCell"];
+        _contentCollectView.pagingEnabled = true;
+    }
+    return _contentCollectView;
 }
 
 @end

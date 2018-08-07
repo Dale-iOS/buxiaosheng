@@ -664,6 +664,10 @@
 		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
 		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
 		A04F6FF821198D4E00CFDE1C /* LLHomeTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */; };
+		A04F6FFE2119913C00CFDE1C /* LLHomeChidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FFD2119913C00CFDE1C /* LLHomeChidVC.m */; };
+		A04F70012119947000CFDE1C /* LLHomeChildContentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70002119947000CFDE1C /* LLHomeChildContentCollectionCell.m */; };
+		A04F70042119977500CFDE1C /* LLHomeBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */; };
+		A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -1674,6 +1678,14 @@
 		A04F6FCD21194EBD00CFDE1C /* DateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
 		A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHomeTableHeaderView.m; sourceTree = "<group>"; };
 		A04F6FF721198D4E00CFDE1C /* LLHomeTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHomeTableHeaderView.h; sourceTree = "<group>"; };
+		A04F6FFC2119913C00CFDE1C /* LLHomeChidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeChidVC.h; sourceTree = "<group>"; };
+		A04F6FFD2119913C00CFDE1C /* LLHomeChidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeChidVC.m; sourceTree = "<group>"; };
+		A04F6FFF2119947000CFDE1C /* LLHomeChildContentCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeChildContentCollectionCell.h; sourceTree = "<group>"; };
+		A04F70002119947000CFDE1C /* LLHomeChildContentCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeChildContentCollectionCell.m; sourceTree = "<group>"; };
+		A04F70022119977500CFDE1C /* LLHomeBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeBaseTableView.h; sourceTree = "<group>"; };
+		A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeBaseTableView.m; sourceTree = "<group>"; };
+		A04F70052119A0D400CFDE1C /* LLHomeChildCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeChildCell.h; sourceTree = "<group>"; };
+		A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeChildCell.m; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -2745,6 +2757,8 @@
 			children = (
 				34A92B56207DEE6C00572648 /* HomeViewController.h */,
 				34A92B57207DEE6C00572648 /* HomeViewController.m */,
+				A04F6FFC2119913C00CFDE1C /* LLHomeChidVC.h */,
+				A04F6FFD2119913C00CFDE1C /* LLHomeChidVC.m */,
 				343008D72081AC9700447992 /* NowDayViewController.h */,
 				343008D82081AC9700447992 /* NowDayViewController.m */,
 				343008DA2081ACA500447992 /* NowMonthViewController.h */,
@@ -3501,6 +3515,12 @@
 				A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */,
 				A04F6FF721198D4E00CFDE1C /* LLHomeTableHeaderView.h */,
 				A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */,
+				A04F6FFF2119947000CFDE1C /* LLHomeChildContentCollectionCell.h */,
+				A04F70002119947000CFDE1C /* LLHomeChildContentCollectionCell.m */,
+				A04F70022119977500CFDE1C /* LLHomeBaseTableView.h */,
+				A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */,
+				A04F70052119A0D400CFDE1C /* LLHomeChildCell.h */,
+				A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -4892,6 +4912,7 @@
 				3432C51A2101D68D00DE9E22 /* BaseNavigationController.m in Sources */,
 				3480AAAC20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
+				A04F70012119947000CFDE1C /* LLHomeChildContentCollectionCell.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
 				B5E288EC20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
@@ -5120,6 +5141,7 @@
 				34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */,
 				346E02312110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
 				3433D0B720B5105B003FFC16 /* LZHomeModel.m in Sources */,
+				A04F70042119977500CFDE1C /* LLHomeBaseTableView.m in Sources */,
 				B50505AF209AB2DA00CE7E4D /* XLFormLeftRightSelectorCell.m in Sources */,
 				34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */,
 				B531EF4920BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
@@ -5177,6 +5199,7 @@
 				3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
 				3465CA0020DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
+				A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */,
 				34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */,
 				B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */,
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
@@ -5239,6 +5262,7 @@
 				346C2264210E03D3004AAC88 /* LLSalesDemandSideSlipVc.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				344E4D74210EB1E60031DCE8 /* LZFineCodeCell.m in Sources */,
+				A04F6FFE2119913C00CFDE1C /* LLHomeChidVC.m in Sources */,
 				344C48B120D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3465C9FE20DC9A9700BAE415 /* FSCalendarTransitionCoordinator.m in Sources */,
