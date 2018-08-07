@@ -471,6 +471,8 @@
 		34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34847D5020C7D3FC004485F1 /* NSArray+Utils.m */; };
 		3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51821196729004F419F /* LZAuditDetailModel.m */; };
 		3484F51A21196729004F419F /* LZAuditDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51821196729004F419F /* LZAuditDetailModel.m */; };
+		3484F51D21198C59004F419F /* LZBankListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51C21198C59004F419F /* LZBankListModel.m */; };
+		3484F51E21198C59004F419F /* LZBankListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484F51C21198C59004F419F /* LZBankListModel.m */; };
 		34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
 		34871CFB20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */; };
 		34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34871CFD20DBB59600F7182C /* LZPurchasingInfoVC.m */; };
@@ -1380,6 +1382,8 @@
 		34847D5020C7D3FC004485F1 /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
 		3484F51721196729004F419F /* LZAuditDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAuditDetailModel.h; sourceTree = "<group>"; };
 		3484F51821196729004F419F /* LZAuditDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAuditDetailModel.m; sourceTree = "<group>"; };
+		3484F51B21198C59004F419F /* LZBankListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBankListModel.h; sourceTree = "<group>"; };
+		3484F51C21198C59004F419F /* LZBankListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBankListModel.m; sourceTree = "<group>"; };
 		34871CF820DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYEqualCellSpaceFlowLayout.m; sourceTree = "<group>"; };
 		34871CF920DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYEqualCellSpaceFlowLayout.h; sourceTree = "<group>"; };
 		34871CFC20DBB59600F7182C /* LZPurchasingInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchasingInfoVC.h; sourceTree = "<group>"; };
@@ -4032,6 +4036,8 @@
 				34D5EAF320D25483009D9D7C /* LZBankDetailModel.m */,
 				34D5EAFE20D26E13009D9D7C /* LZBankListDetailModel.h */,
 				34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */,
+				3484F51B21198C59004F419F /* LZBankListModel.h */,
+				3484F51C21198C59004F419F /* LZBankListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5238,6 +5244,7 @@
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
 				3450B02A20E0ED9C00429570 /* LZRecipeCell.m in Sources */,
+				3484F51D21198C59004F419F /* LZBankListModel.m in Sources */,
 				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
 				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
@@ -5464,6 +5471,7 @@
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				3488D69F2118556E0061BA0C /* LZAuditDetailInfoView.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
+				3484F51E21198C59004F419F /* LZBankListModel.m in Sources */,
 				3480AA9C20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				349AAF6F20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,

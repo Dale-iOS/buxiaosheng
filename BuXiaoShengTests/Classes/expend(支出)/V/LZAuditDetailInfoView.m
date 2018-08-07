@@ -16,13 +16,8 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        [self addSubview:self.timeLabel];
-        [self addSubview:self.typeLabel];
-        [self addSubview:self.moneyLabel];
-        [self addSubview:self.approverLabel];
-        [self addSubview:self.remarkTestView];
         
-        [self needsUpdateConstraints];
+        [self setNeedsUpdateConstraints];
     }
     return self;
 }
@@ -33,6 +28,7 @@
         temp.titleLabel.text = @"时间：";
         temp.titleLabel.textColor = CD_Text33;
         temp.titleLabel.font = FONT(14);
+        temp.lineView.hidden = YES;
         temp.userInteractionEnabled = NO;
         [self addSubview:(timeLabel = temp)];
     }
@@ -45,6 +41,7 @@
         temp.titleLabel.text = @"开销类型：";
         temp.titleLabel.textColor = CD_Text33;
         temp.titleLabel.font = FONT(14);
+        temp.lineView.hidden = YES;
         temp.userInteractionEnabled = NO;
         [self addSubview:(typeLabel = temp)];
     }
@@ -58,6 +55,7 @@
         temp.titleLabel.textColor = CD_Text33;
         temp.titleLabel.font = FONT(14);
         temp.contentTF.textColor = LZAppRedColor;
+        temp.lineView.hidden = YES;
         temp.userInteractionEnabled = NO;
         [self addSubview:(moneyLabel = temp)];
     }
@@ -70,6 +68,7 @@
         temp.titleLabel.text = @"审批人：";
         temp.titleLabel.textColor = CD_Text33;
         temp.titleLabel.font = FONT(14);
+        temp.lineView.hidden = YES;
         temp.userInteractionEnabled = NO;
         [self addSubview:(approverLabel = temp)];
     }
@@ -82,6 +81,7 @@
         temp.titleLabel.text = @"备注：";
         temp.titleLabel.textColor = CD_Text33;
         temp.titleLabel.font = FONT(14);
+        temp.lineView.hidden = YES;
         temp.userInteractionEnabled = NO;
         [self addSubview:(remarkTestView = temp)];
     }
@@ -100,31 +100,40 @@
     
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(15);
-        make.top.mas_offset(self.timeLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.timeLabel.mas_bottom).offset(15);
         make.width.mas_offset(100);
         make.height.mas_offset(15);
     }];
     
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(15);
-        make.top.mas_offset(self.typeLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.typeLabel.mas_bottom).offset(15);
         make.width.mas_offset(100);
         make.height.mas_offset(15);
     }];
-    
+
     [self.approverLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(15);
-        make.top.mas_offset(self.moneyLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.moneyLabel.mas_bottom).offset(15);
         make.width.mas_offset(100);
         make.height.mas_offset(15);
     }];
-    
+
     [self.remarkTestView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(15);
-        make.top.mas_offset(self.moneyLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.approverLabel.mas_bottom).offset(15);
         make.width.mas_offset(100);
-        make.height.mas_offset(40);
+        make.height.mas_offset(70);
     }];
+}
+
+- (void)setModel:(LZAuditDetailModel *)model{
+    _model = model;
+    self.timeLabel.contentTF.text = [BXSTools stringFromTData:_model.tallyTime];
+    self.typeLabel.contentTF.text = _model.costsubjectName;
+    self.moneyLabel.contentTF.text = [NSString stringWithFormat:@"￥%@",_model.amount];
+    self.approverLabel.contentTF.text = _model.approverName;
+    self.remarkTestView.textView.text = _model.remark;
 }
 
 @end

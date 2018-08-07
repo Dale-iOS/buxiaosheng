@@ -87,12 +87,13 @@
     self.priceCell.titleLabel.text = @"付款金额";
     self.priceCell.contentTF.placeholder = @"请输入金额";
     
-    //联系人信息
+    //付款方式
     self.contactCell = [[TextInputCell alloc]init];
     self.contactCell.frame = CGRectMake(0, 0, APPWidth, 49);
     self.contactCell.titleLabel.text = @"付款方式";
     self.contactCell.contentTF.placeholder = @"请选择付款方式";
     self.contactCell.contentTF.enabled = NO;
+    self.contactCell.rightArrowImageVIew.hidden = NO;
     UITapGestureRecognizer *contactCellTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(contactCellTapClick)];
     [self.contactCell addGestureRecognizer:contactCellTap];
     

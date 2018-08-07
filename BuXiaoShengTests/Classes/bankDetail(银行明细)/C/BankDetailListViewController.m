@@ -130,7 +130,8 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _lists = [LZBankListDetailModel LLMJParse:baseModel.data];
+        LZBankListDetailModel *model = [LZBankListDetailModel LLMJParse:baseModel.data];
+        _lists = mo;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);

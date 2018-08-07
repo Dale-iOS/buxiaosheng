@@ -14,11 +14,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.headerImageView];
-        [self addSubview:headerTitle];
-        [self addSubview:nameLabel];
-        [self addSubview:state];
-        
+
         [self setNeedsUpdateConstraints];
     }
     return self;
@@ -58,9 +54,12 @@
 - (UILabel *)state{
     if (state == nil) {
         UILabel *label = [[UILabel alloc]init];
-        label.backgroundColor = [UIColor colorWithHexString:@"#25cce5" alpha:0.2];
+//        label.backgroundColor = [UIColor colorWithHexString:@"#25cce5" alpha:0.2];
+//        label.textColor = [UIColor colorWithHexString:@"#25cce5"];
         label.layer.cornerRadius = 2.0f;
+        label.layer.masksToBounds = YES;
         label.font = FONT(12);
+        label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:(state = label)];
     }
     return state;
@@ -76,7 +75,7 @@
     }];
     
     [self.headerTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self);
+        make.center.mas_equalTo(headerImageView);
     }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +88,7 @@
     [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.headerImageView.mas_right).offset(15);
         make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(10);
-        make.height.mas_offset(14);
+        make.height.mas_equalTo(20);
     }];
 }
 
@@ -108,23 +107,34 @@
         case -1:
             //已取消
             self.state.text = @"已撤销审批";
+            self.state.backgroundColor = [UIColor colorWithHexString:@"##ff6565" alpha:0.2];
+            self.state.textColor = [UIColor colorWithHexString:@"##ff6565"];
             break;
         case 0:
             //待审批
             self.state.text = [NSString stringWithFormat:@"等待%@审批",_model.approverName];
+            self.state.backgroundColor = [UIColor colorWithHexString:@"#25cce5" alpha:0.2];
+            self.state.textColor = [UIColor colorWithHexString:@"#25cce5"];
             break;
         case 1:
             //通过
             self.state.text = @"已同意审批";
+            self.state.backgroundColor = [UIColor colorWithHexString:@"#25cce5" alpha:0.2];
+            self.state.textColor = [UIColor colorWithHexString:@"#25cce5"];
             break;
         case 2:
             //拒绝
             self.state.text = @"已拒绝审批";
+            self.state.backgroundColor = [UIColor colorWithHexString:@"##ff6565" alpha:0.2];
+            self.state.textColor = [UIColor colorWithHexString:@"##ff6565"];
             break;
             
         default:
             break;
     }
+    [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_offset(self.state.text.length*13 +3);
+    }];
 }
 
 @end

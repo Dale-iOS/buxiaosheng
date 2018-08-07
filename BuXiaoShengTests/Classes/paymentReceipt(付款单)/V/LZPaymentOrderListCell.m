@@ -55,7 +55,6 @@
     _moneyLbl = [[UILabel alloc]init];
     [self.contentView addSubview:_moneyLbl];
     _moneyLbl.textAlignment = NSTextAlignmentRight;
-    _moneyLbl.textColor = [UIColor colorWithHexString:@"#f26552"];
     _moneyLbl.font = FONT(17);
     [_moneyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-15);
@@ -69,7 +68,14 @@
     _model = model;
     _nameLbl.text = _model.factoryName;
     _dataLbl.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
-    _moneyLbl.text = [NSString stringWithFormat:@"+%@",_model.amount];
+    if ([_model.amount integerValue] >0) {
+        _moneyLbl.text = [NSString stringWithFormat:@"-%@",_model.amount];
+        _moneyLbl.textColor = CD_Text33;
+    }else{
+        _moneyLbl.text = [NSString stringWithFormat:@"+%@",_model.amount];
+        _moneyLbl.textColor = LZAppRedColor;
+    }
+    
 }
 
 - (void)awakeFromNib {
