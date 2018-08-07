@@ -9,7 +9,7 @@
 #import "LLHomeChildContentCollectionCell.h"
 #import "LLHomeChidVC.h"
 @interface LLHomeChildContentCollectionCell()
-@property(nonatomic ,strong)LLHomeChidVC * childVc;
+
 @end
 
 @implementation LLHomeChildContentCollectionCell

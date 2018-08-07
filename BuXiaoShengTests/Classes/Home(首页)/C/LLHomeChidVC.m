@@ -9,8 +9,10 @@
 #import "LLHomeChidVC.h"
 #import "LLHomeChildCell.h"
 #import "LLHomePieChartModel.h"
+#import "LLHomeBaseTableView.h"
+#import "HomeViewController.h"
 @interface LLHomeChidVC ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic ,strong)UITableView * tableView;
+
 @property(nonatomic ,strong)NSMutableArray * models;
 @end
 
@@ -86,9 +88,24 @@
     return 260;
 }
 
-- (UITableView *)tableView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (!self.vcCanScroll) {
+        scrollView.contentOffset = CGPointZero;
+    }
+    if (scrollView.contentOffset.y <= 0) {
+        self.vcCanScroll = false;
+        scrollView.contentOffset = CGPointZero;
+        HomeViewController * parentVc = (HomeViewController *)self.parentViewController;
+        parentVc.canScroll = true;
+        //parentVc.cell.cellCanScroll = false;
+    }
+    
+}
+
+- (LLHomeBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[LLHomeBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [_tableView registerClass:[LLHomeChildCell class] forCellReuseIdentifier:@"LLHomeChildCell"];
         _tableView.delegate = self;
         _tableView.dataSource = self;

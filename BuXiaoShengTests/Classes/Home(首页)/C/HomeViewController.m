@@ -15,10 +15,11 @@
 #import "LLHomeChildContentCollectionCell.h"
 #import "LLHomeBaseTableView.h"
 #import "SGPageTitleView.h"
+#import "LLHomeChidVC.h"
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
-@property(nonatomic ,strong)LLHomeBaseTableView * tableView;
+@property(nonatomic ,strong)UITableView * tableView;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @property(nonatomic ,strong)LLHomeTableHeaderView * headerView;
 @property(nonatomic ,strong)UICollectionView * contentCollectView;
@@ -117,6 +118,7 @@
         }
         self.pieChartModel = [LLHomePieChartModel LLMJParse:baseModel.data];
         self.headerView.chartModels =  self.pieChartModel.turnoverList;
+        self.headerView.pageTitleView.selectedIndex = self.selectIndex;
         [self.contentCollectView reloadData];
     } failure:^(NSError *error) {
          BXS_Alert(LLLoadErrorMessage)
@@ -154,19 +156,53 @@
     LLHomeChildContentCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLHomeChildContentCollectionCell" forIndexPath:indexPath];
     cell.model = self.pieChartModel;
     cell.selectIndex = _selectIndex;
+    if (!self.childViewControllers.count) {
+        [self addChildViewController:cell.childVc];
+    }
     return cell;
 }
 
 
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-      self.selectIndex = scrollView.contentOffset.x/APPWidth;
-    self.headerView.pageTitleView.resetSelectedIndex = scrollView.contentOffset.x/APPWidth;
+    if (scrollView==self.contentCollectView) {
+        self.selectIndex = scrollView.contentOffset.x/APPWidth;
+        self.headerView.pageTitleView.resetSelectedIndex = scrollView.contentOffset.x/APPWidth;
+        return;
+    }
+    
 }
 
 //-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
 //    [self scrollViewDidEndDecelerating:scrollView];
 //}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:self.contentCollectView]) {
+        return;
+    }
+    CGFloat bottomCellOffset = [self.tableView rectForSection:0].origin.y;
+    if (scrollView.contentOffset.y >= bottomCellOffset) {
+        scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+        if (self.canScroll) {
+            self.canScroll = NO;
+            [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof LLHomeChidVC * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.vcCanScroll = true;
+                if (!obj.vcCanScroll) {
+                    obj.tableView.contentOffset = CGPointZero;
+                }
+            }];
+            //  self.cell.cellCanScroll = YES;
+            
+        }
+    }else{
+        if (!self.canScroll) {//子视图没到顶部
+            scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+        }
+    }
+    //self.tableView.showsVerticalScrollIndicator = _canScroll?YES:NO;
+    
+}
 
 
 
@@ -180,9 +216,9 @@
 
 
 /// MARK: ---- 懒加载
--(LLHomeBaseTableView *)tableView {
+-(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[LLHomeBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
