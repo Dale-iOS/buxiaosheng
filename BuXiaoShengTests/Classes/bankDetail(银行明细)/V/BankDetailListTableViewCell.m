@@ -8,6 +8,7 @@
 
 #import "BankDetailListTableViewCell.h"
 #import "LZBankListDetailModel.h"
+#import "LZBankListModel.h"
 
 @implementation BankDetailListTableViewCell
 @synthesize iconImageView,titleLabel,bankLabel,dateLabel,moneyLabel;
@@ -45,7 +46,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(14);
         label.textColor = CD_Text33;
-        label.text = @"利息收入";
+//        label.text = @"利息收入";
         [contentView addSubview:(titleLabel = label)];
     }
     return titleLabel;
@@ -58,7 +59,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(12);
         label.textColor = CD_Text66;
-        label.text = @"建设银行";
+//        label.text = @"建设银行";
         [contentView addSubview:(bankLabel = label)];
     }
     return bankLabel;
@@ -71,7 +72,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(12);
         label.textColor = CD_Text66;
-        label.text = @"2018-4-10";
+//        label.text = @"2018-4-10";
         [contentView addSubview:(dateLabel = label)];
     }
     return dateLabel;
@@ -84,7 +85,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(17);
         label.textColor = [UIColor colorWithHexString:@"#f26552"];
-        label.text = @"+12.00";
+//        label.text = @"+12.00";
         label.textAlignment = NSTextAlignmentRight;
         [contentView addSubview:(moneyLabel = label)];
     }
@@ -124,7 +125,7 @@
     .topSpaceToView(contentView, 20);
 }
 
-- (void)setModel:(LZBankListDetailModel *)model{
+- (void)setModel:(LZBankListListModel *)model{
     _model = model;
     self.titleLabel.text = _model.objectName;
     self.bankLabel.text = _model.bankName;

@@ -11,3 +11,7 @@
 @implementation LZBankListModel
 
 @end
+
+@implementation LZBankListListModel
+
+@end

@@ -77,7 +77,7 @@
         label.layer.cornerRadius = 2.0f;
         label.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:204.0f/255.0f blue:229.0f/255.0f alpha:0.2f];
         label.textColor = [UIColor colorWithHexString:@"#25cce5"];
-        label.text = @"农业银行";
+//        label.text = @"农业银行";
         label.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(bankLbl = label)];
     }
@@ -89,9 +89,9 @@
     if (priceLbl == nil) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.font = FONT(17);
+        label.font = FONT(16);
         label.textColor = [UIColor colorWithHexString:@"#f26552"];
-        label.text = @"+1324651.00";
+//        label.text = @"+1324651.00";
         label.textAlignment = NSTextAlignmentRight;
         [contentView addSubview:(priceLbl = label)];
     }

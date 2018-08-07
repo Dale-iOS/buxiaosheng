@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIButton *conversionBtn;
 @property(nonatomic,strong)LZBankDetailModel *model;
 @property(nonatomic,strong)NSArray<LZBankDetailListModel*> *lists;
+
 @end
 
 @implementation BankDetailViewController
@@ -69,7 +70,8 @@
 
 - (void)setupUI
 {
-
+    
+    
     UIView *bgBlueView = [[UIView alloc]init];
     bgBlueView.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
     bgBlueView.frame = CGRectMake(0, 0, APPWidth, LZHScale_HEIGHT(250)  +64);
@@ -93,7 +95,7 @@
     
     //布局
     self.priceLbl.sd_layout
-    .topSpaceToView(bgBlueView, 30+64)
+    .topSpaceToView(bgBlueView, 32+64)
     .widthIs(APPWidth)
     .heightIs(36)
     .centerXEqualToView(bgBlueView);
@@ -111,6 +113,8 @@
     //隐藏分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    
+
     
     //银行互转
     self.conversionBtn = [UIButton new];
@@ -134,7 +138,8 @@
             return ;
         }
         _model = [LZBankDetailModel LLMJParse:baseModel.data];
-        self.priceLbl.text = _model.totalAmount;
+//        int total = [_model.totalAmount intValue];
+        self.priceLbl.text = [NSString stringWithFormat:@"%.2f",_model.totalAmount.floatValue];
         _lists = _model.itemList;
         [self.tableView reloadData];
     } failure:^(NSError *error) {

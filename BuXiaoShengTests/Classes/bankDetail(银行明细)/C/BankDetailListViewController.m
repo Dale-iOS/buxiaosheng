@@ -9,7 +9,7 @@
 #import "BankDetailListViewController.h"
 #import "BankDetailListTableViewCell.h"
 #import "DocumentBankDetailViewController.h"
-#import "LZBankListDetailModel.h"
+//#import "LZBankListDetailModel.h"
 #import "LLDayCalendarVc.h"
 #import "LLWeekCalendarVc.h"
 #import "LLMonthCalendarVc.h"
@@ -17,6 +17,7 @@
 #import "SGPagingView.h"
 #import "LZChooseBankTypeVC.h"
 #import "LZChangeNumVC.h"
+#import "LZBankListModel.h"
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -29,10 +30,11 @@
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *headDateLbl;
-@property(nonatomic,strong)NSArray<LZBankListDetailModel*> *lists;
+@property(nonatomic,strong) NSMutableArray <LZBankListListModel *> *lists;
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
+@property (nonatomic,assign) NSInteger  pageIndex;//页数
 @end
 
 @implementation BankDetailListViewController
@@ -50,6 +52,8 @@
 
 - (void)setupUI
 {
+    self.pageIndex = 1;
+    
     //tableview顶部试图
     self.tableViewHeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.tableViewHeadView.backgroundColor = [UIColor whiteColor];
@@ -111,13 +115,25 @@
     //隐藏分割线
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        
+        [weakSelf setupList];
+    }];
+    
 }
 
 #pragma mark ---- 网络请求 ----
 - (void)setupList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@"6",
                              @"startDate":_startStr,
                              @"endDate":_endStr,
                              @"type":_typeId == nil ? @"" : _typeId,
@@ -130,8 +146,19 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        LZBankListDetailModel *model = [LZBankListDetailModel LLMJParse:baseModel.data];
-//        _lists = mo;
+        LZBankListModel *model = [LZBankListModel LLMJParse:baseModel.data];
+        
+        if (self.pageIndex == 1) {
+            _lists = [LZBankListListModel LLMJParse:model.itemList];
+        }else{
+            [_lists addObjectsFromArray:[LZBankListListModel LLMJParse:model.itemList]];
+        }
+        
+        
+        
+        
+        
+        
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
