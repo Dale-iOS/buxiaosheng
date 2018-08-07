@@ -18,7 +18,7 @@
 #import "LZChooseBankTypeVC.h"
 #import "LZBankListModel.h"
 
-#define pageSize  5
+static NSInteger const pageSize = 10;
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -122,12 +122,16 @@
         weakSelf.pageIndex = 1;
         [weakSelf setupList];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+    
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
         weakSelf.pageIndex +=1;
-        
         [weakSelf setupList];
     }];
-    
+    return footer;
 }
 
 #pragma mark ---- 网络请求 ----
@@ -142,27 +146,44 @@
                              @"incomeType":_incometypeId == nil ? @"" : _incometypeId
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [[response objectForKey:@"data"] objectForKey:@"itemList"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZBankListListModel *model = [LZBankListListModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        LZBankListModel *model = [LZBankListModel LLMJParse:baseModel.data];
-        
-        if (self.pageIndex == 1) {
-            _lists = [LZBankListListModel LLMJParse:model.itemList];
-        }else{
-            [_lists addObjectsFromArray:[LZBankListListModel LLMJParse:model.itemList]];
-        }
-        
-        
-        
-        
-        
-        
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -337,7 +358,13 @@
    _bottomView.hidden = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZBankListListModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
+
+
 @end
