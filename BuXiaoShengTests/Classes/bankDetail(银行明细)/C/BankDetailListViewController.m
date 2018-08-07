@@ -131,7 +131,7 @@
             return ;
         }
         LZBankListDetailModel *model = [LZBankListDetailModel LLMJParse:baseModel.data];
-        _lists = mo;
+//        _lists = mo;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
