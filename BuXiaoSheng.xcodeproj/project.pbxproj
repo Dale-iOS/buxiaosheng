@@ -663,6 +663,7 @@
 		A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */; };
 		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
 		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
+		A04F6FF821198D4E00CFDE1C /* LLHomeTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -1671,6 +1672,8 @@
 		A04F6FC9211949A400CFDE1C /* BuXiaoSheng-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BuXiaoSheng-Bridging-Header.h"; sourceTree = "<group>"; };
 		A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateValueFormatter.m; sourceTree = "<group>"; };
 		A04F6FCD21194EBD00CFDE1C /* DateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
+		A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHomeTableHeaderView.m; sourceTree = "<group>"; };
+		A04F6FF721198D4E00CFDE1C /* LLHomeTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHomeTableHeaderView.h; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -3496,6 +3499,8 @@
 			children = (
 				A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */,
 				A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */,
+				A04F6FF721198D4E00CFDE1C /* LLHomeTableHeaderView.h */,
+				A04F6FF621198D4E00CFDE1C /* LLHomeTableHeaderView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -5088,6 +5093,7 @@
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
 				3455F68A20CA7C8700579521 /* LZWeaveView.m in Sources */,
 				344E4D7C210EBC570031DCE8 /* BXSChooseProductVC.m in Sources */,
+				A04F6FF821198D4E00CFDE1C /* LLHomeTableHeaderView.m in Sources */,
 				3455F69620CAC60B00579521 /* LZClientReceiptVC.m in Sources */,
 				34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */,
 				344E4D48210EAD4D0031DCE8 /* GridTableView.m in Sources */,

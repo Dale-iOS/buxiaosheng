@@ -31,7 +31,9 @@
     if (self) {
         [self addSubview:self.chartView];
         [_chartView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.left.top.equalTo(self).offset(20);
+            make.right.bottom.equalTo(self).offset(-20);
+            //make.edges.equalTo(self).offset(10);
         }];
     }
     return self;
@@ -47,8 +49,19 @@
     for (int i = 0; i < count; i++)
     {
         LLTurnoverListModel * model = _chartData[i];
-        [xVals addObject:model.date];
-        [values addObject:[[ChartDataEntry alloc] initWithX:i y:model.amount icon: [UIImage imageNamed:@"icon"]]];
+        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMM";
+        NSDate *date =  [formatter dateFromString:model.date];
+        formatter.dateFormat = @"yyyy-MM";
+        NSString * dateStr = [formatter stringFromDate:date];
+        NSArray * monthArr = [dateStr componentsSeparatedByString:@"-"];
+        if (monthArr.count) {
+            [xVals addObject:[NSString stringWithFormat:@"%@月",monthArr.lastObject]]  ;
+        }else {
+            [xVals addObject:model.date]  ;
+        }
+        
+        [values addObject:[[ChartDataEntry alloc] initWithX:i y:model.amount icon: nil]];
     }
     _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc]initWithArr:xVals];
     
@@ -62,7 +75,7 @@
     }
     else
     {
-        set1 = [[LineChartDataSet alloc] initWithValues:values label:@"DataSet 1"];
+        set1 = [[LineChartDataSet alloc] initWithValues:values label:@"最近半年营业额度列表"];
         set1.mode = LineChartModeHorizontalBezier;
         set1.drawIconsEnabled = NO;
         
@@ -71,9 +84,9 @@
          set1.drawCircleHoleEnabled = true;
         
         set1.lineCapType = kCGLineCapSquare;
-        [set1 setColor:UIColor.whiteColor];
-        [set1 setCircleColor:UIColor.blueColor];
-        set1.circleHoleColor = [UIColor redColor];
+        [set1 setColor:[UIColor colorWithR:74 G:212 B:213 A:1.0]];
+        [set1 setCircleColor:[UIColor colorWithR:74 G:212 B:213 A:1.0]];
+        set1.circleHoleColor = [UIColor colorWithR:74 G:212 B:213 A:1.0];
         set1.lineWidth = 1.0;
         set1.circleRadius = 3.0;
        
@@ -83,14 +96,14 @@
         set1.formSize = 15.0;
         
         NSArray *gradientColors = @[
-                                    (id)[ChartColorTemplates colorFromString:@"#00ff0000"].CGColor,
-                                    (id)[ChartColorTemplates colorFromString:@"#ffff0000"].CGColor
+                                    (id)[UIColor colorWithR:74 G:212 B:213 A:1.0].CGColor,
+                                   (id)[UIColor colorWithR:74 G:212 B:213 A:0.6].CGColor,
                                     ];
         CGGradientRef gradient = CGGradientCreateWithColors(nil, (CFArrayRef)gradientColors, nil);
         
-        set1.fillAlpha = 1.f;
+        set1.fillAlpha = 0.3;
         set1.fill = [ChartFill fillWithLinearGradient:gradient angle:90.f];
-        set1.drawFilledEnabled = YES;
+        set1.drawFilledEnabled = true;
         
         CGGradientRelease(gradient);
         
@@ -114,8 +127,12 @@
         ChartXAxis *xaxis = _chartView.xAxis;
         xaxis.labelPosition = XAxisLabelPositionBottom;
         xaxis.gridColor = [UIColor clearColor];
+        xaxis.labelCount = 6;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
+        xaxis.forceLabelsEnabled = true;//不强制绘制指定数量的label
+        
         _chartView.rightAxis.enabled = NO;//不绘制右边轴
         ChartYAxis *leftAxis = _chartView.leftAxis;//获取左边Y轴
+        leftAxis.enabled = false;
         leftAxis.labelCount = 4;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
         leftAxis.forceLabelsEnabled = false;//不强制绘制指定数量的label
         // leftAxis.axisMinValue = 0;//设置Y轴的最小值

@@ -25,6 +25,7 @@
 }
 - (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis
 {
+    
     //NSLog(@"%@",_arr[(NSInteger)value]);
     return _arr[(NSInteger)value];
 }
