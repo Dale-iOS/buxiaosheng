@@ -91,6 +91,13 @@
     return cell;
 }
 
+- (void)didClickgoAuditBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZNoBackOrderModel *model = _lists[indexP.row];
+    //退货单id
+//    model.id
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 

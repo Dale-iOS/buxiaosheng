@@ -10,7 +10,7 @@
 #import "LZProcurementCell.h"
 #import "LZProcurementModel.h"
 
-@interface NoAuditInStorageViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoAuditInStorageViewController ()<UITableViewDelegate,UITableViewDataSource,LZProcurementCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray <LZProcurementModel *> *listDatas;
 @end
@@ -88,7 +88,15 @@
         cell = [[LZProcurementCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.model = _listDatas[indexPath.row];
+    cell.delegate = self;
     return cell;
+}
+
+- (void)didClickgoAuditBtnInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZProcurementModel *model = _listDatas[indexP.row];
+    //id
+//    model.id;
 }
 
 - (void)didReceiveMemoryWarning {

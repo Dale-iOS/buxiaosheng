@@ -16,6 +16,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZCustomerReconciliationInfoModel.h"
 
 @interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
@@ -23,6 +24,7 @@
     NSString *_endStr;//结束时间
     NSString *_arrear;//欠款金额
     NSString *_repaymentTime;//最后还款时间
+    UILabel *_selectCoustomer;//选中客户名称
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableViewHeadView;
@@ -37,10 +39,11 @@
 @property(nonatomic,strong)NSMutableArray *customerIdAry;
 @property(nonatomic,copy)NSString *customerId;///选择中的客户id
 @property(nonatomic,strong)NSArray<LZCheckReceiptModel*> *lists;
-@property(nonatomic,strong)NSString *selecStr;
+//@property(nonatomic,strong)NSString *selecStr;
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
+@property (nonatomic, strong) LZCustomerReconciliationInfoModel *infoModel;
 @end
 
 @implementation CustomerReconciliationViewController
@@ -102,7 +105,7 @@
         make.top.equalTo(_searchTF.mas_bottom).offset(10);
     }];
     
-        [self setupBottomView];
+    
 }
 
 - (void)setupTableviewHeadView
@@ -121,6 +124,7 @@
     //导出
     UILabel *outLbl = [[UILabel alloc]init];
     outLbl.text = @"导出";
+    outLbl.font = FONT(13);
     outLbl.textAlignment = NSTextAlignmentRight;
     outLbl.textColor = [UIColor colorWithHexString:@"#3d9bfa"];
     [self.tableViewHeadView addSubview:outLbl];
@@ -132,6 +136,12 @@
     [outBtn setBackgroundColor:[UIColor clearColor]];
     [self.tableViewHeadView addSubview:outBtn];
     
+    //选中客户
+    _selectCoustomer = [[UILabel alloc]init];
+    _selectCoustomer.font = FONT(13);
+    _selectCoustomer.textAlignment = NSTextAlignmentLeft;
+    [self.tableViewHeadView addSubview:_selectCoustomer];
+    
     //线
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = LZHBackgroundColor;
@@ -142,6 +152,11 @@
 //    .centerYEqualToView(self.tableViewHeadView)
 //    .widthIs(APPWidth/3)
 //    .heightIs(15);
+    _selectCoustomer.sd_layout
+    .leftSpaceToView(self.tableViewHeadView, 15)
+    .centerYEqualToView(self.tableViewHeadView)
+    .widthIs(APPWidth/3)
+    .heightIs(15);
     
     outBtn.sd_layout
     .rightSpaceToView(self.tableViewHeadView, 15)
@@ -172,7 +187,8 @@
     self.lastpayDateLbl.textAlignment = NSTextAlignmentCenter;
     self.lastpayDateLbl.font = FONT(12);
     self.lastpayDateLbl.textColor = CD_Text33;
-    self.lastpayDateLbl.text = @"最后还款：2018-3-30";
+    NSString *tempStr = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_infoModel.repaymentTime]];
+    self.lastpayDateLbl.text = [NSString stringWithFormat:@"最后还款：%@",tempStr];
     [self.view addSubview:self.lastpayDateLbl];
     self.lastpayDateLbl.sd_layout
     .leftSpaceToView(self.view, 0)
@@ -186,7 +202,7 @@
     self.totalborrowLbl.textAlignment = NSTextAlignmentCenter;
     self.totalborrowLbl.font = FONT(12);
     self.totalborrowLbl.textColor = CD_Text33;
-    self.totalborrowLbl.text = @"累计欠款：454541.00";
+    self.totalborrowLbl.text = [NSString stringWithFormat:@"累计欠款：%@",_infoModel.arrear];
     [self.view addSubview:self.totalborrowLbl];
     self.totalborrowLbl.sd_layout
     .rightSpaceToView(self.view, 0)
@@ -218,6 +234,7 @@
         [_searchTF popOverSource:_customerNameAry index:^(NSInteger index) {
             _customerId = _customerList[index][@"id"];
             [weakSelf setupListData];
+            [weakSelf setupCoustomerInfo];
         }];
         
     } failure:^(NSError *error) {
@@ -259,9 +276,9 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
-        
-        [self.tableView reloadData];
+        _infoModel = [LZCustomerReconciliationInfoModel LLMJParse:baseModel.data];
+        [self setupBottomView];
+        _selectCoustomer.text = _infoModel.customerName;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

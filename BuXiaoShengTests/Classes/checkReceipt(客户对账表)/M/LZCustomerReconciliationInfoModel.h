@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LZCustomerReconciliationInfoModel : NSObject
-
+@property(nonatomic,copy)NSString *arrear;
+@property(nonatomic,copy)NSString *customerName;
+@property(nonatomic,copy)NSString *repaymentTime;
 @end
