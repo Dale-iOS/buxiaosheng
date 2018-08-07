@@ -523,40 +523,6 @@
 		34A92B68207DF11500572648 /* LZHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B4F207DEC6D00572648 /* LZHTableView.m */; };
 		34B1944C20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
 		34B1944D20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
-		34B8730E2081EEEC00B05EBF /* AAHighchartsLib.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CB2081EEEC00B05EBF /* AAHighchartsLib.js */; };
-		34B8730F2081EEEC00B05EBF /* AAHighchartsMore.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CC2081EEEC00B05EBF /* AAHighchartsMore.js */; };
-		34B873102081EEEC00B05EBF /* AAFunnel.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CD2081EEEC00B05EBF /* AAFunnel.js */; };
-		34B873112081EEEC00B05EBF /* AAHighcharts-3d.js in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CE2081EEEC00B05EBF /* AAHighcharts-3d.js */; };
-		34B873122081EEEC00B05EBF /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = 34B872CF2081EEEC00B05EBF /* AAChartView.html */; };
-		34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872D22081EEEC00B05EBF /* AAAreaspline.m */; };
-		34B873142081EEEC00B05EBF /* AALabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872D42081EEEC00B05EBF /* AALabels.m */; };
-		34B873152081EEEC00B05EBF /* AASeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872D72081EEEC00B05EBF /* AASeries.m */; };
-		34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872D82081EEEC00B05EBF /* AAXAxis.m */; };
-		34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872DA2081EEEC00B05EBF /* AAPlotOptions.m */; };
-		34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872DB2081EEEC00B05EBF /* AADataLabels.m */; };
-		34B873192081EEEC00B05EBF /* AALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872DC2081EEEC00B05EBF /* AALine.m */; };
-		34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872DF2081EEEC00B05EBF /* AATooltip.m */; };
-		34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872E12081EEEC00B05EBF /* AASubtitle.m */; };
-		34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872E22081EEEC00B05EBF /* AAYAxis.m */; };
-		34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872E32081EEEC00B05EBF /* AACrosshair.m */; };
-		34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872E82081EEEC00B05EBF /* AAColumn.m */; };
-		34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872E92081EEEC00B05EBF /* AAPlotLinesElement.m */; };
-		34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872EB2081EEEC00B05EBF /* AAOptions3d.m */; };
-		34B873212081EEEC00B05EBF /* AAStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872ED2081EEEC00B05EBF /* AAStyle.m */; };
-		34B873222081EEEC00B05EBF /* AABar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872EE2081EEEC00B05EBF /* AABar.m */; };
-		34B873232081EEEC00B05EBF /* AATitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872EF2081EEEC00B05EBF /* AATitle.m */; };
-		34B873242081EEEC00B05EBF /* AAArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872F22081EEEC00B05EBF /* AAArea.m */; };
-		34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872F32081EEEC00B05EBF /* AAAnimation.m */; };
-		34B873262081EEEC00B05EBF /* AALegend.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872F42081EEEC00B05EBF /* AALegend.m */; };
-		34B873272081EEEC00B05EBF /* AAMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872F62081EEEC00B05EBF /* AAMarker.m */; };
-		34B873282081EEEC00B05EBF /* AASpline.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872FA2081EEEC00B05EBF /* AASpline.m */; };
-		34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872FB2081EEEC00B05EBF /* AAItemStyle.m */; };
-		34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B872FC2081EEEC00B05EBF /* AAPie.m */; };
-		34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873022081EEEC00B05EBF /* AAChart.m */; };
-		34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873052081EEEC00B05EBF /* AAChartView.m */; };
-		34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B873082081EEEC00B05EBF /* AAChartModel.m */; };
-		34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730A2081EEEC00B05EBF /* AAOptions.m */; };
-		34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8730B2081EEEC00B05EBF /* AASeriesElement.m */; };
 		34BCABF620E732A500C25BE5 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF220E732A500C25BE5 /* TZTestCell.m */; };
 		34BCABF720E732A500C25BE5 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF220E732A500C25BE5 /* TZTestCell.m */; };
 		34BCABF820E732A500C25BE5 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF420E732A500C25BE5 /* LxGridViewFlowLayout.m */; };
@@ -691,6 +657,8 @@
 		A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */; };
+		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
+		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -1482,71 +1450,6 @@
 		34A92B5D207DEF2400572648 /* SaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleViewController.m; sourceTree = "<group>"; };
 		34B1944A20FF42380095BBFD /* LZWKWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWKWebViewVC.h; sourceTree = "<group>"; };
 		34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZWKWebViewVC.m; sourceTree = "<group>"; };
-		34B872CB2081EEEC00B05EBF /* AAHighchartsLib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsLib.js; sourceTree = "<group>"; };
-		34B872CC2081EEEC00B05EBF /* AAHighchartsMore.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsMore.js; sourceTree = "<group>"; };
-		34B872CD2081EEEC00B05EBF /* AAFunnel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAFunnel.js; sourceTree = "<group>"; };
-		34B872CE2081EEEC00B05EBF /* AAHighcharts-3d.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "AAHighcharts-3d.js"; sourceTree = "<group>"; };
-		34B872CF2081EEEC00B05EBF /* AAChartView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AAChartView.html; sourceTree = "<group>"; };
-		34B872D12081EEEC00B05EBF /* AAArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAArea.h; sourceTree = "<group>"; };
-		34B872D22081EEEC00B05EBF /* AAAreaspline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAreaspline.m; sourceTree = "<group>"; };
-		34B872D32081EEEC00B05EBF /* AATitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATitle.h; sourceTree = "<group>"; };
-		34B872D42081EEEC00B05EBF /* AALabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALabels.m; sourceTree = "<group>"; };
-		34B872D52081EEEC00B05EBF /* AAStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAStyle.h; sourceTree = "<group>"; };
-		34B872D62081EEEC00B05EBF /* AABar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABar.h; sourceTree = "<group>"; };
-		34B872D72081EEEC00B05EBF /* AASeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeries.m; sourceTree = "<group>"; };
-		34B872D82081EEEC00B05EBF /* AAXAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAXAxis.m; sourceTree = "<group>"; };
-		34B872D92081EEEC00B05EBF /* AAOptions3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptions3d.h; sourceTree = "<group>"; };
-		34B872DA2081EEEC00B05EBF /* AAPlotOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPlotOptions.m; sourceTree = "<group>"; };
-		34B872DB2081EEEC00B05EBF /* AADataLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataLabels.m; sourceTree = "<group>"; };
-		34B872DC2081EEEC00B05EBF /* AALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALine.m; sourceTree = "<group>"; };
-		34B872DD2081EEEC00B05EBF /* AAMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMarker.h; sourceTree = "<group>"; };
-		34B872DE2081EEEC00B05EBF /* AALegend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALegend.h; sourceTree = "<group>"; };
-		34B872DF2081EEEC00B05EBF /* AATooltip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATooltip.m; sourceTree = "<group>"; };
-		34B872E02081EEEC00B05EBF /* AAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnimation.h; sourceTree = "<group>"; };
-		34B872E12081EEEC00B05EBF /* AASubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASubtitle.m; sourceTree = "<group>"; };
-		34B872E22081EEEC00B05EBF /* AAYAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAYAxis.m; sourceTree = "<group>"; };
-		34B872E32081EEEC00B05EBF /* AACrosshair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AACrosshair.m; sourceTree = "<group>"; };
-		34B872E42081EEEC00B05EBF /* AAPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPie.h; sourceTree = "<group>"; };
-		34B872E52081EEEC00B05EBF /* AAItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAItemStyle.h; sourceTree = "<group>"; };
-		34B872E62081EEEC00B05EBF /* AASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASpline.h; sourceTree = "<group>"; };
-		34B872E72081EEEC00B05EBF /* AAChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChart.h; sourceTree = "<group>"; };
-		34B872E82081EEEC00B05EBF /* AAColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColumn.m; sourceTree = "<group>"; };
-		34B872E92081EEEC00B05EBF /* AAPlotLinesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPlotLinesElement.m; sourceTree = "<group>"; };
-		34B872EA2081EEEC00B05EBF /* AAXAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAXAxis.h; sourceTree = "<group>"; };
-		34B872EB2081EEEC00B05EBF /* AAOptions3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions3d.m; sourceTree = "<group>"; };
-		34B872EC2081EEEC00B05EBF /* AASeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeries.h; sourceTree = "<group>"; };
-		34B872ED2081EEEC00B05EBF /* AAStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAStyle.m; sourceTree = "<group>"; };
-		34B872EE2081EEEC00B05EBF /* AABar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABar.m; sourceTree = "<group>"; };
-		34B872EF2081EEEC00B05EBF /* AATitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATitle.m; sourceTree = "<group>"; };
-		34B872F02081EEEC00B05EBF /* AALabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALabels.h; sourceTree = "<group>"; };
-		34B872F12081EEEC00B05EBF /* AAAreaspline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAreaspline.h; sourceTree = "<group>"; };
-		34B872F22081EEEC00B05EBF /* AAArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAArea.m; sourceTree = "<group>"; };
-		34B872F32081EEEC00B05EBF /* AAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnimation.m; sourceTree = "<group>"; };
-		34B872F42081EEEC00B05EBF /* AALegend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALegend.m; sourceTree = "<group>"; };
-		34B872F52081EEEC00B05EBF /* AATooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATooltip.h; sourceTree = "<group>"; };
-		34B872F62081EEEC00B05EBF /* AAMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMarker.m; sourceTree = "<group>"; };
-		34B872F72081EEEC00B05EBF /* AALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALine.h; sourceTree = "<group>"; };
-		34B872F82081EEEC00B05EBF /* AADataLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataLabels.h; sourceTree = "<group>"; };
-		34B872F92081EEEC00B05EBF /* AAPlotOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPlotOptions.h; sourceTree = "<group>"; };
-		34B872FA2081EEEC00B05EBF /* AASpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASpline.m; sourceTree = "<group>"; };
-		34B872FB2081EEEC00B05EBF /* AAItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAItemStyle.m; sourceTree = "<group>"; };
-		34B872FC2081EEEC00B05EBF /* AAPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPie.m; sourceTree = "<group>"; };
-		34B872FD2081EEEC00B05EBF /* AACrosshair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AACrosshair.h; sourceTree = "<group>"; };
-		34B872FE2081EEEC00B05EBF /* AAYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAYAxis.h; sourceTree = "<group>"; };
-		34B872FF2081EEEC00B05EBF /* AASubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASubtitle.h; sourceTree = "<group>"; };
-		34B873002081EEEC00B05EBF /* AAPlotLinesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPlotLinesElement.h; sourceTree = "<group>"; };
-		34B873012081EEEC00B05EBF /* AAColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAColumn.h; sourceTree = "<group>"; };
-		34B873022081EEEC00B05EBF /* AAChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChart.m; sourceTree = "<group>"; };
-		34B873042081EEEC00B05EBF /* AAOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptions.h; sourceTree = "<group>"; };
-		34B873052081EEEC00B05EBF /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
-		34B873062081EEEC00B05EBF /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
-		34B873072081EEEC00B05EBF /* AASeriesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeriesElement.h; sourceTree = "<group>"; };
-		34B873082081EEEC00B05EBF /* AAChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartModel.m; sourceTree = "<group>"; };
-		34B873092081EEEC00B05EBF /* AAChartKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartKit.h; sourceTree = "<group>"; };
-		34B8730A2081EEEC00B05EBF /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
-		34B8730B2081EEEC00B05EBF /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
-		34B8730C2081EEEC00B05EBF /* AAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartView.h; sourceTree = "<group>"; };
-		34B8730D2081EEEC00B05EBF /* AAChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartModel.h; sourceTree = "<group>"; };
 		34BCABF220E732A500C25BE5 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
 		34BCABF320E732A500C25BE5 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
 		34BCABF420E732A500C25BE5 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
@@ -1755,6 +1658,11 @@
 		A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+LLJPuchAppDelegate.m"; sourceTree = "<group>"; };
 		A0395ED320FC950E00554CDC /* LLHomePieChartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomePieChartModel.h; sourceTree = "<group>"; };
 		A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomePieChartModel.m; sourceTree = "<group>"; };
+		A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTurnoverChatView.h; sourceTree = "<group>"; };
+		A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTurnoverChatView.m; sourceTree = "<group>"; };
+		A04F6FC9211949A400CFDE1C /* BuXiaoSheng-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BuXiaoSheng-Bridging-Header.h"; sourceTree = "<group>"; };
+		A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateValueFormatter.m; sourceTree = "<group>"; };
+		A04F6FCD21194EBD00CFDE1C /* DateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -2420,7 +2328,6 @@
 				B505054B209AB2DA00CE7E4D /* XLForm */,
 				34EA5B95208B1F010048CFE1 /* LGAlertView */,
 				344080262087362500FD36B8 /* YANScrollMenu */,
-				34B872C92081EEEC00B05EBF /* AAChartKitLib */,
 				343008C22081A07200447992 /* SGPageView */,
 			);
 			path = ThirdParty;
@@ -2844,6 +2751,8 @@
 				3433D0B620B5105B003FFC16 /* LZHomeModel.m */,
 				A0395ED320FC950E00554CDC /* LLHomePieChartModel.h */,
 				A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */,
+				A04F6FCD21194EBD00CFDE1C /* DateValueFormatter.h */,
+				A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3575,6 +3484,8 @@
 		3475425320F5F5E6007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
+				A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */,
+				A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3982,6 +3893,7 @@
 				3475422020F5D9ED007F384B /* Other */,
 				34A92B21207DE86200572648 /* Info.plist */,
 				34A92B22207DE86200572648 /* main.m */,
+				A04F6FC9211949A400CFDE1C /* BuXiaoSheng-Bridging-Header.h */,
 			);
 			path = BuXiaoSheng;
 			sourceTree = "<group>";
@@ -4056,102 +3968,6 @@
 				342AF22120D51C7300A1DDC4 /* LZDetailCell.m */,
 			);
 			path = LZHTableView;
-			sourceTree = "<group>";
-		};
-		34B872C92081EEEC00B05EBF /* AAChartKitLib */ = {
-			isa = PBXGroup;
-			children = (
-				34B872CA2081EEEC00B05EBF /* AAJSFiles */,
-				34B872D02081EEEC00B05EBF /* AAOptionsModel */,
-				34B873032081EEEC00B05EBF /* AAChartConfiger */,
-			);
-			path = AAChartKitLib;
-			sourceTree = "<group>";
-		};
-		34B872CA2081EEEC00B05EBF /* AAJSFiles */ = {
-			isa = PBXGroup;
-			children = (
-				34B872CB2081EEEC00B05EBF /* AAHighchartsLib.js */,
-				34B872CC2081EEEC00B05EBF /* AAHighchartsMore.js */,
-				34B872CD2081EEEC00B05EBF /* AAFunnel.js */,
-				34B872CE2081EEEC00B05EBF /* AAHighcharts-3d.js */,
-				34B872CF2081EEEC00B05EBF /* AAChartView.html */,
-			);
-			path = AAJSFiles;
-			sourceTree = "<group>";
-		};
-		34B872D02081EEEC00B05EBF /* AAOptionsModel */ = {
-			isa = PBXGroup;
-			children = (
-				34B872D12081EEEC00B05EBF /* AAArea.h */,
-				34B872D22081EEEC00B05EBF /* AAAreaspline.m */,
-				34B872D32081EEEC00B05EBF /* AATitle.h */,
-				34B872D42081EEEC00B05EBF /* AALabels.m */,
-				34B872D52081EEEC00B05EBF /* AAStyle.h */,
-				34B872D62081EEEC00B05EBF /* AABar.h */,
-				34B872D72081EEEC00B05EBF /* AASeries.m */,
-				34B872D82081EEEC00B05EBF /* AAXAxis.m */,
-				34B872D92081EEEC00B05EBF /* AAOptions3d.h */,
-				34B872DA2081EEEC00B05EBF /* AAPlotOptions.m */,
-				34B872DB2081EEEC00B05EBF /* AADataLabels.m */,
-				34B872DC2081EEEC00B05EBF /* AALine.m */,
-				34B872DD2081EEEC00B05EBF /* AAMarker.h */,
-				34B872DE2081EEEC00B05EBF /* AALegend.h */,
-				34B872DF2081EEEC00B05EBF /* AATooltip.m */,
-				34B872E02081EEEC00B05EBF /* AAAnimation.h */,
-				34B872E12081EEEC00B05EBF /* AASubtitle.m */,
-				34B872E22081EEEC00B05EBF /* AAYAxis.m */,
-				34B872E32081EEEC00B05EBF /* AACrosshair.m */,
-				34B872E42081EEEC00B05EBF /* AAPie.h */,
-				34B872E52081EEEC00B05EBF /* AAItemStyle.h */,
-				34B872E62081EEEC00B05EBF /* AASpline.h */,
-				34B872E72081EEEC00B05EBF /* AAChart.h */,
-				34B872E82081EEEC00B05EBF /* AAColumn.m */,
-				34B872E92081EEEC00B05EBF /* AAPlotLinesElement.m */,
-				34B872EA2081EEEC00B05EBF /* AAXAxis.h */,
-				34B872EB2081EEEC00B05EBF /* AAOptions3d.m */,
-				34B872EC2081EEEC00B05EBF /* AASeries.h */,
-				34B872ED2081EEEC00B05EBF /* AAStyle.m */,
-				34B872EE2081EEEC00B05EBF /* AABar.m */,
-				34B872EF2081EEEC00B05EBF /* AATitle.m */,
-				34B872F02081EEEC00B05EBF /* AALabels.h */,
-				34B872F12081EEEC00B05EBF /* AAAreaspline.h */,
-				34B872F22081EEEC00B05EBF /* AAArea.m */,
-				34B872F32081EEEC00B05EBF /* AAAnimation.m */,
-				34B872F42081EEEC00B05EBF /* AALegend.m */,
-				34B872F52081EEEC00B05EBF /* AATooltip.h */,
-				34B872F62081EEEC00B05EBF /* AAMarker.m */,
-				34B872F72081EEEC00B05EBF /* AALine.h */,
-				34B872F82081EEEC00B05EBF /* AADataLabels.h */,
-				34B872F92081EEEC00B05EBF /* AAPlotOptions.h */,
-				34B872FA2081EEEC00B05EBF /* AASpline.m */,
-				34B872FB2081EEEC00B05EBF /* AAItemStyle.m */,
-				34B872FC2081EEEC00B05EBF /* AAPie.m */,
-				34B872FD2081EEEC00B05EBF /* AACrosshair.h */,
-				34B872FE2081EEEC00B05EBF /* AAYAxis.h */,
-				34B872FF2081EEEC00B05EBF /* AASubtitle.h */,
-				34B873002081EEEC00B05EBF /* AAPlotLinesElement.h */,
-				34B873012081EEEC00B05EBF /* AAColumn.h */,
-				34B873022081EEEC00B05EBF /* AAChart.m */,
-			);
-			path = AAOptionsModel;
-			sourceTree = "<group>";
-		};
-		34B873032081EEEC00B05EBF /* AAChartConfiger */ = {
-			isa = PBXGroup;
-			children = (
-				34B873042081EEEC00B05EBF /* AAOptions.h */,
-				34B873052081EEEC00B05EBF /* AAChartView.m */,
-				34B873062081EEEC00B05EBF /* AAGlobalMacro.h */,
-				34B873072081EEEC00B05EBF /* AASeriesElement.h */,
-				34B873082081EEEC00B05EBF /* AAChartModel.m */,
-				34B873092081EEEC00B05EBF /* AAChartKit.h */,
-				34B8730A2081EEEC00B05EBF /* AAOptions.m */,
-				34B8730B2081EEEC00B05EBF /* AASeriesElement.m */,
-				34B8730C2081EEEC00B05EBF /* AAChartView.h */,
-				34B8730D2081EEEC00B05EBF /* AAChartModel.h */,
-			);
-			path = AAChartConfiger;
 			sourceTree = "<group>";
 		};
 		34BCABF120E7325B00C25BE5 /* TZImagePicker控件 */ = {
@@ -4841,6 +4657,7 @@
 				TargetAttributes = {
 					34A92B0F207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -4897,21 +4714,16 @@
 				346C227B210E03DA004AAC88 /* LZBackOrderCell.xib in Resources */,
 				34A92B20207DE86200572648 /* LaunchScreen.storyboard in Resources */,
 				2DF7A3902115A314009889DF /* LZPurchaseViewController.xib in Resources */,
-				34B873112081EEEC00B05EBF /* AAHighcharts-3d.js in Resources */,
 				3427A4F820CE507600369650 /* BRPickerView.bundle in Resources */,
-				34B873122081EEEC00B05EBF /* AAChartView.html in Resources */,
 				2DF7A38E2115A314009889DF /* LZProcessViewController.xib in Resources */,
 				34A92B1D207DE86200572648 /* Assets.xcassets in Resources */,
 				346C2262210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
 				2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */,
 				34A92B1B207DE86200572648 /* Main.storyboard in Resources */,
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
-				34B8730E2081EEEC00B05EBF /* AAHighchartsLib.js in Resources */,
 				2DF7A37C21156935009889DF /* LZDirectStorageBottomView.xib in Resources */,
 				34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */,
 				346C225A210E03D3004AAC88 /* LZAddItemViewController.xib in Resources */,
-				34B873102081EEEC00B05EBF /* AAFunnel.js in Resources */,
-				34B8730F2081EEEC00B05EBF /* AAHighchartsMore.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5070,7 +4882,6 @@
 				34EA5BB5208B1F010048CFE1 /* LGAlertViewShadowView.m in Sources */,
 				346C2258210E03D3004AAC88 /* LZSelectItemViewController.m in Sources */,
 				B50505DD209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
-				34B8731E2081EEEC00B05EBF /* AAColumn.m in Sources */,
 				3467BA4420ECA024004C0B24 /* LZChooseInventoryVC.m in Sources */,
 				348AC64A20B93C8C0051E842 /* LZRecipeModel.m in Sources */,
 				345D5F01209D4D2B00126C40 /* AddRecipeViewController.m in Sources */,
@@ -5116,7 +4927,6 @@
 				B505066C209ABEAC00CE7E4D /* LLDyeingCollectionContainerCell.m in Sources */,
 				B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
 				34A0EDA22080A77D00659190 /* UITextView+Placeholder.m in Sources */,
-				34B873222081EEEC00B05EBF /* AABar.m in Sources */,
 				3465C9FA20DC9A9700BAE415 /* FSCalendarCollectionView.m in Sources */,
 				34EBACA2208450D10005BF77 /* DidOutOrderViewController.m in Sources */,
 				34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
@@ -5164,11 +4974,9 @@
 				34EA48E520CF6EA40086FF79 /* LZBugAndProcessBssModel.m in Sources */,
 				34EA48F120CFA1690086FF79 /* LZDidBugAndProcessUntreatedCell.m in Sources */,
 				B50505CD209AB2DA00CE7E4D /* NSArray+XLFormAdditions.m in Sources */,
-				34B873292081EEEC00B05EBF /* AAItemStyle.m in Sources */,
 				B50505D3209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				344E4D84210EBCE00031DCE8 /* BXSMachiningHeadCell.m in Sources */,
 				344E4D36210EAD4D0031DCE8 /* LineView.m in Sources */,
-				34B873142081EEEC00B05EBF /* AALabels.m in Sources */,
 				342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */,
 				344E4D68210EAFD40031DCE8 /* BXSAllCodeModel.m in Sources */,
 				34195FAF20CD430B00524F20 /* LZSpendingListVC.m in Sources */,
@@ -5217,8 +5025,6 @@
 				344E4D3E210EAD4D0031DCE8 /* ComView.m in Sources */,
 				B50505DF209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */,
-				34B873192081EEEC00B05EBF /* AALine.m in Sources */,
-				34B8732A2081EEEC00B05EBF /* AAPie.m in Sources */,
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
 				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				3467BA4920ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */,
@@ -5231,9 +5037,7 @@
 				344A5D2720E22D5C0058E319 /* LZProductDetailModel.m in Sources */,
 				34F4B4B220BC03120017003E /* LZDrawerChooseView.m in Sources */,
 				34EE5D7820A68C2900A2C9B5 /* LLUpdateNewPeopleViewController.m in Sources */,
-				34B873132081EEEC00B05EBF /* AAAreaspline.m in Sources */,
 				34EA491120CFF4BB0086FF79 /* LZReimbursementModel.m in Sources */,
-				34B873172081EEEC00B05EBF /* AAPlotOptions.m in Sources */,
 				34D5EAEC20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
 				346C228D210E03E2004AAC88 /* LZBackOrderListsModel.m in Sources */,
 				342398F320FB4323002B81E1 /* BaseTableVC.m in Sources */,
@@ -5242,6 +5046,7 @@
 				342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */,
 				344C487520D0C35300BEC002 /* LZProcurementModel.m in Sources */,
 				3471DCB720D7883A002052EE /* LZChoosseWorkerVC.m in Sources */,
+				A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */,
 				3453791C21099CD300830DF8 /* LZGoodValueCell.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				3471DCA620D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
@@ -5259,7 +5064,6 @@
 				344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */,
 				34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */,
-				34B8732D2081EEEC00B05EBF /* AAChartModel.m in Sources */,
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				2DF7A367211564A9009889DF /* LZDirectStorageVC.m in Sources */,
 				B58BF6F420A178D000A8B92B /* CWLateralSlideAnimator.m in Sources */,
@@ -5283,7 +5087,6 @@
 				3480AAA820E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				344358DA20EF6E2D004A5E6E /* LZChooseBankTypeCell.m in Sources */,
 				B577CE9920AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
-				34B873162081EEEC00B05EBF /* AAXAxis.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				342398EF20FB42C9002B81E1 /* BaseTableCell.m in Sources */,
@@ -5321,7 +5124,6 @@
 				3453791821099CD300830DF8 /* BigGoodsFootView.m in Sources */,
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
 				347AE5352106E38800372042 /* UIBarButtonItem+CJExtension.m in Sources */,
-				34B8731B2081EEEC00B05EBF /* AASubtitle.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				3465C9F220DC9A9700BAE415 /* FSCalendarScopeHandle.m in Sources */,
@@ -5330,7 +5132,6 @@
 				3488D69A211855530061BA0C /* LZAuditDetailHeaderCell.m in Sources */,
 				34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */,
 				34D5EAF420D25483009D9D7C /* LZBankDetailModel.m in Sources */,
-				34B8732C2081EEEC00B05EBF /* AAChartView.m in Sources */,
 				34BCABF620E732A500C25BE5 /* TZTestCell.m in Sources */,
 				344C489520D100B800BEC002 /* LZDidReimbursementSaleVC.m in Sources */,
 				346992A820C6649500476CF0 /* LZVisitRecordCell.m in Sources */,
@@ -5349,7 +5150,6 @@
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
 				3480AA9B20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */,
-				34B873282081EEEC00B05EBF /* AASpline.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
 				B5B07506209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
@@ -5360,7 +5160,6 @@
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
 				34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */,
 				B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */,
-				34B873212081EEEC00B05EBF /* AAStyle.m in Sources */,
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
@@ -5370,6 +5169,7 @@
 				346C2254210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */,
 				34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */,
 				B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */,
+				A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */,
 				B50505B3209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				342AF22620D5354400A1DDC4 /* LZPurchaseView.m in Sources */,
@@ -5388,7 +5188,6 @@
 				347B58C420E62273008911A2 /* LZSaleOrderListVC.m in Sources */,
 				34F6E77520C03EAC00FABC5F /* LZInventoryDetailCell.m in Sources */,
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
-				34B8731D2081EEEC00B05EBF /* AACrosshair.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
 				34F6E76C20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				3465CA0420DC9A9700BAE415 /* FSCalendarCalculator.m in Sources */,
@@ -5406,15 +5205,12 @@
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				344E4D44210EAD4D0031DCE8 /* AlertSheet.m in Sources */,
-				34B8731C2081EEEC00B05EBF /* AAYAxis.m in Sources */,
 				34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
-				34B873152081EEEC00B05EBF /* AASeries.m in Sources */,
 				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
-				34B873262081EEEC00B05EBF /* AALegend.m in Sources */,
 				3427A4F620CE507600369650 /* BRAddressModel.m in Sources */,
 				3455F69A20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,
 				346B6AD6208D97DC00F4B054 /* ProducersViewController.m in Sources */,
@@ -5425,7 +5221,6 @@
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				344E4D74210EB1E60031DCE8 /* LZFineCodeCell.m in Sources */,
 				344C48B120D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
-				34B873202081EEEC00B05EBF /* AAOptions3d.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3465C9FE20DC9A9700BAE415 /* FSCalendarTransitionCoordinator.m in Sources */,
 				343B17FB20A3DF7200349A6D /* LLHudTools.m in Sources */,
@@ -5437,9 +5232,7 @@
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
 				3450B02A20E0ED9C00429570 /* LZRecipeCell.m in Sources */,
 				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
-				34B8732E2081EEEC00B05EBF /* AAOptions.m in Sources */,
 				B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
-				34B8732B2081EEEC00B05EBF /* AAChart.m in Sources */,
 				B5050677209AE57A00CE7E4D /* LLDyeingCollectionViewCell.m in Sources */,
 				3420777120D3F4B5006EA057 /* LZArrearClientModel.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
@@ -5453,12 +5246,10 @@
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
 				34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */,
 				342CF6632099B603007C329D /* SubjectViewController.m in Sources */,
-				34B8731F2081EEEC00B05EBF /* AAPlotLinesElement.m in Sources */,
 				3471DCB220D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
 				343B17FF20A40B2300349A6D /* LoginModel.m in Sources */,
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				344E4D58210EADAD0031DCE8 /* BXSPurchaChangeWarehousingView.m in Sources */,
-				34B8731A2081EEEC00B05EBF /* AATooltip.m in Sources */,
 				344C487920D0C40400BEC002 /* LZProcurementCell.m in Sources */,
 				3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */,
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
@@ -5482,20 +5273,16 @@
 				A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */,
 				344C489920D100F800BEC002 /* LZDidNoBackOrderVC.m in Sources */,
 				3465CA0820DCB00300BAE415 /* LZChooseCalendarVC.m in Sources */,
-				34B8732F2081EEEC00B05EBF /* AASeriesElement.m in Sources */,
 				346C2277210E03DA004AAC88 /* ZWCustomPopView.m in Sources */,
-				34B873242081EEEC00B05EBF /* AAArea.m in Sources */,
 				34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */,
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				344C488120D0E9DA00BEC002 /* LZNoBackOrderCell.m in Sources */,
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
-				34B873272081EEEC00B05EBF /* AAMarker.m in Sources */,
 				3476D40F210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */,
 				344C487D20D0E69400BEC002 /* LZMarketCell.m in Sources */,
 				34EA490120CFDD640086FF79 /* LZDidStockTrackingVC.m in Sources */,
 				34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */,
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
-				34B873182081EEEC00B05EBF /* AADataLabels.m in Sources */,
 				3427A4FA20CE507600369650 /* BRAddressPickerView.m in Sources */,
 				349AAF7220EA5AC4005EB74F /* LZChangeNumVC.m in Sources */,
 				342398E320FB3AEA002B81E1 /* BigGoodsAndBoardModel.m in Sources */,
@@ -5506,10 +5293,8 @@
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				346C2252210E03D3004AAC88 /* BackOrderViewController.m in Sources */,
 				346C228F210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */,
-				34B873232081EEEC00B05EBF /* AATitle.m in Sources */,
 				B56EF0EC20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
-				34B873252081EEEC00B05EBF /* AAAnimation.m in Sources */,
 				344E4D64210EAF780031DCE8 /* UILabel+Extension.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
@@ -6000,6 +5785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -6013,6 +5799,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "57f71daf-1d09-4f4c-8610-c657cafe4512";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
+				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
@@ -6024,6 +5813,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -6037,6 +5827,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "57f71daf-1d09-4f4c-8610-c657cafe4512";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
+				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};

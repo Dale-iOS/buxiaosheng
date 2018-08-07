@@ -14,26 +14,29 @@
 #import "NowMonthViewController.h"
 #import "NowQuarterViewController.h"
 #import "NowYearViewController.h"
-#import "AAChartKit.h"
+//#import "AAChartKit.h"
 #import "SetHomeViewController.h"
 #import "LZHomeModel.h"
 #import "FinancialCollectionViewCell.h"
 #import "SaleViewController.h"
 #import "FinancialViewController.h"
 #import "WarehouseHomeViewController.h"
-
+#import "LLHomePieChartModel.h"
+#import "LLTurnoverChatView.h"
 @interface HomeViewController ()<LZHTableViewDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 ///折线图
-@property (nonatomic, strong) AAChartView  *aaChartView;
-@property (nonatomic, strong) AAChartModel *aaChartModel;
+//@property (nonatomic, strong) AAChartView  *aaChartView;
+//@property (nonatomic, strong) AAChartModel *aaChartModel;
 
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
 @property (nonatomic, strong) UICollectionView *collectView;
+@property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
+@property(nonatomic ,strong)LLTurnoverChatView * chartView;
 @end
 
 @implementation HomeViewController
@@ -55,6 +58,7 @@
     
     [self.view addSubview:self.mainTabelView];
      [self setupBtns];
+    [self setupData];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -92,6 +96,23 @@
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
+    }];
+}
+
+-(void)setupData {
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"dateType":@"1"
+                             };
+    [BXSHttp requestGETWithAppURL:@"data_report/index.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.pieChartModel = [LLHomePieChartModel LLMJParse:baseModel.data];
+        self.chartView.chartData =  self.pieChartModel.turnoverList;
+    } failure:^(NSError *error) {
+         BXS_Alert(LLLoadErrorMessage)
     }];
 }
 
@@ -144,42 +165,16 @@
     
     CGFloat chartViewWidth  = self.view.frame.size.width;
     CGFloat chartViewHeight = 200;
-    self.aaChartView = [[AAChartView alloc]initWithFrame:CGRectMake(0, 0, chartViewWidth, chartViewHeight)];
+    self.chartView = [[LLTurnoverChatView alloc]initWithFrame:CGRectMake(0, 0, chartViewWidth, chartViewHeight)];
     ////设置图表视图的内容高度(默认 contentHeight 和 AAChartView 的高度相同)
     //self.aaChartView.contentHeight = self.view.frame.size.height-250;
-    [self.view addSubview:self.aaChartView];
+    [self.view addSubview:self.chartView];
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.aaChartView ];
+    item.sectionRows = @[self.chartView ];
     item.canSelected = YES;
     item.sectionView = headerView;
     [self.datasource addObject:item];
-    
-    AAChartModel *chartModel= AAObject(AAChartModel)
-    .chartTypeSet(AAChartTypeLine)//设置图表的类型(这里以设置的为柱状图为例)
-    .titleSet(@"销售排行榜")//设置图表标题
-    .subtitleSet(@"虚拟数据")//设置图表副标题
-    .categoriesSet(@[@"销售员1",@"销售员2",@"销售员3",@"销售员4", @"销售员5",@"销售员6",@"销售员7",@"销售员8",@"销售员9"])//设置图表横轴的内容
-    .yAxisTitleSet(@"销售额")//设置图表 y 轴的单位
-    .seriesSet(@[
-                 AAObject(AASeriesElement)
-                 .nameSet(@"2017")
-                 .dataSet(@[@45,@56,@34,@43,@65,@56,@47,@28,@49]),
-                 AAObject(AASeriesElement)
-                 .nameSet(@"2018")
-                 .dataSet(@[@11,@12,@13,@14,@15,@16,@17,@18,@19]),
-                 AAObject(AASeriesElement)
-                 .nameSet(@"2019")
-                 .dataSet(@[@31,@22,@33,@54,@35,@36,@27,@38,@39]),
-                 AAObject(AASeriesElement)
-                 .nameSet(@"2020")
-                 .dataSet(@[@21,@22,@53,@24,@65,@26,@37,@28,@49]),
-                 ])
-    ;
-
-    /*图表视图对象调用图表模型对象,绘制最终图形*/
-    [_aaChartView aa_drawChartWithChartModel:chartModel];
-
 }
 
 - (void)setSectionThree
