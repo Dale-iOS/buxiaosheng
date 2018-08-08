@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/Home(&#x9996;&#x9875;)/V/LLHomeChildCell.m"
-            timestampString = "555341993.341126"
+            timestampString = "555384241.805051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-setupPieCharData"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/Classes/Home(&#x9996;&#x9875;)/V/LLHomeBaseTableView.m"
-            timestampString = "555342796.866477"
+            filePath = "BuXiaoShengTests/Classes/Home(&#x9996;&#x9875;)/V/LLHomeChildCell.m"
+            timestampString = "555384241.805126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "-gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-detailBtnClick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

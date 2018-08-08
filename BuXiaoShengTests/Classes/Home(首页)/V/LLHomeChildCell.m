@@ -44,7 +44,11 @@
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupUI];
+        [self.contentView addTapGesture:^(UITapGestureRecognizer *recognizer) {
+            
+        }];
     }
     return self;
 }
@@ -63,6 +67,7 @@
     }];
     UIButton * detailBtn = [UIButton new];
     [self.contentView addSubview:detailBtn];
+    [detailBtn addTarget:self action:@selector(detailBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [detailBtn setTitle:@"详细" forState:UIControlStateNormal];
     detailBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [detailBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -140,6 +145,10 @@
     
 //    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"大货列表"];
 //    _pieChartView.centerAttributedText = centerText;
+    
+}
+
+-(void)detailBtnClick {
     
 }
 

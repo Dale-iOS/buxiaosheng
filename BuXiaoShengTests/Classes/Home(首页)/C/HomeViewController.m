@@ -76,10 +76,10 @@
         }
        NSArray * buttons = [LZHomeModel LLMJParse:baseModel.data];
         if (buttons.count< 4) {
-            self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10 + 55 );
+            self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10 + 55 + 10 );
              self.tableView.tableHeaderView = self.headerView;
         }else {
-             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55);
+             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55+ 10);
              self.tableView.tableHeaderView = self.headerView;
         }
          self.headerView.buttons = buttons;
@@ -176,33 +176,33 @@
 //-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
 //    [self scrollViewDidEndDecelerating:scrollView];
 //}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if ([scrollView isEqual:self.contentCollectView]) {
-        return;
-    }
-    CGFloat bottomCellOffset = [self.tableView rectForSection:0].origin.y;
-    if (scrollView.contentOffset.y >= bottomCellOffset) {
-        scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
-        if (self.canScroll) {
-            self.canScroll = NO;
-            [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof LLHomeChidVC * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.vcCanScroll = true;
-                if (!obj.vcCanScroll) {
-                    obj.tableView.contentOffset = CGPointZero;
-                }
-            }];
-            //  self.cell.cellCanScroll = YES;
-            
-        }
-    }else{
-        if (!self.canScroll) {//子视图没到顶部
-            scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
-        }
-    }
-    //self.tableView.showsVerticalScrollIndicator = _canScroll?YES:NO;
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if ([scrollView isEqual:self.contentCollectView]) {
+//        return;
+//    }
+//    CGFloat bottomCellOffset = [self.tableView rectForSection:0].origin.y;
+//    if (scrollView.contentOffset.y >= bottomCellOffset) {
+//        scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+//        if (self.canScroll) {
+//            self.canScroll = NO;
+//            [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof LLHomeChidVC * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                obj.vcCanScroll = true;
+//                if (!obj.vcCanScroll) {
+//                    obj.tableView.contentOffset = CGPointZero;
+//                }
+//            }];
+//            //  self.cell.cellCanScroll = YES;
+//            
+//        }
+//    }else{
+//        if (!self.canScroll) {//子视图没到顶部
+//            scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+//        }
+//    }
+//    //self.tableView.showsVerticalScrollIndicator = _canScroll?YES:NO;
+//    
+//}
 
 
 

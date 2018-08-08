@@ -65,6 +65,7 @@
         make.edges.equalTo(self.view);
     }];
     self.models = [NSMutableArray array];
+    self.automaticallyAdjustsScrollViewInsets = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,7 +81,6 @@
     LLHomeChildCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LLHomeChildCell"];
     cell.datas = self.models[indexPath.row];
     cell.indexPath = indexPath;
-    
     return cell;
 }
 
@@ -88,24 +88,25 @@
     return 260;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (!self.vcCanScroll) {
-        scrollView.contentOffset = CGPointZero;
-    }
-    if (scrollView.contentOffset.y <= 0) {
-        self.vcCanScroll = false;
-        scrollView.contentOffset = CGPointZero;
-        HomeViewController * parentVc = (HomeViewController *)self.parentViewController;
-        parentVc.canScroll = true;
-        //parentVc.cell.cellCanScroll = false;
-    }
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (!self.vcCanScroll) {
+//        scrollView.contentOffset = CGPointZero;
+//    }
+//    if (scrollView.contentOffset.y <= 0) {
+//        self.vcCanScroll = false;
+//        scrollView.contentOffset = CGPointZero;
+//        HomeViewController * parentVc = (HomeViewController *)self.parentViewController;
+//        parentVc.canScroll = true;
+//        //parentVc.cell.cellCanScroll = false;
+//    }
+//    
+//}
 
 - (LLHomeBaseTableView *)tableView {
     if (!_tableView) {
         _tableView = [[LLHomeBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.scrollEnabled = false;
         [_tableView registerClass:[LLHomeChildCell class] forCellReuseIdentifier:@"LLHomeChildCell"];
         _tableView.delegate = self;
         _tableView.dataSource = self;
