@@ -9,7 +9,6 @@
 #import "BankDetailListViewController.h"
 #import "BankDetailListTableViewCell.h"
 #import "DocumentBankDetailViewController.h"
-//#import "LZBankListDetailModel.h"
 #import "LLDayCalendarVc.h"
 #import "LLWeekCalendarVc.h"
 #import "LLMonthCalendarVc.h"
@@ -18,7 +17,7 @@
 #import "LZChooseBankTypeVC.h"
 #import "LZBankListModel.h"
 
-static NSInteger const pageSize = 10;
+static NSInteger const pageSize = 15;
 
 @interface BankDetailListViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {

@@ -265,6 +265,14 @@ static NSInteger const pageSize = 15;
 
 //接口名称 客户对账列表
 - (void)setupListData{
+    
+    if (_customerId == nil) {
+        [LLHudTools showWithMessage:@"请先选择对账单"];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        return;
+    }
+    
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"customerId":_customerId,
                              @"pageNo":@(self.pageIndex),
@@ -273,6 +281,7 @@ static NSInteger const pageSize = 15;
                              @"endDate":_endStr == nil ? @"" : _endStr
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_bill_list.do" param:param success:^(id response) {
+        
 //        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
 //        if ([baseModel.code integerValue] != 200) {
 //            [LLHudTools showWithMessage:baseModel.msg];

@@ -18,6 +18,8 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 
+static NSInteger const pageSize = 15;
+
 @interface LZPaymentOrderListVC ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
     NSString *_startStr;//开始时间
@@ -25,7 +27,7 @@
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LZSearchBar * searchBar;
-@property(nonatomic,strong)NSArray<LZPaymentOrderListModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZPaymentOrderListModel*> *lists;
 //顶部试图
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIView *rigthHeadView;
@@ -34,6 +36,7 @@
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation LZPaymentOrderListVC
@@ -50,6 +53,7 @@
 }
 
 - (void)setupUI{
+    self.pageIndex = 1;
     self.navigationItem.titleView = [Utility navTitleView:@"付款单列表"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"screen1")];
     
@@ -120,28 +124,79 @@
         make.left.and.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupListData];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupListData];
+    }];
+    return footer;
 }
 
 #pragma mark ----- 网络请求 -----
 - (void)setupListData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
                              @"factoryType":_selecStr,
                              @"startDate":_startStr,
                              @"endDate":_endStr,
                              @"searchName":self.searchBar.text
                              };
     [BXSHttp requestGETWithAppURL:@"finance/payment_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue] != 200) {
+//            [LLHudTools showWithMessage:baseModel.msg];
+//            return ;
+//        }
+//        _lists = [LZPaymentOrderListModel LLMJParse:baseModel.data];
+//        [_tableView reloadData];
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZPaymentOrderListModel *model = [LZPaymentOrderListModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZPaymentOrderListModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -329,6 +384,13 @@
     [self setupListData];
 }
 
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZPaymentOrderListModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
