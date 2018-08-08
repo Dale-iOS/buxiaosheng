@@ -419,6 +419,10 @@ static NSInteger const pageSize = 15;
 #pragma mark ------- 点击事件 ---------
 - (void)outBtnOnClick
 {
+    if (_customerId == nil) {
+        [LLHudTools showWithMessage:@"请先选择对账单"];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/customerBill.html?companyId=%@&customerId=%@",[BXSUser currentUser].companyId,_customerId];
     
     LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
