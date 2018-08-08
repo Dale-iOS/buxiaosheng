@@ -11,6 +11,7 @@
 #import "LZArrearClientModel.h"
 #import "LZArrearClientCell.h"
 
+static NSInteger const pageSize = 15;
 
 @interface LZCustomerArrearsVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -19,8 +20,9 @@
 }
 ///分段选择器背景
 @property (nonatomic, strong) UITableView *tableView;
-@property(nonatomic,strong)NSArray<LZArrearClientModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZArrearClientModel*> *lists;
 @property(nonatomic,strong)UIView *headView;
+@property (nonatomic,assign) NSInteger  pageIndex;//页数
 @end
 
 @implementation LZCustomerArrearsVC
@@ -36,6 +38,7 @@
 
 - (void)setupUI
 {
+    self.pageIndex = 1;
     self.navigationItem.titleView = [Utility navTitleView:@"客户欠款表"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -103,6 +106,21 @@
     _tableView.tableHeaderView = _headView;
     _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
+    
+    WEAKSELF;
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupListData];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupListData];
+    }];
+    return footer;
 }
 
 #pragma mark ------- 网络请求 --------
@@ -125,21 +143,59 @@
     }
 //    [model.status integerValue] == 0 ? @"启用" :@"未启用";
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"pageNo":@"1",
-                            @"pageSize":@"15",
+                            @"pageNo":@(self.pageIndex),
+                            @"pageSize":@(pageSize),
                             @"amountSort":tempMoneyStr,
                             @"dateSort":tempDateStr
                             };
     [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_arrear_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        _lists = [LZArrearClientModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
+//        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue] != 200) {
+//            [LLHudTools showWithMessage:baseModel.msg];
+//            return ;
+//        }
+//        _lists = [LZArrearClientModel LLMJParse:baseModel.data];
+//        [self.tableView reloadData];
         
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"] ;
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZArrearClientModel *model = [LZArrearClientModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -181,6 +237,14 @@
         _dateStr = date;
         [self setupListData];
     }];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZArrearClientModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -35,7 +35,7 @@ static NSInteger const pageSize = 10;
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
-@property (nonatomic,assign) NSInteger  pageIndex;//页数
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation BankDetailListViewController
@@ -186,6 +186,7 @@ static NSInteger const pageSize = 10;
         [self.tableView.mj_footer endRefreshing];
     }];
 }
+
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
