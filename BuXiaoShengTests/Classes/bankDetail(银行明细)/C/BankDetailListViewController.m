@@ -25,8 +25,9 @@ static NSInteger const pageSize = 10;
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
     NSString *_bankId;//银行id
-//    NSString *_typeId;//单据来源id
     NSString *_incometypeId;//消费id
+    UILabel *_totalExpenditure;//总支出
+    UILabel *_totalIncome;//总收入
 }
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -36,6 +37,7 @@ static NSInteger const pageSize = 10;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
 @property (nonatomic,assign) NSInteger pageIndex;//页数
+@property (nonatomic, strong) UIView *bottomView2;//底布显示总收入和总支出
 @end
 
 @implementation BankDetailListViewController
@@ -107,15 +109,42 @@ static NSInteger const pageSize = 10;
 
     self.view.backgroundColor = LZHBackgroundColor;
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 10 +64, APPWidth, APPHeight -64-10) style:UITableViewStylePlain];
+    _bottomView2 = [[UIView alloc]init];
+    _bottomView2.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_bottomView2];
+    [_bottomView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.bottom.mas_equalTo(self.view);
+        make.width.mas_offset(APPWidth);
+        make.height.mas_offset(44);
+    }];
+    _totalExpenditure = [[UILabel alloc]init];
+    _totalExpenditure.font = FONT(13);
+    _totalExpenditure.textAlignment = NSTextAlignmentCenter;
+    _totalExpenditure.textColor = CD_Text33;
+    [_bottomView2 addSubview:_totalExpenditure];
+    [_totalExpenditure mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.and.bottom.mas_equalTo(_bottomView2);
+        make.width.mas_offset(APPWidth/2);
+    }];
+    _totalIncome = [[UILabel alloc]init];
+    _totalIncome.font = FONT(13);
+    _totalIncome.textAlignment = NSTextAlignmentCenter;
+    _totalIncome.textColor = CD_Text33;
+    [_bottomView2 addSubview:_totalIncome];
+    [_totalIncome mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.and.top.and.bottom.mas_equalTo(_bottomView2);
+        make.width.mas_offset(APPWidth/2);
+    }];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.tableViewHeadView;
     self.tableView.tableFooterView = [UIView new];
-//    self.tableView.backgroundColor = [UIColor clearColor];
-    //隐藏分割线
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.top.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(_bottomView2.mas_top);
+    }];
     
     WEAKSELF;
     self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
@@ -180,6 +209,8 @@ static NSInteger const pageSize = 10;
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
         }
+        _totalExpenditure.text = [NSString stringWithFormat:@"总收入：%@",[[response objectForKey:@"data"] objectForKey:@"totalExpenditure"]];
+        _totalIncome.text = [NSString stringWithFormat:@"总支出：%@",[[response objectForKey:@"data"] objectForKey:@"totalIncome"]];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
         [self.tableView.mj_header endRefreshing];
