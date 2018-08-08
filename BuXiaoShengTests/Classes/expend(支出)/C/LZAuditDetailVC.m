@@ -74,7 +74,8 @@
         view.frame = CGRectMake(0, 0, APPWidth, 60);
         UIButton *btn = [UIButton new];
         [btn setTitle:@"撤回" forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor blueColor]];
+//        [btn setBackgroundColor:[UIColor blueColor]];
+        [btn setBackgroundImage:IMAGE(@"recallBottom") forState:UIControlStateNormal];
         btn.titleLabel.font = FONT(15);
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(recallBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -133,7 +134,7 @@
             self.infoView.frame = CGRectMake(0, 0, APPWidth, 210);
             
             LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-            item.sectionRows = @[self.headerView,lineView,self.infoView,self.recallView,self.recallView];
+            item.sectionRows = @[self.headerView,lineView,self.infoView,self.recallView];
             item.canSelected = YES;
             item.sectionView = headerView;
             [self.datasourse replaceObjectAtIndex:0 withObject:item];

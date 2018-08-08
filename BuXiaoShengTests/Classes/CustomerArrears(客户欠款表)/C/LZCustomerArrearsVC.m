@@ -110,7 +110,7 @@
 - (void)setupListData
 {
     //    DESC：从高到低 ASC：从低到高）
-    NSString *tempMoneyStr = @"";
+    NSString *tempMoneyStr = @"DESC";
     NSString *tempDateStr = @"";
     if ([_moneyStr isEqualToString:@"金额从高到低"]) {
         tempMoneyStr = @"DESC";
