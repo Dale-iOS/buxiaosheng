@@ -80,7 +80,6 @@
 -(void)setupPieCharData {
     //每个区块的数据
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
-    
 //    [self.pieChartModel.bigGoodsList enumerateObjectsUsingBlock:^(LLBigGoodsListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //        [yVals addObject: [[PieChartDataEntry alloc] initWithValue:obj.number label:obj.productName icon: nil]];
 //    }];
@@ -110,7 +109,7 @@
                     break;
             }
     
-    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithValues:yVals label:@""];
+    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithValues:yVals label:@"布小生"];
     
     dataSet.drawIconsEnabled = NO;
     
@@ -157,7 +156,8 @@
 -(PieChartView *)pieChartView {
     if (!_pieChartView) {
         _pieChartView = [[PieChartView alloc] init];
-        _pieChartView.delegate = self;
+         _pieChartView.noDataText = @"暂无数据";
+        //_pieChartView.delegate = self;
 //        [self.view addSubview:_pieChartView];
         [_pieChartView setExtraOffsetsWithLeft:30 top:0 right:30 bottom:0];//饼状图距离边缘的间隙
         _pieChartView.usePercentValuesEnabled = YES;//是否根据所提供的数据, 将显示数据转换为百分比格式
@@ -172,7 +172,7 @@
         //添加图例
         ChartLegend *l = _pieChartView.legend;
         l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
-        l.verticalAlignment = ChartLegendVerticalAlignmentTop;
+        l.verticalAlignment = ChartLegendVerticalAlignmentBottom;
         l.orientation = ChartLegendOrientationVertical;
         l.drawInside = NO;
         l.xEntrySpace = 7.0;
