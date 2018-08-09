@@ -8,6 +8,8 @@
 
 #import "LLHomeChildCell.h"
 #import "LLHomePieChartModel.h"
+#import "LZSaleDetailVC.h"
+
 @interface LLHomeChildCell()
 @property(nonatomic ,strong)PieChartView * pieChartView;
 @property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
@@ -69,7 +71,7 @@
     [self.contentView addSubview:detailBtn];
     [detailBtn addTarget:self action:@selector(detailBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [detailBtn setTitle:@"详细" forState:UIControlStateNormal];
-    detailBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    detailBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [detailBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [detailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-12);
@@ -148,7 +150,8 @@
 }
 
 -(void)detailBtnClick {
-    
+    LZSaleDetailVC *vc = [[LZSaleDetailVC alloc]init];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -188,5 +191,14 @@
     return _pieChartView;
 }
 
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 
 @end

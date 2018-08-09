@@ -454,6 +454,8 @@
 		347C309620A299030078BB69 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309520A299030078BB69 /* InventoryViewController.m */; };
 		347C309B20A29DBC0078BB69 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309A20A29DBC0078BB69 /* InventoryCell.m */; };
 		347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */; };
+		347C5FDB211C208F0064D403 /* LZSaleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C5FDA211C208F0064D403 /* LZSaleDetailVC.m */; };
+		347C5FDC211C208F0064D403 /* LZSaleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 347C5FDA211C208F0064D403 /* LZSaleDetailVC.m */; };
 		347D64CC207F062500407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D64CB207F062500407FC4 /* SalesDemandViewController.m */; };
 		3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3480AA9620E35B2A00053C5D /* LZAssignDeliveryCell.m */; };
@@ -1390,6 +1392,8 @@
 		347C309A20A29DBC0078BB69 /* InventoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryCell.m; sourceTree = "<group>"; };
 		347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryDetailViewController.h; sourceTree = "<group>"; };
 		347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryDetailViewController.m; sourceTree = "<group>"; };
+		347C5FD9211C208F0064D403 /* LZSaleDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSaleDetailVC.h; sourceTree = "<group>"; };
+		347C5FDA211C208F0064D403 /* LZSaleDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSaleDetailVC.m; sourceTree = "<group>"; };
 		347D64CA207F062500407FC4 /* SalesDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesDemandViewController.h; sourceTree = "<group>"; };
 		347D64CB207F062500407FC4 /* SalesDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandViewController.m; sourceTree = "<group>"; };
 		3480AA9520E35B2A00053C5D /* LZAssignDeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAssignDeliveryCell.h; sourceTree = "<group>"; };
@@ -2830,6 +2834,8 @@
 				343008DE2081ACC500447992 /* NowQuarterViewController.m */,
 				343008E02081ACDB00447992 /* NowYearViewController.h */,
 				343008E12081ACDB00447992 /* NowYearViewController.m */,
+				347C5FD9211C208F0064D403 /* LZSaleDetailVC.h */,
+				347C5FDA211C208F0064D403 /* LZSaleDetailVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -5442,6 +5448,7 @@
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				3476D40F210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */,
 				344C487D20D0E69400BEC002 /* LZMarketCell.m in Sources */,
+				347C5FDB211C208F0064D403 /* LZSaleDetailVC.m in Sources */,
 				34EA490120CFDD640086FF79 /* LZDidStockTrackingVC.m in Sources */,
 				34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */,
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
@@ -5744,6 +5751,7 @@
 				346992A520C6610200476CF0 /* LZVisitModel.m in Sources */,
 				B50505B2209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				344C48B220D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
+				347C5FDC211C208F0064D403 /* LZSaleDetailVC.m in Sources */,
 				344E4D39210EAD4D0031DCE8 /* ConCell.m in Sources */,
 				A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */,
 				3476D410210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */,
