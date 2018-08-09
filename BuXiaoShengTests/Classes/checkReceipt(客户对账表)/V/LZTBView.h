@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LZTypeTopModel;
 @interface LZTBView : UIView
-- (void)setUIOriginSource:(NSMutableArray *)origin;
+- (void)setUIOriginSource:(NSMutableArray *)origin andTopSource:(LZTypeTopModel *)topSource;
 @end

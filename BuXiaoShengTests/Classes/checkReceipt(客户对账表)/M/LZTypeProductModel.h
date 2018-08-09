@@ -8,18 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LZTypeProductModel : NSObject
-@property (nonatomic,copy)NSString *price;
+@interface LZtypeInnerModel : NSObject
+@property (nonatomic,strong)NSNumber *price;
 @property (nonatomic,copy)NSString *productColorName;
-@property (nonatomic,copy)NSString *total;
+@property (nonatomic,strong)NSNumber *total;
 @property (nonatomic,copy)NSString *unitName;
 @property (nonatomic,copy)NSArray <NSDictionary *>*valList;
+//细码值
+@property (nonatomic,copy)NSString *xiMaName;
+//高度
+@property (nonatomic,assign)float xiMaHeight;
+@end
+
+@interface LZTypeProductModel : NSObject
 @property (nonatomic,copy)NSString *productName;
-@property (nonatomic,copy)NSString *totalNumber;
-@property (nonatomic,copy)NSDictionary *colorList;
+@property (nonatomic,strong)NSNumber *totalNumber;
+@property (nonatomic,copy)NSArray *colorList;
+
+@property (nonatomic,strong)NSMutableArray <LZtypeInnerModel *>*innerModels;
+
++ (NSArray *)setOriginSource:(NSArray <NSDictionary *>*)source;
+
 //cell总高度
 @property (nonatomic,assign)float totalHeight;
-//各个高度
-@property (nonatomic,strong)NSMutableArray *conHeight;
-+ (NSArray *)setOriginSource:(NSArray <NSDictionary *>*)source;
 @end

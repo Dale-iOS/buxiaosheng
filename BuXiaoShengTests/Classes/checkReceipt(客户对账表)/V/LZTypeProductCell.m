@@ -86,23 +86,27 @@ static NSString *productMark = @"productMark";
     bottomRect.origin.y = CGRectGetMaxY(tmpRect);
     self.bottomView.frame = bottomRect;
     LZInnerLAbel *outXD = nil;
-    for (int i = 0; i < modelHeight.valList.count; i++) {
+    int i = 0;
+    for (LZtypeInnerModel *innerModel in modelHeight.innerModels) {
         float tmpH = 35;
         LZInnerLAbel *lable = nil;
         if (i == 0) {
-            lable = [[LZInnerLAbel alloc] initWithFrame:CGRectMake(0, tmpH, APPWidth - 20, [modelHeight.conHeight[i] intValue])];
+            lable = [[LZInnerLAbel alloc] initWithFrame:CGRectMake(0, tmpH, APPWidth - 20, innerModel.xiMaHeight)];
         }else {
             tmpH = CGRectGetMaxY(outXD.frame);
-            lable = [[LZInnerLAbel alloc] initWithFrame:CGRectMake(0, tmpH + 5, APPWidth - 20, [modelHeight.conHeight[i] intValue])];
+            lable = [[LZInnerLAbel alloc] initWithFrame:CGRectMake(0, tmpH + 5, APPWidth - 20, innerModel.xiMaHeight)];
         }
         outXD = lable;
-        lable.colorLable.text = modelHeight.productColorName;
-        lable.maLable.text = modelHeight.valList[i][@"value"];
-        lable.unitLable.text = modelHeight.unitName;
-        lable.numLable.text = modelHeight.valList[i][@"total"];
-        lable.moneyLable.text = modelHeight.totalNumber;
+        lable.colorLable.text = innerModel.productColorName;
+        lable.maLable.text = innerModel.xiMaName;
+        lable.unitLable.text = innerModel.unitName;
+        lable.numLable.text = [NSString stringWithFormat:@"%@",innerModel.total];
+        lable.moneyLable.text = [NSString stringWithFormat:@"%d",[innerModel.price intValue]*[innerModel.total intValue]];
         [self.centerView addSubview:lable];
+        i++;
     }
+    
+    [self setAllTxt:modelHeight];
     
 }
 
@@ -114,9 +118,9 @@ static NSString *productMark = @"productMark";
 }
 - (void)setUI {
     self.productName = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, APPWidth / 2 - 10, 30)];
-    self.productName.text = @"品名:LF001";
+    
     self.totalNum = [[UILabel alloc] initWithFrame:CGRectMake(APPWidth / 2, 0, APPWidth/2 - 10, 30)];
-    self.totalNum.text = @"数量:5000";
+    
     self.totalNum.textAlignment = NSTextAlignmentRight;
     UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(10, 30, APPWidth - 20, 1)];
     topLine.backgroundColor = [UIColor lightGrayColor];
@@ -155,6 +159,13 @@ static NSString *productMark = @"productMark";
     self.plusAmount = [[UILabel alloc] initWithFrame:CGRectMake((APPWidth - 20)/2, 40, (APPWidth - 20)/2, 30)];
     self.plusAmount.text = @"结算数量:3000";
     [self.bottomView addSubview:self.plusAmount];
+}
+
+- (void)setAllTxt:(LZTypeProductModel *)model {
+    self.productName.text = [NSString stringWithFormat:@"品名:%@",model.productName];
+    self.totalNum.text = [NSString stringWithFormat:@"数量:%@",model.totalNumber];
+    
+    //TODO:后面的数据
 }
 
 - (void)awakeFromNib {

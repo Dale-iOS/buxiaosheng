@@ -434,7 +434,7 @@
     LZBackOrderItem *item = group.items.firstObject;
     item.detailTitle = name;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+//    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     
     NSString *mobile = self.customerMobileAry[index];
     LZBackOrderItem *item2 = group.items.lastObject;

@@ -11,6 +11,8 @@
 #import "LZCollectionCheckDetailProductModel.h"
 #import "LZTypeProductModel.h"
 #import "LZTBView.h"
+#import "LZNetHelp.h"
+#import "LZTypeTopModel.h"
 
 @interface LZCollectionCheckDetailVC ()
 {
@@ -29,49 +31,23 @@
     [self getMsgData];
     
     
-    NSDictionary *jsonDic = @{
-                              @"data":@[@{
-                                            @"colorList":@{
-                                                    @"price":@"33",
-                                                    @"productColorName":@"浅红色",
-                                                    @"total":@"9999",
-                                                    @"unitName":@"米",
-                                                    @"valList":@[@{@"total":@"9",@"value":@"50 89 65 59 102 50 89 65 59 102 50 89 65 59 102 50 89 65 59 102 50 89 65 59 102 50 89 65 59 102"},
-                                                                 @{@"total":@"99",@"value":@"50 89 65 59 102 50 89 65 59 102"},
-                                                                 @{@"total":@"999",@"value":@"50 89 65 59 102 50 89 65 59 102 50 89 65 59 102"}],
-                                                    },
-                                            @"productName":@"品名1",
-                                            @"totalNumber":@"9999"},
-                                        @{
-                                            @"colorList":@{
-                                                    @"price":@"33",
-                                                    @"productColorName":@"绿色",
-                                                    @"total":@"9999",
-                                                    @"unitName":@"米",
-                                                    @"valList":@[@{@"total":@"9999",@"value":@"50 89 65 59 102 50 89 65 59 102"}],
-                                                    },
-                                            @"productName":@"品名2",
-                                            @"totalNumber":@"9999"},
-                                        @{
-                                            @"colorList":@{
-                                                    @"price":@"33",
-                                                    @"productColorName":@"黄色",
-                                                    @"total":@"9999",
-                                                    @"unitName":@"米",
-                                                    @"valList":@[@{@"total":@"9999",@"value":@"50 89 65 59 102"},@{@"total":@"9999",@"value":@"50 89 65 59 102 "},@{@"total":@"9999",@"value":@"50 89 65 59 102 "},@{@"total":@"9999",@"value":@"50 89 65 59 102 50 89 65 59 102 50 89 65 59 102 50 89 65 59 102 50 89 65 59 102"}],
-                                                    },
-                                            @"productName":@"品名2",
-                                            @"totalNumber":@"9999"}
-                                        ]
-                              };
+    NSString *jsonTop = @"{\"code\":200,\"data\":{\"arrearsPrice\":400.0,\"createTime\":20180627154517,\"customerMobile\":\"1372981603\",\"customerName\":\"越南\",\"depositPrice\":50.0,\"drawerName\":\"周鹏\",\"labelNumber\":90.0,\"netreceiptsPrice\":0.0,\"orderDetailId\":85,\"orderNo\":\"AAAB-20180627-0011\",\"outNumber\":90.0,\"receivablePrice\":450.0,\"remark\":\"备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注备注这是一条很长的备注\",\"settleNumber\":90.0,\"total\":5,\"trimPrice\":0.0,\"type\":0},\"msg\":\"请求成功\"}";
     
+    
+    NSString *jsonBottom = @"{\"code\":200,\"data\":[{\"colorList\":[{\"price\":5.0,\"productColorName\":\"#粉\",\"total\":2,\"unitName\":\"米\",\"valList\":[{\"total\":1,\"value\":20.0},{\"total\":1,\"value\":10.0}]}],\"productName\":\"天丝剪花\",\"totalNumber\":30.0},{\"colorList\":[{\"price\":5.0,\"productColorName\":\"#白\",\"total\":2,\"unitName\":\"米\",\"valList\":[{\"total\":1,\"value\":20.0},{\"total\":1,\"value\":10.0}]},{\"price\":5.0,\"productColorName\":\"#杏\",\"total\":1,\"unitName\":\"米\",\"valList\":[{\"total\":1,\"value\":30.0}]}],\"productName\":\"36D天丝\",\"totalNumber\":60.0}],\"msg\":\"请求成功\"}";
+    
+    NSDictionary *jsonDic = [LZNetHelp dictionaryWithJsonString:jsonBottom];
+    
+    NSDictionary *jsonTopDic = [LZNetHelp dictionaryWithJsonString:jsonTop];
     
     
     LZTBView *xdTbView = [[LZTBView alloc] initWithFrame:self.view.bounds];
     
     NSMutableArray *models = [[LZTypeProductModel setOriginSource:jsonDic[@"data"]] mutableCopy];
     
-    [xdTbView setUIOriginSource:models];
+    LZTypeTopModel *topModels = [LZTypeTopModel createModelWithOriginSource:jsonTopDic[@"data"]];
+    
+    [xdTbView setUIOriginSource:models andTopSource:topModels];
     
     [self.view addSubview:xdTbView];
 }

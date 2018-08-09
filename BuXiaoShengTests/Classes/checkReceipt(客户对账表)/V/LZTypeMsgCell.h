@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LZTypeTopModel;
 
 @interface LZTypeMsgCell : UITableViewCell
 
 + (LZTypeMsgCell *)resuLZTypeMsgCell:(UITableView *)tableView;
+- (void)setCellTxtWith:(LZTypeTopModel *)model;
 
 @end

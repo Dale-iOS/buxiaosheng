@@ -10,16 +10,19 @@
 #import "LZTypeMsgCell.h"
 #import "LZTypeProductCell.h"
 #import "LZTypeProductModel.h"
+#import "LZTypeTopModel.h"
 
 @interface LZTBView()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tbView;
 @property (nonatomic,strong)NSMutableArray *originSource;
+@property (nonatomic,strong)LZTypeTopModel *topModel;
 @end
 
 @implementation LZTBView
 
-- (void)setUIOriginSource:(NSMutableArray *)origin {
+- (void)setUIOriginSource:(NSMutableArray *)origin andTopSource:(LZTypeTopModel *)topSource {
     self.originSource = origin;
+    self.topModel = topSource;
     [self.tbView reloadData];
 }
 
@@ -49,6 +52,10 @@
     if (indexPath.section == 0) {
         LZTypeMsgCell *cell = [LZTypeMsgCell resuLZTypeMsgCell:tableView];
         
+        if (self.topModel) {
+            [cell setCellTxtWith:self.topModel];
+        }
+        
         return cell;
     }else {
         LZTypeProductCell *cell = [LZTypeProductCell refuProductCell:tableView];
@@ -65,6 +72,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        if (self.topModel) {
+            return 320 + self.topModel.remakeHeight;
+        }
         return 350;
     }
     LZTypeProductModel *model = self.originSource[indexPath.section - 1];
@@ -90,5 +100,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0;
 }
+
+
+
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

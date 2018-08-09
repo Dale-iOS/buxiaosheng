@@ -329,10 +329,10 @@
         [LLHudTools showWithMessage:@"请输入人员名称"];
         return;
     }
-    if ([BXSTools stringIsNullOrEmpty:self.detailModel.passWord]) {
-        [LLHudTools showWithMessage:@"请输入密码"];
-        return;
-    }
+//    if ([BXSTools stringIsNullOrEmpty:self.detailModel.passWord]) {
+//        [LLHudTools showWithMessage:@"请输入密码"];
+//        return;
+//    }
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].companyId,
                              @"deptId":self.detailModel.deptId,
