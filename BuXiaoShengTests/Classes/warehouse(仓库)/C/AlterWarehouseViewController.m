@@ -49,7 +49,7 @@
 - (void)setupUI
 {
 
-    self.navigationItem.titleView = self.isFormWarehouseAdd ? [Utility navTitleView:@"添加分店"] : [Utility navTitleView:@"修改分店"];
+    self.navigationItem.titleView = self.isFormWarehouseAdd ? [Utility navTitleView:@"添加仓库"] : [Utility navTitleView:@"修改仓库"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(saveBtnClick) title:@"保存"];
     
     self.datasource = [NSMutableArray array];
@@ -90,8 +90,8 @@
 - (void)setupSectionOne
 {
     self.titleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.titleCell.titleLabel.text = @"分店名称";
-    self.titleCell.contentTF.placeholder = @"请输入分店名称";
+    self.titleCell.titleLabel.text = @"仓库名称";
+    self.titleCell.contentTF.placeholder = @"请输入仓库名称";
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;

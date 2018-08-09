@@ -114,11 +114,11 @@
     self.accountCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     //    self.accountCell.rightArrowImageVIew.hidden = NO;
     self.accountCell.titleLabel.text = @"账号";
-    self.accountCell.contentTF.placeholder = @"请填写银行卡号";
+    self.accountCell.contentTF.placeholder = @"银行卡号（非必填）";
     
     self.bankTitleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     //    self.bankTitleCell.rightArrowImageVIew.hidden = NO;
-    self.bankTitleCell.titleLabel.text = @"现金银行名称";
+    self.bankTitleCell.titleLabel.text = @"银行名称";
     self.bankTitleCell.contentTF.placeholder = @"请填写银行名称";
     
     
@@ -193,10 +193,6 @@
          BXS_Alert(@"请输入您的银行卡号");
         return;
     }
-//    if (![BXSTools isBankCard:self.accountCell.contentTF.text]) {
-//         BXS_Alert(@"请输入正确的银行卡号");
-//        return;
-//    }
 
     if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
          BXS_Alert(@"请选择银行卡状态");
@@ -224,7 +220,8 @@
                              @"companyId":[BXSUser currentUser].companyId,
                              @"name":self.bankTitleCell.contentTF.text,
                              @"status":@(status),
-                        @"initialValue":self.belongStoreCell.contentTF.text
+                             @"initialValue":self.belongStoreCell.contentTF.text,
+                             @"id":self.id
                              };
     [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

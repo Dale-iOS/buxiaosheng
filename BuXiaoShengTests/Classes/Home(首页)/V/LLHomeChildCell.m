@@ -62,10 +62,11 @@
     }];
     self.titleLable = [UILabel new];
     [self.contentView addSubview:self.titleLable];
-    self.titleLable.font = [UIFont systemFontOfSize:16];
+    self.titleLable.font = [UIFont systemFontOfSize:14];
     self.titleLable.textColor = [UIColor darkGrayColor];
     [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.contentView).offset(12);
+        make.left.equalTo(self.contentView).offset(12);
+        make.top.equalTo(self.contentView).offset(15);
     }];
     UIButton * detailBtn = [UIButton new];
     [self.contentView addSubview:detailBtn];

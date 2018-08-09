@@ -18,6 +18,7 @@
 }
 @property (nonatomic, strong) LZCollectionCheckDetailMsgModel *msgModel;
 @property (nonatomic, strong) LZCollectionCheckDetailProductModel *productModel;
+
 @end
 
 @implementation LZCollectionCheckDetailVC
