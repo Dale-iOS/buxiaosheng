@@ -242,7 +242,7 @@
 				<key>placeHolder</key>
 				<string></string>
 				<key>showArrow</key>
-				<false/>
+				<true/>
 				<key>textTitle</key>
 				<string>标签数量</string>
 			</dict>

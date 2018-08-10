@@ -23,7 +23,7 @@
 
 @property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*>* roles;
 @property (nonatomic,strong) LLAddNewPeopleModel * detailModel;
-
+@property (nonatomic,strong) LLAddNewPeopleModel *saveModel;
 @property (nonatomic, strong) NSArray <LZDeptListModel *> *lists;
 
 @property (nonatomic, strong) NSArray *nameAry;
@@ -330,7 +330,7 @@
         return;
     }
 //    if ([BXSTools stringIsNullOrEmpty:self.detailModel.passWord]) {
-//        [LLHudTools showWithMessage:@"请输入密码"];
+//        [LLHudTools showWithMes1sage:@"请输入密码"];
 //        return;
 //    }
     NSDictionary * param = @{
