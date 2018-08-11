@@ -1,0 +1,60 @@
+[
+              {
+              "colorList" : [
+                             {
+                             "unitName" : "米",
+                             "productColorName" : "白色",
+                             "valList" : [
+                                          {
+                                          "total" : "1",
+                                          "value" : "99"
+                                          }
+                                          ],
+                             "price" : "33",
+                             "total" : "9999"
+                             },
+                             {
+                             "unitName" : "码",
+                             "productColorName" : "红色",
+                             "valList" : [
+                                          {
+                                          "total" : "1",
+                                          "value" : "87"
+                                          },
+                                          {
+                                          "total" : "1",
+                                          "value" : "99"
+                                          }
+                                          ],
+                             "price" : "1",
+                             "total" : "1"
+                             }
+                             ],
+              "productName" : "品名1",
+              "totalNumber" : "132"
+              },
+              {
+              "colorList" : [
+                             {
+                             "unitName" : "码",
+                             "productColorName" : "红色",
+                             "valList" : [
+                                          {
+                                          "total" : "1",
+                                          "value" : "87"
+                                          },
+                                          {
+                                          "total" : "1",
+                                          "value" : "99"
+                                          }
+                                          ],
+                             "price" : "1",
+                             "total" : "1"
+                             }
+                             ],
+              "productName" : "品名三",
+              "totalNumber" : "99"
+    }
+ 
+ ]
+

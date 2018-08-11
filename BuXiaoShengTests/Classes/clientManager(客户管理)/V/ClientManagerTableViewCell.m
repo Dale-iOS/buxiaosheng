@@ -83,11 +83,12 @@
     if (!label)
     {
         UILabel *label1 = [[UILabel alloc]init];
-        label1.textAlignment = NSTextAlignmentLeft;
+        label1.textAlignment = NSTextAlignmentCenter;
         label1.font = FONT(12);
         label1.backgroundColor = [UIColor colorWithRed:35.0f/255.0f green:196.0f/255.0f blue:220.0f/255.0f alpha:0.2f];
         label1.textColor = [UIColor colorWithHexString:@"#23c4dc"];
         label1.layer.cornerRadius = 2.0f;
+        label1.layer.masksToBounds = YES;
         [contentView addSubview:(label = label1)];
     }
     return label;
@@ -121,6 +122,8 @@
     }
     //标签
     self.label.text = model.labelName;
+    self.label.sd_layout
+    .widthIs(self.label.text.length *12 +5);
 }
 
 ///自动布局
@@ -155,8 +158,7 @@
     .leftEqualToView(self.companyLabel)
     .topSpaceToView(self.companyLabel, 10)
     .heightIs(20)
-    .widthIs(44);
-    [self.label setSingleLineAutoResizeWithMaxWidth:200];
+    .widthIs(self.label.text.length *12 +5);
     
     self.lineView.sd_layout
     .bottomSpaceToView(contentView, 0)

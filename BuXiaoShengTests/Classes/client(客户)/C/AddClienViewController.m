@@ -84,7 +84,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:self.view.bounds];
         tableView.delegate = self;
         tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:(mainTabelView = tableView)];
@@ -163,7 +163,7 @@
     //名称
     self.titleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.titleCell.contentTF.placeholder = @"请输入客户名称";
-    self.titleCell.titleLabel.text = @"名称";
+    self.titleCell.titleLabel.text = @"客户名称";
     
     //手机
     self.mobileCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];

@@ -83,17 +83,7 @@
 {
     self.navigationItem.titleView = self.isFormBankAdd ?[Utility navTitleView:@"添加银行"] : [Utility navTitleView:@"修改银行"];
     
-    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确 认" forState:UIControlStateNormal];
-    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
-    [navRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.width.mas_equalTo(40);
-         make.height.mas_equalTo(30);
-    }];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(saveBtnClick) title:@"确认"];
     
     self.datasource = [NSMutableArray array];
     

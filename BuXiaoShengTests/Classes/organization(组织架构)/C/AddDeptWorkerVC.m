@@ -53,7 +53,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:self.view.bounds];
         tableView.delegate = self;
         tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:(mainTabelView = tableView)];

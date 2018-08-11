@@ -22,20 +22,9 @@
 
 - (void)setupUI
 {
-    if (_isFromAdd) {
-        self.navigationItem.titleView = [Utility navTitleView:@"添加部门"];
-    }else{
-        self.navigationItem.titleView = [Utility navTitleView:@"修改部门"];
-    }
     
-    
-    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    self.navigationItem.titleView = self.isFromAdd ? [Utility navTitleView:@"添加部门"] : [Utility navTitleView:@"修改部门"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(selectornavRightBtnClick) title:@"确认"];
     
     //新建部门白色底图
     UIView *whiteBgView = [[UIView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight +10, APPWidth, 49)];

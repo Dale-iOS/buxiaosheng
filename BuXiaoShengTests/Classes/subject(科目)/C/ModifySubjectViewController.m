@@ -50,16 +50,10 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"修改科目"];
+//    self.navigationItem.titleView = [Utility navTitleView:@"修改科目"];
     self.navigationItem.titleView = self.isFormSubjectAdd ?[Utility navTitleView:@"添加科目"] : [Utility navTitleView:@"修改科目"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(selectornavRightBtnClick) title:@"确认"];
     
-    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(selectornavRightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
     
     self.datasource = [NSMutableArray array];
     

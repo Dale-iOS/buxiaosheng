@@ -180,7 +180,7 @@
     //客户
     self.clientCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.clientCell.iconImageView.image = IMAGE(@"client");
-    self.clientCell.titleLabel.text = @"客户";
+    self.clientCell.titleLabel.text = @"客户管理";
     UITapGestureRecognizer *clientCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clientCellTapAction)];
     [self.clientCell addGestureRecognizer:clientCellTap];
     

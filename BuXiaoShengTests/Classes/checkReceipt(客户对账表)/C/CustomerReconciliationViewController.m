@@ -19,6 +19,8 @@
 #import "LZCustomerReconciliationInfoModel.h"
 #import "LZCollectionCheckDetailVC.h"
 #import "LZWKWebViewVC.h"
+#import "ReimDetailViewController.h"
+#import "CheckDetailViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface CustomerReconciliationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
@@ -401,12 +403,21 @@ static NSInteger const pageSize = 15;
 
     if ([model.type integerValue] == 0) {
         //销售单
-        LZCollectionCheckDetailVC *vc = [[LZCollectionCheckDetailVC alloc]init];
-        vc.orderNo = model.orderNo;
-        [self.navigationController pushViewController:vc animated:YES];
+//        LZCollectionCheckDetailVC *vc = [[LZCollectionCheckDetailVC alloc]init];
+//        vc.orderNo = model.orderNo;
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        CheckDetailViewController *chechVC = [[CheckDetailViewController alloc] initWithNibName:@"CheckDetailViewController" bundle:nil];
+        chechVC.title = @"客户对账详情";
+        chechVC.orderNo = model.orderNo;
+        [self.navigationController pushViewController:chechVC animated:YES];
     }
     if ([model.type integerValue] == 1) {
         //退货单
+        
+        ReimDetailViewController *reimVC = [[ReimDetailViewController alloc] initWithNibName:@"ReimDetailViewController" bundle:nil];
+        reimVC.title = @"退单详情";
+        [self.navigationController pushViewController:reimVC animated:YES];
     }
     if ([model.type integerValue] == 2) {
         //客户收款单
