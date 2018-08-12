@@ -342,7 +342,7 @@
         WEAKSELF;
 		self.nameCell.contentTF.delegate = self;
 		self.nameCell.contentTF.scrollView = (UIScrollView * )self.view;
-		self.nameCell.contentTF.positionType = ZJPositionTopTwo;
+		self.nameCell.contentTF.positionType = ZJPositionBottom;
         [self.nameCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
 //            [weakSelf.tableView reloadData];
             //        _ProductColorId = _productsIdMTArray[index];
