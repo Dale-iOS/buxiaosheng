@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZBackOrderDetialProductModel.h"
 
 @interface ReimColorDetailCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (nonatomic, strong) LZBackOrderDetialProductColorListModel *colorListModel;
 
 @end

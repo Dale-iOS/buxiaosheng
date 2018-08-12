@@ -32,6 +32,14 @@
     
 }
 
+- (void)setColorListModel:(LZBackOrderDetialProductColorListModel *)colorListModel{
+    _colorListModel = colorListModel;
+//    colorListModel.total;//条数
+//    colorListModel.price;//单价
+//    colorListModel.unitName;//单位
+//    colorListModel.productColorName;//产品名字
+}
+
 #pragma mark Collection datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReimCustomerCell" rowHeight="568" id="KGk-i7-Jjw" customClass="CustomerCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReimCustomerCell" rowHeight="568" id="KGk-i7-Jjw" customClass="ReimCustomerCell">
             <rect key="frame" x="0.0" y="0.0" width="642" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -63,7 +63,7 @@
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实收金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBG-jD-ko4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入库仓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBG-jD-ko4">
                         <rect key="frame" x="8" y="130" width="50" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="COn-9w-GU3"/>
@@ -82,7 +82,7 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whb-cp-4PE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whb-cp-4PE">
                         <rect key="frame" x="8" y="153" width="50" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="TaF-n5-ERa"/>
@@ -92,7 +92,7 @@
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="调整金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrc-4i-DK9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrc-4i-DK9">
                         <rect key="frame" x="8" y="176" width="50" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="4b9-dl-rAq"/>
@@ -102,7 +102,7 @@
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本单欠款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8I-uy-OSr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预收付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8I-uy-OSr">
                         <rect key="frame" x="8" y="201" width="50" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="ODs-BA-AXi"/>
@@ -238,6 +238,17 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="bankName" destination="Pxw-l3-1cv" id="j2H-ou-IDw"/>
+                <outlet property="customerMobile" destination="z7K-KA-soI" id="0cG-HE-8dY"/>
+                <outlet property="customerName" destination="fHT-JZ-HVG" id="QUC-KO-uAT"/>
+                <outlet property="deposit" destination="0Cb-AL-0oP" id="2q6-Rl-Jer"/>
+                <outlet property="houseName" destination="tfX-7S-BUf" id="Zc7-RY-OaL"/>
+                <outlet property="orderNo" destination="VQe-MH-VrC" id="kJQ-v2-pq3"/>
+                <outlet property="realpayPrice" destination="Ug5-u7-e4y" id="el7-fw-d8Y"/>
+                <outlet property="remark" destination="Cb3-cP-elv" id="EX0-OX-yoe"/>
+                <outlet property="shouldPrice" destination="M6L-mb-185" id="1OZ-yA-B2h"/>
+            </connections>
             <point key="canvasLocation" x="40" y="147"/>
         </tableViewCell>
     </objects>

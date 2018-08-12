@@ -14,9 +14,6 @@
 #import "LZBackOrderDetialProductModel.h"
 
 @interface ReimDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
-    NSString *_orderDetailId;
-}
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) LZBackOrderDetialModel *msgModel;
 @property (nonatomic, strong) LZBackOrderDetialProductModel *productModel;
@@ -50,7 +47,6 @@
             return ;
         }
         self.msgModel = [LZBackOrderDetialModel LLMJParse:baseModel.data];
-        _orderDetailId = self.msgModel.orderNo;
         [self getProductData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -62,16 +58,18 @@
 //18814188198  666666
 - (void)getProductData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"orderDetailId":_orderDetailId
+                             @"refundyId":self.msgModel.refundyId
                              };
-    [BXSHttp requestGETWithAppURL:@"finance_data/order_product.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"finance_data/refundy_product.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        self.productModel = [LZBackOrderDetialProductModel LLMJParse:baseModel.data];
-        NSLog(@"123");
+        self.dataArray = [LZBackOrderDetialProductModel LLMJParse:baseModel.data];
+        [self.tableview reloadData];
+//        self.productModel = [LZBackOrderDetialProductModel LLMJParse:baseModel.data];
+//        NSLog(@"123");
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -90,14 +88,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        //客户资料
         ReimCustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReimCustomerCell"];
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimCustomerCell" owner:self options:nil] lastObject];
             
         }
+        cell.msgModel = self.msgModel;
         return cell;
     }else if (indexPath.row == 4){
-        
+//        最下方的总计
         ReimSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReimSubCell"];
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimSubCell" owner:self options:nil] lastObject];
@@ -109,10 +109,14 @@
     }
     else
     {
+//        产品内容
         ReimColorsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReimColorsCell"];
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimColorsCell" owner:self options:nil] lastObject];
 
+        }
+        if (self.dataArray.count >0) {
+//            cell.productModel = self.dataArray[indexPath.row -我不知道应该减多少]
         }
         [cell loadContactData];
         return cell;

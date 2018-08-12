@@ -19,6 +19,12 @@
     // Initialization
 }
 
+- (void)setProductModel:(LZBackOrderDetialProductModel *)productModel{
+    _productModel = productModel;
+//    productModel.productName;// 产品名
+//    productModel.houseNum;//数量
+}
+
 - (void)showColorData:(NSMutableArray *)colorArray
 {
     _colorArray = colorArray;
@@ -62,6 +68,9 @@
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimColorDetailCell" owner:self options:nil] lastObject];
             
+        }
+        if (_productModel.colorList.count >0) {
+            cell.colorListModel = _productModel.colorList[indexPath.row -1];
         }
         return cell;
     }
