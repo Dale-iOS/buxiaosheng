@@ -24,8 +24,8 @@
 #import "NSObject+YYModel.h"
 #import "LZBackOrderSaveModel.h"
 #import "LZBackOrderInfoModel.h"
-
-@interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate>
+#import "UITextField+PopOver.h"
+@interface BackOrderViewController ()<UITableViewDataSource, UITableViewDelegate, LZBackOrderCellDelegate, ZWCustomPopViewDelegate,UITextFieldDelegate>
 {
     NSString *_productId;//产品id
 }
@@ -398,50 +398,27 @@
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+//点击客户名称
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@", textField.text];
-    _tempNameArray = [self.nameArray filteredArrayUsingPredicate:predicate];
-    NSInteger count = _tempNameArray.count;
-    if (_popView) {
-        if (count == 0) {
-            [_popView dismiss];
-            return;
-        }
-        CGFloat height = count * 44;
-        if (count >= 4) height = 4 * 44;
-        _popView.table.height = height;
-        _popView.containerView.height = height;
-        _popView.height = height;
-        [_popView.table reloadData];
-    } else {
-        if (count == 0) return;
-        CGFloat height = count * 44;
-        if (count >= 4) height = 4 * 44;
-        ZWCustomPopView *popView = [[ZWCustomPopView alloc]initWithBounds:CGRectMake(0, 0, 120, height) titleMenus:_tempNameArray maskAlpha:0.0];
-        popView.delegate = self;
-        popView.containerBackgroudColor = [UIColor whiteColor];
-        [popView showFrom:textField alignStyle:CPAlignStyleCenter];
-        _popView = popView;
-    }
-}
+	textField.delegate = self;
+	textField.scrollView =(UIScrollView *)self.view;
+	textField.positionType  = ZJPositionBottom;
+	WEAKSELF;
+	[textField popOverSource:_nameArray index:^(NSInteger index) {
+		weakSelf.infoModel.customerId = weakSelf.customerIdAry[index];
+		NSString *name = weakSelf.nameArray[index];
+		LZBackOrderGroup *group = weakSelf.dataSource.firstObject;
+		LZBackOrderItem *item = group.items.firstObject;
+		item.detailTitle = name;
+		NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+		//		[self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 
-#pragma mark - ZWCustomPopViewDelegate
-- (void)popOverView:(ZWCustomPopView *)pView didClickMenuIndex:(NSInteger)index {
-    self.infoModel.customerId = self.customerIdAry[index];
-    NSString *name = _tempNameArray[index];
-    LZBackOrderGroup *group = self.dataSource.firstObject;
-    LZBackOrderItem *item = group.items.firstObject;
-    item.detailTitle = name;
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-//    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-    
-    NSString *mobile = self.customerMobileAry[index];
-    LZBackOrderItem *item2 = group.items.lastObject;
-    item2.detailTitle = mobile;
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+		NSString *mobile = weakSelf.customerMobileAry[index];
+		LZBackOrderItem *item2 = group.items.lastObject;
+		item2.detailTitle = mobile;
+		[weakSelf.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+	}];
 }
-
 #pragma mark - Getter && Setter
 - (NSMutableArray *)dataSource {
     if (_dataSource == nil) {
