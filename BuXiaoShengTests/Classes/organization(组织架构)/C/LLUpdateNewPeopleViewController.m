@@ -141,7 +141,7 @@
         NSMutableArray *IdMuArray = [NSMutableArray array];
         NSMutableArray *NameMuArray = [NSMutableArray array];
         for (int i = 0; i < self.lists.count ; i++) {
-            LZDeptListModel *model = self.lists[0];
+            LZDeptListModel *model = self.lists[i];
             if (model.companyId.length > 0 && model.id.length > 0 && model.name.length > 0) {
                 [CompanyIdMuArray addObject:model.companyId];
                 [IdMuArray addObject:model.id];
