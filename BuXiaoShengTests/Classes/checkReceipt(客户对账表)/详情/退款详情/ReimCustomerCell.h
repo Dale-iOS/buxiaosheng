@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *deposit;
 @property (weak, nonatomic) IBOutlet UILabel *bankName;
 @property (weak, nonatomic) IBOutlet UILabel *remark;
+@property (weak, nonatomic) IBOutlet UILabel *createTime;
 
 @end

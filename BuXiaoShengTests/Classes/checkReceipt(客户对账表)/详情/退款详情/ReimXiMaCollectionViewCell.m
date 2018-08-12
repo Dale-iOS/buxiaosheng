@@ -15,4 +15,9 @@
     
 }
 
+- (void)setValListModel:(LZBackOrderDetialProductValListModel *)valListModel{
+    _valListModel = valListModel;
+    self.value.text = valListModel.value;
+}
+
 @end

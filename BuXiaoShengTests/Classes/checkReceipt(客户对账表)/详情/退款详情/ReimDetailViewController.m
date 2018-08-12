@@ -116,7 +116,9 @@
 
         }
         if (self.dataArray.count >0) {
-//            cell.productModel = self.dataArray[indexPath.row -我不知道应该减多少]
+//            这里也是不知道要减几
+            cell.productModel = [LZBackOrderDetialProductModel LLMJParse:self.dataArray[indexPath.row -1]];
+            NSLog(@"123");
         }
         [cell loadContactData];
         return cell;

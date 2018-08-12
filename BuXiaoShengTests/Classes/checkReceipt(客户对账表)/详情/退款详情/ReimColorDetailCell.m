@@ -34,10 +34,10 @@
 
 - (void)setColorListModel:(LZBackOrderDetialProductColorListModel *)colorListModel{
     _colorListModel = colorListModel;
-//    colorListModel.total;//条数
-//    colorListModel.price;//单价
-//    colorListModel.unitName;//单位
-//    colorListModel.productColorName;//产品名字
+    self.total.text =  colorListModel.total;//条数
+    self.price.text =  colorListModel.price;//单价
+    self.unitName.text = colorListModel.unitName;//单位
+    self.productColorName.text = colorListModel.productColorName;//产品名字
 }
 
 #pragma mark Collection datasource
@@ -51,7 +51,7 @@
     
     static NSString * cellId = @"ReimXiMaCollectionViewCell";
     ReimXiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    
+//    cell.valListModel = 
     return cell;
     
 }

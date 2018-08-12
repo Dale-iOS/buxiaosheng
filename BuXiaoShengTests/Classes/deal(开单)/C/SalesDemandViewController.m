@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  销售需求页面
+//  销售需求页面(作废)
 
 #import "SalesDemandViewController.h"
 #import "SalesDemandCell.h"

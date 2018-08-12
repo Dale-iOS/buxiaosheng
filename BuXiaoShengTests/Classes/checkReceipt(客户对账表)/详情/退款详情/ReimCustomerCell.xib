@@ -240,6 +240,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bankName" destination="Pxw-l3-1cv" id="j2H-ou-IDw"/>
+                <outlet property="createTime" destination="PVw-Qb-l24" id="lWd-P0-C5h"/>
                 <outlet property="customerMobile" destination="z7K-KA-soI" id="0cG-HE-8dY"/>
                 <outlet property="customerName" destination="fHT-JZ-HVG" id="QUC-KO-uAT"/>
                 <outlet property="deposit" destination="0Cb-AL-0oP" id="2q6-Rl-Jer"/>
