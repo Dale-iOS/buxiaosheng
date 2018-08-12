@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReimDetailViewController : UIViewController
+@interface ReimDetailViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSString *orderNo;
 

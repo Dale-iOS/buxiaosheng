@@ -9,8 +9,8 @@
 #import "ReimColorDetailCell.h"
 #import "ReimXiMaCollectionViewCell.h"
 
-#define minimumInteritemSpacing 2
-#define minimumLineSpacing 2
+#define minimumInteritemSpacing 0
+#define minimumLineSpacing 0
 
 
 @implementation ReimColorDetailCell
@@ -27,7 +27,7 @@
     [self.collectionView setBackgroundColor:[UIColor yellowColor]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"ReimXiMaCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ReimXiMaCollectionViewCell"];
-    
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
     self.collectionView.scrollEnabled = NO;
     
 }
@@ -43,7 +43,7 @@
     
     static NSString * cellId = @"ReimXiMaCollectionViewCell";
     ReimXiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blueColor];
+    
     return cell;
     
 }

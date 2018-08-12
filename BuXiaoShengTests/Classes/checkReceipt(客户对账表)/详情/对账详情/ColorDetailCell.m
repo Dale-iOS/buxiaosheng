@@ -24,28 +24,29 @@
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    [self.collectionView setBackgroundColor:[UIColor yellowColor]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"XiMaCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"XiMaCollectionViewCell"];
-    
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
     self.collectionView.scrollEnabled = NO;
     
 }
 
-- (void)showData:(NSDictionary *)dataDic
+- (void)setColorListModel:(LZInventoryListColorListModel *)colorListModel
 {
-    _dataDic = dataDic;
-    _productColorNameLabel = dataDic[@"productColorName"];
-    _unitNameLabel = dataDic[@"unitName"];
-    _priceLabel = dataDic[@"price"];
-    _totalLabel = dataDic[@"total"];
-    _valList = dataDic[@"valList"];
+    _colorListModel = colorListModel;
+    _productColorNameLabel.text = colorListModel.productColorName;
+    _unitNameLabel.text = colorListModel.unitName;
+    _priceLabel.text = colorListModel.price;
+    _totalLabel.text = colorListModel.total;
+    _valList = colorListModel.valList;
+    [self.collectionView reloadData];
 }
+
 
 #pragma mark Collection datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSInteger rtn = 25;
+    NSInteger rtn = _valList.count;
     return rtn;
 }
 
@@ -53,7 +54,8 @@
     
     static NSString * cellId = @"XiMaCollectionViewCell";
     XiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blueColor];
+    
+    cell.valListModel = _valList[indexPath.row];
     return cell;
     
 }
@@ -66,7 +68,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = (collectionView.frame.size.width - (5-1)*minimumInteritemSpacing)/5;
+    CGFloat width = (collectionView.frame.size.width)/5;
     return CGSizeMake(width, width);
 }
 
@@ -76,11 +78,11 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return minimumLineSpacing;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return minimumInteritemSpacing;
+    return 0;
 }
 
 

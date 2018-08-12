@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZCollectionCheckDetailProductModel.h"
 
 @interface ColorsCell : UITableViewCell<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) NSDictionary *colorDic;
+@property (nonatomic, strong) LZCollectionCheckDetailProductModel *productModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewContant;

@@ -24,58 +24,6 @@
 		3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AC2085CE0600C448FD /* AllCompanyViewController.m */; };
 		3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */; };
 		3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411F2B22085CEF700C448FD /* FreezeViewController.m */; };
-		3417F95C211E83B100FF29F8 /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F933211E83B000FF29F8 /* ColorDetailCell.xib */; };
-		3417F95D211E83B100FF29F8 /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F933211E83B000FF29F8 /* ColorDetailCell.xib */; };
-		3417F95E211E83B100FF29F8 /* XiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F934211E83B000FF29F8 /* XiMaCollectionViewCell.m */; };
-		3417F95F211E83B100FF29F8 /* XiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F934211E83B000FF29F8 /* XiMaCollectionViewCell.m */; };
-		3417F960211E83B100FF29F8 /* ColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F935211E83B000FF29F8 /* ColorHeadCell.xib */; };
-		3417F961211E83B100FF29F8 /* ColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F935211E83B000FF29F8 /* ColorHeadCell.xib */; };
-		3417F962211E83B100FF29F8 /* XiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F936211E83B000FF29F8 /* XiMaCollectionViewCell.xib */; };
-		3417F963211E83B100FF29F8 /* XiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F936211E83B000FF29F8 /* XiMaCollectionViewCell.xib */; };
-		3417F964211E83B100FF29F8 /* ColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F937211E83B000FF29F8 /* ColorsCell.m */; };
-		3417F965211E83B100FF29F8 /* ColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F937211E83B000FF29F8 /* ColorsCell.m */; };
-		3417F966211E83B100FF29F8 /* ColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93B211E83B000FF29F8 /* ColorDetailCell.m */; };
-		3417F967211E83B100FF29F8 /* ColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93B211E83B000FF29F8 /* ColorDetailCell.m */; };
-		3417F968211E83B100FF29F8 /* ColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93C211E83B000FF29F8 /* ColorHeadCell.m */; };
-		3417F969211E83B100FF29F8 /* ColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93C211E83B000FF29F8 /* ColorHeadCell.m */; };
-		3417F96A211E83B100FF29F8 /* ColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F93D211E83B000FF29F8 /* ColorsCell.xib */; };
-		3417F96B211E83B100FF29F8 /* ColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F93D211E83B000FF29F8 /* ColorsCell.xib */; };
-		3417F96C211E83B100FF29F8 /* CheckDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F93E211E83B000FF29F8 /* CheckDetailViewController.xib */; };
-		3417F96D211E83B100FF29F8 /* CheckDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F93E211E83B000FF29F8 /* CheckDetailViewController.xib */; };
-		3417F96E211E83B100FF29F8 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93F211E83B000FF29F8 /* CustomerCell.m */; };
-		3417F96F211E83B100FF29F8 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F93F211E83B000FF29F8 /* CustomerCell.m */; };
-		3417F970211E83B100FF29F8 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F940211E83B000FF29F8 /* CustomerCell.xib */; };
-		3417F971211E83B100FF29F8 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F940211E83B000FF29F8 /* CustomerCell.xib */; };
-		3417F972211E83B100FF29F8 /* CheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F941211E83B000FF29F8 /* CheckDetailViewController.m */; };
-		3417F973211E83B100FF29F8 /* CheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F941211E83B000FF29F8 /* CheckDetailViewController.m */; };
-		3417F974211E83B100FF29F8 /* ReimXiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F944211E83B000FF29F8 /* ReimXiMaCollectionViewCell.m */; };
-		3417F975211E83B100FF29F8 /* ReimXiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F944211E83B000FF29F8 /* ReimXiMaCollectionViewCell.m */; };
-		3417F976211E83B100FF29F8 /* ReimColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F945211E83B000FF29F8 /* ReimColorHeadCell.m */; };
-		3417F977211E83B100FF29F8 /* ReimColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F945211E83B000FF29F8 /* ReimColorHeadCell.m */; };
-		3417F978211E83B100FF29F8 /* ReimDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F947211E83B000FF29F8 /* ReimDetailViewController.m */; };
-		3417F979211E83B100FF29F8 /* ReimDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F947211E83B000FF29F8 /* ReimDetailViewController.m */; };
-		3417F97A211E83B100FF29F8 /* ReimColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F949211E83B000FF29F8 /* ReimColorHeadCell.xib */; };
-		3417F97B211E83B100FF29F8 /* ReimColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F949211E83B000FF29F8 /* ReimColorHeadCell.xib */; };
-		3417F97C211E83B100FF29F8 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F94A211E83B000FF29F8 /* ReimCustomerCell.xib */; };
-		3417F97D211E83B100FF29F8 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F94A211E83B000FF29F8 /* ReimCustomerCell.xib */; };
-		3417F97E211E83B100FF29F8 /* ReimColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F94D211E83B000FF29F8 /* ReimColorsCell.m */; };
-		3417F97F211E83B100FF29F8 /* ReimColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F94D211E83B000FF29F8 /* ReimColorsCell.m */; };
-		3417F980211E83B100FF29F8 /* ReimCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F94F211E83B000FF29F8 /* ReimCustomerCell.m */; };
-		3417F981211E83B100FF29F8 /* ReimCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F94F211E83B000FF29F8 /* ReimCustomerCell.m */; };
-		3417F982211E83B100FF29F8 /* ReimColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F951211E83B000FF29F8 /* ReimColorDetailCell.xib */; };
-		3417F983211E83B100FF29F8 /* ReimColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F951211E83B000FF29F8 /* ReimColorDetailCell.xib */; };
-		3417F984211E83B100FF29F8 /* ReimXiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F953211E83B000FF29F8 /* ReimXiMaCollectionViewCell.xib */; };
-		3417F985211E83B100FF29F8 /* ReimXiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F953211E83B000FF29F8 /* ReimXiMaCollectionViewCell.xib */; };
-		3417F986211E83B100FF29F8 /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F954211E83B000FF29F8 /* ReimColorsCell.xib */; };
-		3417F987211E83B100FF29F8 /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F954211E83B000FF29F8 /* ReimColorsCell.xib */; };
-		3417F988211E83B100FF29F8 /* ReimSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F955211E83B000FF29F8 /* ReimSubCell.xib */; };
-		3417F989211E83B100FF29F8 /* ReimSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F955211E83B000FF29F8 /* ReimSubCell.xib */; };
-		3417F98A211E83B100FF29F8 /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F956211E83B000FF29F8 /* ReimDetailViewController.xib */; };
-		3417F98B211E83B100FF29F8 /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3417F956211E83B000FF29F8 /* ReimDetailViewController.xib */; };
-		3417F98C211E83B100FF29F8 /* ReimColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F957211E83B000FF29F8 /* ReimColorDetailCell.m */; };
-		3417F98D211E83B100FF29F8 /* ReimColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F957211E83B000FF29F8 /* ReimColorDetailCell.m */; };
-		3417F98E211E83B100FF29F8 /* ReimSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F958211E83B000FF29F8 /* ReimSubCell.m */; };
-		3417F98F211E83B100FF29F8 /* ReimSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F958211E83B000FF29F8 /* ReimSubCell.m */; };
 		3417F990211E83B100FF29F8 /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3417F959211E83B100FF29F8 /* testData.json */; };
 		3417F991211E83B100FF29F8 /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3417F959211E83B100FF29F8 /* testData.json */; };
 		3417F992211E83B100FF29F8 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3417F95B211E83B100FF29F8 /* Tools.m */; };
@@ -344,6 +292,58 @@
 		34602EC3207F6BFD00710F91 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34602EC1207F69C800710F91 /* TextInputCell.m */; };
 		3461107720C11B940080579F /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3461107520C11B940080579F /* HXTagsView.m */; };
 		3461107820C11B940080579F /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3461107520C11B940080579F /* HXTagsView.m */; };
+		34637CB6212020DB00D9945D /* XiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CA4212020D900D9945D /* XiMaCollectionViewCell.xib */; };
+		34637CB7212020DB00D9945D /* XiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CA4212020D900D9945D /* XiMaCollectionViewCell.xib */; };
+		34637CB8212020DB00D9945D /* ColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CA5212020D900D9945D /* ColorHeadCell.xib */; };
+		34637CB9212020DB00D9945D /* ColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CA5212020D900D9945D /* ColorHeadCell.xib */; };
+		34637CBA212020DB00D9945D /* XiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CA9212020D900D9945D /* XiMaCollectionViewCell.m */; };
+		34637CBB212020DB00D9945D /* XiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CA9212020D900D9945D /* XiMaCollectionViewCell.m */; };
+		34637CBC212020DB00D9945D /* ColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CAA212020D900D9945D /* ColorsCell.m */; };
+		34637CBD212020DB00D9945D /* ColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CAA212020D900D9945D /* ColorsCell.m */; };
+		34637CBE212020DB00D9945D /* CheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CAB212020DA00D9945D /* CheckDetailViewController.m */; };
+		34637CBF212020DB00D9945D /* CheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CAB212020DA00D9945D /* CheckDetailViewController.m */; };
+		34637CC0212020DB00D9945D /* CheckDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CAC212020DA00D9945D /* CheckDetailViewController.xib */; };
+		34637CC1212020DB00D9945D /* CheckDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CAC212020DA00D9945D /* CheckDetailViewController.xib */; };
+		34637CC2212020DB00D9945D /* ColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB0212020DA00D9945D /* ColorDetailCell.m */; };
+		34637CC3212020DB00D9945D /* ColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB0212020DA00D9945D /* ColorDetailCell.m */; };
+		34637CC4212020DB00D9945D /* ColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB1212020DA00D9945D /* ColorsCell.xib */; };
+		34637CC5212020DB00D9945D /* ColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB1212020DA00D9945D /* ColorsCell.xib */; };
+		34637CC6212020DB00D9945D /* ColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB2212020DA00D9945D /* ColorHeadCell.m */; };
+		34637CC7212020DB00D9945D /* ColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB2212020DA00D9945D /* ColorHeadCell.m */; };
+		34637CC8212020DB00D9945D /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB3212020DB00D9945D /* CustomerCell.m */; };
+		34637CC9212020DB00D9945D /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CB3212020DB00D9945D /* CustomerCell.m */; };
+		34637CCA212020DB00D9945D /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB4212020DB00D9945D /* CustomerCell.xib */; };
+		34637CCB212020DB00D9945D /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB4212020DB00D9945D /* CustomerCell.xib */; };
+		34637CCC212020DB00D9945D /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB5212020DB00D9945D /* ColorDetailCell.xib */; };
+		34637CCD212020DB00D9945D /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CB5212020DB00D9945D /* ColorDetailCell.xib */; };
+		34637CE3212020E700D9945D /* ReimXiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CCE212020E500D9945D /* ReimXiMaCollectionViewCell.xib */; };
+		34637CE4212020E700D9945D /* ReimXiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CCE212020E500D9945D /* ReimXiMaCollectionViewCell.xib */; };
+		34637CE5212020E700D9945D /* ReimColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CCF212020E500D9945D /* ReimColorDetailCell.m */; };
+		34637CE6212020E700D9945D /* ReimColorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CCF212020E500D9945D /* ReimColorDetailCell.m */; };
+		34637CE7212020E700D9945D /* ReimXiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CD1212020E500D9945D /* ReimXiMaCollectionViewCell.m */; };
+		34637CE8212020E700D9945D /* ReimXiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CD1212020E500D9945D /* ReimXiMaCollectionViewCell.m */; };
+		34637CE9212020E700D9945D /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD2212020E500D9945D /* ReimDetailViewController.xib */; };
+		34637CEA212020E700D9945D /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD2212020E500D9945D /* ReimDetailViewController.xib */; };
+		34637CEB212020E700D9945D /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD4212020E500D9945D /* ReimCustomerCell.xib */; };
+		34637CEC212020E700D9945D /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD4212020E500D9945D /* ReimCustomerCell.xib */; };
+		34637CED212020E700D9945D /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD5212020E500D9945D /* ReimColorsCell.xib */; };
+		34637CEE212020E700D9945D /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD5212020E500D9945D /* ReimColorsCell.xib */; };
+		34637CEF212020E700D9945D /* ReimColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD6212020E500D9945D /* ReimColorDetailCell.xib */; };
+		34637CF0212020E700D9945D /* ReimColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD6212020E500D9945D /* ReimColorDetailCell.xib */; };
+		34637CF1212020E700D9945D /* ReimSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD9212020E600D9945D /* ReimSubCell.xib */; };
+		34637CF2212020E700D9945D /* ReimSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CD9212020E600D9945D /* ReimSubCell.xib */; };
+		34637CF3212020E700D9945D /* ReimSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDA212020E600D9945D /* ReimSubCell.m */; };
+		34637CF4212020E700D9945D /* ReimSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDA212020E600D9945D /* ReimSubCell.m */; };
+		34637CF5212020E700D9945D /* ReimDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDB212020E600D9945D /* ReimDetailViewController.m */; };
+		34637CF6212020E700D9945D /* ReimDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDB212020E600D9945D /* ReimDetailViewController.m */; };
+		34637CF7212020E700D9945D /* ReimColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDD212020E600D9945D /* ReimColorsCell.m */; };
+		34637CF8212020E700D9945D /* ReimColorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDD212020E600D9945D /* ReimColorsCell.m */; };
+		34637CF9212020E700D9945D /* ReimColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CDE212020E600D9945D /* ReimColorHeadCell.xib */; };
+		34637CFA212020E700D9945D /* ReimColorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34637CDE212020E600D9945D /* ReimColorHeadCell.xib */; };
+		34637CFB212020E700D9945D /* ReimColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDF212020E600D9945D /* ReimColorHeadCell.m */; };
+		34637CFC212020E700D9945D /* ReimColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CDF212020E600D9945D /* ReimColorHeadCell.m */; };
+		34637CFD212020E700D9945D /* ReimCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CE0212020E700D9945D /* ReimCustomerCell.m */; };
+		34637CFE212020E700D9945D /* ReimCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34637CE0212020E700D9945D /* ReimCustomerCell.m */; };
 		3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464457D20AD281F00D6A06B /* LZClientModel.m */; };
 		3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
 		3464458B20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458A20AD78A800D6A06B /* ChooseLablesCollectionReusableView.m */; };
@@ -966,45 +966,6 @@
 		3411F2AF2085CEBA00C448FD /* NoneManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoneManagerViewController.m; sourceTree = "<group>"; };
 		3411F2B12085CEF700C448FD /* FreezeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreezeViewController.h; sourceTree = "<group>"; };
 		3411F2B22085CEF700C448FD /* FreezeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreezeViewController.m; sourceTree = "<group>"; };
-		3417F931211E83B000FF29F8 /* ColorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorDetailCell.h; sourceTree = "<group>"; };
-		3417F932211E83B000FF29F8 /* ColorHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHeadCell.h; sourceTree = "<group>"; };
-		3417F933211E83B000FF29F8 /* ColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorDetailCell.xib; sourceTree = "<group>"; };
-		3417F934211E83B000FF29F8 /* XiMaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiMaCollectionViewCell.m; sourceTree = "<group>"; };
-		3417F935211E83B000FF29F8 /* ColorHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorHeadCell.xib; sourceTree = "<group>"; };
-		3417F936211E83B000FF29F8 /* XiMaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XiMaCollectionViewCell.xib; sourceTree = "<group>"; };
-		3417F937211E83B000FF29F8 /* ColorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsCell.m; sourceTree = "<group>"; };
-		3417F938211E83B000FF29F8 /* CheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckDetailViewController.h; sourceTree = "<group>"; };
-		3417F939211E83B000FF29F8 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
-		3417F93A211E83B000FF29F8 /* XiMaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiMaCollectionViewCell.h; sourceTree = "<group>"; };
-		3417F93B211E83B000FF29F8 /* ColorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorDetailCell.m; sourceTree = "<group>"; };
-		3417F93C211E83B000FF29F8 /* ColorHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHeadCell.m; sourceTree = "<group>"; };
-		3417F93D211E83B000FF29F8 /* ColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorsCell.xib; sourceTree = "<group>"; };
-		3417F93E211E83B000FF29F8 /* CheckDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckDetailViewController.xib; sourceTree = "<group>"; };
-		3417F93F211E83B000FF29F8 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
-		3417F940211E83B000FF29F8 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
-		3417F941211E83B000FF29F8 /* CheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckDetailViewController.m; sourceTree = "<group>"; };
-		3417F942211E83B000FF29F8 /* ColorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsCell.h; sourceTree = "<group>"; };
-		3417F944211E83B000FF29F8 /* ReimXiMaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimXiMaCollectionViewCell.m; sourceTree = "<group>"; };
-		3417F945211E83B000FF29F8 /* ReimColorHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorHeadCell.m; sourceTree = "<group>"; };
-		3417F946211E83B000FF29F8 /* ReimCustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimCustomerCell.h; sourceTree = "<group>"; };
-		3417F947211E83B000FF29F8 /* ReimDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimDetailViewController.m; sourceTree = "<group>"; };
-		3417F948211E83B000FF29F8 /* ReimColorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorsCell.h; sourceTree = "<group>"; };
-		3417F949211E83B000FF29F8 /* ReimColorHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorHeadCell.xib; sourceTree = "<group>"; };
-		3417F94A211E83B000FF29F8 /* ReimCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimCustomerCell.xib; sourceTree = "<group>"; };
-		3417F94B211E83B000FF29F8 /* ReimSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimSubCell.h; sourceTree = "<group>"; };
-		3417F94C211E83B000FF29F8 /* ReimColorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorDetailCell.h; sourceTree = "<group>"; };
-		3417F94D211E83B000FF29F8 /* ReimColorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorsCell.m; sourceTree = "<group>"; };
-		3417F94E211E83B000FF29F8 /* ReimDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimDetailViewController.h; sourceTree = "<group>"; };
-		3417F94F211E83B000FF29F8 /* ReimCustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimCustomerCell.m; sourceTree = "<group>"; };
-		3417F950211E83B000FF29F8 /* ReimColorHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorHeadCell.h; sourceTree = "<group>"; };
-		3417F951211E83B000FF29F8 /* ReimColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorDetailCell.xib; sourceTree = "<group>"; };
-		3417F952211E83B000FF29F8 /* ReimXiMaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimXiMaCollectionViewCell.h; sourceTree = "<group>"; };
-		3417F953211E83B000FF29F8 /* ReimXiMaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimXiMaCollectionViewCell.xib; sourceTree = "<group>"; };
-		3417F954211E83B000FF29F8 /* ReimColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorsCell.xib; sourceTree = "<group>"; };
-		3417F955211E83B000FF29F8 /* ReimSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimSubCell.xib; sourceTree = "<group>"; };
-		3417F956211E83B000FF29F8 /* ReimDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimDetailViewController.xib; sourceTree = "<group>"; };
-		3417F957211E83B000FF29F8 /* ReimColorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorDetailCell.m; sourceTree = "<group>"; };
-		3417F958211E83B000FF29F8 /* ReimSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimSubCell.m; sourceTree = "<group>"; };
 		3417F959211E83B100FF29F8 /* testData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testData.json; sourceTree = "<group>"; };
 		3417F95A211E83B100FF29F8 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		3417F95B211E83B100FF29F8 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
@@ -1338,6 +1299,45 @@
 		34602EC1207F69C800710F91 /* TextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
 		3461107520C11B940080579F /* HXTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXTagsView.m; sourceTree = "<group>"; };
 		3461107620C11B940080579F /* HXTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXTagsView.h; sourceTree = "<group>"; };
+		34637CA4212020D900D9945D /* XiMaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XiMaCollectionViewCell.xib; sourceTree = "<group>"; };
+		34637CA5212020D900D9945D /* ColorHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorHeadCell.xib; sourceTree = "<group>"; };
+		34637CA6212020D900D9945D /* XiMaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiMaCollectionViewCell.h; sourceTree = "<group>"; };
+		34637CA7212020D900D9945D /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
+		34637CA8212020D900D9945D /* ColorHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHeadCell.h; sourceTree = "<group>"; };
+		34637CA9212020D900D9945D /* XiMaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiMaCollectionViewCell.m; sourceTree = "<group>"; };
+		34637CAA212020D900D9945D /* ColorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsCell.m; sourceTree = "<group>"; };
+		34637CAB212020DA00D9945D /* CheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckDetailViewController.m; sourceTree = "<group>"; };
+		34637CAC212020DA00D9945D /* CheckDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckDetailViewController.xib; sourceTree = "<group>"; };
+		34637CAD212020DA00D9945D /* CheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckDetailViewController.h; sourceTree = "<group>"; };
+		34637CAE212020DA00D9945D /* ColorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsCell.h; sourceTree = "<group>"; };
+		34637CAF212020DA00D9945D /* ColorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorDetailCell.h; sourceTree = "<group>"; };
+		34637CB0212020DA00D9945D /* ColorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorDetailCell.m; sourceTree = "<group>"; };
+		34637CB1212020DA00D9945D /* ColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorsCell.xib; sourceTree = "<group>"; };
+		34637CB2212020DA00D9945D /* ColorHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHeadCell.m; sourceTree = "<group>"; };
+		34637CB3212020DB00D9945D /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		34637CB4212020DB00D9945D /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
+		34637CB5212020DB00D9945D /* ColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorDetailCell.xib; sourceTree = "<group>"; };
+		34637CCE212020E500D9945D /* ReimXiMaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimXiMaCollectionViewCell.xib; sourceTree = "<group>"; };
+		34637CCF212020E500D9945D /* ReimColorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorDetailCell.m; sourceTree = "<group>"; };
+		34637CD0212020E500D9945D /* ReimDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimDetailViewController.h; sourceTree = "<group>"; };
+		34637CD1212020E500D9945D /* ReimXiMaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimXiMaCollectionViewCell.m; sourceTree = "<group>"; };
+		34637CD2212020E500D9945D /* ReimDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimDetailViewController.xib; sourceTree = "<group>"; };
+		34637CD3212020E500D9945D /* ReimColorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorDetailCell.h; sourceTree = "<group>"; };
+		34637CD4212020E500D9945D /* ReimCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimCustomerCell.xib; sourceTree = "<group>"; };
+		34637CD5212020E500D9945D /* ReimColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorsCell.xib; sourceTree = "<group>"; };
+		34637CD6212020E500D9945D /* ReimColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorDetailCell.xib; sourceTree = "<group>"; };
+		34637CD7212020E500D9945D /* ReimColorHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorHeadCell.h; sourceTree = "<group>"; };
+		34637CD8212020E600D9945D /* ReimColorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorsCell.h; sourceTree = "<group>"; };
+		34637CD9212020E600D9945D /* ReimSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimSubCell.xib; sourceTree = "<group>"; };
+		34637CDA212020E600D9945D /* ReimSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimSubCell.m; sourceTree = "<group>"; };
+		34637CDB212020E600D9945D /* ReimDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimDetailViewController.m; sourceTree = "<group>"; };
+		34637CDC212020E600D9945D /* ReimXiMaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimXiMaCollectionViewCell.h; sourceTree = "<group>"; };
+		34637CDD212020E600D9945D /* ReimColorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorsCell.m; sourceTree = "<group>"; };
+		34637CDE212020E600D9945D /* ReimColorHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorHeadCell.xib; sourceTree = "<group>"; };
+		34637CDF212020E600D9945D /* ReimColorHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorHeadCell.m; sourceTree = "<group>"; };
+		34637CE0212020E700D9945D /* ReimCustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimCustomerCell.m; sourceTree = "<group>"; };
+		34637CE1212020E700D9945D /* ReimSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimSubCell.h; sourceTree = "<group>"; };
+		34637CE2212020E700D9945D /* ReimCustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimCustomerCell.h; sourceTree = "<group>"; };
 		3464457C20AD281F00D6A06B /* LZClientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZClientModel.h; sourceTree = "<group>"; };
 		3464457D20AD281F00D6A06B /* LZClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZClientModel.m; sourceTree = "<group>"; };
 		3464458620AD73D100D6A06B /* ChooseLablesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseLablesCell.h; sourceTree = "<group>"; };
@@ -2194,24 +2194,24 @@
 		3417F930211E83B000FF29F8 /* 对账详情 */ = {
 			isa = PBXGroup;
 			children = (
-				3417F931211E83B000FF29F8 /* ColorDetailCell.h */,
-				3417F93B211E83B000FF29F8 /* ColorDetailCell.m */,
-				3417F933211E83B000FF29F8 /* ColorDetailCell.xib */,
-				3417F932211E83B000FF29F8 /* ColorHeadCell.h */,
-				3417F93C211E83B000FF29F8 /* ColorHeadCell.m */,
-				3417F935211E83B000FF29F8 /* ColorHeadCell.xib */,
-				3417F93A211E83B000FF29F8 /* XiMaCollectionViewCell.h */,
-				3417F934211E83B000FF29F8 /* XiMaCollectionViewCell.m */,
-				3417F936211E83B000FF29F8 /* XiMaCollectionViewCell.xib */,
-				3417F942211E83B000FF29F8 /* ColorsCell.h */,
-				3417F937211E83B000FF29F8 /* ColorsCell.m */,
-				3417F93D211E83B000FF29F8 /* ColorsCell.xib */,
-				3417F939211E83B000FF29F8 /* CustomerCell.h */,
-				3417F93F211E83B000FF29F8 /* CustomerCell.m */,
-				3417F940211E83B000FF29F8 /* CustomerCell.xib */,
-				3417F938211E83B000FF29F8 /* CheckDetailViewController.h */,
-				3417F941211E83B000FF29F8 /* CheckDetailViewController.m */,
-				3417F93E211E83B000FF29F8 /* CheckDetailViewController.xib */,
+				34637CAD212020DA00D9945D /* CheckDetailViewController.h */,
+				34637CAB212020DA00D9945D /* CheckDetailViewController.m */,
+				34637CAC212020DA00D9945D /* CheckDetailViewController.xib */,
+				34637CAF212020DA00D9945D /* ColorDetailCell.h */,
+				34637CB0212020DA00D9945D /* ColorDetailCell.m */,
+				34637CB5212020DB00D9945D /* ColorDetailCell.xib */,
+				34637CA8212020D900D9945D /* ColorHeadCell.h */,
+				34637CB2212020DA00D9945D /* ColorHeadCell.m */,
+				34637CA5212020D900D9945D /* ColorHeadCell.xib */,
+				34637CAE212020DA00D9945D /* ColorsCell.h */,
+				34637CAA212020D900D9945D /* ColorsCell.m */,
+				34637CB1212020DA00D9945D /* ColorsCell.xib */,
+				34637CA7212020D900D9945D /* CustomerCell.h */,
+				34637CB3212020DB00D9945D /* CustomerCell.m */,
+				34637CB4212020DB00D9945D /* CustomerCell.xib */,
+				34637CA6212020D900D9945D /* XiMaCollectionViewCell.h */,
+				34637CA9212020D900D9945D /* XiMaCollectionViewCell.m */,
+				34637CA4212020D900D9945D /* XiMaCollectionViewCell.xib */,
 			);
 			path = "对账详情";
 			sourceTree = "<group>";
@@ -2219,27 +2219,27 @@
 		3417F943211E83B000FF29F8 /* 退款详情 */ = {
 			isa = PBXGroup;
 			children = (
-				3417F948211E83B000FF29F8 /* ReimColorsCell.h */,
-				3417F94D211E83B000FF29F8 /* ReimColorsCell.m */,
-				3417F954211E83B000FF29F8 /* ReimColorsCell.xib */,
-				3417F94C211E83B000FF29F8 /* ReimColorDetailCell.h */,
-				3417F957211E83B000FF29F8 /* ReimColorDetailCell.m */,
-				3417F951211E83B000FF29F8 /* ReimColorDetailCell.xib */,
-				3417F94E211E83B000FF29F8 /* ReimDetailViewController.h */,
-				3417F947211E83B000FF29F8 /* ReimDetailViewController.m */,
-				3417F956211E83B000FF29F8 /* ReimDetailViewController.xib */,
-				3417F950211E83B000FF29F8 /* ReimColorHeadCell.h */,
-				3417F945211E83B000FF29F8 /* ReimColorHeadCell.m */,
-				3417F949211E83B000FF29F8 /* ReimColorHeadCell.xib */,
-				3417F946211E83B000FF29F8 /* ReimCustomerCell.h */,
-				3417F94F211E83B000FF29F8 /* ReimCustomerCell.m */,
-				3417F94A211E83B000FF29F8 /* ReimCustomerCell.xib */,
-				3417F952211E83B000FF29F8 /* ReimXiMaCollectionViewCell.h */,
-				3417F944211E83B000FF29F8 /* ReimXiMaCollectionViewCell.m */,
-				3417F953211E83B000FF29F8 /* ReimXiMaCollectionViewCell.xib */,
-				3417F94B211E83B000FF29F8 /* ReimSubCell.h */,
-				3417F958211E83B000FF29F8 /* ReimSubCell.m */,
-				3417F955211E83B000FF29F8 /* ReimSubCell.xib */,
+				34637CD3212020E500D9945D /* ReimColorDetailCell.h */,
+				34637CCF212020E500D9945D /* ReimColorDetailCell.m */,
+				34637CD6212020E500D9945D /* ReimColorDetailCell.xib */,
+				34637CD7212020E500D9945D /* ReimColorHeadCell.h */,
+				34637CDF212020E600D9945D /* ReimColorHeadCell.m */,
+				34637CDE212020E600D9945D /* ReimColorHeadCell.xib */,
+				34637CD8212020E600D9945D /* ReimColorsCell.h */,
+				34637CDD212020E600D9945D /* ReimColorsCell.m */,
+				34637CD5212020E500D9945D /* ReimColorsCell.xib */,
+				34637CE2212020E700D9945D /* ReimCustomerCell.h */,
+				34637CE0212020E700D9945D /* ReimCustomerCell.m */,
+				34637CD4212020E500D9945D /* ReimCustomerCell.xib */,
+				34637CD0212020E500D9945D /* ReimDetailViewController.h */,
+				34637CDB212020E600D9945D /* ReimDetailViewController.m */,
+				34637CD2212020E500D9945D /* ReimDetailViewController.xib */,
+				34637CE1212020E700D9945D /* ReimSubCell.h */,
+				34637CDA212020E600D9945D /* ReimSubCell.m */,
+				34637CD9212020E600D9945D /* ReimSubCell.xib */,
+				34637CDC212020E600D9945D /* ReimXiMaCollectionViewCell.h */,
+				34637CD1212020E500D9945D /* ReimXiMaCollectionViewCell.m */,
+				34637CCE212020E500D9945D /* ReimXiMaCollectionViewCell.xib */,
 			);
 			path = "退款详情";
 			sourceTree = "<group>";
@@ -5045,35 +5045,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				346C2260210E03D3004AAC88 /* LZSelectItemViewController.xib in Resources */,
+				34637CE9212020E700D9945D /* ReimDetailViewController.xib in Resources */,
+				34637CEB212020E700D9945D /* ReimCustomerCell.xib in Resources */,
 				3453792021099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */,
 				3453791E21099CD300830DF8 /* LZGoodValueCell.xib in Resources */,
-				3417F95C211E83B100FF29F8 /* ColorDetailCell.xib in Resources */,
-				3417F98A211E83B100FF29F8 /* ReimDetailViewController.xib in Resources */,
+				34637CB6212020DB00D9945D /* XiMaCollectionViewCell.xib in Resources */,
 				346C227B210E03DA004AAC88 /* LZBackOrderCell.xib in Resources */,
-				3417F97A211E83B100FF29F8 /* ReimColorHeadCell.xib in Resources */,
-				3417F984211E83B100FF29F8 /* ReimXiMaCollectionViewCell.xib in Resources */,
-				3417F988211E83B100FF29F8 /* ReimSubCell.xib in Resources */,
-				3417F96C211E83B100FF29F8 /* CheckDetailViewController.xib in Resources */,
-				3417F986211E83B100FF29F8 /* ReimColorsCell.xib in Resources */,
+				34637CEF212020E700D9945D /* ReimColorDetailCell.xib in Resources */,
 				34A92B20207DE86200572648 /* LaunchScreen.storyboard in Resources */,
+				34637CF1212020E700D9945D /* ReimSubCell.xib in Resources */,
+				34637CED212020E700D9945D /* ReimColorsCell.xib in Resources */,
 				2DF7A3902115A314009889DF /* LZPurchaseViewController.xib in Resources */,
-				3417F982211E83B100FF29F8 /* ReimColorDetailCell.xib in Resources */,
 				3427A4F820CE507600369650 /* BRPickerView.bundle in Resources */,
+				34637CB8212020DB00D9945D /* ColorHeadCell.xib in Resources */,
 				2DF7A38E2115A314009889DF /* LZProcessViewController.xib in Resources */,
 				34A92B1D207DE86200572648 /* Assets.xcassets in Resources */,
-				3417F97C211E83B100FF29F8 /* ReimCustomerCell.xib in Resources */,
 				346C2262210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
 				2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */,
-				3417F970211E83B100FF29F8 /* CustomerCell.xib in Resources */,
+				34637CCA212020DB00D9945D /* CustomerCell.xib in Resources */,
+				34637CC4212020DB00D9945D /* ColorsCell.xib in Resources */,
 				34A92B1B207DE86200572648 /* Main.storyboard in Resources */,
-				3417F96A211E83B100FF29F8 /* ColorsCell.xib in Resources */,
+				34637CCC212020DB00D9945D /* ColorDetailCell.xib in Resources */,
+				34637CF9212020E700D9945D /* ReimColorHeadCell.xib in Resources */,
+				34637CC0212020DB00D9945D /* CheckDetailViewController.xib in Resources */,
+				34637CE3212020E700D9945D /* ReimXiMaCollectionViewCell.xib in Resources */,
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				2DF7A37C21156935009889DF /* LZDirectStorageBottomView.xib in Resources */,
 				34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */,
 				346C225A210E03D3004AAC88 /* LZAddItemViewController.xib in Resources */,
 				3417F990211E83B100FF29F8 /* testData.json in Resources */,
-				3417F960211E83B100FF29F8 /* ColorHeadCell.xib in Resources */,
-				3417F962211E83B100FF29F8 /* XiMaCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5081,28 +5081,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3417F987211E83B100FF29F8 /* ReimColorsCell.xib in Resources */,
-				3417F95D211E83B100FF29F8 /* ColorDetailCell.xib in Resources */,
-				3417F971211E83B100FF29F8 /* CustomerCell.xib in Resources */,
-				3417F96B211E83B100FF29F8 /* ColorsCell.xib in Resources */,
-				3417F983211E83B100FF29F8 /* ReimColorDetailCell.xib in Resources */,
-				3417F96D211E83B100FF29F8 /* CheckDetailViewController.xib in Resources */,
-				3417F97D211E83B100FF29F8 /* ReimCustomerCell.xib in Resources */,
+				34637CF2212020E700D9945D /* ReimSubCell.xib in Resources */,
+				34637CEE212020E700D9945D /* ReimColorsCell.xib in Resources */,
 				346C2263210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
+				34637CCB212020DB00D9945D /* CustomerCell.xib in Resources */,
+				34637CE4212020E700D9945D /* ReimXiMaCollectionViewCell.xib in Resources */,
 				3453792121099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */,
+				34637CC1212020DB00D9945D /* CheckDetailViewController.xib in Resources */,
 				3427A4F920CE507600369650 /* BRPickerView.bundle in Resources */,
-				3417F97B211E83B100FF29F8 /* ReimColorHeadCell.xib in Resources */,
+				34637CB7212020DB00D9945D /* XiMaCollectionViewCell.xib in Resources */,
 				346C225B210E03D3004AAC88 /* LZAddItemViewController.xib in Resources */,
+				34637CC5212020DB00D9945D /* ColorsCell.xib in Resources */,
+				34637CEA212020E700D9945D /* ReimDetailViewController.xib in Resources */,
+				34637CB9212020DB00D9945D /* ColorHeadCell.xib in Resources */,
+				34637CCD212020DB00D9945D /* ColorDetailCell.xib in Resources */,
+				34637CFA212020E700D9945D /* ReimColorHeadCell.xib in Resources */,
+				34637CEC212020E700D9945D /* ReimCustomerCell.xib in Resources */,
 				346C2261210E03D3004AAC88 /* LZSelectItemViewController.xib in Resources */,
-				3417F985211E83B100FF29F8 /* ReimXiMaCollectionViewCell.xib in Resources */,
 				3453791F21099CD300830DF8 /* LZGoodValueCell.xib in Resources */,
 				3417F991211E83B100FF29F8 /* testData.json in Resources */,
-				3417F98B211E83B100FF29F8 /* ReimDetailViewController.xib in Resources */,
 				B50505EA209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				346C227C210E03DA004AAC88 /* LZBackOrderCell.xib in Resources */,
-				3417F963211E83B100FF29F8 /* XiMaCollectionViewCell.xib in Resources */,
-				3417F961211E83B100FF29F8 /* ColorHeadCell.xib in Resources */,
-				3417F989211E83B100FF29F8 /* ReimSubCell.xib in Resources */,
+				34637CF0212020E700D9945D /* ReimColorDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5241,6 +5241,7 @@
 				3432C51A2101D68D00DE9E22 /* BaseNavigationController.m in Sources */,
 				3480AAAC20E3AA5C00053C5D /* LZDepartmentManagerModel.m in Sources */,
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
+				34637CFB212020E700D9945D /* ReimColorHeadCell.m in Sources */,
 				A04F70012119947000CFDE1C /* LLHomeChildContentCollectionCell.m in Sources */,
 				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
@@ -5263,7 +5264,6 @@
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
 				B58BF72420A2D4FE00A8B92B /* LLNetWorkTools.m in Sources */,
 				34EA5BB0208B1F010048CFE1 /* LGAlertViewWindow.m in Sources */,
-				3417F98C211E83B100FF29F8 /* ReimColorDetailCell.m in Sources */,
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				3427A4FF20CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
@@ -5283,7 +5283,6 @@
 				34494DF72091A7A600BDB309 /* BaseViewController.m in Sources */,
 				34F8398B210092C000CDC8E2 /* LZSalesDetailCell.m in Sources */,
 				3492FD8C20DA6FAC008464BB /* LZPurchaseAskCell.m in Sources */,
-				3417F97E211E83B100FF29F8 /* ReimColorsCell.m in Sources */,
 				3465CA1420DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */,
 				3492FD8720DA07E2008464BB /* LZPurchaseModel.m in Sources */,
 				34D5EAE820D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */,
@@ -5303,11 +5302,13 @@
 				34847D5120C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				349C095F208872C900D2AC38 /* LZHHomeMenuCell.m in Sources */,
 				344358CA20EF1F19004A5E6E /* LZCollectionCheckVC.m in Sources */,
+				34637CF5212020E700D9945D /* ReimDetailViewController.m in Sources */,
 				A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */,
 				2DDA92212111884D00DB7765 /* LogCategory.m in Sources */,
 				3465CA0220DC9A9700BAE415 /* FSCalendarCell.m in Sources */,
 				3465C9EA20DC9A9600BAE415 /* FSCalendarConstants.m in Sources */,
 				346EF4A120BE73D60078C087 /* LZOutboundModel.m in Sources */,
+				34637CBA212020DB00D9945D /* XiMaCollectionViewCell.m in Sources */,
 				34F6100120A93C16009A29A5 /* LZPickerView.m in Sources */,
 				34EE5D9C20A6D32600A2C9B5 /* AlterWarehouseViewController.m in Sources */,
 				345E747C20835B5F004B49B3 /* OrderTrackingViewController.m in Sources */,
@@ -5319,15 +5320,16 @@
 				B50505CB209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
 				343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */,
 				344E4D54210EADAD0031DCE8 /* BXSAllCodeCell.m in Sources */,
+				34637CBC212020DB00D9945D /* ColorsCell.m in Sources */,
 				34EA5BB8208B1F010048CFE1 /* LGAlertViewButton.m in Sources */,
 				343B180620A421FF00349A6D /* AlterPassworddViewController.m in Sources */,
 				344E4D7A210EBC570031DCE8 /* BXSMachiningVC.m in Sources */,
 				34E4D490211B287200A6ADE9 /* LZTypeMsgCell.m in Sources */,
+				34637CE7212020E700D9945D /* ReimXiMaCollectionViewCell.m in Sources */,
 				34D5EAE020D21011009D9D7C /* LZPaymentOrderListCell.m in Sources */,
 				34EA5BB6208B1F010048CFE1 /* LGAlertViewButtonProperties.m in Sources */,
 				34FB1F2B20BD5072004D18C2 /* HYCGetDateAttribute.m in Sources */,
 				B50505E3209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
-				3417F980211E83B100FF29F8 /* ReimCustomerCell.m in Sources */,
 				34EA48ED20CFA0350086FF79 /* LZDidBugAndProcessUntreatedVC.m in Sources */,
 				346B6ACA208D7A3F00F4B054 /* AuditTableViewCell.m in Sources */,
 				34EA5BB3208B1F010048CFE1 /* LGAlertViewCell.m in Sources */,
@@ -5355,8 +5357,6 @@
 				344E4D68210EAFD40031DCE8 /* BXSAllCodeModel.m in Sources */,
 				34195FAF20CD430B00524F20 /* LZSpendingListVC.m in Sources */,
 				3465C9F820DC9A9700BAE415 /* FSCalendarStickyHeader.m in Sources */,
-				3417F964211E83B100FF29F8 /* ColorsCell.m in Sources */,
-				3417F96E211E83B100FF29F8 /* CustomerCell.m in Sources */,
 				3420776720D3EC23006EA057 /* LZCheckReceiptModel.m in Sources */,
 				346B6AD0208D96F800F4B054 /* PaymentOrderViewController.m in Sources */,
 				3417F992211E83B100FF29F8 /* Tools.m in Sources */,
@@ -5386,12 +5386,12 @@
 				34BCABF820E732A500C25BE5 /* LxGridViewFlowLayout.m in Sources */,
 				B5B0750B209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
 				B577CEB420AACC610001B8B8 /* LLAddPermissonCollectionViewCell.m in Sources */,
-				3417F978211E83B100FF29F8 /* ReimDetailViewController.m in Sources */,
 				347C309F20A2C5AF0078BB69 /* InventoryDetailViewController.m in Sources */,
 				34EA5BCC208B276C0048CFE1 /* UIView+Extensions.m in Sources */,
 				3488D69E2118556E0061BA0C /* LZAuditDetailInfoView.m in Sources */,
 				3465C9FC20DC9A9700BAE415 /* FSCalendarAppearance.m in Sources */,
 				346C2256210E03D3004AAC88 /* LZBackOrderListsVC.m in Sources */,
+				34637CC8212020DB00D9945D /* CustomerCell.m in Sources */,
 				34E4D494211B288A00A6ADE9 /* LZTypeProductCell.m in Sources */,
 				34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */,
 				3488D696211853280061BA0C /* LZAuditDetailVC.m in Sources */,
@@ -5408,6 +5408,7 @@
 				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				3467BA4920ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
+				34637CFD212020E700D9945D /* ReimCustomerCell.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
 				34410EC720B3FBCB00CE490E /* AddDeptWorkerVC.m in Sources */,
 				3411F2AA2085C50700C448FD /* ClientManagerTableViewCell.m in Sources */,
@@ -5431,6 +5432,7 @@
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				3471DCA620D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
 				3484F5212119D408004F419F /* LZCustomerReconciliationInfoModel.m in Sources */,
+				34637CF7212020E700D9945D /* ReimColorsCell.m in Sources */,
 				3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */,
 				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
 				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
@@ -5471,7 +5473,6 @@
 				B5E288E420A9332500D84196 /* LLAuditMangerModel.m in Sources */,
 				3480AAA820E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				344358DA20EF6E2D004A5E6E /* LZChooseBankTypeCell.m in Sources */,
-				3417F98E211E83B100FF29F8 /* ReimSubCell.m in Sources */,
 				B577CE9920AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */,
@@ -5504,6 +5505,7 @@
 				3465C9F420DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
 				34EE5D8120A68E5B00A2C9B5 /* FinanceCostViewController.m in Sources */,
 				344F2299208F09F4009ADA33 /* BankConversionCell.m in Sources */,
+				34637CC2212020DB00D9945D /* ColorDetailCell.m in Sources */,
 				B577CEB020AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
 				344E4D3A210EAD4D0031DCE8 /* CellView.m in Sources */,
 				3465C9F020DC9A9700BAE415 /* FSCalendarExtensions.m in Sources */,
@@ -5540,6 +5542,7 @@
 				3480AA9B20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				345D5F04209D614E00126C40 /* SetCompanyViewController.m in Sources */,
 				3411F2AD2085CE0600C448FD /* AllCompanyViewController.m in Sources */,
+				34637CF3212020E700D9945D /* ReimSubCell.m in Sources */,
 				B5B07506209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				342CF6542099688F007C329D /* CashBankViewController.m in Sources */,
 				34320783209FF25C005A5D23 /* AddDyeRecipeViewController.m in Sources */,
@@ -5548,10 +5551,8 @@
 				34E4D49C211B2F6700A6ADE9 /* LZCollectionCheckDetailMsgModel.m in Sources */,
 				3465CA0020DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
-				3417F966211E83B100FF29F8 /* ColorDetailCell.m in Sources */,
 				A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */,
 				34F4B49220BBDFE90017003E /* LZSearchClientNeedsVC.m in Sources */,
-				3417F974211E83B100FF29F8 /* ReimXiMaCollectionViewCell.m in Sources */,
 				B5CF34FF20A576BE0043D906 /* BXSTools.m in Sources */,
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
@@ -5567,7 +5568,6 @@
 				B50505B3209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				34A92B68207DF11500572648 /* LZHTableView.m in Sources */,
 				342AF22620D5354400A1DDC4 /* LZPurchaseView.m in Sources */,
-				3417F976211E83B100FF29F8 /* ReimColorHeadCell.m in Sources */,
 				342AF22A20D5358600A1DDC4 /* LZProcessView.m in Sources */,
 				34EE5D7E20A68E3F00A2C9B5 /* SellCostViewController.m in Sources */,
 				3464458820AD73D100D6A06B /* ChooseLablesCell.m in Sources */,
@@ -5602,7 +5602,6 @@
 				344E4D44210EAD4D0031DCE8 /* AlertSheet.m in Sources */,
 				34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
-				3417F968211E83B100FF29F8 /* ColorHeadCell.m in Sources */,
 				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
 				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
@@ -5614,7 +5613,6 @@
 				34BF66EF2095C8F6003768D2 /* AddBranchViewController.m in Sources */,
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
-				3417F95E211E83B100FF29F8 /* XiMaCollectionViewCell.m in Sources */,
 				346C2264210E03D3004AAC88 /* LLSalesDemandSideSlipVc.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				344E4D74210EB1E60031DCE8 /* LZFineCodeCell.m in Sources */,
@@ -5682,7 +5680,7 @@
 				3476D40F210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */,
 				344C487D20D0E69400BEC002 /* LZMarketCell.m in Sources */,
 				347C5FDB211C208F0064D403 /* LZSaleDetailVC.m in Sources */,
-				3417F972211E83B100FF29F8 /* CheckDetailViewController.m in Sources */,
+				34637CBE212020DB00D9945D /* CheckDetailViewController.m in Sources */,
 				34EA490120CFDD640086FF79 /* LZDidStockTrackingVC.m in Sources */,
 				34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */,
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
@@ -5698,10 +5696,12 @@
 				346C228F210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */,
 				B56EF0EC20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5C73EBC20C1336E00595176 /* LLOutbounceSeletedHeaderView.m in Sources */,
+				34637CE5212020E700D9945D /* ReimColorDetailCell.m in Sources */,
 				344E4D64210EAF780031DCE8 /* UILabel+Extension.m in Sources */,
 				34FB1F2D20BD5072004D18C2 /* LLMonthModel.m in Sources */,
 				343025A8209BFA1F00869313 /* ProductViewController.m in Sources */,
 				34195FB320CD441000524F20 /* LZSpendingListCell.m in Sources */,
+				34637CC6212020DB00D9945D /* ColorHeadCell.m in Sources */,
 				347B58C820E627FB008911A2 /* LZSaleOrderListCell.m in Sources */,
 				34EA490920CFE59F0086FF79 /* LZNoBackOrderVC.m in Sources */,
 				3479056F20C509F1008C835C /* AssignDeliveryCell.m in Sources */,
@@ -5718,7 +5718,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
-				3417F965211E83B100FF29F8 /* ColorsCell.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				3475424920F5F3B1007F384B /* ClientNeedsViewController.m in Sources */,
@@ -5760,12 +5759,12 @@
 				344C488620D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
-				3417F975211E83B100FF29F8 /* ReimXiMaCollectionViewCell.m in Sources */,
 				346E02322110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
 				B58BF6F720A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
+				34637CC3212020DB00D9945D /* ColorDetailCell.m in Sources */,
 				346C227A210E03DA004AAC88 /* LZBackOrderCell.m in Sources */,
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				344358CF20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
@@ -5773,11 +5772,9 @@
 				346C2274210E03DA004AAC88 /* LZBackOrderLIstsCell.m in Sources */,
 				B50505C0209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				3453791721099CD300830DF8 /* LZBigGoodsHeadView.m in Sources */,
-				3417F969211E83B100FF29F8 /* ColorHeadCell.m in Sources */,
 				3427A50020CE6D6400369650 /* LZBugAndProcessUntreatedVC.m in Sources */,
 				347C5FE4211C73A40064D403 /* LZTypeTopModel.m in Sources */,
 				34EE88E120CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
-				3417F979211E83B100FF29F8 /* ReimDetailViewController.m in Sources */,
 				3465C9F520DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
 				B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
@@ -5811,10 +5808,12 @@
 				347B58C920E627FB008911A2 /* LZSaleOrderListCell.m in Sources */,
 				3479057520C51255008C835C /* ShipmentOrderViewController.m in Sources */,
 				344E4D3B210EAD4D0031DCE8 /* CellView.m in Sources */,
+				34637CC7212020DB00D9945D /* ColorHeadCell.m in Sources */,
 				346C2259210E03D3004AAC88 /* LZSelectItemViewController.m in Sources */,
 				B50505B4209AB2DA00CE7E4D /* XLFormSegmentedCell.m in Sources */,
 				3417F997211E950300FF29F8 /* LZBackOrderDetialModel.m in Sources */,
 				3465C9E920DC9A9600BAE415 /* FSCalendarHeaderView.m in Sources */,
+				34637CBD212020DB00D9945D /* ColorsCell.m in Sources */,
 				3475424A20F5F41C007F384B /* LZOutboundSectionView.m in Sources */,
 				346C2288210E03E2004AAC88 /* salesDemandModel.m in Sources */,
 				3455F68F20CA7CB600579521 /* LZDyeView.m in Sources */,
@@ -5849,7 +5848,6 @@
 				3475422320F5E4F2007F384B /* LZDrawerChooseView.m in Sources */,
 				3479057C20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
 				3427A4EF20CE507600369650 /* BRStringPickerView.m in Sources */,
-				3417F98D211E83B100FF29F8 /* ReimColorDetailCell.m in Sources */,
 				34195FB020CD430B00524F20 /* LZSpendingListVC.m in Sources */,
 				34E4D487211A9B9B00A6ADE9 /* LZCollectionCheckDetailVC.m in Sources */,
 				A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */,
@@ -5867,13 +5865,17 @@
 				3427A50B20CEB70500369650 /* LZBugAndProcessUntreatedView.m in Sources */,
 				3475424820F5F3B1007F384B /* AuditTableViewCell.m in Sources */,
 				346C2257210E03D3004AAC88 /* LZBackOrderListsVC.m in Sources */,
+				34637CFE212020E700D9945D /* ReimCustomerCell.m in Sources */,
+				34637CE8212020E700D9945D /* ReimXiMaCollectionViewCell.m in Sources */,
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				3488D69F2118556E0061BA0C /* LZAuditDetailInfoView.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				3484F51E21198C59004F419F /* LZBankListModel.m in Sources */,
+				34637CFC212020E700D9945D /* ReimColorHeadCell.m in Sources */,
 				3480AA9C20E3690900053C5D /* LZAssignDeliveryListModel.m in Sources */,
 				349AAF6F20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
+				34637CE6212020E700D9945D /* ReimColorDetailCell.m in Sources */,
 				34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				344C48A220D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
 				346C2265210E03D3004AAC88 /* LLSalesDemandSideSlipVc.m in Sources */,
@@ -5890,14 +5892,13 @@
 				344E4D43210EAD4D0031DCE8 /* BYAlertHelper.m in Sources */,
 				342AF21220D4C09900A1DDC4 /* LZCustomerArrearsVC.m in Sources */,
 				34EA490A20CFE59F0086FF79 /* LZNoBackOrderVC.m in Sources */,
+				34637CF6212020E700D9945D /* ReimDetailViewController.m in Sources */,
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				3465C9F720DC9A9700BAE415 /* FSCalendarDelegationFactory.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				342398EC20FB4291002B81E1 /* BaseModel.m in Sources */,
 				3467BA4A20ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */,
 				3479056C20C50973008C835C /* LZAssignDeliveryModel.m in Sources */,
-				3417F95F211E83B100FF29F8 /* XiMaCollectionViewCell.m in Sources */,
-				3417F981211E83B100FF29F8 /* ReimCustomerCell.m in Sources */,
 				342398F020FB42C9002B81E1 /* BaseTableCell.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				3471DCB320D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
@@ -5909,7 +5910,6 @@
 				3479057720C51255008C835C /* AllOrderViewController.m in Sources */,
 				34D5EAF520D25483009D9D7C /* LZBankDetailModel.m in Sources */,
 				344E4D61210EAF1E0031DCE8 /* UIViewExt.m in Sources */,
-				3417F977211E83B100FF29F8 /* ReimColorHeadCell.m in Sources */,
 				34B1944D20FF42380095BBFD /* LZWKWebViewVC.m in Sources */,
 				344E4D45210EAD4D0031DCE8 /* AlertSheet.m in Sources */,
 				344E4D6D210EB0060031DCE8 /* LZFindCodeModel.m in Sources */,
@@ -5935,8 +5935,8 @@
 				B5050669209ABE2300CE7E4D /* LLDyeingSectionView.m in Sources */,
 				3465C9FD20DC9A9700BAE415 /* FSCalendarAppearance.m in Sources */,
 				B50505BA209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
-				3417F973211E83B100FF29F8 /* CheckDetailViewController.m in Sources */,
 				34EA48F220CFA1690086FF79 /* LZDidBugAndProcessUntreatedCell.m in Sources */,
+				34637CBF212020DB00D9945D /* CheckDetailViewController.m in Sources */,
 				34E4D495211B288A00A6ADE9 /* LZTypeProductCell.m in Sources */,
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
@@ -5963,20 +5963,20 @@
 				34719B4D20D8E81900C46F06 /* LZPurchaseAskVC.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				344E4D47210EAD4D0031DCE8 /* GridView.m in Sources */,
+				34637CBB212020DB00D9945D /* XiMaCollectionViewCell.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
 				344C488E20D1001800BEC002 /* LZDIdSaleAuditVC.m in Sources */,
 				3492FD8920DA29D2008464BB /* DyeingViewController.m in Sources */,
 				3471DCB820D7883A002052EE /* LZChoosseWorkerVC.m in Sources */,
 				3420775420D39532006EA057 /* LZArrearClientCell.m in Sources */,
+				34637CF8212020E700D9945D /* ReimColorsCell.m in Sources */,
 				344E4D37210EAD4D0031DCE8 /* LineView.m in Sources */,
 				3465C9FB20DC9A9700BAE415 /* FSCalendarCollectionView.m in Sources */,
 				344A5D2C20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */,
-				3417F96F211E83B100FF29F8 /* CustomerCell.m in Sources */,
 				B531EF4A20BFF8450028F18B /* LLOutboundSeletedVC.m in Sources */,
 				3467BA4E20ECB170004C0B24 /* LZVisitRecordListVC.m in Sources */,
 				34D5EAE920D23DB9009D9D7C /* LZPaymentOrderListVC.m in Sources */,
 				347541FF20F5A867007F384B /* LZOutboundModel.m in Sources */,
-				3417F97F211E83B100FF29F8 /* ReimColorsCell.m in Sources */,
 				B50505C6209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
 				342AF22720D5354400A1DDC4 /* LZPurchaseView.m in Sources */,
 				B577CEB120AACBA80001B8B8 /* LLAddPermissonSectionView.m in Sources */,
@@ -5992,6 +5992,7 @@
 				3465C9ED20DC9A9600BAE415 /* FSCalendarDelegationProxy.m in Sources */,
 				346C225D210E03D3004AAC88 /* LZAddItemViewController.m in Sources */,
 				B50505D8209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
+				34637CF4212020E700D9945D /* ReimSubCell.m in Sources */,
 				347C5FE0211C6DF00064D403 /* LZNetHelp.m in Sources */,
 				B50505CC209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
 				B5B07518209C295900FD53DC /* LLProcessCell.m in Sources */,
@@ -6037,6 +6038,7 @@
 				34E4D491211B287200A6ADE9 /* LZTypeMsgCell.m in Sources */,
 				344E4D57210EADAD0031DCE8 /* BXSMachiningBottomView.m in Sources */,
 				346C228E210E03E2004AAC88 /* LZBackOrderListsModel.m in Sources */,
+				34637CC9212020DB00D9945D /* CustomerCell.m in Sources */,
 				344E4D85210EBCE00031DCE8 /* BXSMachiningHeadCell.m in Sources */,
 				344E4D75210EB1E60031DCE8 /* LZFineCodeCell.m in Sources */,
 				3455F69320CA7E9900579521 /* LZIncomeVC.m in Sources */,
@@ -6052,11 +6054,9 @@
 				B5E288E520A9332500D84196 /* LLAuditMangerModel.m in Sources */,
 				342398E820FB4259002B81E1 /* BaseCollectionVC.m in Sources */,
 				346C2255210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */,
-				3417F967211E83B100FF29F8 /* ColorDetailCell.m in Sources */,
 				B50505D6209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34602EC2207F69C800710F91 /* TextInputCell.m in Sources */,
 				34E4D48D211B283800A6ADE9 /* LZTBView.m in Sources */,
-				3417F98F211E83B100FF29F8 /* ReimSubCell.m in Sources */,
 				34E4D499211B28A500A6ADE9 /* LZTypeProductModel.m in Sources */,
 				34EBAC9C208450980005BF77 /* WaitOutOrderViewController.m in Sources */,
 				B50505C4209AB2DA00CE7E4D /* XLFormOptionsViewController.m in Sources */,

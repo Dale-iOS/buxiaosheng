@@ -19,13 +19,31 @@
     // Initialization
 }
 
-- (void)showColorData:(NSMutableArray *)colorArray
+- (void)setProductModel:(LZCollectionCheckDetailProductModel *)productModel
 {
+    _productModel = productModel;
+    self.productNameLabel.text = productModel.productName;
+    self.totalNumber.text = productModel.totalNumber;
     
+    [self loadContactData];
 }
+
 - (void)loadContactData
 {
-    self.tableViewContant.constant = 50 + 100*4;
+    CGFloat rowHeight = 0;
+ 
+    
+    for (LZInventoryListColorListModel *valListModel in _productModel.colorList) {
+        
+        if (valListModel.valList.count <= 5) {
+            rowHeight += 40;
+        }else
+        {
+            rowHeight += (valListModel.valList.count/5+1) * 40;
+        }
+        
+    }
+    self.tableViewContant.constant = 50*2 + rowHeight;
     [self.tableview reloadData];
 }
 
@@ -36,7 +54,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rtn = 5;
+    NSInteger rtn = _productModel.colorList.count + 1;
     return rtn;
 }
 
@@ -44,8 +62,19 @@
     if (indexPath.row == 0) {
         return 40;
     }
-    CGFloat rtn = 30*3;
-    return rtn;
+    CGFloat rowHeight = 0;
+    if (_productModel.colorList.count > 0) {
+        LZInventoryListColorListModel *valListModel = _productModel.colorList[indexPath.row-1];
+        if (valListModel.valList.count <= 5) {
+            rowHeight = 40;
+        }else
+        {
+            rowHeight = (valListModel.valList.count/5+1) * 40;
+        }
+        
+    }
+
+    return rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,6 +94,12 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ColorDetailCell" owner:self options:nil] lastObject];
             
         }
+        
+        if (_productModel.colorList.count > 0) {
+         
+            cell.colorListModel = _productModel.colorList[indexPath.row-1];
+        }
+        
         return cell;
     }
     

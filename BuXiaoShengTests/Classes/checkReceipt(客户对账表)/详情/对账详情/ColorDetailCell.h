@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZCollectionCheckDetailProductModel.h"
+
 
 @interface ColorDetailCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -16,10 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
-
 @property (nonatomic, strong) NSDictionary *dataDic;
 @property (nonatomic, strong) NSArray *valList;
+@property (nonatomic, strong) LZInventoryListColorListModel *colorListModel;
 
-
-- (void)showData:(NSDictionary *)dataDic;
 @end

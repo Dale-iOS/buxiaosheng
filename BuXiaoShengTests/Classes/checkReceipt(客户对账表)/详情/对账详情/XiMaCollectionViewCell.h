@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZCollectionCheckDetailProductModel.h"
 
 @interface XiMaCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) LZInventoryListValListModel *valListModel;
+
 @property (weak, nonatomic) IBOutlet UILabel *colorValue;
+
 
 @end

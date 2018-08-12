@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CheckDetailViewController : UIViewController
+@interface CheckDetailViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSString *orderNo;
 

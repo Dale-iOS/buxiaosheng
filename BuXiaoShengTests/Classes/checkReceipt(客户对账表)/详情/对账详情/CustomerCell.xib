@@ -270,8 +270,8 @@
                             <constraint firstAttribute="height" constant="1" id="mdZ-yJ-2VB"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nci-rk-LHE">
-                        <rect key="frame" x="282" y="497.5" width="31" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nci-rk-LHE">
+                        <rect key="frame" x="278" y="498" width="31" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -351,6 +351,23 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="arrearsLB" destination="0Cb-AL-0oP" id="uCx-lo-lWU"/>
+                <outlet property="createTimeLB" destination="PVw-Qb-l24" id="Ham-dq-qiV"/>
+                <outlet property="customerMobileLB" destination="z7K-KA-soI" id="s6i-ig-Kki"/>
+                <outlet property="customerNameLB" destination="fHT-JZ-HVG" id="CR0-xh-QWM"/>
+                <outlet property="depositPriceLB" destination="M6L-mb-185" id="7uF-Ia-lVD"/>
+                <outlet property="labelNumberLB" destination="Nci-rk-LHE" id="N2o-fB-ay5"/>
+                <outlet property="netreceiptsPriceLB" destination="kuE-F0-tnR" id="QMO-hB-Yj9"/>
+                <outlet property="orderNoLB" destination="VQe-MH-VrC" id="XCm-yu-cwW"/>
+                <outlet property="outNumberLB" destination="Irp-Sn-AMo" id="SeX-uP-app"/>
+                <outlet property="receivablePriceLB" destination="tfX-7S-BUf" id="1To-JA-ww6"/>
+                <outlet property="remarkLB" destination="Cb3-cP-elv" id="iNv-tz-WXY"/>
+                <outlet property="settleNumber" destination="Biz-Ks-KgS" id="zNg-V8-9MC"/>
+                <outlet property="totalLB" destination="lxf-YC-zXu" id="SyH-dU-CBZ"/>
+                <outlet property="trimPriceLB" destination="Ug5-u7-e4y" id="lYU-Ca-Udl"/>
+                <outlet property="typeLB" destination="Pxw-l3-1cv" id="wIq-fq-Ut5"/>
+            </connections>
             <point key="canvasLocation" x="40" y="147"/>
         </tableViewCell>
     </objects>

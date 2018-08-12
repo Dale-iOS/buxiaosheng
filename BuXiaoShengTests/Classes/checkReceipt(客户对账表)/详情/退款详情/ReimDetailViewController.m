@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = [Utility navTitleView:@"退单详情"];
     _dataArray = [NSMutableArray array];
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.estimatedRowHeight = 200;

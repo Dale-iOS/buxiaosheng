@@ -16,7 +16,25 @@
 }
 
 
-
+- (void)setMsgModel:(LZCollectionCheckDetailMsgModel *)msgModel
+{
+    _msgModel = msgModel;
+    self.customerNameLB.text = msgModel.customerName;
+    self.arrearsLB.text =msgModel.arrearsPrice;
+    self.customerMobileLB.text = msgModel.customerMobile;
+    self.depositPriceLB.text = msgModel.depositPrice;
+    self.receivablePriceLB.text = msgModel.receivablePrice;
+    self.totalLB.text = msgModel.total;
+    self.typeLB.text = msgModel.type;
+    self.orderNoLB.text = msgModel.orderNo;
+    self.remarkLB.text = msgModel.remark;
+    self.labelNumberLB.text = msgModel.labelNumber;
+    self.trimPriceLB.text = msgModel.trimPrice;
+    self.settleNumber.text = msgModel.settleNumber;
+    self.outNumberLB.text = msgModel.outNumber;
+    self.netreceiptsPriceLB.text = msgModel.netreceiptsPrice;
+    self.createTimeLB.text = msgModel.createTime;
+}
 
 
 @end

@@ -27,11 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = [Utility navTitleView:self.title];
     _dataArray = [NSMutableArray array];
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.estimatedRowHeight = 200;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
-    self.dataArray = [Tools readJsonFileWithPath:nil FileName:@"testData"];
     
     //请求
     [self getMsgData];
@@ -72,8 +72,9 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        self.productModel = [LZCollectionCheckDetailProductModel LLMJParse:baseModel.data];
-        NSLog(@"123");
+        self.dataArray = [LZCollectionCheckDetailProductModel LLMJParse:baseModel.data];
+        
+        [self.tableview reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -97,6 +98,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CustomerCell" owner:self options:nil] lastObject];
             
         }
+        cell.msgModel = self.msgModel;
         return cell;
     }
     else
@@ -106,8 +108,10 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ColorsCell" owner:self options:nil] lastObject];
 
         }
-        //[cell showColorData:self.dataArray[indexPath.row-1]];
-        [cell loadContactData];
+        if (self.dataArray.count > 0) {
+            cell.productModel = self.dataArray[indexPath.row - 1];
+        }
+        
         return cell;
     }
 

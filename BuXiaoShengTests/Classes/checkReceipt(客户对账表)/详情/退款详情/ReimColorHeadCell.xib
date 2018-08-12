@@ -30,9 +30,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="细码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8s-pg-elU">
-                        <rect key="frame" x="99" y="12" width="102" height="17"/>
+                        <rect key="frame" x="80" y="12" width="140" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="102" id="U9i-6Y-pqn"/>
+                            <constraint firstAttribute="width" constant="140" id="U9i-6Y-pqn"/>
                             <constraint firstAttribute="height" constant="17" id="q2H-xa-mYz"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -40,9 +40,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="条数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7V-lh-dbg">
-                        <rect key="frame" x="316" y="12" width="29" height="17"/>
+                        <rect key="frame" x="316" y="12" width="40" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="29" id="Yn1-Dn-MbD"/>
+                            <constraint firstAttribute="width" constant="40" id="Yn1-Dn-MbD"/>
                             <constraint firstAttribute="height" constant="17" id="mvp-qL-oT3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -50,9 +50,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单价" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyK-fc-INB">
-                        <rect key="frame" x="365" y="12" width="29" height="17"/>
+                        <rect key="frame" x="365" y="12" width="40" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="29" id="OqG-UE-m82"/>
+                            <constraint firstAttribute="width" constant="40" id="OqG-UE-m82"/>
                             <constraint firstAttribute="height" constant="17" id="wSc-2x-oLi"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -60,7 +60,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T17-8j-Cuh">
-                        <rect key="frame" x="267" y="12" width="29" height="17"/>
+                        <rect key="frame" x="277" y="12" width="29" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -68,13 +68,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="T17-8j-Cuh" firstAttribute="centerY" secondItem="z3J-XB-fmc" secondAttribute="centerY" id="18i-b2-kIn"/>
-                    <constraint firstAttribute="trailing" secondItem="SyK-fc-INB" secondAttribute="trailing" constant="25" id="3C0-xE-mbP"/>
+                    <constraint firstAttribute="trailing" secondItem="SyK-fc-INB" secondAttribute="trailing" constant="14" id="3C0-xE-mbP"/>
+                    <constraint firstItem="p8s-pg-elU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="80" id="5xa-xJ-Ejv"/>
                     <constraint firstItem="s7V-lh-dbg" firstAttribute="centerY" secondItem="z3J-XB-fmc" secondAttribute="centerY" id="BFR-Gx-DN0"/>
-                    <constraint firstItem="p8s-pg-elU" firstAttribute="leading" secondItem="z3J-XB-fmc" secondAttribute="trailing" constant="40" id="R5h-Rv-A63"/>
-                    <constraint firstItem="SyK-fc-INB" firstAttribute="leading" secondItem="s7V-lh-dbg" secondAttribute="trailing" constant="20" id="SM2-9p-ehg"/>
+                    <constraint firstItem="SyK-fc-INB" firstAttribute="leading" secondItem="s7V-lh-dbg" secondAttribute="trailing" constant="9" id="SM2-9p-ehg"/>
                     <constraint firstItem="p8s-pg-elU" firstAttribute="centerY" secondItem="z3J-XB-fmc" secondAttribute="centerY" id="VvG-xm-60h"/>
                     <constraint firstItem="z3J-XB-fmc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="ZyL-ho-4KQ"/>
-                    <constraint firstItem="s7V-lh-dbg" firstAttribute="leading" secondItem="T17-8j-Cuh" secondAttribute="trailing" constant="20" id="eB2-AY-IHO"/>
+                    <constraint firstItem="s7V-lh-dbg" firstAttribute="leading" secondItem="T17-8j-Cuh" secondAttribute="trailing" constant="10" id="eB2-AY-IHO"/>
                     <constraint firstItem="SyK-fc-INB" firstAttribute="centerY" secondItem="z3J-XB-fmc" secondAttribute="centerY" id="hUq-fE-H7F"/>
                     <constraint firstItem="z3J-XB-fmc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="tY7-ag-LyR"/>
                 </constraints>

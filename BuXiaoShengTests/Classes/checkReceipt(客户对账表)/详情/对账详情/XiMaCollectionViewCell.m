@@ -15,4 +15,10 @@
     
 }
 
+- (void)setValListModel:(LZInventoryListValListModel *)valListModel
+{
+    _valListModel = valListModel;
+    _colorValue.text = valListModel.value;
+}
+
 @end
