@@ -9,5 +9,17 @@
 #import "LZCollectionCheckDetailProductModel.h"
 
 @implementation LZCollectionCheckDetailProductModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"colorList":[LZInventoryListColorListModel class]};
+}
+@end
+
+@implementation LZInventoryListColorListModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"valList":[LZInventoryListValListModel class]};
+}
+@end
+
+@implementation LZInventoryListValListModel
 
 @end

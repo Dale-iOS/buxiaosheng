@@ -149,20 +149,13 @@ static NSInteger const pageSize = 15;
                             @"dateSort":tempDateStr
                             };
     [BXSHttp requestGETWithAppURL:@"finance_data/coustomer_arrear_list.do" param:param success:^(id response) {
-//        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-//        if ([baseModel.code integerValue] != 200) {
-//            [LLHudTools showWithMessage:baseModel.msg];
-//            return ;
-//        }
-//        _lists = [LZArrearClientModel LLMJParse:baseModel.data];
-//        [self.tableView reloadData];
-        
+
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
                 [self.lists removeAllObjects];
             }
             
-            NSArray *itemList = [response objectForKey:@"data"] ;
+            NSArray *itemList = [[response objectForKey:@"data"] objectForKey:@"itemList"];
             if (itemList && itemList.count > 0) {
                 for (NSDictionary *dic in itemList) {
                     LZArrearClientModel *model = [LZArrearClientModel mj_objectWithKeyValues:dic];

@@ -152,7 +152,7 @@
 
 -(void)detailBtnClick {
     LZSaleDetailVC *vc = [[LZSaleDetailVC alloc]init];
-    [[self viewController].navigationController pushViewController:vc animated:YES];
+//    [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
 

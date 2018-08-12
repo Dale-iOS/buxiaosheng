@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class LZInventoryListValListModel;
+@class LZInventoryListColorListModel;
 
-@interface LZInventoryListValListModel : NSObject
-@property (nonatomic,copy)NSString *total;
-@property (nonatomic,copy)NSString *value;
+@interface LZCollectionCheckDetailProductModel : NSObject
+@property (nonatomic,copy)NSArray <LZInventoryListColorListModel *> *colorList;
+@property (nonatomic,copy)NSString *productName;
+@property (nonatomic,copy)NSString *totalNumber;
 @end
 
 @interface LZInventoryListColorListModel : NSObject
@@ -21,8 +24,7 @@
 @property (nonatomic,copy)NSArray <LZInventoryListValListModel *> *valList;
 @end
 
-@interface LZCollectionCheckDetailProductModel : NSObject
-@property (nonatomic,copy)NSArray <LZInventoryListColorListModel *> *colorList;
-@property (nonatomic,copy)NSString *productName;
-@property (nonatomic,copy)NSString *totalNumber;
+@interface LZInventoryListValListModel : NSObject
+@property (nonatomic,copy)NSString *total;
+@property (nonatomic,copy)NSString *value;
 @end

@@ -84,17 +84,20 @@
     [_rightTextFild mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(160);
         make.centerY.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-15);
     }];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     switch (self.indexPath.row) {
         case 0:
+//            self.model.deptName = textField.text;
             break;
         case 1:
             self.model.realName = textField.text;
             break;
         case 2:
+            self.model.loginName = textField.text;
             break;
         case 3:
              self.model.passWord = textField.text;

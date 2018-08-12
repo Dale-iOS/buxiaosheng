@@ -455,6 +455,7 @@
 - (void)didClickTitleTextField:(UITextField *)titleTF andCell:(SalesDemandCell*)titleCell{
     titleTF.delegate = self;
     titleTF.scrollView = self.view;
+    //选择框出来的位置
     titleTF.positionType = ZJPositionAuto;
     WEAKSELF;
     [titleTF popOverSource:_productsListMTArray index:^(NSInteger index) {

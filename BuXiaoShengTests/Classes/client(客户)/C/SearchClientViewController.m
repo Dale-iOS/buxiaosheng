@@ -16,7 +16,7 @@
 @interface SearchClientViewController ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) LZSearchBar * searchBar;
 @property (nonatomic, strong)UITableView *tableView;
-@property (nonatomic, strong) NSArray <LZClientManagerModel *> *clients;
+@property (nonatomic, strong) NSMutableArray <LZClientManagerModel *> *clients;
 @property (nonatomic, strong) UILabel *headLabel;
 @end
 
@@ -71,8 +71,8 @@
                             @"labelName":@"",
                             @"memberId":@"",
                             @"pageNo":@"1",
-                            @"pageSize":@"15",
-                            @"searchName":self.searchBar.text
+                            @"pageSize":@"15"
+//                            @"searchName":self.searchBar.text
                             };
     [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
         
@@ -115,8 +115,8 @@
     if (cell == nil) {
         
         cell = [[ClientManagerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.model = self.clients[indexPath.row];
     }
+    cell.model = self.clients[indexPath.row];
     return cell;
 }
 
@@ -125,7 +125,28 @@
 //搜索
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [self setupData];
+    NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
+                            @"labelName":@"",
+                            @"memberId":@"",
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
+                            @"searchName":searchText
+                            };
+    [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {
+        
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            
+            [LLHudTools showWithMessage:baseModel.msg];
+        }
+        
+        self.clients = [LZClientManagerModel LLMJParse:baseModel.data];
+        _headLabel.text = [NSString stringWithFormat:@"搜索结果共%zd条",self.clients.count];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

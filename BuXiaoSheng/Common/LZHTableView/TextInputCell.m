@@ -124,7 +124,7 @@
     .topEqualToView(self)
     .leftSpaceToView(self.titleLabel, 10)
     .heightRatioToView(self, 1)
-    .widthIs(LZHScale_WIDTH(270));
+    .widthIs(LZHScale_WIDTH(300));
     
     self.rightArrowImageVIew.sd_layout
     .centerYEqualToView(self)

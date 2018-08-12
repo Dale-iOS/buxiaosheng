@@ -167,8 +167,8 @@
     
     //手机
     self.mobileCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.mobileCell.contentTF.placeholder = @"请输入客户手机号码";
-    self.mobileCell.titleLabel.text = @"手机名称";
+    self.mobileCell.contentTF.placeholder = @"请输入客户手机(非必填)";
+    self.mobileCell.titleLabel.text = @"手机号码";
     
     //地址
     self.addressCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];

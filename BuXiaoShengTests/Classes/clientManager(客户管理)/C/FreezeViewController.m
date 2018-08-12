@@ -27,12 +27,6 @@
     self.view.backgroundColor = LZHBackgroundColor;
     
     [self setupUI];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     [self setupData];
 }
 

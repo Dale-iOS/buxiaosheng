@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@class LZBackOrderDetialProductValListModel;
+@class LZBackOrderDetialProductColorListModel;
 
 @interface LZBackOrderDetialProductValListModel : NSObject
 @property (nonatomic,strong)NSString *total1;

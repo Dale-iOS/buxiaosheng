@@ -239,12 +239,12 @@
     //   手机号码
     self.phoneNumberCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.phoneNumberCell.titleLabel.text = @"手机号码";
-    self.phoneNumberCell.contentTF.placeholder = @"请输入手机号码";
+    self.phoneNumberCell.contentTF.placeholder = @"请输入手机号码(非必填)";
     
     //   地址
     self.addressTextView = [[TextInputTextView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 70)];
     self.addressTextView.titleLabel.text = @"地址";
-    self.addressTextView.textView.placeholder = @"请输入地址";
+    self.addressTextView.textView.placeholder = @"请输入地址(非必填)";
     
     //    备注textView
     self.remarkTextView = [[TextInputTextView alloc]init];

@@ -23,7 +23,6 @@
 
 @property (nonatomic,strong) NSArray <LLAddNewPeoleRoleModel*>* roles;
 @property (nonatomic,strong) LLAddNewPeopleModel * detailModel;
-@property (nonatomic,strong) LLAddNewPeopleModel *saveModel;
 @property (nonatomic, strong) NSArray <LZDeptListModel *> *lists;
 
 @property (nonatomic, strong) NSArray *nameAry;
@@ -296,7 +295,7 @@
                 NSInteger row = [titileString integerValue];
                 weakSelf.idStr = weakSelf.idAry[row];
                 weakSelf.companyldStr = weakSelf.companyIdAry[row];
-                
+                weakSelf.detailModel.deptId = weakSelf.idAry[row];
             };
             [self.view addSubview:pickerView];
             
@@ -314,21 +313,28 @@
 }
 
 -(void)selectornavRightBtnClick {
-    if ([BXSTools stringIsNullOrEmpty:self.detailModel.realName]) {
-        [LLHudTools showWithMessage:@"请输入人员名称"];
-        return;
-    }
-//    if ([BXSTools stringIsNullOrEmpty:self.detailModel.passWord]) {
-//        [LLHudTools showWithMes1sage:@"请输入密码"];
+//    if ([BXSTools stringIsNullOrEmpty:self.detailModel.realName]) {
+//        [LLHudTools showWithMessage:@"请输入人员名称"];
 //        return;
 //    }
+//
+
+    
+//    强制当前输入法收起
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
+    if (self.detailModel.passWord == nil || self.detailModel.passWord.length <6) {
+        [LLHudTools showWithMessage:@"密码必须大于6位数"];
+        return;
+    }
+    
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].companyId,
                              @"deptId":self.detailModel.deptId,
                              @"id":self.model.id,
                              @"loginName":self.detailModel.loginName,
                              @"password":[BXSHttp makeMD5:self.detailModel.passWord],
-                             @"realName":self.detailModel.realName,
+                             @"realName":self.detailModel.realName
                              };
     [BXSHttp requestPOSTWithAppURL:@"member/update.do" param:param success:^(id response) {
         LLBaseModel * baseModel =[LLBaseModel LLMJParse:response];
@@ -338,7 +344,7 @@
         }
         [self.navigationController popViewControllerAnimated:true];
     } failure:^(NSError *error) {
-        
+        BXS_Alert(LZTryAgain);
     }];
 }
 

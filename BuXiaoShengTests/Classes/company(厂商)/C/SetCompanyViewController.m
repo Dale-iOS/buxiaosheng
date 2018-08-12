@@ -67,6 +67,7 @@
     
     SupplierCompanyViewController *productionVC = [[SupplierCompanyViewController alloc]init];
     productionVC.type = FactoryTypeShngChanShang;
+    
     SupplierCompanyViewController *processVC = [[SupplierCompanyViewController alloc]init];
     processVC.type = FactoryTypeJiaGongShang;
 

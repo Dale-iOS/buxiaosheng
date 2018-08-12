@@ -69,6 +69,8 @@
 
 #define LLAiliPayNotification @"LLAiliPayNotification"
 
+#define LZTryAgain   @"请重试..."
+
 
 
 /*  颜色

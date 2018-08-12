@@ -8,6 +8,17 @@
 
 #import "LZBackOrderDetialProductModel.h"
 
-@implementation LZBackOrderDetialProductModel
+@implementation LZBackOrderDetialProductValListModel
+@end
 
+@implementation LZBackOrderDetialProductColorListModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"valList":[LZBackOrderDetialProductValListModel class]};
+}
+@end
+
+@implementation LZBackOrderDetialProductModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"colorList":[LZBackOrderDetialProductColorListModel class]};
+}
 @end
