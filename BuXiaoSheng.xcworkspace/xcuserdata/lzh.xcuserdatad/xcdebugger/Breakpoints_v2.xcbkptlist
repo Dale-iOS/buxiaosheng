@@ -2,4 +2,85 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/organization(&#x7ec4;&#x7ec7;&#x67b6;&#x6784;)/C/LLUpdateNewPeopleViewController.m"
+            timestampString = "555752424.191178"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "-selectornavRightBtnClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/organization(&#x7ec4;&#x7ec7;&#x67b6;&#x6784;)/C/LLAddPermissionsVc.m"
+            timestampString = "555752424.1912709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-selectornavRightBtnClick"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LLAddPermissionsVc selectornavRightBtnClick]"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/organization(%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84)/C/LLAddPermissionsVc.m"
+                  timestampString = "555752424.285744"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "843">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[LLAddPermissionsVc selectornavRightBtnClick]_block_invoke.187"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/organization(%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84)/C/LLAddPermissionsVc.m"
+                  timestampString = "555752424.2882479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.200"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzh/Desktop/bu_xiao_sheng/BuXiaoShengTests/Classes/organization(%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84)/C/LLAddPermissionsVc.m"
+                  timestampString = "555752424.290864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
