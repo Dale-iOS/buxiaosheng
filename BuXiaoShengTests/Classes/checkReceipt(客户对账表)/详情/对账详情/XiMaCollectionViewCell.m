@@ -19,6 +19,9 @@
 {
     _valListModel = valListModel;
     _colorValue.text = valListModel.value;
+    if (_colorValue.text.length >=4) {
+        _colorValue.font = FONT(12);
+    }
 }
 
 @end

@@ -416,6 +416,7 @@ static NSInteger const pageSize = 15;
         //退货单
         
         ReimDetailViewController *reimVC = [[ReimDetailViewController alloc] initWithNibName:@"ReimDetailViewController" bundle:nil];
+        reimVC.orderNo = model.orderNo;
         reimVC.title = @"退单详情";
         [self.navigationController pushViewController:reimVC animated:YES];
     }

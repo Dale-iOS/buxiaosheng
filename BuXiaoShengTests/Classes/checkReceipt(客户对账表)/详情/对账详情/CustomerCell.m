@@ -33,7 +33,7 @@
     self.settleNumber.text = msgModel.settleNumber;
     self.outNumberLB.text = msgModel.outNumber;
     self.netreceiptsPriceLB.text = msgModel.netreceiptsPrice;
-    self.createTimeLB.text = msgModel.createTime;
+    self.createTimeLB.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:msgModel.createTime]];
 }
 
 

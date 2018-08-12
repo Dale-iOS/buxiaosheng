@@ -4,7 +4,7 @@
 //
 //  Created by 王猛 on 2018/8/8.
 //  Copyright © 2018年 WM. All rights reserved.
-//
+//  退单详情页面
 
 #import "ReimDetailViewController.h"
 #import "ReimCustomerCell.h"
@@ -32,7 +32,7 @@
     self.tableview.estimatedRowHeight = 200;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     
-    
+    [self getMsgData];
 }
 
 #pragma mark ----- 网络请求 -----
