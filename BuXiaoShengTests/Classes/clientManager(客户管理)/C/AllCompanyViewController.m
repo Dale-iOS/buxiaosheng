@@ -148,6 +148,7 @@
     vc.id = self.clients[indexPath.row].id;
     vc.isFormSelect = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 //筛选点击

@@ -16,27 +16,36 @@
     [super awakeFromNib];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    // Initialization
 }
 
 - (void)setProductModel:(LZBackOrderDetialProductModel *)productModel{
     _productModel = productModel;
-//    self.ProductName.text = productModel.productName;
-//    self.houseNum.text = productModel.houseNum;
-//    self.total.text = productModel.total;
-//    self.labelNum.text = productModel.labelNum;
-//    self.refundAmount.text = productModel.refundAmount;
-//    self.settlementNum.text = productModel.settlementNum;
+    self.ProductName.text = productModel.productName;
+    self.houseNum.text = productModel.houseNum;
+    self.total.text = productModel.total;
+    self.labelNum.text = productModel.labelNum;
+    self.refundAmount.text = productModel.refundAmount;
+    self.settlementNum.text = productModel.settlementNum;
+    
+    [self loadContactData];
 }
 
-- (void)showColorData:(NSMutableArray *)colorArray
-{
-    _colorArray = colorArray;
-}
 
 - (void)loadContactData
 {
-    self.tableViewContant.constant = 250+90;
+    CGFloat rowHeight = 0;
+    
+    for (LZBackOrderDetialProductColorListModel *valListModel in _productModel.colorList) {
+        
+        if (valListModel.valList.count <= 5) {
+            rowHeight += 40;
+        }else
+        {
+            rowHeight += (valListModel.valList.count/5+1) * 40;
+        }
+        
+    }
+    self.tableViewContant.constant = 50*2 + rowHeight + 90;
     [self.tableview reloadData];
 }
 
@@ -47,13 +56,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rtn = 5;
+    NSInteger rtn = _productModel.colorList.count + 1;
     return rtn;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat rtn = 40.0;
-    return rtn;
+    
+    if (indexPath.row == 0) {
+        return 40;
+    }
+    CGFloat rowHeight = 0;
+    if (_productModel.colorList.count > 0) {
+        LZBackOrderDetialProductColorListModel *valListModel = _productModel.colorList[indexPath.row-1];
+        if (valListModel.valList.count <= 5) {
+            rowHeight = 40;
+        }else
+        {
+            rowHeight = (valListModel.valList.count/5+1) * 40;
+        }
+        
+    }
+    return rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,7 +98,7 @@
         }
         if (_productModel.colorList.count >0) {
 //            我不知道要减几，一直报错
-//            cell.colorListModel = _productModel.colorList[indexPath.row -1];
+            cell.colorListModel = _productModel.colorList[indexPath.row -1];
             NSLog(@"123");
         }
         return cell;

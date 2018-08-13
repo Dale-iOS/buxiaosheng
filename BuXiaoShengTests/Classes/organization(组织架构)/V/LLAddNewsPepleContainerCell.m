@@ -58,7 +58,13 @@
     return self.model.itemList.count;
 }
 
+//接口名称 删除用户权限
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    if (_idModel.id isEqualToString:[BXSUser currentUser].type) {
+//        <#statements#>
+//    }
+    
     LLAddNewsPeopleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLAddNewsPeopleCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.model.itemList[indexPath.row];
     cell.block = ^(LLAddNewsPeopleCollectionViewCell *cell) {

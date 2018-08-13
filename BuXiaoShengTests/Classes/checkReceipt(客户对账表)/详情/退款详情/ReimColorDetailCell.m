@@ -51,7 +51,7 @@
     
     static NSString * cellId = @"ReimXiMaCollectionViewCell";
     ReimXiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-//    cell.valListModel = 
+    cell.valListModel = _colorListModel.valList[indexPath.row];
     return cell;
     
 }

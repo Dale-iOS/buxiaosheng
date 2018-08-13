@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SpendingViewController : UIViewController
+@interface SpendingViewController : BaseViewController
 
 @end

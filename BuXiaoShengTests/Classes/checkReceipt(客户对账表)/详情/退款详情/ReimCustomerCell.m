@@ -18,15 +18,6 @@
 
 - (void)setMsgModel:(LZBackOrderDetialModel *)msgModel{
     _msgModel = msgModel;
-//    @property (weak, nonatomic) IBOutlet UILabel *customerName;
-//    @property (weak, nonatomic) IBOutlet UILabel *customerMobile;
-//    @property (weak, nonatomic) IBOutlet UILabel *orderNo;
-//    @property (weak, nonatomic) IBOutlet UILabel *houseName;
-//    @property (weak, nonatomic) IBOutlet UILabel *shouldPrice;
-//    @property (weak, nonatomic) IBOutlet UILabel *realpayPrice;
-//    @property (weak, nonatomic) IBOutlet UILabel *deposit;
-//    @property (weak, nonatomic) IBOutlet UILabel *bankName;
-//    @property (weak, nonatomic) IBOutlet UILabel *remark;
     self.createTime.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:msgModel.createTime]];
     self.customerName.text = msgModel.customerName;//客户名字
     self.customerMobile.text = msgModel.customerMobile;//客户电话

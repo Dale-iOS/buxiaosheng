@@ -40,8 +40,8 @@
 @property(nonatomic,strong)UIButton *saveBtn;
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UISegmentedControl *sgc;
-@property(nonatomic,strong)LZWeaveView *weaveView;
-@property(nonatomic,strong)LZDyeView *dyeView;
+@property(nonatomic,strong)LZWeaveView *weaveView;//客户收款单
+@property(nonatomic,strong)LZDyeView *dyeView;//调整金额
 
 @end
 
