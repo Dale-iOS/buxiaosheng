@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZBackOrderDetialProductModel.h"
 
 @interface ReimXiMaCollectionViewCell : UICollectionViewCell
-
+@property (nonatomic, strong) LZBackOrderDetialProductValListModel *valListModel;
+@property (weak, nonatomic) IBOutlet UILabel *value;
 @end

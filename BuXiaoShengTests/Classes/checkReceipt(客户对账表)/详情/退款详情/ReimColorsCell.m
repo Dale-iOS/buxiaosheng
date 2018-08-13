@@ -1,5 +1,5 @@
 //
-//  ColorsCell.m
+//  ReimColorsCell.m
 //  对账详情
 //
 //  Created by 王猛 on 2018/8/8.
@@ -17,6 +17,16 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     // Initialization
+}
+
+- (void)setProductModel:(LZBackOrderDetialProductModel *)productModel{
+    _productModel = productModel;
+//    self.ProductName.text = productModel.productName;
+//    self.houseNum.text = productModel.houseNum;
+//    self.total.text = productModel.total;
+//    self.labelNum.text = productModel.labelNum;
+//    self.refundAmount.text = productModel.refundAmount;
+//    self.settlementNum.text = productModel.settlementNum;
 }
 
 - (void)showColorData:(NSMutableArray *)colorArray
@@ -62,6 +72,11 @@
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimColorDetailCell" owner:self options:nil] lastObject];
             
+        }
+        if (_productModel.colorList.count >0) {
+//            我不知道要减几，一直报错
+//            cell.colorListModel = _productModel.colorList[indexPath.row -1];
+            NSLog(@"123");
         }
         return cell;
     }

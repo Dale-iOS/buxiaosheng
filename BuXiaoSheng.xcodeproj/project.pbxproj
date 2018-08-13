@@ -2194,9 +2194,6 @@
 		3417F930211E83B000FF29F8 /* 对账详情 */ = {
 			isa = PBXGroup;
 			children = (
-				34637CAD212020DA00D9945D /* CheckDetailViewController.h */,
-				34637CAB212020DA00D9945D /* CheckDetailViewController.m */,
-				34637CAC212020DA00D9945D /* CheckDetailViewController.xib */,
 				34637CAF212020DA00D9945D /* ColorDetailCell.h */,
 				34637CB0212020DA00D9945D /* ColorDetailCell.m */,
 				34637CB5212020DB00D9945D /* ColorDetailCell.xib */,
@@ -2212,6 +2209,9 @@
 				34637CA6212020D900D9945D /* XiMaCollectionViewCell.h */,
 				34637CA9212020D900D9945D /* XiMaCollectionViewCell.m */,
 				34637CA4212020D900D9945D /* XiMaCollectionViewCell.xib */,
+				34637CAD212020DA00D9945D /* CheckDetailViewController.h */,
+				34637CAB212020DA00D9945D /* CheckDetailViewController.m */,
+				34637CAC212020DA00D9945D /* CheckDetailViewController.xib */,
 			);
 			path = "对账详情";
 			sourceTree = "<group>";
@@ -2231,15 +2231,15 @@
 				34637CE2212020E700D9945D /* ReimCustomerCell.h */,
 				34637CE0212020E700D9945D /* ReimCustomerCell.m */,
 				34637CD4212020E500D9945D /* ReimCustomerCell.xib */,
-				34637CD0212020E500D9945D /* ReimDetailViewController.h */,
-				34637CDB212020E600D9945D /* ReimDetailViewController.m */,
-				34637CD2212020E500D9945D /* ReimDetailViewController.xib */,
 				34637CE1212020E700D9945D /* ReimSubCell.h */,
 				34637CDA212020E600D9945D /* ReimSubCell.m */,
 				34637CD9212020E600D9945D /* ReimSubCell.xib */,
 				34637CDC212020E600D9945D /* ReimXiMaCollectionViewCell.h */,
 				34637CD1212020E500D9945D /* ReimXiMaCollectionViewCell.m */,
 				34637CCE212020E500D9945D /* ReimXiMaCollectionViewCell.xib */,
+				34637CD0212020E500D9945D /* ReimDetailViewController.h */,
+				34637CDB212020E600D9945D /* ReimDetailViewController.m */,
+				34637CD2212020E500D9945D /* ReimDetailViewController.xib */,
 			);
 			path = "退款详情";
 			sourceTree = "<group>";

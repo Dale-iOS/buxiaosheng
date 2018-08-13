@@ -28,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     //要删掉
-    self.lineValue = 5;
+//    self.lineValue = 5;
     
     NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
     _total = [tempStr doubleValue];

@@ -32,6 +32,14 @@
     
 }
 
+- (void)setColorListModel:(LZBackOrderDetialProductColorListModel *)colorListModel{
+    _colorListModel = colorListModel;
+    self.total.text =  colorListModel.total;//条数
+    self.price.text =  colorListModel.price;//单价
+    self.unitName.text = colorListModel.unitName;//单位
+    self.productColorName.text = colorListModel.productColorName;//产品名字
+}
+
 #pragma mark Collection datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -43,7 +51,7 @@
     
     static NSString * cellId = @"ReimXiMaCollectionViewCell";
     ReimXiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    
+//    cell.valListModel = 
     return cell;
     
 }
