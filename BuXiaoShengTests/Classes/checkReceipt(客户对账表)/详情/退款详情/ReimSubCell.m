@@ -15,6 +15,13 @@
     // Initialization code
 }
 
+- (void)setModel:(LZBackOrderDetialModel *)model{
+    _model = model;
+    self.totalNum.text = model.totalNum;
+    self.totalLine.text = model.totalLine;
+    self.totalMoney.text = model.tatalMoney;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

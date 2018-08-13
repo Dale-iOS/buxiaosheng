@@ -20,7 +20,8 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1165" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUk-u1-wAt">
-                        <rect key="frame" x="2" y="2" width="44" height="44"/>
+                        <rect key="frame" x="0.0" y="2" width="48" height="38"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
@@ -28,10 +29,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="IUk-u1-wAt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="NB1-4z-6cO"/>
-                <constraint firstAttribute="bottom" secondItem="IUk-u1-wAt" secondAttribute="bottom" constant="2" id="YNz-9b-G2G"/>
+                <constraint firstItem="IUk-u1-wAt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NB1-4z-6cO"/>
+                <constraint firstAttribute="bottom" secondItem="IUk-u1-wAt" secondAttribute="bottom" constant="8" id="YNz-9b-G2G"/>
                 <constraint firstItem="IUk-u1-wAt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="bDH-Om-uRT"/>
-                <constraint firstAttribute="trailing" secondItem="IUk-u1-wAt" secondAttribute="trailing" constant="2" id="wn3-8M-epK"/>
+                <constraint firstAttribute="trailing" secondItem="IUk-u1-wAt" secondAttribute="trailing" id="wn3-8M-epK"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="48" height="48"/>

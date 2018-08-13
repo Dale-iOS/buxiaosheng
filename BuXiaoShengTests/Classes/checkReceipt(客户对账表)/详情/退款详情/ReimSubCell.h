@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LZBackOrderDetialModel.h"
 
 @interface ReimSubCell : UITableViewCell
+@property (strong, nonatomic) LZBackOrderDetialModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *totalNum;
+@property (weak, nonatomic) IBOutlet UILabel *totalLine;
+@property (weak, nonatomic) IBOutlet UILabel *totalMoney;
 
 @end

@@ -34,8 +34,6 @@
 
 #pragma mark ----- 网络请求 -----
 //接口名称 退货单详情
-//接口文档：http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#430
-//18814188198  666666
 - (void)getMsgData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"orderNo":self.orderNo
@@ -54,8 +52,6 @@
 }
 
 //接口名称 退货单产品列表
-//接口文档：http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#431
-//18814188198  666666
 - (void)getProductData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"refundyId":self.msgModel.refundyId
@@ -67,9 +63,20 @@
             return ;
         }
         self.dataArray = [LZBackOrderDetialProductModel LLMJParse:baseModel.data];
+        
+        __block NSInteger totalNum = 0;
+        __block NSInteger totalLine = 0;
+        __block NSInteger totalMoney = 0;
+        [self.dataArray enumerateObjectsUsingBlock:^(LZBackOrderDetialProductModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            totalNum += [obj.houseNum integerValue];
+            totalLine += [obj.total integerValue];
+            totalMoney += [obj.refundAmount integerValue];
+        }];
+        self.msgModel.totalNum = [NSString stringWithFormat:@"%ld",totalNum];
+        self.msgModel.totalLine = [NSString stringWithFormat:@"%ld",totalLine];
+        self.msgModel.tatalMoney = [NSString stringWithFormat:@"%ld",totalMoney];
+        
         [self.tableview reloadData];
-//        self.productModel = [LZBackOrderDetialProductModel LLMJParse:baseModel.data];
-//        NSLog(@"123");
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -82,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5 + _dataArray.count;
+    return 2 + _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,14 +103,15 @@
         }
         cell.msgModel = self.msgModel;
         return cell;
-    }else if (indexPath.row == 4){
+    }else if (indexPath.row == self.dataArray.count+1){
 //        最下方的总计
         ReimSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReimSubCell"];
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ReimSubCell" owner:self options:nil] lastObject];
             
         }
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.model = self.msgModel;
+        
         return cell;
         
     }
@@ -117,10 +125,10 @@
         }
         if (self.dataArray.count >0) {
 //            这里也是不知道要减几
-//            cell.productModel = [LZBackOrderDetialProductModel LLMJParse:self.dataArray[indexPath.row -1]];
+            cell.productModel = self.dataArray[indexPath.row -1];
 //            NSLog(@"123");
         }
-        [cell loadContactData];
+        
         return cell;
     }
 

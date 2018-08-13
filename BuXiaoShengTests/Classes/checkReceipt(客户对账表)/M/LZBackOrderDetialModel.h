@@ -21,4 +21,7 @@
 @property (nonatomic,strong)NSString *realpayPrice;
 @property (nonatomic,strong)NSString *refundyId;
 @property (nonatomic,strong)NSString *remark;
+@property (nonatomic,copy)NSString *totalNum;//总数量
+@property (nonatomic,copy)NSString *totalLine;//总条数
+@property (nonatomic,copy)NSString *tatalMoney;//总金额
 @end

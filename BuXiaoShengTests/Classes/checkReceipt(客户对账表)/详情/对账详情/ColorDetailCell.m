@@ -24,9 +24,9 @@
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+    self.collectionView.backgroundColor = [UIColor clearColor];
     [self.collectionView registerNib:[UINib nibWithNibName:@"XiMaCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"XiMaCollectionViewCell"];
-    [self.collectionView setBackgroundColor:[UIColor clearColor]];
+    //[self.collectionView setBackgroundColor:[UIColor clearColor]];
     self.collectionView.scrollEnabled = NO;
     
 }

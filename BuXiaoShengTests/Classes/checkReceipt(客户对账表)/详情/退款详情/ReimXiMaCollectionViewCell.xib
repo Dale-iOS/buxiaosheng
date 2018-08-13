@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,8 +20,8 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="65" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUk-u1-wAt">
-                        <rect key="frame" x="2" y="2" width="46" height="46"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="2" y="2" width="46" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -29,7 +29,7 @@
             </view>
             <constraints>
                 <constraint firstItem="IUk-u1-wAt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="NB1-4z-6cO"/>
-                <constraint firstAttribute="bottom" secondItem="IUk-u1-wAt" secondAttribute="bottom" constant="2" id="YNz-9b-G2G"/>
+                <constraint firstAttribute="bottom" secondItem="IUk-u1-wAt" secondAttribute="bottom" constant="8" id="YNz-9b-G2G"/>
                 <constraint firstItem="IUk-u1-wAt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="bDH-Om-uRT"/>
                 <constraint firstAttribute="trailing" secondItem="IUk-u1-wAt" secondAttribute="trailing" constant="2" id="wn3-8M-epK"/>
             </constraints>
