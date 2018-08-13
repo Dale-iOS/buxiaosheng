@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/7/25.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  退单列表页面
 
 #import "LZBackOrderListsVC.h"
 #import "LLDayCalendarVc.h"
@@ -15,6 +15,9 @@
 #import "LZSearchBar.h"
 #import "LZBackOrderListsModel.h"
 #import "LZBackOrderLIstsCell.h"
+#import "ReimDetailViewController.h"
+
+static NSInteger const pageSize = 15;
 
 @interface LZBackOrderListsVC ()<UITableViewDelegate,UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate>
 {
@@ -25,11 +28,12 @@
 @property(nonatomic,strong)UIView *rigthHeadView;
 @property(nonatomic,strong)UILabel *dateLbl;
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)NSArray<LZBackOrderListsModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZBackOrderListsModel*> *lists;
 @property(nonatomic,strong)SGPageTitleView *pageTitleView;
 @property(nonatomic,strong)SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
 @property(nonatomic,strong)LZSearchBar * searchBar;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation LZBackOrderListsVC
@@ -42,9 +46,11 @@
 }
 
 - (void)setupUI{
+    
     self.navigationItem.titleView = [Utility navTitleView:@"退单列表"];
     _startStr = @"";
     _endStr = @"";
+    self.pageIndex = 1;
     
     //初始化搜索框
     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 49)];
@@ -113,6 +119,21 @@
         make.left.and.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+    
+    WEAKSELF;
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupListData];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupListData];
+    }];
+    return footer;
 }
 
 #pragma mark ----- tableviewdelegate -----
@@ -144,25 +165,70 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZBackOrderListsModel *model = _lists[indexPath.row];
+    ReimDetailViewController *reimVC = [[ReimDetailViewController alloc] initWithNibName:@"ReimDetailViewController" bundle:nil];
+    reimVC.orderNo = model.orderNo;
+    reimVC.title = @"退单详情";
+    [self.navigationController pushViewController:reimVC animated:YES];
+}
+
 #pragma mark ----- 网络请求 -----
 - (void)setupListData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
                              @"startDate":_startStr,
                              @"endDate":_endStr,
                              @"customerName":self.searchBar.text
                              };
     [BXSHttp requestGETWithAppURL:@"refund/list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+//        if ([baseModel.code integerValue] != 200) {
+//            [LLHudTools showWithMessage:baseModel.msg];
+//            return ;
+//        }
+//        _lists = [LZBackOrderListsModel LLMJParse:baseModel.data];
+//        [_tableView reloadData];
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZBackOrderListsModel *model = [LZBackOrderListsModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZBackOrderListsModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
+
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -299,6 +365,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZBackOrderListsModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 
