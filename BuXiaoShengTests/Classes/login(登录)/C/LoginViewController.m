@@ -10,7 +10,7 @@
 #import "HomeViewController.h"
 #import "LoginModel.h"
 #import "AlterPassworddViewController.h"
-
+#import "LZsharedNavigationController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     UIButton *_emptyBtn;
@@ -209,6 +209,7 @@
             [BXSUser saveUser:self.loginModel];
             HomeViewController *vc = [[HomeViewController alloc]init];
             UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+			[LZsharedNavigationController sharedNavigationController].baseNavigationController =(BaseNavigationController *)nav;
             [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];

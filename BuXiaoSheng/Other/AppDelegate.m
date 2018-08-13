@@ -12,6 +12,12 @@
 #import "IQKeyboardManager.h"
 #import "LLWelcomeVC.h"
 #import "AppDelegate+LLJPuchAppDelegate.h"
+
+#import "LZSalesDemandVC.h"
+#import "SpendingViewController.h"
+#import "InventoryViewController.h"
+#import "AuditViewController.h"
+#import "LZsharedNavigationController.h"
 @interface AppDelegate ()
 @property(strong,nonatomic)BaseNavigationController *baseNaVC;
 
@@ -29,6 +35,7 @@
 
     //初始化激光推送
     [self setupJPuchWith:application Options:launchOptions];
+	[LZsharedNavigationController sharedNavigationController];
     if ([BXSTools welcomeShow]) {
         LLWelcomeVC *vc = [[LLWelcomeVC alloc]init];
         self.window.rootViewController = vc;
@@ -37,6 +44,7 @@
         if ([BXSUser isLogin]) {
             HomeViewController *vc = [[HomeViewController alloc]init];
             self.baseNaVC = [[BaseNavigationController alloc]initWithRootViewController:vc];
+			[LZsharedNavigationController sharedNavigationController].baseNavigationController =self.baseNaVC;
             self.window.rootViewController = self.baseNaVC;
         }else {
             LoginViewController *loginVC = [[LoginViewController alloc]init];
@@ -47,8 +55,52 @@
     }
 //    nav.navigationBarHidden = NO;
     [self.window makeKeyAndVisible];
- 
+
+	//创建应用图标上的3D touch快捷选项
+	UIApplicationShortcutItem *shortcutItem = [launchOptions valueForKey:UIApplicationLaunchOptionsShortcutItemKey];
+	//如果是从快捷选项标签启动app，则根据不同标识执行不同操作，然后返回NO，防止调用- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
+	if (shortcutItem) {
+		[self setting3DtouchPerformActionForShortcutItem:shortcutItem];
+		return NO;
+	}
     return YES;
+}
+/**
+ 3Dtouch 跳转的对应控制器
+
+ @param shortcutItem item
+ */
+- (void)setting3DtouchPerformActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem{
+	BaseNavigationController *nav= [LZsharedNavigationController sharedNavigationController].baseNavigationController;
+	if (![LZsharedNavigationController sharedNavigationController].baseNavigationController) {
+		NSLog(@"--nav不存在,跳转失败!");
+	}else{
+		//进入开单界面
+		if([shortcutItem.type isEqualToString:@"com.LZSalesDemandVC.bxc"]){
+
+			LZSalesDemandVC *vc = [[LZSalesDemandVC alloc]init];
+			[nav pushViewController:vc animated:YES];
+			NSLog(@"点击了开单界面");
+
+			//进入支出界面
+		} else if ([shortcutItem.type isEqualToString:@"com.SpendingVC.bxc"]) {
+			SpendingViewController *vc = [[SpendingViewController alloc]init];
+			[nav pushViewController:vc animated:YES];
+			NSLog(@"点击进入支出界面");
+
+			//进入库存界面
+		} else if ([shortcutItem.type isEqualToString:@"com.InventoryVC.bxc"]) {
+			InventoryViewController *vc = [[InventoryViewController alloc]init];
+			[nav pushViewController:vc animated:YES];
+			NSLog(@"点击进入库存界面");
+
+			//进入审批界面
+		}else if([shortcutItem.type isEqualToString:@"com.AuditVC.bxc"]){
+			AuditViewController *vc = [[AuditViewController alloc]init];
+			[nav pushViewController:vc animated:YES];
+			NSLog(@"点击进入审批界面");
+		}
+	}
 }
 #pragma mark -------  设置IQKeyboardManager -------
 - (void)settingIQKeyboardManager{
@@ -78,6 +130,19 @@
     [JPUSHService handleRemoteNotification:userInfo];
 
     completionHandler(UIBackgroundFetchResultNewData);
+}
+//如果app在后台，通过快捷选项标签进入app，则调用该方法，如果app不在后台已杀死，则处理通过快捷选项标签进入app的逻辑在- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions中
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+	if (![LZsharedNavigationController sharedNavigationController].baseNavigationController) {
+		NSLog(@"--nav不存在,跳转失败!");
+	}else{
+		if (shortcutItem) {
+			[self setting3DtouchPerformActionForShortcutItem:shortcutItem];
+		}
+		if (completionHandler) {
+			completionHandler(YES);
+		}
+	}
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

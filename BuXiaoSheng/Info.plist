@@ -2,41 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>开单</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string></string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>支出</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string></string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>库存</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string></string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>审批</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string></string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string></string>
-		</dict>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleExecutable</key>
@@ -50,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -86,6 +51,49 @@
 	<string>App需要您的同意,才能访问相册</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>App需要您的同意,才能访问提醒事项</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>favorite</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>可以快速开单哦</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>开单</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.LZSalesDemandVC.bxc</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>favorite</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>可以快速支出哦</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>支出</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.SpendingVC.bxc</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>favorite</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>可以快速管理库存哦</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>库存</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.InventoryVC.bxc</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>favorite</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>可以快速审批哦</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>审批</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.AuditVC.bxc</string>
+		</dict>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

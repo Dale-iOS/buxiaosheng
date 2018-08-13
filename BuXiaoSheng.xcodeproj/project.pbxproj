@@ -740,6 +740,7 @@
 		34FB1F2F20BD5072004D18C2 /* LLMonthCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2320BD5071004D18C2 /* LLMonthCollectionViewCell.m */; };
 		34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */; };
 		34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */; };
+		8E58A4E521218AC500E73AE8 /* LZsharedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E58A4E421218AC500E73AE8 /* LZsharedNavigationController.m */; };
 		A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A01690BB2119DA8500A7D8F9 /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690AF2119DA8400A7D8F9 /* MFPageView.m */; };
@@ -1820,6 +1821,8 @@
 		34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLQuarterCalendarVc.m; sourceTree = "<group>"; };
 		34FB1F2820BD5072004D18C2 /* LLWeekCalendarVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWeekCalendarVc.h; sourceTree = "<group>"; };
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
+		8E58A4E321218AC500E73AE8 /* LZsharedNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZsharedNavigationController.h; sourceTree = "<group>"; };
+		8E58A4E421218AC500E73AE8 /* LZsharedNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZsharedNavigationController.m; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A012E61F20FD965700329D69 /* BuXiaoSheng.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuXiaoSheng.entitlements; sourceTree = "<group>"; };
 		A012E62020FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+LLJPuchAppDelegate.h"; sourceTree = "<group>"; };
@@ -3447,6 +3450,8 @@
 				34A92B19207DE86200572648 /* Main.storyboard */,
 				34A92B1C207DE86200572648 /* Assets.xcassets */,
 				34A92B1E207DE86200572648 /* LaunchScreen.storyboard */,
+				8E58A4E321218AC500E73AE8 /* LZsharedNavigationController.h */,
+				8E58A4E421218AC500E73AE8 /* LZsharedNavigationController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5349,6 +5354,7 @@
 				B50505B7209AB2DA00CE7E4D /* XLFormSliderCell.m in Sources */,
 				34EA48E520CF6EA40086FF79 /* LZBugAndProcessBssModel.m in Sources */,
 				34EA48F120CFA1690086FF79 /* LZDidBugAndProcessUntreatedCell.m in Sources */,
+				8E58A4E521218AC500E73AE8 /* LZsharedNavigationController.m in Sources */,
 				B50505CD209AB2DA00CE7E4D /* NSArray+XLFormAdditions.m in Sources */,
 				B50505D3209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
 				344E4D84210EBCE00031DCE8 /* BXSMachiningHeadCell.m in Sources */,
@@ -6220,8 +6226,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48WVJV32K7;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -6229,8 +6236,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57f71daf-1d09-4f4c-8610-c657cafe4512";
-				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -6248,8 +6255,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48WVJV32K7;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
@@ -6257,8 +6265,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57f71daf-1d09-4f4c-8610-c657cafe4512";
-				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

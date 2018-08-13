@@ -10,6 +10,9 @@
 #import "LLWelcomeCollectionViewCell.h"
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "BaseNavigationController.h"
+#import "LZsharedNavigationController.h"
+
 @interface LLWelcomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray <NSString*>* imageArr;
 @end
@@ -68,6 +71,7 @@
         if ([BXSUser isLogin]) {
             HomeViewController *vc = [[HomeViewController alloc]init];
             UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+			[LZsharedNavigationController sharedNavigationController].baseNavigationController =(BaseNavigationController *)nav;
             [UIApplication sharedApplication].keyWindow.rootViewController = nav;
             
         }else {
