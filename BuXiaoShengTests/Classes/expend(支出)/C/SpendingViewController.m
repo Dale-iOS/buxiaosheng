@@ -59,7 +59,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 64, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
         tableView.backgroundColor = LZHBackgroundColor;
         [self.view addSubview:(mainTabelView = tableView)];
     }
@@ -71,7 +71,6 @@
 {
     
     self.navigationItem.titleView = [Utility navTitleView:@"日常支出登记"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toList) image:IMAGE(@"new_lists")];
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -242,6 +241,9 @@
 
 //开销类型点击事件
 - (void)overheadCellTapClick{
+    //    强制当前输入法收起
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     SubjectViewController *vc = [[SubjectViewController alloc]init];
     vc.isFromSpend = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -251,13 +253,11 @@
     }];
 }
 
-- (void)backMethod
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 //选择做账时间
 - (void)timeCellTapClick{
+    //    强制当前输入法收起
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
     //            NSDate *maxDate = [NSDate date];
     NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
@@ -272,6 +272,10 @@
 
 //选择审批人
 - (void)auditCellTapClick{
+    
+    //    强制当前输入法收起
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_approverNameAry titleDataArray:nil];
     
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {

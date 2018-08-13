@@ -273,6 +273,8 @@
 
 #pragma mark --- 点击事件 ---
 - (void)leftClick{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:self.payNameAry titleDataArray:nil];
     pickerView.titleLabel.text = @"请选择转出银行";
     pickerView.toolsView.frame = CGRectMake(0, APPHeight - 244 -60, APPWidth, 44);

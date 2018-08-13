@@ -181,7 +181,12 @@
         LLAddPermissionsVc * permissonVc = [LLAddPermissionsVc new];
         permissonVc.model = weakSelf.model;
         permissonVc.exis_roles = weakSelf.roles;
-        [weakSelf.navigationController pushViewController:permissonVc animated:true];
+        if ([BXSUser currentUser].type.integerValue == 1) {
+            [weakSelf.navigationController pushViewController:permissonVc animated:true];
+        }else{
+            [LLHudTools showWithMessage:@"无该操作权限"];
+        }
+        
     };
     headerFooterView.model = self.roles[section -1];
     return headerFooterView;

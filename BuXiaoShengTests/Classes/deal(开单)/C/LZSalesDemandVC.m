@@ -103,7 +103,7 @@
     [self setupFooterView];
     
     //初始化tableview
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,LLNavViewHeight, APPWidth, APPHeight -44-LLNavViewHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPWidth, APPHeight -44) style:UITableViewStylePlain];
     self.tableView.backgroundColor = LZHBackgroundColor;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;

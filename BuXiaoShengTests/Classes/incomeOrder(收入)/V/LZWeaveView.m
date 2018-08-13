@@ -191,6 +191,9 @@
 //点击了选择收款方式
 - (void)tapClick{
     
+    //    强制当前输入法收起
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     if (self.payNameAry.count < 1) {
         [LLHudTools showWithMessage:@"您暂无收款方式可选"];
         return;
