@@ -43,8 +43,7 @@
 #pragma mark Collection datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSInteger rtn = 25;
-    return rtn;
+    return _colorListModel.valList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,6 +51,7 @@
     static NSString * cellId = @"ReimXiMaCollectionViewCell";
     ReimXiMaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     cell.valListModel = _colorListModel.valList[indexPath.row];
+//    NSLog(@"132");
     return cell;
     
 }

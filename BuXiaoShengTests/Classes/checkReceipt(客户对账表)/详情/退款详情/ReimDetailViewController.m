@@ -126,7 +126,7 @@
         if (self.dataArray.count >0) {
 //            这里也是不知道要减几
             cell.productModel = self.dataArray[indexPath.row -1];
-//            NSLog(@"123");
+            NSLog(@"123");
         }
         
         return cell;
