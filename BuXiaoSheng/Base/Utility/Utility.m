@@ -180,5 +180,29 @@
     return image;
 }
 
++ (void)showPicWithUrl:(NSString *)urlStr imageView:(UIImageView *)iconImgV placeholder:(UIImage *)image
+{
+    if (image == nil)
+    {
+        image = IMAGE(@"");
+    }
+    
+    __weak UIImageView *weakImgV = iconImgV;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",LZImageBaseUrl,urlStr]];
+    
+    
+    [iconImgV sd_setImageWithURL:url placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error == nil)
+        {
+            [weakImgV performSelector:@selector(setImage:) withObject:image afterDelay:0 inModes:@[NSDefaultRunLoopMode]];
+        }
+        else
+        {
+            [weakImgV performSelector:@selector(setImage:) withObject:weakImgV.image afterDelay:0 inModes:@[NSDefaultRunLoopMode]];
+        }
+    }];
+}
+
+
 
 @end

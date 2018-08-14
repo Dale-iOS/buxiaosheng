@@ -118,6 +118,11 @@
 
 #define IMAGE(imagename)                [UIImage imageNamed:imagename]
 
+/**
+ * 图片基础链接部分
+ */
+#define LZImageBaseUrl                   @""
+
 //网络请求的数据response转中文TF8
 #define STRING(response)                [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:response options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding]
 

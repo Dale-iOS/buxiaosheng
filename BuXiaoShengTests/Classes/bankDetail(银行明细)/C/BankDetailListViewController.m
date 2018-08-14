@@ -191,7 +191,7 @@ static NSInteger const pageSize = 15;
                     [self.tableView.mj_footer endRefreshing];
                 }
             } else {
-                [LLHudTools showWithMessage:@"暂无更多数据"];
+//                [LLHudTools showWithMessage:@"暂无更多数据"];
             }
             if (self.pageIndex == 1) {
                 if (self.lists.count >= pageSize) {

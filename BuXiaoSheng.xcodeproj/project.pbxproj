@@ -203,7 +203,6 @@
 		34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DF92091B16C00BDB309 /* OutboundViewController.m */; };
 		34494DFF2091DDFD00BDB309 /* AssignDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34494DFE2091DDFD00BDB309 /* AssignDeliveryViewController.m */; };
 		344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2220E228950058E319 /* LZAlterProductDataVC.m */; };
-		344A5D2420E228950058E319 /* LZAlterProductDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2220E228950058E319 /* LZAlterProductDataVC.m */; };
 		344A5D2720E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
 		344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */; };
 		344A5D2B20E24B360058E319 /* LZAssignDeliveryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344A5D2A20E24B360058E319 /* LZAssignDeliveryListVC.m */; };
@@ -595,6 +594,9 @@
 		34A92B68207DF11500572648 /* LZHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A92B4F207DEC6D00572648 /* LZHTableView.m */; };
 		34B1944C20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
 		34B1944D20FF42380095BBFD /* LZWKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */; };
+		34BA920A2122B909002B0AD9 /* LZProductInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA92092122B909002B0AD9 /* LZProductInfoCell.m */; };
+		34BA920E2122C2B0002B0AD9 /* LZProductInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA920D2122C2B0002B0AD9 /* LZProductInfoModel.m */; };
+		34BA920F2122C2B0002B0AD9 /* LZProductInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA920D2122C2B0002B0AD9 /* LZProductInfoModel.m */; };
 		34BCABF620E732A500C25BE5 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF220E732A500C25BE5 /* TZTestCell.m */; };
 		34BCABF720E732A500C25BE5 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF220E732A500C25BE5 /* TZTestCell.m */; };
 		34BCABF820E732A500C25BE5 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BCABF420E732A500C25BE5 /* LxGridViewFlowLayout.m */; };
@@ -1605,6 +1607,10 @@
 		34A92B5D207DEF2400572648 /* SaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleViewController.m; sourceTree = "<group>"; };
 		34B1944A20FF42380095BBFD /* LZWKWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWKWebViewVC.h; sourceTree = "<group>"; };
 		34B1944B20FF42380095BBFD /* LZWKWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZWKWebViewVC.m; sourceTree = "<group>"; };
+		34BA92082122B909002B0AD9 /* LZProductInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProductInfoCell.h; sourceTree = "<group>"; };
+		34BA92092122B909002B0AD9 /* LZProductInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProductInfoCell.m; sourceTree = "<group>"; };
+		34BA920C2122C2B0002B0AD9 /* LZProductInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProductInfoModel.h; sourceTree = "<group>"; };
+		34BA920D2122C2B0002B0AD9 /* LZProductInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZProductInfoModel.m; sourceTree = "<group>"; };
 		34BCABF220E732A500C25BE5 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
 		34BCABF320E732A500C25BE5 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
 		34BCABF420E732A500C25BE5 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
@@ -3113,69 +3119,6 @@
 			path = C;
 			sourceTree = "<group>";
 		};
-		346BA4362112DE29000488D2 /* directstorage(直接入库) */ = {
-			isa = PBXGroup;
-			children = (
-				346BA4392112DE90000488D2 /* M1 */,
-				346BA4382112DE8C000488D2 /* V1 */,
-				346BA4372112DE84000488D2 /* C1 */,
-			);
-			path = "directstorage(直接入库)";
-			sourceTree = "<group>";
-		};
-		346BA4372112DE84000488D2 /* C1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C1;
-			sourceTree = "<group>";
-		};
-		346BA4382112DE8C000488D2 /* V1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V1;
-			sourceTree = "<group>";
-		};
-		346BA4392112DE90000488D2 /* M1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M1;
-			sourceTree = "<group>";
-		};
-		346F6DD120DFA4210016FA8D /* product(产品资料) */ = {
-			isa = PBXGroup;
-			children = (
-				346F6DD420DFA4320016FA8D /* M */,
-				3475424D20F5F4A6007F384B /* V */,
-				346F6DD220DFA4270016FA8D /* C */,
-			);
-			path = "product(产品资料)";
-			sourceTree = "<group>";
-		};
-		346F6DD220DFA4270016FA8D /* C */ = {
-			isa = PBXGroup;
-			children = (
-				343025A6209BFA1F00869313 /* ProductViewController.h */,
-				343025A7209BFA1F00869313 /* ProductViewController.m */,
-				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
-				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
-				344A5D2120E228950058E319 /* LZAlterProductDataVC.h */,
-				344A5D2220E228950058E319 /* LZAlterProductDataVC.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		346F6DD420DFA4320016FA8D /* M */ = {
-			isa = PBXGroup;
-			children = (
-				344A5D2520E22D5C0058E319 /* LZProductDetailModel.h */,
-				344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */,
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
 		3471DCB420D787FA002052EE /* choose(各种选择) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3479,6 +3422,12 @@
 			children = (
 				34EE5D7020A68B9900A2C9B5 /* AddColorViewController.h */,
 				34EE5D7120A68B9900A2C9B5 /* AddColorViewController.m */,
+				343025A6209BFA1F00869313 /* ProductViewController.h */,
+				343025A7209BFA1F00869313 /* ProductViewController.m */,
+				34EE5D6A20A68B2600A2C9B5 /* AddProductViewController.h */,
+				34EE5D6B20A68B2600A2C9B5 /* AddProductViewController.m */,
+				344A5D2120E228950058E319 /* LZAlterProductDataVC.h */,
+				344A5D2220E228950058E319 /* LZAlterProductDataVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3488,6 +3437,8 @@
 			children = (
 				3452717020B2734A0001B65A /* AddColorCell.h */,
 				3452717120B2734A0001B65A /* AddColorCell.m */,
+				34BA92082122B909002B0AD9 /* LZProductInfoCell.h */,
+				34BA92092122B909002B0AD9 /* LZProductInfoCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3497,6 +3448,10 @@
 			children = (
 				3452717520B2B6C20001B65A /* LZAddColorsModel.h */,
 				3452717620B2B6C20001B65A /* LZAddColorsModel.m */,
+				34BA920C2122C2B0002B0AD9 /* LZProductInfoModel.h */,
+				34BA920D2122C2B0002B0AD9 /* LZProductInfoModel.m */,
+				344A5D2520E22D5C0058E319 /* LZProductDetailModel.h */,
+				344A5D2620E22D5C0058E319 /* LZProductDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3585,46 +3540,6 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475423020F5E783007F384B /* recipe(配方表) */ = {
-			isa = PBXGroup;
-			children = (
-				3475423420F5E79E007F384B /* M */,
-				3475423220F5E792007F384B /* V */,
-				3475423120F5E78E007F384B /* C */,
-			);
-			name = "recipe(配方表)";
-			path = "New Group3";
-			sourceTree = "<group>";
-		};
-		3475423120F5E78E007F384B /* C */ = {
-			isa = PBXGroup;
-			children = (
-				348AC64F20B9579C0051E842 /* LZChooseRecipeVC.h */,
-				348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */,
-				345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */,
-				345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */,
-				34320781209FF25C005A5D23 /* AddDyeRecipeViewController.h */,
-				34320782209FF25C005A5D23 /* AddDyeRecipeViewController.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3475423220F5E792007F384B /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3475423420F5E79E007F384B /* M */ = {
-			isa = PBXGroup;
-			children = (
-				348AC64820B93C8C0051E842 /* LZRecipeModel.h */,
-				348AC64920B93C8C0051E842 /* LZRecipeModel.m */,
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
 		3475423520F5EC4E007F384B /* store(已隐藏的店铺) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3703,13 +3618,6 @@
 			path = V;
 			sourceTree = "<group>";
 		};
-		3475424420F5F2EE007F384B /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
 		3475424520F5F310007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
@@ -3724,13 +3632,6 @@
 			children = (
 			);
 			path = M;
-			sourceTree = "<group>";
-		};
-		3475424D20F5F4A6007F384B /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		3475424E20F5F57E007F384B /* V */ = {
@@ -4046,7 +3947,7 @@
 		349938F320E0D5500036C8EE /* recipe(配方表) */ = {
 			isa = PBXGroup;
 			children = (
-				3475424420F5F2EE007F384B /* M */,
+				34BA92102122C483002B0AD9 /* M */,
 				349938F520E0D5710036C8EE /* V */,
 				349938F420E0D56D0036C8EE /* C */,
 			);
@@ -4056,6 +3957,12 @@
 		349938F420E0D56D0036C8EE /* C */ = {
 			isa = PBXGroup;
 			children = (
+				348AC64F20B9579C0051E842 /* LZChooseRecipeVC.h */,
+				348AC65020B9579C0051E842 /* LZChooseRecipeVC.m */,
+				345D5EFF209D4D2B00126C40 /* AddRecipeViewController.h */,
+				345D5F00209D4D2B00126C40 /* AddRecipeViewController.m */,
+				34320781209FF25C005A5D23 /* AddDyeRecipeViewController.h */,
+				34320782209FF25C005A5D23 /* AddDyeRecipeViewController.m */,
 				345D5EFC209D4AAF00126C40 /* RecipeViewController.h */,
 				345D5EFD209D4AAF00126C40 /* RecipeViewController.m */,
 				3450B02020E0DE4900429570 /* LZAddRecipeVC.h */,
@@ -4267,6 +4174,15 @@
 				342AF22120D51C7300A1DDC4 /* LZDetailCell.m */,
 			);
 			path = LZHTableView;
+			sourceTree = "<group>";
+		};
+		34BA92102122C483002B0AD9 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				348AC64820B93C8C0051E842 /* LZRecipeModel.h */,
+				348AC64920B93C8C0051E842 /* LZRecipeModel.m */,
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		34BCABF120E7325B00C25BE5 /* TZImagePicker控件 */ = {
@@ -4624,19 +4540,16 @@
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
 				3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */,
 				34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */,
-				346BA4362112DE29000488D2 /* directstorage(直接入库) */,
 				3475420A20F5AD5C007F384B /* warehouse(仓库) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
+				3475420E20F5AE1A007F384B /* AuditManager(审批人管理) */,
 				3475421220F5AF2A007F384B /* subject(科目) */,
 				3480AA9E20E3A7CD00053C5D /* organization(组织架构) */,
 				3475422420F5E576007F384B /* product(产品资料) */,
 				3475422820F5E631007F384B /* client(客户) */,
 				3475422C20F5E6A0007F384B /* company(厂商) */,
 				3475423520F5EC4E007F384B /* store(已隐藏的店铺) */,
-				3475423020F5E783007F384B /* recipe(配方表) */,
-				3475420E20F5AE1A007F384B /* AuditManager(审批人管理) */,
 				349938F320E0D5500036C8EE /* recipe(配方表) */,
-				346F6DD120DFA4210016FA8D /* product(产品资料) */,
 			);
 			name = Classes;
 			path = BuXiaoShengTests/Classes;
@@ -5229,6 +5142,7 @@
 				346C2289210E03E2004AAC88 /* LZBackOrderItem.m in Sources */,
 				A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */,
 				B50505B9209AB2DA00CE7E4D /* XLFormStepCounterCell.m in Sources */,
+				34BA920A2122B909002B0AD9 /* LZProductInfoCell.m in Sources */,
 				3433D0BA20B53B8C003FFC16 /* UITextField+rightView.m in Sources */,
 				A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */,
 				34E4D498211B28A500A6ADE9 /* LZTypeProductModel.m in Sources */,
@@ -5264,6 +5178,7 @@
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
 				344C488920D0F07200BEC002 /* LZMarketModel.m in Sources */,
 				34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */,
+				34BA920E2122C2B0002B0AD9 /* LZProductInfoModel.m in Sources */,
 				342AF21120D4C09900A1DDC4 /* LZCustomerArrearsVC.m in Sources */,
 				34EA48F920CFAA8C0086FF79 /* LZStockTrackingVC.m in Sources */,
 				34EA5BBA208B1F010048CFE1 /* UIWindow+LGAlertView.m in Sources */,
@@ -5786,7 +5701,6 @@
 				B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3471DCA720D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
-				344A5D2420E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				344E4D4D210EADA30031DCE8 /* ApproverModel.m in Sources */,
 				346C2253210E03D3004AAC88 /* BackOrderViewController.m in Sources */,
 				3479058020C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
@@ -5959,6 +5873,7 @@
 				B5B07507209C1DC000FD53DC /* LLProcessChildVc.m in Sources */,
 				B531EF4620BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				346C2276210E03DA004AAC88 /* LLBackOrderCotentCell.m in Sources */,
+				34BA920F2122C2B0002B0AD9 /* LZProductInfoModel.m in Sources */,
 				344C489620D100B800BEC002 /* LZDidReimbursementSaleVC.m in Sources */,
 				34EA490220CFDD640086FF79 /* LZDidStockTrackingVC.m in Sources */,
 				B58BF6F920A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
@@ -6236,7 +6151,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b31449a9-7090-484b-b927-bc66bc3e886d";
+				PROVISIONING_PROFILE = "b014b59b-fa0c-4213-abc1-07bbd6f4de3b";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

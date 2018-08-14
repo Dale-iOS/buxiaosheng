@@ -20,6 +20,9 @@
 //
 //+ (UIView *)navTitleViewSessionList:(NSString *)_title;
 
+// 设置图片
++ (void)showPicWithUrl:(NSString *)urlStr imageView:(UIImageView *)iconImgV placeholder:(UIImage *)image;
+
 // 统一返回按钮
 + (UIBarButtonItem*)navLeftBackBtn:(id)_target action:(SEL)selector;
 //创建navigation 右按钮是图片的

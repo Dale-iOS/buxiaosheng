@@ -54,40 +54,40 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>favorite</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dPaying</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>可以快速开单哦</string>
+			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>开单</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.LZSalesDemandVC.bxc</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>favorite</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dExpend</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>可以快速支出哦</string>
+			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>支出</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.SpendingVC.bxc</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>favorite</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dWarehouse</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>可以快速管理库存哦</string>
+			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>库存</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.InventoryVC.bxc</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>favorite</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dAudit</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>可以快速审批哦</string>
+			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>审批</string>
 			<key>UIApplicationShortcutItemType</key>
