@@ -15,12 +15,13 @@
 #import "LZProductInfoCell.h"
 #import "LZProductInfoModel.h"
 
+static NSInteger const pageSize = 15;
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LZSearchBar * searchBar;
-@property (nonatomic, strong) NSArray <LZProductInfoModel *> *lists;
-
+@property (nonatomic, strong) NSMutableArray <LZProductInfoModel *> *lists;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation ProductViewController
@@ -30,18 +31,19 @@
     [super viewDidLoad];
     
     [self setupUI];
-//    [self setupData];
+    [self setupList];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupData];
+//    [self setupList];
 }
 
 - (void)setupUI
 {
+    self.pageIndex = 1;
     self.navigationItem.titleView = [Utility navTitleView:@"产品资料"];
     
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screen3")];
@@ -60,7 +62,13 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.view addSubview:_tableView];
+    [self.view addSubview:self.tableView];
+    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
     
     //底部按钮底图
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPHeight -49, APPWidth, 49)];
@@ -101,25 +109,63 @@
     .leftSpaceToView(addDepLbl, 5);
 }
 
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
+}
+
 #pragma mark ------- 网络请求 ------
-- (void)setupData
+- (void)setupList
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"groupId":@"",
-                             @"pageNo":@"1",
-                             @"pageSize":@"100",
-                             @"searchName":self.searchBar.text
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize)
+//                             @"searchName":self.searchBar.text
                              };
     [BXSHttp requestGETWithAppURL:@"product/list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZProductInfoModel *model = [LZProductInfoModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        self.lists = [LZProductInfoModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -169,7 +215,52 @@
 //搜索
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-    [self setupData];
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"groupId":@"",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
+                             @"searchName":searchText
+                             };
+    [BXSHttp requestGETWithAppURL:@"product/list.do" param:param success:^(id response) {
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"] ;
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZProductInfoModel *model = [LZProductInfoModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 
@@ -185,20 +276,49 @@
         
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                                  @"groupId":labelId,
-                                 @"pageNo":@"1",
-                                 @"pageSize":@"15",
+                                 @"pageNo":@(self.pageIndex),
+                                 @"pageSize":@(pageSize),
                                  @"searchName":self.searchBar.text
                                  };
         [BXSHttp requestGETWithAppURL:@"product/list.do" param:param success:^(id response) {
-            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-            if ([baseModel.code integerValue] != 200) {
-                [LLHudTools showWithMessage:baseModel.msg];
-                return ;
+            if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+                if (1 == self.pageIndex) {
+                    [self.lists removeAllObjects];
+                }
+                
+                NSArray *itemList = [response objectForKey:@"data"] ;
+                if (itemList && itemList.count > 0) {
+                    for (NSDictionary *dic in itemList) {
+                        LZProductInfoModel *model = [LZProductInfoModel mj_objectWithKeyValues:dic];
+                        [self.lists addObject:model];
+                    }
+                    if (self.lists.count % pageSize) {
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    } else {
+                        [self.tableView.mj_footer endRefreshing];
+                    }
+                } else {
+                    //                [LLHudTools showWithMessage:@"暂无更多数据"];
+                }
+                if (self.pageIndex == 1) {
+                    if (self.lists.count >= pageSize) {
+                        self.tableView.mj_footer = [self reloadMoreData];
+                    } else {
+                        self.tableView.mj_footer = nil;
+                    }
+                }
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView reloadData];
+                
+            } else {
+                [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
             }
-            self.lists = [LZProductInfoModel LLMJParse:baseModel.data];
-            [self.tableView reloadData];
         } failure:^(NSError *error) {
             BXS_Alert(LLLoadErrorMessage);
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }];
     }];
 }
@@ -208,6 +328,15 @@
     AddProductViewController *vc = [[AddProductViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZProductInfoModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
