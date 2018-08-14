@@ -21,9 +21,9 @@
 #import "DyeingViewController.h"
 #import "LZCheckReceiptModel.h"
 #import "BRPickerView.h"
-
 #import "LZDirectStorageVC.h"//直接入库
 
+static NSInteger const pageSize = 15;
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *_dateStr;
@@ -35,7 +35,8 @@
 @property (nonatomic, strong) UIView *tableViewHeadView;
 @property (nonatomic, strong) UILabel *dateLbl;
 @property (nonatomic, strong) NSArray <LZHomeModel *> *buttons;
-@property(nonatomic,strong)NSArray<LZCheckReceiptModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZCheckReceiptModel*> *lists;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation WarehouseHomeViewController
@@ -45,7 +46,6 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"仓库"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupUI];
 }
@@ -54,7 +54,7 @@
 {
     [super viewWillAppear:animated];
     [self setupBtns];
-    [self setupListsData];
+    [self setupList];
 }
 
 - (LZHTableView *)mainTabelView
@@ -211,6 +211,7 @@
 
 - (void)setupUI
 {
+    self.pageIndex = 1;
     _dateStr = @"";
     
     [self.mainTabelView setIsScrollEnable:NO];
@@ -318,6 +319,12 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = self.tableViewHeadView;
+    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
 
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -327,6 +334,15 @@
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 #pragma mark ----- 网络请求 -------
@@ -358,23 +374,52 @@
 }
 
 //接口名称 仓库动态列表
-- (void)setupListsData{
+- (void)setupList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"date":_dateStr,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize)
                              };
     [BXSHttp requestGETWithAppURL:@"storehouse/house_dynamic_list.do" param:param success:^(id response) {
-        
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue]!=200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZCheckReceiptModel *model = [LZCheckReceiptModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZCheckReceiptModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage)
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -417,10 +462,18 @@
     [BRDatePickerView showDatePickerWithTitle:@"选择日期" dateType:BRDatePickerModeYMD defaultSelValue:nil minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
         weakSelf.dateLbl.text =  selectValue;
         _dateStr = selectValue;
-        [weakSelf setupListsData];
+        [weakSelf setupList];
     } cancelBlock:^{
         NSLog(@"点击了背景或取消按钮");
     }];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZCheckReceiptModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)didReceiveMemoryWarning {

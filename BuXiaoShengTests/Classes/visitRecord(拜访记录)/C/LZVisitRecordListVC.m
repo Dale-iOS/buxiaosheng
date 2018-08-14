@@ -12,10 +12,12 @@
 #import "LZVisitRecordCell.h"
 #import "LZVisitRecordDetailVC.h"
 
+static NSInteger const pageSize = 15;
 @interface LZVisitRecordListVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)LZSearchBar *searchBar;
-@property(nonatomic,strong)NSArray<LZVisitModel*> *lists;
-@property(nonatomic,strong)UITableView *myTabelView;
+@property(nonatomic,strong)NSMutableArray<LZVisitModel*> *lists;
+@property(nonatomic,strong)UITableView *tableView;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation LZVisitRecordListVC
@@ -28,12 +30,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupListData];
+    [self setupList];
 }
 
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"拜访记录列表"];
+    self.pageIndex = 1;
     
     //初始化搜索框
     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, 44)];
@@ -44,40 +47,86 @@
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
     [self.view addSubview:self.searchBar];
     
-    self.myTabelView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.myTabelView.delegate = self;
-    self.myTabelView.dataSource = self;
-    self.myTabelView.tableFooterView = [[UIView alloc]init];
-    self.myTabelView.backgroundColor = LZHBackgroundColor;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.backgroundColor = LZHBackgroundColor;
     //隐藏分割线
-    self.myTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.myTabelView];
-    [self.myTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.searchBar.mas_bottom);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
 }
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
+}
+
 
 //接口名称 拜访记录列表
 #pragma mark ----- 网络请求 -----
-- (void)setupListData{
+- (void)setupList{
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
-                             @"name":self.searchBar.text
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
+//                             @"name":self.searchBar.text
                              };
     [BXSHttp requestGETWithAppURL:@"record/list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZVisitModel *model = [LZVisitModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZVisitModel LLMJParse:baseModel.data];
-        [self.myTabelView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -119,7 +168,60 @@
 
 - (void)searchBar:(LZSearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [self setupListData];
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
+                             @"name":searchText
+                             };
+    [BXSHttp requestGETWithAppURL:@"record/list.do" param:param success:^(id response) {
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZVisitModel *model = [LZVisitModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZVisitModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)didReceiveMemoryWarning {

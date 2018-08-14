@@ -205,7 +205,7 @@
     .heightIs(14);
     
     self.titleLabel.sd_layout
-    .topSpaceToView(self.bgView, 20)
+    .topSpaceToView(self.bgView, 18)
     .leftSpaceToView(self.bgView, 70)
     .widthIs(200)
     .heightIs(15);
