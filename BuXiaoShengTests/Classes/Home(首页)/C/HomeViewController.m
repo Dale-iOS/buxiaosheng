@@ -16,6 +16,7 @@
 #import "LLHomeBaseTableView.h"
 #import "SGPageTitleView.h"
 #import "LLHomeChidVC.h"
+#import "LZsharedNavigationController.h"
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic ,strong)LLHomePieChartModel * pieChartModel;
@@ -38,7 +39,10 @@
     [self setupBtns];
     [self setupData];
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[LZsharedNavigationController sharedNavigationController] pushPerformActionForShortcutItemVC];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

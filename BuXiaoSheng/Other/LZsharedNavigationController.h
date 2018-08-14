@@ -14,4 +14,7 @@
  */
 + (instancetype)sharedNavigationController;
 @property(strong,nonatomic)BaseNavigationController *baseNavigationController;
+@property(copy,nonatomic)NSString * shortcutItemType;
+@property(nonatomic,assign)BOOL navExistence;
+-(void)pushPerformActionForShortcutItemVC;
 @end

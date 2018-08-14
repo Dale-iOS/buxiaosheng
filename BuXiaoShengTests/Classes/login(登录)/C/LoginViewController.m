@@ -209,7 +209,12 @@
             [BXSUser saveUser:self.loginModel];
             HomeViewController *vc = [[HomeViewController alloc]init];
             UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+			//登录成功,判断是否从3dtouch内进入的,看看是否有关键字
 			[LZsharedNavigationController sharedNavigationController].baseNavigationController =(BaseNavigationController *)nav;
+			NSString * tPush = [LZsharedNavigationController sharedNavigationController].shortcutItemType;
+			if ([tPush hasPrefix:@"com."]) {
+				[LZsharedNavigationController sharedNavigationController].navExistence = YES;
+			}
             [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
         [LLHudTools showWithMessage:[response objectForKey:@"msg"]];

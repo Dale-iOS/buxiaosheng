@@ -27,6 +27,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
 	//设置IQKeyboardManager
 	[self settingIQKeyboardManager];
 //    LoginViewController *loginVC = [[LoginViewController alloc]init];
@@ -72,6 +73,7 @@
  */
 - (void)setting3DtouchPerformActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem{
 	BaseNavigationController *nav= [LZsharedNavigationController sharedNavigationController].baseNavigationController;
+	[LZsharedNavigationController sharedNavigationController].shortcutItemType = shortcutItem.type;
 	if (![LZsharedNavigationController sharedNavigationController].baseNavigationController) {
 		NSLog(@"--nav不存在,跳转失败!");
 	}else{
@@ -133,6 +135,7 @@
 }
 //如果app在后台，通过快捷选项标签进入app，则调用该方法，如果app不在后台已杀死，则处理通过快捷选项标签进入app的逻辑在- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions中
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+	[LZsharedNavigationController sharedNavigationController].shortcutItemType = shortcutItem.type;
 	if (![LZsharedNavigationController sharedNavigationController].baseNavigationController) {
 		NSLog(@"--nav不存在,跳转失败!");
 	}else{
@@ -173,3 +176,14 @@
 
 
 @end
+/**
+关于3Dtouch的跳转逻辑
+ 1 第一次登录进入欢迎界面 A 未登录过-->从新登录后-->跳转指定的模块
+					  B 以登录了-->直接跳转指定的模块
+					  C 登录了,但是在一次登录后被人挤下去了-->从新登录-->跳转指定的模块
+ 2 未登录过 未登录过-->从新登录后-->跳转指定的模块
+ 3 以登录了-->直接跳转指定的模块
+ 4 登录了,但是在一次登录后被人挤下去了-->从新登录-->跳转指定的模块
+ 5 自己退出后,会到主界面,点击某个模块进入-->未登录过-->从新登录后-->跳转指定的模块
+ 6 从后台退出重复以上逻辑
+ */
