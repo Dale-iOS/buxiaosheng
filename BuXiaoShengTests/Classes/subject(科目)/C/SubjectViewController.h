@@ -7,7 +7,6 @@
 //
 @class LZSubjectModel;
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 
 @interface SubjectViewController : BaseViewController
 @property(nonatomic,assign)BOOL isFromSpend;

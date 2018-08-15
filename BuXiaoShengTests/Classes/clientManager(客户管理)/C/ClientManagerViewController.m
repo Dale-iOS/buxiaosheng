@@ -19,7 +19,10 @@
 
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
-
+@property (strong, nonatomic) ResponsibleViewController *vc1;
+@property (strong, nonatomic) AllCompanyViewController *vc2;
+@property (strong, nonatomic) NoneManagerViewController *vc3;
+@property (strong, nonatomic) FreezeViewController *vc4;
 @end
 
 @implementation ClientManagerViewController
@@ -37,8 +40,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.titleView = [Utility navTitleView:@"客户管理"];
-    self.navigationItem.leftBarButtonItem = [Utility navLeftBackBtn:self action:@selector(backMethod)];
-    
     UIButton *addBtn = [UIButton new];
     addBtn.frame = CGRectMake(0, 0, 19, 19);
     [addBtn setImage:IMAGE(@"addclient") forState:UIControlStateNormal];
@@ -80,12 +81,12 @@
     [self.view addSubview:_pageTitleView];
     _pageTitleView.selectedIndex = 0;
     
-    ResponsibleViewController *vc1 = [[ResponsibleViewController alloc]init];
-    AllCompanyViewController *vc2 = [[AllCompanyViewController alloc]init];
-    NoneManagerViewController *vc3 = [[NoneManagerViewController alloc]init];
-    FreezeViewController *vc4 = [[FreezeViewController alloc]init];
+    _vc1 = [[ResponsibleViewController alloc]init];
+    _vc2 = [[AllCompanyViewController alloc]init];
+    _vc3 = [[NoneManagerViewController alloc]init];
+    _vc4 = [[FreezeViewController alloc]init];
     
-    NSArray *childArr = @[vc1, vc2, vc3, vc4];
+    NSArray *childArr = @[_vc1, _vc2, _vc3, _vc4];
     /// pageContentView
     CGFloat contentViewHeight = APPHeight - CGRectGetMaxY(_pageTitleView.frame);
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, _pageTitleView.bottom, APPWidth, contentViewHeight) parentVC:self childVCs:childArr];
@@ -108,6 +109,26 @@
 - (void)addBtnOnClick
 {
     AddClienViewController *vc = [[AddClienViewController alloc]init];
+    [vc setDidClickBlock:^(BOOL isFormSelect) {
+        if (!isFormSelect) {
+            switch (_pageTitleView.selectedIndex) {
+                case 0:
+                    [_vc1 setupList];
+                    break;
+                case 1:
+                    [_vc2 setupList];
+                    break;
+                case 2:
+                    [_vc3 setupList];
+                    break;
+                case 3:
+                    [_vc4 setupList];
+                    break;
+                default:
+                    break;
+            }
+        }
+    }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -117,15 +138,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)backMethod {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-// 导航栏左边按钮的点击事件
-- (void)tapGesOnClick
-{
-
-}
 
 #pragma mark ----- pageTitleViewdelegate -----
 - (void)pageTitleView:(SGPageTitleView *)pageTitleView selectedIndex:(NSInteger)selectedIndex {

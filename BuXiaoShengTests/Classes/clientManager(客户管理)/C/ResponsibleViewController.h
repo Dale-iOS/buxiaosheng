@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ResponsibleViewController : UIViewController
-
+- (void)setupList;
 @end

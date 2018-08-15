@@ -28,9 +28,15 @@ static NSInteger const pageSize = 15;
     [super viewDidLoad];
     self.view.backgroundColor = LZHBackgroundColor;
     [self setupUI];
+
     [self setupList];
-    
 }
+
+//- (void)viewWillAppear:(BOOL)animated{
+////    [super viewWillAppear:YES];
+//    [super viewWillAppear:animated];
+//    [self setupList];
+//}
 
 - (void)setupUI
 {

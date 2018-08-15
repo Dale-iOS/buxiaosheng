@@ -14,4 +14,5 @@ typedef NS_OPTIONS(NSUInteger, FactoryType) {
 
 @interface SupplierCompanyViewController : UIViewController
 @property (nonatomic,assign) FactoryType type;
+
 @end

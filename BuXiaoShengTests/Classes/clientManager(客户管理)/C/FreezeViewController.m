@@ -12,6 +12,7 @@
 #import "ClientManagerTableViewCell.h"
 #import "SearchClientViewController.h"
 #import "LZChooseLabelVC.h"
+#import "AddClienViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface FreezeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -28,6 +29,13 @@ static NSInteger const pageSize = 15;
     self.view.backgroundColor = LZHBackgroundColor;
     
     [self setupUI];
+    if (!IOS11Later) {
+        [self setupList];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self setupList];
 }
 
@@ -187,6 +195,15 @@ static NSInteger const pageSize = 15;
     }
     cell.model = self.lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddClienViewController *vc = [[AddClienViewController alloc]init];
+    vc.id = self.lists[indexPath.row].id;
+    vc.isFormSelect = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 //筛选点击

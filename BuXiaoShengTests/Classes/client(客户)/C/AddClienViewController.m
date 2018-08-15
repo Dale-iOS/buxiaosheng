@@ -80,6 +80,13 @@
     [self setupPrincipalData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if (self.didClickBlock) {
+        self.didClickBlock(self.isFormSelect);
+    }
+}
+
 - (LZHTableView *)mainTabelView
 {
     if (!mainTabelView) {
@@ -446,22 +453,63 @@
         exceedQuotas = 1;
     }
     
-    NSDictionary *param = @{
-                           @"companyId":[BXSUser currentUser].companyId,
-                           @"name":self.titleCell.contentTF.text,
-                           @"mobile":self.mobileCell.contentTF.text,
-                           @"address":self.addressCell.contentTF.text,
-                           @"labelId":self.labelslId,
-                           @"status":@(status),
-                           @"alias":self.aliasCell.contentTF.text,
-                           @"memberId":self.priceipalId,
-                           @"quota":self.quotaCell.contentTF.text,
-                           @"excessOperation":@(exceedQuotas),
-                           @"initialValue":self.arrearageCell.contentTF.text,
-                           @"remark":self.remarkTextView.textView.text
-                           };
+    NSString *urlStr = @"";
+    NSDictionary *param = [NSDictionary new];
+    if (_isFormSelect) {
+        //修改
+        urlStr = @"customer/update.do";
+        param = @{
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.titleCell.contentTF.text,
+                  @"mobile":self.mobileCell.contentTF.text,
+                  @"address":self.addressCell.contentTF.text,
+                  @"labelId":self.labelslId,
+                  @"status":@(status),
+                  @"alias":self.aliasCell.contentTF.text,
+                  @"memberId":self.priceipalId,
+                  @"quota":self.quotaCell.contentTF.text,
+                  @"excessOperation":@(exceedQuotas),
+                  @"initialValue":self.arrearageCell.contentTF.text,
+                  @"remark":self.remarkTextView.textView.text,
+                  @"id":self.id,
+                  };
+    }else{
+        //添加
+        urlStr = @"customer/add.do";
+        param = @{
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.titleCell.contentTF.text,
+                  @"mobile":self.mobileCell.contentTF.text,
+                  @"address":self.addressCell.contentTF.text,
+                  @"labelId":self.labelslId,
+                  @"status":@(status),
+                  @"alias":self.aliasCell.contentTF.text,
+                  @"memberId":self.priceipalId,
+                  @"quota":self.quotaCell.contentTF.text,
+                  @"excessOperation":@(exceedQuotas),
+                  @"initialValue":self.arrearageCell.contentTF.text,
+                  @"remark":self.remarkTextView.textView.text
+                  };
+    }
     
-    [BXSHttp requestPOSTWithAppURL:@"customer/add.do" param:param success:^(id response) {
+    
+    
+//    NSDictionary *param = @{
+//                           @"companyId":[BXSUser currentUser].companyId,
+//                           @"name":self.titleCell.contentTF.text,
+//                           @"mobile":self.mobileCell.contentTF.text,
+//                           @"address":self.addressCell.contentTF.text,
+//                           @"labelId":self.labelslId,
+//                           @"status":@(status),
+//                           @"alias":self.aliasCell.contentTF.text,
+//                           @"memberId":self.priceipalId,
+//                           @"quota":self.quotaCell.contentTF.text,
+//                           @"excessOperation":@(exceedQuotas),
+//                           @"initialValue":self.arrearageCell.contentTF.text,
+//                           @"remark":self.remarkTextView.textView.text
+//                           };
+    
+    [BXSHttp requestPOSTWithAppURL:urlStr param:param success:^(id response) {
         LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
         [LLHudTools showWithMessage:baseModel.msg];
         if ([baseModel.code integerValue] != 200) {

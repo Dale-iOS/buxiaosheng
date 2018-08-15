@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NoneManagerViewController : UIViewController
-//- (void)setupData;
+- (void)setupList;
 @end

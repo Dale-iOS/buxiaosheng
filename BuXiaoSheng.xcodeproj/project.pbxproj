@@ -6137,7 +6137,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b014b59b-fa0c-4213-abc1-07bbd6f4de3b";
+				PROVISIONING_PROFILE = "7521ae60-3b47-478b-b949-5dac9d9828f0";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -6166,7 +6166,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b31449a9-7090-484b-b927-bc66bc3e886d";
+				PROVISIONING_PROFILE = "7521ae60-3b47-478b-b949-5dac9d9828f0";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

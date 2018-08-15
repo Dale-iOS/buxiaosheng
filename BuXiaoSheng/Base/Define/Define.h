@@ -15,11 +15,11 @@
 
 /*  iOS版本
  */
-#define IOS7                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
-#define IOS7Dot0                        ([[[UIDevice currentDevice] systemVersion] floatValue] == 7.0 ? YES : NO)
-#define IOS8                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO)
-#define IOS9                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? YES : NO)
-#define IOS11                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 ? YES : NO)
+#define IOS7Later                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
+//#define IOS7Dot0                        ([[[UIDevice currentDevice] systemVersion] floatValue] == 7.0 ? YES : NO)
+#define IOS8Later                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO)
+#define IOS9Later                            ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? YES : NO)
+#define IOS11Later                             ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 ? YES : NO)
 
 /*  屏幕尺寸
  */

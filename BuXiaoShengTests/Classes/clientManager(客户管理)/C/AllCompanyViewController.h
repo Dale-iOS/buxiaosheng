@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AllCompanyViewController : UIViewController
-//- (void)setupData;
+- (void)setupList;
 @end
