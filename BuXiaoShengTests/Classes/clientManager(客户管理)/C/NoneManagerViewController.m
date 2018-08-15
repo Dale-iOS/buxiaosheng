@@ -201,6 +201,10 @@ static NSInteger const pageSize = 15;
     AddClienViewController *vc = [[AddClienViewController alloc]init];
     vc.id = self.lists[indexPath.row].id;
     vc.isFormSelect = YES;
+    WEAKSELF;
+    [vc setDidClickBlock:^(BOOL isFormSelect) {
+        [weakSelf setupList];
+    }];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
