@@ -7,25 +7,26 @@
 //  指派送货页面
 
 #import "AssignDeliveryViewController.h"
-//#import "AddAuditManagerViewController.h"
 #import "LZAssignDeliveryModel.h"
 #import "AssignDeliveryCell.h"
 #import "LZHomeModel.h"
 #import "LZChoosseWorkerVC.h"
 #import "LZAssignDeliveryListVC.h"
 
+static NSInteger const pageSize = 15;
 @interface AssignDeliveryViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UIImageView *allIM;
 @property(nonatomic,strong)UILabel *chooseLbl;
-@property(nonatomic,strong)NSArray<LZAssignDeliveryModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZAssignDeliveryModel*> *lists;
 @property(nonatomic,strong)NSMutableArray *workersAry;
 @property(nonatomic,strong)NSMutableArray *workersNameAry;
 @property(nonatomic,strong)NSMutableArray *workersIdAry;
 @property(nonatomic,strong)NSString *workerId;
 @property(nonatomic,strong)UIView *allSelectView;
 @property(nonatomic,strong)UIButton *commitBtn;//提交按钮
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation AssignDeliveryViewController
@@ -33,16 +34,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"new_lists")];
-   
-    [self setupData];
     [self setupWorkerList];
     [self setupUI];
+    [self setupList];
 }
 
 - (void)setupUI
 {
+    self.pageIndex = 1;
+    self.navigationItem.titleView = [Utility navTitleView:@"指派送货"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"new_lists")];
+    
     _headView = [[UIView alloc]init];
 //    _headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_headView];
@@ -125,26 +127,70 @@
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(_commitBtn.mas_top);
     }];
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 #pragma mark ----- 网络请求 ------
 // 接口：已发货-销售需求
-- (void)setupData
+- (void)setupList
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15"
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize)
                              };
     [BXSHttp requestGETWithAppURL:@"storehouse/already_storage_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZAssignDeliveryModel *model = [LZAssignDeliveryModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZAssignDeliveryModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -274,6 +320,14 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZAssignDeliveryModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)didReceiveMemoryWarning {

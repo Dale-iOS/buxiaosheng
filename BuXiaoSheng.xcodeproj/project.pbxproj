@@ -614,8 +614,6 @@
 		34D5EAF520D25483009D9D7C /* LZBankDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAF320D25483009D9D7C /* LZBankDetailModel.m */; };
 		34D5EB0020D26E13009D9D7C /* LZBankListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */; };
 		34D5EB0120D26E13009D9D7C /* LZBankListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */; };
-		34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */; };
-		34D5EB0920D2B24D009D9D7C /* LZArrearClientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */; };
 		34D5EB0C20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */; };
 		34D5EB0D20D2B270009D9D7C /* LZArrearCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */; };
 		34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D705B420BE85C700F0940C /* LZOutboundSectionView.m */; };
@@ -1628,8 +1626,6 @@
 		34D5EAF320D25483009D9D7C /* LZBankDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBankDetailModel.m; sourceTree = "<group>"; };
 		34D5EAFE20D26E13009D9D7C /* LZBankListDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZBankListDetailModel.h; sourceTree = "<group>"; };
 		34D5EAFF20D26E13009D9D7C /* LZBankListDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZBankListDetailModel.m; sourceTree = "<group>"; };
-		34D5EB0620D2B24D009D9D7C /* LZArrearClientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearClientView.h; sourceTree = "<group>"; };
-		34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearClientView.m; sourceTree = "<group>"; };
 		34D5EB0A20D2B270009D9D7C /* LZArrearCompanyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZArrearCompanyView.h; sourceTree = "<group>"; };
 		34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZArrearCompanyView.m; sourceTree = "<group>"; };
 		34D705B320BE85C700F0940C /* LZOutboundSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundSectionView.h; sourceTree = "<group>"; };
@@ -4268,8 +4264,6 @@
 		34D5EB0420D2AA2E009D9D7C /* V */ = {
 			isa = PBXGroup;
 			children = (
-				34D5EB0620D2B24D009D9D7C /* LZArrearClientView.h */,
-				34D5EB0720D2B24D009D9D7C /* LZArrearClientView.m */,
 				34D5EB0A20D2B270009D9D7C /* LZArrearCompanyView.h */,
 				34D5EB0B20D2B270009D9D7C /* LZArrearCompanyView.m */,
 				3420775120D39532006EA057 /* LZArrearClientCell.h */,
@@ -5516,7 +5510,6 @@
 				34535F6820AFD3BF00D9D2C6 /* SearchClientViewController.m in Sources */,
 				34EA5BC8208B276C0048CFE1 /* NSArray+Category.m in Sources */,
 				344E4D44210EAD4D0031DCE8 /* AlertSheet.m in Sources */,
-				34D5EB0820D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				343207CD20A06968005A5D23 /* NoAuditInStorageViewController.m in Sources */,
 				3432078620A0087A005A5D23 /* SetClientViewController.m in Sources */,
 				34A92B64207DF0F400572648 /* HomeViewController.m in Sources */,
@@ -5941,7 +5934,6 @@
 				3467BA4520ECA024004C0B24 /* LZChooseInventoryVC.m in Sources */,
 				342AF22320D51C7300A1DDC4 /* LZDetailCell.m in Sources */,
 				B55ADE0F20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
-				34D5EB0920D2B24D009D9D7C /* LZArrearClientView.m in Sources */,
 				B56EF0EB20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				3455F69720CAC60B00579521 /* LZClientReceiptVC.m in Sources */,
 				34BCABF920E732A500C25BE5 /* LxGridViewFlowLayout.m in Sources */,

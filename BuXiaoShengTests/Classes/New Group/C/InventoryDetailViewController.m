@@ -14,7 +14,7 @@
 #import "HXTagsView.h"
 #import "LLCashBankModel.h"
 
-
+static NSInteger const pageSize = 15;
 @interface InventoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,LZDrawerChooseViewDelegate>
 ///总米数
 @property (nonatomic, strong) UILabel *meterLbl;
@@ -24,16 +24,16 @@
 @property (nonatomic, strong) UILabel *kgLbl;
 ///总条数
 @property (nonatomic, strong) UILabel *totalLbl;
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headView;
-@property(nonatomic,strong)NSArray <LZInventoryDetailModel *> *listsAry;
+@property(nonatomic,strong)NSMutableArray <LZInventoryDetailModel *> *lists;
 @property(nonatomic,strong)LZInventoryDetailModel *titleModel;
 @property (nonatomic, strong) LZSearchBar *searchBar;
 @property(nonatomic,strong)LZDrawerChooseView *chooseView;
 @property(nonatomic,strong)UIView *bottomBlackView;//侧滑的黑色底图
 @property(nonatomic,strong)NSArray * unitsAry;
 @property(nonatomic,strong)UILabel *unitTitleLbl;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation InventoryDetailViewController
@@ -61,8 +61,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.view.backgroundColor = LZHBackgroundColor;
     
+    [self setupList];
     [self setupData];
-    [self setupDetailData];
 }
 
 - (void)viewDidLoad {
@@ -72,7 +72,7 @@
 
 - (void)setupUI
 {
-    
+    self.pageIndex = 1;
     UIView *bgBlueView = [[UIView alloc]init];
     bgBlueView.backgroundColor = [UIColor colorWithHexString:@"#3d9bfa"];
     bgBlueView.frame = CGRectMake(0, 0, APPWidth, LZHScale_HEIGHT(250)  +64);
@@ -221,7 +221,25 @@
     //隐藏分割线
     //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.headView.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+        
+    }];
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 //恢复到设置背景图之前的外观
@@ -344,22 +362,52 @@
 
 #pragma mark ----- 网络请求 ------
 //接口：仓库产品列表
-- (void)setupDetailData{
+- (void)setupList{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"houseId":self.id,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
                              };
     [BXSHttp requestGETWithAppURL:@"house_stock/house_product_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZInventoryDetailModel *model = [LZInventoryDetailModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _listsAry = [LZInventoryDetailModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -417,7 +465,7 @@
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _listsAry.count;
+    return _lists.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -439,7 +487,7 @@
         
         cell = [[CustomerArrearsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.model = _listsAry[indexPath.row];
+    cell.model = _lists[indexPath.row];
     return cell;
 }
 
@@ -447,20 +495,50 @@
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"houseId":self.id,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
-                             @"searchName":self.searchBar.text
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
+                             @"searchName":searchText
                              };
     [BXSHttp requestGETWithAppURL:@"house_stock/house_product_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZInventoryDetailModel *model = [LZInventoryDetailModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _listsAry = [LZInventoryDetailModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -561,6 +639,14 @@
 - (void)tagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender {
     NSLog(@"tag:%@ index:%ld",sender.titleLabel.text,(long)sender.tag);
     
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZInventoryDetailModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)backMethod

@@ -16,6 +16,7 @@
 #import "LZOrderTrackingModel.h"
 #import "LZSearchClientNeedsCell.h"
 
+static NSInteger const pageSize = 15;
 @interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *_startStr;//开始时间
@@ -28,7 +29,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UILabel *headerLbl;
-@property(nonatomic,strong)NSArray<LZOrderTrackingModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZOrderTrackingModel*> *lists;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation LZSearchClientNeedsVC
@@ -46,6 +48,7 @@
 
 - (void)setupUI
 {
+     self.pageIndex = 1;
     self.navigationItem.titleView = [Utility navTitleView:@"我的订单"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screenDate")];
     
@@ -87,10 +90,21 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.and.bottom.equalTo(self.view);
-//        make.top.equalTo(self.searchBar.mas_bottom);
-//    }];
+    
+    WEAKSELF;
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 //初始化日历
@@ -146,20 +160,51 @@
 #pragma mark ---- 网络请求 ----
 - (void)setupList{
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"pageNo":@"1",
-                            @"pageSize":@"15",
+                            @"pageNo":@(self.pageIndex),
+                            @"pageSize":@(pageSize),
                             @"endDate":_endStr,
                             @"startDate":_startStr,
                             };
     [BXSHttp requestGETWithAppURL:@"sale/need_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue]!= 200) {
-            return ;
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZOrderTrackingModel *model = [LZOrderTrackingModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZOrderTrackingModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
     } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage)
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -281,6 +326,13 @@
     
 }
 
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZOrderTrackingModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

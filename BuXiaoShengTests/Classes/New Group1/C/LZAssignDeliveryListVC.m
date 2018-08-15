@@ -15,6 +15,7 @@
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 
+static NSInteger const pageSize = 15;
 @interface LZAssignDeliveryListVC ()<UITableViewDelegate, UITableViewDataSource,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
 {
     NSString *_startStr;//开始时间
@@ -23,10 +24,11 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)UILabel *dateLbl;
-@property(nonatomic,strong)NSArray<LZAssignDeliveryListModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZAssignDeliveryListModel*> *lists;
 @property(nonatomic,strong)SGPageTitleView *pageTitleView;
 @property(nonatomic,strong)SGPageContentView *pageContentView;
 @property(nonatomic,strong)UIView *bottomView;
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation LZAssignDeliveryListVC
@@ -39,10 +41,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupData];
+    [self setupList];
 }
 
 - (void)setupUI{
+    self.pageIndex = 1;
     _startStr = @"";
     _endStr = @"";
     
@@ -92,28 +95,72 @@
         make.top.equalTo(_headView.mas_bottom);
         make.left.and.right.and.bottom.equalTo(self.view);
     }];
+    WEAKSELF;
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 #pragma mark ----- 网络请求 ------
 // 接口：已发货-销售需求
-- (void)setupData
+- (void)setupList
 {
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"pageNo":@"1",
-                             @"pageSize":@"15",
+                             @"pageNo":@(self.pageIndex),
+                             @"pageSize":@(pageSize),
                              @"startDate":_startStr,
                              @"endDate":_endStr
                              };
     [BXSHttp requestGETWithAppURL:@"storehouse/already_shipped_list.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
+        
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZAssignDeliveryListModel *model = [LZAssignDeliveryListModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }
-        _lists = [LZAssignDeliveryListModel LLMJParse:baseModel.data];
-        [_tableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -206,7 +253,7 @@
     _startStr = [BXSTools stringFromTData:StartStr];
     _endStr = [BXSTools stringFromTData:EndStr];
     _bottomView.hidden = YES;
-    [self setupData];
+    [self setupList];
     if (![_startStr isEqualToString:@"0"]) {
         _dateLbl.text = [NSString stringWithFormat:@" %@ 至 %@",_startStr,_endStr];
         _dateLbl.textColor = CD_Text33;
@@ -223,7 +270,7 @@
     
     _startStr = [BXSTools stringFromTData:str1];
     _endStr = [BXSTools stringFromTData:str2];
-    [self setupData];
+    [self setupList];
     _bottomView.hidden = YES;
     if (![_startStr isEqualToString:@"0"]) {
         _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
@@ -238,7 +285,7 @@
 - (void)didaffirmBtnInMonthCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
     _startStr = StartStr;
     _endStr = EndStr;
-    [self setupData];
+    [self setupList];
     _bottomView.hidden = YES;
     if (![_startStr isEqualToString:@"0"]) {
         _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
@@ -253,7 +300,7 @@
 - (void)didaffirmBtnInQuarterCalendarWithDateStartStr:(NSString *)StartStr andEndStr:(NSString *)EndStr{
     _startStr = StartStr;
     _endStr = EndStr;
-    [self setupData];
+    [self setupList];
     _bottomView.hidden = YES;
     if (![_startStr isEqualToString:@"0"]) {
         _dateLbl.text = [NSString stringWithFormat:@"    %@ 至 %@",_startStr,_endStr];
@@ -270,6 +317,14 @@
     _bottomView.hidden = YES;
 }
 
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZAssignDeliveryListModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
