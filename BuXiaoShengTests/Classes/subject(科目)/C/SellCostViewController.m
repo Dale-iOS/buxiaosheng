@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/5/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  销售页面（科目页面）
+//  销售费用（科目页面）
 
 #import "SellCostViewController.h"
 #import "ModifySubjectViewController.h"
@@ -25,6 +25,7 @@ static NSInteger const pageSize = 15;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+//    [self setupList];
 }
 
 - (void)viewWillAppear:(BOOL)animated

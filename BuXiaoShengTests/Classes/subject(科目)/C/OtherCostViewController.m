@@ -25,7 +25,7 @@ static NSInteger const pageSize = 15;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-    
+//    [self setupList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
