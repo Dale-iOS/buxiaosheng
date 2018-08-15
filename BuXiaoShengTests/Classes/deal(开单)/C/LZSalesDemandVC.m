@@ -546,9 +546,9 @@
     }
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"bankId":_payIdStr == nil ? @"" : _payIdStr,
+                             @"bankId":_payIdStr == nil ? @"0" : _payIdStr,
                              @"customerId":_customerIdStr,
-                             @"deposit":self.depositCell.contentTF.text,
+                             @"deposit":[self.depositCell.contentTF.text isEqualToString:@""] ? @"0" : self.depositCell.contentTF.text,
                              @"imgs":@"",
                              @"matter":self.warehouseTextView.textView.text,
                              @"orderNeedItems":[produstsItems mj_JSONString],
@@ -568,7 +568,7 @@
         
         LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
         webVC.url = url;
-        NSLog(@"即将进入的页面链接：%@",url);
+//        NSLog(@"即将进入的页面链接：%@",url);
         [self.navigationController pushViewController:webVC animated:NO];
         
             } failure:^(NSError *error) {
