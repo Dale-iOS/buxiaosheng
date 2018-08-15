@@ -144,7 +144,6 @@
 		342CF65D209998A9007C329D /* AuditManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65C209998A9007C329D /* AuditManagerViewController.m */; };
 		342CF66020999990007C329D /* AuditManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF65F20999990007C329D /* AuditManagerTableViewCell.m */; };
 		342CF6632099B603007C329D /* SubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342CF6622099B603007C329D /* SubjectViewController.m */; };
-		342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D95192090374C0018B363 /* CustomerArrearsViewController.m */; };
 		342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */; };
 		342D9520209063970018B363 /* CustomerReconciliationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D951F209063970018B363 /* CustomerReconciliationViewController.m */; };
 		342D95232090642C0018B363 /* CustomerReconciliationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D95222090642C0018B363 /* CustomerReconciliationTableViewCell.m */; };
@@ -1082,8 +1081,6 @@
 		342CF65F20999990007C329D /* AuditManagerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditManagerTableViewCell.m; sourceTree = "<group>"; };
 		342CF6612099B603007C329D /* SubjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectViewController.h; sourceTree = "<group>"; };
 		342CF6622099B603007C329D /* SubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubjectViewController.m; sourceTree = "<group>"; };
-		342D95182090374C0018B363 /* CustomerArrearsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsViewController.h; sourceTree = "<group>"; };
-		342D95192090374C0018B363 /* CustomerArrearsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerArrearsViewController.m; sourceTree = "<group>"; };
 		342D951B209057DE0018B363 /* CustomerArrearsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerArrearsTableViewCell.h; sourceTree = "<group>"; };
 		342D951C209057DE0018B363 /* CustomerArrearsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerArrearsTableViewCell.m; sourceTree = "<group>"; };
 		342D951E209063970018B363 /* CustomerReconciliationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerReconciliationViewController.h; sourceTree = "<group>"; };
@@ -4260,8 +4257,6 @@
 		34D5EB0320D2AA29009D9D7C /* C */ = {
 			isa = PBXGroup;
 			children = (
-				342D95182090374C0018B363 /* CustomerArrearsViewController.h */,
-				342D95192090374C0018B363 /* CustomerArrearsViewController.m */,
 				342AF20F20D4C09900A1DDC4 /* LZCustomerArrearsVC.h */,
 				342AF21020D4C09900A1DDC4 /* LZCustomerArrearsVC.m */,
 				3420775520D3A41E006EA057 /* LZChooseArrearClientVC.h */,
@@ -5559,7 +5554,6 @@
 				B56EF0EA20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				34E4D486211A9B9B00A6ADE9 /* LZCollectionCheckDetailVC.m in Sources */,
 				344358CE20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
-				342D951A2090374C0018B363 /* CustomerArrearsViewController.m in Sources */,
 				B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,

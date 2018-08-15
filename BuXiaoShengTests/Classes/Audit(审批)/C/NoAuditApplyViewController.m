@@ -11,14 +11,16 @@
 #import "LZReimbursementModel.h"
 #import "LZPickerView.h"
 
+static NSInteger const pageSize = 15;
 @interface NoAuditApplyViewController ()<UITableViewDelegate,UITableViewDataSource,LZReimbursementCellDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray <LZReimbursementModel *> *lists;
+@property (nonatomic, strong) NSMutableArray <LZReimbursementModel *> *lists;
 //付款方式数组
 @property (nonatomic, strong) NSMutableArray *payNameAry;
 @property (nonatomic, strong) NSMutableArray *payIdAry;
 @property (nonatomic, copy) NSString *payIdStr;///选择中的付款方式id
 @property (nonatomic, copy) NSString *customerId;///选择中的客户id
+@property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
 @implementation NoAuditApplyViewController
@@ -26,18 +28,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     [self setupPayList];
-    [self setupListData];
+    [self setupList];
 }
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [self setupPayList];
+//    [self setupListData];
+//}
 
 - (void)setupUI
 {
-    
+    self.pageIndex = 1;
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -LLNavViewHeight-88) style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
     self.tableView .delegate = self;
@@ -45,7 +48,20 @@
     //隐藏分割线
     self.tableView .separatorStyle = NO;
     [self.view addSubview:self.tableView];
-    
+    WEAKSELF;
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setupList];
+    }];
+}
+
+- (MJRefreshFooter *)reloadMoreData {
+    WEAKSELF;
+    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex +=1;
+        [weakSelf setupList];
+    }];
+    return footer;
 }
 
 #pragma mark ------- 网络请求 --------
@@ -72,23 +88,53 @@
 }
 
 //接口名称 销售单审批列表
-- (void)setupListData
+- (void)setupList
 {
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"pageNo":@"1",
-                            @"pageSize":@"15",
+                            @"pageNo":@(self.pageIndex),
+                            @"pageSize":@(pageSize),
                             @"status":@"0"
                             };
     [BXSHttp requestGETWithAppURL:@"approval/expend_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        _lists = [LZReimbursementModel LLMJParse:baseModel.data];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
         
+        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
+            if (1 == self.pageIndex) {
+                [self.lists removeAllObjects];
+            }
+            
+            NSArray *itemList = [response objectForKey:@"data"];
+            if (itemList && itemList.count > 0) {
+                for (NSDictionary *dic in itemList) {
+                    LZReimbursementModel *model = [LZReimbursementModel mj_objectWithKeyValues:dic];
+                    [self.lists addObject:model];
+                }
+                if (self.lists.count % pageSize) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                } else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            } else {
+                //                [LLHudTools showWithMessage:@"暂无更多数据"];
+            }
+            if (self.pageIndex == 1) {
+                if (self.lists.count >= pageSize) {
+                    self.tableView.mj_footer = [self reloadMoreData];
+                } else {
+                    self.tableView.mj_footer = nil;
+                }
+            }
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+            
+        } else {
+            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -165,7 +211,7 @@
                     return ;
                 }
                 [LLHudTools showWithMessage:@"提交成功"];
-                [weakSelf setupListData];
+                [weakSelf setupList];
             } failure:^(NSError *error) {
                 BXS_Alert(LLLoadErrorMessage);
             }];
@@ -210,7 +256,7 @@
                 return ;
             }
             [LLHudTools showWithMessage:@"提交成功"];
-            [weakSelf setupListData];
+            [weakSelf setupList];
         } failure:^(NSError *error) {
             BXS_Alert(LLLoadErrorMessage);
         }];
@@ -223,6 +269,14 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 
+}
+
+#pragma mark - Getter && Setter
+- (NSMutableArray<LZReimbursementModel *> *)lists {
+    if (_lists == nil) {
+        _lists = @[].mutableCopy;
+    }
+    return _lists;
 }
 
 - (void)didReceiveMemoryWarning {
