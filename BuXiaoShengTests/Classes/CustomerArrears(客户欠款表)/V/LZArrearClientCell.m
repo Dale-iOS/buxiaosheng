@@ -82,14 +82,21 @@
 - (void)setModel:(LZArrearClientModel *)model{
     _model = model;
     _oneLbl.text = _model.customerName;
-    _twoLbl.text = _model.arrear;
+    
+    float folatValue = _model.arrear.floatValue;
+    _twoLbl.text = [NSString stringWithFormat:@"%0.2f", folatValue];
     //    _threeLbl.text = _model.repayment;
-    if (_model.repayment.length >8) {
+    if (_model.repayment.length >=8) {
         _threeLbl.text = [_model.repayment substringToIndex:8];
-    }else{
-        _threeLbl.text = _model.repayment;
+        _threeLbl.text = [BXSTools stringFromTData:_threeLbl.text];
+    }else if ([_model.repayment isEqualToString:@"0"]){
+        _threeLbl.text = @"";
     }
-    _threeLbl.text = [BXSTools stringFromTData:_threeLbl.text];
+    else{
+        _threeLbl.text = _model.repayment;
+        _threeLbl.text = [BXSTools stringFromTData:_threeLbl.text];
+    }
+    
     _fourLbl.text = _model.salesmanName;
 }
 

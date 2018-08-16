@@ -12,8 +12,9 @@
 
 -(void)setModel:(LLOutboundRightDetailModel *)model {
     _model = model;
-    _totalCount.text = model.total;
-    model.seleted ? (self.contentView.layer.borderColor = LZAppBlueColor.CGColor) : (self.contentView.layer.borderColor = [UIColor darkGrayColor].CGColor);
+    _totalCount.text = model.value;
+    model.seleted ? (self.contentView.layer.borderColor = LZAppBlueColor.CGColor) : (self.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor);
+    model.seleted ? (_totalCount.textColor = LZAppBlueColor) : (_totalCount.textColor= [UIColor lightGrayColor]);
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -24,7 +25,7 @@
         self.contentView.layer.borderColor = LZAppBlueColor.CGColor;
         _totalCount =[ UILabel new];
         [self.contentView addSubview:_totalCount];
-        _totalCount.textColor = [UIColor darkGrayColor];
+        _totalCount.textColor = [UIColor lightGrayColor];
         _totalCount.font = [UIFont systemFontOfSize:15];
         _totalCount.textAlignment = NSTextAlignmentCenter;
         [_totalCount mas_makeConstraints:^(MASConstraintMaker *make) {

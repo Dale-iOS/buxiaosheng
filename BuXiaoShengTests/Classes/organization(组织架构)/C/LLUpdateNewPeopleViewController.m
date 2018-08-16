@@ -328,7 +328,7 @@
 //    强制当前输入法收起
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     
-    if (self.detailModel.passWord == nil || self.detailModel.passWord.length <6) {
+    if (self.detailModel.passWord != nil && self.detailModel.passWord.length <6) {
         [LLHudTools showWithMessage:@"密码必须大于6位数"];
         return;
     }
@@ -338,7 +338,7 @@
                              @"deptId":self.detailModel.deptId,
                              @"id":self.model.id,
                              @"loginName":self.detailModel.loginName,
-                             @"password":[BXSHttp makeMD5:self.detailModel.passWord],
+                             @"password":self.detailModel.passWord.length > 0 ? [BXSHttp makeMD5:self.detailModel.passWord] : @"",
                              @"realName":self.detailModel.realName
                              };
     [BXSHttp requestPOSTWithAppURL:@"member/update.do" param:param success:^(id response) {
@@ -347,7 +347,10 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [self.navigationController popViewControllerAnimated:true];
+        [LLHudTools showWithMessage:@"修改成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
     } failure:^(NSError *error) {
         BXS_Alert(LZTryAgain);
     }];

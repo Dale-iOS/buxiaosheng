@@ -454,7 +454,7 @@
 
 - (void)didClickTitleTextField:(UITextField *)titleTF andCell:(SalesDemandCell*)titleCell{
     titleTF.delegate = self;
-    titleTF.scrollView = self.view;
+    titleTF.scrollView = (UIScrollView *)self.view;
     //选择框出来的位置
     titleTF.positionType = ZJPositionAuto;
     WEAKSELF;

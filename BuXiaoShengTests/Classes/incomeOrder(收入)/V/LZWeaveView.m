@@ -17,6 +17,9 @@
 #import "LZPickerView.h"
 
 @interface LZWeaveView()<LZHTableViewDelegate,UITextFieldDelegate>
+{
+    NSString *_darkStr;//欠款
+}
 @property(nonatomic,weak)LZHTableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *dataSource;
 ///名称
@@ -48,6 +51,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(changeValue:)   name:@"changeValue"  object:nil];
         self.backgroundColor = [UIColor whiteColor];
         [self setupCustomerList];
         [self setupPayList];
@@ -91,34 +95,46 @@
     //    名称
     self.titileCell = [[ArrearsNameTextInputCell alloc]init];
     self.titileCell.frame = CGRectMake(0, 0, APPWidth, 75);
-    self.titileCell.titleLabel.text = @"名称";
+    self.titileCell.titleLabel.text = @"*名称";
     self.titileCell.beforeLabel.text = @"前欠款:￥0";
     self.titileCell.contentTF.placeholder = @"请输入客户名称";
-    self.titileCell.contentTF.scrollView = self;
+    self.titileCell.contentTF.scrollView = (UIScrollView *)self;
     self.titileCell.contentTF.positionType = ZJPositionBottomTwo;
-    
+    if ([self.titileCell.titleLabel.text containsString:@"*"]) {
+        [self.titileCell.titleLabel setupAttributeString:self.titileCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     //    收款金额
     self.collectionCell = [[TextInputCell alloc]init];
     self.collectionCell.frame = CGRectMake(0, 0, APPWidth, 49);
     self.collectionCell.contentTF.placeholder = @"请输入收款金额";
-    self.collectionCell.titleLabel.text = @"收款金额";
+    self.collectionCell.titleLabel.text = @"*收款金额";
+    self.collectionCell.contentTF.delegate = self;
+    self.collectionCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
+    [self.collectionCell.contentTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    if ([self.collectionCell.titleLabel.text containsString:@"*"]) {
+        [self.collectionCell.titleLabel setupAttributeString:self.collectionCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     //    现欠款
     self.arrearsCell = [[TextInputCell alloc]init];
-    self.arrearsCell.contentTF.textColor = [UIColor redColor];
+    self.arrearsCell.contentTF.textColor = LZAppRedColor;
     self.arrearsCell.frame = CGRectMake(0, 0, APPWidth, 49);
     self.arrearsCell.titleLabel.text = @"现欠款";
-    self.arrearsCell.contentTF.placeholder = @"请输入现欠款";
+    self.arrearsCell.contentTF.placeholder = @"请选择客户";
+    self.arrearsCell.contentTF.enabled = NO;
     
     //    收款账户
     self.accountCell = [[TextInputCell alloc]init];
     self.accountCell.frame = CGRectMake(0, 0, APPWidth, 49);
-    self.accountCell.titleLabel.text = @"收款账户";
+    self.accountCell.titleLabel.text = @"*收款账户";
     self.accountCell.contentTF.placeholder = @"请选择收款账户";
     self.accountCell.contentTF.enabled = NO;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
     [self.accountCell addGestureRecognizer:tap];
+    if ([self.accountCell.titleLabel.text containsString:@"*"]) {
+        [self.accountCell.titleLabel setupAttributeString:self.accountCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     lineView.backgroundColor = LZHBackgroundColor;
@@ -156,8 +172,9 @@
         WEAKSELF
         [self.titileCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
             //设置名称 前欠款
-            NSString *str = _customerList[index][@"arrear"];
-            weakSelf.titileCell.beforeLabel.text = [NSString stringWithFormat:@"前欠款:￥%@",str];
+            _darkStr = _customerList[index][@"arrear"];
+            weakSelf.titileCell.beforeLabel.text = [NSString stringWithFormat:@"前欠款:￥%@",_darkStr];
+            weakSelf.arrearsCell.contentTF.text = [NSString stringWithFormat:@"￥%@",_darkStr];
             _customerId = _customerList[index][@"id"];
         }];
 
@@ -224,6 +241,11 @@
         BXS_Alert(@"请输入收款金额");
         return;
     }
+    
+    if ([BXSTools stringIsNullOrEmpty:self.accountCell.contentTF.text]) {
+        BXS_Alert(@"请选择收款账户");
+        return;
+    }
 //    接口名称 添加收款单
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"amount":self.collectionCell.contentTF.text,
@@ -246,6 +268,17 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
+}
+
+#pragma mark ---- uitextfieldDelegate ----
+-(void)textFieldDidChange:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeValue" object:textField];
+}
+-(void)changeValue:(NSNotification *)notification {
+    UITextField *textField = notification.object;
+    float floatValue = _darkStr.floatValue - textField.text.floatValue;
+    self.arrearsCell.contentTF.text = [NSString stringWithFormat:@"￥%.2f",floatValue];
+    //要实现的监听方法操作
 }
 
 - (UIViewController *)viewController {

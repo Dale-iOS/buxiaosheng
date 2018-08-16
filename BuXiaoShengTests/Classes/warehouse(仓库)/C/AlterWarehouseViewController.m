@@ -78,7 +78,7 @@
             return ;
         }
         LLFactoryModel * model = [LLFactoryModel LLMJParse:baseModel.data];
-        self.titleCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.name] ? @"暂无" :model.name;
+        self.titleCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.name] ? @"" :model.name;
         self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
         
         

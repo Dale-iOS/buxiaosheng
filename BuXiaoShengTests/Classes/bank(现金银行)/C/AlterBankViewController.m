@@ -56,7 +56,7 @@
         }
         LLCashBankModel * model = [LLCashBankModel LLMJParse:baseModel.data];
 
-        self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"暂无" :model.cardNumber;
+        self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"" :model.cardNumber;
         self.bankTitleCell.contentTF.text = model.name;
         self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
         self.debtCell.contentTF.text = model.initialValue;
@@ -108,17 +108,20 @@
     
     self.bankTitleCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     //    self.bankTitleCell.rightArrowImageVIew.hidden = NO;
-    self.bankTitleCell.titleLabel.text = @"银行名称";
+    self.bankTitleCell.titleLabel.text = @"*银行名称";
     self.bankTitleCell.contentTF.placeholder = @"请填写银行名称";
-    
-    
+    if ([self.bankTitleCell.titleLabel.text containsString:@"*"]) {
+        [self.bankTitleCell.titleLabel setupAttributeString:self.bankTitleCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     self.stateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.stateCell.rightArrowImageVIew.hidden = NO;
     self.stateCell.contentTF.enabled = false;
-    self.stateCell.titleLabel.text = @"状态";
+    self.stateCell.titleLabel.text = @"*状态";
     self.stateCell.contentTF.placeholder = @"请选择银行卡状态";
-    
+    if ([self.stateCell.titleLabel.text containsString:@"*"]) {
+        [self.stateCell.titleLabel setupAttributeString:self.stateCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
@@ -141,10 +144,13 @@
     //初始金额cell
     self.debtCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.debtCell.rightArrowImageVIew.hidden = YES;
-    self.debtCell.titleLabel.text = @"初始金额";
+    self.debtCell.titleLabel.text = @"*初始金额";
     self.debtCell.contentTF.placeholder = @"请输入初始金额";
     self.debtCell.contentTF.delegate = self;
     self.debtCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
+    if ([self.debtCell.titleLabel.text containsString:@"*"]) {
+        [self.debtCell.titleLabel setupAttributeString:self.debtCell.titleLabel.text changeText:@"*" color:[UIColor redColor]];
+    }
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;

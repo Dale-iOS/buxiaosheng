@@ -79,7 +79,7 @@
     self.titleCell.titleLabel.text = @"生产商";
     self.titleCell.beforeLabel.text = @"前欠款:￥0";
     self.titleCell.contentTF.placeholder = @"请输入供货商";
-    self.titleCell.contentTF.scrollView = self.view;
+    self.titleCell.contentTF.scrollView = (UIScrollView *)self.view;
     self.titleCell.contentTF.positionType = ZJPositionBottomTwo;
     
     //付款金额

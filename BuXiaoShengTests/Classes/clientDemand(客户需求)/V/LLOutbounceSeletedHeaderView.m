@@ -16,8 +16,9 @@
 }
 -(void)setModel:(LLOutboundRightModel *)model {
     _model = model;
-    _detalLable.text = [NSString stringWithFormat:@"%@  %@条/%@%@",[BXSTools stringFromTimestamp:model.batcNumber],model.total,model.number,model.unitName];
+    _detalLable.text = [NSString stringWithFormat:@"%@  %@条/%@%@",model.batcNumber,model.total,model.number,model.unitName];
     _model.seleted ? (_arrowImageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_arrowImageView.transform = CGAffineTransformIdentity);
+
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {

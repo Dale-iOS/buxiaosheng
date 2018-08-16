@@ -95,7 +95,7 @@
     self.companyCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, lineView1.bottom, APPWidth, 49)];
     self.companyCell.titleLabel.text = @"供货商名称";
     self.companyCell.contentTF.placeholder = @"请输入供货商名称";
-    self.companyCell.contentTF.scrollView = self;
+    self.companyCell.contentTF.scrollView = (UIScrollView *)self;
     self.companyCell.contentTF.positionType = ZJPositionTop;
     
     //联系人

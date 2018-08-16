@@ -4,7 +4,7 @@
 //
 //  Created by 周尊贤 on 2018/5/31.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  侧栏选择仓库
 
 #import "LLOutboundSeletedVC.h"
 #import "LLOutbounceSeletedLeftCell.h"
@@ -62,23 +62,23 @@
 }
 
 -(void)setupUI {
-    UIView * totalView = [UIView new];
-    [self.view addSubview:totalView];
-    totalView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(20);
-        make.height.mas_equalTo(45);
-    }];
-    UILabel * totalLable = [UILabel new];
-    [totalView addSubview:totalLable];
-    totalLable.text = [NSString stringWithFormat:@"总条数:%@",self.itemModel.number];
-    totalLable.textColor = [UIColor darkGrayColor];
-    totalLable.font = [UIFont systemFontOfSize:16];
-    [totalLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(totalView).offset(20);
-        make.centerY.equalTo(totalView);
-    }];
+//    UIView * totalView = [UIView new];
+//    [self.view addSubview:totalView];
+//    totalView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.top.equalTo(self.view).offset(20);
+//        make.height.mas_equalTo(45);
+//    }];
+//    UILabel * totalLable = [UILabel new];
+//    [totalView addSubview:totalLable];
+//    totalLable.text = [NSString stringWithFormat:@"总条数:%@",self.itemModel.number];
+//    totalLable.textColor = [UIColor darkGrayColor];
+//    totalLable.font = [UIFont systemFontOfSize:16];
+//    [totalLable mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(totalView).offset(20);
+//        make.centerY.equalTo(totalView);
+//    }];
     self.leftTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.leftTableView.tableFooterView = [UIView new];
     [self.view addSubview:self.leftTableView];
@@ -87,7 +87,7 @@
     [self.leftTableView registerClass:[LLOutbounceSeletedLeftCell class] forCellReuseIdentifier:@"LLOutbounceSeletedLeftCell"];
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
-        make.top.equalTo(totalView.mas_bottom);
+        make.top.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-44);
         make.width.mas_equalTo(100);
     }];
@@ -111,7 +111,7 @@
     [self.view addSubview:bottomBtn];
     [bottomBtn setTitle:@"确 定" forState:UIControlStateNormal];
     bottomBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    bottomBtn.backgroundColor = [UIColor redColor];
+    bottomBtn.backgroundColor = LZAppBlueColor;
     [bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
         make.top.equalTo(self.leftTableView.mas_bottom);

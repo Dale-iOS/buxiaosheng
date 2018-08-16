@@ -2694,8 +2694,6 @@
 				34DE25B22092C7F1009E7589 /* ProcessViewController.m */,
 				B5B07504209C1DC000FD53DC /* LLProcessChildVc.h */,
 				B5B07505209C1DC000FD53DC /* LLProcessChildVc.m */,
-				B531EF4720BFF8450028F18B /* LLOutboundSeletedVC.h */,
-				B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */,
 				34F4B49020BBDFE90017003E /* LZSearchClientNeedsVC.h */,
 				34F4B49120BBDFE90017003E /* LZSearchClientNeedsVC.m */,
 			);
@@ -3127,6 +3125,8 @@
 				3471DCB620D7883A002052EE /* LZChoosseWorkerVC.m */,
 				3465CA0620DCB00300BAE415 /* LZChooseCalendarVC.h */,
 				3465CA0720DCB00300BAE415 /* LZChooseCalendarVC.m */,
+				B531EF4720BFF8450028F18B /* LLOutboundSeletedVC.h */,
+				B531EF4820BFF8450028F18B /* LLOutboundSeletedVC.m */,
 				3465CA0A20DCCCC900BAE415 /* LZChooseCalendarView.h */,
 				3465CA0B20DCCCC900BAE415 /* LZChooseCalendarView.m */,
 				3434FCF620C90E8200A3B577 /* LZChooseLabelVC.h */,
@@ -3806,14 +3806,14 @@
 		347B58BF20E6222C008911A2 /* C */ = {
 			isa = PBXGroup;
 			children = (
-				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
-				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
 				340E208620FC8CB800E2602D /* LZSalesDemandVC.h */,
 				340E208720FC8CB800E2602D /* LZSalesDemandVC.m */,
 				347B58C220E62273008911A2 /* LZSaleOrderListVC.h */,
 				347B58C320E62273008911A2 /* LZSaleOrderListVC.m */,
 				34F83981210079CA00CDC8E2 /* LZSalesDetailVC.h */,
 				34F83982210079CA00CDC8E2 /* LZSalesDetailVC.m */,
+				347D64CA207F062500407FC4 /* SalesDemandViewController.h */,
+				347D64CB207F062500407FC4 /* SalesDemandViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";

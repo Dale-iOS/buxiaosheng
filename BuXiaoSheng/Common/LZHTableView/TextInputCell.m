@@ -23,7 +23,7 @@
         [self addSubview:self.contentTF];
         [self addSubview:self.hintLabel];
         [self addSubview:self.rightArrowImageVIew];
-        
+
 //        [self setNeedsUpdateConstraints];
         [self setupSDlayout];
     }

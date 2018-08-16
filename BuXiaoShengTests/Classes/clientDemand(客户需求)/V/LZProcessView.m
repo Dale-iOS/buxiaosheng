@@ -109,7 +109,7 @@
     self.processNameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, self.processTypeCell.bottom, APPWidth, 49)];
     self.processNameCell.titleLabel.text = @"加工商名称";
     self.processNameCell.contentTF.placeholder = @"请输入加工商名称";
-    self.processNameCell.contentTF.scrollView = self;
+    self.processNameCell.contentTF.scrollView = (UIScrollView *)self;
     self.processNameCell.contentTF.positionType = ZJPositionTop;
 
     

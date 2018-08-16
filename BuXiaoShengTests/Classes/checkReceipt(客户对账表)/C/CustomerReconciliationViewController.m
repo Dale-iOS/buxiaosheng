@@ -90,7 +90,7 @@ static NSInteger const pageSize = 15;
     _searchTF.borderStyle = UITextBorderStyleLine;
     _searchTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     _searchTF.leftViewMode = UITextFieldViewModeAlways;
-    _searchTF.scrollView = self.view;
+    _searchTF.scrollView = (UIScrollView *)self.view;
     _searchTF.positionType = ZJPositionBottomThree;
     [self.view addSubview:_searchTF];
     [_searchTF mas_makeConstraints:^(MASConstraintMaker *make) {

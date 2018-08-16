@@ -401,7 +401,7 @@
 //点击客户名称
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField {
 	textField.delegate = self;
-	textField.scrollView =(UIScrollView *)self.view;
+	textField.scrollView = (UIScrollView *)self.view;
 	textField.positionType  = ZJPositionBottom;
 	WEAKSELF;
 	[textField popOverSource:_nameArray index:^(NSInteger index) {

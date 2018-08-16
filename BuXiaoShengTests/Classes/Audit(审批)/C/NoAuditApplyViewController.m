@@ -29,14 +29,16 @@ static NSInteger const pageSize = 15;
     [super viewDidLoad];
     [self setupUI];
     [self setupPayList];
-    [self setupList];
+    
+    if (!IOS11Later) {
+        [self setupList];
+    }
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self setupPayList];
-//    [self setupListData];
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupList];
+}
 
 - (void)setupUI
 {
