@@ -14,8 +14,9 @@
 
 +(void)showWithMessage:(NSString *)message {
     [SVProgressHUD setInfoImage:[UIImage imageNamed:@""]];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    [SVProgressHUD setBackgroundColor: [[UIColor blackColor]colorWithAlphaComponent:0.8]];
+    [SVProgressHUD setForegroundColor:CD_Text33];
+//    [SVProgressHUD setBackgroundColor: [[UIColor lightGrayColor]colorWithAlphaComponent:0.95]];
+    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.9]];
     [SVProgressHUD showInfoWithStatus:message];
     [SVProgressHUD dismissWithDelay:1.5];
 }
@@ -24,9 +25,9 @@
     [SVProgressHUD setDefaultMaskType:(SVProgressHUDMaskTypeCustom)];
     [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
 //    [SVProgressHUD showWithStatus:LLLoadingMessage];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setForegroundColor:CD_Text33];
     [SVProgressHUD setFont:[UIFont boldSystemFontOfSize:16]];
-    [SVProgressHUD setBackgroundColor: [[UIColor blackColor]colorWithAlphaComponent:0.8]];
+    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.9]];
 }
 
 
