@@ -23,8 +23,8 @@
 @property (nonatomic, strong) TextInputCell *accountCell;
 ///现金银行名称
 @property (nonatomic, strong) TextInputCell *bankTitleCell;
-///所属分店
-@property (nonatomic, strong) TextInputCell *belongStoreCell;
+///初始欠款
+@property (nonatomic, strong) TextInputCell *debtCell;
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///设为默认
@@ -59,7 +59,7 @@
         self.accountCell.contentTF.text = [BXSTools stringIsNullOrEmpty:model.cardNumber] ? @"暂无" :model.cardNumber;
         self.bankTitleCell.contentTF.text = model.name;
         self.stateCell.contentTF.text = [model.status integerValue] == 0 ? @"启用" :@"未启用";
-        self.belongStoreCell.contentTF.text = model.initialValue;
+        self.debtCell.contentTF.text = model.initialValue;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
     }];
@@ -138,17 +138,19 @@
     UITapGestureRecognizer *defaultCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(defaultCellAction)];
     [self.defaultCell addGestureRecognizer:defaultCellTap];
     
-    self.belongStoreCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.belongStoreCell.rightArrowImageVIew.hidden = YES;
-    self.belongStoreCell.titleLabel.text = @"初始金额";
-    self.belongStoreCell.contentTF.placeholder = @"请输入初始金额";
-    self.belongStoreCell.contentTF.delegate = self;
+    //初始金额cell
+    self.debtCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.debtCell.rightArrowImageVIew.hidden = YES;
+    self.debtCell.titleLabel.text = @"初始金额";
+    self.debtCell.contentTF.placeholder = @"请输入初始金额";
+    self.debtCell.contentTF.delegate = self;
+    self.debtCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.belongStoreCell];
+    item.sectionRows = @[self.debtCell];
     item.canSelected = NO;
     item.sectionView = headerView;
     [self.datasource addObject:item];
@@ -179,16 +181,16 @@
         BXS_Alert(@"请输入银行名称");
         return;
     }
-    if ([BXSTools stringIsNullOrEmpty:self.accountCell.contentTF.text]) {
-         BXS_Alert(@"请输入您的银行卡号");
-        return;
-    }
+//    if ([BXSTools stringIsNullOrEmpty:self.accountCell.contentTF.text]) {
+//         BXS_Alert(@"请输入您的银行卡号");
+//        return;
+//    }
 
     if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
          BXS_Alert(@"请选择银行卡状态");
         return;
     }
-    if ([BXSTools stringIsNullOrEmpty:self.belongStoreCell.contentTF.text]) {
+    if ([BXSTools stringIsNullOrEmpty:self.debtCell.contentTF.text]) {
         BXS_Alert(@"请输入初始金额");
         return;
     }
@@ -199,20 +201,29 @@
     }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
         status = 1;
     }
-    NSString * requestUrl ;
+    NSString * requestUrl = @"";
+    NSDictionary * param = [NSDictionary new];
     if (self.isFormBankAdd) {
         requestUrl = @"bank/add.do";
+        param = @{
+                  @"cardNumber":self.accountCell.contentTF.text.length >0 ? self.accountCell.contentTF.text : @"",
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.bankTitleCell.contentTF.text,
+                  @"status":@(status),
+                  @"initialValue":self.debtCell.contentTF.text
+                  };
     }else {
         requestUrl = @"bank/update.do";
+        param = @{
+                  @"cardNumber":self.accountCell.contentTF.text.length >0 ? self.accountCell.contentTF.text : @"",
+                  @"companyId":[BXSUser currentUser].companyId,
+                  @"name":self.bankTitleCell.contentTF.text,
+                  @"status":@(status),
+                  @"initialValue":self.debtCell.contentTF.text,
+                  @"id":self.id
+                  };
     }
-    NSDictionary * param = @{
-                             @"cardNumber":self.accountCell.contentTF.text,
-                             @"companyId":[BXSUser currentUser].companyId,
-                             @"name":self.bankTitleCell.contentTF.text,
-                             @"status":@(status),
-                             @"initialValue":self.belongStoreCell.contentTF.text,
-                             @"id":self.id
-                             };
+
     [BXSHttp requestPOSTWithAppURL:requestUrl param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
          [LLHudTools showWithMessage:baseModel.msg];
@@ -245,7 +256,7 @@
 #pragma mark --- uitextfieldDelegate ---
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
   
-    if ([textField isEqual:self.belongStoreCell.contentTF]) {
+    if ([textField isEqual:self.debtCell.contentTF]) {
         NSUInteger lengthOfString = string.length;
         for (NSInteger loopIndex = 0; loopIndex < lengthOfString; loopIndex++) {//只允许数字输入
             unichar character = [string characterAtIndex:loopIndex];
