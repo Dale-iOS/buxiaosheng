@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLProcessChildVc : BaseViewController
+@interface LLProcessChildVc : BaseTableVC
 @property(nonatomic,copy)NSString *orderId;
 @end

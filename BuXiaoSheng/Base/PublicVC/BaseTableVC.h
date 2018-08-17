@@ -17,4 +17,6 @@
 // 第几页的数据
 @property (nonatomic,assign)NSInteger page;
 
+@property (assign,nonatomic) BOOL isGrouped;
+
 @end

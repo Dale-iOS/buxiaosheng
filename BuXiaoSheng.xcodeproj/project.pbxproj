@@ -318,8 +318,6 @@
 		3453791F21099CD300830DF8 /* LZGoodValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3453791121099CD200830DF8 /* LZGoodValueCell.xib */; };
 		3453792021099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3453791521099CD200830DF8 /* LZBigGoodsHeadView.xib */; };
 		3453792121099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3453791521099CD200830DF8 /* LZBigGoodsHeadView.xib */; };
-		3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
-		3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F67C20CA223400579521 /* LZDesignateVC.m */; };
 		3455F68A20CA7C8700579521 /* LZWeaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F68920CA7C8700579521 /* LZWeaveView.m */; };
 		3455F68B20CA7C8700579521 /* LZWeaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F68920CA7C8700579521 /* LZWeaveView.m */; };
 		3455F68E20CA7CB600579521 /* LZDyeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3455F68D20CA7CB600579521 /* LZDyeView.m */; };
@@ -1306,8 +1304,6 @@
 		3453791321099CD200830DF8 /* BigGoodsFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigGoodsFootView.h; sourceTree = "<group>"; };
 		3453791421099CD200830DF8 /* LZGoodValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZGoodValueCell.h; sourceTree = "<group>"; };
 		3453791521099CD200830DF8 /* LZBigGoodsHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZBigGoodsHeadView.xib; sourceTree = "<group>"; };
-		3455F67B20CA223400579521 /* LZDesignateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDesignateVC.h; sourceTree = "<group>"; };
-		3455F67C20CA223400579521 /* LZDesignateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDesignateVC.m; sourceTree = "<group>"; };
 		3455F68820CA7C8700579521 /* LZWeaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWeaveView.h; sourceTree = "<group>"; };
 		3455F68920CA7C8700579521 /* LZWeaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZWeaveView.m; sourceTree = "<group>"; };
 		3455F68C20CA7CB600579521 /* LZDyeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDyeView.h; sourceTree = "<group>"; };
@@ -2688,8 +2684,6 @@
 				34494DF32091A76200BDB309 /* ClientNeedsViewController.m */,
 				34494DF82091B16C00BDB309 /* OutboundViewController.h */,
 				34494DF92091B16C00BDB309 /* OutboundViewController.m */,
-				3455F67B20CA223400579521 /* LZDesignateVC.h */,
-				3455F67C20CA223400579521 /* LZDesignateVC.m */,
 				34DE25B12092C7F1009E7589 /* ProcessViewController.h */,
 				34DE25B22092C7F1009E7589 /* ProcessViewController.m */,
 				B5B07504209C1DC000FD53DC /* LLProcessChildVc.h */,
@@ -5558,7 +5552,6 @@
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				344E4D58210EADAD0031DCE8 /* BXSPurchaChangeWarehousingView.m in Sources */,
 				344C487920D0C40400BEC002 /* LZProcurementCell.m in Sources */,
-				3455F67D20CA223400579521 /* LZDesignateVC.m in Sources */,
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
 				3452717220B2734A0001B65A /* AddColorCell.m in Sources */,
 				34EBACA8208451C40005BF77 /* DeliveryOrderViewController.m in Sources */,
@@ -5920,7 +5913,6 @@
 				B5C888D320C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
 				3480AAA920E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				346C2278210E03DA004AAC88 /* ZWCustomPopView.m in Sources */,
-				3455F67E20CA223400579521 /* LZDesignateVC.m in Sources */,
 				346C2290210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */,
 				3465C9EB20DC9A9600BAE415 /* FSCalendarConstants.m in Sources */,
 				B5B0750C209C28BA00FD53DC /* LLProcessSectionView.m in Sources */,
@@ -6126,7 +6118,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 48WVJV32K7;
@@ -6137,7 +6129,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7521ae60-3b47-478b-b949-5dac9d9828f0";
+				PROVISIONING_PROFILE = "27128ef2-d5c8-42b7-8231-aae02a88d52e";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -6155,7 +6147,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 48WVJV32K7;
@@ -6166,7 +6158,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7521ae60-3b47-478b-b949-5dac9d9828f0";
+				PROVISIONING_PROFILE = "27128ef2-d5c8-42b7-8231-aae02a88d52e";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
