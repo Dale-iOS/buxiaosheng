@@ -36,12 +36,12 @@
         view.backgroundColor = [UIColor whiteColor];
         //        阴影的圆角
         view.layer.cornerRadius = 5.0f;
-////        阴影的颜色
-//        view.layer.shadowColor = [UIColor blackColor].CGColor;
-////        阴影的透明度
-//        view.layer.shadowOpacity = 0.6f;
-////        阴影的偏移量
-//        view.layer.shadowOffset = CGSizeMake(4,4);
+        ////        阴影的颜色
+        //        view.layer.shadowColor = [UIColor blackColor].CGColor;
+        ////        阴影的透明度
+        //        view.layer.shadowOpacity = 0.6f;
+        ////        阴影的偏移量
+        //        view.layer.shadowOffset = CGSizeMake(4,4);
         [contentView addSubview:(bgView = view)];
     }
     return bgView;
@@ -250,7 +250,7 @@
     self.lineView.sd_layout
     .leftSpaceToView(self.bgView, 0)
     .bottomSpaceToView(self.bgView, 44)
-//    .widthIs(APPWidth)
+    //    .widthIs(APPWidth)
     .rightSpaceToView(self.bgView, 0)
     .heightIs(1);
     
@@ -292,7 +292,7 @@
     }else{
         self.iconNameLabel.text = _model.drawerName;
     }
-//先把返回的数据转成时间戳，再转成时间显示
+    //先把返回的数据转成时间戳，再转成时间显示
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
 }
 
@@ -318,7 +318,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

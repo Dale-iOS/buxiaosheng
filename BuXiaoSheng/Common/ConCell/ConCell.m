@@ -27,7 +27,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -59,7 +59,7 @@
     
     _rightButton = [UIButton new];
     [_rightButton addTarget:self action:@selector(clickCell) forControlEvents:UIControlEventTouchUpInside];
-
+    
     _rightButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [_rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_rightButton setImage:IMAGE(@"auditManger_arrow") forState:0];
@@ -88,7 +88,7 @@
     _midTF.text = item.kpText;
     _midTF.placeholder = item.kpText;
     _midTF.text = item.contenText;
-   _midTF.textColor =  item.textColor?item.textColor:[UIColor blackColor];
+    _midTF.textColor =  item.textColor?item.textColor:[UIColor blackColor];
     _midTF.enabled = item.conType == ConTypeB;;
     _rightButton.hidden = !(item.conType == ConTypeA);
     _leftLable.textColor  = item.titleColor?item.titleColor:[UIColor blackColor];
@@ -110,7 +110,7 @@
 
 @end
 
- 
+
 @implementation ConMarkCell
 {
     UITextView *_tv;
@@ -135,7 +135,7 @@
         make.left.equalTo(self.contentView).offset(15);
         make.width.mas_offset(120);
     }];
- 
+    
     
     [_tv  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(leftlabel.mas_right).offset(5);
@@ -164,7 +164,7 @@
     _tv.text = item.contenText;
     _tv.textColor =  item.textColor?item.textColor:[UIColor blackColor];
     _tv.userInteractionEnabled = item.conType == ConTypeB;;
-   
+    
     [self setNeedsDisplay];
     
 }

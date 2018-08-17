@@ -40,6 +40,7 @@
 @end
 
 @class LLOutboundRightDetailModel;
+
 @interface LLOutboundRightModel : NSObject
 @property (nonatomic,strong) LLOutboundlistModel * leftModel;
 @property (nonatomic,copy) NSString *batcNumber;

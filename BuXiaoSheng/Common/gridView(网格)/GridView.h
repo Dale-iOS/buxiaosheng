@@ -42,11 +42,11 @@
  [super viewDidLoad];
  _col = 5;
  GridView *gridView = [[GridView alloc]initWithCol:5];
- gridView.frame = CGRectMake(0, 100, kScreenWidth, 500);
+ gridView.frame = CGRectMake(0, 100, APPWidth, 500);
  gridView.delegate = self;
  gridView.dataSource = self;
  gridView.headLineColor = globalBackColor;
- [gridView setHeadTitleColor:[UIColor redColor] titleFont:Font_med(16)];
+ [gridView setHeadTitleColor:[UIColor redColor] titleFont:FONT(16)];
  [self.view addSubview:gridView];
  [gridView reloData];
  

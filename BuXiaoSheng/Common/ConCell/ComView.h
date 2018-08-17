@@ -13,6 +13,6 @@
 
 @interface ComView : UIView
 
-/// 展开|收起 
+/// 展开|收起
 + (UIButton *)foldingBtnWithSupView:(UIView *)supView;
 @end

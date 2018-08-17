@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-    self.navigationItem.titleView = [Utility navTitleView:@"选择产品"]; 
+    
+    self.navigationItem.titleView = [Utility navTitleView:@"选择产品"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(clickTrue) title:@"确定"];
     
     [self setupUI];

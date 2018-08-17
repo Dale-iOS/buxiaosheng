@@ -18,11 +18,25 @@
 
 @property (assign,nonatomic) CGFloat cellHeight;
 @property (assign,nonatomic) BOOL isShow;
+
+//j
+@property(nonatomic,copy)NSString *productColorId;
+@property(nonatomic,copy)NSString *productColorName;
 @end
 
+
+
+
+@class BXSDSModel;
 @interface LZPurchaseItemListModel : BaseModel
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *productColorId;
 @property(nonatomic,copy)NSString *productColorName;
+@property(nonatomic,copy)NSString *total;
+
+
+///j
+@property(nonatomic,copy)NSString *productName;
+@property (copy,nonatomic)NSMutableArray <BXSDSModel *>*dsArray;
 
 @end

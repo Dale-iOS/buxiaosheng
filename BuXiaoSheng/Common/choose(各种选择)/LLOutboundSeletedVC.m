@@ -62,23 +62,23 @@
 }
 
 -(void)setupUI {
-//    UIView * totalView = [UIView new];
-//    [self.view addSubview:totalView];
-//    totalView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-//    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view);
-//        make.top.equalTo(self.view).offset(20);
-//        make.height.mas_equalTo(45);
-//    }];
-//    UILabel * totalLable = [UILabel new];
-//    [totalView addSubview:totalLable];
-//    totalLable.text = [NSString stringWithFormat:@"总条数:%@",self.itemModel.number];
-//    totalLable.textColor = [UIColor darkGrayColor];
-//    totalLable.font = [UIFont systemFontOfSize:16];
-//    [totalLable mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(totalView).offset(20);
-//        make.centerY.equalTo(totalView);
-//    }];
+    //    UIView * totalView = [UIView new];
+    //    [self.view addSubview:totalView];
+    //    totalView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    //    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.right.equalTo(self.view);
+    //        make.top.equalTo(self.view).offset(20);
+    //        make.height.mas_equalTo(45);
+    //    }];
+    //    UILabel * totalLable = [UILabel new];
+    //    [totalView addSubview:totalLable];
+    //    totalLable.text = [NSString stringWithFormat:@"总条数:%@",self.itemModel.number];
+    //    totalLable.textColor = [UIColor darkGrayColor];
+    //    totalLable.font = [UIFont systemFontOfSize:16];
+    //    [totalLable mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.equalTo(totalView).offset(20);
+    //        make.centerY.equalTo(totalView);
+    //    }];
     self.leftTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.leftTableView.tableFooterView = [UIView new];
     [self.view addSubview:self.leftTableView];

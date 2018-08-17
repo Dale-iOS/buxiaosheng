@@ -12,7 +12,7 @@
 #import "GridTableView.h"
 
 
-@interface GridTableCell : UITableViewCell
+@interface GridTableCell : UITableViewCell<UITextFieldDelegate>
 
 - (instancetype)initWithColWidths:(NSArray *)widths;
 @property (nonatomic,strong)UIFont  *textFont;
@@ -20,11 +20,14 @@
 @property (nonatomic,strong)NSArray *dataArray;
 @property (strong,nonatomic)NSArray *widthArray;
 
+@property (copy,nonatomic)void (^endEdtingBlock)(NSString *text, NSUInteger index);
+
+@property (strong,nonatomic)NSArray *canEndtingArray;
 @end
 @implementation GridTableCell{
     //UIScrollView *_backScrView;
     
-    NSArray *_labelArray;
+    NSArray *_textFieldArray;
     UIButton *_delectButton;
     
     UIView *_redView;
@@ -53,61 +56,86 @@
 }
 -(void)setTextFont:(UIFont *)textFont {
     _textFont = textFont;
-    for (UILabel *label in _labelArray) {
-        label.font = textFont;
+    for (UITextField *tf in _textFieldArray) {
+        tf.font = textFont;
     }
 }
 -(void)setTextColor:(UIColor *)textColor {
     _textColor = textColor;
-    for (UILabel *label in _labelArray) {
+    for (UITextField *label in  _textFieldArray) {
         label.textColor = textColor;
     }
 }
+-(void)setCanEndtingArray:(NSArray *)canEndtingArray {
+    _canEndtingArray = canEndtingArray;
+    for (int i=0;i<_textFieldArray.count;i++) {
+        UITextField *textField  = _textFieldArray[i];
+        BOOL isCanEdting = [canEndtingArray[i] boolValue];
+        textField.enabled = isCanEdting;
+        
+    }
+}
+
 -(void)layoutSubviews {
     [super layoutSubviews];
     
     _delectButton.frame = CGRectMake(self.width , 0, 50, self.height);
     _redView.frame = CGRectMake(self.width, 0, 100, self.height);
-    UILabel *lastLabel = nil;
-    for (int i=0;i<_labelArray.count;i++) {
-        UILabel *label = _labelArray[i];
+    UITextField *lastLabel = nil;
+    for (int i=0;i<_textFieldArray.count;i++) {
+        UITextField *label = _textFieldArray[i];
+        
         CGFloat widhMultiple = [_widthArray[i] floatValue];
         label.frame = CGRectMake(lastLabel.right,0, self.width *widhMultiple, self.height);
         lastLabel = label;
     }
 }
 - (void)setup {
-   
+    
     self.selectionStyle = 0;
     self.backgroundColor = [UIColor whiteColor];
     // col
-    UILabel *leftlabel;
+    UITextField *leftlabel;
     NSMutableArray *labels = [NSMutableArray arrayWithCapacity:_widthArray.count];
     // 创建label
     for (int i=0; i<_gridCol; i++) {
-        UILabel *label = [[UILabel alloc]init];
-        [self addSubview:label];
-        label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = NSTextAlignmentCenter;
+        UITextField *textField = [[UITextField alloc]init];
+        [self addSubview:textField];
+        textField.borderStyle = UITextBorderStyleNone;
+        textField.backgroundColor = [UIColor clearColor];
+        textField.enabled = NO;
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.delegate = self;
         // 添加到数组
-        [labels addObject:label];
-        leftlabel = label;
+        [labels addObject:textField];
+        leftlabel = textField;
     }
     
-    _labelArray = [labels mutableCopy];
+    _textFieldArray = [labels mutableCopy];
 }
 
 -(void)setDataArray:(NSArray *)dataArray {
     _dataArray = dataArray;
-    NSUInteger count = MIN(dataArray.count, _labelArray.count);
+    NSUInteger count = MIN(dataArray.count, _textFieldArray.count);
     for (int i=0; i<count; i++) {
-        UILabel *label = _labelArray[i];
+        UILabel *label = _textFieldArray[i];
         NSString *title = _dataArray[i];
         label.text = title;
         
     }
 }
 
+
+//MARK: -- UITextFieldDelegate --
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    NSUInteger index = 0;
+    if ([_textFieldArray containsObject:textField]) {
+        index = [_textFieldArray indexOfObject:textField];
+    }
+    NSString *text = [BXSTools isEmptyString:textField.text]?@"":textField.text;
+    !_endEdtingBlock?:_endEdtingBlock(text,index);
+}
 
 @end
 
@@ -136,6 +164,7 @@
     CGFloat _cellHeight;
     NSString *_cellID;
     NSArray *_cellWidths;
+    NSArray *_canEdtingArray;
     
     
 }
@@ -153,6 +182,7 @@
 -(instancetype)initWithCol:(NSUInteger)gridCol {
     if (self = [super init]) {
         _gridCol = gridCol;
+        _canDelect = YES;
         [self setup];
     }
     return self;
@@ -163,6 +193,7 @@
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
     [self addSubview:_tableView];
     
     //cell
@@ -239,6 +270,10 @@
         }
     }
     
+    //得到cell的能否编辑
+    if ([_delegate respondsToSelector:@selector(canEdtingsOfGridView:)]) {
+        _canEdtingArray = [_delegate canEdtingsOfGridView:self];
+    }
     //得到cell的width
     if ([_delegate respondsToSelector:@selector(widthsOfGridView:)]) {
         _cellWidths = [_delegate widthsOfGridView:self];
@@ -277,9 +312,22 @@
         cell.textColor = _cellTextColor;
         cell.textFont = _cellTextFont;
     }
+    
+    if (_canEdtingArray) {
+        cell.canEndtingArray = _canEdtingArray;
+    }
+    
     NSArray *titls = [self.dataSouce objectAtIndex:indexPath.row];
     cell.widthArray = _cellWidths;
     cell.dataArray = titls;
+    
+    WEAKSELF;
+    cell.endEdtingBlock = ^(NSString *text, NSUInteger index) {
+        
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(gridView:endEdtingWithText:atIndex:)]) {
+            [weakSelf.delegate gridView:weakSelf endEdtingWithText:text atIndex:GridIndexMake(index, indexPath.row-1)];
+        }
+    };
     return cell;
 }
 
@@ -296,7 +344,7 @@
     if (indexPath.row == 0) {
         return NO;
     }
-    return YES;
+    return _canDelect;
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {

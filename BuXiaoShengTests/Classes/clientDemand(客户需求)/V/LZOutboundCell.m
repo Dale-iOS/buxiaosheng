@@ -13,9 +13,9 @@
 @end
 @implementation LZOutboundCell
 {
-   // UIButton *_addBtn;
-//    UIView *_headView;
-//    UIView *_footView;
+    // UIButton *_addBtn;
+    //    UIView *_headView;
+    //    UIView *_footView;
     //库存数量
     UILabel * _warehouseNumLbl;
     //出库数量
@@ -44,10 +44,10 @@
 }
 
 - (void)setupUI{
-//    _headView = [[UIView alloc]init];
-//    _headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
-//    [self.contentView addSubview:_headView];
-   
+    //    _headView = [[UIView alloc]init];
+    //    _headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
+    //    [self.contentView addSubview:_headView];
+    
     UILabel *warehouseNumLbl = [[UILabel alloc]init];
     _warehouseNumLbl = warehouseNumLbl;
     warehouseNumLbl.font = FONT(14);
@@ -120,7 +120,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

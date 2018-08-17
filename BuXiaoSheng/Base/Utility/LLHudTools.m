@@ -16,7 +16,7 @@
     [SVProgressHUD setInfoImage:[UIImage imageNamed:@""]];
     [SVProgressHUD setForegroundColor:CD_Text33];
 //    [SVProgressHUD setBackgroundColor: [[UIColor lightGrayColor]colorWithAlphaComponent:0.95]];
-    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.9]];
+    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.7]];
     [SVProgressHUD showInfoWithStatus:message];
     [SVProgressHUD dismissWithDelay:1.5];
 }
@@ -27,7 +27,7 @@
 //    [SVProgressHUD showWithStatus:LLLoadingMessage];
     [SVProgressHUD setForegroundColor:CD_Text33];
     [SVProgressHUD setFont:[UIFont boldSystemFontOfSize:16]];
-    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.9]];
+    [SVProgressHUD setBackgroundColor: [UIColor colorWithHexString:@"#e6e6ed" alpha:0.7]];
 }
 
 

@@ -36,7 +36,7 @@
         case ButtonEdgeInsetsStyleImageRight:
         {
             space = space * 0.5;
-
+            
             imageInsetsLeft = labelWidth + space;
             imageInsetsRight = -imageInsetsLeft;
             
@@ -48,7 +48,7 @@
         case ButtonEdgeInsetsStyleImageLeft:
         {
             space = space * 0.5;
-
+            
             imageInsetsLeft = -space;
             imageInsetsRight = -imageInsetsLeft;
             
@@ -82,7 +82,7 @@
             
         }
             break;
-            case ButtonEdgeInsetsStyleImageTop:
+        case ButtonEdgeInsetsStyleImageTop:
         {
             CGFloat imageHeight = CGRectGetHeight(self.imageView.frame);
             CGFloat labelHeight = CGRectGetHeight(self.titleLabel.frame);
@@ -114,5 +114,34 @@
     
     self.imageEdgeInsets = UIEdgeInsetsMake(imageInsetsTop, imageInsetsLeft, imageInsetsBottom, imageInsetsRight);
     self.titleEdgeInsets = UIEdgeInsetsMake(titleInsetsTop, titleInsetsLeft, titleInsetsBottom, titleInsetsRight);
+}
+
+
+
+
+//  getter
+- (UIEdgeInsets)expandHitEdgeInsets {
+    NSValue *value = objc_getAssociatedObject(self, @selector(expandHitEdgeInsets));
+    return value ? [value UIEdgeInsetsValue] : UIEdgeInsetsZero;
+}
+
+//  setter
+- (void)setExpandHitEdgeInsets:(UIEdgeInsets)expandHitEdgeInsets {
+    NSValue *value = [NSValue valueWithUIEdgeInsets:expandHitEdgeInsets];
+    objc_setAssociatedObject(self, @selector(expandHitEdgeInsets), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+//  该方法由hitTest:方法自动调用，决定由哪个视图相应用户的点击事件
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if (UIEdgeInsetsEqualToEdgeInsets(self.expandHitEdgeInsets, UIEdgeInsetsZero) || !self.enabled || self.hidden) {
+        return [super pointInside:point withEvent:event];
+    }
+    UIEdgeInsets expandHitEdgeInsets = self.expandHitEdgeInsets;
+    CGRect bounds = self.bounds;
+    bounds = CGRectMake(CGRectGetMinX(bounds) - expandHitEdgeInsets.left,
+                        CGRectGetMinY(bounds) - expandHitEdgeInsets.top,
+                        CGRectGetWidth(bounds) + expandHitEdgeInsets.left + expandHitEdgeInsets.right,
+                        CGRectGetHeight(bounds) + expandHitEdgeInsets.top + expandHitEdgeInsets.bottom);
+    return CGRectContainsPoint(bounds, point);
 }
 @end

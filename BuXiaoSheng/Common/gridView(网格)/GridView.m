@@ -59,12 +59,12 @@
 - (void)setup {
     
     //_backScrView
-//    _backScrView = [[UIScrollView alloc]init];
-//    _backScrView.showsVerticalScrollIndicator = NO;
-//    _backScrView.showsHorizontalScrollIndicator = NO;
-//    _backScrView.scrollEnabled = NO;
-//    [self addSubview:_backScrView];
-//    _backScrView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
+    //    _backScrView = [[UIScrollView alloc]init];
+    //    _backScrView.showsVerticalScrollIndicator = NO;
+    //    _backScrView.showsHorizontalScrollIndicator = NO;
+    //    _backScrView.scrollEnabled = NO;
+    //    [self addSubview:_backScrView];
+    //    _backScrView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
     
     // col
     UILabel *leftlabel;
@@ -90,7 +90,7 @@
         UILabel *label = _labelArray[i];
         NSString *title = HandleNilString(_dataArray[i]);
         label.text = title;
-   
+        
     }
 }
 
@@ -104,7 +104,7 @@
     
     UIFont *_headFont,
     *_cellTextFont;
-   
+    
     UIColor *_headColor,
     *_cellTextColor,
     *_headBackColor,
@@ -114,7 +114,7 @@
     CGFloat _cellHeiht;
     
     NSMutableDictionary *_cellDict;
-
+    
 }
 
 -(instancetype)initWithCol:(NSUInteger)gridCol {
@@ -125,7 +125,7 @@
     return self;
 }
 - (void)setup{
-   
+    
     _cellDict = [NSMutableDictionary dictionary];
     // 设置默认的数据
     _cellHeiht = 50.f;
@@ -146,13 +146,13 @@
 }
 - (void)setHeadBackColor:(UIColor *)backColor
                CellColor:(UIColor *)cellColor {
-     _headBackColor = backColor;
-     _cellBaceColor = cellColor;
+    _headBackColor = backColor;
+    _cellBaceColor = cellColor;
 }
 
 
 -(void)reloData {
-   
+    
     if (!_delegate||!_dataSource) {
         NSLog(@"请设置代理 傻不傻@~@");
         return;
@@ -165,7 +165,7 @@
     
     // 先移除全部的cell
     [self removeAllSubviews];
-
+    
     for (int k=0 ;k<row+1;k++) {
         i = k-1;
         // 从代理的数据源中取出cell数据
@@ -173,15 +173,15 @@
         if ([_dataSource respondsToSelector:@selector(gridView:cellForItemAtGridIndex:)])
         {
             cellData = [_dataSource gridView:self cellForItemAtGridIndex:GridIndexMake(0, i)];
-        
+            
         }
-       // 代理中的title为空 则使用属性中的title
+        // 代理中的title为空 则使用属性中的title
         if (i==-1) {
             _titles = cellData?cellData:_titles;
         }else{
             _titles = cellData;
         }
-
+        
         //得到cell的width
         NSArray *cellWidths = nil;
         if ([_delegate respondsToSelector:@selector(widthsOfGridView:)]) {

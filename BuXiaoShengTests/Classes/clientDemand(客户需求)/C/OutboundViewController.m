@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [Utility navTitleView:@"出库"];
-     [self setupDetailData];
+    [self setupDetailData];
 }
 
 //该数据源是来源右侧侧滑来的数据
@@ -86,7 +86,7 @@
             make.bottom.equalTo(bottomView.mas_top);
         }];
     }else{
-
+        
         UIView *bottomView = [self setupBottomView];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.equalTo(self.view);
@@ -129,7 +129,7 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(50);
     }];
-
+    
     UILabel *titlelabel = [[UILabel alloc]init];
     titlelabel.textColor = [UIColor whiteColor];
     titlelabel.font = FONT(12);
@@ -211,12 +211,12 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-        LZOutboundSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LZOutboundSectionView"];
-        sectionView.section = section;
-        sectionView.foldingBtn.selected = _folding[section];
-        sectionView.delegate = self;
-        sectionView.model = _listModels[section];
-        return sectionView;
+    LZOutboundSectionView * sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LZOutboundSectionView"];
+    sectionView.section = section;
+    sectionView.foldingBtn.selected = _folding[section];
+    sectionView.delegate = self;
+    sectionView.model = _listModels[section];
+    return sectionView;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -238,7 +238,7 @@
     LZOutboundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZOutboundCell"];
     cell.itemsModel = self.listModels[indexPath.section].itemCellData[indexPath.row];
     return cell;
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -290,7 +290,7 @@
     [UIView animateWithDuration:0.0 animations:^{
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionView.section] withRowAnimation:UITableViewRowAnimationNone];
     }];
-
+    
 }
 
 -(void)determineBtnClick {
@@ -328,7 +328,7 @@
             
         }];
     }];
-
+    
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].userId,
                              @"orderId":self.model.orderId,

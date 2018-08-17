@@ -69,7 +69,7 @@
     [self.contentView addSubview:_seletedBtn];
     [_seletedBtn addTarget:self action:@selector(checkoutBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_seletedBtn setBackgroundImage:[UIImage imageNamed:@"noSelect1"] forState:UIControlStateNormal];
-     [_seletedBtn setBackgroundImage:[UIImage imageNamed:@"yesSelect"] forState:UIControlStateSelected];
+    [_seletedBtn setBackgroundImage:[UIImage imageNamed:@"yesSelect"] forState:UIControlStateSelected];
     [_seletedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(12);
         make.top.equalTo(self.contentView).offset(40);
@@ -88,7 +88,7 @@
     
     [_foldingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-12);
-//        make.top.equalTo(self.contentView).offset(40);
+        //        make.top.equalTo(self.contentView).offset(40);
         make.centerY.equalTo(self.contentView);
         make.width.mas_equalTo(60);
     }];
@@ -182,7 +182,7 @@
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     
     [outboundVc cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
-   
+    
 }
 
 -(void)checkoutBtnClick {
@@ -217,7 +217,7 @@
         _foldingBtn.layer.masksToBounds = YES;
         _foldingBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  0, 0, 0);
-         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+        _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
     }else {
         _foldingBtn.backgroundColor = [UIColor whiteColor];
         [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
@@ -230,7 +230,7 @@
         _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
         
-         _model.seleted ? (_foldingBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_foldingBtn.imageView.transform = CGAffineTransformIdentity);
+        _model.seleted ? (_foldingBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_foldingBtn.imageView.transform = CGAffineTransformIdentity);
         _model.seleted ? [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal] :[_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];;
     }
     

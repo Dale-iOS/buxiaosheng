@@ -11,7 +11,7 @@
 #import "OutboundViewController.h"
 #import "LZClientDemandModel.h"
 #import "LZSearchClientNeedsVC.h"
-#import "ProcessViewController.h"//贤哥写的指派
+#import "ProcessViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface ClientNeedsViewController ()<UITableViewDelegate,UITableViewDataSource,AuditTableViewCellDelegate>
@@ -73,7 +73,6 @@ static NSInteger const pageSize = 15;
                             @"pageSize":@(pageSize)
                             };
     [BXSHttp requestGETWithAppURL:@"storehouse/out_storage_list.do" param:param success:^(id response) {
-        
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
                 [self.lists removeAllObjects];
@@ -181,6 +180,8 @@ static NSInteger const pageSize = 15;
 }
 
 
+
+
 #pragma mark ------ 点击事件 -------
 - (void)ToSearch
 {
@@ -194,6 +195,7 @@ static NSInteger const pageSize = 15;
     }
     return _lists;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

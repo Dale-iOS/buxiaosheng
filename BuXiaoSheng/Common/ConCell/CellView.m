@@ -19,9 +19,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
                          item:(ConItem *)item {
     if (self = [super initWithFrame:frame]) {
-  
-       
-
+        
+        
+        
         [self setup];
         [self setContentWithItem:item];
         
@@ -31,7 +31,7 @@
 
 
 - (void)setup {
-   
+    
     _rightButton = [UIButton new];
     [_rightButton addTarget:self action:@selector(clickCell) forControlEvents:UIControlEventTouchUpInside];
     
@@ -58,7 +58,7 @@
         make.width.mas_offset(120);
     }];
     
-
+    
     _midTF = [UITextField new];
     [self addSubview:_midTF ];
     _midTF.textColor = CD_Text33;
@@ -70,11 +70,11 @@
         make.right.equalTo(self).offset(-40);
     }];
     
-   
+    
 }
 
 - (void)setContentWithItem:(ConItem*)item {
-  
+    
     _item = item;
     _leftLable.text = item.title;
     _midTF.placeholder = item.kpText;

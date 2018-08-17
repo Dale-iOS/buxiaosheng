@@ -21,18 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.searchBar = [UISearchBar
-//                      new];
-//    [self.view addSubview:self.searchBar];
-//    self.searchBar.delegate =self;
-//    self.searchBar.barTintColor = [UIColor groupTableViewBackgroundColor];
-//    self.searchBar.placeholder= @"请输入您要搜索的颜色";
-//    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view).offset(5);
-//        make.top.equalTo(self.view).offset(20);
-//        make.right.equalTo(self.view).offset(-5);
-//        make.height.mas_equalTo(35);
-//    }];
+    //    self.searchBar = [UISearchBar
+    //                      new];
+    //    [self.view addSubview:self.searchBar];
+    //    self.searchBar.delegate =self;
+    //    self.searchBar.barTintColor = [UIColor groupTableViewBackgroundColor];
+    //    self.searchBar.placeholder= @"请输入您要搜索的颜色";
+    //    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.equalTo(self.view).offset(5);
+    //        make.top.equalTo(self.view).offset(20);
+    //        make.right.equalTo(self.view).offset(-5);
+    //        make.height.mas_equalTo(35);
+    //    }];
     
     self.searchBar = [[LZSearchBar alloc]initWithFrame:CGRectMake(0, LLNavViewHeight -30, APPWidth *0.75, 40)];
     self.searchBar.placeholder = @"输入颜色搜索";
@@ -112,9 +112,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     }
-     cell.textLabel.text = [self.color_list objectAtIndex:indexPath.row].name;
-     cell.textLabel.textColor = [UIColor darkGrayColor];
-   
+    cell.textLabel.text = [self.color_list objectAtIndex:indexPath.row].name;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    
     return cell;
 }
 

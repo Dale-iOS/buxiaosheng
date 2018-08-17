@@ -18,6 +18,9 @@
 @property (nonatomic,strong)NSArray *titles;
 
 @property (nonatomic,strong)UIColor *headLineColor;
+
+/// 默认YES 是可以策划删除的
+@property (assign,nonatomic) BOOL canDelect;
 /// 构造方法
 - (instancetype)initWithCol:(NSUInteger)gridCol;
 /// 刷新数据

@@ -19,9 +19,9 @@
 {
     GridTableView *_gridView;
     NSInteger _col;
-   
+    
     CellView *_nameCell;
-     CellView *_colorCell;
+    CellView *_colorCell;
     
     
     UILabel *_allKc;
@@ -34,7 +34,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -65,7 +65,7 @@
     [self.contentView addSubview:delectButton];
     [delectButton addTarget:self action:@selector(clickDelectDB) forControlEvents:UIControlEventTouchUpInside];
     
-  //_nameCell
+    //_nameCell
     WEAKSELF;
     ConItem *item = [[ConItem alloc]initWithTitle:@"品名" kpText:@"请选择品名" conType:ConTypeA];
     _nameCell = [[CellView alloc]initWithFrame:CGRectMake(0, addLabel.bottom+5, APPWidth, 49) item:item];
@@ -143,19 +143,25 @@
     _col = model.boundModelList.count;
     _colorCell.midTF.text = model.productColorName;
     _nameCell.midTF.text = model.productName;
+    
+    
+    [self setAllBottomData];
+    
+}
+/// 得到底部的总库存数据和出库数据
+- (void)setAllBottomData {
+    // 出库和库存总数
+    NSArray*alld = [_model.boundModelList valueForKey:@"number"];
+    _model.total = [NSString stringWithFormat:@"%@",[alld valueForKeyPath:@"@sum.integerValue"]];
+    _allKc.text = [NSString stringWithFormat:@"总库存数:%@",_model.total];
+    
+    NSArray*allc = [_model.boundModelList valueForKey:@"outgoingCount"];
+    _model.ckTotal = [NSString stringWithFormat:@"%@",[allc valueForKeyPath:@"@sum.integerValue"]];
+    _allCk.text = [NSString stringWithFormat:@"总出库数:%@",_model.ckTotal];
+    !_needGetBottomDataBlock?:_needGetBottomDataBlock();
     [_gridView reloData];
     _model.cellHeight = _gridView.bottom+30;
-    
-    // 出库和库存总数
-    NSArray*alld = [model.boundModelList valueForKey:@"number"];
-    model.total = [NSString stringWithFormat:@"%@",[alld valueForKeyPath:@"@sum.integerValue"]];
-    _allKc.text = [NSString stringWithFormat:@"总库存数:%@",model.total];
-    
-    NSArray*allc = [model.boundModelList valueForKey:@"total"];
-    model.ckTotal = [NSString stringWithFormat:@"%@",[allc valueForKeyPath:@"@sum.integerValue"]];
-    _allCk.text = [NSString stringWithFormat:@"总出库数:%@",model.ckTotal];
 }
-
 
 #pragma mark --- Click
 /// 删除底色
@@ -164,15 +170,15 @@
 }
 /// 选择名字
 - (void)clickNameCell {
-       !_clickNameCellBlock?:_clickNameCellBlock();
+    !_clickNameCellBlock?:_clickNameCellBlock(_model);
 }
 /// 选择颜色
 - (void)clickColorCell {
-       !_clickColorCellBlock?:_clickColorCellBlock();
+    !_clickColorCellBlock?:_clickColorCellBlock();
 }
 /// 添加仓库
 - (void)addCKClick {
-       !_addCKClickBlock?:_addCKClickBlock();
+    !_addCKClickBlock?:_addCKClickBlock(_model);
 }
 #pragma mark --- GridViewDelegate
 
@@ -187,9 +193,8 @@
         return @[@"库存数",@"出库数",@"条数",@"出仓库",@""];
     }
     LLOutboundRightModel *kModel = _model.boundModelList[gridIndex.row];
-    
     return @[HandleNilString(kModel.number),
-             HandleNilString(kModel.total),//有问题
+             HandleNilString(kModel.outgoingCount),//有问题
              HandleNilString(kModel.total),
              HandleNilString(kModel.leftModel.houseName)];
 }
@@ -201,11 +206,35 @@
     return 30.f;
 }
 
+/// 编辑结束
+- (void)gridView:(id<GridViewDelegate>)gridView endEdtingWithText:(NSString *)text atIndex:(GridIndex)index {
+    LLOutboundRightModel *kModel = _model.boundModelList[index.row];
+    switch (index.col) {
+        case 0:
+            kModel.number = text;
+            break;
+        case 1:
+            kModel.outgoingCount = text;
+            break;
+        case 2:
+            kModel.total = text;
+            break;
+            
+        default:
+            break;
+    }
+    [self setAllBottomData];
+    
+}
 #pragma mark --- GridViewDelegate
 - (NSArray *)widthsOfGridView:(id <GridViewDelegate>)gridView {
     return @[@0.2,@0.2,@0.2,@0.2,@0.2];
 }
- 
+
+- (NSArray *)canEdtingsOfGridView:(id<GridViewDelegate>)gridView {
+    return @[@(NO),@(YES),@(YES),@(NO),@(NO)];
+}
+
 /// 点击cell的删除
 - (void)didClickCellDelectAtRow:(NSInteger)row {
     
@@ -215,6 +244,8 @@
         [array removeObject:kModel];
     }
     _model.boundModelList = [array mutableCopy];
+    [self setModel:_model];
     !_clickDelectAKcBlock?:_clickDelectAKcBlock();
+    
 }
 @end

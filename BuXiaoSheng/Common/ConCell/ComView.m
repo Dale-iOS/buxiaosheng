@@ -10,7 +10,7 @@
 
 @implementation ComView
 
-/// 展开|收起 
+/// 展开|收起
 + (UIButton *)foldingBtnWithSupView:(UIView *)supView
 {
     UIButton*_foldingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -31,7 +31,7 @@
     [_foldingBtn layoutIfNeeded];
     _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
-
+    
     return _foldingBtn;
 }
 

@@ -77,7 +77,7 @@
         make.width.mas_offset(APPWidth *0.2);
         make.height.mas_offset(39);
     }];
-
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{

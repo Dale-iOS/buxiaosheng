@@ -95,7 +95,7 @@
     self.companyCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, lineView1.bottom, APPWidth, 49)];
     self.companyCell.titleLabel.text = @"供货商名称";
     self.companyCell.contentTF.placeholder = @"请输入供货商名称";
-    self.companyCell.contentTF.scrollView = (UIScrollView *)self;
+    self.companyCell.contentTF.scrollView = self;
     self.companyCell.contentTF.positionType = ZJPositionTop;
     
     //联系人
@@ -154,7 +154,7 @@
     [self.footerView addSubview:lineView3];
     [self.footerView addSubview:self.remarkTextView];
     [self.footerView addSubview:lineView4];
-
+    
 }
 
 - (void)setupUI{
@@ -167,7 +167,7 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = self.footerView;
     //隐藏分割线
-//    self.tableView .separatorStyle = NO;
+    //    self.tableView .separatorStyle = NO;
     [self addSubview:self.tableView];
 }
 
@@ -175,7 +175,7 @@
 //接口名称 功能用到厂商列表
 - (void)setupFactoryListData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-//                             @"searchName":@"",
+                             //                             @"searchName":@"",
                              @"type":@"0"};
     [BXSHttp requestGETWithAppURL:@"factory/search_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -246,9 +246,9 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//        cell.delegate = self;
+        //        cell.delegate = self;
     }
-//    cell.model = _lists[indexPath.row];
+    //    cell.model = _lists[indexPath.row];
     return cell;
 }
 

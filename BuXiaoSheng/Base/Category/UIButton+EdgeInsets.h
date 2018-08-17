@@ -15,11 +15,12 @@ typedef NS_ENUM(NSUInteger, ButtonEdgeInsetsStyle) {
     ButtonEdgeInsetsStyleImageBottom
 };
 
-@interface UIButton (EdgeInsets) 
+@interface UIButton (EdgeInsets)
 /*!
  * @style 方向
  * @space 文字距图片的距离
  */
 - (void)layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitlespace:(CGFloat)space;
 
+@property (assign, nonatomic) UIEdgeInsets expandHitEdgeInsets;
 @end

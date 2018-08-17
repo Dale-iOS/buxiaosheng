@@ -109,9 +109,9 @@
     self.processNameCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, self.processTypeCell.bottom, APPWidth, 49)];
     self.processNameCell.titleLabel.text = @"加工商名称";
     self.processNameCell.contentTF.placeholder = @"请输入加工商名称";
-    self.processNameCell.contentTF.scrollView = (UIScrollView *)self;
+    self.processNameCell.contentTF.scrollView = self;
     self.processNameCell.contentTF.positionType = ZJPositionTop;
-
+    
     
     //联系人
     self.contactCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, self.processNameCell.bottom, APPWidth, 49)];
@@ -191,7 +191,7 @@
 //接口名称 功能用到厂商列表
 - (void)setupFactoryListData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-//                             @"searchName":@"",
+                             //                             @"searchName":@"",
                              @"type":@"2"};
     [BXSHttp requestGETWithAppURL:@"factory/search_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -199,7 +199,7 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-//        _factoryLists = [LZCompanyModel LLMJParse:baseModel.data];
+        //        _factoryLists = [LZCompanyModel LLMJParse:baseModel.data];
         _factoryListMuAry = baseModel.data;
         _factoryNameAry = [NSMutableArray array];
         for (int i = 0; i <_factoryListMuAry.count; i++) {

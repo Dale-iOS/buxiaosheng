@@ -16,7 +16,6 @@
 #import "LZOrderTrackingModel.h"
 #import "LZSearchClientNeedsCell.h"
 
-static NSInteger const pageSize = 15;
 @interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *_startStr;//开始时间
@@ -29,8 +28,7 @@ static NSInteger const pageSize = 15;
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UILabel *headerLbl;
-@property(nonatomic,strong)NSMutableArray<LZOrderTrackingModel*> *lists;
-@property (nonatomic,assign) NSInteger pageIndex;//页数
+@property(nonatomic,strong)NSArray<LZOrderTrackingModel*> *lists;
 @end
 
 @implementation LZSearchClientNeedsVC
@@ -48,7 +46,6 @@ static NSInteger const pageSize = 15;
 
 - (void)setupUI
 {
-     self.pageIndex = 1;
     self.navigationItem.titleView = [Utility navTitleView:@"我的订单"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationScreenClick) image:IMAGE(@"screenDate")];
     
@@ -64,7 +61,7 @@ static NSInteger const pageSize = 15;
     self.searchBar.placeholderColor = [UIColor colorWithHexString:@"#cccccc"];
     self.searchBar.textFieldBackgroundColor = [UIColor colorWithHexString:@"#e6e6ed"];
     self.searchBar.iconAlign = LZSearchBarIconAlignCenter;
-//    [self.view addSubview:self.searchBar];
+    //    [self.view addSubview:self.searchBar];
     
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 34)];
     _headerView.backgroundColor = [UIColor whiteColor];
@@ -77,12 +74,12 @@ static NSInteger const pageSize = 15;
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _headerView.bottom-0.5, APPWidth, 0.5)];
     lineView.backgroundColor = LZHBackgroundColor;
     [_headerView addSubview:lineView];
-//    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.equalTo(self.view);
-//        make.height.mas_offset(0.5);
-//        make.bottom.equalTo(_headerView.mas_bottom).offset(-0.5);
-//    }];
-
+    //    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.and.right.equalTo(self.view);
+    //        make.height.mas_offset(0.5);
+    //        make.bottom.equalTo(_headerView.mas_bottom).offset(-0.5);
+    //    }];
+    
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.backgroundColor = LZHBackgroundColor;
     _tableView.tableHeaderView = _headerView;
@@ -90,21 +87,10 @@ static NSInteger const pageSize = 15;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    
-    WEAKSELF;
-    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-        weakSelf.pageIndex = 1;
-        [weakSelf setupList];
-    }];
-}
-
-- (MJRefreshFooter *)reloadMoreData {
-    WEAKSELF;
-    MJRefreshFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-        weakSelf.pageIndex +=1;
-        [weakSelf setupList];
-    }];
-    return footer;
+    //    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.and.right.and.bottom.equalTo(self.view);
+    //        make.top.equalTo(self.searchBar.mas_bottom);
+    //    }];
 }
 
 //初始化日历
@@ -122,7 +108,7 @@ static NSInteger const pageSize = 15;
     configure.indicatorAdditionalWidth = MAXFLOAT; // 说明：指示器额外增加的宽度，不设置，指示器宽度为标题文字宽度；若设置无限大，则指示器宽度为按钮宽度
     configure.titleSelectedColor = RGB(59, 177, 239);
     configure.indicatorColor = RGB(59, 177, 239);;
-
+    
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, pageTitleViewY, self.view.frame.size.width, 44) delegate:self titleNames:titleArr configure:configure];
     self.pageTitleView.backgroundColor = [UIColor whiteColor];
     
@@ -136,14 +122,14 @@ static NSInteger const pageSize = 15;
     quarterVC.delegate = self;
     
     NSArray *childArr = @[dayVC, weekVC, monthVC, quarterVC];
-
+    
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageTitleView.frame), APPWidth, 350) parentVC:self childVCs:childArr];
     _pageContentView.delegatePageContentView = self;
     
     _bottomView = [[UIView alloc]initWithFrame:self.view.bounds];
     _bottomView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     _bottomView.hidden = YES;
-
+    
     [_bottomView addSubview:_pageTitleView];
     [_bottomView addSubview:_pageContentView];
     [self.view addSubview:_bottomView];
@@ -160,51 +146,20 @@ static NSInteger const pageSize = 15;
 #pragma mark ---- 网络请求 ----
 - (void)setupList{
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"pageNo":@(self.pageIndex),
-                            @"pageSize":@(pageSize),
+                            @"pageNo":@"1",
+                            @"pageSize":@"15",
                             @"endDate":_endStr,
                             @"startDate":_startStr,
                             };
     [BXSHttp requestGETWithAppURL:@"sale/need_list.do" param:param success:^(id response) {
-        
-        if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
-            if (1 == self.pageIndex) {
-                [self.lists removeAllObjects];
-            }
-            
-            NSArray *itemList = [response objectForKey:@"data"];
-            if (itemList && itemList.count > 0) {
-                for (NSDictionary *dic in itemList) {
-                    LZOrderTrackingModel *model = [LZOrderTrackingModel mj_objectWithKeyValues:dic];
-                    [self.lists addObject:model];
-                }
-                if (self.lists.count % pageSize) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                } else {
-                    [self.tableView.mj_footer endRefreshing];
-                }
-            } else {
-                //                [LLHudTools showWithMessage:@"暂无更多数据"];
-            }
-            if (self.pageIndex == 1) {
-                if (self.lists.count >= pageSize) {
-                    self.tableView.mj_footer = [self reloadMoreData];
-                } else {
-                    self.tableView.mj_footer = nil;
-                }
-            }
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-            
-        } else {
-            [LLHudTools showWithMessage:[response objectForKey:@"msg"]];
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!= 200) {
+            return ;
         }
+        _lists = [LZOrderTrackingModel LLMJParse:baseModel.data];
+        [_tableView reloadData];
     } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        BXS_Alert(LLLoadErrorMessage)
     }];
 }
 
@@ -326,17 +281,10 @@ static NSInteger const pageSize = 15;
     
 }
 
-#pragma mark - Getter && Setter
-- (NSMutableArray<LZOrderTrackingModel *> *)lists {
-    if (_lists == nil) {
-        _lists = @[].mutableCopy;
-    }
-    return _lists;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 @end

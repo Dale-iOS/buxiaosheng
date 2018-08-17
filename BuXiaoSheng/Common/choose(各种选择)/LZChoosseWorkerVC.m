@@ -108,9 +108,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    LLUpdateNewPeopleViewController *vc = [[LLUpdateNewPeopleViewController alloc]init];
-//    vc.model = self.manages[indexPath.section].itemList[indexPath.row];
-//    [self.navigationController pushViewController:vc animated:YES];
+    //    LLUpdateNewPeopleViewController *vc = [[LLUpdateNewPeopleViewController alloc]init];
+    //    vc.model = self.manages[indexPath.section].itemList[indexPath.row];
+    //    [self.navigationController pushViewController:vc animated:YES];
     
     LLAuditMangerItemModel *model = self.manages[indexPath.section].itemList[indexPath.row];
     

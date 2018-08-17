@@ -18,7 +18,7 @@
     _model = model;
     _detalLable.text = [NSString stringWithFormat:@"%@  %@条/%@%@",model.batcNumber,model.total,model.number,model.unitName];
     _model.seleted ? (_arrowImageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_arrowImageView.transform = CGAffineTransformIdentity);
-
+    
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -31,8 +31,8 @@
 
 -(void)setupUI {
     _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dyeing_close"]];
-     addGestureRecognizer(_arrowImageView, arrowImageViewClick)
-     addGestureRecognizer(self, arrowImageViewClick)
+    addGestureRecognizer(_arrowImageView, arrowImageViewClick)
+    addGestureRecognizer(self, arrowImageViewClick)
     [self addSubview:_arrowImageView];
     [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-3);

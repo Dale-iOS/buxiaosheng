@@ -31,7 +31,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     
 }
 
@@ -72,7 +72,7 @@
     gridView.dataSource = self;
     gridView.headLineColor = LZHBackgroundColor;
     [gridView setHeadTitleColor:[UIColor colorWithHexString:@"#333333"] titleFont:FONT(15)];
-   
+    
     [gridView setHeadBackColor:LZHBackgroundColor CellColor:[UIColor whiteColor]];
     [gridView setCellTextColor:CD_Text99 titleFont:FONT(14)];
     
@@ -87,7 +87,7 @@
     _purchaseModel = purchaseModel;
     _nameLanel.text = purchaseModel.productName;
     _needLabel.text =[NSString stringWithFormat:@"需求量：%@",purchaseModel.totalNumber];
-   
+    
     [_gridView reloData];
     
     purchaseModel.cellHeight = _gridView.bottom + 10;
@@ -118,7 +118,7 @@
     if (_purchaseModel.itemList.count > gridIndex.row*2+1) {
         item1 =_purchaseModel.itemList[gridIndex.row*2+1];
     }
-
+    
     
     return @[item.productColorName,item.number,HandleNilString(item1.productColorName),HandleNilString(item1.number)];
 }

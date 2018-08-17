@@ -43,6 +43,8 @@ GridIndexMake(NSInteger col, NSInteger row)
                CellColor:(UIColor *)cellColor;
 
 -(void)setDelegate:(id)delegate dataSouce:(id)dataSouce;
+
+
 @end
 
 
@@ -55,11 +57,16 @@ GridIndexMake(NSInteger col, NSInteger row)
 - (CGFloat)heightOfGridViewAtRow:(NSUInteger)row;
 /// 每一列的宽度（返回nil则平分）@[@0.2,@0.3...];
 - (NSArray *)widthsOfGridView:(id <GridViewDelegate>)gridView;
+/// 每一列的对应能否可以输入（返回nil则平分）@[@0.2,@0.3...];
+- (NSArray *)canEdtingsOfGridView:(id <GridViewDelegate>)gridView;
 /// 点击cell
 - (void)didClickCellAtIndex:(GridIndex )index;
 /// 点击cell的删除
 - (void)didClickCellDelectAtRow:(NSInteger)row;
-
+/// 第几行第几列 数据结束编辑，以及结束编辑的内容
+- (void )gridView:(id <GridViewDelegate>)gridView
+endEdtingWithText:(NSString *)text
+          atIndex:(GridIndex )index;
 @end
 
 

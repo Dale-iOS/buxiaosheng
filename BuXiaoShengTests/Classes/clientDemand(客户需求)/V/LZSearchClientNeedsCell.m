@@ -44,7 +44,7 @@
     
     //厂名
     self.companyLabel = [[UILabel alloc]init];
-//    self.companyLabel.backgroundColor = [UIColor redColor];
+    //    self.companyLabel.backgroundColor = [UIColor redColor];
     self.companyLabel.textAlignment = NSTextAlignmentLeft;
     self.companyLabel.font = FONT(14);
     self.companyLabel.textColor = CD_Text33;
@@ -58,7 +58,7 @@
     
     //品名
     self.nameLabel = [[UILabel alloc]init];
-//    self.nameLabel.backgroundColor = [UIColor orangeColor];
+    //    self.nameLabel.backgroundColor = [UIColor orangeColor];
     self.nameLabel.textAlignment = NSTextAlignmentLeft;
     self.nameLabel.font = FONT(12);
     self.nameLabel.textColor = CD_Text66;
@@ -72,7 +72,7 @@
     
     //需求量
     self.needLabel = [[UILabel alloc]init];
-//    self.needLabel.backgroundColor = [UIColor yellowColor];
+    //    self.needLabel.backgroundColor = [UIColor yellowColor];
     self.needLabel.textAlignment = NSTextAlignmentLeft;
     self.needLabel.font = FONT(12);
     self.needLabel.textColor = CD_Text66;
@@ -86,7 +86,7 @@
     
     //价格
     self.priceLabel = [[UILabel alloc]init];
-//    self.priceLabel.backgroundColor = [UIColor grayColor];
+    //    self.priceLabel.backgroundColor = [UIColor grayColor];
     self.priceLabel.textAlignment = NSTextAlignmentLeft;
     self.priceLabel.font = FONT(12);
     self.priceLabel.textColor = LZAppRedColor;
@@ -102,7 +102,7 @@
     
     //状态
     self.stateLabel = [[UILabel alloc]init];
-//    self.stateLabel.backgroundColor = [UIColor blueColor];
+    //    self.stateLabel.backgroundColor = [UIColor blueColor];
     self.stateLabel.textAlignment = NSTextAlignmentRight;
     self.stateLabel.font = FONT(12);
     self.stateLabel.textColor = [UIColor colorWithHexString:@"#25cce5"];
@@ -116,7 +116,7 @@
     
     //日期
     self.dateLabel = [[UILabel alloc]init];
-//    self.dateLabel.backgroundColor = [UIColor greenColor];
+    //    self.dateLabel.backgroundColor = [UIColor greenColor];
     self.dateLabel.textAlignment = NSTextAlignmentRight;
     self.dateLabel.font = FONT(12);
     self.dateLabel.textColor = CD_Text99;

@@ -16,4 +16,11 @@
 
 @implementation LZPurchaseItemListModel
 
+/// 懒加载
+- (NSMutableArray *)dsArray {
+    if (!_dsArray) {
+        _dsArray = [NSMutableArray array];
+    }
+    return _dsArray;
+}
 @end
