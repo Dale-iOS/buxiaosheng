@@ -31,14 +31,14 @@ static NSInteger const pageSize = 15;
     [super viewDidLoad];
     
     [self setupUI];
-    [self setupList];
+//    [self setupList];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self setupList];
+    [self setupList];
 }
 
 - (void)setupUI
