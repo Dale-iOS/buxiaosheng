@@ -18,10 +18,10 @@
 #import "LZStockTrackingVC.h"
 #import "InventoryViewController.h"
 #import "LZHomeModel.h"
-#import "DyeingViewController.h"
 #import "LZCheckReceiptModel.h"
 #import "BRPickerView.h"
 #import "LZDirectStorageVC.h"//直接入库
+#import "BXSStockDemandVC.h"//备货需求
 
 static NSInteger const pageSize = 15;
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
@@ -185,9 +185,8 @@ static NSInteger const pageSize = 15;
     else if ([model.paramsIos isEqualToString:@"stockdemand"])
     {
         //备货需求
-        [LLHudTools showWithMessage:@"功能正在开发中~~"];
-//        DyeingViewController *vc = [[DyeingViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        BXSStockDemandVC *vc = [[BXSStockDemandVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if ([model.paramsIos isEqualToString:@"stocktrack"])
     {
