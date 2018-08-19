@@ -72,7 +72,6 @@ static NSInteger const pageSize = 15;
                              @"type":@"1"
                              };
     [BXSHttp requestGETWithAppURL:@"documentary/not_handle_list.do" param:param success:^(id response) {
-        
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
                 [self.lists removeAllObjects];
@@ -243,6 +242,5 @@ static NSInteger const pageSize = 15;
     }
     return _lists;
 }
-
 
 @end

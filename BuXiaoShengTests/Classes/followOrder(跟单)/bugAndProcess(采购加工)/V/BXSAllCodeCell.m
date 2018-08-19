@@ -118,6 +118,7 @@
     _tableView.separatorColor = LZHBackgroundColor;
     _tableView.separatorInset = UIEdgeInsetsZero;
     _tableView.rowHeight = 50.f;
+    _tableView.scrollEnabled = NO;
     [_tableView registerClass:[ConCell class] forCellReuseIdentifier:[ConCell cellID]];
     
 }
@@ -251,14 +252,4 @@
     return [UIView new];
 }
 
-
-
-
--(void)layoutSubviews {
-    
-    
-}
-
-
- 
 @end

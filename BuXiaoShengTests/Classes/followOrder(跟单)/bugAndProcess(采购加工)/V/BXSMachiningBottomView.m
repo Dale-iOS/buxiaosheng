@@ -22,14 +22,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+       
         [self setup];
     }
     return self;
 }
 
 -(void)setup {
-    
+  
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50.f);
     CGFloat leftMargin = 15.f;
     CGFloat topMargin = 5.f;
@@ -47,7 +47,7 @@
     [self addSubview:_downCountLable];
     _downCountLable.textColor = [UIColor colorWithHexString:@"#333333"];
     _downCountLable.font = [UIFont systemFontOfSize:14];
-    _downCountLable.frame = CGRectMake(leftMargin, _upCountLable.bottom, _upCountLable.width, _upCountLable.height);
+   _downCountLable.frame = CGRectMake(leftMargin, _upCountLable.bottom, _upCountLable.width, _upCountLable.height);
     
     //determineBtn
     UIButton * determineBtn = [UIButton new];
@@ -60,7 +60,7 @@
         make.right.top.bottom.equalTo(self);
         make.width.mas_equalTo(LLScale_WIDTH(340));
     }];
-    
+ 
     [determineBtn addTarget:self action:@selector(clickBottom) forControlEvents:UIControlEventTouchUpInside];
 }
 

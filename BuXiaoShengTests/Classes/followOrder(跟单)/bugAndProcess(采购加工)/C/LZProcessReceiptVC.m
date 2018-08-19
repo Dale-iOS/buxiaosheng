@@ -14,8 +14,11 @@
 #import "ApproverModel.h"
 
 #import "BXSPurchaChangeWarehousingView.h"
+#import "BXSHadSelectDBCell.h"
+#import "BaseTableVC+BXSTakePhoto.h"
 
 #define  SELECTAPPROVER @"选择人员"
+#define  HADSELECTDBCELLID @"100200"
 
 @interface LZProcessReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
@@ -27,6 +30,9 @@
 @property (strong,nonatomic)NSArray *bankArr;
 @property (strong,nonatomic)NSArray *houseArr;
 @property (strong,nonatomic)NSArray *unitArr;
+
+/// 已选的底部数据
+@property (strong,nonatomic)LZPurchaseModel *bottomDBModel;
 
 
 @end
@@ -58,6 +64,7 @@
     [self loadBottomData];
     [self setupSelectData];
     [self setupData];
+    [self loadBottomDBData];
     
     
 }
@@ -91,7 +98,7 @@
     self.mainTable.separatorInset = UIEdgeInsetsZero;
     self.mainTable.separatorColor = LZHBackgroundColor;
     self.mainTable.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
+    //self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
     self.mainTable.tableHeaderView = [LineView lineViewOfHeight:1];
     self.mainTable.estimatedRowHeight = 0;
     self.mainTable.estimatedSectionHeaderHeight = 0;
@@ -106,6 +113,10 @@
     [self.mainTable registerClass:[BXSAllCodeCell class] forCellReuseIdentifier:_isFindCode?@"k_findID":[BXSAllCodeCell cellID]];
     [self.mainTable registerClass:[ConMarkCell class] forCellReuseIdentifier:[ConMarkCell cellID]];
     
+    [self.mainTable registerClass:[BXSHadSelectDBCell class] forCellReuseIdentifier:[BXSHadSelectDBCell cellID]];
+    
+    
+ 
     
 }
 
@@ -134,6 +145,10 @@
 
 - (void)loadBottomData  {
     
+    ConItem *item0 = [[ConItem alloc]initWithTitle:@"应付总款" kpText:@"应付总款" conType:ConTypeC];
+    item0.id = HADSELECTDBCELLID;
+    [self.bDataArray addObject:@[item0]];
+    
     ConItem *item = [[ConItem alloc]initWithTitle:@"应付总款" kpText:@"应付总款" conType:ConTypeC];
     ConItem *item1 = [[ConItem alloc]initWithTitle:@"实付金额" kpText:@"输入实付金额" conType:ConTypeB];
     ConItem *item2 = [[ConItem alloc]initWithTitle:@"本单欠款" kpText:@"本单欠款" conType:ConTypeC];
@@ -154,7 +169,7 @@
     
     [self.bDataArray addObject:@[item5,item6,item7,item8,item9,item10]];
     [self.mainTable reloadData];
-    
+    [self setTableFooterTakePhoto];
 }
 
 - (void)initAllCodeData {
@@ -208,13 +223,13 @@
         [self initAllCodeData];
         
         // 供应名称 联系人 电话 地址
-        ConItem *item1 = self.bDataArray[1][2];
+        ConItem *item1 = self.bDataArray[2][2];
         item1.contenText = [baseModel.data valueForKey:@"factoryName"];
-        ConItem *item2 = self.bDataArray[1][3];
+        ConItem *item2 = self.bDataArray[2][3];
         item2.contenText = [baseModel.data valueForKey:@"contactName"];
-        ConItem *item3 = self.bDataArray[1][4];
+        ConItem *item3 = self.bDataArray[2][4];
         item3.contenText = [baseModel.data valueForKey:@"mobile"];
-        ConItem *item4 = self.bDataArray[1][5];
+        ConItem *item4 = self.bDataArray[2][5];
         item4.contenText = [baseModel.data valueForKey:@"address"];
         
         [self.mainTable reloadData];
@@ -222,6 +237,27 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
+}
+
+/// 底部数据请求
+- (void)loadBottomDBData {
+    //http://www.buxiaosheng.com/web-api/documentary/house_bottom_list.do
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buyId":self.bugId};
+    [BXSHttp requestGETWithAppURL:@"documentary/house_bottom_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        LZPurchaseModel *bottomDBModel = [LZPurchaseModel new];
+        bottomDBModel.itemList = [LZPurchaseItemListModel LLMJParse:baseModel.data];
+        self.bottomDBModel = bottomDBModel;
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+ 
 }
 
 /// post整个数据--最终的数据上传
@@ -510,6 +546,11 @@
     }else{
         
         ConItem *item = self.bDataArray[indexPath.section- self.allCodeArray.count][indexPath.row];
+        if ([item.id isEqualToString:HADSELECTDBCELLID]) {
+            BXSHadSelectDBCell *cell = [tableView dequeueReusableCellWithIdentifier:[BXSHadSelectDBCell cellID]];
+            cell.model = self.bottomDBModel;
+            return cell;
+        }
         if ([item.title isEqualToString:@"备注"]) {
             ConMarkCell *cell = [tableView dequeueReusableCellWithIdentifier:[ConMarkCell cellID]];
             cell.item = item;
@@ -529,8 +570,11 @@
         BXSAllCodeModel *item = self.allCodeArray[indexPath.section];
         return item.baseCellHeight;
     }else{
+        
         ConItem *item = self.bDataArray[indexPath.section- self.allCodeArray.count][indexPath.row];
-        if ([item.title isEqualToString:@"备注"]) {
+        if ([item.id isEqualToString:HADSELECTDBCELLID]) {
+            return self.bottomDBModel.cellHeight;
+        }else if ([item.title isEqualToString:@"备注"]) {
             return 80;
         }
         return 50.f;
@@ -552,11 +596,11 @@
     }
     ConItem *item = self.bDataArray[sec][indexPath.row];
     
-    if (sec == 0 && indexPath.row == 3) {
+    if (sec == 1 && indexPath.row == 3) {
         [self clickPayType:item];
         
     }
-    if (sec == 1 && indexPath.row == 0 ) {
+    if (sec == 2 && indexPath.row == 0 ) {
         [self clickSelectCangKu:item];
     }
 }
@@ -598,13 +642,13 @@
         allPrice += item2.contenText.floatValue;
     }
     // 应该付钱
-    ConItem *item0 = self.bDataArray[0][0];
+    ConItem *item0 = self.bDataArray[1][0];
     item0.contenText = [NSString stringWithFormat:@"%.1f",allPrice];
     
     // 实际付钱
-    ConItem *item1 = self.bDataArray[0][1];
+    ConItem *item1 = self.bDataArray[1][1];
     // 欠钱
-    ConItem *item2 = self.bDataArray[0][2];
+    ConItem *item2 = self.bDataArray[1][2];
     
     item2.contenText = [NSString stringWithFormat:@"-%.1f",allPrice -item1.contenText.floatValue];
     if (allPrice -item1.contenText.floatValue < 0) {

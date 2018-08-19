@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  采购加工-已完成页面
+//
 
 #import "LZDidBugAndProcessUntreatedVC.h"
 #import "LZDidBugAndProcessUntreatedCell.h"
@@ -106,6 +106,7 @@ static NSInteger const pageSize = 15;
     
 }
 
+
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -141,6 +142,7 @@ static NSInteger const pageSize = 15;
     }
     return _lists;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

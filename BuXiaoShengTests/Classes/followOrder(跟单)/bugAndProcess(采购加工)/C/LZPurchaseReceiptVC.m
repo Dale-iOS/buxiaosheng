@@ -15,7 +15,8 @@
 #import "ApproverModel.h"
 
 #import "BXSPurchaChangeWarehousingView.h"
-#import "LZSaveOrderModel.h"
+
+#import "BaseTableVC+BXSTakePhoto.h"
 
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -28,8 +29,11 @@
 @property (strong,nonatomic)NSArray *bankArr;
 @property (strong,nonatomic)NSArray *houseArr;
 @property (strong,nonatomic)NSArray *unitArr;
+@property (copy,nonatomic)UIImage  *selectImage;
 
+/// UI
 
+@property (strong,nonatomic)UIButton * addPhotoButton;
 @end
 
 @implementation LZPurchaseReceiptVC
@@ -92,12 +96,13 @@
     self.mainTable.separatorInset = UIEdgeInsetsZero;
     self.mainTable.separatorColor = LZHBackgroundColor;
     self.mainTable.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
+//    self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
     self.mainTable.tableHeaderView = [LineView lineViewOfHeight:1];
     self.mainTable.estimatedRowHeight = 0;
     self.mainTable.estimatedSectionHeaderHeight = 0;
     self.mainTable.estimatedSectionFooterHeight = 0;
     [self.view addSubview:self.mainTable];
+    [self setTableFooter];
     
     self.mainTable.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 50, 0));
     self.mainTable.delegate = self;
@@ -132,7 +137,10 @@
     };
     self.bottomView = bottomView;
 }
-
+///相册选择 --多处用到写成分类避免冗余
+- (void)setTableFooter {
+    [self setTableFooterTakePhoto];
+}
 - (void)loadBottomData  {
     
     ConItem *item = [[ConItem alloc]initWithTitle:@"应付总款" kpText:@"应付总款" conType:ConTypeC];
@@ -145,7 +153,7 @@
     
     
     
-    ConItem *item5 = [[ConItem alloc]initWithTitle:@"入仓库" kpText:@"请选择仓库" conType:ConTypeA];
+    ConItem *item5 = [[ConItem alloc]initWithTitle:@"*入仓库" kpText:@"请选择仓库" conType:ConTypeA];
     ConItem *item6 = [[ConItem alloc]initWithTitle:@"供应商单号" kpText:@"请输入供应商单号" conType:ConTypeB];
     ConItem *item7 = [[ConItem alloc]initWithTitle:@"供应商名称" kpText:@"供应商名称" conType:ConTypeC];
     
@@ -317,12 +325,6 @@
 /// 底部确认
 - (void)clickBottom {
     
-    NSMutableArray *saveAry = [NSMutableArray array];
-    for (int i = 0; i <_allCodeArray.count; i++) {
-        
-        
-    }
-    
     /// 选择人员
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].companyId,
@@ -467,7 +469,6 @@
 
 
 
-
 #pragma mark ---- table ----
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.bDataArray.count+self.allCodeArray.count;
@@ -480,7 +481,6 @@
         return arr.count;
     }
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -632,7 +632,6 @@
         
         ConItem *item1 = model.dataArray[0][1];
         item1.contenText = [NSString stringWithFormat:@"%ld",model.findCodeArray.count];
-        
         
         ConItem *citem = model.dataArray[1][4];
         ConItem *kuItem = model.dataArray[1][5];

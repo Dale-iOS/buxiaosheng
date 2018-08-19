@@ -10,4 +10,5 @@
 
 @interface LZProcessAskVC : BaseViewController
 @property(nonatomic,copy)NSString *bugId;
+
 @end

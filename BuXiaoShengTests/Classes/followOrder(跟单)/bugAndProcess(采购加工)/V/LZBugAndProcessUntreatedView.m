@@ -35,6 +35,7 @@ static NSInteger const pageSize = 15;
 }
 
 - (void)setupUI{
+    self.pageIndex = 1;
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView .backgroundColor = LZHBackgroundColor;
     self.tableView .delegate = self;
@@ -71,7 +72,6 @@ static NSInteger const pageSize = 15;
                              @"type":@"0"
                              };
     [BXSHttp requestGETWithAppURL:@"documentary/not_handle_list.do" param:param success:^(id response) {
-        
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
                 [self.lists removeAllObjects];

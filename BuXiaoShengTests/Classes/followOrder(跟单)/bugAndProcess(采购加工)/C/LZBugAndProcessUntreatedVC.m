@@ -26,6 +26,7 @@
 }
 
 - (void)setupUI{
+    
     self.navigationItem.titleView = [Utility navTitleView:@"采购加工-未处理"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"new_lists")];
     
