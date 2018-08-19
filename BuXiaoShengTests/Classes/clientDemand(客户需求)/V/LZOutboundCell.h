@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "LZOutboundModel.h"
 @interface LZOutboundCell : UITableViewCell
-@property(nonatomic,strong)LLOutboundRightModel * itemsModel;
+@property(nonatomic,strong)LLOutboundRightDetailModel *itemsModel;
 @end

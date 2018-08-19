@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/27.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  指派页面（贤哥）
+//  指派页面
 
 #import "ProcessViewController.h"
 #import "LLProcessChildVc.h"
@@ -25,7 +25,8 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"指派"];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar的设置是全局的，一个页面设置了透明度，整个项目的页面都会变，把下面这句去掉
     [self setupUI];
     //    [self setupBottomView];
 }

@@ -26,12 +26,13 @@
     UILabel * _fromWarahouseLbl ;
 }
 
--(void)setItemsModel:(LLOutboundRightModel *)itemsModel {
+-(void)setItemsModel:(LLOutboundRightDetailModel *)itemsModel {
     _itemsModel = itemsModel;
     
-    _warehouseNumLbl.text = _itemsModel.number;
+    _warehouseNumLbl.text = _itemsModel.value;
+    _OutNumLbl.text = _itemsModel.value;
     _lineNumLbl.text =_itemsModel.total;
-    _fromWarahouseLbl.text = itemsModel.leftModel.houseName;
+    _fromWarahouseLbl.text = itemsModel.houseName;
     
 }
 
@@ -111,7 +112,7 @@
     return true;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    self.itemsModel.outgoingCount = textField.text;
+    self.itemsModel.value = textField.text;
     
     OutboundViewController * outVc = (OutboundViewController*)[BXSTools viewWithViewController:self.contentView];
     [outVc.tableView reloadData];

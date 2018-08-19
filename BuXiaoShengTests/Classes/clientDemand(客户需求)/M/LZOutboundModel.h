@@ -40,7 +40,6 @@
 @end
 
 @class LLOutboundRightDetailModel;
-
 @interface LLOutboundRightModel : NSObject
 @property (nonatomic,strong) LLOutboundlistModel * leftModel;
 @property (nonatomic,copy) NSString *batcNumber;
@@ -58,6 +57,8 @@
 @property (nonatomic,copy) NSString *total;
 @property (nonatomic,copy) NSString *value;
 
+@property (nonatomic, copy) NSString *outgoingCount;
 @property (nonatomic,assign) BOOL seleted;
+@property (nonatomic,strong) NSString *houseName;
 
 @end

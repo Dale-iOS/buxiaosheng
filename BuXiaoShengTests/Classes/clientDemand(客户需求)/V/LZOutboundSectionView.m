@@ -9,6 +9,8 @@
 #import "LZOutboundSectionView.h"
 #import "OutboundViewController.h"
 #import "LLOutboundSeletedVC.h"
+#import "UIButton+WM.h"
+
 @implementation LZOutboundSectionView
 {
     UIView * _bgView;
@@ -220,16 +222,18 @@
         _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
     }else {
         _foldingBtn.backgroundColor = [UIColor whiteColor];
-        [_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];
-        [_foldingBtn setTitle:@"收起    " forState:UIControlStateSelected];
+        [_foldingBtn setTitle:@"展开" forState:UIControlStateNormal];
+        [_foldingBtn setTitle:@"收起" forState:UIControlStateSelected];
         _foldingBtn.titleLabel.font = FONT(12);
         [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
         [_foldingBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateSelected];
         [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_close"] forState:UIControlStateNormal];
         [_foldingBtn setImage:[UIImage imageNamed:@"dyeing_show"] forState:UIControlStateSelected];
-        _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
-        _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
+//        _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
+//        _foldingBtn.imageEdgeInsets = UIEdgeInsetsMake(0, (_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width), 0, -(_foldingBtn.frame.size.width - _foldingBtn.imageView.frame.origin.x - _foldingBtn.imageView.frame.size.width));
         
+        //设置图片和文字为主 因为你的title有空格，所以图片和文字的间距设置为0 看起来间距也大 可以把文字的空格去掉或者把间距设为负数
+        [_foldingBtn imageOnTheTitleLeftWithSpace:-50];
         _model.seleted ? (_foldingBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI)) :(_foldingBtn.imageView.transform = CGAffineTransformIdentity);
         _model.seleted ? [_foldingBtn setTitle:@"收起    " forState:UIControlStateNormal] :[_foldingBtn setTitle:@"展开    " forState:UIControlStateNormal];;
     }

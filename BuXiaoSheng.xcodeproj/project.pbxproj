@@ -558,6 +558,8 @@
 		348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB849209ABFC100CD36CD /* DefaultBankCell.m */; };
 		348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */; };
 		348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DB855209AEC0700CD36CD /* OrganizationViewController.m */; };
+		348DF197212945C800D3A76F /* UIButton+WM.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DF196212945C800D3A76F /* UIButton+WM.m */; };
+		348DF198212945C800D3A76F /* UIButton+WM.m in Sources */ = {isa = PBXBuildFile; fileRef = 348DF196212945C800D3A76F /* UIButton+WM.m */; };
 		3492FD8720DA07E2008464BB /* LZPurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3492FD8620DA07E2008464BB /* LZPurchaseModel.m */; };
 		3492FD8820DA07E2008464BB /* LZPurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3492FD8620DA07E2008464BB /* LZPurchaseModel.m */; };
 		3492FD8920DA29D2008464BB /* DyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AF2092C61A009E7589 /* DyeingViewController.m */; };
@@ -1566,6 +1568,8 @@
 		348DB84F209AE3AB00CD36CD /* ModifySubjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifySubjectViewController.m; sourceTree = "<group>"; };
 		348DB854209AEC0700CD36CD /* OrganizationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrganizationViewController.h; sourceTree = "<group>"; };
 		348DB855209AEC0700CD36CD /* OrganizationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrganizationViewController.m; sourceTree = "<group>"; };
+		348DF195212945C700D3A76F /* UIButton+WM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WM.h"; sourceTree = "<group>"; };
+		348DF196212945C800D3A76F /* UIButton+WM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WM.m"; sourceTree = "<group>"; };
 		3492FD8520DA07E2008464BB /* LZPurchaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseModel.h; sourceTree = "<group>"; };
 		3492FD8620DA07E2008464BB /* LZPurchaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseModel.m; sourceTree = "<group>"; };
 		3492FD8A20DA6FAC008464BB /* LZPurchaseAskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseAskCell.h; sourceTree = "<group>"; };
@@ -4019,6 +4023,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				348DF195212945C700D3A76F /* UIButton+WM.h */,
+				348DF196212945C800D3A76F /* UIButton+WM.m */,
 				2DDA921F2111884C00DB7765 /* LogCategory.h */,
 				2DDA92202111884C00DB7765 /* LogCategory.m */,
 				344E4D62210EAF770031DCE8 /* UILabel+Extension.h */,
@@ -5454,6 +5460,7 @@
 				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				B5E288E420A9332500D84196 /* LLAuditMangerModel.m in Sources */,
+				348DF197212945C800D3A76F /* UIButton+WM.m in Sources */,
 				3480AAA820E3A86A00053C5D /* LZDepartmentManagerCell.m in Sources */,
 				344358DA20EF6E2D004A5E6E /* LZChooseBankTypeCell.m in Sources */,
 				B577CE9920AA7C2B0001B8B8 /* LLAddNewsPeopleSectionView.m in Sources */,
@@ -5752,6 +5759,7 @@
 				346C227A210E03DA004AAC88 /* LZBackOrderCell.m in Sources */,
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				344358CF20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
+				348DF198212945C800D3A76F /* UIButton+WM.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				346C2274210E03DA004AAC88 /* LZBackOrderLIstsCell.m in Sources */,
 				B50505C0209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,

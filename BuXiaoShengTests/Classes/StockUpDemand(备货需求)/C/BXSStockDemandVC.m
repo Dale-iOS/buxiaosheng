@@ -30,7 +30,8 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"备货需求"];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar的设置是全局的，一个页面设置了透明度，整个项目的页面都会变，把下面这句去掉
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
     //    [self setupBottomView];
 }

@@ -26,10 +26,18 @@
     _selteds = selteds;
     __block NSInteger  totalSaveCount = 0;
     __block NSInteger totalOutCount = 0;
-    [_selteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        totalSaveCount += [obj.number integerValue];
-        totalOutCount += [obj.outgoingCount integerValue];
-    }];
+    for (LLOutboundRightModel *rightModel in _selteds) {
+        
+        for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
+            
+            if (detailModel.seleted) {
+                totalSaveCount += [detailModel.value integerValue];
+                totalOutCount += [detailModel.value integerValue];
+            }
+            
+        }
+        
+    }
     _totalSaveCountLable.text = [NSString stringWithFormat:@"总库存数:%@",[@(totalSaveCount)stringValue]] ;
     
     _totalOutCountLable.text = [NSString stringWithFormat:@"总出库数:%@",[@(totalOutCount)stringValue]] ;

@@ -31,29 +31,73 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [Utility navTitleView:@"出库"];
+    _rightSeleteds = [NSMutableArray array];
     [self setupDetailData];
 }
 
 //该数据源是来源右侧侧滑来的数据
 -(void)setRightSeleteds:(NSMutableArray<LLOutboundRightModel *> *)rightSeleteds {
-    _rightSeleteds = rightSeleteds;
-    [_listModels enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.productColorId isEqual:self.sectionModel.productColorId]) {
-            obj.itemCellData = [NSMutableArray arrayWithArray:_rightSeleteds];
+    [_rightSeleteds addObjectsFromArray:rightSeleteds];
+    
+    
+    //    [_listModels enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //        if ([obj.productColorId isEqual:self.sectionModel.productColorId]) {
+    //            obj.itemCellData = [NSMutableArray arrayWithArray:_rightSeleteds];
+    //        }
+    //    }];
+    
+    for (LZOutboundItemListModel *listModel in _listModels) {
+        
+        if ([listModel.productColorId isEqualToString:self.sectionModel.productColorId]) {
+            
+            listModel.itemCellData = [NSMutableArray arrayWithArray:[self addCellArray]];
+            
         }
-    }];
+        
+    }
+    
+    
     __block NSInteger  totalCount = 0;
     __block NSInteger totalOutCount = 0;
-    [_rightSeleteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        totalCount += [obj.total integerValue];
-        totalOutCount += [obj.outgoingCount integerValue];
-    }];
+    //计算总出库量和总条数
+    for (LLOutboundRightModel *rightModel in _rightSeleteds) {
+        
+        for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
+            
+            if (detailModel.seleted) {
+                totalCount += [detailModel.value integerValue];
+                totalOutCount += [detailModel.value integerValue];
+            }
+            
+        }
+        
+    }
+    
     
     self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
     
     self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     [self.tableView reloadData];
     
+}
+
+//把返回的数据转成LLOutboundRightDetailModel
+- (NSMutableArray *)addCellArray
+{
+    NSMutableArray *seletedArray = [NSMutableArray array];
+    for (LLOutboundRightModel *rightModel in _rightSeleteds) {
+        
+        for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
+            
+            if (detailModel.seleted) {
+                [seletedArray addObject:detailModel];
+            }
+            
+        }
+        
+    }
+    
+    return seletedArray;
 }
 
 #pragma mark ----- 网络请求 -----
@@ -224,10 +268,20 @@
     footerView.selteds = self.rightSeleteds;
     __block NSInteger  totalCount = 0;
     __block NSInteger totalOutCount = 0;
-    [_rightSeleteds enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        totalCount += [obj.total integerValue];
-        totalOutCount += [obj.outgoingCount integerValue];
-    }];
+    
+    for (LLOutboundRightModel *rightModel in _rightSeleteds) {
+        
+        for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
+            
+            if (detailModel.seleted) {
+                totalCount += [detailModel.value integerValue];
+                totalOutCount += [detailModel.value integerValue];
+            }
+            
+        }
+        
+    }
+    
     self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
     self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     return footerView;
@@ -269,8 +323,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //在这里实现删除操作
     //删除数据，和删除动画
+    
+    //删除其实就是将模型的selected设为NO
+    for (LLOutboundRightModel *rModel in self.rightSeleteds) {
+        
+        for (LLOutboundRightDetailModel *dModel in rModel.itemList) {
+            if ([dModel isEqual:self.listModels[indexPath.section].itemCellData[indexPath.row]]) {
+                dModel.seleted = NO;
+            }
+        }
+        
+    }
+    
     [self.listModels[indexPath.section].itemCellData removeObjectAtIndex:indexPath.row];
-    [self.rightSeleteds removeObjectAtIndex:indexPath.row];
+    
     [tableView reloadData];
     __block NSInteger  totalCount = 0;
     __block NSInteger totalOutCount = 0;
