@@ -172,6 +172,12 @@
     versionLabel.font = [UIFont systemFontOfSize:13];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:versionLabel];
+    
+    
+    
+    ///TEST
+    self.loginTF.text = @"188141881982";
+    self.passwordTF.text = @"666666";
 
 }
 
