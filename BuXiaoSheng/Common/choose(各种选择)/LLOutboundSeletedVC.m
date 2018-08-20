@@ -206,19 +206,33 @@
 }
 -(void)bottomBtnClick {
     
-    NSMutableArray <LLOutboundRightModel *> * seleteds = [NSMutableArray array];
-    [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (itemObj.seleted) {
-                [seleteds addObject:obj];
+    //seleteds存放LLOutboundRightDetailModel 用来判断是否选择产品
+    NSMutableArray <LLOutboundRightDetailModel *> * seleteds = [NSMutableArray array];
+#warning 直接把self.rightModels传回上个页面
+    //    [self.rightModels enumerateObjectsUsingBlock:^(LLOutboundRightModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //        [obj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //            if (itemObj.seleted) {
+    //                [seleteds addObject:obj];
+    //            }
+    //        }];
+    //    }];
+    
+    for (LLOutboundRightModel *rightModel in self.rightModels) {
+        
+        for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
+            detailModel.houseName = rightModel.leftModel.houseName;
+            if (detailModel.seleted) {
+                [seleteds addObject:detailModel];
             }
-        }];
-    }];
+            
+        }
+        
+    }
     if (!seleteds.count) {
         [LLHudTools showWithMessage:@"请选择产品"];
         return;
     }
-    self.block(seleteds.mutableCopy,self.itemModel);
+    self.block(self.rightModels.mutableCopy,self.itemModel);
     [self dismissViewControllerAnimated:true completion:nil];
     
     
