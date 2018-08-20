@@ -415,11 +415,6 @@
         return;
     }
     
-    if ([BXSTools stringIsNullOrEmpty:self.mobileCell.contentTF.text]) {
-        BXS_Alert(@"请输入客户手机号码");
-        return;
-    }
-    
     if ([BXSTools stringIsNullOrEmpty:self.principalCell.contentTF.text]) {
         BXS_Alert(@"请选择负责人");
         return;

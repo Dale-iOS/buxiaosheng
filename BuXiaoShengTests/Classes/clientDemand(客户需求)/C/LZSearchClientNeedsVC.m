@@ -15,6 +15,7 @@
 #import "LZSearchBar.h"
 #import "LZOrderTrackingModel.h"
 #import "LZSearchClientNeedsCell.h"
+#import "CheckDetailViewController.h"
 
 @interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -196,10 +197,13 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //获取cell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"cell.textLabel.text = %@",cell.textLabel.text);
     
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    
+    CheckDetailViewController *chechVC = [[CheckDetailViewController alloc] initWithNibName:@"CheckDetailViewController" bundle:nil];
+    chechVC.title = @"客户对账详情";
+    chechVC.orderNo = model.id;
+    [self.navigationController pushViewController:chechVC animated:YES];
 }
 
 #pragma mark --- 点击事件 ---

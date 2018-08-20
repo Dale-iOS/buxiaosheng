@@ -176,8 +176,8 @@
     
     
     ///TEST
-    self.loginTF.text = @"188141881982";
-    self.passwordTF.text = @"666666";
+//    self.loginTF.text = @"188141881982";
+//    self.passwordTF.text = @"666666";
 
 }
 
