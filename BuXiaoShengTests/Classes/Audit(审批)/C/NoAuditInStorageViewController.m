@@ -9,6 +9,7 @@
 #import "NoAuditInStorageViewController.h"
 #import "LZProcurementCell.h"
 #import "LZProcurementModel.h"
+#import "LZPurchaseReceiptDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface NoAuditInStorageViewController ()<UITableViewDelegate,UITableViewDataSource,LZProcurementCellDelegate>
@@ -69,8 +70,6 @@ static NSInteger const pageSize = 15;
                             @"status":@"0"
                             };
     [BXSHttp requestGETWithAppURL:@"approval/buy_list.do" param:param success:^(id response) {
-        LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
-        
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
                 [self.lists removeAllObjects];
@@ -149,7 +148,9 @@ static NSInteger const pageSize = 15;
     NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
     LZProcurementModel *model = _lists[indexP.row];
     //id
-//    model.id;
+    LZPurchaseReceiptDetailVC *vc = [[LZPurchaseReceiptDetailVC alloc]init];
+    vc.orderNo = model.buyId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter && Setter

@@ -7,28 +7,36 @@
 //
 
 #import "LZPurchaseReceiptDetailVC.h"
+#import "LZPurchaseReceiptDetailInfoModel.h"
+#import "LZPurchaseReceiptDetailCellModel.h"
 
 @interface LZPurchaseReceiptDetailVC ()
-
+@property (nonatomic, strong) LZPurchaseReceiptDetailInfoModel *infoModel;
+@property (nonatomic, strong) NSMutableArray <LZPurchaseReceiptDetailCellModel*> *cellInfo;
 @end
 
 @implementation LZPurchaseReceiptDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = [Utility navTitleView:@"采购收货详情"];
+    [self getProductInfo];
+    [self getProductDetail];
 }
 
 #pragma mark ---- 网络请求 ----
+//接口名称 采购单详情
 - (void)getProductInfo{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"orderNo":self.orderNo
+                             @"buyOrderId":self.orderNo
                              };
-    [BXSHttp requestGETWithAppURL:@"finance_data/order_info.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"documentary/buy_detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        _infoModel = [LZPurchaseReceiptDetailInfoModel LLMJParse:baseModel.data];
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -36,23 +44,23 @@
 
 }
 
-//- (void)getProductDetail{
-//    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-//                             @"orderDetailId"
-//                             };
-//    [BXSHttp requestGETWithAppURL:@"bank/list.do" param:param success:^(id response) {
-//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-//        if ([baseModel.code integerValue] != 200) {
-//            [LLHudTools showWithMessage:baseModel.msg];
-//            return ;
-//        }
-//        self.banks = [LLCashBankModel LLMJParse:baseModel.data];
-//        [self.tableView reloadData];
-//    } failure:^(NSError *error) {
-//        BXS_Alert(LLLoadErrorMessage);
-//    }];
-//
-//}
+//口名称 采购单产品详情
+- (void)getProductDetail{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                             @"buyOrderId":self.orderNo
+                             };
+    [BXSHttp requestGETWithAppURL:@"documentary/buy_product_detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _cellInfo = [LZPurchaseReceiptDetailCellModel LLMJParse:baseModel.data];
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -972,8 +972,10 @@
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
 		FFD8FB82212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB81212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.m */; };
 		FFD8FB83212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB81212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.m */; };
-		FFD8FB86212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB85212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m */; };
-		FFD8FB87212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB85212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m */; };
+		FFD8FB8A212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB89212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m */; };
+		FFD8FB8B212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB89212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m */; };
+		FFD8FB8E212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB8D212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m */; };
+		FFD8FB8F212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8FB8D212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2133,8 +2135,10 @@
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
 		FFD8FB80212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailVC.h; sourceTree = "<group>"; };
 		FFD8FB81212BEB14004CB3BF /* LZPurchaseReceiptDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailVC.m; sourceTree = "<group>"; };
-		FFD8FB84212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailModel.h; sourceTree = "<group>"; };
-		FFD8FB85212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
+		FFD8FB88212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailInfoModel.h; sourceTree = "<group>"; };
+		FFD8FB89212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailInfoModel.m; sourceTree = "<group>"; };
+		FFD8FB8C212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailCellModel.h; sourceTree = "<group>"; };
+		FFD8FB8D212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailCellModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2626,8 +2630,10 @@
 				348DF19D2129645C00D3A76F /* LZFindCodeModel.m */,
 				348DF1A22129645D00D3A76F /* LZPurchaseDetailModel.h */,
 				348DF19F2129645C00D3A76F /* LZPurchaseDetailModel.m */,
-				FFD8FB84212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.h */,
-				FFD8FB85212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m */,
+				FFD8FB88212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.h */,
+				FFD8FB89212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m */,
+				FFD8FB8C212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.h */,
+				FFD8FB8D212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5406,7 +5412,6 @@
 				348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */,
 				344358D220EF465C004A5E6E /* LZChooseBankTypeModel.m in Sources */,
 				343207CA20A068BC005A5D23 /* NoAuditSellViewController.m in Sources */,
-				FFD8FB86212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m in Sources */,
 				3448D88720B7FB1B00C11120 /* LZSearchVC.m in Sources */,
 				34EBACAC208454AA0005BF77 /* WaitOutOrderViewController.m in Sources */,
 				346992A420C6610200476CF0 /* LZVisitModel.m in Sources */,
@@ -5664,6 +5669,7 @@
 				346C225E210E03D3004AAC88 /* LZChooseProductVC.m in Sources */,
 				346C2273210E03DA004AAC88 /* LZBackOrderLIstsCell.m in Sources */,
 				3461107720C11B940080579F /* HXTagsView.m in Sources */,
+				FFD8FB8E212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m in Sources */,
 				344C488D20D1001800BEC002 /* LZDIdSaleAuditVC.m in Sources */,
 				B58BF6F220A178D000A8B92B /* CWInteractiveTransition.m in Sources */,
 				34E49B2820A57FB60074F454 /* QQTagView.m in Sources */,
@@ -5845,6 +5851,7 @@
 				34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
+				FFD8FB8A212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m in Sources */,
 				3450B02A20E0ED9C00429570 /* LZRecipeCell.m in Sources */,
 				3484F51D21198C59004F419F /* LZBankListModel.m in Sources */,
 				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
@@ -6101,6 +6108,7 @@
 				3428B8432121685C003F86D7 /* ReimXiMaCollectionViewCell.m in Sources */,
 				34F6E77220C0359B00FABC5F /* LZSearchWarehouseVC.m in Sources */,
 				3488D69F2118556E0061BA0C /* LZAuditDetailInfoView.m in Sources */,
+				FFD8FB8F212C1329004CB3BF /* LZPurchaseReceiptDetailCellModel.m in Sources */,
 				B58BF6F120A178D000A8B92B /* CWDrawerTransition.m in Sources */,
 				3484F51E21198C59004F419F /* LZBankListModel.m in Sources */,
 				3428B8572121685C003F86D7 /* ReimColorHeadCell.m in Sources */,
@@ -6133,7 +6141,6 @@
 				34DD05C02127CE310002AF6C /* BXSStockMachiningProductCell.m in Sources */,
 				B50505DE209AB2DA00CE7E4D /* XLFormRowNavigationAccessoryView.m in Sources */,
 				3465C9F720DC9A9700BAE415 /* FSCalendarDelegationFactory.m in Sources */,
-				FFD8FB87212BEC67004CB3BF /* LZPurchaseReceiptDetailModel.m in Sources */,
 				B50505D0209AB2DA00CE7E4D /* NSExpression+XLFormAdditions.m in Sources */,
 				342398EC20FB4291002B81E1 /* BaseModel.m in Sources */,
 				348DF1E82129646900D3A76F /* LZBugAndProcessUntreatedCell.m in Sources */,
@@ -6183,6 +6190,7 @@
 				B50505BC209AB2DA00CE7E4D /* XLFormSwitchCell.m in Sources */,
 				B5B0751C209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				344A5D2820E22D5C0058E319 /* LZProductDetailModel.m in Sources */,
+				FFD8FB8B212C0D93004CB3BF /* LZPurchaseReceiptDetailInfoModel.m in Sources */,
 				344E4D3D210EAD4D0031DCE8 /* kVoid.m in Sources */,
 				B5CF350420A58DED0043D906 /* LLFactoryModel.m in Sources */,
 				3480AAA520E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */,
