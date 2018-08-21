@@ -314,7 +314,7 @@
 
 //切换用户
 - (void)changeUserBtnClick
-{//    用户退出接口  正式环境
+{
     NSDictionary * param = @{@"token":[BXSUser currentUser].token,
                              @"userId":[BXSUser currentUser].userId
                              };

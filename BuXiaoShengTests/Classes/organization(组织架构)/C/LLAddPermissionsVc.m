@@ -131,19 +131,35 @@
 
 -(void)selectornavRightBtnClick {
     
+    //选中的值拼成数组
     NSMutableArray * btnIds = [NSMutableArray array];
     [self.roles enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
         [obj.itemList enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull itemObj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
             if (itemObj.exis_role) {
+                //假如选中
                 [btnIds addObject:itemObj.id];
+         
             }
-           
+            if (idx == obj.itemList.count-1) {
+                [obj.itemList enumerateObjectsUsingBlock:^(LLAddNewPeoleRoleModel * _Nonnull itemSelectObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (itemSelectObj.exis_role) {
+                        [btnIds addObject:itemObj.parentId];
+                        *stop = true;
+                    }
+                }];
+
+            }
+
         }];
     }];
     if (!btnIds.count) {
         [LLHudTools showWithMessage:@"请选择权限"];
         return;
     }
+    
+//    数组拼成字符串
     NSMutableString * btnIdStrs = [NSMutableString string];
     [btnIds enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
@@ -194,14 +210,5 @@
     return _collectionView;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
