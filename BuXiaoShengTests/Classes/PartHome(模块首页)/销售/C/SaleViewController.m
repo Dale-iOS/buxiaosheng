@@ -43,6 +43,12 @@
 - (void)setupUI
 {
     self.mainTabelView.delegate = self;
+
+	UIView * ci = [[UIView alloc]init];
+	ci.backgroundColor = [UIColor redColor];
+	ci.userInteractionEnabled = NO;
+	[self.view addSubview:ci];
+	
 //    [self.mainTabelView setIsScrollEnable:NO];
     self.datasource = [NSMutableArray array];
     [self setupSectionOne];
