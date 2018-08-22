@@ -236,7 +236,7 @@
     //   手机号码
     self.phoneNumberCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.phoneNumberCell.titleLabel.text = @"手机号码";
-    self.phoneNumberCell.contentTF.placeholder = @"请输入手机号码(非必填)";
+    self.phoneNumberCell.contentTF.placeholder = @"请输入手机号码";
     
     //   地址
     self.addressTextView = [[TextInputTextView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 70)];
@@ -259,8 +259,8 @@
 
 - (void)saveBtnClick
 {
-    if ([BXSTools stringIsNullOrEmpty:self.typeCell.contentTF.text]) {
-        BXS_Alert(@"请选择地址");
+    if ([BXSTools stringIsNullOrEmpty:self.titleCell.contentTF.text]) {
+        BXS_Alert(@"请输入名称");
         return;
     }
     if ([BXSTools stringIsNullOrEmpty:self.stateCell.contentTF.text]) {
@@ -275,41 +275,14 @@
         BXS_Alert(@"请输入联系人姓名");
         return;
     }
-    if ([BXSTools stringIsNullOrEmpty:self.phoneCell.contentTF.text]) {
-        BXS_Alert(@"请输入座机号码");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.phoneNumberCell.contentTF.text]) {
-        BXS_Alert(@"请输入手机号码");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.addressTextView.textView.text]) {
-        BXS_Alert(@"请输入地址");
-        return;
-    }
-    if ([BXSTools stringIsNullOrEmpty:self.addressTextView.textView.text]) {
-        BXS_Alert(@"请输入联系地址");
-        return;
-    }
+
     NSInteger stauts;
     if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
         stauts = 0;
     }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
         stauts = 1;
     }
-//    switch (self.type) {
-//        case 0:
-//            stauts = 0;
-//            break;
-//        case 1:
-//            stauts = 1;
-//            break;
-//        case 2:
-//            stauts = 2;
-//            break;
-//        default:
-//            break;
-//    }
+
     
     NSInteger types = -1;
     if ([self.typeCell.contentTF.text isEqualToString:@"供货商"]) {
