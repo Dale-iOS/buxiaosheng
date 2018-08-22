@@ -28,8 +28,10 @@
 
 -(void)setItemsModel:(LLOutboundRightDetailModel *)itemsModel {
     _itemsModel = itemsModel;
-    
-    _warehouseNumLbl.text = _itemsModel.value;
+//    if (!_warehouseNumLbl.text) {
+//        _warehouseNumLbl.text = _itemsModel.value;
+//    }
+    _warehouseNumLbl.text = _itemsModel.inventory;
     _OutNumLbl.text = _itemsModel.value;
     _lineNumLbl.text =_itemsModel.total;
     _fromWarahouseLbl.text = itemsModel.houseName;
@@ -54,7 +56,7 @@
     warehouseNumLbl.font = FONT(14);
     warehouseNumLbl.textColor = CD_Text33;
     warehouseNumLbl.textAlignment = NSTextAlignmentCenter;
-    warehouseNumLbl.text = @"库存数量";
+//    warehouseNumLbl.text = @"库存数量";
     [self.contentView addSubview:warehouseNumLbl];
     [warehouseNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView);
@@ -70,7 +72,7 @@
     OutNumLbl.delegate = self;
     OutNumLbl.textColor = CD_Text33;
     OutNumLbl.textAlignment = NSTextAlignmentCenter;
-    OutNumLbl.placeholder = @"出库数量";
+//    OutNumLbl.placeholder = @"出库数量";
     [self.contentView addSubview:OutNumLbl];
     [OutNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
@@ -84,7 +86,7 @@
     lineNumLbl.font = FONT(14);
     lineNumLbl.textColor = CD_Text33;
     lineNumLbl.textAlignment = NSTextAlignmentCenter;
-    lineNumLbl.text = @"条数";
+//    lineNumLbl.text = @"条数";
     [self.contentView addSubview:lineNumLbl];
     [lineNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
@@ -98,7 +100,7 @@
     fromWarahouseLbl.font = FONT(14);
     fromWarahouseLbl.textColor = CD_Text33;
     fromWarahouseLbl.textAlignment = NSTextAlignmentCenter;
-    fromWarahouseLbl.text = @"出库仓";
+//    fromWarahouseLbl.text = @"出库仓";
     [self.contentView addSubview:fromWarahouseLbl];
     [fromWarahouseLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
