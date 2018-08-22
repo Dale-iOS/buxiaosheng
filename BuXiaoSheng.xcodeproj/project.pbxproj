@@ -800,6 +800,9 @@
 		34FB1F3020BD5072004D18C2 /* LLMonthCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2520BD5072004D18C2 /* LLMonthCalendarVc.m */; };
 		34FB1F3120BD5072004D18C2 /* LLQuarterCalendarVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FB1F2720BD5072004D18C2 /* LLQuarterCalendarVc.m */; };
 		8E58A4E521218AC500E73AE8 /* LZsharedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E58A4E421218AC500E73AE8 /* LZsharedNavigationController.m */; };
+		8E5C2BCF212D50240077F715 /* LZPurchaseReceiptDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C2BCD212D50240077F715 /* LZPurchaseReceiptDetailVC.m */; };
+		8E5C2BD2212D505F0077F715 /* LZPurchaseReceiptDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C2BD1212D505E0077F715 /* LZPurchaseReceiptDetailInfoModel.m */; };
+		8E5C2BD5212D50840077F715 /* LZPurchaseReceiptDetailCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C2BD4212D50830077F715 /* LZPurchaseReceiptDetailCellModel.m */; };
 		8E898552212C0E55002E1671 /* LZSetImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E898551212C0E55002E1671 /* LZSetImagePickerController.m */; };
 		A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
@@ -1933,6 +1936,12 @@
 		86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		8E58A4E321218AC500E73AE8 /* LZsharedNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZsharedNavigationController.h; sourceTree = "<group>"; };
 		8E58A4E421218AC500E73AE8 /* LZsharedNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZsharedNavigationController.m; sourceTree = "<group>"; };
+		8E5C2BCD212D50240077F715 /* LZPurchaseReceiptDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailVC.m; sourceTree = "<group>"; };
+		8E5C2BCE212D50240077F715 /* LZPurchaseReceiptDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailVC.h; sourceTree = "<group>"; };
+		8E5C2BD0212D505E0077F715 /* LZPurchaseReceiptDetailInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LZPurchaseReceiptDetailInfoModel.h; path = "BuXiaoShengTests/Classes/followOrder(跟单)/bugAndProcess(采购加工)/M/LZPurchaseReceiptDetailInfoModel.h"; sourceTree = SOURCE_ROOT; };
+		8E5C2BD1212D505E0077F715 /* LZPurchaseReceiptDetailInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LZPurchaseReceiptDetailInfoModel.m; path = "BuXiaoShengTests/Classes/followOrder(跟单)/bugAndProcess(采购加工)/M/LZPurchaseReceiptDetailInfoModel.m"; sourceTree = SOURCE_ROOT; };
+		8E5C2BD3212D50830077F715 /* LZPurchaseReceiptDetailCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LZPurchaseReceiptDetailCellModel.h; path = "BuXiaoShengTests/Classes/followOrder(跟单)/bugAndProcess(采购加工)/M/LZPurchaseReceiptDetailCellModel.h"; sourceTree = SOURCE_ROOT; };
+		8E5C2BD4212D50830077F715 /* LZPurchaseReceiptDetailCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LZPurchaseReceiptDetailCellModel.m; path = "BuXiaoShengTests/Classes/followOrder(跟单)/bugAndProcess(采购加工)/M/LZPurchaseReceiptDetailCellModel.m"; sourceTree = SOURCE_ROOT; };
 		8E898550212C0E55002E1671 /* LZSetImagePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSetImagePickerController.h; sourceTree = "<group>"; };
 		8E898551212C0E55002E1671 /* LZSetImagePickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSetImagePickerController.m; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2557,9 +2566,15 @@
 				348DF1EB2129647100D3A76F /* LZDidBugAndProcessUntreatedVC.m */,
 				348DF1E92129647100D3A76F /* LZFineCodeVC.h */,
 				348DF1F42129647200D3A76F /* LZFineCodeVC.m */,
+				8E5C2BD0212D505E0077F715 /* LZPurchaseReceiptDetailInfoModel.h */,
+				8E5C2BD1212D505E0077F715 /* LZPurchaseReceiptDetailInfoModel.m */,
 				348DF1EF2129647100D3A76F /* LZProcessAskVC.h */,
+				8E5C2BD3212D50830077F715 /* LZPurchaseReceiptDetailCellModel.h */,
+				8E5C2BD4212D50830077F715 /* LZPurchaseReceiptDetailCellModel.m */,
 				348DF1F02129647100D3A76F /* LZProcessAskVC.m */,
 				348DF1F32129647200D3A76F /* LZProcessReceiptVC.h */,
+				8E5C2BCE212D50240077F715 /* LZPurchaseReceiptDetailVC.h */,
+				8E5C2BCD212D50240077F715 /* LZPurchaseReceiptDetailVC.m */,
 				348DF1F22129647200D3A76F /* LZProcessReceiptVC.m */,
 				348DF1F72129647200D3A76F /* LZPurchaseAskVC.h */,
 				348DF1EE2129647100D3A76F /* LZPurchaseAskVC.m */,
@@ -5178,7 +5193,7 @@
 					34A92B0F207DE86200572648 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0940;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -5688,6 +5703,7 @@
 				B50505BF209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
 				344C489D20D1042100BEC002 /* LZDidToWarehouseAuditCell.m in Sources */,
 				34E4D4A0211B302A00A6ADE9 /* LZCollectionCheckDetailProductModel.m in Sources */,
+				8E5C2BCF212D50240077F715 /* LZPurchaseReceiptDetailVC.m in Sources */,
 				34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */,
 				3465C9E820DC9A9600BAE415 /* FSCalendarHeaderView.m in Sources */,
 				B50505E5209AB2DA00CE7E4D /* XLFormValidator.m in Sources */,
@@ -5738,6 +5754,7 @@
 				344C489520D100B800BEC002 /* LZDidReimbursementSaleVC.m in Sources */,
 				346992A820C6649500476CF0 /* LZVisitRecordCell.m in Sources */,
 				3411F2A42085A6FE00C448FD /* ClientManagerViewController.m in Sources */,
+				8E5C2BD5212D50840077F715 /* LZPurchaseReceiptDetailCellModel.m in Sources */,
 				B50505E7209AB2DA00CE7E4D /* XLForm.m in Sources */,
 				3468B05720EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
 				3471DCAE20D77B93002052EE /* LZShipmentBigGoodsView.m in Sources */,
@@ -5837,6 +5854,7 @@
 				34EE5D7B20A68E1800A2C9B5 /* ManagerCostViewController.m in Sources */,
 				34A92B23207DE86200572648 /* main.m in Sources */,
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
+				8E5C2BD2212D505F0077F715 /* LZPurchaseReceiptDetailInfoModel.m in Sources */,
 				3450B02A20E0ED9C00429570 /* LZRecipeCell.m in Sources */,
 				3484F51D21198C59004F419F /* LZBankListModel.m in Sources */,
 				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
@@ -6458,14 +6476,14 @@
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CYWVE83CAM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eascs.ComMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6487,14 +6505,14 @@
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CYWVE83CAM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BuXiaoSheng/Other/BuXiaoSheng-Prefix.pch";
 				INFOPLIST_FILE = BuXiaoSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eascs.ComMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
