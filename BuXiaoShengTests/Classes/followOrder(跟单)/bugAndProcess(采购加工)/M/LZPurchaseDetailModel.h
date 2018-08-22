@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class LZPurchaseDetailItemListModel;
-
+@class LZPurchaseBottomListModel;
 @interface LZPurchaseDetailModel : NSObject
 @property(nonatomic,copy)NSString *address;
 @property(nonatomic,copy)NSString *contactName;
@@ -28,4 +28,13 @@
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *productColorId;
 @property(nonatomic,copy)NSString *productColorName;
+@property(nonatomic,copy)NSArray <LZPurchaseBottomListModel*> *bottomList;
+@end
+
+@interface LZPurchaseBottomListModel : NSObject
+@property(nonatomic,copy)NSString *productName;
+@property(nonatomic,copy)NSString *number;
+@property(nonatomic,copy)NSString *productColorName;
+@property(nonatomic,copy)NSString *total;
+
 @end

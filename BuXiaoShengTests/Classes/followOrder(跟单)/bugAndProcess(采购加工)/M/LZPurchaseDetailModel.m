@@ -8,6 +8,8 @@
 
 #import "LZPurchaseDetailModel.h"
 
+#import "LZPurchaseDetailModel.h"
+
 @implementation LZPurchaseDetailModel
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"itemList":[LZPurchaseDetailItemListModel class]};
@@ -16,5 +18,15 @@
 
 
 @implementation LZPurchaseDetailItemListModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"bottomList":[LZPurchaseBottomListModel class]};
+}
+
 
 @end
+
+@implementation LZPurchaseBottomListModel
+
+@end
+
+

@@ -9,5 +9,9 @@
 #import "LZBugAndProcessBssModel.h"
 
 @implementation LZBugAndProcessBssModel
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
 
 @end

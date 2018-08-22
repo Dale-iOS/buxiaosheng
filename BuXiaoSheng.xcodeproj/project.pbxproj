@@ -974,6 +974,40 @@
 		B5E288E820A9371400D84196 /* LLAuditMangerSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288E720A9371400D84196 /* LLAuditMangerSectionView.m */; };
 		B5E288EC20A93B0300D84196 /* LLAuditMangerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */; };
 		DA8A99F0C96DD391B508466D /* Pods_BuXiaoSheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */; };
+		FF3FA96C212D6083009431DA /* BackClothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA954212D6083009431DA /* BackClothTableViewCell.m */; };
+		FF3FA96D212D6083009431DA /* BackClothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA954212D6083009431DA /* BackClothTableViewCell.m */; };
+		FF3FA96E212D6083009431DA /* BackClothTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */; };
+		FF3FA96F212D6083009431DA /* BackClothTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */; };
+		FF3FA970212D6083009431DA /* ConsultOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA957212D6083009431DA /* ConsultOtherTableViewCell.m */; };
+		FF3FA971212D6083009431DA /* ConsultOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA957212D6083009431DA /* ConsultOtherTableViewCell.m */; };
+		FF3FA972212D6083009431DA /* ConsultOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA958212D6083009431DA /* ConsultOtherTableViewCell.xib */; };
+		FF3FA973212D6083009431DA /* ConsultOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA958212D6083009431DA /* ConsultOtherTableViewCell.xib */; };
+		FF3FA974212D6083009431DA /* ConsultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA95A212D6083009431DA /* ConsultViewController.m */; };
+		FF3FA975212D6083009431DA /* ConsultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA95A212D6083009431DA /* ConsultViewController.m */; };
+		FF3FA976212D6083009431DA /* ConsultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA95B212D6083009431DA /* ConsultViewController.xib */; };
+		FF3FA977212D6083009431DA /* ConsultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA95B212D6083009431DA /* ConsultViewController.xib */; };
+		FF3FA978212D6083009431DA /* DibuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA95D212D6083009431DA /* DibuTableViewCell.m */; };
+		FF3FA979212D6083009431DA /* DibuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA95D212D6083009431DA /* DibuTableViewCell.m */; };
+		FF3FA97A212D6083009431DA /* DibuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA95E212D6083009431DA /* DibuTableViewCell.xib */; };
+		FF3FA97B212D6083009431DA /* DibuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA95E212D6083009431DA /* DibuTableViewCell.xib */; };
+		FF3FA97C212D6083009431DA /* PinDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA960212D6083009431DA /* PinDetailTableViewCell.m */; };
+		FF3FA97D212D6083009431DA /* PinDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA960212D6083009431DA /* PinDetailTableViewCell.m */; };
+		FF3FA97E212D6083009431DA /* PinDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA961212D6083009431DA /* PinDetailTableViewCell.xib */; };
+		FF3FA97F212D6083009431DA /* PinDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA961212D6083009431DA /* PinDetailTableViewCell.xib */; };
+		FF3FA980212D6083009431DA /* PinNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA963212D6083009431DA /* PinNameTableViewCell.m */; };
+		FF3FA981212D6083009431DA /* PinNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA963212D6083009431DA /* PinNameTableViewCell.m */; };
+		FF3FA982212D6083009431DA /* PinNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA964212D6083009431DA /* PinNameTableViewCell.xib */; };
+		FF3FA983212D6083009431DA /* PinNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA964212D6083009431DA /* PinNameTableViewCell.xib */; };
+		FF3FA984212D6083009431DA /* TitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA966212D6083009431DA /* TitleTableViewCell.m */; };
+		FF3FA985212D6083009431DA /* TitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA966212D6083009431DA /* TitleTableViewCell.m */; };
+		FF3FA986212D6083009431DA /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA967212D6083009431DA /* TitleTableViewCell.xib */; };
+		FF3FA987212D6083009431DA /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA967212D6083009431DA /* TitleTableViewCell.xib */; };
+		FF3FA988212D6083009431DA /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA969212D6083009431DA /* UIView+Positioning.m */; };
+		FF3FA989212D6083009431DA /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA969212D6083009431DA /* UIView+Positioning.m */; };
+		FF3FA98A212D6083009431DA /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA96B212D6083009431DA /* WMTextView.m */; };
+		FF3FA98B212D6083009431DA /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA96B212D6083009431DA /* WMTextView.m */; };
+		FF3FA98E212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
+		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2139,6 +2173,33 @@
 		B5E288EA20A93B0300D84196 /* LLAuditMangerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuditMangerCell.h; sourceTree = "<group>"; };
 		B5E288EB20A93B0300D84196 /* LLAuditMangerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuditMangerCell.m; sourceTree = "<group>"; };
 		CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuXiaoSheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuXiaoSheng/Pods-BuXiaoSheng.release.xcconfig"; sourceTree = "<group>"; };
+		FF3FA953212D6083009431DA /* BackClothTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackClothTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA954212D6083009431DA /* BackClothTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackClothTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackClothTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA956212D6083009431DA /* ConsultOtherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsultOtherTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA957212D6083009431DA /* ConsultOtherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsultOtherTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA958212D6083009431DA /* ConsultOtherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsultOtherTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA959212D6083009431DA /* ConsultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsultViewController.h; sourceTree = "<group>"; };
+		FF3FA95A212D6083009431DA /* ConsultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsultViewController.m; sourceTree = "<group>"; };
+		FF3FA95B212D6083009431DA /* ConsultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsultViewController.xib; sourceTree = "<group>"; };
+		FF3FA95C212D6083009431DA /* DibuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DibuTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA95D212D6083009431DA /* DibuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DibuTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA95E212D6083009431DA /* DibuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DibuTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA95F212D6083009431DA /* PinDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinDetailTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA960212D6083009431DA /* PinDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinDetailTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA961212D6083009431DA /* PinDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinDetailTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA962212D6083009431DA /* PinNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinNameTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA963212D6083009431DA /* PinNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinNameTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA964212D6083009431DA /* PinNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinNameTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA965212D6083009431DA /* TitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTableViewCell.h; sourceTree = "<group>"; };
+		FF3FA966212D6083009431DA /* TitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTableViewCell.m; sourceTree = "<group>"; };
+		FF3FA967212D6083009431DA /* TitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
+		FF3FA968212D6083009431DA /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
+		FF3FA969212D6083009431DA /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		FF3FA96A212D6083009431DA /* WMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextView.h; sourceTree = "<group>"; };
+		FF3FA96B212D6083009431DA /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
+		FF3FA98C212D6187009431DA /* LZPurchaseReceiptDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailModel.h; sourceTree = "<group>"; };
+		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2548,6 +2609,7 @@
 		3427A4FC20CE6CBC00369650 /* bugAndProcess(采购加工) */ = {
 			isa = PBXGroup;
 			children = (
+				FF3FA952212D6083009431DA /* 加工询问 */,
 				3427A50320CE6D7100369650 /* M */,
 				3427A50220CE6D6D00369650 /* V */,
 				3427A50120CE6D6800369650 /* C */,
@@ -2634,6 +2696,8 @@
 				348DF19D2129645C00D3A76F /* LZFindCodeModel.m */,
 				348DF1A22129645D00D3A76F /* LZPurchaseDetailModel.h */,
 				348DF19F2129645C00D3A76F /* LZPurchaseDetailModel.m */,
+				FF3FA98C212D6187009431DA /* LZPurchaseReceiptDetailModel.h */,
+				FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5122,6 +5186,38 @@
 			path = CWLateralSlide;
 			sourceTree = "<group>";
 		};
+		FF3FA952212D6083009431DA /* 加工询问 */ = {
+			isa = PBXGroup;
+			children = (
+				FF3FA953212D6083009431DA /* BackClothTableViewCell.h */,
+				FF3FA954212D6083009431DA /* BackClothTableViewCell.m */,
+				FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */,
+				FF3FA956212D6083009431DA /* ConsultOtherTableViewCell.h */,
+				FF3FA957212D6083009431DA /* ConsultOtherTableViewCell.m */,
+				FF3FA958212D6083009431DA /* ConsultOtherTableViewCell.xib */,
+				FF3FA959212D6083009431DA /* ConsultViewController.h */,
+				FF3FA95A212D6083009431DA /* ConsultViewController.m */,
+				FF3FA95B212D6083009431DA /* ConsultViewController.xib */,
+				FF3FA95C212D6083009431DA /* DibuTableViewCell.h */,
+				FF3FA95D212D6083009431DA /* DibuTableViewCell.m */,
+				FF3FA95E212D6083009431DA /* DibuTableViewCell.xib */,
+				FF3FA95F212D6083009431DA /* PinDetailTableViewCell.h */,
+				FF3FA960212D6083009431DA /* PinDetailTableViewCell.m */,
+				FF3FA961212D6083009431DA /* PinDetailTableViewCell.xib */,
+				FF3FA962212D6083009431DA /* PinNameTableViewCell.h */,
+				FF3FA963212D6083009431DA /* PinNameTableViewCell.m */,
+				FF3FA964212D6083009431DA /* PinNameTableViewCell.xib */,
+				FF3FA965212D6083009431DA /* TitleTableViewCell.h */,
+				FF3FA966212D6083009431DA /* TitleTableViewCell.m */,
+				FF3FA967212D6083009431DA /* TitleTableViewCell.xib */,
+				FF3FA968212D6083009431DA /* UIView+Positioning.h */,
+				FF3FA969212D6083009431DA /* UIView+Positioning.m */,
+				FF3FA96A212D6083009431DA /* WMTextView.h */,
+				FF3FA96B212D6083009431DA /* WMTextView.m */,
+			);
+			path = "加工询问";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5252,7 +5348,9 @@
 				346C227B210E03DA004AAC88 /* LZBackOrderCell.xib in Resources */,
 				3428B84A2121685C003F86D7 /* ReimColorDetailCell.xib in Resources */,
 				34A92B20207DE86200572648 /* LaunchScreen.storyboard in Resources */,
+				FF3FA986212D6083009431DA /* TitleTableViewCell.xib in Resources */,
 				3428B85F2121794E003F86D7 /* ReimSubCell.xib in Resources */,
+				FF3FA982212D6083009431DA /* PinNameTableViewCell.xib in Resources */,
 				3428B8482121685C003F86D7 /* ReimColorsCell.xib in Resources */,
 				2DF7A3902115A314009889DF /* LZPurchaseViewController.xib in Resources */,
 				348DF24A212964D800D3A76F /* BYCamera.bundle in Resources */,
@@ -5264,11 +5362,16 @@
 				2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */,
 				3428B82521216851003F86D7 /* CustomerCell.xib in Resources */,
 				3428B81F21216851003F86D7 /* ColorsCell.xib in Resources */,
+				FF3FA97A212D6083009431DA /* DibuTableViewCell.xib in Resources */,
 				34A92B1B207DE86200572648 /* Main.storyboard in Resources */,
+				FF3FA97E212D6083009431DA /* PinDetailTableViewCell.xib in Resources */,
+				FF3FA96E212D6083009431DA /* BackClothTableViewCell.xib in Resources */,
+				FF3FA972212D6083009431DA /* ConsultOtherTableViewCell.xib in Resources */,
 				3428B82721216851003F86D7 /* ColorDetailCell.xib in Resources */,
 				3428B8542121685C003F86D7 /* ReimColorHeadCell.xib in Resources */,
 				3428B81B21216851003F86D7 /* CheckDetailViewController.xib in Resources */,
 				3428B83E2121685C003F86D7 /* ReimXiMaCollectionViewCell.xib in Resources */,
+				FF3FA976212D6083009431DA /* ConsultViewController.xib in Resources */,
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				2DF7A37C21156935009889DF /* LZDirectStorageBottomView.xib in Resources */,
 				34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */,
@@ -5291,10 +5394,14 @@
 				3428B81C21216851003F86D7 /* CheckDetailViewController.xib in Resources */,
 				3427A4F920CE507600369650 /* BRPickerView.bundle in Resources */,
 				3428B81221216851003F86D7 /* XiMaCollectionViewCell.xib in Resources */,
+				FF3FA97B212D6083009431DA /* DibuTableViewCell.xib in Resources */,
 				346C225B210E03D3004AAC88 /* LZAddItemViewController.xib in Resources */,
+				FF3FA97F212D6083009431DA /* PinDetailTableViewCell.xib in Resources */,
 				3428B82021216851003F86D7 /* ColorsCell.xib in Resources */,
 				3428B8452121685C003F86D7 /* ReimDetailViewController.xib in Resources */,
 				3428B8602121794E003F86D7 /* ReimSubCell.xib in Resources */,
+				FF3FA973212D6083009431DA /* ConsultOtherTableViewCell.xib in Resources */,
+				FF3FA977212D6083009431DA /* ConsultViewController.xib in Resources */,
 				348DF24B212964D800D3A76F /* BYCamera.bundle in Resources */,
 				3428B81421216851003F86D7 /* ColorHeadCell.xib in Resources */,
 				3428B82821216851003F86D7 /* ColorDetailCell.xib in Resources */,
@@ -5302,9 +5409,12 @@
 				3428B8472121685C003F86D7 /* ReimCustomerCell.xib in Resources */,
 				346C2261210E03D3004AAC88 /* LZSelectItemViewController.xib in Resources */,
 				3453791F21099CD300830DF8 /* LZGoodValueCell.xib in Resources */,
+				FF3FA96F212D6083009431DA /* BackClothTableViewCell.xib in Resources */,
 				3417F991211E83B100FF29F8 /* testData.json in Resources */,
 				B50505EA209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				346C227C210E03DA004AAC88 /* LZBackOrderCell.xib in Resources */,
+				FF3FA983212D6083009431DA /* PinNameTableViewCell.xib in Resources */,
+				FF3FA987212D6083009431DA /* TitleTableViewCell.xib in Resources */,
 				3428B84B2121685C003F86D7 /* ReimColorDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5405,6 +5515,7 @@
 				B5E288E820A9371400D84196 /* LLAuditMangerSectionView.m in Sources */,
 				3453790A21099BD500830DF8 /* LZSaveOrderModel.m in Sources */,
 				348DF1D72129646900D3A76F /* LZPurchaseAskCell.m in Sources */,
+				FF3FA98A212D6083009431DA /* WMTextView.m in Sources */,
 				34B1944C20FF42380095BBFD /* LZWKWebViewVC.m in Sources */,
 				342AF93A2086F21C0043EA2E /* FinancialViewController.m in Sources */,
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
@@ -5460,6 +5571,7 @@
 				348DB856209AEC0700CD36CD /* OrganizationViewController.m in Sources */,
 				346C2287210E03E2004AAC88 /* salesDemandModel.m in Sources */,
 				B50505A7209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
+				FF3FA980212D6083009431DA /* PinNameTableViewCell.m in Sources */,
 				344C488920D0F07200BEC002 /* LZMarketModel.m in Sources */,
 				34871CFA20DB9AA300F7182C /* JYEqualCellSpaceFlowLayout.m in Sources */,
 				34BA920E2122C2B0002B0AD9 /* LZProductInfoModel.m in Sources */,
@@ -5553,6 +5665,7 @@
 				343008D52081A0C800447992 /* SGPageTitleViewConfigure.m in Sources */,
 				348DF1E12129646900D3A76F /* LZBugAndProcessUntreatedView.m in Sources */,
 				348DF1FB2129647300D3A76F /* DyeingViewController.m in Sources */,
+				FF3FA988212D6083009431DA /* UIView+Positioning.m in Sources */,
 				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
 				B50505C3209AB2DA00CE7E4D /* XLFormOptionsViewController.m in Sources */,
 				34EE5D6920A68AC000A2C9B5 /* AddAuditManagerViewController.m in Sources */,
@@ -5647,6 +5760,7 @@
 				347C5FE3211C73A40064D403 /* LZTypeTopModel.m in Sources */,
 				34528E982089EDB2004CD04B /* FinancialCollectionViewCell.m in Sources */,
 				3471DCA620D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
+				FF3FA978212D6083009431DA /* DibuTableViewCell.m in Sources */,
 				3484F5212119D408004F419F /* LZCustomerReconciliationInfoModel.m in Sources */,
 				3428B8522121685C003F86D7 /* ReimColorsCell.m in Sources */,
 				3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */,
@@ -5662,6 +5776,7 @@
 				34DD05B72127CE280002AF6C /* BXSStockPurchaseVC.m in Sources */,
 				344C48A920D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */,
 				B50505C5209AB2DA00CE7E4D /* XLFormViewController.m in Sources */,
+				FF3FA98E212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */,
 				346C228B210E03E2004AAC88 /* LZBackOrderGroup.m in Sources */,
 				344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */,
@@ -5819,6 +5934,7 @@
 				3427A4F020CE507600369650 /* NSDate+BRPickerView.m in Sources */,
 				B5C888D220C12B1B00FFA3B3 /* LLOutbounceSeletedLeftCell.m in Sources */,
 				B58BF6F020A178D000A8B92B /* CWDrawerTransition.m in Sources */,
+				FF3FA970212D6083009431DA /* ConsultOtherTableViewCell.m in Sources */,
 				34EE88DC20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
@@ -5856,6 +5972,7 @@
 				34D5EADC20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
 				8E5C2BD2212D505F0077F715 /* LZPurchaseReceiptDetailInfoModel.m in Sources */,
 				3450B02A20E0ED9C00429570 /* LZRecipeCell.m in Sources */,
+				FF3FA984212D6083009431DA /* TitleTableViewCell.m in Sources */,
 				3484F51D21198C59004F419F /* LZBankListModel.m in Sources */,
 				34871CFE20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				B55ADE1620A556A1000F9C4A /* NSObject+LLMJParse.m in Sources */,
@@ -5870,6 +5987,7 @@
 				3440802C2087364300FD36B8 /* YANScrollMenu.m in Sources */,
 				B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
+				FF3FA974212D6083009431DA /* ConsultViewController.m in Sources */,
 				34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */,
 				342CF6632099B603007C329D /* SubjectViewController.m in Sources */,
 				3471DCB220D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
@@ -5900,6 +6018,7 @@
 				344C489920D100F800BEC002 /* LZDidNoBackOrderVC.m in Sources */,
 				348DF254212964D800D3A76F /* YLActionSheet.m in Sources */,
 				3465CA0820DCB00300BAE415 /* LZChooseCalendarVC.m in Sources */,
+				FF3FA96C212D6083009431DA /* BackClothTableViewCell.m in Sources */,
 				346C2277210E03DA004AAC88 /* ZWCustomPopView.m in Sources */,
 				34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */,
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
@@ -5940,6 +6059,7 @@
 				343008D32081A0C800447992 /* SGPageContentView.m in Sources */,
 				348DF2072129647300D3A76F /* LZBugAndProcessUntreatedVC.m in Sources */,
 				349AAF6E20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */,
+				FF3FA97C212D6083009431DA /* PinDetailTableViewCell.m in Sources */,
 				34EA5BD2208B40870048CFE1 /* SpendingViewController.m in Sources */,
 				348DF1D12129646900D3A76F /* BXSMachiningBottomView.m in Sources */,
 			);
@@ -5990,6 +6110,7 @@
 				347776FC2126ADFA00423A98 /* BXSMachiningProduuctCell.m in Sources */,
 				34F839882100853200CDC8E2 /* LZSalesDetailModel.m in Sources */,
 				B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */,
+				FF3FA975212D6083009431DA /* ConsultViewController.m in Sources */,
 				34A92B50207DEC6D00572648 /* LZHTableView.m in Sources */,
 				344E4D89210EBCE00031DCE8 /* BXSMachiningDBCell.m in Sources */,
 				B50505A8209AB2DA00CE7E4D /* XLFormDateCell.m in Sources */,
@@ -5999,6 +6120,7 @@
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
 				346E02322110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
+				FF3FA98B212D6083009431DA /* WMTextView.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				B5C73EC120C136C500595176 /* LLOutbounceSeletedRightCell.m in Sources */,
 				34D5EAED20D2484A009D9D7C /* LZPaymentOrderListDetailVC.m in Sources */,
@@ -6008,6 +6130,7 @@
 				B50505AC209AB2DA00CE7E4D /* XLFormImageCell.m in Sources */,
 				344358CF20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
 				348DF1D82129646900D3A76F /* LZPurchaseAskCell.m in Sources */,
+				FF3FA981212D6083009431DA /* PinNameTableViewCell.m in Sources */,
 				348DF198212945C800D3A76F /* UIButton+WM.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				346C2274210E03DA004AAC88 /* LZBackOrderLIstsCell.m in Sources */,
@@ -6062,6 +6185,8 @@
 				344C487E20D0E69400BEC002 /* LZMarketCell.m in Sources */,
 				3465CA0120DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				3484F51A21196729004F419F /* LZAuditDetailModel.m in Sources */,
+				FF3FA96D212D6083009431DA /* BackClothTableViewCell.m in Sources */,
+				FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */,
 				344E4D49210EAD4D0031DCE8 /* GridTableView.m in Sources */,
 				3455F68B20CA7C8700579521 /* LZWeaveView.m in Sources */,
 				3427A4F720CE507600369650 /* BRAddressModel.m in Sources */,
@@ -6100,6 +6225,7 @@
 				34871CFF20DBB59600F7182C /* LZPurchasingInfoVC.m in Sources */,
 				348DF239212964D800D3A76F /* UIButton+Category.m in Sources */,
 				3479057020C509F1008C835C /* AssignDeliveryCell.m in Sources */,
+				FF3FA989212D6083009431DA /* UIView+Positioning.m in Sources */,
 				3465CA1520DD0C2200BAE415 /* LZChooseClientReceiptVC.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
@@ -6117,6 +6243,7 @@
 				348DF1AA2129645D00D3A76F /* LZPurchaseDetailModel.m in Sources */,
 				349AAF6F20E9D1F6005EB74F /* LZVisitRecordViewController.m in Sources */,
 				B50505DA209AB2DA00CE7E4D /* XLFormRightDetailCell.m in Sources */,
+				FF3FA979212D6083009431DA /* DibuTableViewCell.m in Sources */,
 				3428B8412121685C003F86D7 /* ReimColorDetailCell.m in Sources */,
 				34847D5220C7D3FC004485F1 /* NSArray+Utils.m in Sources */,
 				344C48A220D10F8E00BEC002 /* LZDIdSaleAuditCell.m in Sources */,
@@ -6130,6 +6257,7 @@
 				3465C9E720DC9A9600BAE415 /* FSCalendarCollectionViewLayout.m in Sources */,
 				A08748C320ECCDF7001FF98E /* LLWaitingView.m in Sources */,
 				348DF1A82129645D00D3A76F /* LZFindCodeModel.m in Sources */,
+				FF3FA97D212D6083009431DA /* PinDetailTableViewCell.m in Sources */,
 				348DF2002129647300D3A76F /* LZProcessAskVC.m in Sources */,
 				348DF23D212964D800D3A76F /* BYPhotoSelect.m in Sources */,
 				B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
@@ -6211,6 +6339,7 @@
 				348DF259212964D800D3A76F /* ActionCell.m in Sources */,
 				3488D69B211855530061BA0C /* LZAuditDetailHeaderCell.m in Sources */,
 				3417F99B211E959F00FF29F8 /* LZBackOrderDetialProductModel.m in Sources */,
+				FF3FA971212D6083009431DA /* ConsultOtherTableViewCell.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
 				344E4D47210EAD4D0031DCE8 /* GridView.m in Sources */,
 				3428B81621216851003F86D7 /* XiMaCollectionViewCell.m in Sources */,
@@ -6307,6 +6436,7 @@
 				3465CA0520DC9A9700BAE415 /* FSCalendarCalculator.m in Sources */,
 				B5E288E520A9332500D84196 /* LLAuditMangerModel.m in Sources */,
 				342398E820FB4259002B81E1 /* BaseCollectionVC.m in Sources */,
+				FF3FA985212D6083009431DA /* TitleTableViewCell.m in Sources */,
 				346C2255210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */,
 				B50505D6209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				34602EC2207F69C800710F91 /* TextInputCell.m in Sources */,

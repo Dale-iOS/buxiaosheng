@@ -13,7 +13,8 @@
 @property(nonatomic,copy)NSString *customerName;
 @property(nonatomic,copy)NSString *factoryName;
 @property(nonatomic,copy)NSString *houseNum;
-@property(nonatomic,copy)NSString *id;
+//id是系统关键字 不能这么写
+@property(nonatomic,copy)NSString *ID;
 @property(nonatomic,copy)NSString *initiatorName;
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *orderId;

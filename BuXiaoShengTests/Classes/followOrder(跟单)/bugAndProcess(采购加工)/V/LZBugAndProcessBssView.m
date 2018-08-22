@@ -15,6 +15,8 @@
 #import "LZPurchaseReceiptVC.h"
 #import "LZProcessReceiptVC.h"
 #import "LZProcessAskVC.h"
+//加工询问
+#import "ConsultViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface LZBugAndProcessBssView()<UITableViewDelegate,UITableViewDataSource,LZBugAndProcessUntreatedCellDelegate>
@@ -151,14 +153,14 @@ static NSInteger const pageSize = 15;
     if ([model.purchaseType integerValue] == 0) {
         //采购类型
         LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
-        vc.bugId = model.id;
+        vc.bugId = model.ID;
 #warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
         vc.isFindCode = indexP.row %2 >0;
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }else{
 //        加工类型
         LZProcessReceiptVC *vc = [[LZProcessReceiptVC alloc]init];
-        vc.bugId = model.id;
+        vc.bugId = model.ID;
 #warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
         vc.isFindCode = indexP.row %2 >0;
         [[self viewController].navigationController pushViewController:vc animated:YES];
@@ -175,13 +177,14 @@ static NSInteger const pageSize = 15;
     if ([model.purchaseType integerValue] == 0) {
         //采购类型
         LZPurchaseAskVC *vc = [[LZPurchaseAskVC alloc]init];
-        vc.bugId = model.id;
+        vc.bugId = model.ID;
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }else{
         //加工类型
-        LZProcessAskVC *vc = [[LZProcessAskVC alloc]init];
-        vc.bugId = model.id;
-        [[self viewController].navigationController pushViewController:vc animated:YES];
+        
+        ConsultViewController *consultVC = [[ConsultViewController alloc] initWithNibName:@"ConsultViewController" bundle:nil];
+        consultVC.bugId = model.ID;
+        [[self viewController].navigationController pushViewController:consultVC animated:YES];
     }
     
 }
@@ -203,7 +206,7 @@ static NSInteger const pageSize = 15;
         //        接口名称 采购完成
         NSDictionary * param = @{
                                  @"companyId":[BXSUser currentUser].companyId,
-                                 @"id":model.id
+                                 @"id":model.ID
                                  };
         [BXSHttp requestPOSTWithAppURL:@"documentary/update_status.do" param:param success:^(id response) {
             LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
