@@ -38,6 +38,9 @@
     [self setupUI];
     [self setupBtns];
     [self setupData];
+	[self settingsaaa];
+	[self settingabbb];
+	[self settingccc];
 }
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
@@ -211,6 +214,16 @@
 
 
 #pragma mark -------- 点击事件 -----------
+- (void)settingsaaa{
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+}
 - (void)navigationSetupClick
 {
     SetHomeViewController *vc = [[SetHomeViewController alloc]init];
@@ -229,6 +242,35 @@
     }
     return _tableView;
 }
+- (void)settingabbb{
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+}
 -(UICollectionView *)contentCollectView {
     if (!_contentCollectView) {
         UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
@@ -245,6 +287,13 @@
     }
     return _contentCollectView;
 }
-
+- (void)settingccc{
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");
+	NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+}
 @end
 
