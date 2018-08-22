@@ -22,6 +22,7 @@
 #import "BRPickerView.h"
 #import "LZDirectStorageVC.h"//直接入库
 #import "BXSStockDemandVC.h"//备货需求
+//#import "AlterPassworddViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
@@ -173,6 +174,7 @@ static NSInteger const pageSize = 15;
     {
         //织染需求
         [LLHudTools showWithMessage:@"功能正在开发中~~"];
+//        [self.navigationController pushViewController:[AlterPassworddViewController new] animated:YES];
 //        DyeingDemandViewController *vc = [[DyeingDemandViewController alloc]init];
 //        [self.navigationController pushViewController:vc animated:YES];
     }

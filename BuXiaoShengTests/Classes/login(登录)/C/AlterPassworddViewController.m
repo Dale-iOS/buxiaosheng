@@ -8,6 +8,7 @@
 
 #import "AlterPassworddViewController.h"
 #import "HomeViewController.h"
+
 @interface AlterPassworddViewController ()<UITextFieldDelegate>
 
 ///红色提醒底图
@@ -29,7 +30,7 @@
 
     [self setupUI];
     
-    self.isPasswordSame = NO;
+//    self.isPasswordSame = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,6 +138,10 @@
 //点击事件
 - (void)affirmBtnOnClickAction
 {
+    if (self.passwordAgainTF.text.length <6 || self.passwordNewTF.text.length <6){
+        [LLHudTools showWithMessage:@"密码长度需要6位数以上"];
+        return;
+    }
     
     if (self.isPasswordSame) {
         
@@ -159,6 +164,8 @@
         } failure:^(NSError *error) {
               [LLHudTools showWithMessage:@"修改密码失败,请重试"];
         }];
+    }else{
+        [LLHudTools showWithMessage:@"请确认两次密码输入一致"];
     }
 }
 
@@ -180,8 +187,7 @@
     }
     
     //两次密码是否一样
-    if ([self.passwordNewTF.text isEqual:self.passwordAgainTF.text]) {
-        
+    if ([self.passwordNewTF.text isEqualToString:self.passwordAgainTF.text]) {
         self.isPasswordSame = YES;
     }else
     {

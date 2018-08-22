@@ -40,7 +40,6 @@
 #pragma mark ----- 网络请求 -----
 //接口名称 销售单详情
 //接口文档：http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#428
-//18814188198   666666
 - (void)getMsgData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"orderNo":self.orderNo
@@ -61,7 +60,6 @@
 
 //接口名称 销售单产品列表
 //接口文档：http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#427
-//18814188198   666666
 - (void)getProductData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"orderDetailId":_orderDetailId

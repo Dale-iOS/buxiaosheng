@@ -201,7 +201,8 @@
     [BXSHttp requestPOSTWithAppURL:@"login.do" param:param success:^(id response) {
         if ([[response objectForKey:@"code"] integerValue] == 200) {
              self.loginModel = [LoginModel mj_objectWithKeyValues:response[@"data"]];
-            
+            [BXSUser deleteUser];
+            [BXSUser saveUser:self.loginModel];
             if ([self.loginModel.pwdResetStaus isEqualToString:@"0"]) {
                 AlterPassworddViewController *vc = [[AlterPassworddViewController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
