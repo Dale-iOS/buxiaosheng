@@ -38,10 +38,13 @@
     [self setupUI];
     [self setupBtns];
     [self setupData];
+    [self settings];
+    [self settinga];
+    [self setting];
 }
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	[[LZsharedNavigationController sharedNavigationController] pushPerformActionForShortcutItemVC];
+    [super viewDidAppear:animated];
+    [[LZsharedNavigationController sharedNavigationController] pushPerformActionForShortcutItemVC];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -78,17 +81,17 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-       NSArray * buttons = [LZHomeModel LLMJParse:baseModel.data];
+        NSArray * buttons = [LZHomeModel LLMJParse:baseModel.data];
         if (buttons.count< 4) {
             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 110 + 10 +260+ 10 + 55 + 10 );
-             self.tableView.tableHeaderView = self.headerView;
+            self.tableView.tableHeaderView = self.headerView;
         }else {
-             self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55+ 10);
-             self.tableView.tableHeaderView = self.headerView;
+            self.headerView.frame = CGRectMake(0, 0, APPWidth, 10 + 210 + 10 +260+ 10 + 55+ 10);
+            self.tableView.tableHeaderView = self.headerView;
         }
-         self.headerView.buttons = buttons;
-//        [self.collectView reloadData];
-//        [self.mainTabelView reloadData];
+        self.headerView.buttons = buttons;
+        //        [self.collectView reloadData];
+        //        [self.mainTabelView reloadData];
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage)
@@ -125,7 +128,7 @@
         self.headerView.pageTitleView.selectedIndex = self.selectIndex;
         [self.contentCollectView reloadData];
     } failure:^(NSError *error) {
-         BXS_Alert(LLLoadErrorMessage)
+        BXS_Alert(LLLoadErrorMessage)
     }];
 }
 
@@ -197,7 +200,7 @@
 //                }
 //            }];
 //            //  self.cell.cellCanScroll = YES;
-//            
+//
 //        }
 //    }else{
 //        if (!self.canScroll) {//子视图没到顶部
@@ -205,12 +208,16 @@
 //        }
 //    }
 //    //self.tableView.showsVerticalScrollIndicator = _canScroll?YES:NO;
-//    
+//
 //}
 
 
 
 #pragma mark -------- 点击事件 -----------
+- (void)settinga{
+    NSLog(@"sdvsdds");
+    NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+}
 - (void)navigationSetupClick
 {
     SetHomeViewController *vc = [[SetHomeViewController alloc]init];
@@ -229,6 +236,10 @@
     }
     return _tableView;
 }
+- (void)settings{
+    NSLog(@"sdvsdds");
+    NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+}
 -(UICollectionView *)contentCollectView {
     if (!_contentCollectView) {
         UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
@@ -245,6 +256,9 @@
     }
     return _contentCollectView;
 }
-
+- (void)setting{
+    NSLog(@"sdvsdds");
+    NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");NSLog(@"sdvsdds");
+}
 @end
 
