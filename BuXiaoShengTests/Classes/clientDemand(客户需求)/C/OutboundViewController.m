@@ -274,16 +274,17 @@
         for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
             
             if (detailModel.seleted) {
-                totalCount += [detailModel.value integerValue];
+                totalCount += [detailModel.inventory integerValue];
                 totalOutCount += [detailModel.value integerValue];
             }
             
         }
         
     }
+    self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     
     self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
-    self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
+    
     return footerView;
 }
 
@@ -345,9 +346,10 @@
         totalOutCount += [obj.outgoingCount integerValue];
     }];
     
-    self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
-    
+
     self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
+    
+    self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
 }
 
 

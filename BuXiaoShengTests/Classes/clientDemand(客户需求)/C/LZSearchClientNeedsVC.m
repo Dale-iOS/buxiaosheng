@@ -197,7 +197,6 @@
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     LZOrderTrackingModel *model = _lists[indexPath.row];
     
     CheckDetailViewController *chechVC = [[CheckDetailViewController alloc] initWithNibName:@"CheckDetailViewController" bundle:nil];

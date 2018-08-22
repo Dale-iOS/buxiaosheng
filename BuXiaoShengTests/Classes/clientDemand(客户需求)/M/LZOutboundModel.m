@@ -34,7 +34,12 @@
              };
 }
 @end
+
 @implementation LLOutboundRightDetailModel
-
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"inventory":@"value",
+             };
+}
 @end

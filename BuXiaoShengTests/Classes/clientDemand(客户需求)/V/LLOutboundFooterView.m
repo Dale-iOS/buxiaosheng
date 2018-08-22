@@ -31,7 +31,7 @@
         for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
             
             if (detailModel.seleted) {
-                totalSaveCount += [detailModel.value integerValue];
+                totalSaveCount += [detailModel.inventory integerValue];
                 totalOutCount += [detailModel.value integerValue];
             }
             
