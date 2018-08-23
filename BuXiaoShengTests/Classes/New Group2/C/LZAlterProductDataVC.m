@@ -396,6 +396,7 @@
         //赋值
         self.titleCell.contentTF.text = model.name;
         self.groupCell.contentTF.text = model.groupName;
+		_groupId = model.groupName;
         if ([model.storageType integerValue] == 0) {
             self.defaultJoinCell.contentTF.text = @"总码";
         }else if ([model.storageType integerValue] == 1){
@@ -447,6 +448,7 @@
         
         
         self.unitCell.contentTF.text = model.unitName;
+		_unitId =model.unitName;
         self.constituentCell.contentTF.text = model.component;
         self.breadthCell.contentTF.text = model.breadth;
         self.weightCell.contentTF.text = model.weight;
@@ -745,7 +747,7 @@
     NSString *colors = [_colorArray mj_JSONString];
     
     
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+    NSDictionary * param = @{@"companyId":nil_string([BXSUser currentUser].companyId),
                              @"alias":self.nicknameCell.contentTF.text,
                              @"breadth":self.breadthCell.contentTF.text,
                              @"colorItems":colors,
@@ -785,5 +787,19 @@
     [super didReceiveMemoryWarning];
     
 }
-
+static NSString * nil_string(NSString *str) {
+	str = [NSString stringWithFormat:@"%@",str];
+	if (str == nil
+		|| str == NULL
+		|| [str isEqualToString:@""]
+		|| [str isEqualToString:@"null"]
+		|| [str isEqualToString:@"(null)"]
+		|| [str isEqualToString:@"NULL"]
+		|| [str isEqualToString:@"(NULL)"]
+		|| [str isKindOfClass:[NSNull class]]
+		|| [[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
+		return @"";
+	}
+	return str;
+}
 @end
