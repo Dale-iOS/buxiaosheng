@@ -1008,6 +1008,12 @@
 		FF3FA98B212D6083009431DA /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA96B212D6083009431DA /* WMTextView.m */; };
 		FF3FA98E212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
+		FFC1A52A212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */; };
+		FFC1A52B212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */; };
+		FFC1A52E212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */; };
+		FFC1A52F212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */; };
+		FFC1A532212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */; };
+		FFC1A533212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2200,6 +2206,12 @@
 		FF3FA96B212D6083009431DA /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
 		FF3FA98C212D6187009431DA /* LZPurchaseReceiptDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailModel.h; sourceTree = "<group>"; };
 		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
+		FFC1A528212E918800DECCB7 /* LZOrderTrackingListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListVC.h; sourceTree = "<group>"; };
+		FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListVC.m; sourceTree = "<group>"; };
+		FFC1A52C212E945A00DECCB7 /* LZOrderTrackingListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListCell.h; sourceTree = "<group>"; };
+		FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListCell.m; sourceTree = "<group>"; };
+		FFC1A530212E95FE00DECCB7 /* LZOrderTrackingListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListModel.h; sourceTree = "<group>"; };
+		FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3935,6 +3947,8 @@
 			children = (
 				345E747A20835B5F004B49B3 /* OrderTrackingViewController.h */,
 				345E747B20835B5F004B49B3 /* OrderTrackingViewController.m */,
+				FFC1A528212E918800DECCB7 /* LZOrderTrackingListVC.h */,
+				FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */,
 				34EBAC972084506B0005BF77 /* AllOrderViewController.h */,
 				34EBAC982084506B0005BF77 /* AllOrderViewController.m */,
 				34EBAC9A208450980005BF77 /* WaitOutOrderViewController.h */,
@@ -3978,6 +3992,8 @@
 				3471DCAD20D77B93002052EE /* LZShipmentBigGoodsView.m */,
 				3471DCB020D77BB9002052EE /* LZShipmentBigBoardView.h */,
 				3471DCB120D77BB9002052EE /* LZShipmentBigBoardView.m */,
+				FFC1A52C212E945A00DECCB7 /* LZOrderTrackingListCell.h */,
+				FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3991,6 +4007,8 @@
 				342398E220FB3AEA002B81E1 /* BigGoodsAndBoardModel.m */,
 				3453790821099BD500830DF8 /* LZSaveOrderModel.h */,
 				3453790921099BD500830DF8 /* LZSaveOrderModel.m */,
+				FFC1A530212E95FE00DECCB7 /* LZOrderTrackingListModel.h */,
+				FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5667,6 +5685,7 @@
 				348DF1FB2129647300D3A76F /* DyeingViewController.m in Sources */,
 				FF3FA988212D6083009431DA /* UIView+Positioning.m in Sources */,
 				3440802B2087364300FD36B8 /* YANFlowLayout.m in Sources */,
+				FFC1A52E212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */,
 				B50505C3209AB2DA00CE7E4D /* XLFormOptionsViewController.m in Sources */,
 				34EE5D6920A68AC000A2C9B5 /* AddAuditManagerViewController.m in Sources */,
 				3411F2B32085CEF700C448FD /* FreezeViewController.m in Sources */,
@@ -5770,6 +5789,7 @@
 				348DF23A212964D800D3A76F /* BYPhotoSelectPreveiwVC.m in Sources */,
 				3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */,
 				34EE5D7220A68B9900A2C9B5 /* AddColorViewController.m in Sources */,
+				FFC1A532212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */,
 				348DF1D92129646900D3A76F /* BXSHadSelectDBCell.m in Sources */,
 				346BA4342112AF52000488D2 /* LZBackOrderInfoModel.m in Sources */,
 				343008E22081ACDB00447992 /* NowYearViewController.m in Sources */,
@@ -5903,6 +5923,7 @@
 				344C488520D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				34EE88E020CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
 				348DF1DF2129646900D3A76F /* BXSAddFindCodeView.m in Sources */,
+				FFC1A52A212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */,
 				346C2254210E03D3004AAC88 /* BackOrderViewController+Request.m in Sources */,
 				34F1E98620AF018300EFAB7D /* LZClientManagerModel.m in Sources */,
 				B5CF34FB20A574B30043D906 /* AlterBankViewController.m in Sources */,
@@ -6142,6 +6163,7 @@
 				347C5FE4211C73A40064D403 /* LZTypeTopModel.m in Sources */,
 				34EE88E120CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
 				3465C9F520DC9A9700BAE415 /* FSCalendarWeekdayView.m in Sources */,
+				FFC1A52F212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */,
 				B56EF0ED20E1EB1E000A829F /* LLWelcomeVC.m in Sources */,
 				B5BA43DE20A4492A00A867E9 /* BXSUser.m in Sources */,
 				3471DCA720D752A8002052EE /* LZPurchaseViewCell.m in Sources */,
@@ -6159,6 +6181,7 @@
 				348DF1DA2129646900D3A76F /* BXSHadSelectDBCell.m in Sources */,
 				34EE88DD20CC03F90060D00B /* LZClientReceiptDetailVC.m in Sources */,
 				34A92B58207DEE6C00572648 /* HomeViewController.m in Sources */,
+				FFC1A533212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */,
 				34D5EADD20D20E90009D9D7C /* LZPaymentOrderListModel.m in Sources */,
 				B50505C2209AB2DA00CE7E4D /* XLFormOptionsObject.m in Sources */,
 				344C48AA20D12CB200BEC002 /* LZDidNoBackOrderCell.m in Sources */,
@@ -6427,6 +6450,7 @@
 				344E4D85210EBCE00031DCE8 /* BXSMachiningHeadCell.m in Sources */,
 				3455F69320CA7E9900579521 /* LZIncomeVC.m in Sources */,
 				3476D40C2103327D00FDB6F7 /* LZOrderFollowDetailVC.m in Sources */,
+				FFC1A52B212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */,
 				34EA490E20CFF1B10086FF79 /* LZReimbursementCell.m in Sources */,
 				344C488A20D0F07200BEC002 /* LZMarketModel.m in Sources */,
 				B50505BE209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
