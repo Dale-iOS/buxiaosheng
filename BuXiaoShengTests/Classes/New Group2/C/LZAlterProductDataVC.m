@@ -62,7 +62,8 @@
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
-
+///备注2
+@property (nonatomic, strong) TextInputTextView *remarkTextView2;
 @end
 
 @implementation LZAlterProductDataVC
@@ -103,6 +104,7 @@
     [self setupSectionThree];
     [self setupSectionFour];
     [self setupSectionFive];
+    [self setupSectionSix];
     self.mainTabelView.dataSoure = self.datasource;
     
 }
@@ -362,6 +364,23 @@
     [self.datasource addObject:item];
 }
 
+- (void)setupSectionSix{
+    //    备注textView2
+    self.remarkTextView2 = [[TextInputTextView alloc]init];
+    self.remarkTextView2.frame = CGRectMake(0, 0, APPWidth, 98);
+    self.remarkTextView2.titleLabel.text = @"备注2";
+    self.remarkTextView2.textView.placeholder = @"请输入备注内容";
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.remarkTextView2];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
 #pragma mark ---- 网络请求 ----
 //接口名称 产品详情
 - (void)setupData{
@@ -437,7 +456,7 @@
             self.stateCell.contentTF.text = @"未启用";
         }
         self.remarkTextView.textView.text = model.remark;
-        
+        self.remarkTextView2.textView.text = model.remarkTwo;
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -718,22 +737,23 @@
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"alias":self.nicknameCell.contentTF.text,
                              @"breadth":self.breadthCell.contentTF.text,
-                             //                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
                              @"colorItems":colors,
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
+                             @"id":self.id,
                              @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
                              @"name":self.titleCell.contentTF.text,
                              @"rateType":@(quantizationCellType),
                              @"rateValue":self.quantizationCell.contentTF.text,
                              @"remark":self.remarkTextView.textView.text,
+                             @"remarkTwo":self.remarkTextView2.textView.text,
                              @"shearPrice":[self.dispersePriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.dispersePriceCell.contentTF.text,
                              @"status":@(status),
                              @"storageType":@(storageType),
                              @"unitId":_unitId,
                              @"weight":self.weightCell.contentTF.text
                              };
-    [BXSHttp requestGETWithAppURL:@"product/add.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"product/update.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];

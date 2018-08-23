@@ -60,7 +60,8 @@
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///备注
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
-
+///备注2
+@property (nonatomic, strong) TextInputTextView *remarkTextView2;
 @end
 
 @implementation AddProductViewController
@@ -99,6 +100,7 @@
     [self setupSectionThree];
     [self setupSectionFour];
     [self setupSectionFive];
+    [self setupSectionSix];
     self.mainTabelView.dataSoure = self.datasource;
     
 }
@@ -358,6 +360,22 @@
     [self.datasource addObject:item];
 }
 
+- (void)setupSectionSix{
+    //    备注textView2
+    self.remarkTextView2 = [[TextInputTextView alloc]init];
+    self.remarkTextView2.frame = CGRectMake(0, 0, APPWidth, 98);
+    self.remarkTextView2.titleLabel.text = @"备注2";
+    self.remarkTextView2.textView.placeholder = @"请输入备注内容";
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.remarkTextView2];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
 
 #pragma mark ----- 点击事件 ------
 //量化按钮事件 左键
@@ -621,6 +639,7 @@
                              @"rateType":@(quantizationCellType),
                              @"rateValue":self.quantizationCell.contentTF.text,
                              @"remark":self.remarkTextView.textView.text,
+                             @"remarkTwo":self.remarkTextView2.textView.text,
                              @"shearPrice":[self.dispersePriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.dispersePriceCell.contentTF.text,
                              @"status":@(status),
                              @"storageType":@(storageType),

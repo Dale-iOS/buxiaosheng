@@ -20,6 +20,7 @@
 @property(nonatomic,copy)NSString *rateType;
 @property(nonatomic,copy)NSString *rateValue;
 @property(nonatomic,copy)NSString *remark;
+@property(nonatomic,copy)NSString *remarkTwo;
 @property(nonatomic,copy)NSString *shearPrice;
 @property(nonatomic,copy)NSString *status;
 @property(nonatomic,copy)NSString *storageType;

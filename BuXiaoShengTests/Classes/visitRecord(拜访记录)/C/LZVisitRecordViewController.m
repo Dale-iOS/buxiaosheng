@@ -255,7 +255,7 @@
     }
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"img":_imageStr,
+                             @"img":_imageStr ,
                              @"matters":self.mainCell.contentTF.text,
                              @"name":self.objectCell.contentTF.text,
                              @"remark":self.remarkView.textView.text,
@@ -295,7 +295,7 @@
 //    CGFloat rgb = 244 / 255.0;
     _collectionView.alwaysBounceVertical = YES;
     _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.contentInset = UIEdgeInsetsMake(1, 1, 1, 1);
+    _collectionView.contentInset = UIEdgeInsetsMake(1, 10, 1, 1);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -318,6 +318,10 @@
 }
 
 #pragma mark UICollectionView
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(1, 10, 1, 1);
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (_selectedPhotos.count >= Max_Photos) {
         return _selectedPhotos.count;

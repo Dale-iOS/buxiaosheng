@@ -26,9 +26,9 @@
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     //要删掉
-//    self.lineValue = 5;
+    self.lineValue = 5;
     
     NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
     _total = [tempStr doubleValue];
@@ -122,7 +122,7 @@
         make.height.mas_offset(29);
         make.width.mas_offset((APPWidth *0.75 -15*5)/4);
     }];
-
+    
     //    减号按钮
     UIButton *subtractionBtn = [[UIButton alloc]init];
     [subtractionBtn setBackgroundImage:IMAGE(@"subtraction") forState:UIControlStateNormal];
@@ -224,9 +224,9 @@
 }
 //重置方法
 - (void)restartClick{
- 
+    
     _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %zd",self.originalValue];
-
+    
     _total = [[NSString stringWithFormat:@"%zd",self.originalValue] doubleValue];
     
     NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
@@ -242,7 +242,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 @end
