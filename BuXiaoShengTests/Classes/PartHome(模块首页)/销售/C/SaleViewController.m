@@ -43,7 +43,7 @@
 - (void)setupUI
 {
     self.mainTabelView.delegate = self;
-//    [self.mainTabelView setIsScrollEnable:NO];
+    //    [self.mainTabelView setIsScrollEnable:NO];
     self.datasource = [NSMutableArray array];
     [self setupSectionOne];
     self.mainTabelView.dataSoure = self.datasource;
@@ -57,10 +57,10 @@
         LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
         tableView.tableView.allowsSelection = YES;
         [tableView setIsScrollEnable:NO];
-//        tableView.tableView.allowsSelection = NO;
+        //        tableView.tableView.allowsSelection = NO;
         //        tableView.tableHeaderView = self.headView;
         //        tableView.backgroundColor = [UIColor yellowColor];
-//        [tableView setIsScrollEnable:YES];
+        //        [tableView setIsScrollEnable:YES];
         [self.view addSubview:(mainTabelView = tableView)];
     }
     return mainTabelView;
@@ -80,12 +80,12 @@
             return ;
         }
         self.buttons = [LZHomeModel LLMJParse:baseModel.data];
-//        if (self.buttons.count <5) {
-//            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
-//        }else
-//        {
-//            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
-//        }
+        //        if (self.buttons.count <5) {
+        //            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
+        //        }else
+        //        {
+        //            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
+        //        }
         [self.collectView reloadData];
         [self.mainTabelView reloadData];
         
@@ -114,7 +114,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellid";
-
+    
     FinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.indexPath = indexPath;
     LZHomeModel *model = [LZHomeModel LLMJParse:self.buttons[indexPath.row]];
@@ -129,7 +129,7 @@
     
     if ([model.paramsIos isEqualToString:@"beginOrder"]) {
         //开单
-//        SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
+        //        SalesDemandViewController *vc = [[SalesDemandViewController alloc]init];
         LZSalesDemandVC *vc = [[LZSalesDemandVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         

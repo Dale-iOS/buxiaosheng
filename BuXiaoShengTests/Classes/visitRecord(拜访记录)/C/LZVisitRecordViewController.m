@@ -306,7 +306,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     _margin = 4;
-    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
+    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin -20;
     _layout.itemSize = CGSizeMake(_itemWH, _itemWH);
     _layout.minimumInteritemSpacing = 1;
     _layout.minimumLineSpacing = 1;
