@@ -35,7 +35,6 @@
     _OutNumLbl.text = _itemsModel.value;
     _lineNumLbl.text =_itemsModel.total;
     _fromWarahouseLbl.text = itemsModel.houseName;
-    
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

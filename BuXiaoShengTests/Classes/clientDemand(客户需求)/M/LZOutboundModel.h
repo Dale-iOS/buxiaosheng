@@ -61,5 +61,4 @@
 @property (nonatomic, copy) NSString *outgoingCount;
 @property (nonatomic,assign) BOOL seleted;
 @property (nonatomic,strong) NSString *houseName;
-
 @end

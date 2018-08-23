@@ -13,6 +13,7 @@
 #import "LLDyeingCollectionContainerCell.h"
 #import "LZOutboundCell.h"
 #import "LLOutboundFooterView.h"
+#import "LZOutboundSelectModel.h"//选中的model
 
 @interface OutboundViewController ()<UITableViewDelegate,UITableViewDataSource,LZOutboundSectionViewDelegate>
 @property(nonatomic,strong)LZOutboundModel *model;
@@ -374,24 +375,38 @@
         [LLHudTools showWithMessage:@"请至少选择一个"];
         return;
     }
-    NSMutableArray <NSDictionary *> * orderHouseItems = [NSMutableArray array];
+    NSMutableArray <LZOutboundSelectModel *> * orderHouseItems = [NSMutableArray array];
     
     [seleteds enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
         [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
             [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSDictionary * param = @{
-                                         @"productId":obj.productId,
-                                         @"productColorId":obj.productColorId,
-                                         @"price":obj.price,
-                                         @"stockId":celldetalobj.stockId,
-                                         @"batchNumber":cellobj.batcNumber,
-                                         @"number":obj.number,
-                                         @"houseId":cellobj.leftModel.houseId,
-                                         @"needId":obj.needId,
-                                         @"needTotal":self.totalCountLable.text,
-                                         @"total":self.totalNumberLable.text,
-                                         };
-                [orderHouseItems addObject:param];
+                NSLog(@"23");
+                LZOutboundSelectModel *selectModel = [[LZOutboundSelectModel alloc]init];
+                selectModel.productId = obj.productId;
+                selectModel.productColorId = obj.productColorId;
+                selectModel.price = obj.price;
+                selectModel.stockId = celldetalobj.stockId;
+                selectModel.batchNumber = cellobj.batcNumber;
+                selectModel.number = celldetalobj.value;
+                selectModel.houseId = cellobj.leftModel.houseId;
+                selectModel.needId = obj.needId;
+                selectModel.needTotal = cellobj.number;
+                selectModel.total = cellobj.total;
+//                NSDictionary * param = @{
+//                                         @"productId":obj.productId,
+//                                         @"productColorId":obj.productColorId,
+//                                         @"price":obj.price,
+//                                         @"stockId":celldetalobj.stockId,
+//                                         @"batchNumber":cellobj.batcNumber,
+//                                         @"number":obj.number,
+//                                         @"houseId":cellobj.leftModel.houseId,
+//                                         @"needId":obj.needId,
+//                                         @"needTotal":self.totalCountLable.text,
+//                                         @"total":self.totalNumberLable.text,
+//                                         };
+                [orderHouseItems addObject:selectModel];
             }];
             
         }];

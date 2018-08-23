@@ -1014,6 +1014,8 @@
 		FFC1A52F212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */; };
 		FFC1A532212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */; };
 		FFC1A533212E95FE00DECCB7 /* LZOrderTrackingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */; };
+		FFC1A536212EA75400DECCB7 /* LZOutboundSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A535212EA75400DECCB7 /* LZOutboundSelectModel.m */; };
+		FFC1A537212EA75400DECCB7 /* LZOutboundSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A535212EA75400DECCB7 /* LZOutboundSelectModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2212,6 +2214,8 @@
 		FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListCell.m; sourceTree = "<group>"; };
 		FFC1A530212E95FE00DECCB7 /* LZOrderTrackingListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListModel.h; sourceTree = "<group>"; };
 		FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListModel.m; sourceTree = "<group>"; };
+		FFC1A534212EA75400DECCB7 /* LZOutboundSelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOutboundSelectModel.h; sourceTree = "<group>"; };
+		FFC1A535212EA75400DECCB7 /* LZOutboundSelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOutboundSelectModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2956,6 +2960,8 @@
 				34F4B48E20BBAE650017003E /* LZClientDemandModel.m */,
 				346EF49F20BE73D60078C087 /* LZOutboundModel.h */,
 				346EF4A020BE73D60078C087 /* LZOutboundModel.m */,
+				FFC1A534212EA75400DECCB7 /* LZOutboundSelectModel.h */,
+				FFC1A535212EA75400DECCB7 /* LZOutboundSelectModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5877,6 +5883,7 @@
 				3453791821099CD300830DF8 /* BigGoodsFootView.m in Sources */,
 				347C309620A299030078BB69 /* InventoryViewController.m in Sources */,
 				347AE5352106E38800372042 /* UIBarButtonItem+CJExtension.m in Sources */,
+				FFC1A536212EA75400DECCB7 /* LZOutboundSelectModel.m in Sources */,
 				346B6ACD208D7DAE00F4B054 /* AuditViewController.m in Sources */,
 				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				3465C9F220DC9A9700BAE415 /* FSCalendarScopeHandle.m in Sources */,
@@ -6394,6 +6401,7 @@
 				34EE88D520CBB1440060D00B /* LZClientReceiptModel.m in Sources */,
 				3465C9ED20DC9A9600BAE415 /* FSCalendarDelegationProxy.m in Sources */,
 				346C225D210E03D3004AAC88 /* LZAddItemViewController.m in Sources */,
+				FFC1A537212EA75400DECCB7 /* LZOutboundSelectModel.m in Sources */,
 				B50505D8209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				347C5FE0211C6DF00064D403 /* LZNetHelp.m in Sources */,
 				B50505CC209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
