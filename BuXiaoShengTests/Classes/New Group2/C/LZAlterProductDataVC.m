@@ -396,7 +396,7 @@
         //赋值
         self.titleCell.contentTF.text = model.name;
         self.groupCell.contentTF.text = model.groupName;
-		_groupId = model.groupName;
+        _groupId = model.groupId;
         if ([model.storageType integerValue] == 0) {
             self.defaultJoinCell.contentTF.text = @"总码";
         }else if ([model.storageType integerValue] == 1){

@@ -25,11 +25,8 @@
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *stock;
 @property (nonatomic,copy) NSString *storageType;
-
 @property (nonatomic,strong) NSMutableArray * itemCellData;
-
 @property (nonatomic,assign) BOOL seleted;
-
 @property (nonatomic,assign) BOOL  checkOut;
 @end
 
