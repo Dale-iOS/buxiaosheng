@@ -13,7 +13,7 @@
 #import "LLDyeingCollectionContainerCell.h"
 #import "LZOutboundCell.h"
 #import "LLOutboundFooterView.h"
-#import "LZOutboundSelectModel.h"//选中的model
+//#import "LZOutboundSelectModel.h"//选中的model
 
 @interface OutboundViewController ()<UITableViewDelegate,UITableViewDataSource,LZOutboundSectionViewDelegate>
 @property(nonatomic,strong)LZOutboundModel *model;
@@ -379,31 +379,65 @@
         [LLHudTools showWithMessage:@"请至少选择一个"];
         return;
     }
-    NSMutableArray <LZOutboundSelectModel *> * orderHouseItems = [NSMutableArray array];
+    NSMutableArray <NSDictionary *> * orderHouseItems = [NSMutableArray array];
     
-    [seleteds enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
+//    [seleteds enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            
+////            [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                NSLog(@"23");
+//                LZOutboundSelectModel *selectModel = [[LZOutboundSelectModel alloc]init];
+//                selectModel.productId = obj.productId;
+//                selectModel.productColorId = obj.productColorId;
+//                selectModel.price = obj.price;
+//                selectModel.stockId = cellobj.stockId;
+////                selectModel.batchNumber = cellobj.batcNumber;
+//////                selectModel.number = cellobj.value;
+////                selectModel.houseId = cellobj.leftModel.houseId;
+//                selectModel.needId = obj.needId;
+//                selectModel.needTotal = obj.number;
+//                selectModel.total = cellobj.total;
+//
+//                [orderHouseItems addObject:selectModel];
+////            }];
+//            
+//        }];
+//    }];
+    
+    for (int i = 0 ; i <seleteds.count; i++) {
+        LLOutboundRightModel *outboundRightModel = _rightSeleteds[i];
+        LZOutboundItemListModel *outboundItemListModel = seleteds[i];
+        for (int j = 0; j <outboundRightModel.itemList.count ; j++) {
+            LLOutboundRightDetailModel *outboundRightDetailModel = outboundRightModel.itemList[j];
+//            LZOutboundSelectModel *selectModel = [LZOutboundSelectModel new];
+//            selectModel.productId = outboundItemListModel.productId;
+//            selectModel.productColorId = outboundItemListModel.productColorId;
+//            selectModel.price = outboundItemListModel.price;
+//            selectModel.stockId = outboundRightDetailModel.stockId;
+//            selectModel.batchNumber = outboundRightModel.batcNumber;
+//            selectModel.number = outboundRightDetailModel.value;
+//            selectModel.houseId = outboundRightModel.leftModel.houseId;
+//            selectModel.needId = outboundItemListModel.needId;
+//            selectModel.needTotal = outboundItemListModel.number;
+//            selectModel.total = outboundRightDetailModel.total;
             
-//            [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSLog(@"23");
-                LZOutboundSelectModel *selectModel = [[LZOutboundSelectModel alloc]init];
-                selectModel.productId = obj.productId;
-                selectModel.productColorId = obj.productColorId;
-                selectModel.price = obj.price;
-                selectModel.stockId = cellobj.stockId;
-//                selectModel.batchNumber = cellobj.batcNumber;
-////                selectModel.number = cellobj.value;
-//                selectModel.houseId = cellobj.leftModel.houseId;
-                selectModel.needId = obj.needId;
-                selectModel.needTotal = obj.number;
-                selectModel.total = cellobj.total;
-
-                [orderHouseItems addObject:selectModel];
-//            }];
             
-        }];
-    }];
+            NSDictionary * param = @{
+                                     @"productId":outboundItemListModel.productId,
+                                     @"productColorId":outboundItemListModel.productColorId,
+                                     @"price":outboundItemListModel.price,
+                                     @"stockId":outboundRightDetailModel.stockId,
+                                     @"batchNumber":outboundRightModel.batcNumber,
+                                     @"number":outboundRightDetailModel.value,
+                                     @"houseId":outboundRightModel.leftModel.houseId,
+                                     @"needId":outboundItemListModel.needId,
+                                     @"needTotal":outboundItemListModel.number,
+                                     @"total":outboundRightDetailModel.total,
+                                     };
+            [orderHouseItems addObject:param];
+        }
+    }
     
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].userId,
