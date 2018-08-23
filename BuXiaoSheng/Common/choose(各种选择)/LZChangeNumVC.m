@@ -278,31 +278,31 @@ typedef NS_ENUM(NSInteger, WithBtnClickStyle) {
 	for (BigGoodsAndBoardModel * tBigGoodsAndBoardModel in tCellLineList_) {
 				switch (pBtnClickStyle) {
 					case AdditionBtnClick:{
-						NSInteger tAdd = [tBigGoodsAndBoardModel.number integerValue];
+						double tAdd = [tBigGoodsAndBoardModel.number doubleValue];
 						tAdd =tAdd + 1;
-						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tAdd];
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1f",tAdd];
 					}
 						break;
 					case SubtractionBtnClick:{
-						NSInteger tSubtraction = [tBigGoodsAndBoardModel.number integerValue];
+						double tSubtraction = [tBigGoodsAndBoardModel.number doubleValue];
 						if (tSubtraction <=0) {
 							tSubtraction = 0;
 						}else{
 							tSubtraction = tSubtraction - 1;
 						}
-						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tSubtraction];
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1f",tSubtraction];
 					}
 						break;
 					case MultiplicationBtnClick:{
-						NSInteger tMultiplication = [tBigGoodsAndBoardModel.number integerValue];
-						tMultiplication = tMultiplication *0.9;
-						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tMultiplication];
+						double tMultiplication = [tBigGoodsAndBoardModel.number doubleValue];
+						tMultiplication = tMultiplication * 0.9;
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1f",tMultiplication];
 					}
 						break;
 					case DivisionBtnClick:{
-						NSInteger tDivisionBtn = [tBigGoodsAndBoardModel.number integerValue];
+						double tDivisionBtn = [tBigGoodsAndBoardModel.number doubleValue];
 						tDivisionBtn = tDivisionBtn /0.9;
-						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tDivisionBtn];
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1f",tDivisionBtn];
 					}
 						break;
 					default:
