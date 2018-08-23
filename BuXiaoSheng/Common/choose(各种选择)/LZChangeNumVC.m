@@ -7,6 +7,22 @@
 //
 
 #import "LZChangeNumVC.h"
+#import "BigGoodsAndBoardModel.h"
+
+/**
+ 按钮点击的类型 用于计数
+
+ - AdditionBtnClick: +
+ - SubtractionBtnClick: -
+ - MultiplicationBtnClick: ✖️
+ - DivisionBtnClick: ➗
+ */
+typedef NS_ENUM(NSInteger, WithBtnClickStyle) {
+	AdditionBtnClick = 0,
+	SubtractionBtnClick,
+	MultiplicationBtnClick,
+	DivisionBtnClick
+};
 
 @interface LZChangeNumVC ()
 {
@@ -14,6 +30,8 @@
     UILabel *_lineLbl;//总条数
     double _total;//计算中的数量值
     UIButton *_verifyBtn;//确认按钮
+
+	NSMutableArray * tCellLineList_;//商品的data
 }
 @end
 
@@ -22,13 +40,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+	tCellLineList_  = [NSMutableArray array];
+	for(BigGoodsAndBoardModel * tBigGoodsAndBoardModel in self.cellLineList){
+		[tCellLineList_ addObject: [tBigGoodsAndBoardModel mutableCopy]];
+	}
 }
 
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
     
-    //要删掉
-    self.lineValue = 5;
     
     NSString *tempStr = [NSString stringWithFormat:@"%zd",self.originalValue];
     _total = [tempStr doubleValue];
@@ -177,50 +197,58 @@
 //加号方法
 - (void)additionBtnClick{
     _total+=self.lineValue;
-    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-    _hintLbl.attributedText = temgpStr;
-    if (self.NumValueBlock) {
-        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-    }
+	[self publicBtnClickFunc:AdditionBtnClick];
+//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+//    _hintLbl.attributedText = temgpStr;
+//    if (self.NumValueBlock) {
+//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+//    }
 }
 //减号方法
 - (void)subtractionBtnClick{
-    _total-=self.lineValue;
-    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-    _hintLbl.attributedText = temgpStr;
-    if (self.NumValueBlock) {
-        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-    }
+	if (_total<= 0) {
+		_total = 0;
+	}else{
+		_total-=self.lineValue;
+	}
+	[self publicBtnClickFunc:SubtractionBtnClick];
+//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+//    _hintLbl.attributedText = temgpStr;
+//    if (self.NumValueBlock) {
+//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+//    }
 }
 //乘号方法
 - (void)multiplicationBtnClick{
     _total = _total *0.9;
-    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-    _hintLbl.attributedText = temgpStr;
-    if (self.NumValueBlock) {
-        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-    }
+	[self publicBtnClickFunc:MultiplicationBtnClick];
+//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+//    _hintLbl.attributedText = temgpStr;
+//    if (self.NumValueBlock) {
+//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+//    }
 }
 //除号方法
 - (void)divisionBtnClick{
     _total = _total /0.9;
-    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-    _hintLbl.attributedText = temgpStr;
-    if (self.NumValueBlock) {
-        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-    }
+	[self publicBtnClickFunc:DivisionBtnClick];
+//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+//    _hintLbl.attributedText = temgpStr;
+//    if (self.NumValueBlock) {
+//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+//    }
 }
 //重置方法
 - (void)restartClick{
@@ -233,10 +261,68 @@
     NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
     [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
     _hintLbl.attributedText = temgpStr;
-}
 
+	tCellLineList_ = nil;
+	[tCellLineList_ removeAllObjects];
+	tCellLineList_  = [NSMutableArray array];
+	for(BigGoodsAndBoardModel * tBigGoodsAndBoardModel in self.cellLineList){
+		[tCellLineList_ addObject: [tBigGoodsAndBoardModel mutableCopy]];
+	}
+}
+- (void)publicBtnClickFunc:(WithBtnClickStyle)pBtnClickStyle{
+	_hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+	NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+	NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+	[temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+	_hintLbl.attributedText = temgpStr;
+	for (BigGoodsAndBoardModel * tBigGoodsAndBoardModel in tCellLineList_) {
+				switch (pBtnClickStyle) {
+					case AdditionBtnClick:{
+						NSInteger tAdd = [tBigGoodsAndBoardModel.number integerValue];
+						tAdd =tAdd + 1;
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tAdd];
+					}
+						break;
+					case SubtractionBtnClick:{
+						NSInteger tSubtraction = [tBigGoodsAndBoardModel.number integerValue];
+						if (tSubtraction <=0) {
+							tSubtraction = 0;
+						}else{
+							tSubtraction = tSubtraction - 1;
+						}
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tSubtraction];
+					}
+						break;
+					case MultiplicationBtnClick:{
+						NSInteger tMultiplication = [tBigGoodsAndBoardModel.number integerValue];
+						tMultiplication = tMultiplication *0.9;
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tMultiplication];
+					}
+						break;
+					case DivisionBtnClick:{
+						NSInteger tDivisionBtn = [tBigGoodsAndBoardModel.number integerValue];
+						tDivisionBtn = tDivisionBtn /0.9;
+						tBigGoodsAndBoardModel.number = [NSString stringWithFormat:@"%.1ld",tDivisionBtn];
+					}
+						break;
+					default:
+						break;
+				}
+	}
+}
 //确认按钮方法
 - (void)verifyBtnClick{
+	//遍历取到的list 修改对应的值,刷新tableview
+	for (int i = 0; i <self.cellLineList.count ; i ++) {
+		BigGoodsAndBoardModel * tOldData =self.cellLineList[i];
+		BigGoodsAndBoardModel * tNewData = tCellLineList_[i];
+		tOldData.number = tNewData.number;
+	}
+	//修改总数量的值
+	self.itemModel.value = [NSString stringWithFormat:@"%.1lf",_total];
+	if (self.NumValueBlock) {
+		self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+	}
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

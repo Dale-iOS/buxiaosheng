@@ -674,18 +674,55 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     return 0;
 }
 
+/**
+ 结算数量的模型
 
+ @param pArr 全部的list
+ @return 结算数量的模型
+ */
+- (ItemList *)SettlementModelCount:(NSArray *)pArr{
+	Class tItemList = [ItemList class];
+	NSMutableArray * tSettlementModelArr = [NSMutableArray array];
+	ItemList *SettlementModelCount;//结算数量的模型
+	//这里的结算数量应该是错的,这个值在新增加一条的时候会一起变动,原因是无法区分是新增加一条的结算数量,还是原始的结算数量 需要区分来着与那个结算数量就可以
+	for (int j = 0; j < _consumptionArr.count; j ++) {
+		Class tClassArr  = [_consumptionArr[j] class];
+		if ([tItemList isEqual:tClassArr]) {
+			[tSettlementModelArr addObject:_consumptionArr[j]];
+		}
+	}
 
+	for (ItemList * tEntity in tSettlementModelArr) {
+		NSLog(@"--key:%@",tEntity.key);
+		if ([tEntity.key isEqualToString:@"结算数量"]) {
+			SettlementModelCount = tEntity;
+			break;
+		}
+	}
+	return SettlementModelCount;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section ==  _dataSource.count-2 ) {
         ItemList *model = _consumptionArr[indexPath.row];
         if ([model.key isEqualToString:@"标签数量"]) {
-            
+
+			NSMutableArray * tCountLine = [NSMutableArray array];
+			Class tBigGoodsClass = [BigGoodsAndBoardModel class];
+			for (int i = 0; i <_consumptionArr.count ; i ++) {
+				Class tClassArr  = [_consumptionArr[i] class];
+				if ([tClassArr isEqual:tBigGoodsClass]) {
+					[tCountLine addObject:_consumptionArr[i]];
+				}
+			}
             LZChangeNumVC *vc = [[LZChangeNumVC alloc]init];
             vc.originalValue = [model.value integerValue];
+			vc.cellLineList = tCountLine;//总条数的数据源
+			vc.lineValue = tCountLine.count;//总条数
+			vc.itemModel = [self SettlementModelCount:_consumptionArr];//结算数量的模型
             [vc setNumValueBlock:^(NSString *ValueStr) {
+				//可以不通过block回调,直接在model里面改模型的数据也可以实现功能
                 model.value = ValueStr;
                 [tableView reloadData];
             }];

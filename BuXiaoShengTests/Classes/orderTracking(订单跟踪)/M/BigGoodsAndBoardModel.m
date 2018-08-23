@@ -9,46 +9,173 @@
 #import "BigGoodsAndBoardModel.h"
 
 @implementation ItemList
-- (id)copyWithZone:(nullable NSZone *)zone{
-    ItemList *model = [[self class] allocWithZone:zone];
-    model.total = self.total;
-    model.value = self.value;
-    model.key = self.key;
-    model.placeholder = self.placeholder;
-    model.isSelect = self.isSelect;
-    model.isContentColorRed = self.isContentColorRed;
-    model.isEditor = self.isEditor;
-    return model;
+- (id)copyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+
+	free(properties);
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+		if([value respondsToSelector:@selector(copyWithZone:)])
+		{[objCopy setValue:[value copy] forKey:name];}
+		else
+		{[objCopy setValue:value  forKey:name];}
+	}
+	return objCopy;
 }
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+	free(properties);
+
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+
+		if([value respondsToSelector:@selector(mutableCopyWithZone:)])
+		{[objCopy setValue:[value mutableCopy] forKey:name];}
+		else
+		{[objCopy setValue:value forKey:name];}
+	}
+	return objCopy;
+}
+
 
 @end
 
 
 @implementation BatchNumberList
+- (id)copyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+
+	free(properties);
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+		if([value respondsToSelector:@selector(copyWithZone:)])
+		{[objCopy setValue:[value copy] forKey:name];}
+		else
+		{[objCopy setValue:value  forKey:name];}
+	}
+	return objCopy;
+}
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+	free(properties);
+
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+
+		if([value respondsToSelector:@selector(mutableCopyWithZone:)])
+		{[objCopy setValue:[value mutableCopy] forKey:name];}
+		else
+		{[objCopy setValue:value forKey:name];}
+	}
+	return objCopy;
+}
 
 
 @end
 
 
 @implementation BigGoodsAndBoardModel
-- (id)copyWithZone:(nullable NSZone *)zone{
-    BigGoodsAndBoardModel *model1 = [[self class] allocWithZone:zone];
-    model1.number = self.number;
-    model1.productColorId = self.productColorId;
-    model1.batchNumberList = self.batchNumberList;
-    model1.productId = self.productId;
-    model1.price = self.price;
-    model1.productName = self.productName;
-    model1.unitName = self.unitName;
-    model1.productColorName = self.productColorName;
-    model1.total = self.total;
-    model1.storageType = self.storageType;
-    model1.customerMobile = self.customerMobile;
-    model1.customerName = self.customerName;
-    model1.deposit = self.deposit;
-    
-    
-    return model1;
+- (id)copyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+
+	free(properties);
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+		if([value respondsToSelector:@selector(copyWithZone:)])
+		{[objCopy setValue:[value copy] forKey:name];}
+		else
+		{[objCopy setValue:value  forKey:name];}
+	}
+	return objCopy;
+}
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+	id objCopy = [[[self class] allocWithZone:zone] init];
+	Class clazz = [self class];
+	u_int count;
+	objc_property_t* properties = class_copyPropertyList(clazz, &count);
+	NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+	for (int i = 0; i < count ; i++)
+	{
+		const char* propertyName = property_getName(properties[i]);
+		[propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+	}
+	free(properties);
+
+	for (int i = 0; i < count ; i++)
+	{
+		NSString *name=[propertyArray objectAtIndex:i];
+		id value=[self valueForKey:name];
+
+		if([value respondsToSelector:@selector(mutableCopyWithZone:)])
+		{[objCopy setValue:[value mutableCopy] forKey:name];}
+		else
+		{[objCopy setValue:value forKey:name];}
+	}
+	return objCopy;
 }
 
 
