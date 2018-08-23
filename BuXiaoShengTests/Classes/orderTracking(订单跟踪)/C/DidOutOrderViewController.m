@@ -209,6 +209,11 @@ static NSInteger const pageSize = 15;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+
+}
+
 //收货按钮事件
 - (void)didClickreceivingBtnInCell:(UITableViewCell *)cell{
     NSIndexPath *indexP = [_tableView indexPathForCell:cell];

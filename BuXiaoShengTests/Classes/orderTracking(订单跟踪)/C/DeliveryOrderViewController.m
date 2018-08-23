@@ -15,6 +15,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "CheckDetailViewController.h"
 
 static NSInteger const pageSize = 15;
 @interface DeliveryOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
@@ -208,6 +209,14 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    CheckDetailViewController *chechVC = [[CheckDetailViewController alloc] initWithNibName:@"CheckDetailViewController" bundle:nil];
+    chechVC.title = @"订单跟踪详情";
+    chechVC.orderNo = model.orderNo;
+    [self.navigationController pushViewController:chechVC animated:YES];
 }
 
 //完成按钮事件

@@ -1,23 +1,24 @@
 //
-//  LZSearchClientNeedsVC.m
+//  LZOrderTrackingListVC.m
 //  BuXiaoSheng
 //
-//  Created by 罗镇浩 on 2018/5/28.
+//  Created by 罗镇浩 on 2018/8/23.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  我的订单页面(客户需求-未出库进来)
+//  我的订单页面（订单跟踪进来）
 
-#import "LZSearchClientNeedsVC.h"
+#import "LZOrderTrackingListVC.h"
 #import "LLDayCalendarVc.h"
 #import "LLWeekCalendarVc.h"
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
 #import "LZSearchBar.h"
-#import "LZOrderTrackingModel.h"
-#import "LZSearchClientNeedsCell.h"
+#import "LZOrderTrackingListModel.h"
+#import "LZOrderTrackingListCell.h"
+#import "CheckDetailViewController.h"
 
 static NSInteger const pageSize = 15;
-@interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LZOrderTrackingListVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *_startStr;//开始时间
     NSString *_endStr;//结束时间
@@ -29,11 +30,11 @@ static NSInteger const pageSize = 15;
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UILabel *headerLbl;
-@property(nonatomic,strong)NSMutableArray<LZOrderTrackingModel*> *lists;
+@property(nonatomic,strong)NSMutableArray<LZOrderTrackingListModel*> *lists;
 @property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
-@implementation LZSearchClientNeedsVC
+@implementation LZOrderTrackingListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -162,6 +163,7 @@ static NSInteger const pageSize = 15;
 }
 
 #pragma mark ---- 网络请求 ----
+//接口名称 已完成
 - (void)setupList{
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@(self.pageIndex),
@@ -169,8 +171,8 @@ static NSInteger const pageSize = 15;
                             @"endDate":_endStr,
                             @"startDate":_startStr,
                             };
-    [BXSHttp requestGETWithAppURL:@"sale/need_list.do" param:param success:^(id response) {
-
+    [BXSHttp requestGETWithAppURL:@"sale/completed_list.do" param:param success:^(id response) {
+        
         
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
@@ -180,7 +182,7 @@ static NSInteger const pageSize = 15;
             NSArray *itemList = [response objectForKey:@"data"];
             if (itemList && itemList.count > 0) {
                 for (NSDictionary *dic in itemList) {
-                    LZOrderTrackingModel *model = [LZOrderTrackingModel mj_objectWithKeyValues:dic];
+                    LZOrderTrackingListModel *model = [LZOrderTrackingListModel mj_objectWithKeyValues:dic];
                     [self.lists addObject:model];
                 }
                 if (self.lists.count % pageSize) {
@@ -231,12 +233,12 @@ static NSInteger const pageSize = 15;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"LZSearchClientNeedsCellid";
-    LZSearchClientNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"LZOrderTrackingListCellid";
+    LZOrderTrackingListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
         
-        cell = [[LZSearchClientNeedsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LZOrderTrackingListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.model = _lists[indexPath.row];
     
@@ -246,9 +248,12 @@ static NSInteger const pageSize = 15;
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LZOrderTrackingModel *model = _lists[indexPath.row];
-//
-
+    LZOrderTrackingListModel *model = _lists[indexPath.row];
+    
+    CheckDetailViewController *chechVC = [[CheckDetailViewController alloc] initWithNibName:@"CheckDetailViewController" bundle:nil];
+    chechVC.title = @"客户对账详情";
+    chechVC.orderNo = model.orderNo;
+    [self.navigationController pushViewController:chechVC animated:YES];
 }
 
 #pragma mark --- 点击事件 ---
@@ -331,7 +336,7 @@ static NSInteger const pageSize = 15;
 }
 
 #pragma mark - Getter && Setter
-- (NSMutableArray<LZOrderTrackingModel *> *)lists {
+- (NSMutableArray<LZOrderTrackingListCell *> *)lists {
     if (_lists == nil) {
         _lists = @[].mutableCopy;
     }

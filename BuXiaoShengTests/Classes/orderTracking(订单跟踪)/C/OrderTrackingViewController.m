@@ -13,7 +13,7 @@
 #import "DidOutOrderViewController.h"
 #import "ShipmentOrderViewController.h"
 #import "DeliveryOrderViewController.h"
-#import "LZSearchClientNeedsVC.h"
+#import "LZOrderTrackingListVC.h"
 
 @interface OrderTrackingViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -91,7 +91,7 @@
 
 - (void)toSearch
 {
-    [self.navigationController pushViewController:[LZSearchClientNeedsVC new] animated:YES];
+    [self.navigationController pushViewController:[LZOrderTrackingListVC new] animated:YES];
 }
 
 
