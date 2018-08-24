@@ -108,6 +108,7 @@
         make.height.mas_offset(39);
     }];
 }
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     return true;
