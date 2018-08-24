@@ -294,6 +294,11 @@
     }
     //先把返回的数据转成时间戳，再转成时间显示
     self.timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+    if (_model.buyStatus.integerValue == 0) {
+        [self.noBtn setHidden:NO];
+    }else{
+        [self.noBtn setHidden:YES];
+    }
 }
 
 - (void)yesBtnClick

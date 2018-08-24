@@ -6647,7 +6647,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "be9647bb-775c-41b7-b7bd-76b7b3d0a4bc";
+				PROVISIONING_PROFILE = "afcb1abe-e3c7-439c-a432-379955c230b7";
 				PROVISIONING_PROFILE_SPECIFIER = ZhenJiTiaoShi;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

@@ -479,7 +479,9 @@
 		NSMutableArray *muArray1 = [NSMutableArray array];
         for (int i = 0; i < tempArray.count; i++) {
 			NSMutableDictionary * param = [NSMutableDictionary dictionary];
-			param[@"name"] = tempArray[i][@"name"];
+            param[@"id"] = tempArray[i][@"id"];
+            param[@"name"] = tempArray[i][@"name"];
+            param[@"productId"] = tempArray[i][@"productId"];
 			[muArray addObject:param];
 			[muArray1 addObject:tempArray[i][@"name"]];
         }
@@ -495,10 +497,8 @@
 //量化按钮事件 左键
 - (void)leftBtnClick
 {
-    NSLog(@"leftBtnClick");
-    
+
     _isSelLeftBtn = YES;
-    
     
     [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
     [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
@@ -507,10 +507,8 @@
 //量化按钮事件 右键
 - (void)rightBtnClick
 {
-    NSLog(@"rightBtnClick");
-    
+
     _isSelrightBtn = YES;
-    
     
     [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
     [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
@@ -588,7 +586,6 @@
 
 - (void)addColorCellTapAction
 {
-    
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
