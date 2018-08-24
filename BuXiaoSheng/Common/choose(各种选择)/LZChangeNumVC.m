@@ -224,32 +224,74 @@ typedef NS_ENUM(NSInteger, WithBtnClickStyle) {
 //        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
 //    }
 }
+
+/**
+ 返回切割后的str
+
+ @param pDouble 精度值传入
+ @return 返回 切割到.1位的str->55.8或888.8
+ */
+- (NSString * )resultDoubleNumber:(double)pDouble{
+	//精度精确到5位数,转str,切割然后在赋值
+	NSString * tDoubleNumber =[NSString stringWithFormat:@"%.5lf",pDouble];
+	NSRange tRange = [tDoubleNumber rangeOfString:@"."];//匹配得到的下标
+	tDoubleNumber = tDoubleNumber.length > tRange.location + 2 ?
+	[tDoubleNumber substringToIndex:tRange.location + 2] : [NSString stringWithFormat:@"%.1lf",pDouble];//正常逻辑是 tDoubleNumber.length 永远都会大于 tRange.location + 2 只是为了防止崩溃
+	return tDoubleNumber;
+}
 //乘号方法
 - (void)multiplicationBtnClick{
-    _total = _total *0.9;
-	[self publicBtnClickFunc:MultiplicationBtnClick];
-//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-//    _hintLbl.attributedText = temgpStr;
-//    if (self.NumValueBlock) {
-//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-//    }
+
+	NSString * tSumStr;
+	for (int i = 0; i < tCellLineList_.count; i ++) {
+		BigGoodsAndBoardModel * tBigGoodsAndBoardModel =tCellLineList_[i];
+		double tMultiplication = [tBigGoodsAndBoardModel.number doubleValue];
+		tMultiplication = tMultiplication * 0.99;
+		tBigGoodsAndBoardModel.number = [self resultDoubleNumber:tMultiplication];
+		NSLog(@"精度到0.1的乘数值:%@",tBigGoodsAndBoardModel.number);
+		if (i == 0) {
+			tSumStr = tBigGoodsAndBoardModel.number;
+		}else{
+			double tOld =[tSumStr doubleValue];
+			double tNew =[tBigGoodsAndBoardModel.number doubleValue];
+			double tSumOldNew =tOld + tNew;
+			tSumStr = [NSString stringWithFormat:@"%.1lf",tSumOldNew];
+		}
+	}
+	_total = [tSumStr doubleValue];
+	_hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+	NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+	NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+	[temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+	_hintLbl.attributedText = temgpStr;
 }
 //除号方法
 - (void)divisionBtnClick{
-    _total = _total /0.9;
-	[self publicBtnClickFunc:DivisionBtnClick];
-//    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
-//    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
-//    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
-//    [temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
-//    _hintLbl.attributedText = temgpStr;
-//    if (self.NumValueBlock) {
-//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
-//    }
+	NSString * tSumStr;
+	for (int i = 0; i < tCellLineList_.count; i ++) {
+		BigGoodsAndBoardModel * tBigGoodsAndBoardModel =tCellLineList_[i];
+		//这里_total不能再使用 直接赋值的逻辑,应为乘除会导致精度丢失,所以逻辑应该是先给每一个cell赋值,然后在将每一个cell的值精度到0.1 进行循环相加,然后在进行赋值
+		double tDivisionBtn = [tBigGoodsAndBoardModel.number doubleValue];
+		tDivisionBtn = tDivisionBtn / 0.99;
+		tBigGoodsAndBoardModel.number = [self resultDoubleNumber:tDivisionBtn];;
+		NSLog(@"精度到0.1的除数值:%@",tBigGoodsAndBoardModel.number);
+		if (i == 0) {
+			tSumStr = tBigGoodsAndBoardModel.number;
+		}else{
+			double tOld =[tSumStr doubleValue];
+			double tNew =[tBigGoodsAndBoardModel.number doubleValue];
+			double tSumOldNew =tOld + tNew;
+			tSumStr = [NSString stringWithFormat:@"%.1lf",tSumOldNew];
+		}
+	}
+	_total = [tSumStr doubleValue];
+	_hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
+	NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
+	NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
+	[temgpStr addAttribute:NSForegroundColorAttributeName value:CD_Text99 range:oneRange];
+	_hintLbl.attributedText = temgpStr;
 }
+
 //重置方法
 - (void)restartClick{
     
