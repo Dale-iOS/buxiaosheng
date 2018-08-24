@@ -57,5 +57,8 @@
 
 @property (nonatomic, copy) NSString *outgoingCount;
 @property (nonatomic,assign) BOOL seleted;
-@property (nonatomic,strong) NSString *houseName;
+//多加几个属性 把leftmodel的属性带过来
+@property (nonatomic, strong) NSString *houseName;
+@property (nonatomic, strong) NSString *batcNumber;
+@property (nonatomic, strong) NSString *houseId;
 @end

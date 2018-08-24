@@ -21,7 +21,7 @@
     //出库数量
     UITextField * _OutNumLbl;
     //条数
-    UILabel * _lineNumLbl;
+    UITextField * _lineNumLbl;
     //出库仓
     UILabel * _fromWarahouseLbl ;
 }
@@ -80,7 +80,7 @@
         make.height.mas_offset(39);
     }];
     
-    UILabel *lineNumLbl = [[UILabel alloc]init];
+    UITextField *lineNumLbl = [[UITextField alloc]init];
     _lineNumLbl = lineNumLbl;
     lineNumLbl.font = FONT(14);
     lineNumLbl.textColor = CD_Text33;
@@ -113,7 +113,14 @@
     return true;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    self.itemsModel.value = textField.text;
+ 
+    if ([textField isEqual:_OutNumLbl]) {
+        self.itemsModel.value = textField.text;
+    }
+    
+    if ([textField isEqual:_lineNumLbl]) {
+        self.itemsModel.total = textField.text;
+    }
     
     OutboundViewController * outVc = (OutboundViewController*)[BXSTools viewWithViewController:self.contentView];
     [outVc.tableView reloadData];

@@ -38,7 +38,7 @@
 
 //该数据源是来源右侧侧滑来的数据
 -(void)setRightSeleteds:(NSMutableArray<LLOutboundRightModel *> *)rightSeleteds {
-    [_rightSeleteds addObjectsFromArray:rightSeleteds];
+    _rightSeleteds = [NSMutableArray arrayWithArray:rightSeleteds];
     
     
     //    [_listModels enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -347,7 +347,7 @@
         totalOutCount += [obj.outgoingCount integerValue];
     }];
     
-
+    
     self.totalNumberLable.text = [NSString stringWithFormat:@"总条数:%@",[@(totalCount)stringValue]] ;
     
     self.totalCountLable.text = [NSString stringWithFormat:@"总出库数量:%@",[@(totalOutCount)stringValue]] ;
@@ -362,13 +362,12 @@
     
 }
 
+#pragma mark -- 保存
 -(void)determineBtnClick {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"checkOut==1"];
     
     NSArray <LZOutboundItemListModel*> *filterArray = [_listModels filteredArrayUsingPredicate:predicate];
-    
     NSMutableArray <LZOutboundItemListModel*> *seleteds = [NSMutableArray array];
-    
     for (LZOutboundItemListModel * ItemListModel  in filterArray) {
         if (ItemListModel.itemCellData.count) {
             [seleteds addObject:ItemListModel];
@@ -381,65 +380,37 @@
     }
     NSMutableArray <NSDictionary *> * orderHouseItems = [NSMutableArray array];
     
-//    [seleteds enumerateObjectsUsingBlock:^(LZOutboundItemListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        [obj.itemCellData enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel *  _Nonnull cellobj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            
-////            [cellobj.itemList enumerateObjectsUsingBlock:^(LLOutboundRightDetailModel * _Nonnull celldetalobj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                NSLog(@"23");
-//                LZOutboundSelectModel *selectModel = [[LZOutboundSelectModel alloc]init];
-//                selectModel.productId = obj.productId;
-//                selectModel.productColorId = obj.productColorId;
-//                selectModel.price = obj.price;
-//                selectModel.stockId = cellobj.stockId;
-////                selectModel.batchNumber = cellobj.batcNumber;
-//////                selectModel.number = cellobj.value;
-////                selectModel.houseId = cellobj.leftModel.houseId;
-//                selectModel.needId = obj.needId;
-//                selectModel.needTotal = obj.number;
-//                selectModel.total = cellobj.total;
-//
-//                [orderHouseItems addObject:selectModel];
-////            }];
-//            
-//        }];
-//    }];
+    /****/
     
-    for (int i = 0 ; i <seleteds.count; i++) {
-        LLOutboundRightModel *outboundRightModel = _rightSeleteds[i];
-        LZOutboundItemListModel *outboundItemListModel = seleteds[i];
-        for (int j = 0; j <outboundRightModel.itemList.count ; j++) {
-            LLOutboundRightDetailModel *outboundRightDetailModel = outboundRightModel.itemList[j];
-//            LZOutboundSelectModel *selectModel = [LZOutboundSelectModel new];
-//            selectModel.productId = outboundItemListModel.productId;
-//            selectModel.productColorId = outboundItemListModel.productColorId;
-//            selectModel.price = outboundItemListModel.price;
-//            selectModel.stockId = outboundRightDetailModel.stockId;
-//            selectModel.batchNumber = outboundRightModel.batcNumber;
-//            selectModel.number = outboundRightDetailModel.value;
-//            selectModel.houseId = outboundRightModel.leftModel.houseId;
-//            selectModel.needId = outboundItemListModel.needId;
-//            selectModel.needTotal = outboundItemListModel.number;
-//            selectModel.total = outboundRightDetailModel.total;
-            
+    for (LZOutboundItemListModel *itemModel in seleteds) {
+        
+        for (LLOutboundRightDetailModel *detailModel in itemModel.itemCellData) {
             
             NSDictionary * param = @{
-                                     @"productId":outboundItemListModel.productId,
-                                     @"productColorId":outboundItemListModel.productColorId,
-                                     @"price":outboundItemListModel.price,
-                                     @"stock":outboundItemListModel.stock,
-                                     @"stockId":outboundRightDetailModel.stockId,
-                                     @"batchNumber":outboundRightModel.batcNumber,
-                                     @"number":outboundRightDetailModel.value,
-                                     @"houseId":outboundRightModel.leftModel.houseId,
-                                     @"houseName":outboundRightModel.leftModel.houseName,
-                                     @"needId":outboundItemListModel.needId,
-                                     @"needTotal":outboundItemListModel.number,
-                                     @"total":outboundRightDetailModel.total,
+                                     @"productId":itemModel.productId,
+                                     @"productColorId":itemModel.productColorId,
+                                     @"price":itemModel.price,
+                                     @"stock":itemModel.stock,
+                                     @"stockId":detailModel.stockId,
+                                     @"batchNumber":detailModel.batcNumber,
+                                     @"number":detailModel.value,
+                                     @"houseId":detailModel.houseId,
+                                     @"houseName":detailModel.houseName,
+                                     @"needId":itemModel.needId,
+                                     @"needTotal":itemModel.number,
+                                     @"total":detailModel.total,
                                      };
             [orderHouseItems addObject:param];
+            
         }
+        
+        
+        
     }
+    
+    /****/
+    
+    
     
     NSDictionary * param = @{
                              @"companyId":[BXSUser currentUser].userId,
@@ -453,6 +424,10 @@
                                    [LLHudTools showWithMessage:baseModel.msg];
                                    return ;
                                }
+                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                   [self.navigationController popViewControllerAnimated:true];
+                               });
+
                            } failure:^(NSError *error) {
                                
                            }];

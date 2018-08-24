@@ -435,7 +435,6 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
         }
     }
     [self.tableView reloadData];
-    
 }
 
 #pragma mark - set & get

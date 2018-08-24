@@ -19,16 +19,22 @@
     UIButton * _addBtn;
     UIView * _bottomView;
     UIButton * _seletedBtn;
+    
+    NSMutableArray *_tmpArray;
+    
 }
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
+        
     }
     return self;
 }
 
 
 -(void)setupUI{
+    
+    _tmpArray = [NSMutableArray array];
     
     _bgView = [UIView new];
     _bgView.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -177,7 +183,8 @@
     rightSeletedVc.itemModel = self.model;
     rightSeletedVc.block = ^(NSArray<LLOutboundRightModel *> *seleteds, LZOutboundItemListModel *lastModel) {
         outboundVc.sectionModel = lastModel;
-        outboundVc.rightSeleteds = [NSMutableArray arrayWithArray:seleteds];
+        [_tmpArray addObjectsFromArray:seleteds];
+        outboundVc.rightSeleteds = _tmpArray;
     };
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     

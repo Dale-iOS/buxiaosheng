@@ -221,6 +221,8 @@
         
         for (LLOutboundRightDetailModel *detailModel in rightModel.itemList) {
             detailModel.houseName = rightModel.leftModel.houseName;
+            detailModel.houseId = rightModel.leftModel.houseId;
+            detailModel.batcNumber = rightModel.batcNumber;
             if (detailModel.seleted) {
                 [seleteds addObject:detailModel];
             }
