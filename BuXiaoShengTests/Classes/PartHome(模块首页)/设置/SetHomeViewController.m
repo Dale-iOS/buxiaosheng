@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/28.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  设置页面
 
 #import "SetHomeViewController.h"
 #import "SettingCell.h"
@@ -65,7 +65,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -49)];
         //        tableView.tableView.allowsSelection = YES;
         //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
