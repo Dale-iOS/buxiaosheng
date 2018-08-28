@@ -149,7 +149,7 @@ static NSInteger const pageSize = 15;
     LZProcurementModel *model = _lists[indexP.row];
     //id
     LZPurchaseReceiptDetailVC *vc = [[LZPurchaseReceiptDetailVC alloc]init];
-    vc.orderNo = model.buyId;
+    vc.bugId = model.buyId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

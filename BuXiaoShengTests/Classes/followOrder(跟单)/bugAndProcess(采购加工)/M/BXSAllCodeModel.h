@@ -11,10 +11,15 @@
 #import "LZFindCodeModel.h"
 @interface BXSAllCodeModel : BaseModel
 
-
+// 需求量
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *productColorId;
 @property(nonatomic,copy)NSString *productColorName;
+@property(nonatomic,copy)NSString *productName;
+// 单位
+@property(nonatomic,copy)NSString *houseUnitName;
+
+@property(nonatomic,copy)NSString *buyOrderItemId;
 
 /// 应该付的钱
 @property (strong,nonatomic)NSString *shouldPay;

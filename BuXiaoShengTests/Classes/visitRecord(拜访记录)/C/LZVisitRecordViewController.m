@@ -13,6 +13,7 @@
 #import "UITextView+Placeholder.h"
 #import "LZVisitRecordListVC.h"
 #import "LZPickerView.h"
+#import "UITextField+PopOver.h"
 
 //图片:
 #import "TZImagePickerController.h"
@@ -31,7 +32,7 @@
 #define Max_Photos 1 //最大选择照片总数
 #define Max_LinePhotos 4 //选择图片页面每一行最大数
 
-@interface LZVisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
+@interface LZVisitRecordViewController ()<LZHTableViewDelegate,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate,UITextFieldDelegate>
 {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
@@ -65,6 +66,13 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
 @property (strong, nonatomic) CLLocation *location;
+
+//客户数组
+@property(nonatomic,strong)NSMutableArray *customerList;
+@property(nonatomic,strong)NSMutableArray *customerNameAry;
+@property(nonatomic,strong)NSMutableArray *customerPhoneAry;
+@property(nonatomic,strong)NSMutableArray *customerIdAry;
+//@property (nonatomic, copy)NSString *customerIdStr;///选中的客户id
 @end
 
 @implementation LZVisitRecordViewController
@@ -72,8 +80,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self setupUI];
+    
+    [self setupCustomerList];
 }
 
 - (void)setupUI{
@@ -125,12 +135,13 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
-    //拜访记录
+    //拜访对象
     _objectCell = [[TextInputCell alloc]init];
     _objectCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _objectCell.userInteractionEnabled = YES;
     _objectCell.titleLabel.text = @"拜访对象";
     _objectCell.contentTF.placeholder = @"请输入拜访对象";
+    
     
     //拜访记录
     _wayCell = [[TextInputCell alloc]init];
@@ -143,12 +154,14 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapWayClick)];
     [_wayCell addGestureRecognizer:tap];
     
+    //主要事宜
     _mainCell = [[TextInputCell alloc]init];
     _mainCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _mainCell.userInteractionEnabled = YES;
     _mainCell.titleLabel.text = @"主要事宜";
     _mainCell.contentTF.placeholder = @"请输入主要事宜";
     
+    //拜访结果
     _resultView = [[TextInputTextView alloc]init];
     _resultView.frame = CGRectMake(0, 0, APPWidth, 80);
     //    self.resultView.userInteractionEnabled = YES;
@@ -220,7 +233,38 @@
 
 
 #pragma mark ---- 网络请求 ----
-//图片上传
+//功能用到客户列表
+- (void)setupCustomerList{
+    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
+    [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        _customerList = baseModel.data;
+        _customerNameAry = [NSMutableArray array];
+        _customerIdAry = [NSMutableArray array];
+        _customerPhoneAry = [NSMutableArray array];
+        for (int i = 0 ; i <_customerList.count; i++) {
+            [_customerNameAry addObject:_customerList[i][@"name"]];
+            [_customerIdAry addObject:_customerList[i][@"id"]];
+            [_customerPhoneAry addObject:_customerList[i][@"mobile"]];
+        }
+        WEAKSELF;
+        self.objectCell.contentTF.delegate = self;
+        self.objectCell.contentTF.scrollView = (UIScrollView * )self.view;
+        self.objectCell.contentTF.positionType = ZJPositionBottomThree;
+        [self.objectCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
+            weakSelf.objectCell.contentTF.text = _customerNameAry[index];
+//            _customerIdStr = _customerIdAry[index];
+        }];
+        
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
+}
+
 //接口名称 图片上传
 - (void)uploadPhotos:(NSArray *)selectArray{
     NSDictionary * param = @{@"file":@"0"};
@@ -513,6 +557,7 @@
 #pragma mark - TZImagePickerControllerDelegate
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
+    
 }
 // 这个照片选择器会自己dismiss，当选择器dismiss的时候，会执行下面的代理方法
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {

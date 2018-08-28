@@ -116,7 +116,7 @@
     [self.mainTable registerClass:[BXSHadSelectDBCell class] forCellReuseIdentifier:[BXSHadSelectDBCell cellID]];
     
     
- 
+    
     
 }
 
@@ -257,7 +257,7 @@
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
- 
+    
 }
 
 /// post整个数据--最终的数据上传

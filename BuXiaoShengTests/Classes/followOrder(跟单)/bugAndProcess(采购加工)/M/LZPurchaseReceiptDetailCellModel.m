@@ -10,8 +10,12 @@
 
 @implementation LZPurchaseReceiptDetailCellModel
 + (NSDictionary *)mj_objectClassInArray{
-    return @{@"bottomList":[LZPurchaseReceiptDetailCellBottomList class]};
+    return @{@"bottomList":[LZPurchaseReceiptDetailCellBottomList class],
+             @"itemList":[LZPurchaseReceiptDetailCellItemList class]
+             
+             };
 }
+
 @end
 
 @implementation LZPurchaseReceiptDetailCellBottomList

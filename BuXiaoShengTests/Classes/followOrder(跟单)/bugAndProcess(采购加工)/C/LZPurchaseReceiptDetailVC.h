@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LZPurchaseReceiptDetailVC : BaseTableVC
-@property (nonatomic ,strong) NSString *orderNo;
+@property (nonatomic ,strong) NSString *bugId;
+/// 外界传入 是否是细码。默认NO
+@property (assign,nonatomic) BOOL isFindCode;
 @end
