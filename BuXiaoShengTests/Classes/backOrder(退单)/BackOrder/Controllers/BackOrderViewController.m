@@ -402,7 +402,7 @@
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell popViewForIndexPath:(NSIndexPath *)indexPath textField:(UITextField *)textField {
 	textField.delegate = self;
 	textField.scrollView = (UIScrollView *)self.view;
-	textField.positionType  = ZJPositionBottom;
+	textField.positionType  = ZJPositionBottomThree;
 	WEAKSELF;
 	[textField popOverSource:_nameArray index:^(NSInteger index) {
 		weakSelf.infoModel.customerId = weakSelf.customerIdAry[index];
