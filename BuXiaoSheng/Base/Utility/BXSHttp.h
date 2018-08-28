@@ -14,7 +14,7 @@
 //正式环境
 #define BXSBaseURL  @"http://www.buxiaosheng.com/web-api/"
 //测试环境
-//#define BXSBaseURL  @"http://192.168.3.160:8080/web-api/"
+//#define BXSBaseURL  @"http://192.168.3.253:8080/web-api/"
 @interface BXSHttp : NSObject
 
 +(void)requestPOSTWithAppURL:(NSString *) url  param:(NSDictionary *) param  success:(void (^)(id response))success  failure:(void (^) (NSError * error)) failure;

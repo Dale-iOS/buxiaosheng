@@ -6632,6 +6632,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 86CD90599B7E1EAB5C069263 /* Pods-BuXiaoSheng.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -6647,12 +6648,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ed41284-8700-4fc4-bc99-f0cd4db079ee";
+				PROVISIONING_PROFILE = "ef1cdd80-1bac-470e-b43f-fa2e06ce9b77";
 				PROVISIONING_PROFILE_SPECIFIER = BXS_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
@@ -6661,6 +6662,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD407F7BADCDE0E4C97E599E /* Pods-BuXiaoSheng.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -6676,11 +6678,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8485caf-84b9-462d-bd55-d07ad7b83d66";
+				PROVISIONING_PROFILE = "3c9c86a2-2298-436a-bae7-5a7cb0db0472";
 				PROVISIONING_PROFILE_SPECIFIER = BXS_DIS;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
