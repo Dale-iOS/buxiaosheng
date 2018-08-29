@@ -16,6 +16,7 @@
 #import "BRPickerView.h"
 #import "LZChooseLabelVC.h"
 #import "LZProductDetailModel.h"
+#import "GKPhotoBrowser.h"
 
 @interface LZAlterProductDataVC ()<LZHTableViewDelegate>
 {
@@ -27,6 +28,7 @@
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property(nonatomic,strong)LZProductDetailModel *detailModel;
 @property(nonatomic,strong)NSMutableArray *colorsNameMuArray;//颜色名字
+@property (nonatomic, strong) LZProductDetailModel *model;
 ///品名
 @property (nonatomic, strong) TextInputCell *titleCell;
 ///分组
@@ -64,6 +66,9 @@
 @property (nonatomic, strong) TextInputTextView *remarkTextView;
 ///备注2
 @property (nonatomic, strong) TextInputTextView *remarkTextView2;
+
+@property (nonatomic, strong) UIImageView *visitIMV;
+@property(nonatomic,strong)NSMutableArray *photosArrayUrl;
 @end
 
 @implementation LZAlterProductDataVC
@@ -94,7 +99,8 @@
 {
     self.navigationItem.titleView = [Utility navTitleView:@"修改产品资料"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(selectornavRightBtnClick) title:@"确认"];
-
+    
+    _photosArrayUrl = [NSMutableArray array];
     self.datasource = [NSMutableArray array];
     
     [self.view addSubview:self.mainTabelView];
@@ -105,6 +111,7 @@
     [self setupSectionFour];
     [self setupSectionFive];
     [self setupSectionSix];
+    [self setSectionSeven];
     self.mainTabelView.dataSoure = self.datasource;
     
 }
@@ -381,6 +388,48 @@
     [self.datasource addObject:item];
 }
 
+- (void)setSectionSeven{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+    textLbl.textColor = CD_Text33;
+    textLbl.font = FONT(14);
+    textLbl.text = @"图片";
+    
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 104)];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    
+    self.visitIMV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 14, 80, 80)];
+    self.visitIMV.userInteractionEnabled = YES;
+    UITapGestureRecognizer *visitIMVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(visitIMVTapOnClick)];
+    [self.visitIMV addGestureRecognizer:visitIMVTap];
+    [bottomView addSubview:self.visitIMV];
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[textLbl,bottomView];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
+//展示图片
+- (void)visitIMVTapOnClick{
+    
+    NSMutableArray *photos = [NSMutableArray new];
+    [_photosArrayUrl enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:obj];
+        
+        [photos addObject:photo];
+    }];
+    
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    //    browser.loadStyle = GKPhotoBrowserLoadStyleDeterminate;
+    [browser showFromVC:self];
+}
+
 #pragma mark ---- 网络请求 ----
 //接口名称 产品详情
 - (void)setupData{
@@ -391,31 +440,31 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        LZProductDetailModel *model = [LZProductDetailModel LLMJParse:baseModel.data];
+        _model = [LZProductDetailModel LLMJParse:baseModel.data];
     
         //赋值
-        self.titleCell.contentTF.text = model.name;
-        self.groupCell.contentTF.text = model.groupName;
-        _groupId = model.groupId;
-        if ([model.storageType integerValue] == 0) {
+        self.titleCell.contentTF.text = _model.name;
+        self.groupCell.contentTF.text = _model.groupName;
+        _groupId = _model.groupId;
+        if ([_model.storageType integerValue] == 0) {
             self.defaultJoinCell.contentTF.text = @"总码";
-        }else if ([model.storageType integerValue] == 1){
+        }else if ([_model.storageType integerValue] == 1){
             self.defaultJoinCell.contentTF.text = @"细码";
         }
-        self.nicknameCell.contentTF.text = model.alias;
-        self.bigPriceCell.contentTF.text = model.largePrice;
-        self.dispersePriceCell.contentTF.text = model.shearPrice;
-        self.quantizationCell.contentTF.text = model.rateValue;
+        self.nicknameCell.contentTF.text = _model.alias;
+        self.bigPriceCell.contentTF.text = _model.largePrice;
+        self.dispersePriceCell.contentTF.text = _model.shearPrice;
+        self.quantizationCell.contentTF.text = _model.rateValue;
         
         //当是公斤的时候，量化cell选择的是米还是码
-        if ([model.unitName isEqualToString:@"公斤"] && [model.rateType integerValue]==1) {
+        if ([_model.unitName isEqualToString:@"公斤"] && [_model.rateType integerValue]==1) {
             //米
             _isSelLeftBtn = YES;
             [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
             _isSelrightBtn = NO;
             [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
     
-        }else if ([model.unitName isEqualToString:@"公斤"] && [model.rateType integerValue]==2){
+        }else if ([_model.unitName isEqualToString:@"公斤"] && [_model.rateType integerValue]==2){
             //码
             _isSelLeftBtn = NO;
             [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
@@ -424,7 +473,7 @@
         }
         
         //单位是公斤的话，会多出一条量化cell
-        if ([model.unitName isEqualToString:@"公斤"]) {
+        if ([_model.unitName isEqualToString:@"公斤"]) {
             UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
             headerView.backgroundColor = LZHBackgroundColor;
             
@@ -447,18 +496,22 @@
         }
         
         
-        self.unitCell.contentTF.text = model.unitName;
-		_unitId =model.unitName;
-        self.constituentCell.contentTF.text = model.component;
-        self.breadthCell.contentTF.text = model.breadth;
-        self.weightCell.contentTF.text = model.weight;
-        if ([model.status integerValue] == 0) {
+        self.unitCell.contentTF.text = _model.unitName;
+		_unitId = _model.unitName;
+        self.constituentCell.contentTF.text = _model.component;
+        self.breadthCell.contentTF.text = _model.breadth;
+        self.weightCell.contentTF.text = _model.weight;
+        if ([_model.status integerValue] == 0) {
             self.stateCell.contentTF.text = @"启用";
-        }else if ([model.status integerValue] == 1){
+        }else if ([_model.status integerValue] == 1){
             self.stateCell.contentTF.text = @"未启用";
         }
-        self.remarkTextView.textView.text = model.remark;
-        self.remarkTextView2.textView.text = model.remarkTwo;
+        self.remarkTextView.textView.text = _model.remark;
+        self.remarkTextView2.textView.text = _model.remarkTwo;
+//        [self.visitIMV sd_setImageWithURL:[NSURL URLWithString:model.imgs]];
+        [Utility showPicWithUrl:_model.imgs imageView:self.visitIMV placeholder:IMAGE(@"noImage")];
+        [_photosArrayUrl addObject:_model.imgs];
+        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -751,6 +804,7 @@
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
                              @"id":self.id,
+                             @"imgs": _model.imgs == nil ? @"" : _model.imgs,
                              @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
                              @"name":self.titleCell.contentTF.text,
                              @"rateType":@(quantizationCellType),

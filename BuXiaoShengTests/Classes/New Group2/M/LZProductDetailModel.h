@@ -27,4 +27,5 @@
 @property(nonatomic,copy)NSString *unitId;
 @property(nonatomic,copy)NSString *unitName;
 @property(nonatomic,copy)NSString *weight;
+@property(nonatomic,copy)NSString *imgs;
 @end
