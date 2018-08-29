@@ -24,6 +24,9 @@
         imageView.layer.cornerRadius = 5.0;
         imageView.layer.masksToBounds = YES;
         imageView.backgroundColor = [UIColor clearColor];
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(iconImageViewTapAcyion)];
+        [imageView addGestureRecognizer:tap];
         [self.contentView addSubview:(iconImageView = imageView)];
     }
     return iconImageView;
@@ -104,6 +107,12 @@
     self.titleLabel.text = model.name;
     self.subLabel.text = model.alias;
     self.unitLabel.text = model.unitName;
+}
+
+- (void)iconImageViewTapAcyion{
+    if ([self.delegate respondsToSelector:@selector(didClickIconImageViewInCell:)]) {
+        [self.delegate didClickIconImageViewInCell:self];
+    }
 }
 
 - (void)awakeFromNib {

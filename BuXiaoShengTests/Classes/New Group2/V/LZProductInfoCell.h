@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "LZProductInfoModel.h"
 
+@protocol LZProductInfoCellDelegate<NSObject>
+- (void)didClickIconImageViewInCell:(UITableViewCell *)cell;
+@end
+
 @interface LZProductInfoCell : UITableViewCell
+@property (weak, nonatomic) id <LZProductInfoCellDelegate> delegate;
 @property (strong, nonatomic) LZProductInfoModel *model;
 @property (strong, nonatomic) UIImageView *iconImageView;
 @property (strong, nonatomic) UILabel *titleLabel;

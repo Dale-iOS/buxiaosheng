@@ -14,9 +14,11 @@
 #import "LZChooseLabelVC.h"
 #import "LZProductInfoCell.h"
 #import "LZProductInfoModel.h"
+#import "LZAddProductVC.h"
+#import "GKPhotoBrowser.h"
 
 static NSInteger const pageSize = 15;
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource,LZSearchBarDelegate,LZProductInfoCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LZSearchBar * searchBar;
@@ -79,7 +81,7 @@ static NSInteger const pageSize = 15;
     UIView *addView = [[UIView alloc]init];
     addView.userInteractionEnabled = YES;
     addView.frame = CGRectMake(0, 0, APPWidth, 49);
-    addView.backgroundColor = [UIColor whiteColor];
+    addView.backgroundColor = LZHBackgroundColor;
     UITapGestureRecognizer *addViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addViewAction)];
     [addView addGestureRecognizer:addViewTap];
     [bottomView addSubview:addView];
@@ -193,6 +195,7 @@ static NSInteger const pageSize = 15;
     if (cell == nil) {
         
         cell = [[LZProductInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.delegate = self;
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -210,6 +213,31 @@ static NSInteger const pageSize = 15;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)didClickIconImageViewInCell:(UITableViewCell *)cell{
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZProductInfoModel *model = self.lists[indexP.row];
+    if ([model.imgs isEqualToString:@""]) {
+        [LLHudTools showWithMessage:@"该产品无图片"];
+        return;
+    }
+    
+    NSMutableArray *photos = [NSMutableArray new];
+    
+    NSMutableArray *photosArrayUrl = [NSMutableArray new];
+    [photosArrayUrl addObject:model.imgs];
+    
+    [photosArrayUrl enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:obj];
+        
+        [photos addObject:photo];
+    }];
+    
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    
+    [browser showFromVC:self];
+}
 
 #pragma mark ----- 点击事件 --------
 //搜索
@@ -325,8 +353,12 @@ static NSInteger const pageSize = 15;
 
 - (void)addViewAction
 {
-    AddProductViewController *vc = [[AddProductViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    AddProductViewController *vc = [[AddProductViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    [self.navigationController pushViewController:[AddProductViewController new] animated:YES];
+    
+//    [self.navigationController pushViewController:[LZAddProductVC new] animated:YES];
 }
 
 #pragma mark - Getter && Setter

@@ -688,6 +688,7 @@
                              @"colorItems":colors,
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
+                             @"imgs":_imageStr == nil ? @"" : _imageStr ,
                              @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
                              @"name":self.titleCell.contentTF.text,
                              @"rateType":@(quantizationCellType),
