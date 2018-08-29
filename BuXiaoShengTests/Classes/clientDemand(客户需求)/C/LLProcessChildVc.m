@@ -1,10 +1,10 @@
 //
-//  BXSMachiningVC.m
+//  LLProcessChildVc.m
 //  BuXiaoShengTests
 //
 //  Created by 家朋 on 2018/6/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  加工页面
+//  采购页面
 
 #import "LLProcessChildVc.h"
 #import "BXSMachiningBottomView.h"
@@ -41,6 +41,8 @@
 // dise模型
 @property (strong,nonatomic)NSMutableArray <BXSDSModel *>*dsModelArray;
 
+// 加工商模型
+@property (strong,nonatomic)NSMutableArray <LZCompanyModel *>*processorsModelArray;
 
 @property (strong,nonatomic)LZCompanyModel *companyModel;
 @end
@@ -136,7 +138,7 @@
 
 /// MARK: ----数据请求
 - (void)loadDataWithType:(NSInteger )type {
-    
+//    接口名称 功能用到厂商列表
     WEAKSELF;
     {
         ///类型（0：供货商 1：生产商 2：加工商）
@@ -150,14 +152,21 @@
                 [LLHudTools showWithMessage:baseModel.msg];
                 return ;
             }
+//            if (type == 2) {
+//                NSArray *array = [LZCompanyModel LLMJParse:baseModel.data];
+//                if  (array.count > 0) {
+//                    weakSelf.companyModel = array.firstObject;
+//                    [weakSelf.mainTable reloadData];
+//                }
+//
+//            }
+            
             if (type == 2) {
-                NSArray *array = [LZCompanyModel LLMJParse:baseModel.data];
-                if  (array.count > 0) {
-                    weakSelf.companyModel = array.firstObject;
-                    [weakSelf.mainTable reloadData];
-                }
+                _processorsModelArray = baseModel.data;
+                NSLog(@"123");
                 
             }
+            
         } failure:^(NSError *error) {
             BXS_Alert(LLLoadErrorMessage);
         }];
