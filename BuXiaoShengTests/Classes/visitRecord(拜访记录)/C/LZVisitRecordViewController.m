@@ -453,31 +453,51 @@
 }
 #pragma mark - UIImagePickerControlle
 - (void)takePhoto {
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied)) {
-        // 无相机权限 做一个友好的提示
-		[LZSetImagePickerController showAlertStyle:UIAlertControllerStyleAlert
-									  withTitleStr:@"无法使用相机"
-									withMessageStr:@"请在iPhone的""设置-隐私-相机""中允许访问相机"
-				withBtn1TitleStr:@"设置" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"取消" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:nil withBtn3ActionStyle:UIAlertActionStyleDefault withCTarget:self withButtonClickIndex:^(NSInteger Index) {
-			if (Index == 1) {
-				// 去设置界面，开启相机访问权限
-				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-			}
-		}];
-    } else if (authStatus == AVAuthorizationStatusNotDetermined) {
-        //防止用户首次拍照拒绝授权时相机页黑屏
-            [self takePhoto];
-        // 拍照之前还需要检查相册权限
-    } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
-		BXS_Alert(@"无法访问相册\r\n请在iPhone的""设置-隐私-相册""中允许访问相册");
-    } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
-        [[TZImageManager manager] requestAuthorizationWithCompletion:^{
-            [self takePhoto];
-        }];
-    } else {
-        [self pushImagePickerController];
-    }
+    WEAKSELF;
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusNotDetermined || status == PHAuthorizationStatusAuthorized) {
+            [weakSelf pushImagePickerController];
+            
+        }else{
+            //[JLHelperManager UIAlertWithStr:@"请在系统设置中开启相册授权" WithTitle:@"相册授权未开启" WithVC:self block:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [LZSetImagePickerController showAlertStyle:UIAlertControllerStyleAlert
+                                              withTitleStr:@"无法使用相机"
+                                            withMessageStr:@"请在iPhone的""设置-隐私-相机""中允许访问相机"
+                                          withBtn1TitleStr:@"设置" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"取消" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:nil withBtn3ActionStyle:UIAlertActionStyleDefault withCTarget:weakSelf withButtonClickIndex:^(NSInteger Index) {
+                                              if (Index == 1) {
+                                                  // 去设置界面，开启相机访问权限
+                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                              }
+                    }];
+            });
+        }
+    }];
+//    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+//    if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied)) {
+//        // 无相机权限 做一个友好的提示
+//        [LZSetImagePickerController showAlertStyle:UIAlertControllerStyleAlert
+//                                      withTitleStr:@"无法使用相机"
+//                                    withMessageStr:@"请在iPhone的""设置-隐私-相机""中允许访问相机"
+//                withBtn1TitleStr:@"设置" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"取消" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:nil withBtn3ActionStyle:UIAlertActionStyleDefault withCTarget:self withButtonClickIndex:^(NSInteger Index) {
+//            if (Index == 1) {
+//                // 去设置界面，开启相机访问权限
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//            }
+//        }];
+//    } else if (authStatus == AVAuthorizationStatusNotDetermined) {
+//        //防止用户首次拍照拒绝授权时相机页黑屏
+//            //[self takePhoto];
+//        // 拍照之前还需要检查相册权限
+//    } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
+//        BXS_Alert(@"无法访问相册\r\n请在iPhone的""设置-隐私-相册""中允许访问相册");
+//    } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
+//        [[TZImageManager manager] requestAuthorizationWithCompletion:^{
+//           // [self takePhoto];
+//        }];
+//    } else {
+//        [self pushImagePickerController];
+//    }
 }
 
 // 调用相机
