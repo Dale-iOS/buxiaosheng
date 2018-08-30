@@ -154,15 +154,28 @@ static NSInteger const pageSize = 15;
         //采购类型
         LZPurchaseReceiptVC *vc = [[LZPurchaseReceiptVC alloc]init];
         vc.bugId = model.ID;
-#warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
-        vc.isFindCode = 1;
+
+        if (model.storageType.integerValue == 0) {
+            //总码
+            vc.isFindCode = NO;
+        }else{
+            //细码
+            vc.isFindCode = YES;
+        }
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }else{
         //加工类型
         LZProcessReceiptVC *vc = [[LZProcessReceiptVC alloc]init];
         vc.bugId = model.ID;
-#warning 测试数据--这个有问题 很奇怪 - 没有数据区别细码和总吗类型
-        vc.isFindCode = indexP.row %2 >0;
+
+        if (model.storageType.integerValue == 0) {
+            //总码
+            vc.isFindCode = NO;
+        }else{
+            //细码
+            vc.isFindCode = YES;
+        }
+        
         [[self viewController].navigationController pushViewController:vc animated:YES];
     }
     

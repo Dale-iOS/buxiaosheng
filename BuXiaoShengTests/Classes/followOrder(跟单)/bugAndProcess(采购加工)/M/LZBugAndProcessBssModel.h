@@ -19,5 +19,6 @@
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *orderId;
 @property(nonatomic,copy)NSString *productName;
-@property(nonatomic,copy)NSString *purchaseType;
+@property(nonatomic,copy)NSString *purchaseType;//采购类型（0：采购 1：加工）
+@property(nonatomic,copy)NSString *storageType;//    入库类型（0：总码 1：细码）
 @end
