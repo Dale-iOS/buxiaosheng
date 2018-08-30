@@ -267,7 +267,7 @@
 
 //接口名称 图片上传
 - (void)uploadPhotos:(NSArray *)selectArray{
-    [LLHudTools showWithMessage:@"上传中~"];
+    [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
     [BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -277,6 +277,7 @@
         }
         NSDictionary *tempDic = baseModel.data;
         _imageStr = tempDic[@"path"];
+        [LLHudTools dismiss];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];

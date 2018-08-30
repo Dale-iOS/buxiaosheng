@@ -25,6 +25,7 @@
     [SVProgressHUD setDefaultMaskType:(SVProgressHUDMaskTypeCustom)];
     [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
 //    [SVProgressHUD showWithStatus:LLLoadingMessage];
+    [SVProgressHUD showInfoWithStatus:message];
     [SVProgressHUD setForegroundColor:CD_Text33];
     [SVProgressHUD setFont:[UIFont boldSystemFontOfSize:16]];
     [SVProgressHUD setBackgroundColor: [UIColor colorWithWhite:1.0 alpha:0.5]];

@@ -274,7 +274,7 @@ const NSNotificationName  ZJ_TextFieldWillEditingNotification = @"ZJ_TextField_W
             return result;
         }];
         
-        if (array) {
+        if (array.count >0) {
             //调整视图位置
             [self changeInputSource:array];
         }

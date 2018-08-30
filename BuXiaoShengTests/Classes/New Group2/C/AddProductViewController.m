@@ -458,6 +458,7 @@
 
 //分组cell点击事件
 - (void)groupCellTapClick{
+    [self.view endEditing:YES];
     LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
     vc.ToSearchWhat = ToSearchGroup;
     
@@ -473,6 +474,7 @@
 
 //入库方式cell点击事件
 - (void)defaultJoinCellTapClick{
+    [self.view endEditing:YES];
     WEAKSELF;
     [BRStringPickerView showStringPickerWithTitle:@"请选择入库方式" dataSource:@[@"细码", @"总码"] defaultSelValue:nil resultBlock:^(id selectValue) {
 
@@ -482,6 +484,7 @@
 
 //单位cell点击事件
 - (void)unitCellTapClick{
+    [self.view endEditing:YES];
     LZChooseLabelVC *vc = [[LZChooseLabelVC alloc]init];
     vc.ToSearchWhat = ToSearchUnit;
     WEAKSELF;
@@ -511,6 +514,7 @@
 
 //状态cell点击事件
 - (void)stateCellTapClick{
+    [self.view endEditing:YES];
     WEAKSELF;
     UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选用该产品启动状态" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction * enabled = [UIAlertAction actionWithTitle:@"启用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -723,7 +727,7 @@
 #pragma mark --- 选择图片 ---
 //接口名称 图片上传
 - (void)uploadPhotos:(NSArray *)selectArray{
-    [LLHudTools showWithMessage:@"上传中~"];
+    [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
     [BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -733,6 +737,7 @@
         }
         NSDictionary *tempDic = baseModel.data;
         _imageStr = tempDic[@"path"];
+        [LLHudTools dismiss];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
