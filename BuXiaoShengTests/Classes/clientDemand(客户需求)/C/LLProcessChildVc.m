@@ -12,7 +12,7 @@
 #import "BXSMachiningHeadCell.h"
 #import "GridView.h"
 #import "BXSMachiningDBCell.h"
-#import "LZOutboundModel.h"
+//#import "LZOutboundModel.h"
 #import "LZCompanyModel.h"
 #import "LZChoosseWorkerVC.h"
 #import "LLOutboundSeletedVC.h"
@@ -112,9 +112,11 @@
     UITextView *tv = [[UITextView alloc]initWithFrame:CGRectMake(bzL.right+50, 20, SCREEN_WIDTH - (bzL.right+60), 40)];
     [footer addSubview:tv];
     tv.placeholder = @"请输入备注内容";
+    tv.font = FONT(15);
     self.txV = tv;
     self.mainTable.tableFooterView = footer;
 }
+
 /// 设置底部View
 - (void)setupBottom {
     
@@ -129,7 +131,7 @@
     .rightEqualToView(self.view)
     .bottomEqualToView(self.view);
     
-    [bottomView setupCount:@"总需求量:0" bottomCount:@"总数量:0"];
+//    [bottomView setupCount:@"总需求量:0" bottomCount:@"总数量:0"];
     
     //click
     WEAKSELF;
@@ -141,8 +143,31 @@
 
 /// MARK: ----数据请求
 - (void)loadDataWithType:(NSInteger )type {
-//    接口名称 功能用到厂商列表
+
     WEAKSELF;
+//    接口名称 销售需求采购的产品的列表
+    {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"orderId":self.orderId
+                                 };
+        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
+            if (weakSelf.purchaseModelArray.count > 0) {
+                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
+            }
+            [weakSelf getBottomData];
+            [weakSelf.mainTable reloadData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }
+    
+    //    接口名称 功能用到厂商列表
     {
         ///类型（0：供货商 1：生产商 2：加工商）
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
@@ -178,26 +203,7 @@
         }];
         
     }
-    {
-        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 @"orderId":self.orderId
-                                 };
-        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
-            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-            if ([baseModel.code integerValue] != 200) {
-                [LLHudTools showWithMessage:baseModel.msg];
-                return ;
-            }
-            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
-            if (weakSelf.purchaseModelArray.count > 0) {
-                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
-            }
-            [weakSelf getBottomData];
-            [weakSelf.mainTable reloadData];
-        } failure:^(NSError *error) {
-            BXS_Alert(LLLoadErrorMessage);
-        }];
-    }
+    
 }
 
 #pragma mark ---- ConItem ----
@@ -226,17 +232,28 @@
 }
 
 - (void)didClickItemInTextField:(UITextField *)tf{
-//    NSLog(@"123");
+
     tf.delegate = self;
     tf.scrollView = (UIScrollView *)self.view;
     tf.positionType = ZJPositionBottomTwo;
     WEAKSELF;
     [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
         LZCompanyModel *companyModel = weakSelf.processorsModelArray[index];
-        NSLog(@"%@",companyModel.contactName);
-        NSLog(@"%@",companyModel.mobile);
-        NSLog(@"%@",companyModel.id);
-        NSLog(@"%@",companyModel.address);
+        //加工商
+        ConItem *item1 = [[self.dataSource objectAtIndex:2] objectAtIndex:0];
+        item1.contenText = companyModel.name;
+        //联系人
+        ConItem *item2 = [[self.dataSource objectAtIndex:2] objectAtIndex:1];
+        item2.contenText = companyModel.contactName;
+        //电话
+        ConItem *item3 = [[self.dataSource objectAtIndex:2] objectAtIndex:2];
+        item3.contenText = companyModel.mobile;
+        //电话
+        ConItem *item4 = [[self.dataSource objectAtIndex:2] objectAtIndex:3];
+        item4.contenText = companyModel.address;
+        
+        [weakSelf.mainTable reloadData];
+
     }];
 }
 

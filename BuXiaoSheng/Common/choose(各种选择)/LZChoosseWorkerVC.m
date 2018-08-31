@@ -39,9 +39,10 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(LLNavViewHeight);
-        make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+//        make.top.equalTo(self.view).offset(LLNavViewHeight);
+//        make.left.right.equalTo(self.view);
+//        make.bottom.equalTo(self.view);
+        make.edges.mas_equalTo(self.view);
     }];
 }
 
@@ -91,12 +92,15 @@
     return sectionView;
     
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [UIView new];
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 49;
 }
