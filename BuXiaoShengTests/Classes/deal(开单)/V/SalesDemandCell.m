@@ -104,7 +104,7 @@
         UITextField *tf = [[UITextField alloc]init];
         tf.font = FONT(14);
         tf.textColor = CD_Text33;
-        tf.userInteractionEnabled = false;
+        //tf.userInteractionEnabled = false;
         tf.placeholder = @"单价";
         tf.delegate = self;
         tf.textAlignment = NSTextAlignmentCenter;

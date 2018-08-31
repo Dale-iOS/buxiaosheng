@@ -81,6 +81,8 @@
     
     [self setupUI];
     [self setupPrinterData];
+    //进入页面就帮用户增加一条
+    [self addBtnOnClickAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated

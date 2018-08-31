@@ -88,6 +88,8 @@
              */
             [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"]; //
         }
+        
+        
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
         //上传进度
