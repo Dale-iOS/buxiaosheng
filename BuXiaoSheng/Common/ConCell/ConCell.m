@@ -107,6 +107,20 @@
     !_endEdtingBlock?:_endEdtingBlock(_item);
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    _item.contenText = textField.text;
+    if ([self.item.delegate respondsToSelector:@selector(didClickItemInTextField:)]) {
+        [_item.delegate didClickItemInTextField:_midTF];
+    }
+    return YES;
+}
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//    _item.contenText = textField.text;
+//    if ([self.item.delegate respondsToSelector:@selector(didClickItemInTextField:)]) {
+//        [_item.delegate didClickItemInTextField:_midTF];
+//    }
+//}
 
 @end
 

@@ -253,7 +253,7 @@
         }
         WEAKSELF;
         self.objectCell.contentTF.delegate = self;
-        self.objectCell.contentTF.scrollView = (UIScrollView * )self.view;
+        self.objectCell.contentTF.scrollView = (UIScrollView *)self.view;
         self.objectCell.contentTF.positionType = ZJPositionBottomThree;
         [self.objectCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
             weakSelf.objectCell.contentTF.text = _customerNameAry[index];

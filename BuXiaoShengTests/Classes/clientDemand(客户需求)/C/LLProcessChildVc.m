@@ -21,6 +21,8 @@
 
 #import "LZSearchVC.h"
 #import "UITextView+Placeholder.h"
+#import "UITextField+PopOver.h"
+
 /*
  s1产品名
  s2底bu
@@ -29,7 +31,7 @@
  s4 指派人
  footer备注
  */
-@interface LLProcessChildVc ()<UITableViewDelegate,UITableViewDataSource>
+@interface LLProcessChildVc ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate>
 /// 底部view
 @property (weak,nonatomic)BXSMachiningBottomView *bottomView;
 /// 底部备注
@@ -43,6 +45,7 @@
 
 // 加工商模型
 @property (strong,nonatomic)NSMutableArray <LZCompanyModel *>*processorsModelArray;
+@property (strong,nonatomic)NSMutableArray *processorsModelNameArray;
 
 @property (strong,nonatomic)LZCompanyModel *companyModel;
 @end
@@ -162,9 +165,12 @@
 //            }
             
             if (type == 2) {
-                _processorsModelArray = baseModel.data;
-                NSLog(@"123");
-                
+                //加载加工商模型
+                _processorsModelArray = [LZCompanyModel LLMJParse:baseModel.data];
+                _processorsModelNameArray = [NSMutableArray array];
+                [_processorsModelArray enumerateObjectsUsingBlock:^(LZCompanyModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [_processorsModelNameArray addObject:obj.name];
+                }];
             }
             
         } failure:^(NSError *error) {
@@ -194,6 +200,7 @@
     }
 }
 
+#pragma mark ---- ConItem ----
 - (void)requestData {
     
     [self.dataSource addObject:[NSMutableArray array]];
@@ -201,6 +208,7 @@
     NSMutableArray *bArray = [NSMutableArray array];
     // ConItem *item0 = [[ConItem alloc]initWithTitle:@"*加工类型" kpText:@"请选择加工类型" conType:ConTypeA];
     ConItem *item1 = [[ConItem alloc]initWithTitle:@"*加工商名称" kpText:@"请输入加工商名称" conType:ConTypeB];
+    item1.delegate = self;
     ConItem *item2 = [[ConItem alloc]initWithTitle:@"联系人" kpText:@"请先选择加工商" conType:ConTypeC];
     ConItem *item3 = [[ConItem alloc]initWithTitle:@"电话" kpText:@"请先选择加工商" conType:ConTypeC];
     ConItem *item4 = [[ConItem alloc]initWithTitle:@"地址" kpText:@"请先选择加工商" conType:ConTypeC];
@@ -212,8 +220,19 @@
     
     [self.dataSource addObject:@[item5]];
 }
+
 - (void)setComCell:(ConCell *)cell index:(NSIndexPath *)indexPath  item:(ConItem *)item {
     
+}
+
+- (void)didClickItemInTextField:(UITextField *)tf{
+//    NSLog(@"123");
+    tf.delegate = self;
+    tf.scrollView = (UIScrollView *)self.view;
+    tf.positionType = ZJPositionBottomTwo;
+    [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
+        
+    }];
 }
 
 #pragma mark ---- 点击事件 ----

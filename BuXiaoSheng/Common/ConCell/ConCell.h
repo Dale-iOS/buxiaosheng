@@ -31,10 +31,14 @@ typedef NS_ENUM(NSUInteger,ConType) {
 
 @end
 
+
+
+@protocol ConItemDelegate <NSObject>
+- (void)didClickItemInTextField:(UITextField *)tf;
+@end
+
 @interface ConItem : NSObject
-
-
-
+@property (nonatomic, weak) id <ConItemDelegate> delegate;
 // left
 @property (strong,nonatomic)UIColor *titleColor;
 // content
