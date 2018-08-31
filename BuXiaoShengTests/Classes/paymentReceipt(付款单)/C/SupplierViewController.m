@@ -49,7 +49,11 @@
     [super viewDidLoad];
     
     [self setupUI];
-
+    
+    if (!IOS11Later) {
+        [self setupCompanyList];
+        [self setupPayList];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -79,7 +83,7 @@
     self.titleCell.beforeLabel.text = @"前欠款:￥0";
     self.titleCell.contentTF.placeholder = @"请输入供货商";
     self.titleCell.contentTF.scrollView = (UIScrollView *)self.view;
-    self.titleCell.contentTF.positionType = ZJPositionBottomTwo;
+    self.titleCell.contentTF.positionType = ZJPositionBottom;
     
     //付款金额
     self.priceCell = [[TextInputCell alloc]init];

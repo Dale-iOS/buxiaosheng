@@ -51,7 +51,7 @@
     [super viewDidLoad];
     [self setupUI];
     [self setupData];
-//    [self setupPrinterData];
+    [self setupPrinterData];
 }
 
 - (LZHTableView *)myTableView

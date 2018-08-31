@@ -4,7 +4,7 @@
 //
 //  Created by 家朋 on 2018/6/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  采购页面
+//  采购页面(指派) 采购（指派）
 
 #import "LLProcessChildVc.h"
 #import "BXSMachiningBottomView.h"
@@ -230,8 +230,13 @@
     tf.delegate = self;
     tf.scrollView = (UIScrollView *)self.view;
     tf.positionType = ZJPositionBottomTwo;
+    WEAKSELF;
     [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
-        
+        LZCompanyModel *companyModel = weakSelf.processorsModelArray[index];
+        NSLog(@"%@",companyModel.contactName);
+        NSLog(@"%@",companyModel.mobile);
+        NSLog(@"%@",companyModel.id);
+        NSLog(@"%@",companyModel.address);
     }];
 }
 

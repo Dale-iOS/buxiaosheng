@@ -88,7 +88,7 @@
     _objectCell.frame = CGRectMake(0, 0, APPWidth, 50);
     _objectCell.userInteractionEnabled = NO;
     _objectCell.titleLabel.text = @"拜访对象";
-    _objectCell.contentTF.placeholder = @"请输入拜访对象";
+//    _objectCell.contentTF.placeholder = @"请输入拜访对象";
     _objectCell.contentTF.enabled = NO;
     
     //拜访记录
@@ -97,7 +97,7 @@
     _wayCell.userInteractionEnabled = NO;
     _wayCell.rightArrowImageVIew.hidden = NO;
     _wayCell.titleLabel.text = @"拜访方式";
-    _wayCell.contentTF.placeholder = @"请选择拜访方式";
+//    _wayCell.contentTF.placeholder = @"请选择拜访方式";
     _wayCell.contentTF.enabled = NO;
     //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapWayClick)];
     //    [_wayCell addGestureRecognizer:tap];
@@ -107,14 +107,14 @@
     _mainCell.userInteractionEnabled = NO;
     _mainCell.titleLabel.text = @"主要事宜";
     _mainCell.contentTF.enabled = NO;
-    _mainCell.contentTF.placeholder = @"请输入主要事宜";
+//    _mainCell.contentTF.placeholder = @"请输入主要事宜";
     
     _resultView = [[TextInputTextView alloc]init];
     _resultView.frame = CGRectMake(0, 0, APPWidth, 80);
     _resultView.textView.delegate = self;
     _resultView.titleLabel.text = @"拜访结果";
     _resultView.userInteractionEnabled = NO;
-    _resultView.textView.placeholder = @"请输入拜访结果";
+//    _resultView.textView.placeholder = @"请输入拜访结果";
     
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
@@ -134,7 +134,7 @@
     _remarkView.textView.delegate = self;
     
     _remarkView.titleLabel.text = @"备注";
-    _remarkView.textView.placeholder = @"请输入告知仓库事项";
+//    _remarkView.textView.placeholder = @"请输入告知仓库事项";
     _remarkView.userInteractionEnabled = NO;
     
     LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
