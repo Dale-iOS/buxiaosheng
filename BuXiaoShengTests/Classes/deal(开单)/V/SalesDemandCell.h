@@ -17,6 +17,8 @@
 - (void) didClickColorTextField:(SalesDemandCell*)colorCell;
 - (void) didClickNumberTextField:(SalesDemandCell*)colorCell;
 
+- (void) didPriceTFValueChange:(SalesDemandCell*)colorCell;
+
 @end
 
 @interface SalesDemandCell : UITableViewCell

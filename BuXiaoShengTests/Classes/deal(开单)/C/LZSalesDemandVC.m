@@ -410,6 +410,7 @@
     cell.indexPath  = indexPath;
     cell.delegate = self;
     cell.model = self.listModels[indexPath.row];
+    
     return cell;
     
     
@@ -452,6 +453,15 @@
     
     //删除cell
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+///价格输入完成后回调
+-(void)didPriceTFValueChange:(SalesDemandCell *)colorCell {
+    __block NSInteger  totalPrice = 0;
+    [self.listModels enumerateObjectsUsingBlock:^(productListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        totalPrice+= ([obj.number integerValue] * [obj.shearPrice integerValue]);
+    }];
+    self.arrearsCell.contentTF.text = [@(totalPrice) stringValue];
 }
 
 - (void)didClickTitleTextField:(UITextField *)titleTF andCell:(SalesDemandCell*)titleCell{

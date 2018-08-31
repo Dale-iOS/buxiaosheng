@@ -107,6 +107,7 @@
         //tf.userInteractionEnabled = false;
         tf.placeholder = @"单价";
         tf.delegate = self;
+        tf.keyboardType = UIKeyboardTypeDecimalPad;
         tf.textAlignment = NSTextAlignmentCenter;
         [contentView addSubview:(priceTF = tf)];
     }
@@ -179,7 +180,13 @@
         if ([self.delegate respondsToSelector:@selector(didClickNumberTextField:)]) {
             [self.delegate didClickNumberTextField:self];
         }
+    }else if (textField == self.priceTF) {
+        self.model.shearPrice = textField.text;
+        if ([self.delegate respondsToSelector:@selector(didPriceTFValueChange:)]) {
+            [self.delegate didPriceTFValueChange:self];
+        }
     }
+    
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.numberTF) {
