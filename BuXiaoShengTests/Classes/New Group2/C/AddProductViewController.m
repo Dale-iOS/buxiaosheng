@@ -30,7 +30,7 @@
 #import "TZAssetCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LZSetImagePickerController.h"
-#define Max_Photos 1 //最大选择照片总数
+#define Max_Photos 5 //最大选择照片总数
 #define Max_LinePhotos 4 //选择图片页面每一行最大数
 
 @interface AddProductViewController ()<LZHTableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
@@ -761,7 +761,7 @@
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100) collectionViewLayout:_layout];
     //    CGFloat rgb = 244 / 255.0;
     _collectionView.alwaysBounceVertical = YES;
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.backgroundColor = [UIColor redColor];
     _collectionView.contentInset = UIEdgeInsetsMake(1, 10, 1, 1);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
@@ -795,8 +795,8 @@
     }
     
     //根据cell的数量，更改collectionView的frame
-    CGFloat tempH = _itemWH +10;
-    self.collectionView.frame = CGRectMake(0, 0, APPWidth, tempH);
+   // CGFloat tempH = _itemWH +10;
+    //self.collectionView.frame = CGRectMake(0, 0, APPWidth, tempH);
     [self.mainTabelView reloadData];
     return _selectedPhotos.count + 1;
 }
@@ -868,8 +868,9 @@
     imagePickerVc.showSelectedIndex = NO;
 #pragma mark - 到这里为止
     // 你可以通过block或者代理，来得到用户选择的照片.
-    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-    }];
+//    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+//
+//    }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 #pragma mark - UIImagePickerControlle
@@ -1006,7 +1007,7 @@
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
-    [_collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
+    //[_collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
     [_collectionView reloadData];
     // 1.打印图片名字
     [self printAssetsName:assets];
