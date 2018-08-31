@@ -518,7 +518,9 @@
         NSArray * imgs = [_model.imgs componentsSeparatedByString:@","];
         [imgs enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                [_selectedPhotos addObject:image];
+                if (image) {
+                      [_selectedPhotos addObject:image];
+                }
                 if (_selectedPhotos.count == imgs.count) {
                      [self.collectionView reloadData];
                 }
@@ -923,23 +925,29 @@
                                            }
                                        }];
     } else { //预览照片
-        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:nil selectedPhotos:_selectedPhotos index:indexPath.item];
-        imagePickerVc.maxImagesCount = Max_Photos;
-        imagePickerVc.allowPickingGif = NO;
-        imagePickerVc.allowPickingOriginalPhoto = YES;
-        imagePickerVc.allowPickingMultipleVideo = NO;
-        imagePickerVc.showSelectedIndex = YES;
-        imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-        [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-            self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
-            //self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
-            self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
-            [self->_collectionView reloadData];
-           CGFloat  _margin = 4;
-            CGFloat _itemWH = (APPWidth - 2 * _margin - 4) / 4 - _margin -20;
-            self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (4 + _itemWH));
-        }];
-        [self presentViewController:imagePickerVc animated:YES completion:nil];
+        NSMutableArray * array = [NSMutableArray array];
+        GKPhoto * phto = [GKPhoto new];
+        phto.image = _selectedPhotos[indexPath.item];
+        [array addObject:phto];
+        GKPhotoBrowser *  photoBrowser = [GKPhotoBrowser photoBrowserWithPhotos:array currentIndex:0];
+        [photoBrowser showFromVC:self];
+//        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:nil selectedPhotos:_selectedPhotos index:indexPath.item];
+//        imagePickerVc.maxImagesCount = Max_Photos;
+//        imagePickerVc.allowPickingGif = NO;
+//        imagePickerVc.allowPickingOriginalPhoto = YES;
+//        imagePickerVc.allowPickingMultipleVideo = NO;
+//        imagePickerVc.showSelectedIndex = YES;
+//        imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
+////        [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+////            self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
+////            //self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
+////            self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
+////            [self->_collectionView reloadData];
+////           CGFloat  _margin = 4;
+////            CGFloat _itemWH = (APPWidth - 2 * _margin - 4) / 4 - _margin -20;
+////            self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (4 + _itemWH));
+////        }];
+//        [self presentViewController:imagePickerVc animated:YES completion:nil];
     }
 }
 #pragma mark - UIImagePickerControlle
