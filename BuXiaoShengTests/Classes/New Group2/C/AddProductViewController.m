@@ -761,8 +761,8 @@
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100) collectionViewLayout:_layout];
     //    CGFloat rgb = 244 / 255.0;
     _collectionView.alwaysBounceVertical = YES;
-    _collectionView.backgroundColor = [UIColor redColor];
-    _collectionView.contentInset = UIEdgeInsetsMake(1, 10, 1, 1);
+    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 1, 10);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -773,7 +773,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     _margin = 4;
-    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin -20;
+    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin -25;
     _layout.itemSize = CGSizeMake(_itemWH, _itemWH);
     _layout.minimumInteritemSpacing = 1;
     _layout.minimumLineSpacing = 1;

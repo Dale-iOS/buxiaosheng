@@ -881,7 +881,7 @@
     if (indexPath.item == _selectedPhotos.count) {
         cell.imageView.image = [UIImage imageNamed:@"add_image"];
         cell.deleteBtn.hidden = YES;
-        cell.gifLable.hidden = YES;
+//        cell.gifLable.hidden = YES;
     } else {
         cell.imageView.image = _selectedPhotos[indexPath.item];
         //cell.asset = _selectedAssets[indexPath.item];
@@ -1149,7 +1149,7 @@ static NSString * nil_string(NSString *str) {
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
         CGFloat _margin = 4;
-       CGFloat _itemWH = (APPWidth- 2 * _margin - 4) / 4 - _margin -20;
+       CGFloat _itemWH = (APPWidth- 2 * _margin - 4) / 4 - _margin -25;
         layout.itemSize = CGSizeMake(_itemWH, _itemWH);
         layout.minimumInteritemSpacing = 1;
         layout.minimumLineSpacing = 1;
@@ -1159,7 +1159,7 @@ static NSString * nil_string(NSString *str) {
         //    CGFloat rgb = 244 / 255.0;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.contentInset = UIEdgeInsetsMake(1, 10, 1, 1);
+        _collectionView.contentInset = UIEdgeInsetsMake(1, 10, 1, 10);
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
