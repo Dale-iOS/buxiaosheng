@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/26.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  客户需求-未出库页面
+//  客户需求页面
 
 #import "ClientNeedsViewController.h"
 #import "AuditTableViewCell.h"
@@ -26,7 +26,7 @@ static NSInteger const pageSize = 15;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = [Utility navTitleView:@"客户需求-未出库"];
+    self.navigationItem.titleView = [Utility navTitleView:@"客户需求"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(ToSearch) image:IMAGE(@"new_lists")];
     
     [self setupUI];

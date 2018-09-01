@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/6/11.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//  采购加工-未处理页面
+//  采购加工页面
 
 #import "LZBugAndProcessUntreatedVC.h"
 #import "LZBugAndProcessUntreatedView.h"
@@ -27,7 +27,7 @@
 
 - (void)setupUI{
     
-    self.navigationItem.titleView = [Utility navTitleView:@"采购加工-未处理"];
+    self.navigationItem.titleView = [Utility navTitleView:@"采购加工"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navigationSetupClick) image:IMAGE(@"new_lists")];
     
     UIView *bgSgcView = [[UIView alloc]init];
