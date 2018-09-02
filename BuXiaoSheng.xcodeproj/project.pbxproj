@@ -368,6 +368,8 @@
 		3467BA4A20ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4820ECAE6C004C0B24 /* LZVisitRecordDetailVC.m */; };
 		3467BA4D20ECB170004C0B24 /* LZVisitRecordListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */; };
 		3467BA4E20ECB170004C0B24 /* LZVisitRecordListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */; };
+		346874A9213B9E3C00967920 /* LZPurchasingInfoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346874A8213B9E3C00967920 /* LZPurchasingInfoDetailModel.m */; };
+		346874AA213B9E3C00967920 /* LZPurchasingInfoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346874A8213B9E3C00967920 /* LZPurchasingInfoDetailModel.m */; };
 		3468B05720EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
 		3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */; };
 		3468B05920EB84B1003726ED /* ChooseLablesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464458720AD73D100D6A06B /* ChooseLablesCell.m */; };
@@ -1474,6 +1476,8 @@
 		3467BA4820ECAE6C004C0B24 /* LZVisitRecordDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitRecordDetailVC.m; sourceTree = "<group>"; };
 		3467BA4B20ECB170004C0B24 /* LZVisitRecordListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitRecordListVC.h; sourceTree = "<group>"; };
 		3467BA4C20ECB170004C0B24 /* LZVisitRecordListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZVisitRecordListVC.m; sourceTree = "<group>"; };
+		346874A7213B9E3C00967920 /* LZPurchasingInfoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchasingInfoDetailModel.h; sourceTree = "<group>"; };
+		346874A8213B9E3C00967920 /* LZPurchasingInfoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchasingInfoDetailModel.m; sourceTree = "<group>"; };
 		3468B05520EB8350003726ED /* LZChooseBankTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseBankTypeVC.h; sourceTree = "<group>"; };
 		3468B05620EB8350003726ED /* LZChooseBankTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseBankTypeVC.m; sourceTree = "<group>"; };
 		346992A220C6610200476CF0 /* LZVisitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZVisitModel.h; sourceTree = "<group>"; };
@@ -4036,6 +4040,8 @@
 				3453790921099BD500830DF8 /* LZSaveOrderModel.m */,
 				FFC1A530212E95FE00DECCB7 /* LZOrderTrackingListModel.h */,
 				FFC1A531212E95FE00DECCB7 /* LZOrderTrackingListModel.m */,
+				346874A7213B9E3C00967920 /* LZPurchasingInfoDetailModel.h */,
+				346874A8213B9E3C00967920 /* LZPurchasingInfoDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5790,6 +5796,7 @@
 				2DF7A38F2115A314009889DF /* LZPurchaseViewController.m in Sources */,
 				34F6D362209DA406009D5440 /* AddSetCompanyViewController.m in Sources */,
 				3479056B20C50973008C835C /* LZAssignDeliveryModel.m in Sources */,
+				346874A9213B9E3C00967920 /* LZPurchasingInfoDetailModel.m in Sources */,
 				346C2271210E03DA004AAC88 /* LLBackOderDetailCell.m in Sources */,
 				344E4D3E210EAD4D0031DCE8 /* ComView.m in Sources */,
 				8E898552212C0E55002E1671 /* LZSetImagePickerController.m in Sources */,
@@ -6487,6 +6494,7 @@
 				348DF249212964D800D3A76F /* BYTimer.m in Sources */,
 				3475424C20F5F43B007F384B /* LZOutboundCell.m in Sources */,
 				3427A4F320CE507600369650 /* BRDatePickerView.m in Sources */,
+				346874AA213B9E3C00967920 /* LZPurchasingInfoDetailModel.m in Sources */,
 				348DF1FA2129647300D3A76F /* LZDidBugAndProcessUntreatedVC.m in Sources */,
 				FFACE187213654C800F23395 /* LZAddProductVC.m in Sources */,
 				3467BA4520ECA024004C0B24 /* LZChooseInventoryVC.m in Sources */,
