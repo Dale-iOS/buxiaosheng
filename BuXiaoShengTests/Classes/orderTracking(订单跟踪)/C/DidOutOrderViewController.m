@@ -14,6 +14,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZOutOrderDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface DidOutOrderViewController ()<UITableViewDelegate,UITableViewDataSource,DidOutInventoryCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
@@ -211,7 +212,10 @@ static NSInteger const pageSize = 15;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LZOrderTrackingModel *model = _lists[indexPath.row];
-
+    LZOutOrderDetailVC *vc = [[LZOutOrderDetailVC alloc]init];
+    vc.orderId = model.orderNo;
+    vc.title = @"仓库出仓详情";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //收货按钮事件

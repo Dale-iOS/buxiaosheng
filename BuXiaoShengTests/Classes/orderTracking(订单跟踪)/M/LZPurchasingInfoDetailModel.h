@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+@class LZPurchasingInfoDetailItemListModel;
+@class LZPurchasingInfoDetaiLogisticslModel;
+
 @interface LZPurchasingInfoDetailItemListModel : NSObject
 @property (nonatomic,copy) NSString *number;
 @property (nonatomic,copy) NSString *productColorId;
@@ -16,7 +19,7 @@
 @interface LZPurchasingInfoDetailModel : NSObject
 @property (nonatomic,copy) NSString *buyId;
 @property (nonatomic,copy) NSString *createTime;
-@property (nonatomic,copy) NSString *itemList;
+@property (nonatomic,copy) NSArray <LZPurchasingInfoDetailItemListModel *> *itemList;
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *status;
 @property (nonatomic,copy) NSString *successTime;
