@@ -20,11 +20,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
-            timestampString = "557632943.661273"
+            timestampString = "557651593.033424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
+            startingLineNumber = "1000"
+            endingLineNumber = "1000"
+            landmarkName = "-refreshCollectionViewWithAddedAsset:image:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
+            timestampString = "557652481.082621"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "850"
+            endingLineNumber = "850"
             landmarkName = "-selectornavRightBtnClick"
             landmarkType = "7">
             <Locations>
@@ -32,45 +48,45 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[AddProductViewController selectornavRightBtnClick]"
+                  symbolName = "-[LZAlterProductDataVC selectornavRightBtnClick]"
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
-                  timestampString = "557632943.822407"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
+                  timestampString = "557652481.4028161"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "709"
-                  endingLineNumber = "709"
-                  offsetFromSymbolStart = "8004">
+                  startingLineNumber = "850"
+                  endingLineNumber = "850"
+                  offsetFromSymbolStart = "8226">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__52-[AddProductViewController selectornavRightBtnClick]_block_invoke"
+                  symbolName = "__48-[LZAlterProductDataVC selectornavRightBtnClick]_block_invoke"
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
-                  timestampString = "557632943.8247859"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
+                  timestampString = "557652481.404682"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "710"
-                  endingLineNumber = "710"
+                  startingLineNumber = "851"
+                  endingLineNumber = "851"
                   offsetFromSymbolStart = "47">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.515"
+                  symbolName = "__destroy_helper_block_.626"
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
-                  timestampString = "557632943.826974"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
+                  timestampString = "557652481.406441"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "709"
-                  endingLineNumber = "709"
+                  startingLineNumber = "850"
+                  endingLineNumber = "850"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>

@@ -75,7 +75,6 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *photosArrayUrl;
-@property(nonatomic ,strong)NSMutableString * imgsURL;
 @end
 
 @implementation LZAlterProductDataVC
@@ -517,12 +516,18 @@
         self.remarkTextView.textView.text = _model.remark;
         self.remarkTextView2.textView.text = _model.remarkTwo;
         NSArray * imgs = [_model.imgs componentsSeparatedByString:@","];
+        NSMutableArray * tempImg = [NSMutableArray array];
         [imgs enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (![obj isEqualToString:@""]) {
+                [tempImg addObject:obj];
+            }
+        }];
+        [tempImg enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
                 if (image) {
                       [_selectedPhotos addObject:image];
                 }
-                if (_selectedPhotos.count == imgs.count) {
+                if (_selectedPhotos.count == tempImg.count) {
                      [self.collectionView reloadData];
                 }
             }];
@@ -903,14 +908,16 @@
     }
     
     [_selectedPhotos removeObjectAtIndex:sender.tag];
+    [self->_collectionView reloadData];
     //[_selectedAssets removeObjectAtIndex:sender.tag];
-    [_collectionView performBatchUpdates:^{
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
-        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
-    } completion:^(BOOL finished) {
-        //[_collectionView setContentOffset:CGPointMake(0, _collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
-        [self->_collectionView reloadData];
-    }];
+//    [_collectionView performBatchUpdates:^{
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
+//        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
+//    } completion:^(BOOL finished) {
+//        //[_collectionView setContentOffset:CGPointMake(0, _collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
+//
+//    }];
+    [self uploadPhotos:_selectedPhotos];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -1113,6 +1120,7 @@
 - (void)uploadPhotos:(NSArray *)selectArray{
     [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
+    NSMutableString *imgsURL = [NSMutableString string];
     NSMutableArray * imgsArray = [NSMutableArray array];
     [selectArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
@@ -1124,10 +1132,10 @@
             [imgsArray addObject:baseModel.data[@"path"]];
             if (imgsArray.count == selectArray.count) {
                 [imgsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [self.imgsURL appendFormat:@"%@", [NSString stringWithFormat:@"%@,",obj]];
+                    [imgsURL appendFormat:@"%@", [NSString stringWithFormat:@"%@,",obj]];
                     
                 }];
-                _model.imgs = self.imgsURL;
+                _model.imgs = imgsURL;
             }
             // NSDictionary *tempDic = baseModel.data;
             //_imageStr = tempDic[@"path"];
