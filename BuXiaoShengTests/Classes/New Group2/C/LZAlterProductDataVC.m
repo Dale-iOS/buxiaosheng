@@ -1049,7 +1049,7 @@
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];///原图
+    //UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];///原图
     //获取修剪后的图片
     UIImage *imageUp = [info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];

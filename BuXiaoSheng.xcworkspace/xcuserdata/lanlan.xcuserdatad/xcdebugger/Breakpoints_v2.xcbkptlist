@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
-            timestampString = "557657362.04056"
+            timestampString = "557664351.076141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "847"
@@ -52,11 +52,11 @@
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
-                  timestampString = "557652481.4028161"
+                  timestampString = "557664351.282293"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "850"
-                  endingLineNumber = "850"
+                  startingLineNumber = "847"
+                  endingLineNumber = "847"
                   offsetFromSymbolStart = "8226">
                </Location>
                <Location
@@ -67,11 +67,11 @@
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
-                  timestampString = "557652481.404682"
+                  timestampString = "557664351.284319"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "851"
-                  endingLineNumber = "851"
+                  startingLineNumber = "848"
+                  endingLineNumber = "848"
                   offsetFromSymbolStart = "47">
                </Location>
                <Location
@@ -82,12 +82,140 @@
                   moduleName = "BuXiaoSheng"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/LZAlterProductDataVC.m"
-                  timestampString = "557652481.406441"
+                  timestampString = "557664351.286225"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "850"
-                  endingLineNumber = "850"
+                  startingLineNumber = "847"
+                  endingLineNumber = "847"
                   offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group/C/LLWarehouseRightSildeVc.m"
+            timestampString = "557664351.076297"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-setupData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[LLWarehouseRightSildeVc setupData]_block_invoke"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group/C/LLWarehouseRightSildeVc.m"
+                  timestampString = "557664351.299692"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[LLWarehouseRightSildeVc setupData]_block_invoke_2"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group/C/LLWarehouseRightSildeVc.m"
+                  timestampString = "557664351.301618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group/C/LLWarehouseRightSildeVc.m"
+            timestampString = "557664351.076588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-setupData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group/C/LLWarehouseRightSildeVc.m"
+            timestampString = "557664390.24687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "LLWarehouseRightSildeVc"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group/C/LLWarehouseRightSildeVc.m"
+            timestampString = "557664511.503847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-setupData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LLWarehouseRightSildeVc setupData]"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group/C/LLWarehouseRightSildeVc.m"
+                  timestampString = "557664512.4556"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "469">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[LLWarehouseRightSildeVc setupData]_block_invoke"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group/C/LLWarehouseRightSildeVc.m"
+                  timestampString = "557664512.457612"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>
