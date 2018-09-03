@@ -1049,6 +1049,8 @@
         [_collectionView setContentOffset:CGPointMake(0, _collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
         [self->_collectionView reloadData];
     }];
+    
+    [self uploadPhotos:_selectedPhotos];
 }
 #pragma mark - Private
 /// 打印图片名字
