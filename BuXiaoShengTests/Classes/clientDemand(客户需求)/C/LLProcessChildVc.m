@@ -12,26 +12,21 @@
 #import "BXSMachiningHeadCell.h"
 #import "GridView.h"
 #import "BXSMachiningDBCell.h"
-#import "LZOutboundModel.h"
 #import "LZCompanyModel.h"
 #import "LZChoosseWorkerVC.h"
 #import "LLOutboundSeletedVC.h"
 #import "BXSChooseProductVC.h"
 #import "salesDemandModel.h"
-
 #import "LZSearchVC.h"
 #import "UITextView+Placeholder.h"
 #import "UITextField+PopOver.h"
 
-/*
- s1产品名
- s2底bu
- 
- 3底部
- s4 指派人
- footer备注
- */
 @interface LLProcessChildVc ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate>
+{
+    NSString *_factoryId;//厂商id;
+    NSString *_selectWorker;//指派人
+    UITextView *_tv;//备注内容
+}
 /// 底部view
 @property (weak,nonatomic)BXSMachiningBottomView *bottomView;
 /// 底部备注
@@ -109,12 +104,14 @@
     [footer addSubview:bzL];
     
     //textView
-    UITextView *tv = [[UITextView alloc]initWithFrame:CGRectMake(bzL.right+50, 20, SCREEN_WIDTH - (bzL.right+60), 40)];
-    [footer addSubview:tv];
-    tv.placeholder = @"请输入备注内容";
-    self.txV = tv;
+    _tv = [[UITextView alloc]initWithFrame:CGRectMake(bzL.right+50, 20, SCREEN_WIDTH - (bzL.right+60), 40)];
+    [footer addSubview:_tv];
+    _tv.placeholder = @"请输入备注内容";
+    _tv.font = FONT(15);
+    self.txV = _tv;
     self.mainTable.tableFooterView = footer;
 }
+
 /// 设置底部View
 - (void)setupBottom {
     
@@ -129,7 +126,7 @@
     .rightEqualToView(self.view)
     .bottomEqualToView(self.view);
     
-    [bottomView setupCount:@"总需求量:0" bottomCount:@"总数量:0"];
+//    [bottomView setupCount:@"总需求量:0" bottomCount:@"总数量:0"];
     
     //click
     WEAKSELF;
@@ -141,8 +138,31 @@
 
 /// MARK: ----数据请求
 - (void)loadDataWithType:(NSInteger )type {
-//    接口名称 功能用到厂商列表
+
     WEAKSELF;
+//    接口名称 销售需求采购的产品的列表
+    {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"orderId":self.orderId
+                                 };
+        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
+            if (weakSelf.purchaseModelArray.count > 0) {
+                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
+            }
+            [weakSelf getBottomData];
+            [weakSelf.mainTable reloadData];
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }
+    
+    //    接口名称 功能用到厂商列表
     {
         ///类型（0：供货商 1：生产商 2：加工商）
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
@@ -178,26 +198,7 @@
         }];
         
     }
-    {
-        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 @"orderId":self.orderId
-                                 };
-        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
-            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-            if ([baseModel.code integerValue] != 200) {
-                [LLHudTools showWithMessage:baseModel.msg];
-                return ;
-            }
-            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
-            if (weakSelf.purchaseModelArray.count > 0) {
-                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
-            }
-            [weakSelf getBottomData];
-            [weakSelf.mainTable reloadData];
-        } failure:^(NSError *error) {
-            BXS_Alert(LLLoadErrorMessage);
-        }];
-    }
+    
 }
 
 #pragma mark ---- ConItem ----
@@ -226,17 +227,29 @@
 }
 
 - (void)didClickItemInTextField:(UITextField *)tf{
-//    NSLog(@"123");
+
     tf.delegate = self;
     tf.scrollView = (UIScrollView *)self.view;
     tf.positionType = ZJPositionBottomTwo;
     WEAKSELF;
     [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
         LZCompanyModel *companyModel = weakSelf.processorsModelArray[index];
-        NSLog(@"%@",companyModel.contactName);
-        NSLog(@"%@",companyModel.mobile);
-        NSLog(@"%@",companyModel.id);
-        NSLog(@"%@",companyModel.address);
+        //加工商
+        ConItem *item1 = [[self.dataSource objectAtIndex:2] objectAtIndex:0];
+        item1.contenText = companyModel.name;
+        //联系人
+        ConItem *item2 = [[self.dataSource objectAtIndex:2] objectAtIndex:1];
+        item2.contenText = companyModel.contactName;
+        //电话
+        ConItem *item3 = [[self.dataSource objectAtIndex:2] objectAtIndex:2];
+        item3.contenText = companyModel.mobile;
+        //电话
+        ConItem *item4 = [[self.dataSource objectAtIndex:2] objectAtIndex:3];
+        item4.contenText = companyModel.address;
+        //厂商id
+        _factoryId = companyModel.id;
+        [weakSelf.mainTable reloadData];
+
     }];
 }
 
@@ -244,89 +257,71 @@
 /// 点击底部确定
 - (void)clickBottom {
     
-    ConItem *item5 = [[self.dataSource objectAtIndex:2] objectAtIndex:5];
-    ConItem *item0 = [[self.dataSource objectAtIndex:2] objectAtIndex:0];
-    NSMutableArray *itemList = [NSMutableArray array];
-    for (LZPurchaseModel *aItem in self.purchaseModelArray) {
-        NSMutableArray*kArr = [LZOutboundItemListModel mj_keyValuesArrayWithObjectArray:aItem.itemList ignoredKeys:@[@"productColorName"]];
-        if (kArr.count >0) {
-            NSDictionary *dict = @{@"itemList":kArr};
-            [itemList addObject:dict];
-        }
+    if (_factoryId == nil) {
+        BXS_Alert(@"请选择加工商名称");
+        return;
+    }
+    if (_selectWorker == nil) {
+        BXS_Alert(@"请选择指派人");
+        return;
+    }
+
+//    NSMutableArray *itemList = [NSMutableArray array];
+//    for (LZPurchaseModel *aItem in self.purchaseModelArray) {
+//        NSMutableArray*kArr = [LZPurchaseModel mj_keyValuesArrayWithObjectArray:aItem.itemList ignoredKeys:@[@"itemList"]];
+//        if (kArr.count >0) {
+//            NSDictionary *dict = @{@"itemList":kArr};
+//            [itemList addObject:dict];
+//        }
+//
+//    }
+    
+    NSMutableArray <NSDictionary *> * itemModel = [NSMutableArray array];
+    
+    [self.purchaseModelArray enumerateObjectsUsingBlock:^(LZPurchaseModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-    }
-    
-    NSMutableArray *productArray = [NSMutableArray array];
-    //{productId:3,productColorId:5,stockId:8,number:50,houseId:2,total:1,batchNumber:'20180509'}
-    for (BXSDSModel *aItem in self.dsModelArray) {
-        if (aItem.boundModelList.count >0) {
-            LLOutboundRightModel *model  = aItem.boundModelList.firstObject;
-            LLOutboundRightDetailModel *rModel = safeObjectAtIndex(model.itemList, 0);
-            NSDictionary *dict = @{
-                                   @"productId":aItem.productId,
-                                   @"productColorId":aItem.productColorId,
-                                   @"stockId":HandleNilString(rModel.stockId),
-                                   @"number":model.number,
-                                   @"houseId":model.leftModel.houseId,
-                                   @"total":aItem.total,
-                                   @"batchNumber":model.batcNumber,
-                                   
-                                   };
-            [productArray addObject:dict];
-        }
-    }
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        
+        [obj.itemList enumerateObjectsUsingBlock:^(LZPurchaseItemListModel * _Nonnull itemListObj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *itemListParam = @{
+                                    @"number":itemListObj.number,
+                                    @"productColorId":itemListObj.productColorId
+                                    };
+            [itemListMuAry addObject:itemListParam];
+        }];
+        
+        NSDictionary *param = @{
+                                @"itemList":itemListMuAry,
+                                @"productId":obj.productId
+                                };
+        [itemModel addObject:param];
+    }];
     
     
-    
+    //    接口名称 新增采购单
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"factoryId":self.companyModel.id,//factoryId
-                             @"initiatorId":HandleNilString(item5.id),//指派人
-                             @"machiningType":HandleNilString(item0.id),//加工类型
+                             @"factoryId":_factoryId,
                              @"orderId":self.orderId,
-                             @"purchaserId":[BXSUser currentUser].userId,
-                             @"remark":HandleNilString(_txV.text),
-                             @"type":[BXSUser currentUser].type,
-                             
-                             @"productItems":HandleNilString([itemList mj_JSONString]),
-                             
-                             @"orderHouseItems":HandleNilString([productArray mj_JSONString]),
-                             };
-    [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+                             @"productItems":[itemModel mj_JSONString],
+                             @"purchaserId":_selectWorker,
+                             @"remark":_tv.text,
+                             @"type":@(0)
+                                 };
+    [BXSHttp requestGETWithAppURL:@"storehouse/add_buy.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+        
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
     
 }
-
-- (void)selectColor:(NSIndexPath *)indexPath {
-    
-    __block  BXSDSModel *kmodel = self.dsModelArray[indexPath.row];
-    if (kmodel.productId.length == 0) {
-        [LLHudTools showWithMessage:@"请先选择产品"];
-        return;
-    }
-    
-    LZSearchVC * rightSeletedVc = [LZSearchVC new];
-    WEAKSELF;
-    rightSeletedVc.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
-        
-        kmodel.productColorId = seletedModel.id;
-        kmodel.productColorName = seletedModel.name;
-        [weakSelf.mainTable reloadData];
-    };
-    
-    rightSeletedVc.productId = kmodel.productId;
-    
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
-    [self.navigationController cw_showDrawerViewController:rightSeletedVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
-}
-
 
 - (void)clickColIndex:(NSIndexPath *)indexPath {
     
@@ -340,50 +335,15 @@
             ConItem *item = weakSelf.dataSource[3][indexPath.row];
             item.id = workerId;
             item.contenText = workerName;
+            _selectWorker = workerId;
             [weakSelf.mainTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         };
         return;
     }
-    switch (indexPath.row) {
-        case 0: {
-            // 加工类型
-            BYAlertHeadView *head = [BYAlertHeadView alertHeaderTitle:@"选择加工类型"];
-            head.clickCancleBlock = ^{
-                [BYAlertHelper hideAlert];
-            };
-            AlertSheet *sheet = [[AlertSheet alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0)];
-            sheet.rowHeight = 44;
-            sheet.dataSource = @[@"印花",@"复合",@"洗水",@"烫金"];
-            [sheet reloadData];
-            sheet.didSelectAtRow = ^(NSInteger row, NSString *title) {
-                [BYAlertHelper hideAlert];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    ConItem *item = weakSelf.dataSource[2][indexPath.row];
-                    item.contenText = [NSString stringWithFormat:@"%@",title];
-                    item.kpText = title;
-                    item.id = [NSString stringWithFormat:@"%ld",indexPath.row];
-                    [UIView setAnimationsEnabled:NO];
-                    [weakSelf.mainTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                    [UIView setAnimationsEnabled:YES];
-                });
-            };
-            //show
-            [BYAlertHelper sharedBYAlertHelper].addSubviews(@[head,sheet]).showInWindow();
-        }break;
-            
-        default:
-            break;
-    }
+
 }
-/// 添加底色
-- (void)clickAddDB {
-    
-    BXSDSModel *dsModel = [BXSDSModel new];
-    [self.dsModelArray addObject:dsModel];
-    [self.mainTable reloadData];
-    
-}
+
+
 #pragma mark ---- UITableViewDataSource ----
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
@@ -507,5 +467,7 @@
     });
     
 }
+
+
 @end
 

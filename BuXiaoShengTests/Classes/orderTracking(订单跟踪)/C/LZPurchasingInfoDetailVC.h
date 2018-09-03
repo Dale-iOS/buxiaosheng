@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LZPurchasingInfoDetailVC : UIViewController
-
+@interface LZPurchasingInfoDetailVC : BaseViewController
+@property (nonatomic, strong) NSString *buyId;
 @end

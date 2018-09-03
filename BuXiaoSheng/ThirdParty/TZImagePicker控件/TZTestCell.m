@@ -42,6 +42,8 @@
         _gifLable.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
         _gifLable.textAlignment = NSTextAlignmentCenter;
         _gifLable.font = [UIFont systemFontOfSize:10];
+        //设置隐藏gif标识
+        _gifLable.hidden = YES;
         [self addSubview:_gifLable];
     }
     return self;

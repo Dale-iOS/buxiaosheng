@@ -9,6 +9,7 @@
 #import "LZPurchasingInfoVC.h"
 #import "LZBugAndProcessBssModel.h"
 #import "StockTrackingCell.h"
+#import "LZPurchasingInfoDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface LZPurchasingInfoVC ()<UITableViewDelegate, UITableViewDataSource>
@@ -134,6 +135,13 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZBugAndProcessBssModel *model = _lists[indexPath.row];
+    LZPurchasingInfoDetailVC *vc = [[LZPurchasingInfoDetailVC alloc]init];
+    vc.buyId = model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter && Setter

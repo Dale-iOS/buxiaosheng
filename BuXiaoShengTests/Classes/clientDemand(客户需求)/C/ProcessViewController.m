@@ -34,7 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupProductDetail];
+//    [self setupProductDetail];
 }
 
 -(void)setupUI {
@@ -42,6 +42,7 @@
     [segmentedView layoutIfNeeded];
     [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
+            //采购
             LLProcessChildVc *childVc = [[LLProcessChildVc alloc]init];
             childVc.orderId = self.orderId;
             childVc.title = obj;
@@ -49,6 +50,7 @@
             [self.containerView addSubview:childVc.view];
             [self addChildViewController:childVc];
         }else{
+            //加工
             BXSMachiningVC *childVc = [[BXSMachiningVC alloc]init];
             childVc.orderId = self.orderId;
             childVc.title = obj;
