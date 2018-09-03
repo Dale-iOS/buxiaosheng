@@ -46,7 +46,7 @@
     CGFloat _itemWH;
     CGFloat _margin;
     
-    NSString *_imageStr;
+   
 }
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
@@ -99,6 +99,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
 @property (strong, nonatomic) CLLocation *location;
+@property(nonatomic ,strong)NSMutableString * imgURLs;
 @end
 
 @implementation AddProductViewController
@@ -692,7 +693,7 @@
                              @"colorItems":colors,
                              @"component":self.constituentCell.contentTF.text,
                              @"groupId":_groupId,
-                             @"imgs":_imageStr == nil ? @"" : _imageStr ,
+                             @"imgs":self.imgURLs? : @"",
                              @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
                              @"name":self.titleCell.contentTF.text,
                              @"rateType":@(quantizationCellType),
@@ -729,18 +730,29 @@
 - (void)uploadPhotos:(NSArray *)selectArray{
     [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
-    [BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        NSDictionary *tempDic = baseModel.data;
-        _imageStr = tempDic[@"path"];
-        [LLHudTools dismiss];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+    self.imgURLs = [NSMutableString string];
+    NSMutableArray * imgURLs = [NSMutableArray array];
+    [selectArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [imgURLs addObject:baseModel.data[@"path"]];
+            if (imgURLs.count == selectArray.count) {
+                [imgURLs enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.imgURLs appendFormat:@"%@", [NSString stringWithFormat:@"%@,",obj]];
+                }];
+            }
+//            NSDictionary *tempDic = baseModel.data;
+//            _imageStr = tempDic[@"path"];
+            [LLHudTools dismiss];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
     }];
+   
 }
 
 - (UIImagePickerController *)imagePickerVc{

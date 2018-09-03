@@ -75,6 +75,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *photosArrayUrl;
+@property(nonatomic ,strong)NSMutableString * imgsURL;
 @end
 
 @implementation LZAlterProductDataVC
@@ -1112,18 +1113,30 @@
 - (void)uploadPhotos:(NSArray *)selectArray{
     [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
-    [BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-       // NSDictionary *tempDic = baseModel.data;
-        //_imageStr = tempDic[@"path"];
-        [LLHudTools dismiss];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+    NSMutableArray * imgsArray = [NSMutableArray array];
+    [selectArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [imgsArray addObject:baseModel.data[@"path"]];
+            if (imgsArray.count == selectArray.count) {
+                [imgsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.imgsURL appendFormat:@"%@", [NSString stringWithFormat:@"%@,",obj]];
+                    
+                }];
+                _model.imgs = self.imgsURL;
+            }
+            // NSDictionary *tempDic = baseModel.data;
+            //_imageStr = tempDic[@"path"];
+            [LLHudTools dismiss];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
     }];
+   
 }
 
 - (void)didReceiveMemoryWarning {

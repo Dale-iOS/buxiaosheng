@@ -19,14 +19,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/Classes/Home(&#x9996;&#x9875;)/V/LLHomeChildCell.m"
-            timestampString = "555384911.448103"
+            filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
+            timestampString = "557632943.661273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-initWithStyle:reuseIdentifier:"
+            startingLineNumber = "709"
+            endingLineNumber = "709"
+            landmarkName = "-selectornavRightBtnClick"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AddProductViewController selectornavRightBtnClick]"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
+                  timestampString = "557632943.822407"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "709"
+                  endingLineNumber = "709"
+                  offsetFromSymbolStart = "8004">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__52-[AddProductViewController selectornavRightBtnClick]_block_invoke"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
+                  timestampString = "557632943.8247859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "710"
+                  endingLineNumber = "710"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.515"
+                  moduleName = "BuXiaoSheng"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lanlan/Desktop/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/%E5%B8%83%E5%B0%8F%E7%94%9F/BuXiaoShengTests/Classes/New%20Group2/C/AddProductViewController.m"
+                  timestampString = "557632943.826974"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "709"
+                  endingLineNumber = "709"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
