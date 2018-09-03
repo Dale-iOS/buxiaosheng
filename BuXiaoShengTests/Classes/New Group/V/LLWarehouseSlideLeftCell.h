@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LLWarehouseSideModel;
 @interface LLWarehouseSlideLeftCell : UITableViewCell
-
+@property(nonatomic,strong)LLWarehouseSideModel *model;
 @end

@@ -821,6 +821,7 @@
 		A01690BD2119DA8500A7D8F9 /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B42119DA8400A7D8F9 /* MFNestTableView.m */; };
 		A01690BE2119DA8500A7D8F9 /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B92119DA8400A7D8F9 /* MFSegmentView.m */; };
 		A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */; };
+		A02577C8213D684E00310AB7 /* LLWarehouseSideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */; };
 		A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */; };
 		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
 		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
@@ -2034,6 +2035,8 @@
 		A01690B82119DA8400A7D8F9 /* MFSegmentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
 		A01690B92119DA8400A7D8F9 /* MFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
 		A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
+		A02577C6213D684E00310AB7 /* LLWarehouseSideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSideModel.h; sourceTree = "<group>"; };
+		A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSideModel.m; sourceTree = "<group>"; };
 		A0395ED320FC950E00554CDC /* LLHomePieChartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomePieChartModel.h; sourceTree = "<group>"; };
 		A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomePieChartModel.m; sourceTree = "<group>"; };
 		A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTurnoverChatView.h; sourceTree = "<group>"; };
@@ -4950,6 +4953,8 @@
 				34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */,
 				34F6E76A20BFDD4300FABC5F /* LZInventoryDetailModel.h */,
 				34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */,
+				A02577C6213D684E00310AB7 /* LLWarehouseSideModel.h */,
+				A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -6015,6 +6020,7 @@
 				347AE5762107141A00372042 /* LZChooseProductsVC.m in Sources */,
 				3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
 				34E4D49C211B2F6700A6ADE9 /* LZCollectionCheckDetailMsgModel.m in Sources */,
+				A02577C8213D684E00310AB7 /* LLWarehouseSideModel.m in Sources */,
 				3465CA0020DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
 				346874B9213BABB000967920 /* LZOutOrderProductModel.m in Sources */,

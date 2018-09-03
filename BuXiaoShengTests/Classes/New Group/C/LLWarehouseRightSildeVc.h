@@ -10,4 +10,5 @@
 @class LZInventoryDetailModel;
 @interface LLWarehouseRightSildeVc : BaseViewController
 @property(nonatomic ,strong)LZInventoryDetailModel * model;
+@property(nonatomic ,copy)NSString * houseId;
 @end

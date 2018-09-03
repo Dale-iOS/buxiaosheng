@@ -495,6 +495,7 @@ static NSInteger const pageSize = 15;
     
     LLWarehouseRightSildeVc * rightSildeVc = [LLWarehouseRightSildeVc new];
     rightSildeVc.model = self.lists[indexPath.row];
+    rightSildeVc.houseId = self.id;
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
     [self cw_showDrawerViewController:rightSildeVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 }

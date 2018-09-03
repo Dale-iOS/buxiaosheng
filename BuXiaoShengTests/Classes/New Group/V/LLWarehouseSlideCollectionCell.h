@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LLWarehouseSideRigthRowModel;
 @interface LLWarehouseSlideCollectionCell : UICollectionViewCell
-
+@property(nonatomic,strong)LLWarehouseSideRigthRowModel *model;
 @end

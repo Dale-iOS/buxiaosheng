@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LLWarehouseSideRigthSectionModel;
 @interface LLWarehouseSlideHeaderReusableView : UICollectionReusableView
+@property(nonatomic,strong)LLWarehouseSideRigthSectionModel *model;
+@property(nonatomic,weak)UICollectionView *collectionView;
 
 @end
