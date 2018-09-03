@@ -23,5 +23,6 @@
 
 //字符串为空检查
 + (BOOL)isEmptyString:(NSString *)sourceStr;
++ (NSString *)notRounding:(double)price afterPoint:(int)position;
 
 @end

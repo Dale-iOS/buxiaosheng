@@ -27,7 +27,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	
 	//设置IQKeyboardManager
 	[self settingIQKeyboardManager];
 //    LoginViewController *loginVC = [[LoginViewController alloc]init];

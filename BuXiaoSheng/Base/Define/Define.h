@@ -163,4 +163,6 @@ UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"确 定" style:UIAlert
 #define IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 #define IPHONE_X (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
 
+#define kChangeYardNotification @"kChangeYardNotification"
+
 #endif /* Define_h */

@@ -38,6 +38,10 @@
 @property (nonatomic, strong) LZBackOrderGroup *sectionGroup;
 @property (nonatomic, strong) NSMutableArray *saveMuAry;
 @property (nonatomic, strong) LZBackOrderInfoModel *infoModel;
+
+@property (nonatomic,strong) NSIndexPath *currentOperateIndexPath;
+@property (nonatomic,strong) NSMutableArray *yardStrings;
+
 @end
 
 @implementation BackOrderViewController
@@ -50,7 +54,7 @@
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toListClisk) image:IMAGE(@"new_lists")];
     //拖动tableView回收键盘
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeYards:) name:kChangeYardNotification object:nil];
     //网络请求
     [self setupCustomerList];
     [self setupWarehouseLists];
@@ -126,7 +130,7 @@
 - (void)caculateSectionDataWithGroup:(LZBackOrderGroup *)group indexPath:(NSIndexPath *)indexPath {
     if (group.items.count > 11) {
         //数量
-        NSInteger totalCount = 0;
+        double totalCount = 0.0;
         //条数
         NSString *totalNumberStr = @"0";
         if ([group.storageType isEqualToString:@"1"]) {
@@ -138,13 +142,13 @@
                 }
                 //细码的个数
                 for (NSString *string in group.itemStrings) {
-                    totalCount += string.integerValue;
+                    totalCount += string.doubleValue;
                 }
-                totalNumberStr = [NSString stringWithFormat:@"%ld", totalCount];
+                totalNumberStr = [BXSTools notRounding:totalCount afterPoint:1];
             }
         } else {
             //总码
-            totalCount = group.items[3].detailTitle.integerValue;
+            totalCount = group.items[3].detailTitle.doubleValue;
             LZBackOrderItem *item = group.items[3];
             if (![BXSTools isEmptyString:item.detailTitle]) {
                 totalNumberStr = item.detailTitle;
@@ -161,7 +165,7 @@
                 *stop = YES;
             }
         }];
-        NSInteger price = [priceItem.detailTitle integerValue];
+        double price = [priceItem.detailTitle doubleValue];
     
         //入库数量
         group.items[priceItenIndex + 1].detailTitle = totalNumberStr;
@@ -170,7 +174,7 @@
         //结算数量
         group.items[priceItenIndex + 3].detailTitle = totalNumberStr;
         //本单退款金额
-        group.items[priceItenIndex + 4].detailTitle = [NSString stringWithFormat:@"%ld", price * totalCount];
+        group.items[priceItenIndex + 4].detailTitle = [BXSTools notRounding:price * totalCount afterPoint:1];
     }
     [self calculateTotal];
     [self.tableView reloadData];
@@ -197,6 +201,30 @@
         [group.items exchangeObjectAtIndex:(rowCount - 1) withObjectAtIndex:(rowCount + 1)];
     }
     [self.tableView reloadDataWithInsertingDataAtTheBeginingOfSection:section newDataCount:group.items.count];
+}
+
+#pragma mark - Actions
+- (void)changeYards:(NSNotification *)sender {
+    self.yardStrings = [NSMutableArray array];
+    NSInteger type = [sender.object integerValue];
+    LZBackOrderGroup *group = self.dataSource[self.currentOperateIndexPath.section];
+    for (NSString *yardString in group.itemStrings) {
+        double yard = yardString.doubleValue;
+        if (AdditionBtnClick == type) {
+            yard += 1;
+        } else if (SubtractionBtnClick == type) {
+            yard -= 1;
+            if (yard < 0) {
+                yard = 0.0;
+            }
+        } else if (MultiplicationBtnClick == type) {
+            yard *= 0.99;
+        } else if (DivisionBtnClick == type) {
+            yard /= 0.99;
+        }
+        [self.yardStrings addObject:[BXSTools notRounding:yard afterPoint:1]];
+    }
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -274,7 +302,6 @@
     }
 }
 
-#pragma mark ---- 点击事件 ----
 - (void)backOrderCell:(LZBackOrderCell *)backOrderCell selectItemForIndexPath:(NSIndexPath *)indexPath {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
     LZBackOrderItem *item = group.items[indexPath.row];
@@ -337,7 +364,7 @@
         pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
             item.detailTitle = compoentString;
             NSInteger row = [titileString integerValue];
-            item.selectId = _warehouseIdAry[row];
+            item.selectId = weakSelf.warehouseIdAry[row];
             [weakSelf.tableView reloadData];
         };
         [self.view addSubview:pickerView];
@@ -354,26 +381,25 @@
         pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
             item.detailTitle = compoentString;
             NSInteger row = [titileString integerValue];
-            item.selectId = _payIdAry[row];
+            item.selectId = weakSelf.payIdAry[row];
             [weakSelf.tableView reloadData];
         };
         [self.view addSubview:pickerView];
     }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeChangeNum){
-        
+        if ([group.storageType isEqualToString:@"0"] || group.itemStrings.count == 0) return;
+        self.currentOperateIndexPath = indexPath;
         //标签数量
         LZChangeNumVC *vc = [LZChangeNumVC new];
-        vc.originalValue = [item.detailTitle integerValue];
-        //        vc.lineValue = 细码条数
+        vc.type = LZChangeNumVCTypeBackOrder;
+        vc.originalValue = [item.detailTitle doubleValue];
+        vc.lineValue = group.itemStrings.count;
         [vc setNumValueBlock:^(NSString *ValueStr) {
-            //修改标签数量
-            item.detailTitle = ValueStr;
-            //修改结算数量
-            LZBackOrderGroup *group1 = self.dataSource[indexPath.section];
-            LZBackOrderItem *item1 = group1.items[indexPath.row+1];
-            item1.detailTitle = ValueStr;
+            //修改细码
+            [group.itemStrings setArray:weakSelf.yardStrings];
+            //计算分区细码
+            [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath];
+            //刷新
             [weakSelf.tableView reloadData];
-//            [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath];
-            //假如有5条细码，加减就是加减5，然后每条细码各加减1。
         }];
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
         [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
