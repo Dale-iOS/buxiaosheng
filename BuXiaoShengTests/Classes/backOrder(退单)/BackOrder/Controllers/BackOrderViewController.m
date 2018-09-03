@@ -388,6 +388,11 @@
     }else if ((LZSelectItemVCSelectType)item.clickType == ClickTypeChangeNum){
         if ([group.storageType isEqualToString:@"0"] || group.itemStrings.count == 0) return;
         self.currentOperateIndexPath = indexPath;
+        
+        NSInteger index = [group.items indexOfObject:item];
+        LZBackOrderItem *tagNumItem = [group.items objectAtIndex:index - 1];
+        NSString *tmpString = tagNumItem.detailTitle;
+        
         //标签数量
         LZChangeNumVC *vc = [LZChangeNumVC new];
         vc.type = LZChangeNumVCTypeBackOrder;
@@ -398,6 +403,7 @@
             [group.itemStrings setArray:weakSelf.yardStrings];
             //计算分区细码
             [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath];
+            tagNumItem.detailTitle = tmpString;
             //刷新
             [weakSelf.tableView reloadData];
         }];
