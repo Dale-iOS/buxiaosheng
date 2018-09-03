@@ -204,6 +204,7 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
     } else {
         if (_indexPath.section != 0) {
             _item.detailTitle = [BXSTools isEmptyString:textField.text] ? @"" : textField.text;
+            return;
         }
         //此处只有出现添加细码的cell样式后,才需要回调
         if (((_item.mandatoryOption && _item.canInput) || _group.items.count > 11) || _group.items.count == 6) {
