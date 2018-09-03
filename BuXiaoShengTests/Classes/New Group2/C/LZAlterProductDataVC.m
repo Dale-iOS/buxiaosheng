@@ -1048,58 +1048,74 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     
-    TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
-    tzImagePickerVc.sortAscendingByModificationDate = YES;
-    [tzImagePickerVc showProgressHUD];
-    if ([type isEqualToString:@"public.image"]) {
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        //保存图片，获取到asset
-        [[TZImageManager manager] savePhotoWithImage:image location:nil completion:^(NSError *error){
-            if (error) {
-                [tzImagePickerVc hideProgressHUD];
-                NSLog(@"图片保存失败 %@",error);
-            } else {
-                [[TZImageManager manager] getCameraRollAlbum:NO allowPickingImage:YES needFetchAssets:NO completion:^(TZAlbumModel *model) {
-                    [[TZImageManager manager] getAssetsFromFetchResult:model.result allowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models) {
-                        [tzImagePickerVc hideProgressHUD];
-                        TZAssetModel *assetModel = [models firstObject];
-                        if (tzImagePickerVc.sortAscendingByModificationDate) {
-                            assetModel = [models lastObject];
-                        }
-                        [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
-                    }];
-                }];
-            }
-        }];
-    }
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];///原图
+    //获取修剪后的图片
+    UIImage *imageUp = [info objectForKey:UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [_selectedPhotos addObject:imageUp];
+    [self.collectionView reloadData];
+//    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+//
+//    TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+//    tzImagePickerVc.sortAscendingByModificationDate = YES;
+//    [tzImagePickerVc showProgressHUD];
+//    if ([type isEqualToString:@"public.image"]) {
+//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//        //保存图片，获取到asset
+//        [[TZImageManager manager] savePhotoWithImage:image location:nil completion:^(NSError *error){
+//            if (error) {
+//                [tzImagePickerVc hideProgressHUD];
+//                NSLog(@"图片保存失败 %@",error);
+//            } else {
+//                [[TZImageManager manager] getCameraRollAlbum:NO allowPickingImage:YES needFetchAssets:NO completion:^(TZAlbumModel *model) {
+//                    [[TZImageManager manager] getAssetsFromFetchResult:model.result allowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models) {
+//                        [tzImagePickerVc hideProgressHUD];
+//                        TZAssetModel *assetModel = [models firstObject];
+//                        if (tzImagePickerVc.sortAscendingByModificationDate) {
+//                            assetModel = [models lastObject];
+//                        }
+//                        [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
+//                    }];
+//                }];
+//            }
+//        }];
+//    }
 }
 #pragma mark - TZImagePickerController
 
 - (void)pushTZImagePickerController {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:_selectedPhotos.count columnNumber:0 delegate:self pushPhotoPickerVc:YES];
-#pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
-    imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-    //imagePickerVc.selectedAssets = _selectedAssets; // 目前已经选中的图片数组
-    [LZSetImagePickerController setImagePickerVc:imagePickerVc];
-    // 设置竖屏下的裁剪尺寸
-    NSInteger left = 30;
-    NSInteger widthHeight = APPWidth - 2 * left;
-    NSInteger top = (APPHeight - widthHeight) / 2;
-    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
-    imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    // 设置类型, 表示仅仅从相册中获取照片
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    // 设置照片是否允许用户编辑
+    imagePicker.allowsEditing = true;
     
-    // 设置是否显示图片序号
-    imagePickerVc.showSelectedIndex = NO;
-#pragma mark - 到这里为止
-    // 你可以通过block或者代理，来得到用户选择的照片.
-    //    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-    //
-    //    }];
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
+    [self presentViewController:imagePicker animated:YES completion:nil];
+//    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:_selectedPhotos.count columnNumber:0 delegate:self pushPhotoPickerVc:YES];
+//#pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
+//    imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
+//    //imagePickerVc.selectedAssets = _selectedAssets; // 目前已经选中的图片数组
+//    [LZSetImagePickerController setImagePickerVc:imagePickerVc];
+//    // 设置竖屏下的裁剪尺寸
+//    NSInteger left = 30;
+//    NSInteger widthHeight = APPWidth - 2 * left;
+//    NSInteger top = (APPHeight - widthHeight) / 2;
+//    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
+//    imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
+//
+//    // 设置是否显示图片序号
+//    imagePickerVc.showSelectedIndex = NO;
+//#pragma mark - 到这里为止
+//    // 你可以通过block或者代理，来得到用户选择的照片.
+//    //    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+//    //
+//    //    }];
+//    [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
+
+
 - (void)refreshCollectionViewWithAddedAsset:(id)asset image:(UIImage *)image {
     //[_selectedAssets addObject:asset];
     [_selectedPhotos addObject:image];
