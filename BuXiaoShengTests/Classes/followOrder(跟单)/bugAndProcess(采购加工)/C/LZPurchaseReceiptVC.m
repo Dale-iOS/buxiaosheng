@@ -13,9 +13,7 @@
 #import "LZFineCodeVC.h"
 #import "ConCell.h"
 #import "ApproverModel.h"
-
 #import "BXSPurchaChangeWarehousingView.h"
-
 #import "BaseTableVC+BXSTakePhoto.h"
 
 #define  SELECTAPPROVER @"选择人员"
@@ -193,7 +191,7 @@
         ConItem *item10 = [[ConItem alloc]initWithTitle:@"结算数量" kpText:@"0" conType:ConTypeB];
         ConItem *item11 = [[ConItem alloc]initWithTitle:@"本应付金额" kpText:@"0" conType:ConTypeC];
         item11.textColor = [UIColor redColor];
-        item11.contenText = @"0.0";
+        item11.contenText = @"0";
         [model.dataArray addObject:@[item4,item5,item6,item7,item8,item9,item10,item11]];
         
     }
@@ -201,6 +199,7 @@
 }
 #pragma mark ---- 网络请求 ----
 - (void)setupData{
+//    接口名称 采购加工跟踪-未处理详情
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyId":self.bugId};
     [BXSHttp requestGETWithAppURL:@"documentary/not_handle_detail.do" param:param success:^(id response) {
@@ -234,8 +233,9 @@
 }
 
 /// post整个数据--最终的数据上传
+#pragma mark ---- 提交数据 ----
 - (void)addCollect {
-    
+//    接口名称 新增采购收货
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,

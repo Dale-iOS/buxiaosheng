@@ -1053,7 +1053,10 @@
     //获取修剪后的图片
     UIImage *imageUp = [info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [_selectedPhotos addObject:imageUp];
+    if (_selectedPhotos.count <5) {
+        [_selectedPhotos addObject:imageUp];
+    }
+    [self uploadPhotos:_selectedPhotos];
     [self.collectionView reloadData];
 //    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
 //
