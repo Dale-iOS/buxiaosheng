@@ -532,9 +532,6 @@
                 }
             }];
         }];
-        
-       
-       
 //        if (!_model.imgs.count) {
 //
 //        }
@@ -1118,6 +1115,10 @@
 }
 //接口名称 图片上传
 - (void)uploadPhotos:(NSArray *)selectArray{
+    if (selectArray.count > 5) {
+        [LLHudTools showWithMessage:@"您最多能选择五个图片上传"];
+        return;
+    }
     [LLHudTools showLoadingMessage:@"图片上传中~"];
     NSDictionary * param = @{@"file":@"0"};
     NSMutableString *imgsURL = [NSMutableString string];

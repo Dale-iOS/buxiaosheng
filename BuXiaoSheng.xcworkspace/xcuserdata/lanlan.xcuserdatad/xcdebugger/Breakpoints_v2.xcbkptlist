@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
-            timestampString = "557652481.082621"
+            timestampString = "557656150.958377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "850"
-            endingLineNumber = "850"
+            startingLineNumber = "847"
+            endingLineNumber = "847"
             landmarkName = "-selectornavRightBtnClick"
             landmarkType = "7">
             <Locations>
