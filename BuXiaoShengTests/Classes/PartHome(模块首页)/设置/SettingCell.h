@@ -22,4 +22,7 @@
 ///画底部的线
 @property (nonatomic, strong) UIView *lineView;
 
+///右侧的文字
+@property (nonatomic, strong) UILabel *rigthLabel;
+
 @end

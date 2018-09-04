@@ -45,6 +45,8 @@
 @property (nonatomic, strong) SettingCell *companyCell;
 ///配方
 @property (nonatomic, strong) SettingCell *recipeCell;
+///版本号
+@property (nonatomic, strong) SettingCell *versionCell;
 ///切换用户按钮
 @property (nonatomic, strong) UIButton *changeUserBtn;
 
@@ -77,7 +79,7 @@
 - (void)setupUI
 {
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = LZHBackgroundColor;
     
     self.datasource = [NSMutableArray array];
     
@@ -86,17 +88,41 @@
     [self setupSectionOne];
     [self setupSectionTwo];
     [self setupSectionThree];
+    [self setupSectionFour];
     self.mainTabelView.dataSoure = self.datasource;
     
-    self.changeUserBtn = [UIButton new];
+    //退出按钮底view
+//    UIView *bottomView = [[UIView alloc]init];
+//    bottomView.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:bottomView];
+//    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.left.right.equalTo(self.view);
+//        make.height.mas_offset(140);
+//    }];
+    
+    self.changeUserBtn = [[UIButton alloc]init];
     [self.changeUserBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-    [self.changeUserBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+    [self.changeUserBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.changeUserBtn.titleLabel.font = FONT(14);
-    [self.changeUserBtn setBackgroundColor:[UIColor whiteColor]];
-    self.changeUserBtn.frame = CGRectMake(0, APPHeight -49, APPWidth, 49);
+    [self.changeUserBtn setBackgroundColor:[UIColor clearColor]];
+    [self.changeUserBtn setBackgroundImage:IMAGE(@"backLogin") forState:UIControlStateNormal];
+//    self.changeUserBtn.frame = CGRectMake(0, APPHeight -49, APPWidth, 49);
     [self.changeUserBtn addTarget:self action:@selector(changeUserBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.changeUserBtn];
+    [self.changeUserBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).offset(20);
+        make.right.mas_equalTo(self.view).offset(-20);
+        make.height.mas_offset(50);
+        make.bottom.mas_equalTo(self.view);
+    }];
     
+//    [bottomView addSubview:self.changeUserBtn];
+//    [self.changeUserBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(bottomView).offset(20);
+//        make.right.mas_equalTo(bottomView).offset(-20);
+//        make.height.mas_offset(50);
+//        make.centerY.mas_equalTo(bottomView);
+//    }];
 }
 
 - (void)setupSectionOne
@@ -220,6 +246,26 @@
     item.sectionView = headerView;
     [self.datasource addObject:item];
 }
+
+- (void)setupSectionFour
+{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    //版本号
+    self.versionCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.versionCell.iconImageView.image = IMAGE(@"versionNum");
+    self.versionCell.titleLabel.text = @"版本号";
+    self.versionCell.rigthLabel.hidden = NO;
+    self.versionCell.rigthLabel.text = appVersion;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.versionCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
+
 
 
 #pragma mark ------ 点击事件 --------

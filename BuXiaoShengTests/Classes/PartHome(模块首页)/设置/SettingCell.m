@@ -9,7 +9,7 @@
 #import "SettingCell.h"
 
 @implementation SettingCell
-@synthesize iconImageView,titleLabel,rightArrowImageVIew,lineView;
+@synthesize iconImageView,titleLabel,rightArrowImageVIew,lineView,rigthLabel;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -19,7 +19,8 @@
         [self addSubview:self.iconImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.rightArrowImageVIew];
-
+        [self addSubview:self.rigthLabel];
+        
         [self setupSDlayout];
     }
     return self;
@@ -60,6 +61,20 @@
     return rightArrowImageVIew;
 }
 
+- (UILabel *)rigthLabel
+{
+    if (rigthLabel == nil) {
+        UILabel *label = [[UILabel alloc]init];
+        label.hidden = YES;
+        label.font = FONT(14);
+        label.textColor = CD_Text99;
+        label.textAlignment = NSTextAlignmentRight;
+//        label.backgroundColor = [UIColor redColor];
+        [self addSubview:(rigthLabel = label)];
+    }
+    return rigthLabel;
+}
+
 - (UIView *)lineView
 {
     if (!lineView) {
@@ -90,6 +105,12 @@
     .rightSpaceToView(self, 15)
     .widthIs(8)
     .heightIs(14);
+    
+    self.rigthLabel.sd_layout
+    .centerYEqualToView(self)
+    .rightSpaceToView(self, 15)
+    .widthIs(40)
+    .heightIs(15);
     
     self.lineView.sd_layout
     .bottomSpaceToView(self, 0)

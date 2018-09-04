@@ -821,6 +821,7 @@
 		A01690BD2119DA8500A7D8F9 /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B42119DA8400A7D8F9 /* MFNestTableView.m */; };
 		A01690BE2119DA8500A7D8F9 /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690B92119DA8400A7D8F9 /* MFSegmentView.m */; };
 		A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */; };
+		A02577C8213D684E00310AB7 /* LLWarehouseSideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */; };
 		A0395ED520FC950E00554CDC /* LLHomePieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */; };
 		A04F6FC82119419A00CFDE1C /* LLTurnoverChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FC72119419A00CFDE1C /* LLTurnoverChatView.m */; };
 		A04F6FCE21194EBD00CFDE1C /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F6FCC21194EBD00CFDE1C /* DateValueFormatter.m */; };
@@ -835,6 +836,10 @@
 		A08748C320ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
 		A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
 		A08748C520ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
+		A0D9D9ED213D376C006A5C80 /* LLWarehouseRightSildeVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */; };
+		A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */; };
+		A0D9D9F3213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */; };
+		A0D9D9F6213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050551209AB2DA00CE7E4D /* XLFormButtonCell.m */; };
@@ -2030,6 +2035,8 @@
 		A01690B82119DA8400A7D8F9 /* MFSegmentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
 		A01690B92119DA8400A7D8F9 /* MFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
 		A01690BA2119DA8400A7D8F9 /* MFSegmentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
+		A02577C6213D684E00310AB7 /* LLWarehouseSideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSideModel.h; sourceTree = "<group>"; };
+		A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSideModel.m; sourceTree = "<group>"; };
 		A0395ED320FC950E00554CDC /* LLHomePieChartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomePieChartModel.h; sourceTree = "<group>"; };
 		A0395ED420FC950E00554CDC /* LLHomePieChartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomePieChartModel.m; sourceTree = "<group>"; };
 		A04F6FC62119419A00CFDE1C /* LLTurnoverChatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTurnoverChatView.h; sourceTree = "<group>"; };
@@ -2054,6 +2061,14 @@
 		A08748BD20ECCDF7001FF98E /* LLWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWaitingView.h; sourceTree = "<group>"; };
 		A08748BE20ECCDF7001FF98E /* LLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowser.h; sourceTree = "<group>"; };
 		A08748BF20ECCDF7001FF98E /* LLBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBrowserImageView.h; sourceTree = "<group>"; };
+		A0D9D9EB213D376C006A5C80 /* LLWarehouseRightSildeVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseRightSildeVc.h; sourceTree = "<group>"; };
+		A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseRightSildeVc.m; sourceTree = "<group>"; };
+		A0D9D9EE213D422F006A5C80 /* LLWarehouseSlideLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideLeftCell.h; sourceTree = "<group>"; };
+		A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSlideLeftCell.m; sourceTree = "<group>"; };
+		A0D9D9F1213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideHeaderReusableView.h; sourceTree = "<group>"; };
+		A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSlideHeaderReusableView.m; sourceTree = "<group>"; };
+		A0D9D9F4213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideCollectionCell.h; sourceTree = "<group>"; };
+		A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSlideCollectionCell.m; sourceTree = "<group>"; };
 		B505054E209AB2DA00CE7E4D /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
 		B5050550209AB2DA00CE7E4D /* XLFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormButtonCell.h; sourceTree = "<group>"; };
@@ -4906,6 +4921,8 @@
 				347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */,
 				34F6E76F20C0359B00FABC5F /* LZSearchWarehouseVC.h */,
 				34F6E77020C0359B00FABC5F /* LZSearchWarehouseVC.m */,
+				A0D9D9EB213D376C006A5C80 /* LLWarehouseRightSildeVc.h */,
+				A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4919,6 +4936,12 @@
 				347C309A20A29DBC0078BB69 /* InventoryCell.m */,
 				34F6E77320C03EAC00FABC5F /* LZInventoryDetailCell.h */,
 				34F6E77420C03EAC00FABC5F /* LZInventoryDetailCell.m */,
+				A0D9D9EE213D422F006A5C80 /* LLWarehouseSlideLeftCell.h */,
+				A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */,
+				A0D9D9F1213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.h */,
+				A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */,
+				A0D9D9F4213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.h */,
+				A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -4930,6 +4953,8 @@
 				34F6E76720BFCEC900FABC5F /* LZInventoryModel.m */,
 				34F6E76A20BFDD4300FABC5F /* LZInventoryDetailModel.h */,
 				34F6E76B20BFDD4300FABC5F /* LZInventoryDetailModel.m */,
+				A02577C6213D684E00310AB7 /* LLWarehouseSideModel.h */,
+				A02577C7213D684E00310AB7 /* LLWarehouseSideModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5704,6 +5729,7 @@
 				343008E32081ACEB00447992 /* NowQuarterViewController.m in Sources */,
 				3411F2B02085CEBA00C448FD /* NoneManagerViewController.m in Sources */,
 				3471DCAA20D76218002052EE /* LZShipmentVC.m in Sources */,
+				A0D9D9F6213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m in Sources */,
 				34494DFC2091BD0900BDB309 /* OutboundViewController.m in Sources */,
 				342AF22220D51C7300A1DDC4 /* LZDetailCell.m in Sources */,
 				343207D020A069A3005A5D23 /* NoAuditApplyViewController.m in Sources */,
@@ -5830,6 +5856,7 @@
 				347D64CD207F098D00407FC4 /* SalesDemandViewController.m in Sources */,
 				B577CEAC20AAB4120001B8B8 /* LLAddPermissionsVc.m in Sources */,
 				3467BA4920ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */,
+				A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
 				3428B8582121685C003F86D7 /* ReimCustomerCell.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
@@ -5993,6 +6020,7 @@
 				347AE5762107141A00372042 /* LZChooseProductsVC.m in Sources */,
 				3479057F20C53FA9008C835C /* DidOutInventoryCell.m in Sources */,
 				34E4D49C211B2F6700A6ADE9 /* LZCollectionCheckDetailMsgModel.m in Sources */,
+				A02577C8213D684E00310AB7 /* LLWarehouseSideModel.m in Sources */,
 				3465CA0020DC9A9700BAE415 /* FSCalendar.m in Sources */,
 				34EE5D7520A68BEF00A2C9B5 /* AddDepartmentViewController.m in Sources */,
 				346874B9213BABB000967920 /* LZOutOrderProductModel.m in Sources */,
@@ -6032,6 +6060,7 @@
 				B58BF6F620A178D000A8B92B /* CWLateralSlideConfiguration.m in Sources */,
 				348DF244212964D800D3A76F /* BYPhotoSelectCell.m in Sources */,
 				34A92B66207DF0FC00572648 /* SaleViewController.m in Sources */,
+				A0D9D9F3213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m in Sources */,
 				34F6E76C20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				3465CA0420DC9A9700BAE415 /* FSCalendarCalculator.m in Sources */,
 				345D5EFE209D4AAF00126C40 /* RecipeViewController.m in Sources */,
@@ -6065,6 +6094,7 @@
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				346C2264210E03D3004AAC88 /* LLSalesDemandSideSlipVc.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
+				A0D9D9ED213D376C006A5C80 /* LLWarehouseRightSildeVc.m in Sources */,
 				A04F6FFE2119913C00CFDE1C /* LLHomeChidVC.m in Sources */,
 				344C48B120D1524C00BEC002 /* LZPaymentOrderModel.m in Sources */,
 				B5BA43DD20A4492A00A867E9 /* BXSUser.m in Sources */,
