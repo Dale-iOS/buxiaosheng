@@ -13,7 +13,9 @@ typedef NS_ENUM(NSInteger, LLWarehouseDetailRemarkFromType) {
 };
 #import "BaseViewController.h"
 @class LLWarehouseSideRigthRowModel;
+@class LLWarehouseDetailModel;
 @interface LLWarehouseDetailRemarkVC : BaseViewController
 @property(nonatomic ,strong)LLWarehouseSideRigthRowModel * model;
 @property(nonatomic ,assign)LLWarehouseDetailRemarkFromType fromType;
+@property(nonatomic ,strong)LLWarehouseDetailModel * dictModel;
 @end

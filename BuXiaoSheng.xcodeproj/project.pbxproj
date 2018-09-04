@@ -832,6 +832,7 @@
 		A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */; };
 		A081508D213E55A6008616A1 /* LLWarehouseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */; };
 		A0815090213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */; };
+		A0815093213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0815092213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -2061,6 +2062,8 @@
 		A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailCell.m; sourceTree = "<group>"; };
 		A081508E213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetailRemarkVC.h; sourceTree = "<group>"; };
 		A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailRemarkVC.m; sourceTree = "<group>"; };
+		A0815091213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetaiSlideRemakeVc.h; sourceTree = "<group>"; };
+		A0815092213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetaiSlideRemakeVc.m; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -4936,6 +4939,8 @@
 				A0F9E9BF213E34D5004D1F0C /* LLWarehouseDetailVc.m */,
 				A081508E213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.h */,
 				A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */,
+				A0815091213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.h */,
+				A0815092213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -6191,6 +6196,7 @@
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
 				3464457E20AD281F00D6A06B /* LZClientModel.m in Sources */,
 				34EE88D420CBB1440060D00B /* LZClientReceiptModel.m in Sources */,
+				A0815093213E93FE008616A1 /* LLWarehouseDetaiSlideRemakeVc.m in Sources */,
 				B5B07513209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				346C2252210E03D3004AAC88 /* BackOrderViewController.m in Sources */,
 				346C228F210E03E2004AAC88 /* LLBackOrdeContentModel.m in Sources */,

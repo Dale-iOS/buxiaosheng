@@ -110,6 +110,7 @@
 -(void)bottomViewBtnClick:(UIButton*)btn {
     LLWarehouseDetailRemarkVC * remakVc = [LLWarehouseDetailRemarkVC new];
     remakVc.model = self.model;
+    remakVc.dictModel = self.dictModel;
     switch (btn.tag) {
         case 0: // 分配
             remakVc.fromType = LLWarehouseDetailRemarkFromTypeFenPi;
