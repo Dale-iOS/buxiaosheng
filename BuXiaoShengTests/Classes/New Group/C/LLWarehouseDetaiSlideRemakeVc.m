@@ -11,12 +11,12 @@
 #import "LLWarehouseSlideCollectionCell.h"
 #import "LLWarehouseSlideLeftCell.h"
 #import "LLWarehouseSideModel.h"
-#import "LZOutboundModel.h"
+
 @interface LLWarehouseDetaiSlideRemakeVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic ,strong)UITableView * leftTableView;
 @property(nonatomic ,strong)UICollectionView * rightCollectionView;
-@property(nonatomic ,copy)NSArray <LLOutboundlistModel*>* leftData;
-@property(nonatomic ,copy)NSArray <LLOutboundRightModel*>* rightData;
+@property(nonatomic ,copy)NSArray <LLWarehouseSideModel*>* leftData;
+@property(nonatomic ,copy)NSArray <LLWarehouseSideRigthSectionModel*>* rightData;
 
 @end
 
@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupData];
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,13 +56,13 @@
     param[@"companyId"] = [BXSUser currentUser].companyId;
     param[@"productColorId"] = self.dictModel.productColorId;
     param[@"productId"] = self.dictModel.productId;
-    [BXSHttp requestGETWithAppURL:@"product/house_list.do" param:param success:^(id response) {
+    [BXSHttp requestGETWithAppURL:@"house_stock/match_house_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        self.leftData = [LLOutboundlistModel LLMJParse:baseModel.data];
+        self.leftData = [LLWarehouseSideModel LLMJParse:baseModel.data];
         self.leftData.firstObject.seleted = true;
         [self.leftTableView reloadData];
         [self tableView:self.leftTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -84,68 +85,68 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-//    param[@"companyId"] = [BXSUser currentUser].companyId;
-//    param[@"houseId"] = self.leftData[indexPath.row].houseId;
-//    param[@"productColorId"] = self.leftData[indexPath.row].colorId;
-//    param[@"productId"] = self.model.id;
-//    [BXSHttp requestGETWithAppURL:@"product/house_val.do" param:param success:^(id response) {
-//        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-//        if ([baseModel.code integerValue]!=200) {
-//            [LLHudTools showWithMessage:baseModel.msg];
-//            return ;
-//        }
-//        self.rightData = [LLWarehouseSideRigthSectionModel LLMJParse:baseModel.data];
-//        [self.rightCollectionView reloadData];
-//    } failure:^(NSError *error) {
-//        [LLHudTools showWithMessage:LLLoadErrorMessage];
-//    }];
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    param[@"houseId"] = self.leftData[indexPath.row].houseId;
+    param[@"productColorId"] = self.leftData[indexPath.row].colorId;
+    param[@"productId"] = self.dictModel.productId;
+    [BXSHttp requestGETWithAppURL:@"house_stock/match_house_product_val.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        self.rightData = [LLWarehouseSideRigthSectionModel LLMJParse:baseModel.data];
+        [self.rightCollectionView reloadData];
+    } failure:^(NSError *error) {
+        [LLHudTools showWithMessage:LLLoadErrorMessage];
+    }];
 }
-//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//    return self.rightData.count;
-//}
-//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    return self.rightData[section].seleted ? self.rightData[section].itemList.count : 0;
-//}
-//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    LLWarehouseSlideHeaderReusableView *  reusableHeaerView;
-//    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-//        reusableHeaerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LLWarehouseSlideHeaderReusableView" forIndexPath:indexPath];
-//
-//    }
-//    reusableHeaerView.collectionView = collectionView;
-//    reusableHeaerView.model = self.rightData[indexPath.section];
-//    return reusableHeaerView;
-//
-//}
-//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    LLWarehouseSlideCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLWarehouseSlideCollectionCell" forIndexPath:indexPath];
-//    cell.model = self.rightData[indexPath.section].itemList[indexPath.row];
-//    return cell;
-//}
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-//    return CGSizeMake(CGRectGetWidth(self.view.frame)-100, 45);
-//}
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    return self.rightData[indexPath.section].seleted ? CGSizeMake(60, 30) : CGSizeMake(0, 0);
-//
-//}
-//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-//    return UIEdgeInsetsMake(5, 12, 5, 12);
-//}
-//
-//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            obj.seleted = false;
-//        }];
-//    }];
-//    self.rightData[indexPath.section].itemList[indexPath.row].seleted = true;
-//    [collectionView reloadData];
-//}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.rightData.count;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.rightData[section].seleted ? self.rightData[section].itemList.count : 0;
+}
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    LLWarehouseSlideHeaderReusableView *  reusableHeaerView;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        reusableHeaerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LLWarehouseSlideHeaderReusableView" forIndexPath:indexPath];
+
+    }
+    reusableHeaerView.collectionView = collectionView;
+    reusableHeaerView.model = self.rightData[indexPath.section];
+    return reusableHeaerView;
+
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    LLWarehouseSlideCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLWarehouseSlideCollectionCell" forIndexPath:indexPath];
+    cell.model = self.rightData[indexPath.section].itemList[indexPath.row];
+    return cell;
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(CGRectGetWidth(self.view.frame)-100, 45);
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    return self.rightData[indexPath.section].seleted ? CGSizeMake(60, 30) : CGSizeMake(0, 0);
+
+}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(5, 12, 5, 12);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.seleted = false;
+        }];
+    }];
+    self.rightData[indexPath.section].itemList[indexPath.row].seleted = true;
+    [collectionView reloadData];
+}
 
 
 /// MARK: ---- 懒加载
