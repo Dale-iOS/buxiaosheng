@@ -207,21 +207,22 @@ static NSString *cellIdThree = @"LZBackOrderCellThree";
              
         }
         
+        BOOL shouldChange = YES;
         if ([_group.storageType isEqualToString:@"1"]) {
             if (_indexPath.row == 9) {
-                return;
+                shouldChange = NO;
             }
         } else {
             if (_indexPath.row == 10) {
-                return;
+                shouldChange = NO;
             }
         }
         
         
         //此处只有出现添加细码的cell样式后,才需要回调
         if (((_item.mandatoryOption && _item.canInput) || _group.items.count > 11) || _group.items.count == 6) {
-            if ([_delegate respondsToSelector:@selector(backOrderCell:reloadForIndexPath:)]) {
-                [_delegate backOrderCell:self reloadForIndexPath:_indexPath];
+            if ([_delegate respondsToSelector:@selector(backOrderCell:reloadForIndexPath:shouldChange:)]) {
+                [_delegate backOrderCell:self reloadForIndexPath:_indexPath shouldChange:shouldChange];
             }
         }
     }

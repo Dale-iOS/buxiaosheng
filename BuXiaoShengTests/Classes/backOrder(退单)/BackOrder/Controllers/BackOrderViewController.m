@@ -127,7 +127,7 @@
 }
 
 //计算分区的相关数据
-- (void)caculateSectionDataWithGroup:(LZBackOrderGroup *)group indexPath:(NSIndexPath *)indexPath {
+- (void)caculateSectionDataWithGroup:(LZBackOrderGroup *)group indexPath:(NSIndexPath *)indexPath shouldChange:(BOOL)shouldChange {
     if (group.items.count > 11) {
         //数量
         double totalCount = 0.0;
@@ -171,10 +171,18 @@
         group.items[priceItenIndex + 1].detailTitle = totalNumberStr;
         //标签数量
         group.items[priceItenIndex + 2].detailTitle = totalNumberStr;
-        //结算数量
-        group.items[priceItenIndex + 3].detailTitle = totalNumberStr;
-        //本单退款金额
-        group.items[priceItenIndex + 4].detailTitle = [BXSTools notRounding:price * totalCount afterPoint:1];
+        if (shouldChange) {
+            //结算数量
+            group.items[priceItenIndex + 3].detailTitle = totalNumberStr;
+            //本单退款金额
+            group.items[priceItenIndex + 4].detailTitle = [BXSTools notRounding:price * totalCount afterPoint:1];
+        } else {
+            //结算数量
+            double settleCount =  group.items[priceItenIndex + 3].detailTitle.doubleValue;
+            //本单退款金额
+            group.items[priceItenIndex + 4].detailTitle = [BXSTools notRounding:price * settleCount afterPoint:1];
+        }
+        
     }
     [self calculateTotal];
     [self.tableView reloadData];
@@ -292,7 +300,7 @@
                 for (NSString *string in items) {
                     [group.itemStrings addObject:string];
                 }
-                [self caculateSectionDataWithGroup:group indexPath:indexPath];
+                [self caculateSectionDataWithGroup:group indexPath:indexPath shouldChange:YES];
             };
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -402,7 +410,7 @@
             //修改细码
             [group.itemStrings setArray:weakSelf.yardStrings];
             //计算分区细码
-            [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath];
+            [weakSelf caculateSectionDataWithGroup:group indexPath:indexPath shouldChange:YES];
             tagNumItem.detailTitle = tmpString;
             //刷新
             [weakSelf.tableView reloadData];
@@ -413,9 +421,9 @@
     
 }
 
-- (void)backOrderCell:(LZBackOrderCell *)backOrderCell reloadForIndexPath:(NSIndexPath *)indexPath {
+- (void)backOrderCell:(LZBackOrderCell *)backOrderCell reloadForIndexPath:(NSIndexPath *)indexPath shouldChange:(BOOL)shouldChange {
     LZBackOrderGroup *group = self.dataSource[indexPath.section];
-    [self caculateSectionDataWithGroup:group indexPath:indexPath];
+    [self caculateSectionDataWithGroup:group indexPath:indexPath shouldChange:shouldChange];
 }
 
 //修改细码
@@ -426,7 +434,7 @@
     vc.modifyItem = YES;
     vc.selectItems = ^(NSArray *items) {
         [group.itemStrings replaceObjectAtIndex:index withObject:items.firstObject];
-        [self caculateSectionDataWithGroup:group indexPath:indexPath];
+        [self caculateSectionDataWithGroup:group indexPath:indexPath shouldChange:YES];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
