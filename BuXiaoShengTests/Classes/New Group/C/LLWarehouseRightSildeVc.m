@@ -159,28 +159,28 @@
     }];
     btn.selected = true;
     btn.backgroundColor = LZAppBlueColor;
-    if (btn.tag== 0) {//打印
-        
-    }else {//查看详情
-       __block LLWarehouseSideRigthRowModel * seletedModel ;
-        [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (obj.seleted) {
-                    seletedModel = obj;
-                }
-            }];
+     LLWarehouseDetailVc * detailVc = [LLWarehouseDetailVc new];
+    __block LLWarehouseSideRigthRowModel * seletedModel ;
+    [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.seleted) {
+                seletedModel = obj;
+            }
         }];
-        if (!seletedModel) {
-            [LLHudTools showWithMessage:@"请选择一项查看详情"];
-            return;
-        }
-        [self dismissViewControllerAnimated:true completion:^{
-            LLWarehouseDetailVc * detailVc = [LLWarehouseDetailVc new];
-            detailVc.model = seletedModel;
-            [self.baseNavVc pushViewController:detailVc animated:true];
-        }];
-       
+    }];
+    if (!seletedModel) {
+        [LLHudTools showWithMessage:@"请选择一项查看详情"];
+        return;
     }
+    detailVc.model = seletedModel;
+    if (btn.tag== 0) {//打印
+        detailVc.formType = LLWarehouseDetailVcFromTypePrint;
+    }else {//查看详情
+        detailVc.formType = LLWarehouseDetailVcFromTypeDetail;
+    }
+    [self dismissViewControllerAnimated:true completion:^{
+        [self.baseNavVc pushViewController:detailVc animated:true];
+    }];
 }
 
 /// MARK: ---- 懒加载

@@ -831,6 +831,7 @@
 		A04F70042119977500CFDE1C /* LLHomeBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */; };
 		A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */; };
 		A081508D213E55A6008616A1 /* LLWarehouseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */; };
+		A0815090213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -2058,6 +2059,8 @@
 		A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeChildCell.m; sourceTree = "<group>"; };
 		A081508B213E55A6008616A1 /* LLWarehouseDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetailCell.h; sourceTree = "<group>"; };
 		A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailCell.m; sourceTree = "<group>"; };
+		A081508E213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetailRemarkVC.h; sourceTree = "<group>"; };
+		A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailRemarkVC.m; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -4931,6 +4934,8 @@
 				A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */,
 				A0F9E9BE213E34D5004D1F0C /* LLWarehouseDetailVc.h */,
 				A0F9E9BF213E34D5004D1F0C /* LLWarehouseDetailVc.m */,
+				A081508E213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.h */,
+				A081508F213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -5648,6 +5653,7 @@
 				349C095C2088725A00D2AC38 /* LZHMenuBtnView.m in Sources */,
 				34EA5BAF208B1F010048CFE1 /* LGAlertViewTextField.m in Sources */,
 				3427A4EE20CE507600369650 /* BRStringPickerView.m in Sources */,
+				A0815090213E7BEF008616A1 /* LLWarehouseDetailRemarkVC.m in Sources */,
 				B577CEA420AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				348AC65120B9579C0051E842 /* LZChooseRecipeVC.m in Sources */,
 				344358D220EF465C004A5E6E /* LZChooseBankTypeModel.m in Sources */,

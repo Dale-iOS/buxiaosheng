@@ -9,11 +9,13 @@
 #import "LLWarehouseDetailVc.h"
 #import "LLWarehouseSideModel.h"
 #import "LLWarehouseDetailCell.h"
+#import "LLWarehouseDetailRemarkVC.h"
 @interface LLWarehouseDetailVc ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic ,strong)UITableView * tableView;
 @property(nonatomic ,strong)LLWarehouseDetailModel * dictModel;
 @property(nonatomic ,strong)UILabel * timeLable;
 @property(nonatomic ,strong)UIView * bottomView;
+@property(nonatomic ,weak)UIView * timeView;
 @end
 
 @implementation LLWarehouseDetailVc
@@ -22,6 +24,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    if (self.formType == LLWarehouseDetailVcFromTypePrint) { //来自打印页面
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"print"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClick)];
+    }
     [self setupData];
     [self setupUI];
 }
@@ -32,6 +37,7 @@
 }
 -(void)setupUI {
     UIView * timeView = [UIView new];
+    self.timeView = timeView;
     timeView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:timeView];
     [timeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,26 +52,6 @@
         make.left.equalTo(self.view).offset(12);
     }];
      [self.view addSubview:self.tableView];
-    
-    if ([self.model.isReduce boolValue]) { //是否有减绑
-        [self.view addSubview:self.bottomView];
-        [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.view);
-            make.height.mas_equalTo(90);
-        }];
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.view);
-            make.bottom.equalTo(self.bottomView.mas_top);
-            make.top.equalTo(timeView.mas_bottom);
-        }];
-    }else {
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(timeView.mas_bottom);
-        }];
-    }
-   
-   
 }
 
 -(void)setupData {
@@ -80,6 +66,30 @@
         }
         self.dictModel = [LLWarehouseDetailModel LLMJParse:baseModel.data];
         self.timeLable.text = [BXSTools stringFrom14Data:self.dictModel.createTime] ;
+        if (self.formType ==LLWarehouseDetailVcFromTypeDetail) { //来源打印页面没有下面四个按钮
+            if ([ self.dictModel.storageType isEqualToString:@"1"]) { // 1是细码有减绑
+                [self.view addSubview:self.bottomView];
+                [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.equalTo(self.view);
+                    make.height.mas_equalTo(90);
+                }];
+                [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.equalTo(self.view);
+                    make.bottom.equalTo(self.bottomView.mas_top);
+                    make.top.equalTo(self.timeView.mas_bottom);
+                }];
+            }else {
+                [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.equalTo(self.view);
+                    make.top.equalTo(self.timeView.mas_bottom);
+                }];
+            }
+        }else {
+            [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self.view);
+                make.top.equalTo(self.timeView.mas_bottom);
+            }];
+        }
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -95,6 +105,31 @@
     cell.indexPath = indexPath;
     cell.model = self.dictModel;
     return cell;
+}
+/// MARK: ---- 分配 合匹 加空减空点击
+-(void)bottomViewBtnClick:(UIButton*)btn {
+    LLWarehouseDetailRemarkVC * remakVc = [LLWarehouseDetailRemarkVC new];
+    remakVc.model = self.model;
+    switch (btn.tag) {
+        case 0: // 分配
+            remakVc.fromType = LLWarehouseDetailRemarkFromTypeFenPi;
+            break;
+        case 1:// 合匹
+              remakVc.fromType = LLWarehouseDetailRemarkFromTypeHePi;
+            break;
+        case 2:// 加空减空
+              remakVc.fromType = LLWarehouseDetailRemarkFromTypeJKJK;
+            break;
+        case 3:// 破损
+               remakVc.fromType = LLWarehouseDetailRemarkFromTypePoSun;
+            break;
+        default:
+            break;
+    }
+    [self.navigationController pushViewController:remakVc animated:true];
+}
+-(void)rightBarButtonItemClick {
+    //调取打印机
 }
 /// MARK: ---- 懒加载
 -(UITableView *)tableView {
@@ -137,7 +172,7 @@
             // button.imageEdgeInsets = UIEdgeInsetsMake(-button.titleLabel.frame.size.height-offset/2, 0, 0, -button.titleLabel.frame.size.width);
             // 由于iOS8中titleLabel的size为0，用上面这样设置有问题，修改一下即可
             btn.imageEdgeInsets = UIEdgeInsetsMake(-btn.titleLabel.intrinsicContentSize.height-offset/2, 0, 0, -btn.titleLabel.intrinsicContentSize.width);
-           
+            [btn addTarget:self action:@selector(bottomViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             
         }
     }
