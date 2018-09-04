@@ -830,6 +830,7 @@
 		A04F70012119947000CFDE1C /* LLHomeChildContentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70002119947000CFDE1C /* LLHomeChildContentCollectionCell.m */; };
 		A04F70042119977500CFDE1C /* LLHomeBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */; };
 		A04F70072119A0D400CFDE1C /* LLHomeChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */; };
+		A081508D213E55A6008616A1 /* LLWarehouseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */; };
 		A08748C020ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C120ECCDF7001FF98E /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */; };
 		A08748C220ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
@@ -840,6 +841,7 @@
 		A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */; };
 		A0D9D9F3213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */; };
 		A0D9D9F6213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */; };
+		A0F9E9C0213E34D5004D1F0C /* LLWarehouseDetailVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F9E9BF213E34D5004D1F0C /* LLWarehouseDetailVc.m */; };
 		B50505A1209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A2209AB2DA00CE7E4D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */; };
 		B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5050551209AB2DA00CE7E4D /* XLFormButtonCell.m */; };
@@ -2054,6 +2056,8 @@
 		A04F70032119977500CFDE1C /* LLHomeBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeBaseTableView.m; sourceTree = "<group>"; };
 		A04F70052119A0D400CFDE1C /* LLHomeChildCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeChildCell.h; sourceTree = "<group>"; };
 		A04F70062119A0D400CFDE1C /* LLHomeChildCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeChildCell.m; sourceTree = "<group>"; };
+		A081508B213E55A6008616A1 /* LLWarehouseDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetailCell.h; sourceTree = "<group>"; };
+		A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailCell.m; sourceTree = "<group>"; };
 		A08748B920ECCDF7001FF98E /* LLPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		A08748BA20ECCDF7001FF98E /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		A08748BB20ECCDF7001FF98E /* LLWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWaitingView.m; sourceTree = "<group>"; };
@@ -2069,6 +2073,8 @@
 		A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSlideHeaderReusableView.m; sourceTree = "<group>"; };
 		A0D9D9F4213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideCollectionCell.h; sourceTree = "<group>"; };
 		A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseSlideCollectionCell.m; sourceTree = "<group>"; };
+		A0F9E9BE213E34D5004D1F0C /* LLWarehouseDetailVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseDetailVc.h; sourceTree = "<group>"; };
+		A0F9E9BF213E34D5004D1F0C /* LLWarehouseDetailVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseDetailVc.m; sourceTree = "<group>"; };
 		B505054E209AB2DA00CE7E4D /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		B505054F209AB2DA00CE7E4D /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
 		B5050550209AB2DA00CE7E4D /* XLFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormButtonCell.h; sourceTree = "<group>"; };
@@ -4923,6 +4929,8 @@
 				34F6E77020C0359B00FABC5F /* LZSearchWarehouseVC.m */,
 				A0D9D9EB213D376C006A5C80 /* LLWarehouseRightSildeVc.h */,
 				A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */,
+				A0F9E9BE213E34D5004D1F0C /* LLWarehouseDetailVc.h */,
+				A0F9E9BF213E34D5004D1F0C /* LLWarehouseDetailVc.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -4942,6 +4950,8 @@
 				A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */,
 				A0D9D9F4213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.h */,
 				A0D9D9F5213D44DD006A5C80 /* LLWarehouseSlideCollectionCell.m */,
+				A081508B213E55A6008616A1 /* LLWarehouseDetailCell.h */,
+				A081508C213E55A6008616A1 /* LLWarehouseDetailCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -5905,6 +5915,7 @@
 				346C228B210E03E2004AAC88 /* LZBackOrderGroup.m in Sources */,
 				344A5D2320E228950058E319 /* LZAlterProductDataVC.m in Sources */,
 				3427A4CF20CE27C700369650 /* LZSpendingModel.m in Sources */,
+				A081508D213E55A6008616A1 /* LLWarehouseDetailCell.m in Sources */,
 				34D705B820BE9D3000F0940C /* LZOutboundCell.m in Sources */,
 				3464A93920A1898100307C1A /* WeaveRecipeView.m in Sources */,
 				2DF7A367211564A9009889DF /* LZDirectStorageVC.m in Sources */,
@@ -6159,6 +6170,7 @@
 				34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */,
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				344C488120D0E9DA00BEC002 /* LZNoBackOrderCell.m in Sources */,
+				A0F9E9C0213E34D5004D1F0C /* LLWarehouseDetailVc.m in Sources */,
 				B50505D7209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				3476D40F210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */,
 				344C487D20D0E69400BEC002 /* LZMarketCell.m in Sources */,

@@ -25,4 +25,6 @@
 + (BOOL)isEmptyString:(NSString *)sourceStr;
 + (NSString *)notRounding:(double)price afterPoint:(int)position;
 
++(NSString *)stringFrom14Data:(NSString*)dataStr;
+
 @end

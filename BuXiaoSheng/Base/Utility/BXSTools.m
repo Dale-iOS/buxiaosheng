@@ -88,6 +88,19 @@
         return str;
     }
 }
++(NSString *)stringFrom14Data:(NSString*)dataStr {
+    NSDateFormatter *inputFormatter= [[NSDateFormatter alloc] init];
+    [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSDate *inputDate = [inputFormatter dateFromString:dataStr];
+    NSLog(@"date= %@", inputDate);
+    NSDateFormatter *outputFormatter= [[NSDateFormatter alloc] init];
+    [outputFormatter setLocale:[NSLocale currentLocale]];
+    [outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *str= [outputFormatter stringFromDate:inputDate];
+    NSLog(@"testDate:%@",str);
+    return str;
+}
 
 /**
  *  返回当前视图的控制器

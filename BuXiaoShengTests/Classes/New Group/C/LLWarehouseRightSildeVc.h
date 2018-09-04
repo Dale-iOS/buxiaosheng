@@ -11,4 +11,5 @@
 @interface LLWarehouseRightSildeVc : BaseViewController
 @property(nonatomic ,strong)LZInventoryDetailModel * model;
 @property(nonatomic ,copy)NSString * houseId;
+@property(nonatomic ,weak)BaseNavigationController * baseNavVc;
 @end

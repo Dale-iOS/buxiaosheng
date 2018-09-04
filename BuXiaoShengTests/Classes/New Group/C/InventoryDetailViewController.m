@@ -494,6 +494,7 @@ static NSInteger const pageSize = 15;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LLWarehouseRightSildeVc * rightSildeVc = [LLWarehouseRightSildeVc new];
+    rightSildeVc.baseNavVc = (BaseNavigationController*)self.navigationController;
     rightSildeVc.model = self.lists[indexPath.row];
     rightSildeVc.houseId = self.id;
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];

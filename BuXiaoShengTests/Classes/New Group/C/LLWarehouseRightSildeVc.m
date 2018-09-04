@@ -12,6 +12,7 @@
 #import "LLWarehouseSlideLeftCell.h"
 #import "LZInventoryDetailModel.h"
 #import "LLWarehouseSideModel.h"
+#import "LLWarehouseDetailVc.h"
 @interface LLWarehouseRightSildeVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic ,strong)UITableView * leftTableView;
 @property(nonatomic ,strong)UICollectionView * rightCollectionView;
@@ -152,10 +153,34 @@
 }
 
 -(void)bottomBtnClick:(UIButton *)btn {
-    [self.bottomView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.bottomView.subviews enumerateObjectsUsingBlock:^(__kindof UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.selected = false;
         obj.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }];
+    btn.selected = true;
     btn.backgroundColor = LZAppBlueColor;
+    if (btn.tag== 0) {//打印
+        
+    }else {//查看详情
+       __block LLWarehouseSideRigthRowModel * seletedModel ;
+        [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.seleted) {
+                    seletedModel = obj;
+                }
+            }];
+        }];
+        if (!seletedModel) {
+            [LLHudTools showWithMessage:@"请选择一项查看详情"];
+            return;
+        }
+        [self dismissViewControllerAnimated:true completion:^{
+            LLWarehouseDetailVc * detailVc = [LLWarehouseDetailVc new];
+            detailVc.model = seletedModel;
+            [self.baseNavVc pushViewController:detailVc animated:true];
+        }];
+       
+    }
 }
 
 /// MARK: ---- 懒加载
@@ -185,7 +210,6 @@
 -(UIView *)bottomView {
     if (!_bottomView) {
         _bottomView = [UIView new];
-        _bottomView.backgroundColor = [UIColor redColor];
         CGFloat width = CGRectGetWidth(self.view.frame) *0.75/2;
         for (int i = 0; i<2; i++) {
             UIButton * btn = [UIButton new];
@@ -194,12 +218,13 @@
             btn.frame = CGRectMake(i*width, 0, width, 50);
             btn.titleLabel.font = [UIFont systemFontOfSize:17];
             btn.tag = i;
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+            [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             if (i == 0) {
                 [btn setTitle:@"打印" forState:UIControlStateNormal];
             }else {
-                  btn.backgroundColor = [UIColor blueColor];
+                btn.selected = true;
+                btn.backgroundColor = LZAppBlueColor;
                 [btn setTitle:@"查看详情" forState:UIControlStateNormal];
             }
             

@@ -22,3 +22,7 @@
 @implementation LLWarehouseSideRigthRowModel
 
 @end
+
+@implementation LLWarehouseDetailModel
+
+@end
