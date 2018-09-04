@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@class LZSaveOrderItemList;
+@class LZSaveOrderProductList;
 
 @interface LZSaveOrderItemList :NSObject
 @property (nonatomic,copy) NSString *value;//细码值

@@ -15,6 +15,7 @@
 #import "ApproverModel.h"
 #import "BXSPurchaChangeWarehousingView.h"
 #import "BaseTableVC+BXSTakePhoto.h"
+#import "LZPurchaseReceiptDataModel.h"
 
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -28,7 +29,7 @@
 @property (strong,nonatomic)NSArray *houseArr;
 @property (strong,nonatomic)NSArray *unitArr;
 @property (copy,nonatomic)UIImage  *selectImage;
-
+@property (strong,nonatomic)LZPurchaseReceiptDataModel *dataModel;
 /// UI
 
 @property (strong,nonatomic)UIButton * addPhotoButton;
@@ -208,6 +209,11 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        
+        _dataModel = [LZPurchaseReceiptDataModel LLMJParse:baseModel.data];
+        
+        
+        
         self.baseModel = baseModel;
         self.allCodeArray = [BXSAllCodeModel LLMJParse:baseModel.data[@"itemList"]];
         if (_isFindCode && self.allCodeArray.count >0) {

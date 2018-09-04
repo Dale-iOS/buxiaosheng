@@ -9,5 +9,17 @@
 #import "LZPurchaseReceiptDataModel.h"
 
 @implementation LZPurchaseReceiptDataModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"itemList":[LZPurchaseReceiptDataItemListModel class]};
+}
+@end
+
+@implementation LZPurchaseReceiptDataItemListModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"bottomList":[LZPurchaseReceiptDataItemListBottomListModel class]};
+}
+@end
+
+@implementation LZPurchaseReceiptDataItemListBottomListModel
 
 @end
