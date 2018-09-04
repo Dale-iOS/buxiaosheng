@@ -16,6 +16,7 @@
 @property(nonatomic,copy)NSString *productColorId;
 @property(nonatomic,copy)NSString *productColorName;
 @property(nonatomic,copy)NSString *productName;
+@property(nonatomic,copy)NSString *buyProductId;
 // 单位
 @property(nonatomic,copy)NSString *houseUnitName;
 
