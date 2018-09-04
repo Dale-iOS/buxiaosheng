@@ -88,42 +88,42 @@
 //计算底部总数量 总条数
 - (void)calculateTotal {
     //总数量
-    NSInteger totalCount = 0;
+    double totalCount = 0;
     //总条数
-    NSInteger totalNumber = 0;
+    double totalNumber = 0;
     //应付金额 预收金额
-    NSInteger totalPrice = 0;
+    double totalPrice = 0;
     for (int i = 1; i < self.dataSource.count - 1; i++) {
         LZBackOrderGroup *group = self.dataSource[i];
         if ([group.storageType isEqualToString:@"1"]) {
             //细码
             for (NSString *itemStr in group.itemStrings) {
-                totalCount += itemStr.integerValue;
+                totalCount += itemStr.doubleValue;
             }
             totalNumber += group.itemStrings.count;
         } else {
             //总码
-            totalCount += group.items[3].detailTitle.integerValue;
-            totalNumber += group.items[4].detailTitle.integerValue;
+            totalCount += group.items[3].detailTitle.doubleValue;
+            totalNumber += group.items[4].detailTitle.doubleValue;
         }
         NSInteger itemCount = group.items.count;
         
         LZBackOrderItem *item = group.items[itemCount - 2];
-        totalPrice += item.detailTitle.integerValue;
+        totalPrice += item.detailTitle.doubleValue;
     }
     //应付金额
     LZBackOrderGroup *lastGroup = self.dataSource.lastObject;
-    [lastGroup.items[1] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice]];
+    [lastGroup.items[1] setDetailTitle:[BXSTools notRounding:totalPrice afterPoint:1]];
     if ([BXSTools isEmptyString:[lastGroup.items[2] detailTitle]]) {
         //预收付款
-        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice]];
+        [lastGroup.items[3] setDetailTitle:[BXSTools notRounding:totalPrice afterPoint:1]];
     } else {
         NSInteger realPay = lastGroup.items[2].detailTitle.integerValue;
-        [lastGroup.items[3] setDetailTitle:[NSString stringWithFormat:@"%ld", totalPrice - realPay]];
+        [lastGroup.items[3] setDetailTitle:[BXSTools notRounding:(totalPrice - realPay) afterPoint:1]];
     }
     
-    _totalNumLb.text = [NSString stringWithFormat:@"总数量: %ld", totalCount];
-    _totalCountLb.text = [NSString stringWithFormat:@"总条数: %ld", totalNumber];
+    _totalNumLb.text = [NSString stringWithFormat:@"总数量: %@", [BXSTools notRounding:totalCount afterPoint:1]];
+    _totalCountLb.text = [NSString stringWithFormat:@"总条数: %@", [BXSTools notRounding:totalNumber afterPoint:1]];
 }
 
 //计算分区的相关数据
