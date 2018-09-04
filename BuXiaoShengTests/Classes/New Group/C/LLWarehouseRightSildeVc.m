@@ -155,7 +155,7 @@
     [self.bottomView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }];
-    btn.backgroundColor = [UIColor blueColor];
+    btn.backgroundColor = LZAppBlueColor;
 }
 
 /// MARK: ---- 懒加载
