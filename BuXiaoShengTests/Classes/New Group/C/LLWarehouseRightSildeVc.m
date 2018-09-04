@@ -50,6 +50,8 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(self.leftTableView.mas_bottom);
     }];
+    
+     //[_bottomView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
 }
 
 -(void)setupData {
@@ -149,6 +151,13 @@
     [collectionView reloadData];
 }
 
+-(void)bottomBtnClick:(UIButton *)btn {
+    [self.bottomView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    }];
+    btn.backgroundColor = [UIColor blueColor];
+}
+
 /// MARK: ---- 懒加载
 -(UITableView *)leftTableView {
     if (!_leftTableView) {
@@ -177,23 +186,24 @@
     if (!_bottomView) {
         _bottomView = [UIView new];
         _bottomView.backgroundColor = [UIColor redColor];
+        CGFloat width = CGRectGetWidth(self.view.frame) *0.75/2;
         for (int i = 0; i<2; i++) {
             UIButton * btn = [UIButton new];
+            [btn addTarget:self action:@selector(bottomBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [_bottomView addSubview:btn];
+            btn.frame = CGRectMake(i*width, 0, width, 50);
             btn.titleLabel.font = [UIFont systemFontOfSize:17];
             btn.tag = i;
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
             if (i == 0) {
                 [btn setTitle:@"打印" forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                 [btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
             }else {
+                  btn.backgroundColor = [UIColor blueColor];
                 [btn setTitle:@"查看详情" forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
             }
-           
+            
         }
-         [_bottomView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:30 tailSpacing:10];
     }
     return _bottomView;
 }
