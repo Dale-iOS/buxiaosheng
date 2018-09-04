@@ -238,6 +238,7 @@
 //    接口名称 新增采购收货
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
     
+    
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyId":self.bugId};
     
