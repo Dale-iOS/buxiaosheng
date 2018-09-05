@@ -970,24 +970,26 @@
     [tzImagePickerVc showProgressHUD];
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+		//升级pod 报错--------
         //保存图片，获取到asset
-        [[TZImageManager manager] savePhotoWithImage:image location:self.location completion:^(NSError *error){
-            if (error) {
-                [tzImagePickerVc hideProgressHUD];
-                NSLog(@"图片保存失败 %@",error);
-            } else {
-                [[TZImageManager manager] getCameraRollAlbum:NO allowPickingImage:YES needFetchAssets:NO completion:^(TZAlbumModel *model) {
-                    [[TZImageManager manager] getAssetsFromFetchResult:model.result allowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models) {
-                        [tzImagePickerVc hideProgressHUD];
-                        TZAssetModel *assetModel = [models firstObject];
-                        if (tzImagePickerVc.sortAscendingByModificationDate) {
-                            assetModel = [models lastObject];
-                        }
-                        [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
-                    }];
-                }];
-            }
-        }];
+//        [[TZImageManager manager] savePhotoWithImage:image location:self.location completion:^(NSError *error){
+//            if (error) {
+//                [tzImagePickerVc hideProgressHUD];
+//                NSLog(@"图片保存失败 %@",error);
+//            } else {
+//                [[TZImageManager manager] getCameraRollAlbum:NO allowPickingImage:YES needFetchAssets:NO completion:^(TZAlbumModel *model) {
+//                    [[TZImageManager manager] getAssetsFromFetchResult:model.result allowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models) {
+//                        [tzImagePickerVc hideProgressHUD];
+//                        TZAssetModel *assetModel = [models firstObject];
+//                        if (tzImagePickerVc.sortAscendingByModificationDate) {
+//                            assetModel = [models lastObject];
+//                        }
+//                        [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
+//                    }];
+//                }];
+//            }
+//        }];
+		//升级pod 报错--------
     }
 }
 

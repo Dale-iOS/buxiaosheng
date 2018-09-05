@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "AXPopNavigationController.h"
+#import "TZImagePreviewController.h"
 
-FOUNDATION_EXPORT double AXNavigationBackItemInjectionVersionNumber;
-FOUNDATION_EXPORT const unsigned char AXNavigationBackItemInjectionVersionString[];
+FOUNDATION_EXPORT double TZImagePreviewControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char TZImagePreviewControllerVersionString[];
 

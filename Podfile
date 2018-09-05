@@ -24,7 +24,7 @@ inhibit_all_warnings!
     #pod 'MLeaksFinder'
     pod 'IQKeyboardManager'
     pod 'EasyShowView'
-    pod 'TZImagePickerController', '3.0.2'
+    pod 'TZImagePickerController', '~> 3.0.2'
     pod 'TZImagePreviewController'
     pod 'TTGTagCollectionView'
     pod 'GKPhotoBrowser'

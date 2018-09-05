@@ -16,10 +16,12 @@
 #import "BRPickerView.h"
 #import "LZChooseLabelVC.h"
 #import "LZProductDetailModel.h"
+//-------------------
 #import "GKPhotoBrowser.h"
 #import "TZTestCell.h"
 #import "LZSetImagePickerController.h"
-
+//-------------------
+#import "ToolsCollectionVC.h"
 
 @interface LZAlterProductDataVC ()<LZHTableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 {
@@ -75,6 +77,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *photosArrayUrl;
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 @end
 
 @implementation LZAlterProductDataVC
@@ -398,26 +401,38 @@
 - (void)setSectionSeven{
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
-    
-    UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
-    textLbl.textColor = CD_Text33;
-    textLbl.font = FONT(14);
-    textLbl.text = @"图片";
-    
-    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 104)];
-    bottomView.backgroundColor = [UIColor whiteColor];
-    
-//    self.visitIMV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 14, 80, 80)];
-//    self.visitIMV.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *visitIMVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(visitIMVTapOnClick)];
-//    [self.visitIMV addGestureRecognizer:visitIMVTap];
-    [bottomView addSubview:self.collectionView];
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[textLbl,bottomView];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
+
+	UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+	textLbl.textColor = CD_Text33;
+	textLbl.font = FONT(14);
+	textLbl.text = @"图片";
+	CGFloat tHight = 104;//这个高度动态设置,根据每个屏幕的大小去设置
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0, APPWidth, tHight)];
+	LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+	item.sectionRows = @[textLbl,self.collectionVC.mainCollectionView];
+	item.canSelected = NO;
+	item.sectionView = headerView;
+	[self.datasource addObject:item];
+
+//    UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+//    textLbl.textColor = CD_Text33;
+//    textLbl.font = FONT(14);
+//    textLbl.text = @"图片";
+//
+//    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 104)];
+//    bottomView.backgroundColor = [UIColor whiteColor];
+//
+////    self.visitIMV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 14, 80, 80)];
+////    self.visitIMV.userInteractionEnabled = YES;
+////    UITapGestureRecognizer *visitIMVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(visitIMVTapOnClick)];
+////    [self.visitIMV addGestureRecognizer:visitIMVTap];
+//    [bottomView addSubview:self.collectionView];
+//
+//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+//    item.sectionRows = @[textLbl,bottomView];
+//    item.canSelected = NO;
+//    item.sectionView = headerView;
+//    [self.datasource addObject:item];
 }
 
 //展示图片
@@ -441,46 +456,47 @@
 //接口名称 产品详情
 - (void)setupData{
     NSDictionary * param = @{@"id":self.id};
+	WEAKSELF
     [BXSHttp requestGETWithAppURL:@"product/detail.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _model = [LZProductDetailModel LLMJParse:baseModel.data];
+       weakSelf.model = [LZProductDetailModel LLMJParse:baseModel.data];
     
         //赋值
-        self.titleCell.contentTF.text = _model.name;
-        self.groupCell.contentTF.text = _model.groupName;
+        self.titleCell.contentTF.text = weakSelf.model.name;
+        self.groupCell.contentTF.text = weakSelf.model.groupName;
         _groupId = _model.groupId;
-        if ([_model.storageType integerValue] == 0) {
+        if ([weakSelf.model.storageType integerValue] == 0) {
             self.defaultJoinCell.contentTF.text = @"总码";
-        }else if ([_model.storageType integerValue] == 1){
+        }else if ([weakSelf.model.storageType integerValue] == 1){
             self.defaultJoinCell.contentTF.text = @"细码";
         }
-        self.nicknameCell.contentTF.text = _model.alias;
-        self.bigPriceCell.contentTF.text = _model.largePrice;
-        self.dispersePriceCell.contentTF.text = _model.shearPrice;
-        self.quantizationCell.contentTF.text = _model.rateValue;
+        self.nicknameCell.contentTF.text = weakSelf.model.alias;
+        self.bigPriceCell.contentTF.text = weakSelf.model.largePrice;
+        self.dispersePriceCell.contentTF.text = weakSelf.model.shearPrice;
+        self.quantizationCell.contentTF.text = weakSelf.model.rateValue;
         
         //当是公斤的时候，量化cell选择的是米还是码
-        if ([_model.unitName isEqualToString:@"公斤"] && [_model.rateType integerValue]==1) {
+        if ([weakSelf.model.unitName isEqualToString:@"公斤"] && [weakSelf.model.rateType integerValue]==1) {
             //米
-            _isSelLeftBtn = YES;
+            weakSelf.isSelLeftBtn = YES;
             [self.leftBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
-            _isSelrightBtn = NO;
+            weakSelf.isSelrightBtn = NO;
             [self.rightBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
     
-        }else if ([_model.unitName isEqualToString:@"公斤"] && [_model.rateType integerValue]==2){
+        }else if ([weakSelf.model.unitName isEqualToString:@"公斤"] && [weakSelf.model.rateType integerValue]==2){
             //码
-            _isSelLeftBtn = NO;
+           weakSelf.isSelLeftBtn = NO;
             [self.leftBtn setImage:IMAGE(@"noSelect1") forState:UIControlStateNormal];
-            _isSelrightBtn = YES;
+           weakSelf.isSelrightBtn = YES;
             [self.rightBtn setImage:IMAGE(@"yesSelect1") forState:UIControlStateNormal];
         }
         
         //单位是公斤的话，会多出一条量化cell
-        if ([_model.unitName isEqualToString:@"公斤"]) {
+        if ([weakSelf.model.unitName isEqualToString:@"公斤"]) {
             UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
             headerView.backgroundColor = LZHBackgroundColor;
             
@@ -503,41 +519,43 @@
         }
         
         
-        self.unitCell.contentTF.text = _model.unitName;
-		_unitId = _model.unitName;
-        self.constituentCell.contentTF.text = _model.component;
-        self.breadthCell.contentTF.text = _model.breadth;
-        self.weightCell.contentTF.text = _model.weight;
-        if ([_model.status integerValue] == 0) {
+        self.unitCell.contentTF.text = weakSelf.model.unitName;
+		 _unitId = weakSelf.model.unitName;
+        self.constituentCell.contentTF.text = weakSelf.model.component;
+        self.breadthCell.contentTF.text = weakSelf.model.breadth;
+        self.weightCell.contentTF.text = weakSelf.model.weight;
+        if ([weakSelf.model.status integerValue] == 0) {
             self.stateCell.contentTF.text = @"启用";
-        }else if ([_model.status integerValue] == 1){
+        }else if ([weakSelf.model.status integerValue] == 1){
             self.stateCell.contentTF.text = @"未启用";
         }
-        self.remarkTextView.textView.text = _model.remark;
-        self.remarkTextView2.textView.text = _model.remarkTwo;
-        NSArray * imgs = [_model.imgs componentsSeparatedByString:@","];
-        NSMutableArray * tempImg = [NSMutableArray array];
-        [imgs enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (![obj isEqualToString:@""]) {
-                [tempImg addObject:obj];
-            }
-        }];
-        [tempImg enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                if (image) {
-                      [_selectedPhotos addObject:image];
-                }
-                if (_selectedPhotos.count == tempImg.count) {
-                     [self.collectionView reloadData];
-                }
-            }];
-        }];
+        self.remarkTextView.textView.text = weakSelf.model.remark;
+        self.remarkTextView2.textView.text = weakSelf.model.remarkTwo;
+//        NSArray * imgs = [weakSelf.model.imgs componentsSeparatedByString:@","];
+//        NSMutableArray * tempImg = [NSMutableArray array];
+//        [imgs enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if (![obj isEqualToString:@""]) {
+//                [tempImg addObject:obj];
+//            }
+//        }];
+//        [tempImg enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+//                if (image) {
+//                      [_selectedPhotos addObject:image];
+//                }
+//                if (_selectedPhotos.count == tempImg.count) {
+//                     [self.collectionView reloadData];
+//                }
+//            }];
+//        }];
 //        if (!_model.imgs.count) {
 //
 //        }
 //        [self.visitIMV sd_setImageWithURL:[NSURL URLWithString:model.imgs]];
         //[Utility showPicWithUrl:_model.imgs imageView:self.visitIMV placeholder:IMAGE(@"noImage")];
        // [_photosArrayUrl addObject:_model.imgs];
+
+		self.collectionVC.downloadImageUrlList =weakSelf.model.imgs;
         
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -1208,5 +1226,19 @@ static NSString * nil_string(NSString *str) {
         [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
     }
     return _collectionView;
+}
+- (ToolsCollectionVC *)collectionVC{
+	if (!_collectionVC) {
+		_collectionVC = [[ToolsCollectionVC alloc]init];
+		self.collectionVC.maxCountTF = @"1";
+		_collectionVC.columnNumberTF = @"4";
+		_collectionVC.view.frame = CGRectMake(0, 0, 0, 0);
+		_collectionVC.view.backgroundColor =[UIColor redColor];
+		[self addChildViewController:_collectionVC];
+		[self.view addSubview:_collectionVC.view];
+		[_collectionVC didMoveToParentViewController:self];
+		_collectionVC.cTarget = self;
+	}
+	return _collectionVC;
 }
 @end

@@ -66,7 +66,9 @@ PODS:
     - SDWebImage/Core
   - SVProgressHUD (2.2.5)
   - TTGTagCollectionView (1.9.0)
-  - TZImagePickerController (2.1.6)
+  - TZImagePickerController (3.0.2)
+  - TZImagePreviewController (0.2.0):
+    - TZImagePickerController (>= 3.0.2)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -90,7 +92,8 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
   - SVProgressHUD
   - TTGTagCollectionView
-  - TZImagePickerController
+  - TZImagePickerController (= 3.0.2)
+  - TZImagePreviewController
   - YYKit
 
 SPEC REPOS:
@@ -116,6 +119,7 @@ SPEC REPOS:
     - SVProgressHUD
     - TTGTagCollectionView
     - TZImagePickerController
+    - TZImagePreviewController
     - YYKit
 
 SPEC CHECKSUMS:
@@ -139,9 +143,10 @@ SPEC CHECKSUMS:
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TTGTagCollectionView: 958f20b946dee92a8ba20dc37d10a06737641ae9
-  TZImagePickerController: bc25e933c9d970a622d052f0d4de16202bbcd863
+  TZImagePickerController: c6736038f5016a8be14132fd07e4e92ce6496385
+  TZImagePreviewController: 4f70bdce602af5829567473f3cc2ea6509c19787
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: a248456d0c39144bc5d173e56c94ab9f7645a3cc
+PODFILE CHECKSUM: d82f45d0a03f5b9341ad8479120c812c2abaf270
 
 COCOAPODS: 1.5.3
