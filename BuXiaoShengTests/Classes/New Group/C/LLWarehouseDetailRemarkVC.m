@@ -165,6 +165,7 @@
         {
             titleLable.text = @"加空减空:";
             UIImageView * askMarkIv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"prompt"]];
+            addGestureRecognizer(askMarkIv, jkjkPromptClick)
             [tableFooterContenView addSubview:askMarkIv];
             [askMarkIv mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(titleLable.mas_right).offset(12);
@@ -424,6 +425,14 @@
             [LLHudTools showWithMessage:LLLoadErrorMessage];
         }];
     }
+}
+/// MARK: ---- 加空减空弹框提示
+-(void)jkjkPromptClick {
+    
+    UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:nil message:@"加空\n比如输入2就是原有数量加上两米\n减空\n比如输入2就是在原有数量减去两米" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * canle = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleCancel handler:nil];
+    [alertVc addAction:canle];
+    [self.navigationController presentViewController:alertVc animated:true completion:nil];
 }
 
 /// MARK: ---- 懒加载

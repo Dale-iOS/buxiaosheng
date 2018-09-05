@@ -26,6 +26,7 @@
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     if (self.formType == LLWarehouseDetailVcFromTypePrint) { //来自打印页面
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"print"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClick)];
+        self.title = @"打印详情";
     }
     [self setupData];
     [self setupUI];
@@ -129,6 +130,7 @@
     }
     [self.navigationController pushViewController:remakVc animated:true];
 }
+/// MARK: ---- 打印机
 -(void)rightBarButtonItemClick {
     //调取打印机
 }

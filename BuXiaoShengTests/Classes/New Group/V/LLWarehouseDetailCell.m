@@ -134,6 +134,13 @@
             make.left.equalTo(self.contentView).offset(12);
             make.centerY.equalTo(self.contentView);
         }];
+        UIView * lineView = [UIView new];
+        [self.contentView addSubview:lineView];
+        lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.contentView);
+            make.height.mas_equalTo(0.8);
+        }];
     }
     return self;
 }
