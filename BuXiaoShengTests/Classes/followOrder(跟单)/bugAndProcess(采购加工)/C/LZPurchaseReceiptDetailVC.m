@@ -19,7 +19,7 @@
 #import "BaseTableVC+BXSTakePhoto.h"
 #define  SELECTAPPROVER @"选择人员"
 
-
+#import "LZPurchaseReceiptSaveAlterModel.h"
 
 @interface LZPurchaseReceiptDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
@@ -64,7 +64,7 @@
     [self setupBottom];
     [self loadBottomData];
     [self setupSelectData];
-    [self setupData];
+//    [self setupData];
     
     
     self.navigationItem.titleView = [Utility navTitleView:@"采购收货详情"];
@@ -142,6 +142,7 @@
         
         ConItem *item04 = self.bDataArray[0][3];
         item04.contenText = _infoModel.bankName;
+        item04.id = _infoModel.bankId;
         
         ConItem *item05 = self.bDataArray[0][4];
         item05.contenText = _infoModel.remark;
@@ -311,6 +312,7 @@
         
         ConItem *item4 = [[ConItem alloc]initWithTitle:@"结算单位" kpText:@"请选择结算单位" conType:ConTypeA];
         item4.contenText = cellModel.unitName;
+        item4.id = cellModel.unitId;
         
         ConItem *item5 = [[ConItem alloc]initWithTitle:@"批号" kpText:@"请输入批号" conType:ConTypeB];
         item5.contenText = cellModel.batchNumber;
@@ -353,18 +355,89 @@
 - (void)addCollect {
     
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
+    NSMutableArray *saveMuAry = [NSMutableArray array];
+    
+    
+    
+    for (int i = 0; i <self.allCodeArray.count; i++) {
+        LZPurchaseReceiptSaveAlterModel *aModel = [[LZPurchaseReceiptSaveAlterModel alloc]init];
+        LZPurchaseReceiptDetailCellModel *dataModel = _cellInfo[i];
+        BXSAllCodeModel *allModel = self.allCodeArray[i];
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        
+        if (allModel.findCodeArray.count >0) {
+            //细码
+            for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
+                LZFindCodeModel *codeModel = allModel.findCodeArray[j];
+                LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
+                itemList.total = @"1";
+                itemList.value = codeModel.code;
+                [itemListMuAry addObject:itemList];
+            }
+        }else{
+            //总码
+            ConItem *conItemValue = allModel.dataArray[0][0];//结算数量（总码总数量）
+            ConItem *conItemTotal = allModel.dataArray[1][1];//条数（总码条数）
+            LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
+            itemList.total = conItemValue.contenText;
+            itemList.value = conItemTotal.contenText;
+            [itemListMuAry addObject:itemList];
+        }
+        
+        ConItem *conItemName = allModel.dataArray[0][2];//供货商名称
+        ConItem *conItemColor = allModel.dataArray[0][3];//供货商颜色
+        ConItem *conItemUnit= allModel.dataArray[1][0];//单位
+        ConItem *conItemBatchNumber= allModel.dataArray[1][1];//批号
+//        ConItem *conItemShelves= allModel.dataArray[1][2];//批号
+        ConItem *conItemPrice= allModel.dataArray[1][3];//单价
+        ConItem *conItemBuyNum = allModel.dataArray[1][4];//采购数量
+        ConItem *conItemHouseNum = allModel.dataArray[1][5];//入库数量
+        ConItem *conItemSettlementNum = allModel.dataArray[1][6];//结算数量
+        ConItem *conItemReceivableAmount = allModel.dataArray[1][7];//本应付金额
+        
+        aModel.productId = dataModel.productId;
+        aModel.productColorId = dataModel.productColorId;
+        aModel.number = dataModel.number;
+        aModel.unitName = dataModel.unitName;
+        aModel.name = conItemName.contenText;
+        aModel.color = conItemColor.contenText;
+        aModel.unitId = conItemUnit.id;
+        aModel.batchNumber = conItemBatchNumber.contenText;
+        aModel.price = conItemPrice.contenText;
+        aModel.buyNum = conItemBuyNum.contenText;
+        aModel.houseNum = conItemHouseNum.contenText;
+        aModel.settlementNum = conItemSettlementNum.contenText;
+        aModel.receivableAmount = conItemReceivableAmount.contenText;
+        
+        NSString *tempStr = [aModel mj_JSONString];
+        [saveMuAry addObject:tempStr];
+    }
+    
+    ConItem *conItemArrearsPrice = self.bDataArray[0][2];//本单欠款
+    ConItem *conItemBankId = self.bDataArray[0][3];//付款方式
+    ConItem *conItemFactoryNo = self.bDataArray[1][1];//供应商单号
+    ConItem *conItemHouseId = self.bDataArray[1][0];//入库存
+    ConItem *conItemRealpayPrice = self.bDataArray[0][1];//实付金额
+    ConItem *conItemRemarke = self.bDataArray[0][4];//备注
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"buyId":self.bugId};
+                             @"arrearsPrice":conItemArrearsPrice.contenText,
+                             @"bankId":conItemBankId.id,
+                             @"buyOrderId":self.infoModel.id,
+                             @"copewithPrice":conItemFactoryNo.contenText,
+                             @"houseId":conItemHouseId.id,
+                             @"productItems":[saveMuAry mj_JSONString],
+                             @"realpayPrice":conItemRealpayPrice.contenText,
+                             @"remark":conItemRemarke.contenText
+                             };
     
-    WEAKSELF;
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        
     } failure:^(NSError *error) {
         
     }];

@@ -31,6 +31,7 @@
 @property (nonatomic,copy) NSString *shelves;//货架
 @property (nonatomic,copy) NSString *storageType;//入库类型
 @property (nonatomic,copy) NSString *unitName;//结算单位
+@property (nonatomic,copy) NSString *unitId;//结算单位id
 @end
 
 

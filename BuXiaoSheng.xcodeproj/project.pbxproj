@@ -1029,6 +1029,8 @@
 		FF3FA98B212D6083009431DA /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA96B212D6083009431DA /* WMTextView.m */; };
 		FF3FA98E212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
+		FF4A8CB9213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
+		FF4A8CBA213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
 		FFACE186213654C800F23395 /* LZAddProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE185213654C800F23395 /* LZAddProductVC.m */; };
 		FFACE187213654C800F23395 /* LZAddProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE185213654C800F23395 /* LZAddProductVC.m */; };
 		FFACE19021366B8800F23395 /* MPUploadMomentImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE18921366B8700F23395 /* MPUploadMomentImagesCell.m */; };
@@ -2275,6 +2277,8 @@
 		FF3FA96B212D6083009431DA /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
 		FF3FA98C212D6187009431DA /* LZPurchaseReceiptDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailModel.h; sourceTree = "<group>"; };
 		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
+		FF4A8CB7213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptSaveAlterModel.h; sourceTree = "<group>"; };
+		FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptSaveAlterModel.m; sourceTree = "<group>"; };
 		FFACE184213654C800F23395 /* LZAddProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAddProductVC.h; sourceTree = "<group>"; };
 		FFACE185213654C800F23395 /* LZAddProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAddProductVC.m; sourceTree = "<group>"; };
 		FFACE18821366B8700F23395 /* MPUploadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUploadImageView.h; sourceTree = "<group>"; };
@@ -2799,6 +2803,8 @@
 				FFFBDA1A213EA2AB00F6DDA5 /* LZPurchaseReceiptSaveModel.m */,
 				FFFBDA1D213EA32500F6DDA5 /* LZPurchaseReceiptDataModel.h */,
 				FFFBDA1E213EA32500F6DDA5 /* LZPurchaseReceiptDataModel.m */,
+				FF4A8CB7213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.h */,
+				FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -5822,6 +5828,7 @@
 				3427A4F420CE507600369650 /* BRBaseView.m in Sources */,
 				347776FF2126B11100423A98 /* BXSMachiningDBHeaderfooterView.m in Sources */,
 				348DF1DD2129646900D3A76F /* LLDyeingCell.m in Sources */,
+				FF4A8CB9213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */,
 				348DF23E212964D800D3A76F /* BYPhotoModel.m in Sources */,
 				B50505CB209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
 				343008D22081A0C800447992 /* SGPageContentScrollView.m in Sources */,
@@ -6406,6 +6413,7 @@
 				FFACE19721366B8800F23395 /* ETZoomScrollView.m in Sources */,
 				344C489A20D100F800BEC002 /* LZDidNoBackOrderVC.m in Sources */,
 				348DF23B212964D800D3A76F /* BYPhotoSelectPreveiwVC.m in Sources */,
+				FF4A8CBA213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */,
 				3465C9EF20DC9A9700BAE415 /* FSCalendar+Deprecated.m in Sources */,
 				3427A4D020CE27C700369650 /* LZSpendingModel.m in Sources */,
 				34EE88D920CBBE590060D00B /* LZReceipCustomerModel.m in Sources */,
