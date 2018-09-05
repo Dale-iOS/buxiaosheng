@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/8/21.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  采购收货审批 采购收货详情
 
 #import "LZPurchaseReceiptDetailVC.h"
 #import "LZPurchaseReceiptDetailInfoModel.h"
