@@ -18,7 +18,7 @@
 #import "BRPickerView.h"
 #import "NSDate+BRPickerView.h"
 #import "LZSubjectModel.h"
-
+#import "ToolsCollectionVC.h"
 @interface SpendingViewController ()<LZHTableViewDelegate>
 
 @property (weak, nonatomic) LZHTableView *mainTabelView;
@@ -43,6 +43,8 @@
 @property(nonatomic,copy)NSString *approverId;
 @property(nonatomic,copy)NSString *dateStr;
 @property(nonatomic,copy)LZSubjectModel *didCostModel;
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
+@property(nonatomic,copy)NSString * imageStr;
 @end
 
 @implementation SpendingViewController
@@ -81,6 +83,7 @@
     [self setSectionOne];
     [self setSectionTwo];
     [self setSectionThree];
+	[self setSectionFour];
     self.mainTabelView.dataSoure = self.datasource;
     
     //保存按钮
@@ -170,9 +173,25 @@
 //    item.sectionView = headView;
     [self.datasource addObject:item];
 }
+- (void)setSectionFour{
+	UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+	headerView.backgroundColor = LZHBackgroundColor;
 
+	UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+	textLbl.textColor = CD_Text33;
+	textLbl.font = FONT(14);
+	textLbl.text = @"图片";
+	CGFloat tHight = 104;//这个高度动态设置,根据每个屏幕的大小去设置
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0, APPWidth, tHight)];
+	LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+	item.sectionRows = @[textLbl,self.collectionVC.mainCollectionView];
+	item.canSelected = NO;
+	item.sectionView = headerView;
+	[self.datasource addObject:item];
+}
 #pragma mark ----- 网络请求 -----
 -(void)setupAuditmanList{
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"approver/list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -180,12 +199,12 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _approverList = baseModel.data;
-        _approverNameAry = [NSMutableArray array];
-        _approverIdAry = [NSMutableArray array];
-        for (int i = 0; i <_approverList.count; i++) {
-            [_approverIdAry addObject:_approverList[i][@"id"]];
-            [_approverNameAry addObject:_approverList[i][@"memberName"]];
+       weakSelf.approverList = baseModel.data;
+        weakSelf.approverNameAry = [NSMutableArray array];
+        weakSelf.approverIdAry = [NSMutableArray array];
+        for (int i = 0; i <weakSelf.approverList.count; i++) {
+            [weakSelf.approverIdAry addObject:weakSelf.approverList[i][@"id"]];
+            [weakSelf.approverNameAry addObject:weakSelf.approverList[i][@"memberName"]];
         }
         
     } failure:^(NSError *error) {
@@ -212,27 +231,36 @@
         BXS_Alert(@"请选择审批人");
         return;
     }
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.imageStr =urlStr;
+		[weakSelf requestComment];
+	}];
+}
+- (void)requestComment{
+	WEAKSELF
+	NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+							 @"approverId":_approverId,
+							 @"costsubjectId":_didCostModel.id,
+							 @"remark":self.remarkTextView.textView.text,
+							 @"tallyTime":_dateStr,
+							 @"amount":self.collectionCell.contentTF.text,
+							 @"imgs": weakSelf.imageStr == nil ? @"" :weakSelf.imageStr
+							 };
+	[BXSHttp requestGETWithAppURL:@"finance/expend_add.do" param:param success:^(id response) {
+		LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+		if ([baseModel.code integerValue] != 200) {
+			[LLHudTools showWithMessage:baseModel.msg];
+			return ;
+		}
+		[LLHudTools showWithMessage:@"提交成功"];
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[self.navigationController popViewControllerAnimated:true];
+		});
+	} failure:^(NSError *error) {
+		BXS_Alert(LLLoadErrorMessage);
+	}];
 
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"approverId":_approverId,
-                             @"costsubjectId":_didCostModel.id,
-                             @"remark":self.remarkTextView.textView.text,
-                             @"tallyTime":_dateStr,
-                             @"amount":self.collectionCell.contentTF.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"finance/expend_add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        [LLHudTools showWithMessage:@"提交成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:true];
-        });
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
 }
 - (void)toList
 {
@@ -243,13 +271,13 @@
 - (void)overheadCellTapClick{
     //    强制当前输入法收起
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    
+    WEAKSELF
     SubjectViewController *vc = [[SubjectViewController alloc]init];
     vc.isFromSpend = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [vc setDidClickBlock:^(LZSubjectModel *blockModel) {
-        _didCostModel = blockModel;
-        self.overheadCell.contentTF.text = _didCostModel.name;
+        weakSelf.didCostModel = blockModel;
+        self.overheadCell.contentTF.text = weakSelf.didCostModel.name;
     }];
 }
 
@@ -261,10 +289,11 @@
     NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
     //            NSDate *maxDate = [NSDate date];
     NSDate *maxDate = [NSDate br_setYear:2050 month:1 day:1];
+	WEAKSELF
     [BRDatePickerView showDatePickerWithTitle:@"选择做账时间" dateType:BRDatePickerModeYMD defaultSelValue:self.timeCell.contentTF.text minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
         self.timeCell.contentTF.text =  selectValue;
         
-        _dateStr = [selectValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        weakSelf.dateStr = [selectValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
     } cancelBlock:^{
         NSLog(@"点击了背景或取消按钮");
     }];
@@ -277,16 +306,28 @@
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_approverNameAry titleDataArray:nil];
-    
+    WEAKSELF
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         self.auditCell.contentTF.text = compoentString;
         NSInteger row = [titileString integerValue];
-        _approverId = _approverList[row][@"id"];
+       weakSelf.approverId = weakSelf.approverList[row][@"id"];
     };
     
     [self.view addSubview:pickerView];
 }
-
+- (ToolsCollectionVC *)collectionVC{
+	if (!_collectionVC) {
+		_collectionVC = [[ToolsCollectionVC alloc]init];
+		self.collectionVC.maxCountTF = @"5";//最多选择5张
+		_collectionVC.columnNumberTF = @"4";
+		_collectionVC.view.frame = CGRectMake(0, 0, 0, 0);
+		[self addChildViewController:_collectionVC];
+		[self.view addSubview:_collectionVC.view];
+		[_collectionVC didMoveToParentViewController:self];
+		_collectionVC.cTarget = self;
+	}
+	return _collectionVC;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

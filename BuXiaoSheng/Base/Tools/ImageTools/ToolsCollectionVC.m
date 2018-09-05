@@ -174,7 +174,7 @@
 
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-	return UIEdgeInsetsMake(1, 10, 1, 1);//可以根据屏幕大大小去设置
+	return UIEdgeInsetsMake(10, 10, 1, 1);//可以根据屏幕大大小去设置
 }
 //设置每个item水平间距
 // 设置最小列间距，也就是左行与右一行的中间最小间隔
