@@ -48,7 +48,7 @@
 @property (nonatomic, strong) UIButton *rightBtn;
 @property (nonatomic,assign) BOOL isSelLeftBtn;
 @property (nonatomic,assign) BOOL isSelrightBtn;
-@property (nonatomic, strong) UIImagePickerController *imagePickerVc;
+
 ///别名
 @property (nonatomic, strong) TextInputCell *nicknameCell;
 ///销售大货价格
@@ -118,7 +118,6 @@
     [self setupSectionSix];
     [self setSectionSeven];
     self.mainTabelView.dataSoure = self.datasource;
-    
 }
 
 - (void)setupSectionOne

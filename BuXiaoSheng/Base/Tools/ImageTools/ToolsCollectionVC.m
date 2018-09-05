@@ -41,7 +41,12 @@
 #pragma mark - CollectionView代理方法
 //每个section的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-	NSInteger tCount = !_downloadImageUrlList ? 1 : 5;
+	NSInteger tCount;
+	if (_downloadImageUrlList == nil) {
+		tCount = self.maxCountTF.integerValue;
+	}else{
+		tCount = 5;
+	}
 	if (_selectedPhotos.count >= tCount) {
 		return _selectedPhotos.count;
 	}
@@ -487,7 +492,7 @@
 		}
 	}
 //如果用户仅仅删除了图片,没有新加入图片则不做图片请求
-	if (!self.selectImage.count) {
+	if (!tImageArray.count) {
 				NSString *tStrUrls = nil;
 				if (self.requestImageUrlStr.count) {
 					tStrUrls = [self.requestImageUrlStr componentsJoinedByString:@","];

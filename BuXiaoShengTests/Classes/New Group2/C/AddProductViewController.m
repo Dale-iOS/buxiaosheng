@@ -15,25 +15,8 @@
 #import "AddColorViewController.h"
 #import "BRPickerView.h"
 #import "LZChooseLabelVC.h"
-
-//图片:
-#import "TZImagePickerController.h"
-#import "UIView+Layout.h"
-#import "TZTestCell.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <Photos/Photos.h>
-#import "TZImageManager.h"
-#import "TZVideoPlayerController.h"
-#import "TZPhotoPreviewController.h"
-#import "TZGifPhotoPreviewController.h"
-#import "TZLocationManager.h"
-#import "TZAssetCell.h"
-#import <MobileCoreServices/MobileCoreServices.h>
-#import "LZSetImagePickerController.h"
-#define Max_Photos 5 //最大选择照片总数
-#define Max_LinePhotos 4 //选择图片页面每一行最大数
-
-@interface AddProductViewController ()<LZHTableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
+#import "ToolsCollectionVC.h"
+@interface AddProductViewController ()<LZHTableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 {
     NSArray *_array;
     NSString *_groupId;//分组id
@@ -48,6 +31,9 @@
     
    
 }
+@property (nonatomic,strong)NSArray *array;
+@property (nonatomic,copy)NSString *groupId;//分组id
+@property (nonatomic,copy)NSString *unitId;//单位id
 @property (weak, nonatomic) LZHTableView *mainTabelView;
 @property (strong, nonatomic) NSMutableArray *datasource;
 
@@ -95,11 +81,8 @@
 @property(nonatomic,strong)NSArray *typeAry;
 @property(nonatomic,strong)NSString *typeStr;
 
-@property (nonatomic, strong) UIImagePickerController *imagePickerVc;
-@property (nonatomic, strong) UICollectionView *collectionView;
-@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
-@property (strong, nonatomic) CLLocation *location;
-@property(nonatomic ,strong)NSMutableString * imgURLs;
+@property(nonatomic ,copy)NSString * imgURLs;
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 @end
 
 @implementation AddProductViewController
@@ -114,7 +97,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, LLNavViewHeight, APPWidth, APPHeight-LLNavViewHeight)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight)];
         //        tableView.tableView.allowsSelection = YES;
         //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
@@ -129,7 +112,6 @@
     self.navigationItem.titleView = [Utility navTitleView:@"添加产品资料"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(selectornavRightBtnClick) title:@"确认"];
     
-    [self configCollectionView];
     self.datasource = [NSMutableArray array];
     
     [self.view addSubview:self.mainTabelView];
@@ -421,16 +403,17 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;
     
-    _textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, APPWidth -15*2, 40)];
-    _textLbl.textColor = CD_Text33;
-    _textLbl.font = FONT(14);
-    _textLbl.text = @"图片";
-    
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[_textLbl,self.collectionView];
-    item.canSelected = NO;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
+	UILabel *textLbl = [[UILabel alloc]initWithFrame:CGRectMake(15, 5, APPWidth -15*2, 28)];
+	textLbl.textColor = CD_Text33;
+	textLbl.font = FONT(14);
+	textLbl.text = @"图片";
+	CGFloat tHight = 104;//这个高度动态设置,根据每个屏幕的大小去设置
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0, APPWidth, tHight)];
+	LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+	item.sectionRows = @[textLbl,self.collectionVC.mainCollectionView];
+	item.canSelected = NO;
+	item.sectionView = headerView;
+	[self.datasource addObject:item];
 }
 
 #pragma mark ----- 点击事件 ------
@@ -469,7 +452,7 @@
 
     [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
         weakSelf.groupCell.contentTF.text = labelString;
-        _groupId = labelId;
+       weakSelf.groupId = labelId;
     }];
 }
 
@@ -494,7 +477,7 @@
     
     [vc setLabelsDetailBlock:^(NSString *labelString, NSString *labelId) {
         weakSelf.unitCell.contentTF.text = labelString;
-        _unitId = labelId;
+        weakSelf.unitId = labelId;
         UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
         headerView.backgroundColor = LZHBackgroundColor;
         
@@ -536,14 +519,14 @@
     
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-   
+   WEAKSELF
     [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
 
         //临时添加数据
-        NSMutableArray *tempMuArray = [_array mutableCopy];
+        NSMutableArray *tempMuArray = [weakSelf.array mutableCopy];
         [tempMuArray addObjectsFromArray:muColosArray];
-        _array = [tempMuArray copy];
-        _colorArray = [muParamArray copy];
+        weakSelf.array = [tempMuArray copy];
+        weakSelf.colorArray = [muParamArray copy];
         
         //添加颜色
         UIView *addColorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
@@ -585,7 +568,7 @@
         
         int margin = 10;
         
-        for (int i = 0; i <_array.count ; i++) {
+        for (int i = 0; i <weakSelf.array.count ; i++) {
             int page = i/col;
             int index = i%col;
             
@@ -605,7 +588,7 @@
             label.layer.borderColor = CD_Text33.CGColor;
 //            label.layer.borderWidth = 1;
             
-            label.text = _array[i];
+            label.text = weakSelf.array[i];
             label.textAlignment = NSTextAlignmentCenter;
             
             colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
@@ -654,419 +637,101 @@
         return;
     }
     
-    //量化所选的单位
-    NSInteger quantizationCellType = -1;
-    if ([self.unitCell.contentTF.text isEqualToString:@"公斤"]) {
-        if (_isSelLeftBtn) {
-            quantizationCellType = 1;
-        }else if (_isSelrightBtn){
-            quantizationCellType = 2;
-        }
-    }else{
-            quantizationCellType = 0;
-    }
-    
-    //状态所选的单位
-    NSInteger status = -1;
-    if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
-        status = 0;
-    }else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
-        status = 1;
-    }
-    
-    //入库类型所选的单位
-    NSInteger storageType = -1;
-    if ([self.defaultJoinCell.contentTF.text isEqualToString:@"总码"]) {
-        storageType = 0;
-    }else if ([self.defaultJoinCell.contentTF.text isEqualToString:@"细码"]){
-        storageType = 1;
-    }
-    
-    //颜色数组转换成字符串
-    NSString *colors = [_colorArray mj_JSONString];
-
-    
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"alias":self.nicknameCell.contentTF.text,
-                             @"breadth":self.breadthCell.contentTF.text,
-//                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
-                             @"colorItems":colors,
-                             @"component":self.constituentCell.contentTF.text,
-                             @"groupId":_groupId,
-                             @"imgs":self.imgURLs? : @"",
-                             @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
-                             @"name":self.titleCell.contentTF.text,
-                             @"rateType":@(quantizationCellType),
-                             @"rateValue":self.quantizationCell.contentTF.text,
-                             @"remark":self.remarkTextView.textView.text,
-                             @"remarkTwo":self.remarkTextView2.textView.text,
-                             @"shearPrice":[self.dispersePriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.dispersePriceCell.contentTF.text,
-                             @"status":@(status),
-                             @"storageType":@(storageType),
-                             @"unitId":_unitId,
-                             @"weight":self.weightCell.contentTF.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"product/add.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        [LLHudTools showWithMessage:@"提交成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:true];
-        });
-
-    } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.imgURLs = urlStr;
+		[weakSelf requestComment];
+	}];
 
 }
+- (void)requestComment{
+	//量化所选的单位
+	NSInteger quantizationCellType = -1;
+	if ([self.unitCell.contentTF.text isEqualToString:@"公斤"]) {
+		if (_isSelLeftBtn) {
+			quantizationCellType = 1;
+		}else if (_isSelrightBtn){
+			quantizationCellType = 2;
+		}
+	}else{
+		quantizationCellType = 0;
+	}
+
+	//状态所选的单位
+	NSInteger status = -1;
+	if ([self.stateCell.contentTF.text isEqualToString:@"启用"]) {
+		status = 0;
+	}else if ([self.stateCell.contentTF.text isEqualToString:@"未启用"]){
+		status = 1;
+	}
+
+	//入库类型所选的单位
+	NSInteger storageType = -1;
+	if ([self.defaultJoinCell.contentTF.text isEqualToString:@"总码"]) {
+		storageType = 0;
+	}else if ([self.defaultJoinCell.contentTF.text isEqualToString:@"细码"]){
+		storageType = 1;
+	}
+
+	//颜色数组转换成字符串
+	NSString *colors = [_colorArray mj_JSONString];
 
 
+	NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+							 @"alias":self.nicknameCell.contentTF.text,
+							 @"breadth":self.breadthCell.contentTF.text,
+							 //                             @"colorItems":@"[{name:'红色'},{name:'紫色'},{name:'白色'}]",
+							 @"colorItems":colors,
+							 @"component":self.constituentCell.contentTF.text,
+							 @"groupId":_groupId,
+							 @"imgs":self.imgURLs==nil ? @"":self.imgURLs,
+							 @"largePrice":[self.bigPriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.bigPriceCell.contentTF.text,
+							 @"name":self.titleCell.contentTF.text,
+							 @"rateType":@(quantizationCellType),
+							 @"rateValue":self.quantizationCell.contentTF.text,
+							 @"remark":self.remarkTextView.textView.text,
+							 @"remarkTwo":self.remarkTextView2.textView.text,
+							 @"shearPrice":[self.dispersePriceCell.contentTF.text isEqualToString:@""] ? @"0" : self.dispersePriceCell.contentTF.text,
+							 @"status":@(status),
+							 @"storageType":@(storageType),
+							 @"unitId":_unitId,
+							 @"weight":self.weightCell.contentTF.text
+							 };
+	[BXSHttp requestGETWithAppURL:@"product/add.do" param:param success:^(id response) {
+		LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+		if ([baseModel.code integerValue] != 200) {
+			[LLHudTools showWithMessage:baseModel.msg];
+			return ;
+		}
+		[LLHudTools showWithMessage:@"提交成功"];
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[self.navigationController popViewControllerAnimated:true];
+		});
 
-#pragma mark --- 选择图片 ---
-//接口名称 图片上传
-- (void)uploadPhotos:(NSArray *)selectArray{
-    [LLHudTools showLoadingMessage:@"图片上传中~"];
-    NSDictionary * param = @{@"file":@"0"};
-    self.imgURLs = [NSMutableString string];
-    NSMutableArray * imgURLs = [NSMutableArray array];
-    [selectArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-            if ([baseModel.code integerValue] != 200) {
-                [LLHudTools showWithMessage:baseModel.msg];
-                return ;
-            }
-            [imgURLs addObject:baseModel.data[@"path"]];
-            if (imgURLs.count == selectArray.count) {
-                [imgURLs enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [self.imgURLs appendFormat:@"%@", [NSString stringWithFormat:@"%@,",obj]];
-                }];
-            }
-//            NSDictionary *tempDic = baseModel.data;
-//            _imageStr = tempDic[@"path"];
-            [LLHudTools dismiss];
-        } failure:^(NSError *error) {
-            NSLog(@"%@",error);
-        }];
-    }];
-   
+	} failure:^(NSError *error) {
+		BXS_Alert(LLLoadErrorMessage);
+	}];
 }
-
-- (UIImagePickerController *)imagePickerVc{
-    if (_imagePickerVc == nil) {
-        _imagePickerVc = [LZSetImagePickerController initWithImagePickerVc:_imagePickerVc withUIviewCTarget:self];
-    }
-    return _imagePickerVc;
-}
-
 - (BOOL)prefersStatusBarHidden {
     
     return NO;
 }
-
-- (void)configCollectionView {
-    // 如不需要长按排序效果，将LxGridViewFlowLayout类改成UICollectionViewFlowLayout即可
-    _layout = [[UICollectionViewFlowLayout alloc] init];
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100) collectionViewLayout:_layout];
-    //    CGFloat rgb = 244 / 255.0;
-    _collectionView.alwaysBounceVertical = YES;
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 1, 10);
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
-    _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    [self.view addSubview:_collectionView];
-    [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    _margin = 4;
-    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin -25;
-    _layout.itemSize = CGSizeMake(_itemWH, _itemWH);
-    _layout.minimumInteritemSpacing = 1;
-    _layout.minimumLineSpacing = 1;
-    [self.collectionView setCollectionViewLayout:_layout];
-    //禁止滚动, 直接滚动到底部
-    self.collectionView.scrollEnabled = NO;
-    [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height + 10) animated:NO];
-    [self.collectionView reloadData];
 }
-
-#pragma mark UICollectionView
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(1, 10, 1, 1);
+- (ToolsCollectionVC *)collectionVC{
+	if (!_collectionVC) {
+		_collectionVC = [[ToolsCollectionVC alloc]init];
+		self.collectionVC.maxCountTF = @"5";//最多选择5张
+		_collectionVC.columnNumberTF = @"4";
+		_collectionVC.view.frame = CGRectMake(0, 0, 0, 0);
+		[self addChildViewController:_collectionVC];
+		[self.view addSubview:_collectionVC.view];
+		[_collectionVC didMoveToParentViewController:self];
+		_collectionVC.cTarget = self;
+	}
+	return _collectionVC;
 }
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_selectedPhotos.count >= Max_Photos) {
-        return _selectedPhotos.count;
-    }
-    
-    //根据cell的数量，更改collectionView的frame
-   // CGFloat tempH = _itemWH +10;
-    //self.collectionView.frame = CGRectMake(0, 0, APPWidth, tempH);
-    [self.mainTabelView reloadData];
-    return _selectedPhotos.count + 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
-    cell.videoImageView.hidden = YES;
-    if (indexPath.item == _selectedPhotos.count) {
-        cell.imageView.image = [UIImage imageNamed:@"add_image"];
-        cell.deleteBtn.hidden = YES;
-        cell.gifLable.hidden = YES;
-    } else {
-        cell.imageView.image = _selectedPhotos[indexPath.item];
-        cell.asset = _selectedAssets[indexPath.item];
-        cell.deleteBtn.hidden = NO;
-    }
-    cell.deleteBtn.tag = indexPath.item;
-    [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == _selectedPhotos.count) {
-        [LZSetImagePickerController showAlertStyle:UIAlertControllerStyleActionSheet
-                                      withTitleStr:nil withMessageStr:nil
-                                  withBtn1TitleStr:@"拍照" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"去相册选择" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:@"取消" withBtn3ActionStyle:UIAlertActionStyleCancel
-                                       withCTarget:self withButtonClickIndex:^(NSInteger Index) {
-                                           if (Index == 1) {
-                                               [self takePhoto];
-                                           }else if (Index == 2){
-                                               [self pushTZImagePickerController];
-                                           }
-                                       }];
-    } else { //预览照片
-        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
-        imagePickerVc.maxImagesCount = Max_Photos;
-        imagePickerVc.allowPickingGif = NO;
-        imagePickerVc.allowPickingOriginalPhoto = YES;
-        imagePickerVc.allowPickingMultipleVideo = NO;
-        imagePickerVc.showSelectedIndex = YES;
-        imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-        [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-            self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
-            self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
-            self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
-            [self->_collectionView reloadData];
-            self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (self->_margin + self->_itemWH));
-        }];
-        [self presentViewController:imagePickerVc animated:YES completion:nil];
-    }
-}
-
-#pragma mark - TZImagePickerController
-
-- (void)pushTZImagePickerController {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:Max_Photos columnNumber:Max_LinePhotos delegate:self pushPhotoPickerVc:YES];
-#pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
-    imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-    imagePickerVc.selectedAssets = _selectedAssets; // 目前已经选中的图片数组
-    [LZSetImagePickerController setImagePickerVc:imagePickerVc];
-    // 设置竖屏下的裁剪尺寸
-    NSInteger left = 30;
-    NSInteger widthHeight = self.view.tz_width - 2 * left;
-    NSInteger top = (self.view.tz_height - widthHeight) / 2;
-    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
-    imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
-    
-    // 设置是否显示图片序号
-    imagePickerVc.showSelectedIndex = NO;
-#pragma mark - 到这里为止
-    // 你可以通过block或者代理，来得到用户选择的照片.
-//    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-//
-//    }];
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
-}
-#pragma mark - UIImagePickerControlle
-- (void)takePhoto {
-    WEAKSELF;
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusNotDetermined || status == PHAuthorizationStatusAuthorized) {
-            [weakSelf pushImagePickerController];
-            
-        }else{
-            //[JLHelperManager UIAlertWithStr:@"请在系统设置中开启相册授权" WithTitle:@"相册授权未开启" WithVC:self block:nil];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [LZSetImagePickerController showAlertStyle:UIAlertControllerStyleAlert
-                                              withTitleStr:@"无法使用相机"
-                                            withMessageStr:@"请在iPhone的""设置-隐私-相机""中允许访问相机"
-                                          withBtn1TitleStr:@"设置" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"取消" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:nil withBtn3ActionStyle:UIAlertActionStyleDefault withCTarget:weakSelf withButtonClickIndex:^(NSInteger Index) {
-                                              if (Index == 1) {
-                                                  // 去设置界面，开启相机访问权限
-                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                              }
-                                          }];
-            });
-        }
-    }];
-    //    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    //    if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied)) {
-    //        // 无相机权限 做一个友好的提示
-    //        [LZSetImagePickerController showAlertStyle:UIAlertControllerStyleAlert
-    //                                      withTitleStr:@"无法使用相机"
-    //                                    withMessageStr:@"请在iPhone的""设置-隐私-相机""中允许访问相机"
-    //                withBtn1TitleStr:@"设置" withBtn1ActionStyle:UIAlertActionStyleDefault withBtn2TitleStr:@"取消" withBtn2ActionStyle:UIAlertActionStyleDestructive withBtn3TitleStr:nil withBtn3ActionStyle:UIAlertActionStyleDefault withCTarget:self withButtonClickIndex:^(NSInteger Index) {
-    //            if (Index == 1) {
-    //                // 去设置界面，开启相机访问权限
-    //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-    //            }
-    //        }];
-    //    } else if (authStatus == AVAuthorizationStatusNotDetermined) {
-    //        //防止用户首次拍照拒绝授权时相机页黑屏
-    //            //[self takePhoto];
-    //        // 拍照之前还需要检查相册权限
-    //    } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
-    //        BXS_Alert(@"无法访问相册\r\n请在iPhone的""设置-隐私-相册""中允许访问相册");
-    //    } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
-    //        [[TZImageManager manager] requestAuthorizationWithCompletion:^{
-    //           // [self takePhoto];
-    //        }];
-    //    } else {
-    //        [self pushImagePickerController];
-    //    }
-}
-
-// 调用相机
-- (void)pushImagePickerController {
-    // 提前定位
-    __weak typeof(self) weakSelf = self;
-    [[TZLocationManager manager] startLocationWithSuccessBlock:^(NSArray<CLLocation *> *locations) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        strongSelf.location = [locations firstObject];
-    } failureBlock:^(NSError *error) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        strongSelf.location = nil;
-    }];
-    
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        self.imagePickerVc.sourceType = sourceType;
-        NSMutableArray *mediaTypes = [NSMutableArray array];
-        [mediaTypes addObject:(NSString *)kUTTypeImage];
-        if (mediaTypes.count) {
-            _imagePickerVc.mediaTypes = mediaTypes;
-        }
-        _imagePickerVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        [self presentViewController:_imagePickerVc animated:YES completion:nil];
-    } else {
-        NSLog(@"模拟器中无法打开照相机,请在真机中使用");
-    }
-}
-
-- (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
-    tzImagePickerVc.sortAscendingByModificationDate = YES;
-    [tzImagePickerVc showProgressHUD];
-    if ([type isEqualToString:@"public.image"]) {
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-		//升级pod 报错--------
-        //保存图片，获取到asset
-//        [[TZImageManager manager] savePhotoWithImage:image location:self.location completion:^(NSError *error){
-//            if (error) {
-//                [tzImagePickerVc hideProgressHUD];
-//                NSLog(@"图片保存失败 %@",error);
-//            } else {
-//                [[TZImageManager manager] getCameraRollAlbum:NO allowPickingImage:YES needFetchAssets:NO completion:^(TZAlbumModel *model) {
-//                    [[TZImageManager manager] getAssetsFromFetchResult:model.result allowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models) {
-//                        [tzImagePickerVc hideProgressHUD];
-//                        TZAssetModel *assetModel = [models firstObject];
-//                        if (tzImagePickerVc.sortAscendingByModificationDate) {
-//                            assetModel = [models lastObject];
-//                        }
-//                        [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
-//                    }];
-//                }];
-//            }
-//        }];
-		//升级pod 报错--------
-    }
-}
-
-- (void)refreshCollectionViewWithAddedAsset:(id)asset image:(UIImage *)image {
-    [_selectedAssets addObject:asset];
-    [_selectedPhotos addObject:image];
-    [_collectionView reloadData];
-    
-    _selectedPhotos = [NSMutableArray arrayWithArray:@[image]];
-    [self uploadPhotos:_selectedPhotos];
-    
-    if ([asset isKindOfClass:[PHAsset class]]) {
-        PHAsset *phAsset = asset;
-        NSLog(@"location:%@",phAsset.location);
-    }
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    if ([picker isKindOfClass:[UIImagePickerController class]]) {
-        [picker dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-#pragma mark - TZImagePickerControllerDelegate
-/// 用户点击了取消
-- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
-}
-// 这个照片选择器会自己dismiss，当选择器dismiss的时候，会执行下面的代理方法
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
-    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
-    _selectedAssets = [NSMutableArray arrayWithArray:assets];
-    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-    //[_collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
-    [_collectionView reloadData];
-    // 1.打印图片名字
-    [self printAssetsName:assets];
-    // 2.图片位置信息
-    for (PHAsset *phAsset in assets) {
-        NSLog(@"location:%@",phAsset.location);
-    }
-    [self uploadPhotos:_selectedPhotos];
-}
-#pragma mark - Click Event
-//图片删除按钮
-- (void)deleteBtnClik:(UIButton *)sender {
-    if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
-        [_selectedPhotos removeObjectAtIndex:sender.tag];
-        [_selectedAssets removeObjectAtIndex:sender.tag];
-        [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height + 10) animated:NO];
-        [self.collectionView reloadData];
-        return;
-    }
-    
-    [_selectedPhotos removeObjectAtIndex:sender.tag];
-    [_selectedAssets removeObjectAtIndex:sender.tag];
-    [_collectionView performBatchUpdates:^{
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
-        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
-    } completion:^(BOOL finished) {
-        [_collectionView setContentOffset:CGPointMake(0, _collectionView.contentSize.height - _collectionView.frame.size.height + 10) animated:NO];
-        [self->_collectionView reloadData];
-    }];
-    
-    [self uploadPhotos:_selectedPhotos];
-}
-#pragma mark - Private
-/// 打印图片名字
-- (void)printAssetsName:(NSArray *)assets {
-    NSString *fileName;
-    for (id asset in assets) {
-        if ([asset isKindOfClass:[PHAsset class]]) {
-            PHAsset *phAsset = (PHAsset *)asset;
-            fileName = [phAsset valueForKey:@"filename"];
-        }
-        NSLog(@"图片名字:%@",fileName);
-    }
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
