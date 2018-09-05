@@ -13,4 +13,5 @@
 @class LLWarehouseDetailModel;
 @interface LLWarehouseDetaiSlideRemakeVc : BaseViewController
 @property(nonatomic ,strong)LLWarehouseDetailModel * dictModel;
+@property(nonatomic ,weak)id <LLWarehouseDetaiSlideRemakeVcDelegate> delegate;
 @end

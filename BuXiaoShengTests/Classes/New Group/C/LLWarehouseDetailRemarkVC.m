@@ -10,7 +10,7 @@
 #import "LLWarehouseSideModel.h"
 #import "LLWarehouseDetailCell.h"
 #import "LLWarehouseDetaiSlideRemakeVc.h"
-@interface LLWarehouseDetailRemarkVC ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface LLWarehouseDetailRemarkVC ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,LLWarehouseDetaiSlideRemakeVcDelegate>
 @property(nonatomic ,strong)UITableView * tableView;
 //分匹
 @property(nonatomic ,strong)UITextField * fenpiTextField;
@@ -19,6 +19,15 @@
 //和匹
 @property(nonatomic ,strong)UITextField * hepiTextField;
 
+//加空减空
+@property(nonatomic ,strong)UITextField *JKJKTextField;
+//加空减空选择按钮
+@property(nonatomic ,strong)UIView * JKJKButtonContentView;
+//加空减空type参数
+@property(nonatomic ,copy)NSString * jkjkType;
+
+//破损
+@property(nonatomic ,strong)UITextField *posunTextField;
 @property(nonatomic ,strong)NSMutableArray <LLWarehouseDetailModel*>* dataSource;
 
 @end
@@ -153,10 +162,101 @@
         }
             break;
         case LLWarehouseDetailRemarkFromTypeJKJK://加空减空
+        {
+            titleLable.text = @"加空减空:";
+            UIImageView * askMarkIv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"prompt"]];
+            [tableFooterContenView addSubview:askMarkIv];
+            [askMarkIv mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(titleLable.mas_right).offset(12);
+                make.centerY.equalTo(titleLable);
+            }];
+            UILabel * JKJKLeftLable = [UILabel new];
+            JKJKLeftLable.text = @"加空减空";
+            JKJKLeftLable.font = [UIFont systemFontOfSize:16];
+            JKJKLeftLable.textColor = [UIColor blackColor];
+            [tableFooterContenView addSubview:JKJKLeftLable];
+            [JKJKLeftLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(tableFooterContenView).offset(12);
+                make.centerY.equalTo(tableFooterContenView).offset(12);
+            }];
             
+            self.JKJKTextField = [UITextField new];
+            self.JKJKTextField.textAlignment = NSTextAlignmentCenter;
+            self.JKJKTextField.delegate = self;
+            self.JKJKTextField.keyboardType = UIKeyboardTypeNumberPad;
+            self.JKJKTextField.returnKeyType = UIReturnKeyNext;
+            self.JKJKTextField.placeholder = @"请输入减价数值";
+            [tableFooterContenView addSubview:self.JKJKTextField];
+            self.JKJKTextField.font = [UIFont systemFontOfSize:14];
+            self.JKJKTextField.textColor = [UIColor darkGrayColor];
+            [self.JKJKTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(tableFooterContenView).offset(50);
+                make.centerY.equalTo(JKJKLeftLable);
+                make.right.mas_equalTo(tableFooterContenView).offset(-150);
+                make.height.mas_equalTo(35);
+            }];
+            
+            self.JKJKButtonContentView = [UIView new];
+            [tableFooterContenView addSubview:self.JKJKButtonContentView];
+            [self.JKJKButtonContentView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.JKJKTextField.mas_right);
+                make.top.bottom.right.equalTo(tableFooterContenView);
+            }];
+            [self.JKJKButtonContentView layoutIfNeeded];
+            CGFloat width = 150/2;
+            for (int i = 0; i<2; i++) {
+                UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [self.JKJKButtonContentView addSubview:btn];
+                btn.tag = i;
+                if (i == 0) {
+                    [btn setTitle:@"加空" forState:UIControlStateNormal];
+                    btn.selected = true;
+                }else {
+                     [btn setTitle:@"减空" forState:UIControlStateNormal];
+                }
+                btn.titleLabel.font = [UIFont systemFontOfSize:14];
+                [btn addTarget:self action:@selector(jkjkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"noSelect1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"yesSelect1"] forState:UIControlStateSelected];
+                [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(self.JKJKButtonContentView).offset(i*width);
+                    make.centerY.equalTo(JKJKLeftLable);
+                    make.width.mas_equalTo(width);
+                    make.height.mas_equalTo(35);
+                }];
+            }
+        }
             break;
         case LLWarehouseDetailRemarkFromTypePoSun://破损
+        {
+            titleLable.text = @"破损:";
+            UILabel * posunLeftLable = [UILabel new];
+            posunLeftLable.text = @"破损";
+            posunLeftLable.font = [UIFont systemFontOfSize:16];
+            posunLeftLable.textColor = [UIColor blackColor];
+            [tableFooterContenView addSubview:posunLeftLable];
+            [posunLeftLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(tableFooterContenView).offset(12);
+                make.centerY.equalTo(tableFooterContenView).offset(12);
+            }];
             
+            self.posunTextField = [UITextField new];
+            self.posunTextField.textAlignment = NSTextAlignmentCenter;
+            self.posunTextField.delegate = self;
+            self.posunTextField.keyboardType = UIKeyboardTypeNumberPad;
+            self.posunTextField.returnKeyType = UIReturnKeyNext;
+            self.posunTextField.placeholder = @"请输入具体米数";
+            [tableFooterContenView addSubview:self.posunTextField];
+            self.posunTextField.font = [UIFont systemFontOfSize:14];
+            self.posunTextField.textColor = [UIColor darkGrayColor];
+            [self.posunTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(tableFooterContenView).offset(50);
+                make.centerY.equalTo(posunLeftLable);
+                make.right.mas_equalTo(tableFooterContenView).offset(-50);
+                make.height.mas_equalTo(35);
+            }];
+        }
             break;
         default:
             break;
@@ -199,13 +299,45 @@
         [LLHudTools showWithMessage:@"请输入内容"];
         return;
     }
-     self.fenpiResultLable.text = [@([self.dictModel.number integerValue] - [textField.text integerValue]) stringValue];
+    if (self.fromType == LLWarehouseDetailRemarkFromTypeFenPi) {
+       self.fenpiResultLable.text = [@([self.dictModel.number integerValue] - [textField.text integerValue]) stringValue];
+    }
     
+    
+}
+/// MARK: ---- 侧滑选中点击的代理
+-(void)warehouseDetaiSlideDelegateWithSeletedModel:(LLWarehouseSideRigthRowModel *)model {
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    param[@"stockId"] =  model.stockId;
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    [BXSHttp requestGETWithAppURL:@"house_stock/house_product_detail.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue]!=200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+         [LLHudTools showWithMessage:@"合匹成功"];
+        LLWarehouseDetailModel * hepiModel = [LLWarehouseDetailModel LLMJParse:baseModel.data];
+        [self.dataSource addObject:hepiModel];
+        [self.tableView reloadData];
+        self.tableView.tableFooterView = nil;
+    } failure:^(NSError *error) {
+        [LLHudTools showWithMessage:LLLoadErrorMessage];
+    }];
+}
+/// MARK: ---- 加空减空按钮选择点击
+-(void)jkjkBtnClick:(UIButton*)btn {
+    [self.JKJKButtonContentView.subviews enumerateObjectsUsingBlock:^(__kindof UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.selected = false;
+    }];
+    btn.selected = true;
+    self.jkjkType = btn.tag ==0 ? @"0":@"1";
 }
 /// MARK: ---- 需要侧滑的
 -(void)tableFooterContenViewClick{
     if (self.fromType == LLWarehouseDetailRemarkFromTypeHePi) { //合匹
         LLWarehouseDetaiSlideRemakeVc * rightSildeVc = [LLWarehouseDetaiSlideRemakeVc new];
+       rightSildeVc.delegate = self;
         rightSildeVc.dictModel = self.dictModel;
         CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
         [self cw_showDrawerViewController:rightSildeVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
@@ -213,8 +345,7 @@
 }
 /// MARK: ---- 确定按钮
 -(void)makeSureButtonClick {
-    
-    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     if (self.fromType == LLWarehouseDetailRemarkFromTypeFenPi) {//分匹
         param[@"companyId"] = [BXSUser currentUser].companyId;
         param[@"number"] = self.fenpiTextField.text;
@@ -231,6 +362,67 @@
             [LLHudTools showWithMessage:LLLoadErrorMessage];
         }];
         
+    }else if(self.fromType == LLWarehouseDetailRemarkFromTypeHePi) {//合匹
+        if (self.dataSource.count!=2) {
+            [LLHudTools showWithMessage:@"合匹未成功,请重新合匹"];
+            return;
+        }
+        param[@"companyId"] = [BXSUser currentUser].companyId;
+        param[@"stockId"] = self.dataSource.firstObject.stockId;
+        param[@"matchStockId"] = self.dataSource.lastObject.stockId;
+        param[@"number"] = self.dataSource.lastObject.number;
+        [BXSHttp requestGETWithAppURL:@"house_stock/match.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue]!=200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:baseModel.msg];
+            [self.navigationController popViewControllerAnimated:true];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:LLLoadErrorMessage];
+        }];
+    }else if (self.fromType == LLWarehouseDetailRemarkFromTypeJKJK) {//加空减空
+        if ([BXSTools stringIsNullOrEmpty:self.JKJKTextField.text]) {
+            [LLHudTools showWithMessage:@"请输入你要加减的值"];
+            return;
+        }
+        NSMutableDictionary * param = [NSMutableDictionary dictionary];
+        param[@"companyId"] = [BXSUser currentUser].companyId;
+        param[@"number"] = self.JKJKTextField.text;
+        param[@"stockId"] = self.dictModel.stockId;
+        param[@"type"] = self.jkjkType ? : @"0";
+        [BXSHttp requestGETWithAppURL:@"house_stock/operation_stock.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue]!=200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:baseModel.msg];
+            [self.navigationController popViewControllerAnimated:true];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:LLLoadErrorMessage];
+        }];
+    }else { //破损
+        if ([BXSTools stringIsNullOrEmpty:self.posunTextField.text]) {
+            [LLHudTools showWithMessage:@"请输入折损米数"];
+            return;
+        }
+        NSMutableDictionary * param = [NSMutableDictionary dictionary];
+        param[@"companyId"] = [BXSUser currentUser].companyId;
+        param[@"number"] = self.posunTextField.text;
+        param[@"stockId"] = self.dictModel.stockId;
+        [BXSHttp requestGETWithAppURL:@"house_stock/damage.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue]!=200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            [LLHudTools showWithMessage:baseModel.msg];
+            [self.navigationController popViewControllerAnimated:true];
+        } failure:^(NSError *error) {
+            [LLHudTools showWithMessage:LLLoadErrorMessage];
+        }];
     }
 }
 

@@ -174,7 +174,12 @@
         [LLHudTools showWithMessage:@"请选择一个你要合并的选项"];
         return;
     }
-    
+    [self dismissViewControllerAnimated:true completion:^{
+        if ([self.delegate respondsToSelector:@selector(warehouseDetaiSlideDelegateWithSeletedModel:)]) {
+            [self.delegate warehouseDetaiSlideDelegateWithSeletedModel:seletdModel];
+        }
+    }];
+   
 }
 
 /// MARK: ---- 懒加载
