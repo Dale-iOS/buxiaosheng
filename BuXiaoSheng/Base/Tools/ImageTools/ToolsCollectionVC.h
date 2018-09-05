@@ -27,7 +27,7 @@
  @param pFrame pFrame
  */
 - (void)setupMainCollectionViewWithFrame:(CGRect)pFrame;
-#pragma mark --- 选择图片 ---
+#pragma mark --- 传输图片 ---
 //接口名称 图片上传 写个blick回调 上传成功后将url返回去 就ok了
 - (void)uploadDatePhotosWithUrlStr:(void (^)(NSString * urlStr))pUrl;
 @end

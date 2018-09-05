@@ -117,7 +117,7 @@
 		}];
 		//预览页 完成
 		[previewVc setDoneButtonClickBlock:^(NSArray *photos, BOOL isSelectOriginalPhoto) {
-			if (_downloadImageUrlList) {
+			if (weakSelf.downloadImageUrlList) {
 				[self doneButtonClickComePreviewPhoto:photos];
 			}else{
 				self.maxCountTF = @"1";
@@ -279,7 +279,7 @@
 			}
 		}
 		[weakSelf.selectedPhotos addObjectsFromArray:assets];
-		_isSelectOriginalPhoto = isSelectOriginalPhoto;
+		weakSelf.isSelectOriginalPhoto = isSelectOriginalPhoto;
 		[weakSelf.mainCollectionView reloadData];
 		// 1.打印图片名字
 		[weakSelf printAssetsName:assets];
@@ -367,12 +367,12 @@
 		NSArray *tDownloadImageUrlList = [downloadImageUrlList componentsSeparatedByString:@","];
 		_urlOldImage = [NSMutableArray arrayWithArray:tDownloadImageUrlList];
 		NSInteger tCount = 5 - tDownloadImageUrlList.count;
-//		if ([self.maxCountTF isEqualToString:@"1"]) {
-//			NSLog(@"控制器内设置了图片最多允许选择一个,不允许带入url图片!");
-//			[LLHudTools showWithMessage:@"控制器内设置了图片最多允许选择一个,不允许带入url图片!"];
-//			_downloadImageUrlList = nil;
-//			return;
-//		}
+		if ([self.maxCountTF isEqualToString:@"1"]) {
+			NSLog(@"控制器内设置了图片最多允许选择一个,不允许带入url图片!");
+			[LLHudTools showLoadingMessage:@"控制器内设置了图片最多允许选择一个,不允许带入url图片!"];
+			_downloadImageUrlList = nil;
+			return;
+		}
 		self.maxCountTF =  [NSString stringWithFormat:@"%zd",tCount];
 		for (int j = 0; j<tDownloadImageUrlList.count ; j ++) {
 			[self.selectedPhotos addObject:
@@ -469,11 +469,7 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 }
-#pragma mark --- 选择图片 ---
--(void)setImageStr:(NSString *)imageStr{
-
-
-}
+#pragma mark --- 传输图片 ---
 /**
 关于图片上传
  1 判断是否有网络图片
@@ -490,6 +486,18 @@
 			[tImageArray addObject:tAsset];
 		}
 	}
+//如果用户仅仅删除了图片,没有新加入图片则不做图片请求
+	if (!self.selectImage.count) {
+				NSString *tStrUrls = nil;
+				if (self.requestImageUrlStr.count) {
+					tStrUrls = [self.requestImageUrlStr componentsJoinedByString:@","];
+				}
+				if (pUrl) {
+					pUrl(tStrUrls);
+				}
+		return;
+	}
+
 	//通过PHAsset获取image
 	WEAKSELF
 	for (PHAsset * tAsset in tImageArray) {
@@ -499,6 +507,35 @@
 				//测试取出的图片是否是选择的image
 				//[weakSelf testSelImage];
 				//调用网络请求....
+				[LLHudTools showLoadingMessage:@"图片上传中~"];
+				NSDictionary * param = @{@"file":@"0"};
+				NSMutableArray * imgsArray = [NSMutableArray array];
+				[weakSelf.selectImage enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+					[BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
+						LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+						if ([baseModel.code integerValue] != 200) {
+							[LLHudTools showWithMessage:baseModel.msg];
+							return ;
+						}
+						[imgsArray addObject:baseModel.data[@"path"]];
+						//图片全部上传成功
+						if (imgsArray.count == weakSelf.selectImage.count) {
+							if (weakSelf.requestImageUrlStr.count) {
+								[imgsArray addObjectsFromArray:[weakSelf.requestImageUrlStr copy]];
+							}
+							NSString *tStrUrl = [imgsArray componentsJoinedByString:@","];
+							[LLHudTools dismiss];
+							if (pUrl) {
+								pUrl(tStrUrl);
+							}
+						}
+					} failure:^(NSError *error) {
+						NSLog(@"%@",error);
+					}];
+				}];
+
+
+
 
 			}
 		}];
@@ -513,24 +550,6 @@
 	WEAKSELF
 	weakSelf.selectedPhotos =weakSelf.selectImage;
 	[weakSelf.mainCollectionView reloadData];
-}
-//接口名称 图片上传
-// - selectArray里面是image 其实只有1个,不支持多个一起上传......
-- (void)uploadPhotos:(NSArray *)selectArray{
-	[LLHudTools showLoadingMessage:@"图片上传中~"];
-	NSDictionary * param = @{@"file":@"0"};
-	[BXSHttp requestPOSTPhotosWithArray:selectArray param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-		LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-		if ([baseModel.code integerValue] != 200) {
-			[LLHudTools showWithMessage:baseModel.msg];
-			return ;
-		}
-		NSDictionary *tempDic = baseModel.data;
-		_imageStr = tempDic[@"path"];
-		[LLHudTools dismiss];
-	} failure:^(NSError *error) {
-		NSLog(@"%@",error);
-	}];
 }
 /**
  传输时取出本地剩余的url 加入 requestImageUrlStr 内
