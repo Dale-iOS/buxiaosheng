@@ -37,6 +37,14 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)setupUI {
+    
+    if (self.formType ==LLWarehouseDetailVcFromTypeDetail) { //来源打印页面没有下面四个按钮
+        self.navigationItem.titleView = [Utility navTitleView:@"存货详情"];
+        }else {
+            self.navigationItem.titleView = [Utility navTitleView:@"打印详情"];
+        }
+    
+    
     UIView * timeView = [UIView new];
     self.timeView = timeView;
     timeView.backgroundColor = [UIColor whiteColor];
@@ -158,7 +166,7 @@
     if (!_bottomView) {
         _bottomView = [UIView new];
         _bottomView.backgroundColor =[UIColor whiteColor];
-        NSArray * titles = @[@"分配",@"合匹",@"加空减空",@"破损"];
+        NSArray * titles = @[@"分匹",@"合匹",@"加空减空",@"破损"];
         NSArray * images = @[@"fenpi",@"hepi",@"jiakongjiankong",@"posun"];
         CGFloat width = SCREEN_WIDTH/titles.count;
         for (int i = 0; i<titles.count; i++) {

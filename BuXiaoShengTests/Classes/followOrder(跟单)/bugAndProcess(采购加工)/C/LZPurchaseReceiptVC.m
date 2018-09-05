@@ -245,7 +245,7 @@
 //    接口名称 新增采购收货
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
     
-    NSMutableArray <LZPurchaseReceiptSaveModel *> *saveMuAry = [NSMutableArray array];
+    NSMutableArray *saveMuAry = [NSMutableArray array];
     
     for (int i = 0 ; i < self.allCodeArray.count ; i++) {
         LZPurchaseReceiptSaveModel *aModel = [[LZPurchaseReceiptSaveModel alloc]init];
@@ -263,14 +263,25 @@
         ConItem *conItemHouseNum = allModel.dataArray[1][5];//入库数量
         ConItem *conItemSettlementNum = allModel.dataArray[1][6];//结算数量
         ConItem *conItemReceivableAmount = allModel.dataArray[1][7];//本应付金额
-        for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
-            LZFindCodeModel *codeModel = allModel.findCodeArray[j];
+        
+        if (allModel.findCodeArray.count >0) {
+            //细码
+            for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
+                LZFindCodeModel *codeModel = allModel.findCodeArray[j];
+                LZPurchaseReceiptSaveItemListModel *itemList = [[LZPurchaseReceiptSaveItemListModel alloc]init];
+                itemList.total = @"1";
+                itemList.value = codeModel.code;
+                [itemListMuAry addObject:itemList];
+            }
+        }else{
+            //总码
+            ConItem *conItemValue = allModel.dataArray[0][0];//结算数量（总码总数量）
+            ConItem *conItemTotal = allModel.dataArray[1][1];//条数（总码条数）
             LZPurchaseReceiptSaveItemListModel *itemList = [[LZPurchaseReceiptSaveItemListModel alloc]init];
-            itemList.total = @"1";
-            itemList.value = codeModel.code;
+            itemList.total = conItemValue.contenText;
+            itemList.value = conItemTotal.contenText;
             [itemListMuAry addObject:itemList];
         }
-        
         
         aModel.buyProductId = self.dataModel.buyProductId;
         aModel.productId = self.dataModel.productId;
@@ -288,7 +299,8 @@
         aModel.receivableAmount = conItemReceivableAmount.contenText;
         aModel.itemList = [itemListMuAry copy];
         
-        [saveMuAry addObject:aModel];
+        NSString *tempStr = [aModel mj_JSONString];
+        [saveMuAry addObject:tempStr];
     }
     
     ConItem *conItemCopewithPrice = self.bDataArray[0][0];//应付总额
@@ -312,15 +324,15 @@
                              @"realpayPrice":conItemRealpayPrice.contenText,
                              @"remark":conItemRemarke.contenText
                              };
-    
-    WEAKSELF;
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
     } failure:^(NSError *error) {
             
     }];

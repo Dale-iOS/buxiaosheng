@@ -4,7 +4,7 @@
 //
 //  Created by lanlan on 2018/9/4.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  分匹页面 合匹页面 加空减空页面 破损页面
 
 #import "LLWarehouseDetailRemarkVC.h"
 #import "LLWarehouseSideModel.h"
@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self.dataSource addObject:self.dictModel];
     [self setupUI];
     [self setupTableFooterView];
@@ -48,6 +49,32 @@
 }
 
 -(void)setupUI {
+    
+    switch (self.fromType) {
+        case LLWarehouseDetailRemarkFromTypeFenPi: //分匹
+        {
+            self.navigationItem.titleView = [Utility navTitleView:@"分匹"];
+        }
+            break;
+        case LLWarehouseDetailRemarkFromTypeHePi://合匹
+        {
+            self.navigationItem.titleView = [Utility navTitleView:@"合匹"];
+        }
+            break;
+        case LLWarehouseDetailRemarkFromTypeJKJK://加空减空
+        {
+            self.navigationItem.titleView = [Utility navTitleView:@"加空减空"];
+        }
+            break;
+        case LLWarehouseDetailRemarkFromTypePoSun://破损
+        {
+            self.navigationItem.titleView = [Utility navTitleView:@"破损"];
+        }
+            break;
+        default:
+            break;
+    }
+    
     UIButton * makeSureButton = [UIButton new];
     [self.view addSubview:makeSureButton];
     makeSureButton.backgroundColor = LZAppBlueColor;
@@ -320,7 +347,7 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-         [LLHudTools showWithMessage:@"合匹成功"];
+//         [LLHudTools showWithMessage:@"合匹成功"];
         LLWarehouseDetailModel * hepiModel = [LLWarehouseDetailModel LLMJParse:baseModel.data];
         [self.dataSource addObject:hepiModel];
         [self.tableView reloadData];
