@@ -25,7 +25,7 @@
 }
 -(void)setModel:(LLWarehouseSideModel *)model {
     _model = model;
-    self.titleLable.text = model.colorName;
+    self.titleLable.text = model.colorName ? :model.houseName;
     if (model.seleted) {
         self.contentView.backgroundColor = [UIColor whiteColor];
     }else {

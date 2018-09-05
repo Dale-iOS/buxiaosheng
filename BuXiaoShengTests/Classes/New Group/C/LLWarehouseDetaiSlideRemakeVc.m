@@ -12,6 +12,7 @@
 #import "LLWarehouseSlideLeftCell.h"
 #import "LLWarehouseSideModel.h"
 
+
 @interface LLWarehouseDetaiSlideRemakeVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic ,strong)UITableView * leftTableView;
 @property(nonatomic ,strong)UICollectionView * rightCollectionView;
@@ -38,14 +39,24 @@
     [self.view addSubview:self.leftTableView];
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-50);
+        make.bottom.equalTo(self.view).offset(-45);
         make.width.mas_equalTo(120);
     }];
     [self.view addSubview:self.rightCollectionView];
     [self.rightCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.leftTableView.mas_right);
         make.top.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-50);
+        make.bottom.equalTo(self.view).offset(-45);
+    }];
+    UIButton * makeSureButton = [UIButton new];
+    [self.view addSubview:makeSureButton];
+    makeSureButton.backgroundColor = LZAppBlueColor;
+    [makeSureButton addTarget:self action:@selector(makeSureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    makeSureButton.titleLabel.font = [UIFont systemFontOfSize:17];
+    [makeSureButton setTitle:@"确 定" forState:UIControlStateNormal];
+    [makeSureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_offset(45);
     }];
 
     //[_bottomView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
@@ -56,6 +67,7 @@
     param[@"companyId"] = [BXSUser currentUser].companyId;
     param[@"productColorId"] = self.dictModel.productColorId;
     param[@"productId"] = self.dictModel.productId;
+    param[@"stockId"] = self.dictModel.stockId;
     [BXSHttp requestGETWithAppURL:@"house_stock/match_house_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
@@ -88,8 +100,9 @@
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     param[@"companyId"] = [BXSUser currentUser].companyId;
     param[@"houseId"] = self.leftData[indexPath.row].houseId;
-    param[@"productColorId"] = self.leftData[indexPath.row].colorId;
+    param[@"productColorId"] = self.dictModel.productColorId;
     param[@"productId"] = self.dictModel.productId;
+    param[@"stockId"] = self.dictModel.stockId;
     [BXSHttp requestGETWithAppURL:@"house_stock/match_house_product_val.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue]!=200) {
@@ -147,7 +160,22 @@
     self.rightData[indexPath.section].itemList[indexPath.row].seleted = true;
     [collectionView reloadData];
 }
-
+/// MARK: ---- 确定按钮的点击
+-(void)makeSureButtonClick {
+   __block LLWarehouseSideRigthRowModel * seletdModel;
+    [self.rightData enumerateObjectsUsingBlock:^(LLWarehouseSideRigthSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.itemList enumerateObjectsUsingBlock:^(LLWarehouseSideRigthRowModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.seleted) {
+                seletdModel = obj;
+            }
+        }];
+    }];
+    if (!seletdModel) {
+        [LLHudTools showWithMessage:@"请选择一个你要合并的选项"];
+        return;
+    }
+    
+}
 
 /// MARK: ---- 懒加载
 -(UITableView *)leftTableView {

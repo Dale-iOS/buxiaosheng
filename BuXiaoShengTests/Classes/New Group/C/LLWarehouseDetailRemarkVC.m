@@ -12,15 +12,14 @@
 #import "LLWarehouseDetaiSlideRemakeVc.h"
 @interface LLWarehouseDetailRemarkVC ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property(nonatomic ,strong)UITableView * tableView;
-
-@property(nonatomic ,strong)UILabel * timeLable;
-@property(nonatomic ,weak)UIView * timeView;
 //分匹
 @property(nonatomic ,strong)UITextField * fenpiTextField;
 @property(nonatomic ,strong)UILabel * fenpiResultLable;
 
 //和匹
 @property(nonatomic ,strong)UITextField * hepiTextField;
+
+@property(nonatomic ,strong)NSMutableArray <LLWarehouseDetailModel*>* dataSource;
 
 @end
 
@@ -29,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.dataSource addObject:self.dictModel];
     [self setupUI];
     [self setupTableFooterView];
 }
@@ -39,21 +39,6 @@
 }
 
 -(void)setupUI {
-    UIView * timeView = [UIView new];
-    self.timeView = timeView;
-    timeView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:timeView];
-    [timeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20+LLNavViewHeight);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.mas_equalTo(25);
-    }];
-    [timeView addSubview:self.timeLable];
-    [self.timeLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(timeView);
-        make.left.equalTo(self.view).offset(12);
-    }];
     UIButton * makeSureButton = [UIButton new];
     [self.view addSubview:makeSureButton];
     makeSureButton.backgroundColor = LZAppBlueColor;
@@ -67,7 +52,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.timeView.mas_bottom);
+        make.top.equalTo(self.view).offset(LLNavViewHeight);
         make.bottom.equalTo(makeSureButton.mas_top);
     }];
    
@@ -177,14 +162,32 @@
             break;
     }
 }
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataSource.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 15;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    LLWarehouseDetailHeaderFooterView * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LLWarehouseDetailHeaderFooterView"];
+    headerView.timeLable.text = [BXSTools stringFrom14Data:self.dataSource[section].createTime] ;
+    return headerView;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [UIView new];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LLWarehouseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LLWarehouseDetailCell"];
     cell.indexPath = indexPath;
-    cell.model = self.dictModel;
+    cell.model = self.dataSource[indexPath.section];
     return cell;
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -239,17 +242,17 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[LLWarehouseDetailCell class] forCellReuseIdentifier:@"LLWarehouseDetailCell"];
+        [_tableView registerClass:[LLWarehouseDetailHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"LLWarehouseDetailHeaderFooterView"];
         _tableView.rowHeight = 45;
     }
     return _tableView;
 }
--(UILabel *)timeLable {
-    if (!_timeLable) {
-        _timeLable = [UILabel new];
-        _timeLable.font = [UIFont systemFontOfSize:15];
-        _timeLable.textColor = [UIColor darkGrayColor];
+
+-(NSMutableArray<LLWarehouseDetailModel *> *)dataSource {
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
     }
-    return _timeLable;
+    return _dataSource;
 }
 
 

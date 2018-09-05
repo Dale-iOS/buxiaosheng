@@ -15,7 +15,7 @@
 @implementation LLWarehouseSlideHeaderReusableView
 -(void)setModel:(LLWarehouseSideRigthSectionModel *)model {
     _model = model;
-    self.titleLable.text = [NSString stringWithFormat:@"%@   %@%@",model.batcNumber,model.number,model.unitName];
+    self.titleLable.text = [NSString stringWithFormat:@"%@   %@条/%@%@",model.batcNumber,model.total,model.number,model.unitName];
     self.arrowIV.highlighted = model.seleted;
 }
 - (instancetype)initWithFrame:(CGRect)frame

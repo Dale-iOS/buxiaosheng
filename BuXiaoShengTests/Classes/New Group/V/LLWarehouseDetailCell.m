@@ -118,3 +118,25 @@
 }
 
 @end
+
+@interface LLWarehouseDetailHeaderFooterView()
+
+@end
+
+@implementation LLWarehouseDetailHeaderFooterView
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.timeLable = [UILabel new];
+        [self.contentView addSubview:self.timeLable];
+        self.timeLable.textColor = [UIColor darkGrayColor];
+        self.timeLable.font = [UIFont systemFontOfSize:16];
+        [self.timeLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(12);
+            make.centerY.equalTo(self.contentView);
+        }];
+    }
+    return self;
+}
+@end
+
+

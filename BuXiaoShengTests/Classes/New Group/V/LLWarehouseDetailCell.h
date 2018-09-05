@@ -12,3 +12,7 @@
 @property(nonatomic ,strong)LLWarehouseDetailModel * model;
 @property(nonatomic ,strong)NSIndexPath * indexPath;
 @end
+
+@interface LLWarehouseDetailHeaderFooterView:UITableViewHeaderFooterView
+@property(nonatomic ,strong)UILabel * timeLable;
+@end
