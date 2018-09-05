@@ -40,5 +40,6 @@
 @property (nonatomic,copy) NSString *storageType;
 @property (nonatomic,copy) NSString *tel;
 @property (nonatomic,copy) NSString *unitName;
-//@property (nonatomic,copy) NSArray<LZSaveOrderProductList *> *productList;
+@property (nonatomic,copy) NSString *buyId;
+@property (nonatomic,copy) NSString *factoryId;
 @end

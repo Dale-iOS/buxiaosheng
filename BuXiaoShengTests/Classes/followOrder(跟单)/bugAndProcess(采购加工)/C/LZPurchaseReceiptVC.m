@@ -16,6 +16,7 @@
 #import "BXSPurchaChangeWarehousingView.h"
 #import "BaseTableVC+BXSTakePhoto.h"
 #import "LZPurchaseReceiptDataModel.h"
+#import "LZPurchaseReceiptSaveModel.h"
 
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -244,9 +245,73 @@
 //    接口名称 新增采购收货
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
     
+    NSMutableArray <LZPurchaseReceiptSaveModel *> *saveMuAry = [NSMutableArray array];
+    
+    for (int i = 0 ; i < self.allCodeArray.count ; i++) {
+        LZPurchaseReceiptSaveModel *aModel = [[LZPurchaseReceiptSaveModel alloc]init];
+        LZPurchaseReceiptDataItemListModel *aItemListModel = self.dataModel.itemList[i];
+        BXSAllCodeModel *allModel = self.allCodeArray[i];
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        
+        ConItem *conItemName = allModel.dataArray[0][2];//供货商名称
+        ConItem *conItemColor = allModel.dataArray[0][3];//供货商颜色
+        ConItem *conItemUnit= allModel.dataArray[1][0];//单位
+        ConItem *conItemBatchNumber= allModel.dataArray[1][1];//批号
+        ConItem *conItemShelves= allModel.dataArray[1][2];//批号
+        ConItem *conItemPrice= allModel.dataArray[1][3];//单价
+        ConItem *conItemBuyNum = allModel.dataArray[1][4];//采购数量
+        ConItem *conItemHouseNum = allModel.dataArray[1][5];//入库数量
+        ConItem *conItemSettlementNum = allModel.dataArray[1][6];//结算数量
+        ConItem *conItemReceivableAmount = allModel.dataArray[1][7];//本应付金额
+        for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
+            LZFindCodeModel *codeModel = allModel.findCodeArray[j];
+            LZPurchaseReceiptSaveItemListModel *itemList = [[LZPurchaseReceiptSaveItemListModel alloc]init];
+            itemList.total = @"1";
+            itemList.value = codeModel.code;
+            [itemListMuAry addObject:itemList];
+        }
+        
+        
+        aModel.buyProductId = self.dataModel.buyProductId;
+        aModel.productId = self.dataModel.productId;
+        aModel.productColorId = aItemListModel.productColorId;
+        aModel.number = aItemListModel.number;
+        aModel.name = conItemName.contenText;
+        aModel.color = conItemColor.contenText;
+        aModel.unitId = conItemUnit.id;
+        aModel.batchNumber = conItemBatchNumber.contenText;
+        aModel.shelves = conItemShelves.contenText;
+        aModel.price = conItemPrice.contenText;
+        aModel.buyNum = conItemBuyNum.contenText;
+        aModel.houseNum = conItemHouseNum.contenText;
+        aModel.settlementNum = conItemSettlementNum.contenText;
+        aModel.receivableAmount = conItemReceivableAmount.contenText;
+        aModel.itemList = [itemListMuAry copy];
+        
+        [saveMuAry addObject:aModel];
+    }
+    
+    ConItem *conItemCopewithPrice = self.bDataArray[0][0];//应付总额
+    ConItem *conItemBankId = self.bDataArray[0][3];//付款方式
+    ConItem *conItemFactoryNo = self.bDataArray[1][1];//供应商单号
+    ConItem *conItemHouseId = self.bDataArray[1][0];//入库存
+    ConItem *conItemRealpayPrice = self.bDataArray[0][1];//实付金额
+    ConItem *conItemRemarke = self.bDataArray[0][4];//备注
     
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"buyId":self.bugId};
+                             @"approverId":self.selectApprover.id,
+                             @"bankId":conItemBankId.id,
+                             @"buyId":self.dataModel.buyId,
+                             @"copewithPrice":conItemCopewithPrice.contenText,
+                             @"factoryId":self.dataModel.factoryId,
+                             @"factoryNo":conItemFactoryNo.contenText,
+                             @"houseId":conItemHouseId.contenText,
+                             @"imgs":@"",
+                             @"productItems":[saveMuAry mj_JSONString],
+                             @"purchaseType":@(0),
+                             @"realpayPrice":conItemRealpayPrice.contenText,
+                             @"remark":conItemRemarke.contenText
+                             };
     
     WEAKSELF;
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
@@ -257,7 +322,7 @@
         }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
-        
+            
     }];
 }
 
