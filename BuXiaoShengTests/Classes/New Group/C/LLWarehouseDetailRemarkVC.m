@@ -148,10 +148,11 @@
             [self.hepiTextField mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(tableFooterContenView).offset(37);
                 make.centerY.equalTo(hepiLeftLable);
-                make.right.mas_equalTo(tableFooterContenView).offset(-37);
+                //make.right.mas_equalTo(tableFooterContenView).offset(-37);
+                make.width.mas_equalTo(SCREEN_WIDTH - 37*2);
                 make.height.mas_equalTo(35);
             }];
-            
+
             UIImageView * arrowIv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rightarrow"]];
             [tableFooterContenView addSubview:arrowIv];
             [arrowIv mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -193,14 +194,15 @@
             [self.JKJKTextField mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(tableFooterContenView).offset(50);
                 make.centerY.equalTo(JKJKLeftLable);
-                make.right.mas_equalTo(tableFooterContenView).offset(-150);
+                //make.right.mas_equalTo(tableFooterContenView).offset(-150);
+                make.width.mas_equalTo(SCREEN_WIDTH - 150-50);
                 make.height.mas_equalTo(35);
             }];
             
             self.JKJKButtonContentView = [UIView new];
             [tableFooterContenView addSubview:self.JKJKButtonContentView];
             [self.JKJKButtonContentView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.JKJKTextField.mas_right);
+                make.left.equalTo(tableFooterView).offset(SCREEN_WIDTH - 150);
                 make.top.bottom.right.equalTo(tableFooterContenView);
             }];
             [self.JKJKButtonContentView layoutIfNeeded];
@@ -254,7 +256,8 @@
             [self.posunTextField mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(tableFooterContenView).offset(50);
                 make.centerY.equalTo(posunLeftLable);
-                make.right.mas_equalTo(tableFooterContenView).offset(-50);
+               // make.right.mas_equalTo(tableFooterContenView).offset(-50);
+                 make.width.mas_equalTo(SCREEN_WIDTH - 100);
                 make.height.mas_equalTo(35);
             }];
         }
