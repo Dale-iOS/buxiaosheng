@@ -311,8 +311,8 @@
             ConItem *conItemValue = allModel.dataArray[0][0];//结算数量（总码总数量）
             ConItem *conItemTotal = allModel.dataArray[1][1];//条数（总码条数）
             LZPurchaseReceiptSaveItemListModel *itemList = [[LZPurchaseReceiptSaveItemListModel alloc]init];
-            itemList.total = conItemValue.contenText;
-            itemList.value = conItemTotal.contenText;
+            itemList.total = conItemTotal.contenText;
+            itemList.value = conItemValue.contenText;
             [itemListMuAry addObject:itemList];
         }
         

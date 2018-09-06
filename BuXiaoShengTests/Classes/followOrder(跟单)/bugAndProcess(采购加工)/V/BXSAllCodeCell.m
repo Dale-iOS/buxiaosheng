@@ -142,6 +142,7 @@
     
     _item.baseCellHeight = _item.select ? 120:740;
     _bottomView.selected = _item.select;
+    _nameLabel.text = [NSString stringWithFormat:@"品名：%@",item.productName];
     _colorLabel.text = [NSString stringWithFormat:@"品名颜色：%@",item.productColorName];
     _needCountLabel.text = [NSString stringWithFormat:@"需求量：%@",item.number];
     _tableView.height = _item.select ? 0.1:620;
@@ -215,7 +216,7 @@
             ConItem *citem = weakSelf.item.dataArray[1][4];
             ConItem *kuItem = weakSelf.item.dataArray[1][5];
             ConItem *jItem = weakSelf.item.dataArray[1][6];
-            citem.kpText = kuItem.contenText = jItem.contenText = kItem.contenText;
+            citem.contenText = kuItem.contenText = jItem.contenText = kItem.contenText;
             
         }
         

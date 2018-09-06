@@ -22,6 +22,13 @@
 
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptDetailVC ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSString *_buyOrderItemIds;
+    NSInteger _ximaTotal;
+    NSInteger _ximaValue;
+    NSString *_zongmaTotal;
+    NSString *_zongmaValue;
+}
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
 @property (strong,nonatomic)NSMutableArray *allCodeArray;
 /// 底部数据
@@ -128,9 +135,11 @@
         //仓库-供应商单号
         ConItem *item10 = self.bDataArray[1][0];
         item10.contenText = weakSelf.infoModel.houseName;
+        item10.id = weakSelf.infoModel.houseId;
         
         ConItem *item11 = self.bDataArray[1][1];
         item11.contenText = weakSelf.infoModel.factoryNo;
+        item11.id = [baseModel.data valueForKey:@"houseId"];
         
         
         // 应付 - 实付 - 笨蛋欠款 - 付款方式 - 备注
@@ -178,7 +187,15 @@
         
         self.baseModel = baseModel;
         self.allCodeArray = [BXSAllCodeModel LLMJParse:baseModel.data];
-        if (weakSelf.isFindCode && self.allCodeArray.count >0) {
+//        if (weakSelf.isFindCode && self.allCodeArray.count >0) {
+//            [self.allCodeArray setValue:@"YES" forKey:@"isFindCode"];
+//        }
+        LZPurchaseReceiptDetailCellModel *tempModel = weakSelf.cellInfo.firstObject;
+        if (tempModel.storageType.integerValue == 0) {
+            self.isFindCode = NO;
+            [self.allCodeArray setValue:@"NO" forKey:@"isFindCode"];
+        }else{
+            self.isFindCode = YES;
             [self.allCodeArray setValue:@"YES" forKey:@"isFindCode"];
         }
         [self initAllCodeData];
@@ -321,10 +338,10 @@
         model.productColorName = cellModel.productColorName;
         model.number = cellModel.number;
         model.houseUnitName = cellModel.houseUnitName;
-        
+        _buyOrderItemIds = cellModel.buyOrderItemId;
         if (cellModel.itemList.count > 0) {
             model.isFindCode = YES;
-            self.isFindCode = YES;
+//            self.isFindCode = YES;
             for (LZPurchaseReceiptDetailCellItemList *item in cellModel.itemList) {
                 LZFindCodeModel *findModel = [LZFindCodeModel initModelTitle:@"细码" code:item.value];
                 findModel.id = item.valId;
@@ -333,9 +350,18 @@
             
         }
         
+        
+        
         ConItem *item = [[ConItem alloc]initWithTitle:@"总数量" kpText:@"输入数量" conType:ConTypeB];
-        item.contenText = cellModel.buyNum;
+        
         ConItem *item1 = [[ConItem alloc]initWithTitle:@"条数" kpText:@"输入条数" conType:ConTypeB];
+        
+        if (!self.isFindCode) {
+           
+            LZPurchaseReceiptDetailCellItemList *itemList = cellModel.itemList.firstObject;
+            item.contenText = itemList.value;
+            item1.contenText = itemList.total;
+        }
         
         ConItem *item2 = [[ConItem alloc]initWithTitle:@"供货商名称" kpText:@"输入供货商名称" conType:ConTypeB];
         item2.contenText = cellModel.name;
@@ -407,22 +433,27 @@
         BXSAllCodeModel *allModel = self.allCodeArray[i];
         NSMutableArray *itemListMuAry = [NSMutableArray array];
         
-        if (allModel.findCodeArray.count >0) {
+        if (self.isFindCode) {
             //细码
+            _ximaValue = 0;
             for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
                 LZFindCodeModel *codeModel = allModel.findCodeArray[j];
                 LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
                 itemList.total = @"1";
                 itemList.value = codeModel.code;
                 [itemListMuAry addObject:itemList];
+                _ximaValue +=1;
             }
+            _ximaTotal = allModel.findCodeArray.count;
         }else{
             //总码
             ConItem *conItemValue = allModel.dataArray[0][0];//结算数量（总码总数量）
-            ConItem *conItemTotal = allModel.dataArray[1][1];//条数（总码条数）
+            ConItem *conItemTotal = allModel.dataArray[0][1];//条数（总码条数）
             LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
-            itemList.total = conItemValue.contenText;
-            itemList.value = conItemTotal.contenText;
+            itemList.value = conItemValue.contenText;
+            itemList.total = conItemTotal.contenText;
+            _zongmaValue = conItemValue.contenText;
+            _zongmaTotal = conItemTotal.contenText;
             [itemListMuAry addObject:itemList];
         }
         
@@ -451,7 +482,7 @@
         aModel.settlementNum = conItemSettlementNum.contenText;
         aModel.receivableAmount = conItemReceivableAmount.contenText;
         
-        NSString *tempStr = [aModel mj_JSONString];
+        NSString *tempStr = [aModel mj_JSONObject];
         [saveMuAry addObject:tempStr];
     }
     
@@ -461,24 +492,134 @@
     ConItem *conItemHouseId = self.bDataArray[1][0];//入库存
     ConItem *conItemRealpayPrice = self.bDataArray[0][1];//实付金额
     ConItem *conItemRemarke = self.bDataArray[0][4];//备注
+    ConItem *conItemCopewithPrice = self.bDataArray[0][0];//应付金额
     
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"arrearsPrice":conItemArrearsPrice.contenText,
-                             @"bankId":conItemBankId.id,
-                             @"buyOrderId":self.infoModel.id,
-                             @"copewithPrice":conItemFactoryNo.contenText,
-                             @"houseId":conItemHouseId.id,
-                             @"productItems":[saveMuAry mj_JSONString],
-                             @"realpayPrice":conItemRealpayPrice.contenText,
-                             @"remark":conItemRemarke.contenText
-                             };
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    param[@"arrearsPrice"] = conItemArrearsPrice.contenText;
+    param[@"bankId"] = conItemBankId.id;
+    param[@"buyOrderId"] = self.infoModel.id;
+    param[@"copewithPrice"] = conItemCopewithPrice.contenText;
+    param[@"houseId"] = conItemHouseId.id;
+    param[@"imgs"] = self.urlImageStr == nil ? @"" :self.urlImageStr;
+    param[@"productItems"] = [saveMuAry mj_JSONString];
+    param[@"realpayPrice"] = conItemRealpayPrice.contenText;
+    param[@"remark"] = conItemRemarke.contenText;
     
-    [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
+    [BXSHttp requestPOSTWithAppURL:@"documentary/update_collect.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
         if ([baseModel.code integerValue] != 200) {
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        [self checkAddCollect];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)checkAddCollect {
+//接口名称 审批入库
+    /// 数据都在 self.bDataArray 和  self.allCodeArray 中
+    NSMutableArray *saveMuAry = [NSMutableArray array];
+    
+    
+    
+    for (int i = 0; i <self.allCodeArray.count; i++) {
+//        LZPurchaseReceiptSaveAlterModel *aModel = [[LZPurchaseReceiptSaveAlterModel alloc]init];
+        LZPurchaseReceiptDetailCellModel *dataModel = _cellInfo[i];
+        BXSAllCodeModel *allModel = self.allCodeArray[i];
+//        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        
+//        if (self.isFindCode) {
+//            //细码
+//            for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
+//                LZFindCodeModel *codeModel = allModel.findCodeArray[j];
+//                LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
+//                itemList.total = @"1";
+//                itemList.value = codeModel.code;
+//                [itemListMuAry addObject:itemList];
+//            }
+//        }else{
+//            //总码
+//            ConItem *conItemValue = allModel.dataArray[0][0];//结算数量（总码总数量）
+//            ConItem *conItemTotal = allModel.dataArray[1][1];//条数（总码条数）
+//            LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
+//            itemList.total = conItemValue.contenText;
+//            itemList.value = conItemTotal.contenText;
+//            [itemListMuAry addObject:itemList];
+//        }
+        
+//        ConItem *conItemValue = allModel.dataArray[0][0];//总数量
+//        ConItem *conItemTotal = allModel.dataArray[0][1];//条数
+//        ConItem *conItemName = allModel.dataArray[0][2];//供货商名称
+//        ConItem *conItemColor = allModel.dataArray[0][3];//供货商颜色
+//        ConItem *conItemUnit= allModel.dataArray[1][0];//单位
+        ConItem *conItemShelves= allModel.dataArray[1][2];//货架
+        ConItem *conItemBatchNumber= allModel.dataArray[1][1];//批号
+//        //        ConItem *conItemShelves= allModel.dataArray[1][2];//批号
+//        ConItem *conItemPrice= allModel.dataArray[1][3];//单价
+//        ConItem *conItemBuyNum = allModel.dataArray[1][4];//采购数量
+//        ConItem *conItemHouseNum = allModel.dataArray[1][5];//入库数量
+//        ConItem *conItemSettlementNum = allModel.dataArray[1][6];//结算数量
+//        ConItem *conItemReceivableAmount = allModel.dataArray[1][7];//本应付金额
+        
+        NSDictionary * param = @{};
+        if (!self.isFindCode) {
+            //总码
+            param = @{
+                      @"productId":dataModel.productId,
+                      @"productColorId":dataModel.productColorId,
+                      @"batchNumber":conItemBatchNumber.contenText,
+                      @"shelves":conItemShelves.contenText,
+                      @"value":@(_ximaValue),
+                      @"total":@(_ximaTotal),
+                      @"storageType": @(1),
+                      @"buyOrderItemIds":_buyOrderItemIds,
+                      };
+        }else{
+            //总码
+            param = @{
+                      @"productId":dataModel.productId,
+                      @"productColorId":dataModel.productColorId,
+                      @"batchNumber":conItemBatchNumber.contenText,
+                      @"shelves":conItemShelves.contenText,
+                      @"value":_zongmaValue,
+                      @"total":_zongmaTotal,
+                      @"storageType": @(0),
+                      @"buyOrderItemIds":_buyOrderItemIds,
+                      };
+        }
+
+        [saveMuAry addObject:param];
+    }
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    param[@"approvalId"] = self.bugId;
+    param[@"purchaserId"] = self.selectApprover.id;
+    param[@"buyOrderId"] = self.infoModel.id;
+    param[@"storageType"] = self.isFindCode == NO ? @(0) : @(1);
+    param[@"productItems"] = [saveMuAry mj_JSONString];
+    
+//    param[@"houseId"] = conItemHouseId.id;
+//    param[@"imgs"] = self.urlImageStr == nil ? @"" :self.urlImageStr;
+//    param[@"productItems"] = [saveMuAry mj_JSONString];
+//    param[@"realpayPrice"] = conItemRealpayPrice.contenText;
+//    param[@"remark"] = conItemRemarke.contenText;
+    
+    
+    
+    [BXSHttp requestPOSTWithAppURL:@"documentary/add_house.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
         
     } failure:^(NSError *error) {
         
@@ -865,7 +1006,7 @@
         ConItem *citem = model.dataArray[1][4];
         ConItem *kuItem = model.dataArray[1][5];
         ConItem *jItem = model.dataArray[1][6];
-        citem.kpText = kuItem.contenText = jItem.contenText = item.contenText;
+        citem.contenText = kuItem.contenText = jItem.contenText = item.contenText;
     }
     
     [self setPerItem];

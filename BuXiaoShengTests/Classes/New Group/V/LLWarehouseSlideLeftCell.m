@@ -27,7 +27,7 @@
     _model = model;
     self.titleLable.text = model.colorName ? :model.houseName;
     if (model.seleted) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }else {
         self.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }

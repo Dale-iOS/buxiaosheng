@@ -38,7 +38,7 @@
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-50);
-        make.width.mas_equalTo(120);
+        make.width.mas_equalTo(100);
     }];
     [self.view addSubview:self.rightCollectionView];
     [self.rightCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,6 +89,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [tableView deselectRowAtIndexPath:indexPath animated:true];
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     param[@"companyId"] = [BXSUser currentUser].companyId;
     param[@"houseId"] = self.leftData[indexPath.row].houseId;
@@ -135,7 +136,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return self.rightData[indexPath.section].seleted ? CGSizeMake(60, 30) : CGSizeMake(0, 0);
+    return self.rightData[indexPath.section].seleted ? CGSizeMake(40, 30) : CGSizeMake(0, 0);
 
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

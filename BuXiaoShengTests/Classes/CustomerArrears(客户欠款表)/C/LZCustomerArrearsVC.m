@@ -121,7 +121,15 @@ static NSInteger const pageSize = 15;
                 [self.lists removeAllObjects];
             }
             
+//            self.tableHeaderView.numberMoenyLable.text = [[response objectForKey:@"data"] objectForKey:@"totalArrear"];
+            
             NSArray *itemList = [[response objectForKey:@"data"] objectForKey:@"itemList"];
+            
+            NSString *totalArrearStr = [NSString stringWithFormat:@"%@",[[response objectForKey:@"data"] objectForKey:@"totalArrear"]];
+            NSInteger temp = [totalArrearStr integerValue];
+            
+            self.tableHeaderView.numberMoenyLable.text = [NSString stringWithFormat:@"%.2ld",(long)temp];
+            
             if (itemList && itemList.count > 0) {
                 for (NSDictionary *dic in itemList) {
                     LZArrearClientModel *model = [LZArrearClientModel mj_objectWithKeyValues:dic];
@@ -268,7 +276,7 @@ static NSInteger const pageSize = 15;
         }];
         
         self.numberMoenyLable = [UILabel new];
-        self.numberMoenyLable.text = @"510,219.10";
+//        self.numberMoenyLable.text = @"510,219.10";
         [bgIv addSubview:self.numberMoenyLable];
         self.numberMoenyLable.font = [UIFont systemFontOfSize:30];
         self.numberMoenyLable.textColor = [UIColor whiteColor];
@@ -279,7 +287,7 @@ static NSInteger const pageSize = 15;
         self.messageLale = [UILabel new];
         self.messageLale.text = @"总欠款 (元)";
         [bgIv addSubview:self.messageLale];
-        self.messageLale.font = [UIFont systemFontOfSize:20];
+        self.messageLale.font = [UIFont systemFontOfSize:17];
         self.messageLale.textColor = [UIColor whiteColor];
         self.messageLale.textAlignment = NSTextAlignmentCenter;
         [self.messageLale mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -288,7 +296,7 @@ static NSInteger const pageSize = 15;
         }];
         
         UIView * titleView = [UIView new];
-        titleView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        titleView.backgroundColor = [UIColor whiteColor];
         [self addSubview:titleView];
         [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self);

@@ -20,6 +20,7 @@
 @property (nonatomic,copy) NSString *factoryName;//供应商名称
 @property (nonatomic,copy) NSString *factoryNo;//供应商单号
 @property (nonatomic,copy) NSString *houseName;//入库仓
+@property (nonatomic,copy) NSString *houseId;//入库仓
 @property (nonatomic,copy) NSString *id;//采购单id
 @property (nonatomic,copy) NSString *imgs;//图片
 @property (nonatomic,copy) NSString *mobile;//手机号
