@@ -96,7 +96,7 @@
     self.mainTable.separatorInset = UIEdgeInsetsZero;
     self.mainTable.separatorColor = LZHBackgroundColor;
     self.mainTable.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-//    self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
+    //    self.mainTable.tableFooterView = [LineView lineViewOfHeight:20];
     self.mainTable.tableHeaderView = [LineView lineViewOfHeight:1];
     self.mainTable.estimatedRowHeight = 0;
     self.mainTable.estimatedSectionHeaderHeight = 0;
@@ -201,7 +201,7 @@
 }
 #pragma mark ---- 网络请求 ----
 - (void)setupData{
-//    接口名称 采购加工跟踪-未处理详情
+    //    接口名称 采购加工跟踪-未处理详情
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyId":self.bugId};
     [BXSHttp requestGETWithAppURL:@"documentary/not_handle_detail.do" param:param success:^(id response) {
@@ -242,7 +242,7 @@
 /// post整个数据--最终的数据上传
 #pragma mark ---- 提交数据 ----
 - (void)addCollect {
-//    接口名称 新增采购收货
+    //    接口名称 新增采购收货
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
     
     NSMutableArray *saveMuAry = [NSMutableArray array];
@@ -299,7 +299,7 @@
         aModel.receivableAmount = conItemReceivableAmount.contenText;
         aModel.itemList = [itemListMuAry copy];
         
-        NSString *tempStr = [aModel mj_JSONString];
+        NSString *tempStr = [aModel mj_JSONObject];
         [saveMuAry addObject:tempStr];
     }
     
@@ -317,7 +317,7 @@
                              @"copewithPrice":conItemCopewithPrice.contenText,
                              @"factoryId":self.dataModel.factoryId,
                              @"factoryNo":conItemFactoryNo.contenText,
-                             @"houseId":conItemHouseId.contenText,
+                             @"houseId":conItemHouseId.id,
                              @"imgs":@"",
                              @"productItems":[saveMuAry mj_JSONString],
                              @"purchaseType":@(0),
@@ -330,11 +330,12 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
+        [LLHudTools showWithMessage:@"提交成功"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:true];
         });
     } failure:^(NSError *error) {
-            
+        
     }];
 }
 
@@ -720,7 +721,7 @@
         ConItem *citem = model.dataArray[1][4];
         ConItem *kuItem = model.dataArray[1][5];
         ConItem *jItem = model.dataArray[1][6];
-        citem.kpText = kuItem.contenText = jItem.contenText = item.contenText;
+        citem.contenText = kuItem.contenText = jItem.contenText = item.contenText;
     }
     
     [self setPerItem];
