@@ -27,7 +27,7 @@
 		_deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_deleteBtn setImage:[UIImage imageNamed:@"delete_jurisdiction"] forState:UIControlStateNormal];
 		_deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-		_deleteBtn.alpha = 0.6;
+//        _deleteBtn.alpha = 0.6;
 		[self addSubview:_deleteBtn];
 	}
 	return self;

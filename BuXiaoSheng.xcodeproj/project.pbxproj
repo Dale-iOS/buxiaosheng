@@ -464,6 +464,8 @@
 		3476D40C2103327D00FDB6F7 /* LZOrderFollowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3476D40A2103327D00FDB6F7 /* LZOrderFollowDetailVC.m */; };
 		3476D40F210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3476D40E210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m */; };
 		3476D410210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3476D40E210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m */; };
+		34771D03214193D300DD38AA /* NSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34771D02214193D300DD38AA /* NSDictionary+Utils.m */; };
+		34771D04214193D300DD38AA /* NSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 34771D02214193D300DD38AA /* NSDictionary+Utils.m */; };
 		347776FB2126ADFA00423A98 /* BXSMachiningProduuctCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347776FA2126ADFA00423A98 /* BXSMachiningProduuctCell.m */; };
 		347776FC2126ADFA00423A98 /* BXSMachiningProduuctCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 347776FA2126ADFA00423A98 /* BXSMachiningProduuctCell.m */; };
 		347776FF2126B11100423A98 /* BXSMachiningDBHeaderfooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347776FD2126B11000423A98 /* BXSMachiningDBHeaderfooterView.m */; };
@@ -1590,6 +1592,8 @@
 		3476D40A2103327D00FDB6F7 /* LZOrderFollowDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderFollowDetailVC.m; sourceTree = "<group>"; };
 		3476D40D210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchasingInfoDetailVC.h; sourceTree = "<group>"; };
 		3476D40E210336CF00FDB6F7 /* LZPurchasingInfoDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchasingInfoDetailVC.m; sourceTree = "<group>"; };
+		34771D01214193D200DD38AA /* NSDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utils.h"; sourceTree = "<group>"; };
+		34771D02214193D300DD38AA /* NSDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utils.m"; sourceTree = "<group>"; };
 		347776F92126ADFA00423A98 /* BXSMachiningProduuctCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXSMachiningProduuctCell.h; sourceTree = "<group>"; };
 		347776FA2126ADFA00423A98 /* BXSMachiningProduuctCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXSMachiningProduuctCell.m; sourceTree = "<group>"; };
 		347776FD2126B11000423A98 /* BXSMachiningDBHeaderfooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXSMachiningDBHeaderfooterView.m; sourceTree = "<group>"; };
@@ -4434,6 +4438,8 @@
 		34A0ED542080827C00659190 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				34771D01214193D200DD38AA /* NSDictionary+Utils.h */,
+				34771D02214193D300DD38AA /* NSDictionary+Utils.m */,
 				348DF195212945C700D3A76F /* UIButton+WM.h */,
 				348DF196212945C800D3A76F /* UIButton+WM.m */,
 				2DDA921F2111884C00DB7765 /* LogCategory.h */,
@@ -6248,6 +6254,7 @@
 				34FB1F2A20BD5072004D18C2 /* LLDayCalendarVc.m in Sources */,
 				34410ECA20B4041C00CE490E /* LZDeptListModel.m in Sources */,
 				3427A4FA20CE507600369650 /* BRAddressPickerView.m in Sources */,
+				34771D03214193D300DD38AA /* NSDictionary+Utils.m in Sources */,
 				349AAF7220EA5AC4005EB74F /* LZChangeNumVC.m in Sources */,
 				342398E320FB3AEA002B81E1 /* BigGoodsAndBoardModel.m in Sources */,
 				B50505A5209AB2DA00CE7E4D /* XLFormCheckCell.m in Sources */,
@@ -6566,6 +6573,7 @@
 				3417F99B211E959F00FF29F8 /* LZBackOrderDetialProductModel.m in Sources */,
 				FF3FA971212D6083009431DA /* ConsultOtherTableViewCell.m in Sources */,
 				343008DF2081ACC500447992 /* NowQuarterViewController.m in Sources */,
+				34771D04214193D300DD38AA /* NSDictionary+Utils.m in Sources */,
 				344E4D47210EAD4D0031DCE8 /* GridView.m in Sources */,
 				3428B81621216851003F86D7 /* XiMaCollectionViewCell.m in Sources */,
 				34A92B5E207DEF2400572648 /* SaleViewController.m in Sources */,
