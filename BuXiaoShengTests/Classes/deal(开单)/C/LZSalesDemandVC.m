@@ -23,9 +23,11 @@
 #import "ToolsCollectionVC.h"
 
 @interface LZSalesDemandVC ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>{
-    NSString *_orderId;//开单成功后返回的本订单的单号
-    NSString *_printerState;//打印机状态
+//    NSString *_orderId;//开单成功后返回的本订单的单号
+//    NSString *_printerState;//打印机状态
 }
+@property (nonatomic,strong)NSString *orderId;//开单成功后返回的本订单的单号
+@property (nonatomic,strong)NSString *printerState;//打印机状态
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
@@ -210,7 +212,7 @@
 {
     self.footerView = [[UIView alloc]init];
     self.footerView.userInteractionEnabled = YES;
-    self.footerView.frame = CGRectMake(0, 0, APPWidth, 519);
+    self.footerView.frame = CGRectMake(0, 0, APPWidth, 519 + 132);
     //    self.footerView.backgroundColor = [UIColor redColor];
     
     //新增一条底图view
@@ -345,6 +347,7 @@
 //功能用到产品列表
 - (void)setupProductData
 {
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              };
     [BXSHttp requestGETWithAppURL:@"product/product_list.do" param:param success:^(id response) {
@@ -354,15 +357,15 @@
         }
         self.dataMuArray = [productListModel LLMJParse:baseModel.data];
         
-        _products = [productListModel LLMJParse:baseModel.data];
+       weakSelf.products = [productListModel LLMJParse:baseModel.data];
         //拼接要展示的列表数据
-        _productsListMTArray = [NSMutableArray array];
-        _productsIdMTArray = [NSMutableArray array];
-        if (_products) {
-            for (int i = 0; i <_products.count; i++) {
-                productListModel *model = [productListModel LLMJParse:_products[i]];
-                [_productsListMTArray addObject:model.name];
-                [_productsIdMTArray addObject:model.id];
+        weakSelf.productsListMTArray = [NSMutableArray array];
+        weakSelf.productsIdMTArray = [NSMutableArray array];
+        if (weakSelf.products) {
+            for (int i = 0; i <weakSelf.products.count; i++) {
+                productListModel *model = [productListModel LLMJParse:weakSelf.products[i]];
+                [weakSelf.productsListMTArray addObject:model.name];
+                [weakSelf.productsIdMTArray addObject:model.id];
             }
         }
         
@@ -373,6 +376,7 @@
 
 //功能用到客户列表
 - (void)setupCustomerList{
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"customer/customer_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -380,25 +384,25 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _customerList = baseModel.data;
-        _customerNameAry = [NSMutableArray array];
-        _customerIdAry = [NSMutableArray array];
-        _customerPhoneAry = [NSMutableArray array];
-        for (int i = 0 ; i <_customerList.count; i++) {
-            [_customerNameAry addObject:_customerList[i][@"name"]];
-            [_customerIdAry addObject:_customerList[i][@"id"]];
-            [_customerPhoneAry addObject:_customerList[i][@"mobile"]];
+        weakSelf.customerList = baseModel.data;
+        weakSelf.customerNameAry = [NSMutableArray array];
+        weakSelf.customerIdAry = [NSMutableArray array];
+        weakSelf.customerPhoneAry = [NSMutableArray array];
+        for (int i = 0 ; i <weakSelf.customerList.count; i++) {
+            [weakSelf.customerNameAry addObject:weakSelf.customerList[i][@"name"]];
+            [weakSelf.customerIdAry addObject:weakSelf.customerList[i][@"id"]];
+            [weakSelf.customerPhoneAry addObject:weakSelf.customerList[i][@"mobile"]];
         }
         WEAKSELF;
 		self.nameCell.contentTF.delegate = self;
 		self.nameCell.contentTF.scrollView = (UIScrollView * )self.view;
 		self.nameCell.contentTF.positionType = ZJPositionBottom;
-        [self.nameCell.contentTF popOverSource:_customerNameAry index:^(NSInteger index) {
+        [self.nameCell.contentTF popOverSource:weakSelf.customerNameAry index:^(NSInteger index) {
 //            [weakSelf.tableView reloadData];
             //        _ProductColorId = _productsIdMTArray[index];
             //        [self setupProductColorData];
-            weakSelf.phoneCell.contentTF.text = _customerPhoneAry[index];
-            _customerIdStr = _customerIdAry[index];
+            weakSelf.phoneCell.contentTF.text = weakSelf.customerPhoneAry[index];
+            weakSelf.customerIdStr = weakSelf.customerIdAry[index];
         }];
         
     } failure:^(NSError *error) {
@@ -407,7 +411,7 @@
 }
 
 - (void)setupPayList{
-    
+    WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"bank/pay_list.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -416,11 +420,11 @@
             return ;
         }
         NSMutableArray *tempAry = baseModel.data;
-        _payNameAry = [NSMutableArray array];
-        _payIdAry = [NSMutableArray array];
+        weakSelf.payNameAry = [NSMutableArray array];
+        weakSelf.payIdAry = [NSMutableArray array];
         for (int i = 0; i <tempAry.count; i++) {
-            [_payIdAry addObject:tempAry[i][@"id"]];
-            [_payNameAry addObject:tempAry[i][@"name"]];
+            [weakSelf.payIdAry addObject:tempAry[i][@"id"]];
+            [weakSelf.payNameAry addObject:tempAry[i][@"name"]];
         }
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -614,6 +618,7 @@
 
 
 - (void)requestComment:(NSMutableArray *)pProdustsItems{
+	WEAKSELF
 	NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
 							 @"bankId":_payIdStr == nil ? @"0" : _payIdStr,
 							 @"customerId":_customerIdStr,
@@ -631,9 +636,12 @@
 		}
 
 		NSDictionary *dic1 = baseModel.data;
-		_orderId = [dic1 objectForKey:@"orderId"];
+		weakSelf.orderId = [dic1 objectForKey:@"orderId"];
 
-		NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,_orderId,_printerState];
+		NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",
+						 [BXSUser currentUser].companyId,
+						 weakSelf.orderId,
+						 weakSelf.printerState];
 
 		LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
 		webVC.url = url;
@@ -646,6 +654,7 @@
 }
 //接口名称 仓库打印机配置状态
 - (void)setupPrinterData{
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
     [BXSHttp requestGETWithAppURL:@"printer/house_printer_status.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -653,7 +662,7 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _printerState = [NSString stringWithFormat:@"%@",baseModel.data];
+        weakSelf.printerState = [NSString stringWithFormat:@"%@",baseModel.data];
 
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
@@ -710,11 +719,11 @@
     }
     
     LZPickerView *pickerView =[[LZPickerView alloc] initWithComponentDataArray:_payNameAry titleDataArray:nil];
-    
+    WEAKSELF
     pickerView.getPickerValue = ^(NSString *compoentString, NSString *titileString) {
         self.paymentMethodCell.contentTF.text = compoentString;
         NSInteger row = [titileString integerValue];
-        _payIdStr = _payIdAry[row];
+        weakSelf.payIdStr = weakSelf.payIdAry[row];
     };
     [self.view addSubview:pickerView];
 }
