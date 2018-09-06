@@ -75,6 +75,7 @@
 @property (nonatomic, strong) NSMutableArray <productListModel *> *products;
 @property (nonatomic, strong) NSMutableArray *productsListMTArray;//展示图产品列表名称数组
 @property (nonatomic, strong) NSMutableArray *productsIdMTArray;//展示图产品列表ID数组
+@property (nonatomic,copy)NSString * urlStr;
 @end
 
 @implementation LZSalesDemandVC
@@ -587,11 +588,11 @@
     [self.listModels enumerateObjectsUsingBlock:^(productListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
                 NSDictionary * param = @{
-                                         @"productId":obj.id,
-                                         @"productColorId":obj.colorModel.id,
-                                         @"number":obj.number,
-                                         @"price":obj.shearPrice,
-                                         };
+						 @"productId":obj.id == nil ? @"" : obj.id,
+						 @"productColorId":obj.colorModel.id == nil ? @"" :obj.colorModel.id ,
+						 @"number":obj.number == nil ? @"" : obj.number ,
+						 @"price":obj.shearPrice == nil ?@"":obj.shearPrice,
+						 };
                 [produstsItems addObject:param];
     }];
     
@@ -603,38 +604,46 @@
         BXS_Alert(@"请输入客户名称再选择");
         return;
     }
-    
-    NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"bankId":_payIdStr == nil ? @"0" : _payIdStr,
-                             @"customerId":_customerIdStr,
-                             @"deposit":[self.depositCell.contentTF.text isEqualToString:@""] ? @"0" : self.depositCell.contentTF.text,
-                             @"imgs":@"",
-                             @"matter":self.warehouseTextView.textView.text,
-                             @"orderNeedItems":[produstsItems mj_JSONString],
-                             @"remark":self.remarkTextView.textView.text
-                             };
-    [BXSHttp requestGETWithAppURL:@"settle/create_order.do" param:param success:^(id response) {
-        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-        if ([baseModel.code integerValue] != 200) {
-            [LLHudTools showWithMessage:baseModel.msg];
-            return ;
-        }
-        
-        NSDictionary *dic1 = baseModel.data;
-        _orderId = [dic1 objectForKey:@"orderId"];
-        
-        NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,_orderId,_printerState];
-        
-        LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
-        webVC.url = url;
-//        NSLog(@"即将进入的页面链接：%@",url);
-        [self.navigationController pushViewController:webVC animated:NO];
-        
-            } failure:^(NSError *error) {
-        BXS_Alert(LLLoadErrorMessage);
-    }];
+
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.urlStr = urlStr;
+		[weakSelf requestComment:produstsItems];
+	}];
 }
 
+
+- (void)requestComment:(NSMutableArray *)pProdustsItems{
+	NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+							 @"bankId":_payIdStr == nil ? @"0" : _payIdStr,
+							 @"customerId":_customerIdStr,
+							 @"deposit":[self.depositCell.contentTF.text isEqualToString:@""] ? @"0" : self.depositCell.contentTF.text,
+							 @"imgs":self.urlStr == nil ?  @"":self.urlStr,
+							 @"matter":self.warehouseTextView.textView.text,
+							 @"orderNeedItems":[pProdustsItems mj_JSONString],
+							 @"remark":self.remarkTextView.textView.text
+							 };
+	[BXSHttp requestGETWithAppURL:@"settle/create_order.do" param:param success:^(id response) {
+		LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+		if ([baseModel.code integerValue] != 200) {
+			[LLHudTools showWithMessage:baseModel.msg];
+			return ;
+		}
+
+		NSDictionary *dic1 = baseModel.data;
+		_orderId = [dic1 objectForKey:@"orderId"];
+
+		NSString *url = [NSString stringWithFormat:@"http://www.buxiaosheng.com/web-h5/html/print/needOrderPrint.html?companyId=%@&orderId=%@&housePrinter=%@",[BXSUser currentUser].companyId,_orderId,_printerState];
+
+		LZWKWebViewVC *webVC = [[LZWKWebViewVC alloc]init];
+		webVC.url = url;
+		//        NSLog(@"即将进入的页面链接：%@",url);
+		[self.navigationController pushViewController:webVC animated:NO];
+
+	} failure:^(NSError *error) {
+		BXS_Alert(LLLoadErrorMessage);
+	}];
+}
 //接口名称 仓库打印机配置状态
 - (void)setupPrinterData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId};
