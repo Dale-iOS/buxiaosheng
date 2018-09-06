@@ -54,6 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupBtns];
+    [self.navigationController setNavigationBarHidden:false animated:true];
 }
 
 - (LZHTableView *)mainTabelView
