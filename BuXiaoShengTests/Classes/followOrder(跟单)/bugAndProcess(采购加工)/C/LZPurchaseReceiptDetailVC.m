@@ -415,11 +415,13 @@
 	WEAKSELF
 	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
 		weakSelf.urlImageStr = urlStr;
-		[weakSelf addCollect];
+        [weakSelf addCollect];
+//        [weakSelf checkAddCollect];
 	}];
 }
 
 /// post整个数据--最终的数据上传
+#pragma mark ---- 提交接口 ----
 - (void)addCollect {
     
     /// 数据都在 self.bDataArray 和  self.allCodeArray 中
@@ -436,13 +438,14 @@
         if (self.isFindCode) {
             //细码
             _ximaValue = 0;
+            _ximaTotal = 0;
             for (int j = 0 ; j <allModel.findCodeArray.count; j++) {
                 LZFindCodeModel *codeModel = allModel.findCodeArray[j];
                 LZPurchaseReceiptSaveAlterItemListModel *itemList = [[LZPurchaseReceiptSaveAlterItemListModel alloc]init];
                 itemList.total = @"1";
                 itemList.value = codeModel.code;
                 [itemListMuAry addObject:itemList];
-                _ximaValue +=1;
+                _ximaValue = _ximaValue + itemList.value.integerValue ;
             }
             _ximaTotal = allModel.findCodeArray.count;
         }else{
@@ -481,6 +484,7 @@
         aModel.houseNum = conItemHouseNum.contenText;
         aModel.settlementNum = conItemSettlementNum.contenText;
         aModel.receivableAmount = conItemReceivableAmount.contenText;
+        aModel.itemList = [itemListMuAry copy];
         
         NSString *tempStr = [aModel mj_JSONObject];
         [saveMuAry addObject:tempStr];
@@ -500,6 +504,7 @@
     param[@"bankId"] = conItemBankId.id;
     param[@"buyOrderId"] = self.infoModel.id;
     param[@"copewithPrice"] = conItemCopewithPrice.contenText;
+    param[@"factoryNo"] = conItemFactoryNo.contenText;
     param[@"houseId"] = conItemHouseId.id;
     param[@"imgs"] = self.urlImageStr == nil ? @"" :self.urlImageStr;
     param[@"productItems"] = [saveMuAry mj_JSONString];
@@ -566,8 +571,8 @@
 //        ConItem *conItemReceivableAmount = allModel.dataArray[1][7];//本应付金额
         
         NSDictionary * param = @{};
-        if (!self.isFindCode) {
-            //总码
+        if (self.isFindCode) {
+            //细码
             param = @{
                       @"productId":dataModel.productId,
                       @"productColorId":dataModel.productColorId,
@@ -585,8 +590,8 @@
                       @"productColorId":dataModel.productColorId,
                       @"batchNumber":conItemBatchNumber.contenText,
                       @"shelves":conItemShelves.contenText,
-                      @"value":_zongmaValue,
-                      @"total":_zongmaTotal,
+                      @"value":_zongmaValue == nil ? @"" : _zongmaValue,
+                      @"total":_zongmaTotal == nil ? @"" : _zongmaTotal,
                       @"storageType": @(0),
                       @"buyOrderItemIds":_buyOrderItemIds,
                       };
