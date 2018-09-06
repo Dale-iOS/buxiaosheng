@@ -17,10 +17,10 @@
 #import "ApproverModel.h"
 #import "BXSPurchaChangeWarehousingView.h"
 #import "BaseTableVC+BXSTakePhoto.h"
-#define  SELECTAPPROVER @"选择人员"
-
 #import "LZPurchaseReceiptSaveAlterModel.h"
+#import "ToolsCollectionVC.h"
 
+#define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
 @property (strong,nonatomic)NSMutableArray *allCodeArray;
@@ -32,8 +32,8 @@
 @property (strong,nonatomic)NSArray *houseArr;
 @property (strong,nonatomic)NSArray *unitArr;
 @property (copy,nonatomic)UIImage  *selectImage;
-
-
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
+@property (nonatomic,copy)NSString * urlImageStr;
 
 @property (nonatomic, strong) LZPurchaseReceiptDetailInfoModel *infoModel;
 @property (nonatomic, strong) NSMutableArray <LZPurchaseReceiptDetailCellModel*> *cellInfo;
@@ -97,6 +97,7 @@
 #pragma mark ---- 网络请求 ----
 //接口名称 采购单详情
 - (void)getProductInfo{
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyOrderId":self.bugId
                              };
@@ -108,10 +109,12 @@
             return ;
         }
         
-        _infoModel = [LZPurchaseReceiptDetailInfoModel LLMJParse:baseModel.data];
-        
-        
-        
+        weakSelf.infoModel = [LZPurchaseReceiptDetailInfoModel LLMJParse:baseModel.data];
+
+		//导入网络的图片
+		if (weakSelf.infoModel.imgs != nil) {
+			self.collectionVC.downloadImageUrlList =weakSelf.infoModel.imgs;
+		}
         // 供应名称 联系人 电话 地址
         ConItem *item1 = self.bDataArray[1][2];
         item1.contenText = [baseModel.data valueForKey:@"factoryName"];
@@ -124,28 +127,28 @@
         
         //仓库-供应商单号
         ConItem *item10 = self.bDataArray[1][0];
-        item10.contenText = _infoModel.houseName;
+        item10.contenText = weakSelf.infoModel.houseName;
         
         ConItem *item11 = self.bDataArray[1][1];
-        item11.contenText = _infoModel.factoryNo;
+        item11.contenText = weakSelf.infoModel.factoryNo;
         
         
         // 应付 - 实付 - 笨蛋欠款 - 付款方式 - 备注
         ConItem *item01 = self.bDataArray[0][0];
-        item01.contenText = _infoModel.copewithPrice;
+        item01.contenText = weakSelf.infoModel.copewithPrice;
         
         ConItem *item02 = self.bDataArray[0][1];
-        item02.contenText = _infoModel.realpayPrice;;
+        item02.contenText = weakSelf.infoModel.realpayPrice;;
         
         ConItem *item03 = self.bDataArray[0][2];
-        item03.contenText = _infoModel.arrearsPrice;
+        item03.contenText = weakSelf.infoModel.arrearsPrice;
         
         ConItem *item04 = self.bDataArray[0][3];
-        item04.contenText = _infoModel.bankName;
-        item04.id = _infoModel.bankId;
+        item04.contenText = weakSelf.infoModel.bankName;
+        item04.id = weakSelf.infoModel.bankId;
         
         ConItem *item05 = self.bDataArray[0][4];
-        item05.contenText = _infoModel.remark;
+        item05.contenText = weakSelf.infoModel.remark;
         
         [self.mainTable reloadData];
         
@@ -160,6 +163,7 @@
 
 //口名称 采购单产品详情
 - (void)getProductDetail{
+	WEAKSELF
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyOrderId":self.bugId
                              };
@@ -169,12 +173,12 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _cellInfo = [LZPurchaseReceiptDetailCellModel LLMJParse:baseModel.data];
+        weakSelf.cellInfo = [LZPurchaseReceiptDetailCellModel LLMJParse:baseModel.data];
         
         
         self.baseModel = baseModel;
         self.allCodeArray = [BXSAllCodeModel LLMJParse:baseModel.data];
-        if (_isFindCode && self.allCodeArray.count >0) {
+        if (weakSelf.isFindCode && self.allCodeArray.count >0) {
             [self.allCodeArray setValue:@"YES" forKey:@"isFindCode"];
         }
         [self initAllCodeData];
@@ -246,7 +250,38 @@
 }
 ///相册选择 --多处用到写成分类避免冗余
 - (void)setTableFooter {
-    [self setTableFooterTakePhoto];
+
+	UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 140)];
+
+	UIView *bacView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, APPWidth, 100)];
+	[footer addSubview:bacView];
+	bacView.backgroundColor = [UIColor whiteColor];
+
+	UILabel *photoLable = [UILabel labelWithColor:CD_Text33 font:FONT(15)];
+	photoLable.frame = CGRectMake(15, 10, 120, 15);
+	photoLable.text = @"图片";
+	[bacView addSubview:photoLable];
+
+	CGFloat addWH = 60.f;
+
+	//Collection
+	CGRect tFrame =CGRectMake(0, photoLable.bottom + (bacView.height - photoLable.bottom - addWH)/2, APPWidth, ((APPWidth-6*10)/5 + 30));//这个高度根据屏幕去算的暂时写死
+	_collectionVC = [[ToolsCollectionVC alloc]init];
+	self.collectionVC.maxCountTF = @"5";//最多选择5张
+	_collectionVC.columnNumberTF = @"4";
+	_collectionVC.view.frame = tFrame;
+	_collectionVC.view.backgroundColor = [UIColor whiteColor];
+	[self addChildViewController:_collectionVC];
+	[bacView addSubview:_collectionVC.view];
+	[_collectionVC didMoveToParentViewController:self];
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0,APPWidth, ((APPWidth-6*10)/5 + 30))];
+	[self.collectionVC.view addSubview:self.collectionVC.mainCollectionView];
+
+	bacView.height = self.collectionVC.view.bottom;
+	footer.height = bacView.bottom + 20;
+	self.mainTable.tableFooterView = footer;
+
+//    [self setTableFooterTakePhoto];
 }
 - (void)loadBottomData  {
     
@@ -349,6 +384,13 @@
 #pragma mark ---- 网络请求 ----
 - (void)setupData{
     
+}
+- (void)requestImage{
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.urlImageStr = urlStr;
+		[weakSelf addCollect];
+	}];
 }
 
 /// post整个数据--最终的数据上传
@@ -635,7 +677,7 @@
         /// 人员选择
         if ([title isEqualToString:SELECTAPPROVER]) {
             weakSelf.selectApprover = souceArr[row];
-            [weakSelf addCollect];
+            [weakSelf requestImage];
             
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

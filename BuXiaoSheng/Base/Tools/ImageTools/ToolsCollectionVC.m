@@ -380,9 +380,10 @@
 		}
 		self.maxCountTF =  [NSString stringWithFormat:@"%zd",tCount];
 		for (int j = 0; j<tDownloadImageUrlList.count ; j ++) {
-			[self.selectedPhotos addObject:
-			 [NSURL URLWithString:tDownloadImageUrlList[j]]];
+			[self.selectedPhotos addObject:[NSURL URLWithString:tDownloadImageUrlList[j]]];
+			NSLog(@"%@",self.selectedPhotos);
 		}
+		[self.mainCollectionView reloadData];
 	}
 }
 
