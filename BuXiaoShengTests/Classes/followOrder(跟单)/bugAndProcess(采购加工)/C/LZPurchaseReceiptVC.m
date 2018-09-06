@@ -17,7 +17,7 @@
 #import "BaseTableVC+BXSTakePhoto.h"
 #import "LZPurchaseReceiptDataModel.h"
 #import "LZPurchaseReceiptSaveModel.h"
-
+#import "ToolsCollectionVC.h"
 #define  SELECTAPPROVER @"选择人员"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
@@ -32,8 +32,9 @@
 @property (copy,nonatomic)UIImage  *selectImage;
 @property (strong,nonatomic)LZPurchaseReceiptDataModel *dataModel;
 /// UI
-
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 @property (strong,nonatomic)UIButton * addPhotoButton;
+@property (nonatomic,copy)NSString * urlImageStr;
 @end
 
 @implementation LZPurchaseReceiptVC
@@ -139,7 +140,38 @@
 }
 ///相册选择 --多处用到写成分类避免冗余
 - (void)setTableFooter {
-    [self setTableFooterTakePhoto];
+	UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 140)];
+
+	UIView *bacView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, APPWidth, 100)];
+	[footer addSubview:bacView];
+	bacView.backgroundColor = [UIColor whiteColor];
+
+	UILabel *photoLable = [UILabel labelWithColor:CD_Text33 font:FONT(15)];
+	photoLable.frame = CGRectMake(15, 10, 120, 15);
+	photoLable.text = @"图片";
+	[bacView addSubview:photoLable];
+
+	CGFloat addWH = 60.f;
+
+	//Collection
+	CGRect tFrame =CGRectMake(0, photoLable.bottom + (bacView.height - photoLable.bottom - addWH)/2, APPWidth, ((APPWidth-6*10)/5 + 30));//这个高度根据屏幕去算的暂时写死
+	_collectionVC = [[ToolsCollectionVC alloc]init];
+	self.collectionVC.maxCountTF = @"5";//最多选择5张
+	_collectionVC.columnNumberTF = @"4";
+	_collectionVC.view.frame = tFrame;
+	_collectionVC.view.backgroundColor = [UIColor whiteColor];
+	[self addChildViewController:_collectionVC];
+	[bacView addSubview:_collectionVC.view];
+	[_collectionVC didMoveToParentViewController:self];
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0,APPWidth, ((APPWidth-6*10)/5 + 30))];
+	[self.collectionVC.view addSubview:self.collectionVC.mainCollectionView];
+
+	bacView.height = self.collectionVC.view.bottom;
+	footer.height = bacView.bottom + 20;
+	self.mainTable.tableFooterView = footer;
+
+	//移除原来的图片布局
+   // [self setTableFooterTakePhoto];
 }
 - (void)loadBottomData  {
     
@@ -201,6 +233,7 @@
 }
 #pragma mark ---- 网络请求 ----
 - (void)setupData{
+	WEAKSELF
     //    接口名称 采购加工跟踪-未处理详情
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"buyId":self.bugId};
@@ -211,13 +244,13 @@
             return ;
         }
         
-        _dataModel = [LZPurchaseReceiptDataModel LLMJParse:baseModel.data];
+        weakSelf.dataModel = [LZPurchaseReceiptDataModel LLMJParse:baseModel.data];
         
         
         
         self.baseModel = baseModel;
         self.allCodeArray = [BXSAllCodeModel LLMJParse:baseModel.data[@"itemList"]];
-        if (_isFindCode && self.allCodeArray.count >0) {
+        if (weakSelf.isFindCode && self.allCodeArray.count >0) {
             [self.allCodeArray setValue:@"YES" forKey:@"isFindCode"];
         }
         [self initAllCodeData];
@@ -318,7 +351,7 @@
                              @"factoryId":self.dataModel.factoryId,
                              @"factoryNo":conItemFactoryNo.contenText,
                              @"houseId":conItemHouseId.id,
-                             @"imgs":@"",
+							 @"imgs":self.urlImageStr == nil ? @"" :self.urlImageStr,
                              @"productItems":[saveMuAry mj_JSONString],
                              @"purchaseType":@(0),
                              @"realpayPrice":conItemRealpayPrice.contenText,
@@ -534,7 +567,8 @@
         /// 人员选择
         if ([title isEqualToString:SELECTAPPROVER]) {
             weakSelf.selectApprover = souceArr[row];
-            [weakSelf addCollect];
+			//发送图片 然后直接提交
+			[weakSelf requestImage];
             
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -551,7 +585,13 @@
     [BYAlertHelper sharedBYAlertHelper].addSubviews(@[head,sheet]).showInWindow();
     
 }
-
+- (void)requestImage{
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.urlImageStr = urlStr;
+		[weakSelf addCollect];
+	}];
+}
 
 
 #pragma mark ---- table ----
