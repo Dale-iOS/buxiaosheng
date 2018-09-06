@@ -9,5 +9,8 @@
 #import "BaseViewController.h"
 
 @interface LLBankDetailListChildVc : BaseViewController
-
+@property(nonatomic ,assign)NSInteger dateType;
+@property(nonatomic ,copy)NSString * startDate;
+@property(nonatomic ,copy)NSString * endDate;
+@property(nonatomic ,copy)NSString * bankId;
 @end
