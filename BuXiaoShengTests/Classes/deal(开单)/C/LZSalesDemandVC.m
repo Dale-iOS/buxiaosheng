@@ -20,6 +20,7 @@
 #import "LZSaleOrderListVC.h"
 #import "UITextField+PopOver.h"
 #import "LZWKWebViewVC.h"
+#import "ToolsCollectionVC.h"
 
 @interface LZSalesDemandVC ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,SalesDemandCellDelegate,UITextFieldDelegate>{
     NSString *_orderId;//开单成功后返回的本订单的单号
@@ -29,6 +30,9 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) NSMutableArray <productListModel *>* dataMuArray;
+@property (nonatomic, strong) UIView *ViImage;
+@property (nonatomic, strong) UILabel *labImage;
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 ///客户名字
 @property (nonatomic, strong) TextInputCell *nameCell;
 ///客户电话
@@ -50,6 +54,7 @@
 @property (nonatomic,strong) UITableView  * seletedTableView;
 @property (nonatomic, strong) UIView *lineView1;
 @property (nonatomic, strong) UIView *lineView2;
+@property (nonatomic, strong) UIView *lineView3;
 ///下一步按钮
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic,strong) NSMutableArray <productListModel*>  * listModels;
@@ -216,7 +221,7 @@
     .topSpaceToView(self.footerView, 0)
     .widthIs(APPWidth)
     .heightIs(65);
-    
+
     //新增按钮
     UIButton *addBtn = [UIButton new];
     addBtn.backgroundColor = [UIColor whiteColor];
@@ -235,10 +240,28 @@
     .leftSpaceToView(self.footerView, 0)
     .widthIs(APPWidth)
     .heightIs(10);
-    
+
+	self.ViImage = [[UIView alloc]init];
+	self.ViImage.backgroundColor = [UIColor whiteColor];
+	[self.footerView addSubview:self.ViImage];
+	self.ViImage.sd_layout
+	.leftSpaceToView(self.footerView, 0)
+	.topSpaceToView(self.lineView1, 0)
+	.widthIs(APPWidth)
+	.heightIs(132);//这个高度根据屏幕尺寸去算-->这个高度为 图片的lable和collection高的总和
+	//设置图片信息
+	[self setupImageView];
+
+	//第三条灰色line
+	self.lineView3.sd_layout
+	.topSpaceToView(self.ViImage, 0)
+	.leftSpaceToView(self.footerView, 0)
+	.widthIs(APPWidth)
+	.heightIs(10);
+
     //客户名字
     self.nameCell.sd_layout
-    .topSpaceToView(self.lineView1, 0)
+    .topSpaceToView(self.lineView3, 0)
     .leftSpaceToView(self.footerView, 0)
     .widthIs(APPWidth)
     .heightIs(49);
@@ -292,7 +315,31 @@
     .widthIs(APPWidth)
     .heightIs(79);
 }
+/**
+ 设置图片
+ */
+- (void)setupImageView{
+	//图片
+	self.labImage =[[UILabel alloc]initWithFrame:CGRectMake(10, 0, APPWidth, 28)];
+	self.labImage.textColor = CD_Text33;
+	self.labImage.font = FONT(14);
+	self.labImage.text = @"图片";
+	self.labImage.backgroundColor = [UIColor whiteColor];
+	[self.ViImage addSubview:self.labImage];
 
+    //Collection
+	CGRect tFrame =CGRectMake(0, 28, APPWidth, 104);//这个高度根据屏幕去算的暂时写死
+	_collectionVC = [[ToolsCollectionVC alloc]init];
+	self.collectionVC.maxCountTF = @"5";//最多选择5张
+	_collectionVC.columnNumberTF = @"4";
+	_collectionVC.view.frame = tFrame;
+	_collectionVC.view.backgroundColor = [UIColor whiteColor];
+	[self addChildViewController:_collectionVC];
+	[self.ViImage addSubview:_collectionVC.view];
+	[_collectionVC didMoveToParentViewController:self];
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0, APPWidth, 104)];
+	[self.collectionVC.view addSubview:self.collectionVC.mainCollectionView];
+}
 #pragma mark ----- 网络请求 ------
 //功能用到产品列表
 - (void)setupProductData
@@ -673,7 +720,15 @@
     }
     return lineView1;
 }
-
+- (UIView *)lineView3
+{
+	if (!_lineView3) {
+		UIView *view = [[UIView alloc]init];
+		view.backgroundColor = LZHBackgroundColor;
+		[self.footerView addSubview:(_lineView3 = view)];
+	}
+	return _lineView3;
+}
 - (TextInputCell *)nameCell
 {
     if (!nameCell) {
@@ -812,7 +867,6 @@
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationUnknown;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
