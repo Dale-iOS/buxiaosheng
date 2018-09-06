@@ -21,6 +21,7 @@
     self.view.backgroundColor = LZHBackgroundColor;
     //修复左滑返回
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

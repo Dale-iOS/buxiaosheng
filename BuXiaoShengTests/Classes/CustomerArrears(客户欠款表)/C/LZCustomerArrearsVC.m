@@ -10,7 +10,6 @@
 #import "LZChooseArrearClientVC.h"
 #import "LZArrearClientModel.h"
 #import "LZArrearClientCell.h"
-
 static NSInteger const pageSize = 15;
 
 @interface LZCustomerArrearsVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -21,8 +20,10 @@ static NSInteger const pageSize = 15;
 ///分段选择器背景
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray<LZArrearClientModel*> *lists;
-@property(nonatomic,strong)UIView *headView;
+//@property(nonatomic,strong)UIView *headView;
 @property (nonatomic,assign) NSInteger  pageIndex;//页数
+//tableView的头部视图
+@property(nonatomic ,strong)LLArrearsTableHeaderView * tableHeaderView;
 @end
 
 @implementation LZCustomerArrearsVC
@@ -34,84 +35,46 @@ static NSInteger const pageSize = 15;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupListData];
+     [self.navigationController setNavigationBarHidden:true animated:true];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 
 - (void)setupUI
 {
+   
+   
     self.pageIndex = 1;
-    self.navigationItem.titleView = [Utility navTitleView:@"客户欠款表"];
-    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
+//    self.navigationItem.titleView = [Utility navTitleView:@"客户欠款表"];
+//    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(toScreenClick) image:IMAGE(@"screen1")];
     self.view.backgroundColor = [UIColor whiteColor];
     
     //设置tableviewHeadView
-    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 39)];
-    _headView.backgroundColor = [UIColor grayColor];
-    UILabel *oneLbl = [[UILabel alloc]init];
-    oneLbl.font = FONT(14);
-    oneLbl.textColor = CD_Text33;
-    oneLbl.textAlignment = NSTextAlignmentCenter;
-    oneLbl.text = @"客户名称";
-    oneLbl.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
-    [_headView addSubview:oneLbl];
-    [oneLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.equalTo(_headView);
-        make.width.mas_offset(APPWidth *0.2);
-        make.height.mas_offset(39);
-    }];
-    
-    UILabel *twoLbl = [[UILabel alloc]init];
-    twoLbl.font = FONT(14);
-    twoLbl.textColor = CD_Text33;
-    twoLbl.textAlignment = NSTextAlignmentCenter;
-    twoLbl.text = @"应收借欠";
-    twoLbl.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
-    [_headView addSubview:twoLbl];
-    [twoLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(oneLbl.mas_right);
-        make.top.equalTo(_headView);
-        make.width.mas_offset(APPWidth *0.3);
-        make.height.mas_offset(39);
-    }];
-    UILabel *threeLbl = [[UILabel alloc]init];
-    threeLbl.font = FONT(14);
-    threeLbl.textColor = CD_Text33;
-    threeLbl.textAlignment = NSTextAlignmentCenter;
-    threeLbl.text = @"最后还款日期";
-    threeLbl.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
-    [_headView addSubview:threeLbl];
-    [threeLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(twoLbl.mas_right);
-        make.top.equalTo(_headView);
-        make.width.mas_offset(APPWidth *0.3);
-        make.height.mas_offset(39);
-    }];
-    UILabel *fourLbl = [[UILabel alloc]init];
-    fourLbl.font = FONT(14);
-    fourLbl.textColor = CD_Text33;
-    fourLbl.textAlignment = NSTextAlignmentCenter;
-    fourLbl.text = @"业务员";
-    fourLbl.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
-    [_headView addSubview:fourLbl];
-    [fourLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(threeLbl .mas_right);
-        make.top.equalTo(_headView);
-        make.width.mas_offset(APPWidth *0.2);
-        make.height.mas_offset(39);
-    }];
-    
-    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    if (@available(iOS 11.0, *)) {
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
     _tableView.backgroundColor = LZHBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.tableHeaderView = _headView;
     _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
+    _tableView.tableHeaderView = self.tableHeaderView;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
     WEAKSELF;
     _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         weakSelf.pageIndex = 1;
         [weakSelf setupListData];
     }];
+    
+    UIView * navView = [self setupNavView];
+    [self.view addSubview:navView];
 }
 
 - (MJRefreshFooter *)reloadMoreData {
@@ -220,7 +183,7 @@ static NSInteger const pageSize = 15;
     return cell;
 }
 
-- (void)toScreenClick
+- (void)rightBtnClick
 {
     LZChooseArrearClientVC *vc = [[LZChooseArrearClientVC alloc]init];
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
@@ -231,6 +194,9 @@ static NSInteger const pageSize = 15;
         [self setupListData];
     }];
 }
+-(void)backBtnClick {
+    [self.navigationController popViewControllerAnimated:true];
+}
 
 #pragma mark - Getter && Setter
 - (NSMutableArray<LZArrearClientModel *> *)lists {
@@ -239,6 +205,44 @@ static NSInteger const pageSize = 15;
     }
     return _lists;
 }
+-(LLArrearsTableHeaderView *)tableHeaderView {
+    if (!_tableHeaderView) {
+        _tableHeaderView = [[LLArrearsTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 230)];
+    }
+    return _tableHeaderView;
+}
+-(UIView*)setupNavView {
+    UIView * navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, LLNavViewHeight)];
+    navView.backgroundColor = [UIColor clearColor];
+    UIButton * backBtn = [UIButton new];
+    [backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [navView addSubview:backBtn];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"backWhite"] forState:UIControlStateNormal];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(navView).offset(12);
+        make.bottom.equalTo(navView.mas_bottom).offset(-10);
+    }];
+    UILabel * titleLable = [UILabel new];
+    titleLable.textColor = [UIColor whiteColor];
+    [navView addSubview:titleLable];
+    titleLable.text = @"客户欠款表";
+    titleLable.font = [UIFont boldSystemFontOfSize:16];
+    [titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(navView);
+         make.bottom.equalTo(navView.mas_bottom).offset(-10);
+    }];
+    
+    UIButton * rightBtn = [UIButton new];
+    [navView addSubview:rightBtn];
+    [rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"screenWhite"] forState:UIControlStateNormal];
+    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(navView).offset(-12);
+        make.bottom.equalTo(navView.mas_bottom).offset(-10);
+    }];
+    
+    return navView;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -246,4 +250,63 @@ static NSInteger const pageSize = 15;
 }
 
 
+@end
+
+@implementation LLArrearsTableHeaderView
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        UIImageView *bgIv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrearHeader"]];
+        [self addSubview:bgIv];
+        [bgIv mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self);
+            make.bottom.equalTo(self).offset(-40);
+        }];
+        
+        self.numberMoenyLable = [UILabel new];
+        self.numberMoenyLable.text = @"510,219.10";
+        [bgIv addSubview:self.numberMoenyLable];
+        self.numberMoenyLable.font = [UIFont systemFontOfSize:30];
+        self.numberMoenyLable.textColor = [UIColor whiteColor];
+        self.numberMoenyLable.textAlignment = NSTextAlignmentCenter;
+        [self.numberMoenyLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(bgIv);
+        }];
+        self.messageLale = [UILabel new];
+        self.messageLale.text = @"总欠款 (元)";
+        [bgIv addSubview:self.messageLale];
+        self.messageLale.font = [UIFont systemFontOfSize:20];
+        self.messageLale.textColor = [UIColor whiteColor];
+        self.messageLale.textAlignment = NSTextAlignmentCenter;
+        [self.messageLale mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(bgIv);
+            make.top.equalTo(self.numberMoenyLable.mas_bottom).offset(20);
+        }];
+        
+        UIView * titleView = [UIView new];
+        titleView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [self addSubview:titleView];
+        [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self);
+            make.top.equalTo(bgIv.mas_bottom);
+        }];
+        NSArray * titles = @[@"客户名称",@"应收借欠",@"最后还款日期",@"业务员"];
+        __block CGFloat width = SCREEN_WIDTH/titles.count;
+        [titles enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UILabel * lable = [UILabel new];
+            [titleView addSubview:lable];
+            lable.textColor = [UIColor darkGrayColor];
+            lable.textAlignment = NSTextAlignmentCenter;
+            lable.font = [UIFont systemFontOfSize:16];
+            lable.text = obj;
+            [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(titleView).offset(idx * width);
+                make.top.bottom.equalTo(titleView);
+                make.width.mas_equalTo(width);
+            }];
+        }];
+    }
+    return self;
+}
 @end

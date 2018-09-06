@@ -816,6 +816,7 @@
 		8E69B62D213F8CE5001751CC /* CellImageCollVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E69B629213F8CE5001751CC /* CellImageCollVi.m */; };
 		8E69B62E213F8CE5001751CC /* ToolsCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E69B62A213F8CE5001751CC /* ToolsCollectionVC.m */; };
 		8E898552212C0E55002E1671 /* LZSetImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E898551212C0E55002E1671 /* LZSetImagePickerController.m */; };
+		A010EF6F2140D49F00ACC714 /* LLBankDetailListChildVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A010EF6E2140D49F00ACC714 /* LLBankDetailListChildVc.m */; };
 		A012E62220FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A012E62320FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */; };
 		A01690BB2119DA8500A7D8F9 /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01690AF2119DA8400A7D8F9 /* MFPageView.m */; };
@@ -2038,6 +2039,8 @@
 		8E898550212C0E55002E1671 /* LZSetImagePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZSetImagePickerController.h; sourceTree = "<group>"; };
 		8E898551212C0E55002E1671 /* LZSetImagePickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZSetImagePickerController.m; sourceTree = "<group>"; };
 		91F2B0363505C484B255E4BA /* Pods_BuXiaoSheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuXiaoSheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A010EF6D2140D49F00ACC714 /* LLBankDetailListChildVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBankDetailListChildVc.h; sourceTree = "<group>"; };
+		A010EF6E2140D49F00ACC714 /* LLBankDetailListChildVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBankDetailListChildVc.m; sourceTree = "<group>"; };
 		A012E61F20FD965700329D69 /* BuXiaoSheng.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuXiaoSheng.entitlements; sourceTree = "<group>"; };
 		A012E62020FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+LLJPuchAppDelegate.h"; sourceTree = "<group>"; };
 		A012E62120FD974100329D69 /* AppDelegate+LLJPuchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+LLJPuchAppDelegate.m"; sourceTree = "<group>"; };
@@ -4651,6 +4654,8 @@
 				344F22A4208F403D009ADA33 /* DocumentBankDetailViewController.m */,
 				344F2294208EDEDB009ADA33 /* BankConversionViewController.h */,
 				344F2295208EDEDB009ADA33 /* BankConversionViewController.m */,
+				A010EF6D2140D49F00ACC714 /* LLBankDetailListChildVc.h */,
+				A010EF6E2140D49F00ACC714 /* LLBankDetailListChildVc.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -5719,6 +5724,7 @@
 				34EE5D8420A68E7700A2C9B5 /* OtherCostViewController.m in Sources */,
 				B50505AD209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
 				34D705B520BE85C700F0940C /* LZOutboundSectionView.m in Sources */,
+				A010EF6F2140D49F00ACC714 /* LLBankDetailListChildVc.m in Sources */,
 				344E4D3C210EAD4D0031DCE8 /* kVoid.m in Sources */,
 				346C2289210E03E2004AAC88 /* LZBackOrderItem.m in Sources */,
 				A01690BF2119DA8500A7D8F9 /* MFSegmentViewCell.m in Sources */,
