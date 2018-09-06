@@ -46,6 +46,8 @@
 
 - (void)setupUI
 {
+    self.title = @"银行明细";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"screen1"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClick)];
     [self.view addSubview:self.tableViewHeadView];
     [self.view addSubview:self.titleView];
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,19 +97,7 @@
     [self scrollViewDidEndDecelerating:scrollView];
 }
 
-//
-//- (void)navigationSetupClick{
-//
-//    LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
-//    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
-//    [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
-//    [vc setSelectIDBlock:^(NSString *typeId, NSString *bankId, NSString *incomeId) {
-//        _typeId = typeId;
-//        _bankId = bankId;
-//        _incometypeId = incomeId;
-//    }];
-//}
-//
+
 #pragma mark --- 日历 ---
 //初始化日历
 - (void)setupPageView {
@@ -231,6 +221,22 @@
 - (void)dateBtnOnClick
 {
    _bottomView.hidden = NO;
+}
+/// MARK: ---- 导航右边的点击时间
+-(void)rightBarButtonItemClick {
+   
+        LZChooseBankTypeVC *vc = [[LZChooseBankTypeVC alloc]init];
+        CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+        [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
+        [vc setSelectIDBlock:^(NSString *typeId, NSString *bankId, NSString *incomeId) {
+            LLBankDetailListChildVc * currentcChildVc = self.childViewControllers[self.scrollIndex];
+            currentcChildVc.dateType = [typeId integerValue];
+             currentcChildVc.bankId = bankId;
+             currentcChildVc.incomeId = incomeId;
+             currentcChildVc.dateType = self.scrollIndex+1;
+        }];
+   
+
 }
 /// MARK: ---- 日历按钮的点击方法
 -(void)seletedTimeIvClick{

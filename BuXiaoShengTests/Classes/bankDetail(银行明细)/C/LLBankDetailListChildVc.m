@@ -53,6 +53,7 @@
                              @"endDate":self.endDate?:@"",
                              @"dateType":@(self.dateType),
                              @"bankId":self.bankId,
+                             @"incomeType":self.incomeId ? :@"",
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
         LLBaseModel * basModel = [LLBaseModel LLMJParse:response];

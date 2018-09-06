@@ -62,9 +62,12 @@ static NSInteger const pageSize = 15;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
-    _tableView.tableHeaderView = self.tableHeaderView;
+    //_tableView.tableHeaderView = self.tableHeaderView;
+    [self.view addSubview:self.tableHeaderView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        //make.edges.equalTo(self.view);
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.tableHeaderView.mas_bottom);
     }];
     
     WEAKSELF;

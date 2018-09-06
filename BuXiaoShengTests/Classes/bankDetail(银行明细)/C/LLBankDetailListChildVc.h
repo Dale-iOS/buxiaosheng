@@ -13,4 +13,5 @@
 @property(nonatomic ,copy)NSString * startDate;
 @property(nonatomic ,copy)NSString * endDate;
 @property(nonatomic ,copy)NSString * bankId;
+@property(nonatomic ,copy)NSString * incomeId;
 @end

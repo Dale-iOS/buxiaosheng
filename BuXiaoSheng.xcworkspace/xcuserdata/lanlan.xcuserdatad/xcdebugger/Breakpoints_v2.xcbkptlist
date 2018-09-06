@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/CustomerArrears(&#x5ba2;&#x6237;&#x6b20;&#x6b3e;&#x8868;)/C/LZCustomerArrearsVC.m"
-            timestampString = "557831111.760022"
+            timestampString = "557910009.673033"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-setupNavView"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/bankDetail(&#x94f6;&#x884c;&#x660e;&#x7ec6;)/C/BankDetailListViewController.m"
-            timestampString = "557909211.100525"
+            timestampString = "557910009.673371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-didaffirmBtnInMonthCalendarWithDateStartStr:andEndStr:"
             landmarkType = "7">
          </BreakpointContent>
