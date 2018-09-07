@@ -5,13 +5,12 @@
 //  Created by 家朋 on 2018/8/6.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
 //  BXSStockPurchaseVC
-
 // --仓库--备货需求
 #import "BXSStockDemandVC.h"
-
+#import "BXSStockPurchaseVC.h"
 #import "BXSStockMachiningVC.h"
 
-#import "BXSStockPurchaseVC.h"
+
 
 @interface BXSStockDemandVC ()<UIScrollViewDelegate>
 

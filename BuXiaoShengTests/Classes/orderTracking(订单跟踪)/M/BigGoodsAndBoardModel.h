@@ -18,6 +18,7 @@
 @property (nonatomic , assign) BOOL              isSelect;
 @property (nonatomic , assign) BOOL              isContentColorRed;
 @property (nonatomic , assign) BOOL              isEditor;
+@property (nonatomic , assign) BOOL              isFake; /// 是否是假单
 
 @end
 
@@ -49,5 +50,6 @@
 @property (nonatomic , copy) NSString              * customerMobile;
 @property (nonatomic , copy) NSString              * customerName;
 @property (nonatomic , copy) NSString              * deposit;
+@property (nonatomic , assign) BOOL              isFake; /// 是否是假单
 
 @end

@@ -5,16 +5,14 @@
 //
 //  Created by 家朋 on 2018/8/6.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  备货需求页面(采购)
 
 #import "BXSStockPurchaseVC.h"
 
 #import "UITextView+Placeholder.h"
 #import "LZChoosseWorkerVC.h"
 #import "LZSearchVC.h"
-
 #import "LZPurchaseModel.h"
-
 #import "BXSStockProductCell.h"
 #import "ConCell.h"
 #import "BXSMachiningBottomView.h"
