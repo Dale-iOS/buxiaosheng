@@ -168,7 +168,6 @@
 		3433D0BF20B56CE0003FFC16 /* SalesDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */; };
 		3434FCF820C90E8200A3B577 /* LZChooseLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */; };
 		3434FCF920C90E8200A3B577 /* LZChooseLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */; };
-		343747E62094134100C64F4C /* SegmentProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747E52094134100C64F4C /* SegmentProcessView.m */; };
 		343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747EE2094207F00C64F4C /* StockTrackingCell.m */; };
 		343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747F5209460F600C64F4C /* SetHomeViewController.m */; };
 		343747FD2094640500C64F4C /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 343747FC2094640500C64F4C /* SettingCell.m */; };
@@ -702,9 +701,6 @@
 		34DD05C02127CE310002AF6C /* BXSStockMachiningProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DD05BC2127CE310002AF6C /* BXSStockMachiningProductCell.m */; };
 		34DE25AD2092BFD6009E7589 /* WithSingleViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */; };
 		34DE25B32092C7F1009E7589 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B22092C7F1009E7589 /* ProcessViewController.m */; };
-		34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */; };
-		34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */; };
-		34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DE25C1209308A8009E7589 /* SegmentDyeingView.m */; };
 		34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */; };
 		34E49B2820A57FB60074F454 /* QQTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E49B2420A57FB60074F454 /* QQTagView.m */; };
 		34E49B2920A57FB60074F454 /* QQTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E49B2620A57FB60074F454 /* QQTagItem.m */; };
@@ -844,6 +840,7 @@
 		A08748C320ECCDF7001FF98E /* LLWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BB20ECCDF7001FF98E /* LLWaitingView.m */; };
 		A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
 		A08748C520ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
+		A0A819062142276400B6DDE9 /* LLColorRegisterVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A819052142276400B6DDE9 /* LLColorRegisterVc.m */; };
 		A0D9D9ED213D376C006A5C80 /* LLWarehouseRightSildeVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */; };
 		A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */; };
 		A0D9D9F3213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */; };
@@ -1262,8 +1259,6 @@
 		3433D0BE20B56CE0003FFC16 /* SalesDemandCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesDemandCell.m; sourceTree = "<group>"; };
 		3434FCF620C90E8200A3B577 /* LZChooseLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZChooseLabelVC.h; sourceTree = "<group>"; };
 		3434FCF720C90E8200A3B577 /* LZChooseLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZChooseLabelVC.m; sourceTree = "<group>"; };
-		343747E42094134100C64F4C /* SegmentProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentProcessView.h; sourceTree = "<group>"; };
-		343747E52094134100C64F4C /* SegmentProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentProcessView.m; sourceTree = "<group>"; };
 		343747ED2094207F00C64F4C /* StockTrackingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockTrackingCell.h; sourceTree = "<group>"; };
 		343747EE2094207F00C64F4C /* StockTrackingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockTrackingCell.m; sourceTree = "<group>"; };
 		343747F4209460F600C64F4C /* SetHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetHomeViewController.h; sourceTree = "<group>"; };
@@ -1856,12 +1851,6 @@
 		34DE25AC2092BFD6009E7589 /* WithSingleViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithSingleViewControllerViewController.m; sourceTree = "<group>"; };
 		34DE25B12092C7F1009E7589 /* ProcessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
 		34DE25B22092C7F1009E7589 /* ProcessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
-		34DE25B42092CB83009E7589 /* DyeingDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyeingDemandViewController.h; sourceTree = "<group>"; };
-		34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyeingDemandViewController.m; sourceTree = "<group>"; };
-		34DE25BD2092FE0E009E7589 /* SegmentDyeingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentDyeingViewController.h; sourceTree = "<group>"; };
-		34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingViewController.m; sourceTree = "<group>"; };
-		34DE25C0209308A8009E7589 /* SegmentDyeingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentDyeingView.h; sourceTree = "<group>"; };
-		34DE25C1209308A8009E7589 /* SegmentDyeingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentDyeingView.m; sourceTree = "<group>"; };
 		34E11040208AF356005E56C1 /* ArrearsNameTextInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrearsNameTextInputCell.h; sourceTree = "<group>"; };
 		34E11041208AF357005E56C1 /* ArrearsNameTextInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrearsNameTextInputCell.m; sourceTree = "<group>"; };
 		34E49B2420A57FB60074F454 /* QQTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQTagView.m; sourceTree = "<group>"; };
@@ -2090,6 +2079,8 @@
 		A08748BD20ECCDF7001FF98E /* LLWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWaitingView.h; sourceTree = "<group>"; };
 		A08748BE20ECCDF7001FF98E /* LLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowser.h; sourceTree = "<group>"; };
 		A08748BF20ECCDF7001FF98E /* LLBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBrowserImageView.h; sourceTree = "<group>"; };
+		A0A819042142276400B6DDE9 /* LLColorRegisterVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorRegisterVc.h; sourceTree = "<group>"; };
+		A0A819052142276400B6DDE9 /* LLColorRegisterVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorRegisterVc.m; sourceTree = "<group>"; };
 		A0D9D9EB213D376C006A5C80 /* LLWarehouseRightSildeVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseRightSildeVc.h; sourceTree = "<group>"; };
 		A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseRightSildeVc.m; sourceTree = "<group>"; };
 		A0D9D9EE213D422F006A5C80 /* LLWarehouseSlideLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideLeftCell.h; sourceTree = "<group>"; };
@@ -3540,23 +3531,21 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */ = {
+		3475420520F5AB7E007F384B /* ColorRegister色卡登记 */ = {
 			isa = PBXGroup;
 			children = (
 				3475424F20F5F596007F384B /* M */,
 				3475420720F5AB8C007F384B /* V */,
 				3475420620F5AB88007F384B /* C */,
 			);
-			path = "DyeingDemand(织染需求)";
+			path = "ColorRegister色卡登记";
 			sourceTree = "<group>";
 		};
 		3475420620F5AB88007F384B /* C */ = {
 			isa = PBXGroup;
 			children = (
-				34DE25B42092CB83009E7589 /* DyeingDemandViewController.h */,
-				34DE25B52092CB83009E7589 /* DyeingDemandViewController.m */,
-				34DE25BD2092FE0E009E7589 /* SegmentDyeingViewController.h */,
-				34DE25BE2092FE0E009E7589 /* SegmentDyeingViewController.m */,
+				A0A819042142276400B6DDE9 /* LLColorRegisterVc.h */,
+				A0A819052142276400B6DDE9 /* LLColorRegisterVc.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3564,10 +3553,6 @@
 		3475420720F5AB8C007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
-				34DE25C0209308A8009E7589 /* SegmentDyeingView.h */,
-				34DE25C1209308A8009E7589 /* SegmentDyeingView.m */,
-				343747E42094134100C64F4C /* SegmentProcessView.h */,
-				343747E52094134100C64F4C /* SegmentProcessView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -5039,7 +5024,7 @@
 				3479056520C50930008C835C /* assign(指派发货) */,
 				3475420020F5A8D9007F384B /* followOrder(跟单) */,
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
-				3475420520F5AB7E007F384B /* DyeingDemand(织染需求) */,
+				3475420520F5AB7E007F384B /* ColorRegister色卡登记 */,
 				34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */,
 				3475420A20F5AD5C007F384B /* warehouse(仓库) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
@@ -5754,7 +5739,6 @@
 				34494DED2091739A00BDB309 /* WarehouseHomeViewController.m in Sources */,
 				3428B8562121685C003F86D7 /* ReimColorHeadCell.m in Sources */,
 				A04F70012119947000CFDE1C /* LLHomeChildContentCollectionCell.m in Sources */,
-				34DE25C2209308A8009E7589 /* SegmentDyeingView.m in Sources */,
 				34E11042208AF357005E56C1 /* ArrearsNameTextInputCell.m in Sources */,
 				B5E288EC20A93B0300D84196 /* LLAuditMangerCell.m in Sources */,
 				B50505BD209AB2DA00CE7E4D /* XLFormTextFieldCell.m in Sources */,
@@ -5785,6 +5769,7 @@
 				348DB84A209ABFC100CD36CD /* DefaultBankCell.m in Sources */,
 				B5B0751B209C3A7300FD53DC /* LLProcessTitleCell.m in Sources */,
 				348DB850209AE3AB00CD36CD /* ModifySubjectViewController.m in Sources */,
+				A0A819062142276400B6DDE9 /* LLColorRegisterVc.m in Sources */,
 				B55ADE0E20A554C7000F9C4A /* LLCashBankModel.m in Sources */,
 				346B6ADC208DBE2100F4B054 /* BankDetailViewController.m in Sources */,
 				343025F1209C405C00869313 /* UIButton+EdgeInsets.m in Sources */,
@@ -5971,7 +5956,6 @@
 				3428B8522121685C003F86D7 /* ReimColorsCell.m in Sources */,
 				3484F51921196729004F419F /* LZAuditDetailModel.m in Sources */,
 				B55ADE1220A555F2000F9C4A /* LLBaseModel.m in Sources */,
-				343747E62094134100C64F4C /* SegmentProcessView.m in Sources */,
 				344F2296208EDEDB009ADA33 /* BankConversionViewController.m in Sources */,
 				348DF23A212964D800D3A76F /* BYPhotoSelectPreveiwVC.m in Sources */,
 				3480AA9720E35B2A00053C5D /* LZAssignDeliveryCell.m in Sources */,
@@ -6010,7 +5994,6 @@
 				3480AAA420E3A80B00053C5D /* LZDepartmentManagerVC.m in Sources */,
 				3417F996211E950300FF29F8 /* LZBackOrderDetialModel.m in Sources */,
 				3465CA0C20DCCCC900BAE415 /* LZChooseCalendarView.m in Sources */,
-				34DE25BF2092FE0E009E7589 /* SegmentDyeingViewController.m in Sources */,
 				B50505A3209AB2DA00CE7E4D /* XLFormButtonCell.m in Sources */,
 				B5E288E420A9332500D84196 /* LLAuditMangerModel.m in Sources */,
 				348DF197212945C800D3A76F /* UIButton+WM.m in Sources */,
@@ -6209,7 +6192,6 @@
 				B577CE9D20AA7FF50001B8B8 /* LLAddNewsPepleContainerCell.m in Sources */,
 				342D951D209057DE0018B363 /* CustomerArrearsTableViewCell.m in Sources */,
 				FF3FA974212D6083009431DA /* ConsultViewController.m in Sources */,
-				34DE25B62092CB83009E7589 /* DyeingDemandViewController.m in Sources */,
 				342CF6632099B603007C329D /* SubjectViewController.m in Sources */,
 				3471DCB220D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
 				343B17FF20A40B2300349A6D /* LoginModel.m in Sources */,
