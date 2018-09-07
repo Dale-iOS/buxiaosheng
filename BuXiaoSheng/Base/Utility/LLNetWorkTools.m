@@ -67,7 +67,19 @@
         // formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
         if (photosArray.count) {
             UIImage *image = photosArray.firstObject;
+            
             NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            NSInteger tMB = (imageData.length/1024)/1024;
+            
+            //这里取到imageData，判断lin长度大于
+            //继续切割
+            if (tMB > 2.0 && tMB <= 4.0) {
+                imageData = UIImageJPEGRepresentation(image, 0.2);
+            }
+            
+            if (tMB > 4.0) {
+                imageData = UIImageJPEGRepresentation(image, 0.1);
+            }
             
             // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
             // 要解决此问题，
