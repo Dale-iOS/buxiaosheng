@@ -841,6 +841,8 @@
 		A08748C420ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
 		A08748C520ECCDF7001FF98E /* LLBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A08748BC20ECCDF7001FF98E /* LLBrowserImageView.m */; };
 		A0A819062142276400B6DDE9 /* LLColorRegisterVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A819052142276400B6DDE9 /* LLColorRegisterVc.m */; };
+		A0A8190C2142561800B6DDE9 /* LLColorRegisterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8190B2142561800B6DDE9 /* LLColorRegisterCell.m */; };
+		A0A8190F214256C300B6DDE9 /* LLColorRegistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8190E214256C300B6DDE9 /* LLColorRegistModel.m */; };
 		A0D9D9ED213D376C006A5C80 /* LLWarehouseRightSildeVc.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */; };
 		A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9EF213D422F006A5C80 /* LLWarehouseSlideLeftCell.m */; };
 		A0D9D9F3213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D9D9F2213D4497006A5C80 /* LLWarehouseSlideHeaderReusableView.m */; };
@@ -2081,6 +2083,10 @@
 		A08748BF20ECCDF7001FF98E /* LLBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBrowserImageView.h; sourceTree = "<group>"; };
 		A0A819042142276400B6DDE9 /* LLColorRegisterVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorRegisterVc.h; sourceTree = "<group>"; };
 		A0A819052142276400B6DDE9 /* LLColorRegisterVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorRegisterVc.m; sourceTree = "<group>"; };
+		A0A8190A2142561800B6DDE9 /* LLColorRegisterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorRegisterCell.h; sourceTree = "<group>"; };
+		A0A8190B2142561800B6DDE9 /* LLColorRegisterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorRegisterCell.m; sourceTree = "<group>"; };
+		A0A8190D214256C300B6DDE9 /* LLColorRegistModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorRegistModel.h; sourceTree = "<group>"; };
+		A0A8190E214256C300B6DDE9 /* LLColorRegistModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorRegistModel.m; sourceTree = "<group>"; };
 		A0D9D9EB213D376C006A5C80 /* LLWarehouseRightSildeVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseRightSildeVc.h; sourceTree = "<group>"; };
 		A0D9D9EC213D376C006A5C80 /* LLWarehouseRightSildeVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWarehouseRightSildeVc.m; sourceTree = "<group>"; };
 		A0D9D9EE213D422F006A5C80 /* LLWarehouseSlideLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWarehouseSlideLeftCell.h; sourceTree = "<group>"; };
@@ -3553,6 +3559,8 @@
 		3475420720F5AB8C007F384B /* V */ = {
 			isa = PBXGroup;
 			children = (
+				A0A8190A2142561800B6DDE9 /* LLColorRegisterCell.h */,
+				A0A8190B2142561800B6DDE9 /* LLColorRegisterCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3931,6 +3939,8 @@
 		3475424F20F5F596007F384B /* M */ = {
 			isa = PBXGroup;
 			children = (
+				A0A8190D214256C300B6DDE9 /* LLColorRegistModel.h */,
+				A0A8190E214256C300B6DDE9 /* LLColorRegistModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -6074,6 +6084,7 @@
 				3434FCF820C90E8200A3B577 /* LZChooseLabelVC.m in Sources */,
 				342398E720FB4259002B81E1 /* BaseCollectionVC.m in Sources */,
 				3453791621099CD300830DF8 /* LZBigGoodsHeadView.m in Sources */,
+				A0A8190F214256C300B6DDE9 /* LLColorRegistModel.m in Sources */,
 				344E4D46210EAD4D0031DCE8 /* GridView.m in Sources */,
 				B50505B1209AB2DA00CE7E4D /* XLFormPickerCell.m in Sources */,
 				B50505C9209AB2DA00CE7E4D /* XLFormRowDescriptor.m in Sources */,
@@ -6097,6 +6108,7 @@
 				B5B07517209C295900FD53DC /* LLProcessCell.m in Sources */,
 				34EA5BC7208B276C0048CFE1 /* NSObject+Category.m in Sources */,
 				B58BF6F820A178D000A8B92B /* UIViewController+CWLateralSlide.m in Sources */,
+				A0A8190C2142561800B6DDE9 /* LLColorRegisterCell.m in Sources */,
 				A01690BE2119DA8500A7D8F9 /* MFSegmentView.m in Sources */,
 				344C488520D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				34EE88E020CC15AF0060D00B /* LZClientReceiptDetailModel.m in Sources */,
