@@ -31,4 +31,5 @@
 @property (nonatomic,copy) NSString *houseNum;//入库数量
 @property (nonatomic,copy) NSString *settlementNum;//结算数量
 @property (nonatomic,copy) NSString *receivableAmount;//本单应收金额
+@property (nonatomic,copy) NSString *buyOrderItemId;
 @end

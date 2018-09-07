@@ -10,6 +10,7 @@
 
 @interface LZPurchaseReceiptDetailVC : BaseTableVC
 @property (nonatomic ,strong) NSString *bugId;
+@property (nonatomic ,strong) NSString *Id;
 /// 外界传入 是否是细码。默认NO
 @property (assign,nonatomic) BOOL isFindCode;
 @end

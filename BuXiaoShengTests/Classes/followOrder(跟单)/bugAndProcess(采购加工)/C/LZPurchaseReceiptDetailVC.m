@@ -485,6 +485,7 @@
         aModel.settlementNum = conItemSettlementNum.contenText;
         aModel.receivableAmount = conItemReceivableAmount.contenText;
         aModel.itemList = [itemListMuAry copy];
+        aModel.buyOrderItemId = dataModel.buyOrderItemId;
         
         NSString *tempStr = [aModel mj_JSONObject];
         [saveMuAry addObject:tempStr];
@@ -602,7 +603,7 @@
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"companyId"] = [BXSUser currentUser].companyId;
-    param[@"approvalId"] = self.bugId;
+    param[@"approvalId"] = self.Id;
     param[@"purchaserId"] = self.selectApprover.id;
     param[@"buyOrderId"] = self.infoModel.id;
     param[@"storageType"] = self.isFindCode == NO ? @(0) : @(1);
