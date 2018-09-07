@@ -10,7 +10,8 @@
 #import "TextInputCell.h"
 #import "LLColorRegistModel.h"
 #import "LLColorRegisterCell.h"
-@interface LLColorRegisterVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+#import "TZImagePickerController.h"
+@interface LLColorRegisterVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property(nonatomic ,strong)UITableView * tableView;
 @property(nonatomic ,strong)UIView * tableHeaderView;
 @property(nonatomic ,strong)UIView * tableFooterView;
@@ -19,6 +20,10 @@
 //图片添加view
 @property(nonatomic ,strong)UICollectionView * photoAddCollectionView;
 @property(nonatomic ,strong)NSMutableArray<LLColorRegistModel*> * modelDatas;
+@property(nonatomic ,strong)NSMutableArray <UIImage *> * imgsArray;
+
+@property(nonatomic ,assign)NSInteger seletedImageIndex;
+
 @end
 
 @implementation LLColorRegisterVc
@@ -99,16 +104,95 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.imgsArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor redColor];
+    LLColorRegisterImageCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLColorRegisterImageCell" forIndexPath:indexPath];
+    cell.indexPath = indexPath;
+    cell.image = self.imgsArray[indexPath.row];
+    WEAKSELF
+    cell.block = ^(LLColorRegisterImageCell *cell) {
+        [weakSelf.imgsArray replaceObjectAtIndex:cell.indexPath.row withObject:[UIImage imageNamed:@"add_image"]];
+        [collectionView reloadItemsAtIndexPaths:@[cell.indexPath]];
+    };
     return cell;
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 10, 0, 10);
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.seletedImageIndex = indexPath.row;
+    UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+      WEAKSELF
+    UIAlertAction * takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf takePhoto:1];
+    }];
+    UIAlertAction * photoLib = [UIAlertAction actionWithTitle:@"从手机相册中选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         [weakSelf takePhoto:2];
+    }];
+    UIAlertAction * canle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
+    [alterVc addAction:takePhoto];
+    [alterVc addAction:photoLib];
+     [alterVc addAction:canle];
+    [self.navigationController presentViewController:alterVc animated:true completion:nil];
+}
+//选择完成回调函数
+ - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+         //获取图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+     NSData * picData = UIImageJPEGRepresentation(image, 0.5);
+     UIImage * newImg = [[UIImage alloc] initWithData:picData];
+     [self dismissViewControllerAnimated:true completion:^{
+         [self.imgsArray replaceObjectAtIndex:self.seletedImageIndex withObject:newImg];
+         [self.photoAddCollectionView reloadData];
+     }];
+     
+        
+     }
+
+ //用户取消选择
+ - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+         [self dismissViewControllerAnimated:YES completion:nil];
+     }
+/// MARK: ---- 选择相册和拍照的方法 1 拍照 2 相册
+-(void)takePhoto:(NSInteger)index {
+   
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&index ==1 ) {
+        UIAlertController * alertC = [UIAlertController alertControllerWithTitle:@"摄像头访问受限" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertC animated:YES completion:nil];
+        UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertC addAction:action];
+        return;
+    }
+        /// 用户是否允许摄像头使用
+        NSString * mediaType = AVMediaTypeVideo;
+        AVAuthorizationStatus  authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+        /// 不允许弹出提示框
+        if (authorizationStatus == AVAuthorizationStatusRestricted|| authorizationStatus == AVAuthorizationStatusDenied) {
+            NSString *message = [NSString stringWithFormat:[NSBundle tz_localizedStringForKey:@"Please allow %@ to access your camera in \"Settings -> Privacy -> Camera\""],appName];
+            UIAlertController * alertC = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertC addAction:action];
+            [self presentViewController:alertC animated:YES completion:nil];
+           
+            return;
+        }
+  
+        
+    //初始化UIImagePickerController类
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = true;
+    //判断数据来源为相册
+    picker.sourceType = index ==2 ? UIImagePickerControllerSourceTypeSavedPhotosAlbum:UIImagePickerControllerSourceTypeCamera;
+      //设置代理
+       picker.delegate = self;
+        //打开相册
+     [self presentViewController:picker animated:YES completion:nil];
 }
 /// MARK: ---- 导航右边按钮的点击
 -(void)rightBarButtonItemClick {
@@ -156,7 +240,7 @@
 }
 -(UIView *)tableFooterView {
     if (!_tableFooterView) {
-        _tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 200)];
+        _tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 305)];
         _tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         UIView * addItemView = [UIView new];
@@ -183,7 +267,7 @@
         [remakView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self->_tableFooterView);
             make.top.equalTo(addItemView.mas_bottom).offset( 10);
-            make.height.mas_equalTo(45);
+            make.height.mas_equalTo(100);
         }];
         
         UIView * photoView = [UIView new];
@@ -212,7 +296,7 @@
         [photoView addSubview:self.photoAddCollectionView];
         self.photoAddCollectionView.delegate = self;
         self.photoAddCollectionView.dataSource = self;
-        [self.photoAddCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [self.photoAddCollectionView registerClass:[LLColorRegisterImageCell class] forCellWithReuseIdentifier:@"LLColorRegisterImageCell"];
         [self.photoAddCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(photoView);
             make.top.equalTo(photoLable .mas_bottom).offset(10);
@@ -232,7 +316,16 @@
     }
     return _modelDatas;
 }
-
+-(NSMutableArray<UIImage *> *)imgsArray {
+    if (!_imgsArray) {
+        _imgsArray = [NSMutableArray array];
+        for (int i = 0; i<5; i++) {
+            UIImage * image = [UIImage imageNamed:@"add_image"];
+            [_imgsArray addObject:image];
+        }
+    }
+    return _imgsArray;
+}
 /*
 #pragma mark - Navigation
 
