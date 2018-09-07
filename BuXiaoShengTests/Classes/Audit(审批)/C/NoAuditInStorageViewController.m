@@ -150,6 +150,7 @@ static NSInteger const pageSize = 15;
     //id
     LZPurchaseReceiptDetailVC *vc = [[LZPurchaseReceiptDetailVC alloc]init];
     vc.bugId = model.buyId;
+    vc.Id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
