@@ -219,7 +219,7 @@
 }
 -(UIView *)tableHeaderView {
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 120)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 110)];
         _tableHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         NSArray * titles = @[@"客户名称",@"手机号码"];
         NSArray * placeholders = @[@"请输入客户名称",@""];
