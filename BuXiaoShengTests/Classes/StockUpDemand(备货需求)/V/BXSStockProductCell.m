@@ -73,6 +73,7 @@
 -(void)setModel:(LZPurchaseModel *)model {
     _model = model;
     _nameTF.text = model.productName;
+	_colorTF.text =model.productColorName;
     _needCountTF.text = model.totalNumber;
  
 }

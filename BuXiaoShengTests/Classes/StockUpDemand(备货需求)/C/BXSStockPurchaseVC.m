@@ -265,8 +265,8 @@
     WEAKSELF;
     rightSeletedVc.SearchVCBlock = ^(LLSalesColorListModel *seletedModel) {
         
-        model.productColorId = seletedModel.id;
-        model.productColorName = seletedModel.name;
+        model.productColorId = seletedModel.id;//颜色的id
+        model.productColorName = seletedModel.name;//颜色名字
         [weakSelf.mainTable reloadData];
     };
     
@@ -346,6 +346,7 @@
         case 0:{
             BXSStockProductCell *cell = [tableView dequeueReusableCellWithIdentifier:[BXSStockProductCell cellID]];
             LZPurchaseModel *model = self.purchaseModelArray[indexPath.row];
+			cell.indexPath = indexPath;
             cell.model = model;
             cell.delegate = self;
 //            cell.clickEditorProductNameDataBlock = ^{
