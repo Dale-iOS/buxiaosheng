@@ -55,6 +55,7 @@
     [self setupFooter];
     [self setupBottom];
     [self loadDataWithType:0];
+	[self clickAddProduct];
 }
 
 - (void)setup {
