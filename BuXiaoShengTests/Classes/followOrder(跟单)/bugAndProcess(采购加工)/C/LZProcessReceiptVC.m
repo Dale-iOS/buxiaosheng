@@ -226,7 +226,7 @@
         ConItem *item4 = [[ConItem alloc]initWithTitle:@"结算单位" kpText:@"请选择结算单位" conType:ConTypeA];
         ConItem *item5 = [[ConItem alloc]initWithTitle:@"批号" kpText:@"请输入批号" conType:ConTypeB];
         ConItem *item6 = [[ConItem alloc]initWithTitle:@"货架" kpText:@"请输入货架" conType:ConTypeB];
-        ConItem *item7 = [[ConItem alloc]initWithTitle:@"单价" kpText:@"0" conType:ConTypeB];
+        ConItem *item7 = [[ConItem alloc]initWithTitle:@"单价" kpText:@"0" conType:ConTypeB withKeyboardType:UIKeyboardTypeNumberPad];
         
         ConItem *item8 = [[ConItem alloc]initWithTitle:@"采购数量" kpText:@"0" conType:ConTypeC];
         

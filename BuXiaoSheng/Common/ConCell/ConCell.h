@@ -47,10 +47,15 @@ typedef NS_ENUM(NSUInteger,ConType) {
 @property (copy,nonatomic)NSString *kpText;
 @property (copy,nonatomic)NSString *contenText;
 @property (assign,nonatomic)ConType conType;
-
+@property (nonatomic,assign)UIKeyboardType  keyboardType;
 - (instancetype)initWithTitle:(NSString *)title
                        kpText:(NSString *)kpText
                       conType:(ConType)conType;
+
+- (instancetype)initWithTitle:(NSString *)title
+					   kpText:(NSString *)kpText
+					  conType:(ConType)conType
+			 withKeyboardType:(UIKeyboardType)pKeyboardType;
 
 // 用于BXS
 @property (copy,nonatomic)NSString *id;

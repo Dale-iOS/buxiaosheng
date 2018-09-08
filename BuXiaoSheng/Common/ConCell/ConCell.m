@@ -88,6 +88,9 @@
     _midTF.text = item.kpText;
     _midTF.placeholder = item.kpText;
     _midTF.text = item.contenText;
+	if (item.keyboardType) {
+		_midTF.keyboardType = item.keyboardType;
+	}
     _midTF.textColor =  item.textColor?item.textColor:[UIColor blackColor];
     _midTF.enabled = item.conType == ConTypeB;;
     _rightButton.hidden = !(item.conType == ConTypeA);
@@ -194,6 +197,20 @@
         _conType = conType;
     }
     return self;
+}
+- (instancetype)initWithTitle:(NSString *)title
+					   kpText:(NSString *)kpText
+					  conType:(ConType)conType
+			 withKeyboardType:(UIKeyboardType)pKeyboardType{
+	if (self = [super init]) {
+
+		_title = title;
+		_keyboardType = pKeyboardType;
+		_kpText = kpText;
+		_conType = conType;
+	}
+	return self;
+
 }
 @end
 
