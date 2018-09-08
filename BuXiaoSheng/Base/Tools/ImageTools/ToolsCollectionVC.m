@@ -499,6 +499,8 @@
 					tStrUrls = [self.requestImageUrlStr componentsJoinedByString:@","];
 				}
 				if (pUrl) {
+					//当tImageArray.count不存在的时候,这时候应该是本地没有选择相册,仅仅对本地的url做了更改,在提交失败后在一次回到这里应该提前清空本地的url的list,从新加入,这样可以杜绝提交失败后,从新对本地的url图片做删除操作后,再一次提交成功后,而不生效的问题
+					[self.requestImageUrlStr removeAllObjects];
 					pUrl(tStrUrls);
 				}
 		return;
@@ -532,6 +534,9 @@
 							NSString *tStrUrl = [imgsArray componentsJoinedByString:@","];
 							[LLHudTools dismiss];
 							if (pUrl) {
+								//将相册的list清空,同时将本地的url清空,以防用户在提交失败后,从新选择图片,或者删除网络上的图片,再一次提交
+								[weakSelf.selectImage removeAllObjects];
+								[weakSelf.requestImageUrlStr removeAllObjects];
 								pUrl(tStrUrl);
 							}
 						}
