@@ -7,8 +7,8 @@
 //  BXSStockPurchaseVC
 // --仓库--备货需求
 #import "BXSStockDemandVC.h"
-#import "BXSStockPurchaseVC.h"
-#import "BXSStockMachiningVC.h"
+#import "BXSStockPurchaseVC.h"//采购
+#import "BXSStockMachiningVC.h"//加工
 
 
 

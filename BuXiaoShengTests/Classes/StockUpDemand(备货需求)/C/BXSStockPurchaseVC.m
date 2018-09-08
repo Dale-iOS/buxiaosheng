@@ -16,16 +16,20 @@
 #import "BXSStockProductCell.h"
 #import "ConCell.h"
 #import "BXSMachiningBottomView.h"
+#import "UITextField+PopOver.h"
+#import "LZCompanyModel.h"
 
-@interface BXSStockPurchaseVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface BXSStockPurchaseVC ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate>
 /// 产品模型
 @property (strong,nonatomic)NSMutableArray <LZPurchaseModel*>*purchaseModelArray ;
 /// 底部view
 @property (weak,nonatomic)BXSMachiningBottomView *bottomView;
 /// 底部备注
 @property (weak,nonatomic)UITextView *txV;
-
-
+// 加工商模型
+@property (strong,nonatomic)NSMutableArray <LZCompanyModel *>*processorsModelArray;
+@property (strong,nonatomic)NSMutableArray *processorsModelNameArray;
+@property (nonatomic, strong) NSString *factoryId;//厂商id
 @end
 
 @implementation BXSStockPurchaseVC
@@ -45,6 +49,7 @@
     [self setupHeader];
     [self setupFooter];
     [self setupBottom];
+    [self loadDataWithType:0];
 }
 
 - (void)setup {
@@ -146,6 +151,7 @@
     NSMutableArray *bArray = [NSMutableArray array];
     
     ConItem *item1 = [[ConItem alloc]initWithTitle:@"*供货商名称" kpText:@"请输入供货商名称" conType:ConTypeB];
+    item1.delegate = self;
     ConItem *item2 = [[ConItem alloc]initWithTitle:@"联系人" kpText:@"请先选择加工商" conType:ConTypeC];
     ConItem *item3 = [[ConItem alloc]initWithTitle:@"电话" kpText:@"请先选择加工商" conType:ConTypeC];
     ConItem *item4 = [[ConItem alloc]initWithTitle:@"地址" kpText:@"请先选择加工商" conType:ConTypeC];
@@ -157,6 +163,61 @@
     
     [self.dataSource addObject:@[item5]];
 }
+
+#pragma mark ---- 网络请求 ----
+- (void)loadDataWithType:(NSInteger )type {
+    
+    WEAKSELF;
+//    //    接口名称 销售需求采购的产品的列表
+//    {
+//        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+//                                 @"orderId":self.orderId
+//                                 };
+//        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
+//            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+//            if ([baseModel.code integerValue] != 200) {
+//                [LLHudTools showWithMessage:baseModel.msg];
+//                return ;
+//            }
+//            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
+//            if (weakSelf.purchaseModelArray.count > 0) {
+//                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
+//            }
+//            [weakSelf getBottomData];
+//            [weakSelf.mainTable reloadData];
+//        } failure:^(NSError *error) {
+//            BXS_Alert(LLLoadErrorMessage);
+//        }];
+//    }
+    
+    //    接口名称 功能用到厂商列表
+    {
+        ///类型（0：供货商 1：生产商 2：加工商）
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 @"type":@(type)
+                                 };
+        [BXSHttp requestGETWithAppURL:@"factory/search_list.do" param:param success:^(id response) {
+            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                [LLHudTools showWithMessage:baseModel.msg];
+                return ;
+            }
+            
+            if (type == 0) {
+                //加载供货商模型
+                weakSelf.processorsModelArray = [LZCompanyModel LLMJParse:baseModel.data];
+                weakSelf.processorsModelNameArray = [NSMutableArray array];
+                [weakSelf.processorsModelArray enumerateObjectsUsingBlock:^(LZCompanyModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [weakSelf.processorsModelNameArray addObject:obj.name];
+                }];
+            }
+            
+        } failure:^(NSError *error) {
+            BXS_Alert(LLLoadErrorMessage);
+        }];
+    }
+}
+
 
 #pragma mark ---- 点击事件 ----
 /// 点击底部确定
@@ -218,7 +279,34 @@
         };
         return;
     }
+}
+
+//加工商名称点击事件
+- (void)didClickItemInTextField:(UITextField *)tf{
     
+    tf.delegate = self;
+    tf.scrollView = (UIScrollView *)self.view;
+    tf.positionType = ZJPositionBottomTwo;
+    WEAKSELF;
+    [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
+        LZCompanyModel *companyModel = weakSelf.processorsModelArray[index];
+        //加工商
+        ConItem *item1 = [[self.dataSource objectAtIndex:1] objectAtIndex:0];
+        item1.contenText = companyModel.name;
+        //联系人
+        ConItem *item2 = [[self.dataSource objectAtIndex:1] objectAtIndex:1];
+        item2.contenText = companyModel.contactName;
+        //电话
+        ConItem *item3 = [[self.dataSource objectAtIndex:1] objectAtIndex:2];
+        item3.contenText = companyModel.mobile;
+        //电话
+        ConItem *item4 = [[self.dataSource objectAtIndex:1] objectAtIndex:3];
+        item4.contenText = companyModel.address;
+        //厂商id
+        weakSelf.factoryId = companyModel.id;
+        [weakSelf.mainTable reloadData];
+        
+    }];
 }
 
 #pragma mark ---- UITableViewDataSource ----

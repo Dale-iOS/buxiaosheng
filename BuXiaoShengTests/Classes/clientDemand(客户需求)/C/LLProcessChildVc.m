@@ -64,7 +64,7 @@
     
     [self requestData];
     [self loadDataWithType:0];
-    [self loadDataWithType:2];
+//    [self loadDataWithType:2];
 }
 
 - (void)setup {
@@ -208,7 +208,7 @@
     [self.dataSource addObject:[NSMutableArray arrayWithObject:@[]]];
     NSMutableArray *bArray = [NSMutableArray array];
     // ConItem *item0 = [[ConItem alloc]initWithTitle:@"*加工类型" kpText:@"请选择加工类型" conType:ConTypeA];
-    ConItem *item1 = [[ConItem alloc]initWithTitle:@"*加工商名称" kpText:@"请输入加工商名称" conType:ConTypeB];
+    ConItem *item1 = [[ConItem alloc]initWithTitle:@"*采购商名称" kpText:@"请输入加工商名称" conType:ConTypeB];
     item1.delegate = self;
     ConItem *item2 = [[ConItem alloc]initWithTitle:@"联系人" kpText:@"请先选择加工商" conType:ConTypeC];
     ConItem *item3 = [[ConItem alloc]initWithTitle:@"电话" kpText:@"请先选择加工商" conType:ConTypeC];
@@ -226,6 +226,7 @@
     
 }
 
+//加工商名称点击事件
 - (void)didClickItemInTextField:(UITextField *)tf{
 
     tf.delegate = self;
@@ -348,6 +349,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
