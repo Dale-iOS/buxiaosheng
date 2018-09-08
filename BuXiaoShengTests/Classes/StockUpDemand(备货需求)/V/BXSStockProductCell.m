@@ -11,12 +11,11 @@
 @interface BXSStockProductCell ()<UITextFieldDelegate>
 @end
 @implementation BXSStockProductCell
-
-{
-    UITextField *_nameTF;
-    UITextField *_colorTF;
-    UITextField *_needCountTF;
-}
+//{
+//    UITextField *_nameTF;
+//    UITextField *_colorTF;
+//    UITextField *_needCountTF;
+//}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -64,7 +63,7 @@
 
 //MARK: ---Click--
 - (void)clickCover {
-    if (_nameTF.text.length == 0) {
+    if (_nameTF.text.length == 0 || _model.productId == nil) {
         [LLHudTools showWithMessage:@"请先输入产品名称"];
         return;
     }
@@ -90,7 +89,17 @@
             _clickNeedGetBottomDataBlock();
         }
     }
- 
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == _nameTF) {
+        _nameTF.text = textField.text;
+        if ([self.delegate respondsToSelector:@selector(clickEditorProductName:andCell:)]) {
+            [self.delegate clickEditorProductName:_nameTF andCell:self];
+        }
+    }
+    return YES;
 }
 
 

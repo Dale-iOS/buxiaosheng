@@ -19,7 +19,7 @@
 #import "UITextField+PopOver.h"
 #import "LZCompanyModel.h"
 
-@interface BXSStockPurchaseVC ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate>
+@interface BXSStockPurchaseVC ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate,BXSStockProductCellDelegate>
 /// 产品模型
 @property (strong,nonatomic)NSMutableArray <LZPurchaseModel*>*purchaseModelArray ;
 /// 底部view
@@ -29,7 +29,12 @@
 // 加工商模型
 @property (strong,nonatomic)NSMutableArray <LZCompanyModel *>*processorsModelArray;
 @property (strong,nonatomic)NSMutableArray *processorsModelNameArray;
+@property (strong,nonatomic)NSMutableArray *processorsModelIdArray;
 @property (nonatomic, strong) NSString *factoryId;//厂商id
+//产品数组
+@property (nonatomic, strong) NSMutableArray <productListModel *> *products;
+@property (nonatomic, strong) NSMutableArray *productsListNameArray;//展示图产品列表名称数组
+@property (nonatomic, strong) NSMutableArray *productsListIdArray;//展示图产品列表ID数组
 @end
 
 @implementation BXSStockPurchaseVC
@@ -168,27 +173,33 @@
 - (void)loadDataWithType:(NSInteger )type {
     
     WEAKSELF;
-//    //    接口名称 销售需求采购的产品的列表
-//    {
-//        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-//                                 @"orderId":self.orderId
-//                                 };
-//        [BXSHttp requestGETWithAppURL:@"storehouse/product_list.do" param:param success:^(id response) {
-//            LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-//            if ([baseModel.code integerValue] != 200) {
-//                [LLHudTools showWithMessage:baseModel.msg];
-//                return ;
-//            }
-//            weakSelf.purchaseModelArray = [LZPurchaseModel LLMJParse:baseModel.data];
-//            if (weakSelf.purchaseModelArray.count > 0) {
-//                [weakSelf.purchaseModelArray setValue:@(YES) forKey:@"isShow"];
-//            }
-//            [weakSelf getBottomData];
-//            [weakSelf.mainTable reloadData];
-//        } failure:^(NSError *error) {
-//            BXS_Alert(LLLoadErrorMessage);
-//        }];
-//    }
+//功能用到产品列表
+    {
+        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
+                                 };
+        [BXSHttp requestGETWithAppURL:@"product/product_list.do" param:param success:^(id response) {
+            LLBaseModel *baseModel = [LLBaseModel LLMJParse:response];
+            if ([baseModel.code integerValue] != 200) {
+                return ;
+            }
+//            self.dataMuArray = [productListModel LLMJParse:baseModel.data];
+            
+            weakSelf.products = [productListModel LLMJParse:baseModel.data];
+            //拼接要展示的列表数据
+            weakSelf.productsListNameArray = [NSMutableArray array];
+            weakSelf.productsListIdArray = [NSMutableArray array];
+            if (weakSelf.products) {
+                for (int i = 0; i <weakSelf.products.count; i++) {
+                    productListModel *model = [productListModel LLMJParse:weakSelf.products[i]];
+                    [weakSelf.productsListNameArray addObject:model.name];
+                    [weakSelf.productsListIdArray addObject:model.id];
+                }
+            }
+            
+        } failure:^(NSError *error) {
+            
+        }];
+    }
     
     //    接口名称 功能用到厂商列表
     {
@@ -207,8 +218,10 @@
                 //加载供货商模型
                 weakSelf.processorsModelArray = [LZCompanyModel LLMJParse:baseModel.data];
                 weakSelf.processorsModelNameArray = [NSMutableArray array];
+                weakSelf.processorsModelIdArray = [NSMutableArray array];
                 [weakSelf.processorsModelArray enumerateObjectsUsingBlock:^(LZCompanyModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [weakSelf.processorsModelNameArray addObject:obj.name];
+                    [weakSelf.processorsModelIdArray addObject:obj.id];
                 }];
             }
             
@@ -334,7 +347,10 @@
             BXSStockProductCell *cell = [tableView dequeueReusableCellWithIdentifier:[BXSStockProductCell cellID]];
             LZPurchaseModel *model = self.purchaseModelArray[indexPath.row];
             cell.model = model;
-            
+            cell.delegate = self;
+//            cell.clickEditorProductNameDataBlock = ^{
+//
+//            };
             cell.clickSelectColorBlock = ^{
                 [weakSelf clickSelectColor:indexPath];
             };
@@ -440,7 +456,22 @@
     }
 }
 
-
+- (void)clickEditorProductName:(UITextField *)nameTF andCell:(BXSStockProductCell *)titleCell{
+    nameTF.delegate = self;
+    nameTF.scrollView = (UIScrollView *)self.view;
+    //选择框出来的位置
+    nameTF.positionType = ZJPositionBottomTwo;
+    //选择框出来的位置
+    WEAKSELF;
+    [nameTF popOverSource:weakSelf.productsListNameArray index:^(NSInteger index) {
+        LZPurchaseModel *model = [[LZPurchaseModel alloc]init];
+        model.productName = weakSelf.productsListNameArray[index];
+        model.productId = weakSelf.productsListIdArray[index];
+        [weakSelf.purchaseModelArray replaceObjectAtIndex:titleCell.indexPath.row withObject:model];
+        [weakSelf.mainTable reloadData];
+//        LZPurchaseModel
+    }];
+}
 
 #pragma mark ---- private ----
 /// 计算底部的数量
@@ -457,6 +488,7 @@
     });
     
 }
+
 
 @end
 

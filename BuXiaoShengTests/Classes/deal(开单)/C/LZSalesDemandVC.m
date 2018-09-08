@@ -526,24 +526,6 @@
         [weakSelf.listModels replaceObjectAtIndex:titleCell.indexPath.row withObject:self.dataMuArray[index]];
         [weakSelf.tableView reloadData];
     }];
-    
-//- (void)didClickTitleTextField:(SalesDemandCell *)titleCell{
-//    self.markSeletedTableView = ! self.markSeletedTableView;
-//    if (self.markSeletedTableView) {
-//        [UIView animateWithDuration:0.25 animations:^{
-//            self.tableViewIndexPath = titleCell.indexPath;
-//            CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:titleCell.indexPath];
-//            CGRect cellFrame = [ self.tableView convertRect:rectInTableView toView:self.view];
-//            self.seletedTableView.frame = CGRectMake(0, cellFrame.origin.y+44, APPWidth, self.dataMuArray.count *44);
-//            [self.view addSubview:_seletedTableView];
-//        }];
-//    }else {
-//        [self.seletedTableView removeFromSuperview];
-//        self.seletedTableView.delegate = nil;
-//        self.seletedTableView.dataSource = nil;
-//        self.seletedTableView = nil;
-//    }
-//}
 }
 
 - (void) didClickColorTextField:(SalesDemandCell *)colorCell{
