@@ -115,7 +115,7 @@
 		WEAKSELF
 		//预览页 返回
 		[previewVc setBackButtonClickBlock:^(BOOL isSelectOriginalPhoto) {
-			self.isSelectOriginalPhoto = isSelectOriginalPhoto;
+//            self.isSelectOriginalPhoto = isSelectOriginalPhoto;
 		}];
 		[previewVc setSetImageWithURLBlock:^(NSURL *URL, UIImageView *imageView, void (^completion)(void)) {
 			[self configImageView:imageView URL:URL completion:completion];
@@ -127,7 +127,7 @@
 			}else{
 				self.maxCountTF = @"1";
 			}
-			self.isSelectOriginalPhoto = isSelectOriginalPhoto;
+//            self.isSelectOriginalPhoto = isSelectOriginalPhoto;
 			self.selectedPhotos = [NSMutableArray arrayWithArray:photos];
 			//设置选择的本地图片
 			NSLog(@"预览页 完成 isSelectOriginalPhoto:%d photos.count:%zd", isSelectOriginalPhoto, photos.count);
@@ -284,7 +284,7 @@
 			}
 		}
 		[weakSelf.selectedPhotos addObjectsFromArray:assets];
-		weakSelf.isSelectOriginalPhoto = isSelectOriginalPhoto;
+//        weakSelf.isSelectOriginalPhoto = isSelectOriginalPhoto;
 		[weakSelf.mainCollectionView reloadData];
 		// 1.打印图片名字
 		[weakSelf printAssetsName:assets];
@@ -412,7 +412,7 @@
 		// 1.设置目前已经选中的图片数组
 		imagePickerVc.selectedAssets = [self selectedAssets]; // 目前已经选中的图片数组
 	}
-	imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
+//    imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
 	imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
 	imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
 	imagePickerVc.allowPickingVideo = NO;// 设置是否可以选择视频
@@ -422,8 +422,8 @@
 	imagePickerVc.allowCrop = NO;//不允许剪裁
 	imagePickerVc.needCircleCrop = NO;
 	imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
-	//  imagePickerVc.allowPickingImage = self.allowPickingImageSwitch.isOn;//允许选择照片
-	//  imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhotoSwitch.isOn;//允许选择原图
+//      imagePickerVc.allowPickingImage = self.allowPickingImageSwitch.isOn;//允许选择照片
+      imagePickerVc.allowPickingOriginalPhoto = NO;//允许选择原图
 	[imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
 		imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
 	}];
@@ -510,44 +510,46 @@
 	WEAKSELF
 	for (PHAsset * tAsset in tImageArray) {
 		[[TZImageManager manager]getOriginalPhotoWithAsset:tAsset completion:^(UIImage *photo, NSDictionary *info) {
-			[weakSelf.selectImage addObject:photo];
+            NSLog(@"是否为缩略图:%@-->张数:%zd",info[PHImageResultIsDegradedKey],tImageArray.count);
+            if ([[info objectForKey:PHImageResultIsDegradedKey] boolValue] == 0) {
+                [weakSelf.selectImage addObject:photo];
+                NSLog(@"--数量:%zd--",weakSelf.selectImage.count);
+            }
+            NSLog(@"图片 -----+++++ :-%zd",weakSelf.selectImage.count);
 			if (weakSelf.selectImage.count  == tImageArray.count) {
 				//测试取出的图片是否是选择的image
 				//[weakSelf testSelImage];
 				//调用网络请求....
-				[LLHudTools showLoadingMessage:@"图片上传中~"];
-				NSDictionary * param = @{@"file":@"0"};
-				NSMutableArray * imgsArray = [NSMutableArray array];
-				[weakSelf.selectImage enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-					[BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
-						LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
-						if ([baseModel.code integerValue] != 200) {
-							[LLHudTools showWithMessage:baseModel.msg];
-							return ;
-						}
-						[imgsArray addObject:baseModel.data[@"path"]];
-						//图片全部上传成功
-						if (imgsArray.count == weakSelf.selectImage.count) {
-							if (weakSelf.requestImageUrlStr.count) {
-								[imgsArray addObjectsFromArray:[weakSelf.requestImageUrlStr copy]];
-							}
-							NSString *tStrUrl = [imgsArray componentsJoinedByString:@","];
-							[LLHudTools dismiss];
-							if (pUrl) {
-								//将相册的list清空,同时将本地的url清空,以防用户在提交失败后,从新选择图片,或者删除网络上的图片,再一次提交
-								[weakSelf.selectImage removeAllObjects];
-								[weakSelf.requestImageUrlStr removeAllObjects];
-								pUrl(tStrUrl);
-							}
-						}
-					} failure:^(NSError *error) {
-						NSLog(@"%@",error);
-					}];
-				}];
-
-
-
-
+        
+                [LLHudTools showLoadingMessage:@"图片上传中~"];
+                NSDictionary * param = @{@"file":@"0"};
+                NSMutableArray * imgsArray = [NSMutableArray array];
+                [weakSelf.selectImage enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [BXSHttp requestPOSTPhotosWithArray:@[obj] param:param AppURL:@"file/imageUpload.do" Key:@"file" success:^(id response) {
+                        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+                        if ([baseModel.code integerValue] != 200) {
+                            [LLHudTools showWithMessage:baseModel.msg];
+                            return ;
+                        }
+                        [imgsArray addObject:baseModel.data[@"path"]];
+                        //图片全部上传成功
+                        if (imgsArray.count == weakSelf.selectImage.count) {
+                            if (weakSelf.requestImageUrlStr.count) {
+                                [imgsArray addObjectsFromArray:[weakSelf.requestImageUrlStr copy]];
+                            }
+                            NSString *tStrUrl = [imgsArray componentsJoinedByString:@","];
+                            [LLHudTools dismiss];
+                            if (pUrl) {
+                                //将相册的list清空,同时将本地的url清空,以防用户在提交失败后,从新选择图片,或者删除网络上的图片,再一次提交
+                                [weakSelf.selectImage removeAllObjects];
+                                [weakSelf.requestImageUrlStr removeAllObjects];
+                                pUrl(tStrUrl);
+                            }
+                        }
+                    } failure:^(NSError *error) {
+                        NSLog(@"%@",error);
+                    }];
+                }];
 			}
 		}];
 	}

@@ -18,7 +18,6 @@
 @property (nonatomic, strong) NSMutableArray *selectedPhotos;//选择的图片
 @property (nonatomic,copy)  NSString *maxCountTF;  // 照片最大可选张数，设置为1即为单选模式
 @property (nonatomic,copy)  NSString *columnNumberTF;//相册内每行展示照片张数
-@property (nonatomic,assign)  BOOL isSelectOriginalPhoto;//是否允许选择原图
 @property (nonatomic,copy)NSString * imageStr; //最终上传的url的str url,url,url.....
 
 /**
