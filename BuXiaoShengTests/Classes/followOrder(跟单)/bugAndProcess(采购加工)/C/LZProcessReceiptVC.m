@@ -16,6 +16,7 @@
 #import "BXSPurchaChangeWarehousingView.h"
 #import "BXSHadSelectDBCell.h"
 #import "BaseTableVC+BXSTakePhoto.h"
+#import "ToolsCollectionVC.h"
 
 #define  SELECTAPPROVER @"选择人员"
 #define  HADSELECTDBCELLID @"100200"
@@ -30,7 +31,9 @@
 @property (strong,nonatomic)NSArray *bankArr;
 @property (strong,nonatomic)NSArray *houseArr;
 @property (strong,nonatomic)NSArray *unitArr;
-
+/// UI
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
+@property (nonatomic,copy)NSString * urlImageStr;
 /// 已选的底部数据
 @property (strong,nonatomic)LZPurchaseModel *bottomDBModel;
 
@@ -169,9 +172,44 @@
     
     [self.bDataArray addObject:@[item5,item6,item7,item8,item9,item10]];
     [self.mainTable reloadData];
-    [self setTableFooterTakePhoto];
+//    [self setTableFooterTakePhoto];
+	[self setTableFooter];
 }
+///相册选择 --多处用到写成分类避免冗余
+- (void)setTableFooter {
+	UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 140)];
 
+	UIView *bacView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, APPWidth, 100)];
+	[footer addSubview:bacView];
+	bacView.backgroundColor = [UIColor whiteColor];
+
+	UILabel *photoLable = [UILabel labelWithColor:CD_Text33 font:FONT(15)];
+	photoLable.frame = CGRectMake(15, 10, 120, 15);
+	photoLable.text = @"图片";
+	[bacView addSubview:photoLable];
+
+	CGFloat addWH = 60.f;
+
+	//Collection
+	CGRect tFrame =CGRectMake(0, photoLable.bottom + (bacView.height - photoLable.bottom - addWH)/2, APPWidth, ((APPWidth-6*10)/5 + 30));//这个高度根据屏幕去算的暂时写死
+	_collectionVC = [[ToolsCollectionVC alloc]init];
+	self.collectionVC.maxCountTF = @"5";//最多选择5张
+	_collectionVC.columnNumberTF = @"4";
+	_collectionVC.view.frame = tFrame;
+	_collectionVC.view.backgroundColor = [UIColor whiteColor];
+	[self addChildViewController:_collectionVC];
+	[bacView addSubview:_collectionVC.view];
+	[_collectionVC didMoveToParentViewController:self];
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0,APPWidth, ((APPWidth-6*10)/5 + 30))];
+	[self.collectionVC.view addSubview:self.collectionVC.mainCollectionView];
+
+	bacView.height = self.collectionVC.view.bottom;
+	footer.height = bacView.bottom + 20;
+	self.mainTable.tableFooterView = footer;
+
+	//移除原来的图片布局
+	// [self setTableFooterTakePhoto];
+}
 - (void)initAllCodeData {
     
     for (BXSAllCodeModel *model in self.allCodeArray ) {
@@ -346,7 +384,13 @@
     [super didReceiveMemoryWarning];
 }
 
-
+- (void)requestImage{
+	WEAKSELF
+	[self.collectionVC uploadDatePhotosWithUrlStr:^(NSString *urlStr) {
+		weakSelf.urlImageStr = urlStr;
+		[weakSelf addCollect];
+	}];
+}
 
 #pragma mark ---- Click ----
 /// 底部确认
@@ -476,7 +520,7 @@
         /// 人员选择
         if ([title isEqualToString:SELECTAPPROVER]) {
             weakSelf.selectApprover = souceArr[row];
-            [weakSelf addCollect];
+            [weakSelf requestImage];
             
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
