@@ -30,7 +30,6 @@
 @property (strong,nonatomic)NSMutableArray <LZCompanyModel *>*processorsModelArray;
 @property (strong,nonatomic)NSMutableArray *processorsModelNameArray;
 @property (strong,nonatomic)NSMutableArray *processorsModelIdArray;
-@property (nonatomic, strong) NSString *factoryId;//厂商id
 //产品数组
 @property (nonatomic, strong) NSMutableArray <productListModel *> *products;
 @property (nonatomic, strong) NSMutableArray *productsListNameArray;//展示图产品列表名称数组
@@ -156,11 +155,11 @@
     [self.dataSource addObject:[NSMutableArray arrayWithObject:@[]]];
     NSMutableArray *bArray = [NSMutableArray array];
     
-    ConItem *item1 = [[ConItem alloc]initWithTitle:@"*供货商名称" kpText:@"请输入供货商名称" conType:ConTypeB];
+    ConItem *item1 = [[ConItem alloc]initWithTitle:@"*厂商名称" kpText:@"请输入厂商名称" conType:ConTypeB];
     item1.delegate = self;
-    ConItem *item2 = [[ConItem alloc]initWithTitle:@"联系人" kpText:@"请先选择加工商" conType:ConTypeC];
-    ConItem *item3 = [[ConItem alloc]initWithTitle:@"电话" kpText:@"请先选择加工商" conType:ConTypeC];
-    ConItem *item4 = [[ConItem alloc]initWithTitle:@"地址" kpText:@"请先选择加工商" conType:ConTypeC];
+    ConItem *item2 = [[ConItem alloc]initWithTitle:@"联系人" kpText:@"请先选择厂商" conType:ConTypeC];
+    ConItem *item3 = [[ConItem alloc]initWithTitle:@"电话" kpText:@"请先选择厂商" conType:ConTypeC];
+    ConItem *item4 = [[ConItem alloc]initWithTitle:@"地址" kpText:@"请先选择厂商" conType:ConTypeC];
     ConItem *item5 = [[ConItem alloc]initWithTitle:@"*指派人" kpText:@"请选择指派人" conType:ConTypeA];
     item5.titleColor = [UIColor redColor];
     
@@ -235,11 +234,51 @@
 
 #pragma mark ---- 点击事件 ----
 /// 点击底部确定
+//接口名称 新增采购单
 - (void)clickBottom {
     
     // 产品数据 self.purchaseModelArray 其他数据-self.dataSource
     
+    NSMutableArray *itemListMuAry = [NSMutableArray array];
+    [self.purchaseModelArray enumerateObjectsUsingBlock:^(LZPurchaseModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *paramA = @{
+                                        @"number":obj.totalNumber,
+                                        @"productColorId":obj.productColorId,
+                                        };
+//        NSDictionary *paramB = @{
+//                                 @"productId":obj.productId,
+//                                 };
+        NSDictionary *paramB = @{
+                                 @"itemList":[paramA mj_JSONObject],
+                                 @"productId":obj.productId,
+                                 };
+        [itemListMuAry addObject:paramB];
+    }];
     
+       ConItem *factoryItem = self.dataSource[1][0];//
+        ConItem *selectWorkerItem = self.dataSource[2][0];//指派人
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"companyId"] = [BXSUser currentUser].companyId;
+    param[@"factoryId"] = factoryItem.id;
+//    param[@"orderId"] = self.orderId;
+    param[@"productItems"] = [itemListMuAry mj_JSONString];
+    param[@"purchaserId"] = selectWorkerItem.id;
+    param[@"remark"] = self.txV.text;
+    param[@"type"] = [BXSUser currentUser].type;
+    [BXSHttp requestGETWithAppURL:@"storehouse/add_buy.do" param:param success:^(id response) {
+        LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
+        if ([baseModel.code integerValue] != 200) {
+            [LLHudTools showWithMessage:baseModel.msg];
+            return ;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [LLHudTools showWithMessage:@"新增成功"];
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    } failure:^(NSError *error) {
+        BXS_Alert(LLLoadErrorMessage);
+    }];
 }
 
 /// 添加产品
@@ -300,13 +339,15 @@
     
     tf.delegate = self;
     tf.scrollView = (UIScrollView *)self.view;
-    tf.positionType = ZJPositionBottomTwo;
+    tf.positionType = ZJPositionTopTwo;
     WEAKSELF;
     [tf popOverSource:_processorsModelNameArray index:^(NSInteger index) {
         LZCompanyModel *companyModel = weakSelf.processorsModelArray[index];
         //加工商
         ConItem *item1 = [[self.dataSource objectAtIndex:1] objectAtIndex:0];
         item1.contenText = companyModel.name;
+        //厂商id
+        item1.id = companyModel.id;
         //联系人
         ConItem *item2 = [[self.dataSource objectAtIndex:1] objectAtIndex:1];
         item2.contenText = companyModel.contactName;
@@ -316,8 +357,7 @@
         //电话
         ConItem *item4 = [[self.dataSource objectAtIndex:1] objectAtIndex:3];
         item4.contenText = companyModel.address;
-        //厂商id
-        weakSelf.factoryId = companyModel.id;
+
         [weakSelf.mainTable reloadData];
         
     }];
