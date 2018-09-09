@@ -179,12 +179,13 @@
     _timeLabel.textAlignment = NSTextAlignmentLeft;
     _timeLabel.font = FONT(12);
     _timeLabel.textColor = CD_Text99;
+    _timeLabel.numberOfLines = 2;
     [_bgView addSubview:_timeLabel];
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_lineView.mas_bottom).offset(15);
+        make.top.equalTo(_lineView.mas_bottom).offset(2);
         make.left.equalTo(_bgView).offset(15);
         make.right.equalTo(_receiptBtn.mas_left).offset(-15);
-        make.height.mas_offset(13);
+        make.bottom.equalTo(_bgView.mas_bottom).offset(-5);
     }];
 }
 
@@ -199,7 +200,12 @@
     _titleLabel.text = _model.factoryName;
     _subLabel.text = [NSString stringWithFormat:@"品名：%@",_model.productName];
     _demandLabel.text = [NSString stringWithFormat:@"需求量：%@",_model.number];
-    _timeLabel.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]];
+//    NSString *tempTimeStr = [BXSTools getTimeStrWithString:_model.createTime];
+    //截取10之前的字符串
+    NSString *timeA = [[BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]] substringToIndex:10];
+    //截取11之后的字符串
+    NSString *timeB = [[BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:_model.createTime]] substringFromIndex:11];
+    _timeLabel.text = [NSString stringWithFormat:@"%@\n%@",timeA,timeB];
 //    采购类型（0：采购 1：加工）
     if ([_model.purchaseType integerValue] == 0) {
         [_receiptBtn setTitle:@"采购收货" forState:UIControlStateNormal];

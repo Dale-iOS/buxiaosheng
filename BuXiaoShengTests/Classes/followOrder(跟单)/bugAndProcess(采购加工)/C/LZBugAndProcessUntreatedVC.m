@@ -14,8 +14,8 @@
 @interface LZBugAndProcessUntreatedVC ()<UIScrollViewDelegate>
 @property(nonatomic,strong)UISegmentedControl *sgc;
 @property(nonatomic,strong)UIScrollView *scrollView;
-@property(nonatomic,strong)LZBugAndProcessUntreatedView *untreatedView;
-@property(nonatomic,strong)LZBugAndProcessBssView *bossView;
+@property(nonatomic,strong)LZBugAndProcessUntreatedView *untreatedView;//销售
+@property(nonatomic,strong)LZBugAndProcessBssView *bossView;//老板
 @end
 
 @implementation LZBugAndProcessUntreatedVC
