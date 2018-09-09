@@ -9,5 +9,4 @@
 #import "BaseTableVC.h"
 
 @interface BXSStockPurchaseVC : BaseTableVC
-@property (strong,nonatomic)NSString *orderId;
 @end

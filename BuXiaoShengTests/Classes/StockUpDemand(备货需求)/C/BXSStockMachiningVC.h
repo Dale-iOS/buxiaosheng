@@ -10,6 +10,4 @@
 
 @interface BXSStockMachiningVC : BaseTableVC
 
-
-@property (strong,nonatomic)NSString *orderId;
 @end

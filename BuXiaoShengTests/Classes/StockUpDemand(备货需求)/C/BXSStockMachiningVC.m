@@ -151,7 +151,6 @@
     {
         ///类型（0：供货商 1：生产商 2：加工商）
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 //@"orderId":self.orderId,
                                  @"type":@(type)
                                  };
         [BXSHttp requestGETWithAppURL:@"factory/search_list.do" param:param success:^(id response) {
