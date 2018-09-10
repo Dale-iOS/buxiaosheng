@@ -200,7 +200,7 @@ static NSInteger const pageSize = 15;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         LZMarketModel *model = _lists[indexPath.row];
-        
+//        接口名称 销售单审批单-拒绝
         NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                                  @"approvalId":model.id,
                                  @"expendId":model.orderId
@@ -211,13 +211,12 @@ static NSInteger const pageSize = 15;
                 [LLHudTools showWithMessage:baseModel.msg];
                 return ;
             }
-            [LLHudTools showWithMessage:@"提交成功"];
+//            [LLHudTools showWithMessage:@"拒绝成功"];
             [weakSelf setupList];
         } failure:^(NSError *error) {
             BXS_Alert(LLLoadErrorMessage);
         }];
-        
-        
+      
     }];
     
     [alertController addAction:cancelAction];

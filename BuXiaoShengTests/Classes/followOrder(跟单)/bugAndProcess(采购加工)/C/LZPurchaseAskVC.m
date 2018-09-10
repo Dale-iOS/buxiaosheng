@@ -191,6 +191,8 @@
         estimateNumCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, view1.bottom, APPWidth, 49)];
         estimateNumCell.titleLabel.text = @"预计到货数量";
         estimateNumCell.contentTF.placeholder = @"请输入预计到货数量";
+//        estimateNumCell.contentTF.delegate = self;
+        estimateNumCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
         [footerView addSubview:estimateNumCell];
 
         estimateDateCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, estimateNumCell.bottom, APPWidth, 49)];
@@ -210,6 +212,9 @@
     }
     return footerView;
 }
+
+#pragma mark ---- UITextFieldDelegate ----
+
 
 //初始化collectionView
 - (UICollectionView *)collectionView{
@@ -338,8 +343,9 @@
         return;
     }
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                             @"buyId":self.bugId,
                              @"arrivalTime":_dateStr,
+                             @"buyId":self.bugId,
+                             @"initiatorId":self.model.initiatorId,
                              @"number":self.estimateNumCell.contentTF.text,
                              @"remark":self.remarkTextView.textView.text
                              };
@@ -349,7 +355,6 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        [LLHudTools showWithMessage:@"提交成功"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:true];
         });

@@ -22,6 +22,7 @@
 @property(nonatomic,copy)NSString *storageType;
 @property(nonatomic,copy)NSString *tel;
 @property(nonatomic,copy)NSString *unitName;
+@property(nonatomic,copy)NSString *initiatorId;//发起人id
 @end
 
 @interface LZPurchaseDetailItemListModel : NSObject
