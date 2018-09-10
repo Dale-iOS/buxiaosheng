@@ -35,6 +35,7 @@
 @property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 @property (strong,nonatomic)UIButton * addPhotoButton;
 @property (nonatomic,copy)NSString * urlImageStr;
+@property (nonatomic, copy) NSString *bankID;
 @end
 
 @implementation LZPurchaseReceiptVC
@@ -316,20 +317,20 @@
             [itemListMuAry addObject:itemList];
         }
         
-        aModel.buyProductId = self.dataModel.buyProductId;
-        aModel.productId = self.dataModel.productId;
-        aModel.productColorId = aItemListModel.productColorId;
-        aModel.number = aItemListModel.number;
-        aModel.name = conItemName.contenText;
-        aModel.color = conItemColor.contenText;
-        aModel.unitId = conItemUnit.id;
-        aModel.batchNumber = conItemBatchNumber.contenText;
-        aModel.shelves = conItemShelves.contenText;
-        aModel.price = conItemPrice.contenText;
-        aModel.buyNum = conItemBuyNum.contenText;
-        aModel.houseNum = conItemHouseNum.contenText;
-        aModel.settlementNum = conItemSettlementNum.contenText;
-        aModel.receivableAmount = conItemReceivableAmount.contenText;
+        aModel.buyProductId = self.dataModel.buyProductId == nil ? @"" : self.dataModel.buyProductId;
+        aModel.productId = self.dataModel.productId == nil ? @"" : self.dataModel.productId;
+        aModel.productColorId = aItemListModel.productColorId == nil ? @"" : aItemListModel.productColorId;
+        aModel.number = aItemListModel.number == nil ? @"" : aItemListModel.number;
+        aModel.name = conItemName.contenText == nil ? @"" : conItemName.contenText;
+        aModel.color = conItemColor.contenText == nil ? @"" : conItemColor.contenText;
+        aModel.unitId = conItemUnit.id == nil ? @"" : conItemUnit.id;
+        aModel.batchNumber = conItemBatchNumber.contenText == nil ? @"" : conItemBatchNumber.contenText;
+        aModel.shelves = conItemShelves.contenText == nil ? @"" : conItemShelves.contenText;
+        aModel.price = conItemPrice.contenText == nil ? @"" : conItemPrice.contenText;
+        aModel.buyNum = conItemBuyNum.contenText == nil ? @"" : conItemBuyNum.contenText;
+        aModel.houseNum = conItemHouseNum.contenText == nil ? @"" : conItemHouseNum.contenText;
+        aModel.settlementNum = conItemSettlementNum.contenText == nil ? @"" : conItemSettlementNum.contenText;
+        aModel.receivableAmount = conItemReceivableAmount.contenText == nil ? @"" : conItemReceivableAmount.contenText;
         aModel.itemList = [itemListMuAry copy];
         
         NSString *tempStr = [aModel mj_JSONObject];
@@ -343,6 +344,31 @@
     ConItem *conItemRealpayPrice = self.bDataArray[0][1];//实付金额
     ConItem *conItemRemarke = self.bDataArray[0][4];//备注
     
+    if ([BXSTools stringIsNullOrEmpty:conItemBankId.id]) {
+        BXS_Alert(@"请选择收款方式");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:conItemCopewithPrice.contenText]) {
+        BXS_Alert(@"请输入应付金额");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:conItemHouseId.id]) {
+        BXS_Alert(@"请选中入仓库");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:conItemRealpayPrice.contenText]) {
+        BXS_Alert(@"请输入实付金额");
+        return;
+    }
+    
+    if ([BXSTools stringIsNullOrEmpty:conItemFactoryNo.contenText]) {
+        BXS_Alert(@"请输入供应商单号");
+        return;
+    }
+    
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"approverId":self.selectApprover.id,
                              @"bankId":conItemBankId.id,
@@ -355,7 +381,7 @@
                              @"productItems":[saveMuAry mj_JSONString],
                              @"purchaseType":@(0),
                              @"realpayPrice":conItemRealpayPrice.contenText,
-                             @"remark":conItemRemarke.contenText
+                             @"remark":conItemRemarke.contenText  == nil ? @"" :conItemRemarke.contenText
                              };
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -567,6 +593,9 @@
         /// 人员选择
         if ([title isEqualToString:SELECTAPPROVER]) {
             weakSelf.selectApprover = souceArr[row];
+            
+            
+            
 			//发送图片 然后直接提交
 			[weakSelf requestImage];
             

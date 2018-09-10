@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, WithBtnClickStyle) {
 @property(nonatomic,strong)NSMutableArray * cellLineList;//总条数的数据源
 @property(nonatomic,strong)ItemList * itemModel;//结算数量的model
 @property (nonatomic,copy) void(^NumValueBlock)(NSString *ValueStr , NSString *changeStr);
+@property(nonatomic,assign)NSInteger allNumber;//总条数
 
 @property (nonatomic,assign) LZChangeNumVCType type;
 @end

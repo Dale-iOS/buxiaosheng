@@ -79,7 +79,7 @@
     
     //总条数 用于相加减
     _lineLbl = [[UILabel alloc]init];
-    _lineLbl.text = [NSString stringWithFormat:@"总条数： %ld",self.lineValue];
+    _lineLbl.text = [NSString stringWithFormat:@"总条数： %ld",self.allNumber];
     _lineLbl.textColor = LZAppBlueColor;
     _lineLbl.textAlignment = NSTextAlignmentRight;
     _lineLbl.font = FONT(12);
@@ -97,7 +97,7 @@
     
     //原始总数量
     UILabel *firstLbl = [[UILabel alloc]init];
-    firstLbl.text = [NSString stringWithFormat:@"初始 总数量： %.1f",self.originalValue];
+    firstLbl.text = [NSString stringWithFormat:@"初始 总数量： %.1f",_originalValue];
     firstLbl.textColor = LZAppBlueColor;
     firstLbl.font = FONT(12);
     NSMutableAttributedString *temgpStr1 = [[NSMutableAttributedString alloc] initWithString:firstLbl.text];
@@ -195,8 +195,10 @@
 //加号方法
 - (void)additionBtnClick{
     [self postNotification:AdditionBtnClick];
-    _total+=self.lineValue;
+    _total+=_lineValue;
     [self publicBtnClickFunc:AdditionBtnClick];
+    
+    
     //    _hintLbl.text = [NSString stringWithFormat:@"当前 总数量： %.1lf",_total];
     //    NSMutableAttributedString *temgpStr = [[NSMutableAttributedString alloc] initWithString:_hintLbl.text];
     //    NSRange oneRange = [[temgpStr string] rangeOfString:[NSString stringWithFormat:@"当前 总数量："]];
@@ -370,7 +372,8 @@
 //确认按钮方法
 - (void)verifyBtnClick{
     //遍历取到的list 修改对应的值,刷新tableview
-    for (int i = 0; i <self.cellLineList.count ; i ++) {
+    for (int i = 0; i <_cellLineList.count ; i ++) {
+        //        double changeVaule   =_total -_originalValue;
         BigGoodsAndBoardModel * tOldData =self.cellLineList[i];
         BigGoodsAndBoardModel * tNewData = tCellLineList_[i];
         tOldData.number = tNewData.number;
@@ -380,7 +383,7 @@
     NSString *str = @"";
     if (self.NumValueBlock) {
         self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total], str);
-//        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
+        //        self.NumValueBlock([NSString stringWithFormat:@"%.1lf",_total]);
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

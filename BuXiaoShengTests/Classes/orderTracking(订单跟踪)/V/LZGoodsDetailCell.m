@@ -19,7 +19,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
-
+    
 }
 
 - (void)setup
@@ -64,7 +64,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = FONT(14);
         label.textColor = CD_Text33;
-//        label.backgroundColor = [UIColor redColor];
+        //        label.backgroundColor = [UIColor redColor];
         label.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:(_titleLabel = label)];
     }
@@ -121,24 +121,36 @@
     if (_model.isSelect) {  /// 只用一个 状态就可以判断 是否 是选择 还是 编辑
         _rightArrowImageVIew.hidden = NO;
         _contentTF.userInteractionEnabled = NO;
+        if ([_model.key containsString:@"标签数量"] ) {
+            _rightArrowImageVIew.hidden = YES;
+        }
         
+        if ([_model.key containsString:@"结算数量"]) {
+            _contentTF.userInteractionEnabled = NO;
+            _rightArrowImageVIew.hidden = YES;
+            
+        }
     }
     else{
         _contentTF.userInteractionEnabled = YES;
         _rightArrowImageVIew.hidden = YES;
-
+        
     }
     if (_model.isEditor) {
         _contentTF.enabled = YES;
     }else{
         _contentTF.enabled = NO;
     }
-
+    
     if (_model.isContentColorRed) {
         _contentTF.textColor = [UIColor colorWithHexString:@"#fa3d3d"];
     }else{
         _contentTF.textColor = [UIColor blackColor];
-
+        
+    }
+    
+    if ([_model.key containsString:@"数量"]) {
+        _contentTF.keyboardType = UIKeyboardTypeNumberPad;
     }
     
 }
