@@ -201,9 +201,10 @@ static NSInteger const pageSize = 15;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         LZMarketModel *model = _lists[indexPath.row];
 //        接口名称 销售单审批单-拒绝
-        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 @"approvalId":model.id,
-                                 @"expendId":model.orderId
+        NSString *companyIdStr = [BXSUser currentUser].companyId;
+        NSDictionary * param = @{@"companyId":@(companyIdStr.integerValue),
+                                 @"approvalId":@(model.id.integerValue),
+                                 @"orderId":@(model.orderId.integerValue)
                                  };
         [BXSHttp requestGETWithAppURL:@"approval/need_refuse.do" param:param success:^(id response) {
             LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];

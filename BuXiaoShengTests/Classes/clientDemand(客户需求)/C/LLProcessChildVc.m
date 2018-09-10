@@ -184,7 +184,7 @@
 //
 //            }
             
-            if (type == 2) {
+            if (type == 0) {
                 //加载加工商模型
                 _processorsModelArray = [LZCompanyModel LLMJParse:baseModel.data];
                 _processorsModelNameArray = [NSMutableArray array];
