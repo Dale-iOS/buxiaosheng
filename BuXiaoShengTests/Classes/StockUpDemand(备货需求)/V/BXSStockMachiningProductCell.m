@@ -28,17 +28,18 @@
 
 ///Model
 #import "salesDemandModel.h"
-
-@interface BXSStockMachiningProductCell ()<UITableViewDelegate,UITableViewDataSource>
+#import "UITextField+PopOver.h"
+@interface BXSStockMachiningProductCell ()<UITableViewDelegate,UITableViewDataSource,ConItemDelegate,UITextFieldDelegate>
 
 @property (strong,nonatomic)UITableView *table;
+@property (nonatomic,strong) NSArray *headDataArr;
 @end
 @implementation BXSStockMachiningProductCell
 {
     UILabel *_nameLanel;//产品名
     UILabel *_needLabel;//产品需求
     UIButton *_rightButton;
-    NSArray *_headDataArr;
+//    NSArray *_headDataArr;
 }
 
 -(void)setup {
@@ -163,12 +164,26 @@
         return dsArr.count;
     }
 }
-
+- (void)inputShouldChangeCharactersInRangeWithTextField:(UITextField *)pTextField withCellItem:(ConCell *)pCellItem{
+		pTextField.delegate = self;
+		pTextField.scrollView = (UIScrollView *)self.contentVC.view;
+		pTextField.positionType = ZJPositionTopTwo;
+		WEAKSELF;
+		[pTextField popOverSource:weakSelf.productsListNameArray index:^(NSInteger index) {
+			ConItem *tConTiem = weakSelf.headDataArr [pCellItem.indexPath.row];
+			tConTiem.contenText = weakSelf.productsListNameArray[index];
+			[weakSelf.table reloadData];
+		}];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
        WEAKSELF
     if (indexPath.section == 0) {
         ConCell *cell = [tableView dequeueReusableCellWithIdentifier:[ConCell cellID]];
         cell.item = _headDataArr[indexPath.row];
+		cell.indexPath = indexPath;
+		cell.inputShouldChangeCharactersInRangeBlock = ^(UITextField *textField, ConCell *withCellItem) {
+			[weakSelf inputShouldChangeCharactersInRangeWithTextField:textField withCellItem:withCellItem];
+		};
         cell.endEdtingBlock = ^(ConItem *item) {
             if (indexPath.row == 0) {
                 weakSelf.productModel.productName = item.contenText;

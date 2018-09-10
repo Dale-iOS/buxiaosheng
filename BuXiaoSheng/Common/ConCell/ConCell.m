@@ -112,6 +112,9 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     _item.contenText = textField.text;
+	if (self.inputShouldChangeCharactersInRangeBlock) {
+		self.inputShouldChangeCharactersInRangeBlock(textField, self);
+	}
     if ([self.item.delegate respondsToSelector:@selector(didClickItemInTextField:)]) {
         [_item.delegate didClickItemInTextField:_midTF];
     }

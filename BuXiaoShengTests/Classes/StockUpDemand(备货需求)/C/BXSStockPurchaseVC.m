@@ -194,6 +194,11 @@
                     [weakSelf.productsListNameArray addObject:model.name];
                     [weakSelf.productsListIdArray addObject:model.id];
                 }
+				//将产品名,和产品id传回控制器
+				if (weakSelf.requestProductListBlock) {
+					weakSelf.requestProductListBlock(weakSelf.productsListNameArray,
+													 weakSelf. productsListIdArray);
+				}
             }
             
         } failure:^(NSError *error) {

@@ -25,6 +25,11 @@ typedef NS_ENUM(NSUInteger,ConType) {
 @property (assign,nonatomic) CGFloat k_titlewWidth;
 @property (copy,nonatomic)void (^endEdtingBlock)(ConItem *item);
 @property (copy,nonatomic)void (^clickCellBlock)(void);
+/**
+ 输入内容后的block回调
+ */
+@property(nonatomic,copy)void(^inputShouldChangeCharactersInRangeBlock)(UITextField *textField,ConCell *withCellItem);
+@property (nonatomic,strong) NSIndexPath  * indexPath;
 @end
 
 @interface ConMarkCell : ConCell<UITextViewDelegate>

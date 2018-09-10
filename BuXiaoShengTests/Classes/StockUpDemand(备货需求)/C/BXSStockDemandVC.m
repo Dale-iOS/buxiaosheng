@@ -20,6 +20,7 @@
 
 
 @property (nonatomic,strong) NSArray <NSString *> * segmentedTitles;
+@property (nonatomic,strong)BXSStockMachiningVC * machiningVC;
 @end
 
 @implementation BXSStockDemandVC
@@ -38,6 +39,7 @@
 -(void)setupUI {
     UIView * segmentedView = [self segmentedView];
     [segmentedView layoutIfNeeded];
+	WEAKSELF
     [self.segmentedTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
             BXSStockPurchaseVC *childVc = [[BXSStockPurchaseVC alloc]init];
@@ -46,13 +48,19 @@
             childVc.view.frame = CGRectMake(0, 0, APPWidth, self.containerView.height);
             [self.containerView addSubview:childVc.view];
             [self addChildViewController:childVc];
+
+			childVc.requestProductListBlock = ^(NSMutableArray *productsListNameArray, NSMutableArray *productsListIdArray) {
+				weakSelf.machiningVC.productsListNameArray = productsListNameArray;
+				weakSelf.machiningVC.productsListIdArray = productsListIdArray;
+
+			};
         }else{
-            BXSStockMachiningVC *childVc = [[BXSStockMachiningVC alloc]init];
+            self.machiningVC = [[BXSStockMachiningVC alloc]init];
             //加工
-            childVc.title = obj;
-            childVc.view.frame = CGRectMake(APPWidth, 0, APPWidth, self.containerView.height);
-            [self.containerView addSubview:childVc.view];
-            [self addChildViewController:childVc];
+            self.machiningVC.title = obj;
+            self.machiningVC.view.frame = CGRectMake(APPWidth, 0, APPWidth, self.containerView.height);
+            [self.containerView addSubview:self.machiningVC.view];
+            [self addChildViewController:self.machiningVC];
         }
     }];
     

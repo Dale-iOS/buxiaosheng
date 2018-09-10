@@ -49,7 +49,7 @@
 /// 底部备注
 @property (weak,nonatomic)UITextView *txV;
 /// 产品模型
-@property (strong,nonatomic)NSMutableArray <LZPurchaseModel*>*purchaseModelArray ;
+@property (strong,nonatomic)NSMutableArray <LZPurchaseModel*> *purchaseModelArray;
 
 /// 公司信息
 @property (strong,nonatomic)LZCompanyModel *companyModel;
@@ -296,6 +296,8 @@
             cell.contentVC = self;
             LZPurchaseModel *pModel = self.purchaseModelArray[indexPath.row];
             cell.productModel = pModel;
+			cell.productsListIdArray = self.productsListIdArray;
+			cell.productsListNameArray = self.productsListNameArray;
             cell.getBottomDataBlock = ^{
                 [weakSelf getBottomData];
             };
