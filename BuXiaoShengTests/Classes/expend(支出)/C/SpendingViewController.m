@@ -276,8 +276,9 @@
     vc.isFromSpend = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [vc setDidClickBlock:^(LZSubjectModel *blockModel) {
+        _didCostModel = blockModel;
         weakSelf.didCostModel = blockModel;
-        self.overheadCell.contentTF.text = weakSelf.didCostModel.name;
+        self.overheadCell.contentTF.text = blockModel.name;
     }];
 }
 
