@@ -42,7 +42,7 @@
 @property(nonatomic,strong)NSMutableArray *approverIdAry;
 @property(nonatomic,copy)NSString *approverId;
 @property(nonatomic,copy)NSString *dateStr;
-@property(nonatomic,copy)LZSubjectModel *didCostModel;
+@property(nonatomic,strong)LZSubjectModel *didCostModel;
 @property(nonatomic,strong)ToolsCollectionVC * collectionVC;
 @property(nonatomic,copy)NSString * imageStr;
 @end
@@ -276,8 +276,8 @@
     vc.isFromSpend = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [vc setDidClickBlock:^(LZSubjectModel *blockModel) {
-        _didCostModel = blockModel;
-//        weakSelf.didCostModel = blockModel;
+//        _didCostModel = blockModel;
+        weakSelf.didCostModel = blockModel;
         self.overheadCell.contentTF.text = blockModel.name;
     }];
 }
