@@ -277,7 +277,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     [vc setDidClickBlock:^(LZSubjectModel *blockModel) {
         _didCostModel = blockModel;
-        weakSelf.didCostModel = blockModel;
+//        weakSelf.didCostModel = blockModel;
         self.overheadCell.contentTF.text = blockModel.name;
     }];
 }
