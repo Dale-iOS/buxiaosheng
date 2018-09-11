@@ -413,7 +413,7 @@
     
     
     NSDictionary * param = @{
-                             @"companyId":[BXSUser currentUser].userId,
+                             @"companyId":[BXSUser currentUser].companyId,
                              @"orderId":self.model.orderId,
                              @"orderHouseItems":[orderHouseItems mj_JSONString],
                              };
