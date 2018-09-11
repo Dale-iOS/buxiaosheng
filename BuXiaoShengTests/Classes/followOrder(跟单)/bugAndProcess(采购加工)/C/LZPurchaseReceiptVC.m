@@ -355,17 +355,12 @@
     }
     
     if ([BXSTools stringIsNullOrEmpty:conItemHouseId.id]) {
-        BXS_Alert(@"请选中入仓库");
+        BXS_Alert(@"请选择入仓库");
         return;
     }
     
     if ([BXSTools stringIsNullOrEmpty:conItemRealpayPrice.contenText]) {
         BXS_Alert(@"请输入实付金额");
-        return;
-    }
-    
-    if ([BXSTools stringIsNullOrEmpty:conItemFactoryNo.contenText]) {
-        BXS_Alert(@"请输入供应商单号");
         return;
     }
     
@@ -375,13 +370,13 @@
                              @"buyId":self.dataModel.buyId,
                              @"copewithPrice":conItemCopewithPrice.contenText,
                              @"factoryId":self.dataModel.factoryId,
-                             @"factoryNo":conItemFactoryNo.contenText,
+                             @"factoryNo":conItemFactoryNo.contenText == nil ? @"" :conItemFactoryNo.contenText,
                              @"houseId":conItemHouseId.id,
 							 @"imgs":self.urlImageStr == nil ? @"" :self.urlImageStr,
                              @"productItems":[saveMuAry mj_JSONString],
                              @"purchaseType":@(0),
                              @"realpayPrice":conItemRealpayPrice.contenText,
-                             @"remark":conItemRemarke.contenText  == nil ? @"" :conItemRemarke.contenText
+                             @"remark":conItemRemarke.contenText == nil ? @"" :conItemRemarke.contenText
                              };
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {
         LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
