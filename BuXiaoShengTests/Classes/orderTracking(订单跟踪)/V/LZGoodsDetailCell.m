@@ -149,7 +149,7 @@
         
     }
     
-    if ([_model.key containsString:@"数量"]) {
+    if ([_model.key containsString:@"数量"] || [_model.key containsString:@"定金"] || [_model.key containsString:@"金额"] ) {
         _contentTF.keyboardType = UIKeyboardTypeNumberPad;
     }
     

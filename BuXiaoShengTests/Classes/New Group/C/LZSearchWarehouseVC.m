@@ -13,6 +13,8 @@
 #import "HXTagsView.h"
 #import "LLCashBankModel.h"
 #import "LZChooseInventoryVC.h"
+//侧滑
+#import "LLWarehouseRightSildeVc.h"
 
 static NSInteger const pageSize = 15;
 @interface LZSearchWarehouseVC ()<LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -24,6 +26,7 @@ static NSInteger const pageSize = 15;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *headView;
 @property(nonatomic,strong)NSMutableArray<LZInventoryDetailModel *> *lists;
+@property(nonatomic,strong)LZInventoryDetailModel *titleModel;
 @property (nonatomic,assign) NSInteger pageIndex;//页数
 @end
 
@@ -224,6 +227,15 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LLWarehouseRightSildeVc * rightSildeVc = [LLWarehouseRightSildeVc new];
+    rightSildeVc.baseNavVc = (BaseNavigationController*)self.navigationController;
+    rightSildeVc.model = self.lists[indexPath.row];
+    rightSildeVc.houseId = self.lists[indexPath.row].houseId;
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionFromRight backImage:[UIImage imageNamed:@"back"]];
+    [self cw_showDrawerViewController:rightSildeVc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
 }
 
 #pragma mark ---- 抽屉 -----

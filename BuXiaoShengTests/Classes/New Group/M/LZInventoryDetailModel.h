@@ -26,4 +26,5 @@
 @property (nonatomic,copy) NSString *totalCode;
 @property (nonatomic,copy) NSString *totalKg;
 @property (nonatomic,copy) NSString *totalRice;
+@property (nonatomic,copy) NSString *houseId;
 @end
