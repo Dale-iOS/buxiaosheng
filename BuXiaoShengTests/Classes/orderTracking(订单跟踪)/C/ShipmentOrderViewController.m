@@ -15,6 +15,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZOutOrderDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface ShipmentOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate,SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate>
@@ -212,6 +213,14 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    LZOutOrderDetailVC *vc = [[LZOutOrderDetailVC alloc]init];
+    vc.orderId = model.orderNo;
+    vc.title = @"仓库出库详情";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //点击开单按钮
