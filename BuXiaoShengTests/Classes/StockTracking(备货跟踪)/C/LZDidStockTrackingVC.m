@@ -9,6 +9,8 @@
 #import "LZDidStockTrackingVC.h"
 #import "LZBugAndProcessBssModel.h"
 #import "StockTrackingCell.h"
+#import "LZPurchasingInfoDetailVC.h"
+#import "LZJGpurchasingInfoDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface LZDidStockTrackingVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -139,6 +141,23 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZBugAndProcessBssModel *model = _lists[indexPath.row];
+    //    采购：model.purchaseType.integerValue == 0
+    //    加工：model.purchaseType.integerValue == 1
+    if (model.purchaseType.integerValue == 0) {
+        LZPurchasingInfoDetailVC *vc = [[LZPurchasingInfoDetailVC alloc]init];
+        vc.buyId = model.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        
+        LZJGpurchasingInfoDetailVC *vc = [[LZJGpurchasingInfoDetailVC alloc]init];
+        vc.buyId = model.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 #pragma mark - Getter && Setter

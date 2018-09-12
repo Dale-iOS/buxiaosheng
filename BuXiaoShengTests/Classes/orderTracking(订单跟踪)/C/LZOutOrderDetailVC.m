@@ -4,18 +4,36 @@
 //
 //  Created by 罗镇浩 on 2018/9/2.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  仓库出库详情页面
 
 #import "LZOutOrderDetailVC.h"
 #import "LZOutOrderCustomerModel.h"
 #import "LZOutOrderProductModel.h"
+#import "OrderCustomerCell.h"
+#import "OrderColorsCell.h"
+#import "OrderTotalCell.h"
 
-@interface LZOutOrderDetailVC ()
+@interface LZOutOrderDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) LZOutOrderCustomerModel *customerModel;
 @property (nonatomic, strong) LZOutOrderProductModel *productModel;
+@property (nonatomic, strong) UITableView *myTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation LZOutOrderDetailVC
+
+- (UITableView *)myTableView
+{
+    if (!_myTableView) {
+        _myTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+        _myTableView.delegate = self;
+        _myTableView.dataSource = self;
+        _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _myTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+    }
+    return _myTableView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,7 +42,10 @@
 
 - (void)setupUI{
     self.navigationItem.titleView = [Utility navTitleView:self.title];
-    
+    [self.view addSubview:self.myTableView];
+    _dataArray = [NSMutableArray array];
+    self.myTableView.estimatedRowHeight = 200;
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
     [self getCustomerData];
 }
 
@@ -60,11 +81,64 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _productModel = [LZOutOrderProductModel LLMJParse:baseModel.data];
+        _dataArray = [LZOutOrderProductModel LLMJParse:baseModel.data];
+        [self.myTableView reloadData];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2 + _dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        OrderCustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderCustomerCell"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCustomerCell" owner:self options:nil] lastObject];
+            
+        }
+        cell.customerModel = self.customerModel;
+        return cell;
+    }else if (indexPath.row == _dataArray.count + 1) {
+        OrderTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderTotalCell"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderTotalCell" owner:self options:nil] lastObject];
+            
+        }
+        cell.dataArray = _dataArray;
+        return cell;
+    }else
+    {
+        OrderColorsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderColorsCell"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderColorsCell" owner:self options:nil] lastObject];
+            
+        }
+        if (self.dataArray.count > 0) {
+            cell.productModel = _dataArray[indexPath.row - 1];
+        }
+        
+        return cell;
+    }
+    
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -15,6 +15,7 @@
 #import "LZSearchBar.h"
 #import "LZOrderTrackingModel.h"
 #import "LZSearchClientNeedsCell.h"
+#import "LZCustomerNeedsDetailVC.h"
 
 static NSInteger const pageSize = 15;
 @interface LZSearchClientNeedsVC ()<SGPageTitleViewDelegate,SGPageContentViewDelegate,LLDayCalendarVcDelegate,LLWeekCalendarVcDelegate,LLMonthCalendarVcDelegate,LLQuarterCalendarVcVcDelegate,LZSearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -162,6 +163,7 @@ static NSInteger const pageSize = 15;
 }
 
 #pragma mark ---- 网络请求 ----
+//接口名称 已出库-销售需求
 - (void)setupList{
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
                             @"pageNo":@(self.pageIndex),
@@ -169,8 +171,8 @@ static NSInteger const pageSize = 15;
                             @"endDate":_endStr,
                             @"startDate":_startStr,
                             };
-    [BXSHttp requestGETWithAppURL:@"sale/need_list.do" param:param success:^(id response) {
-
+    [BXSHttp requestGETWithAppURL:@"storehouse/already_storage_list.do" param:param success:^(id response) {
+        
         
         if ([response isKindOfClass:[NSDictionary class]] && [response objectForKey:@"data"]) {
             if (1 == self.pageIndex) {
@@ -237,6 +239,7 @@ static NSInteger const pageSize = 15;
     if (cell == nil) {
         
         cell = [[LZSearchClientNeedsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.stateLabel.hidden = YES;
     }
     cell.model = _lists[indexPath.row];
     
@@ -246,9 +249,12 @@ static NSInteger const pageSize = 15;
 //点击cell触发此方法
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LZOrderTrackingModel *model = _lists[indexPath.row];
-//
-
+    LZOrderTrackingModel *model = _lists[indexPath.row];
+    LZCustomerNeedsDetailVC *vc = [[LZCustomerNeedsDetailVC alloc]init];
+    vc.orderNo = model.orderNo;
+    vc.title = @"仓库出库详情";
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark --- 点击事件 ---

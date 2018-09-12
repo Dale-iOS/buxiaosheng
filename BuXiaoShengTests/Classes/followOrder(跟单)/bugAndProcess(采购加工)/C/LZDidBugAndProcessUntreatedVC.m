@@ -4,11 +4,12 @@
 //
 //  Created by 罗镇浩 on 2018/6/12.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  采购加工-已完成页面
 
 #import "LZDidBugAndProcessUntreatedVC.h"
 #import "LZDidBugAndProcessUntreatedCell.h"
 #import "LZBugAndProcessBssModel.h"
+#import "LZPurchaseReceivingListVC.h"
 
 static NSInteger const pageSize = 15;
 @interface LZDidBugAndProcessUntreatedVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -133,6 +134,13 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZBugAndProcessBssModel *model = _lists[indexPath.row];
+    LZPurchaseReceivingListVC *vc = [[LZPurchaseReceivingListVC alloc]init];
+    vc.buyId = model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter && Setter

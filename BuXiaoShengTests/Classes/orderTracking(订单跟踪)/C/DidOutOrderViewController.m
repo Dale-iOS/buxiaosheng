@@ -40,6 +40,10 @@ static NSInteger const pageSize = 15;
     [super viewDidLoad];
     [self setupUI];
     [self setupPageView];
+    
+    if (!IOS11Later) {
+        [self setupList];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -214,7 +218,7 @@ static NSInteger const pageSize = 15;
     LZOrderTrackingModel *model = _lists[indexPath.row];
     LZOutOrderDetailVC *vc = [[LZOutOrderDetailVC alloc]init];
     vc.orderId = model.orderNo;
-    vc.title = @"仓库出仓详情";
+    vc.title = @"仓库出库详情";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -38,7 +38,7 @@
 #import "BaseViewController.h"
 #import "BaseModel.h"
 #import "UIButton+WM.h"
-
+#import "AppDelegate.h"
 #define LLLoginStateNotification  @"LLLoginStateNotification"
 
 #define LLUserSaveKey @"LLUserSaveKey"
@@ -46,7 +46,7 @@
 #define LLJPushRegistrationID @"LLJPushRegistrationID"
 
 
-
+#define app ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #ifdef DEBUG //测试 处于开发阶段
 #define CJString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
 #define NSLog(...) printf("[%s] %s 第%d行: %s\n\n", __TIME__,[CJString UTF8String] ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);

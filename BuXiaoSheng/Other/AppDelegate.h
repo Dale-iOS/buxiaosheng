@@ -12,7 +12,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, assign) BOOL isSelected;//保存cell的折叠状态收起还是折叠
 
 @end
 
