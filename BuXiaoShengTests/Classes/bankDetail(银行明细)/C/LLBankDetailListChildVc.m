@@ -23,6 +23,7 @@
     [self setupList];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pageIndex = 1;
@@ -52,8 +53,9 @@
                              @"startDate":self.startDate?:@"",
                              @"endDate":self.endDate?:@"",
                              @"dateType":@(self.dateType),
-                             @"bankId":self.bankId,
+                             @"bankId":self.bankId ? :@"",
                              @"incomeType":self.incomeId ? :@"",
+                             @"type":_type == nil ? @"" : _type
                              };
     [BXSHttp requestGETWithAppURL:@"finance_data/bank_detail_list.do" param:param success:^(id response) {
         LLBaseModel * basModel = [LLBaseModel LLMJParse:response];
@@ -73,7 +75,7 @@
         [self.tableView.mj_footer endRefreshing];
         BankDetailListViewController * parentVc = (BankDetailListViewController*)self.parentViewController;
         parentVc.totalRevenueMoenyLable.text = bankModel.totalIncome;
-         parentVc.totalSpendingMoenyLable.text = bankModel.totalExpenditure;
+        parentVc.totalSpendingMoenyLable.text = bankModel.totalExpenditure;
     } failure:^(NSError *error) {
         [LLHudTools showWithMessage:LLLoadErrorMessage];
         [self.tableView.mj_header endRefreshing];
@@ -135,14 +137,5 @@
     return _tableView;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

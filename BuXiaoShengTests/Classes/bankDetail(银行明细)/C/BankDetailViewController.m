@@ -249,6 +249,9 @@
 
 - (void)navSearchClick{
     BankDetailListViewController *vc = [[BankDetailListViewController alloc]init];
+    vc.totalRevenueMoenyLable.text = @"0";
+    vc.totalSpendingMoenyLable.text = @"0";
+    vc.typeId = @"";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

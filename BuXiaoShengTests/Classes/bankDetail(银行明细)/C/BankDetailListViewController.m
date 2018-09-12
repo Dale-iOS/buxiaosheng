@@ -230,12 +230,12 @@
         [self.navigationController cw_showDrawerViewController:vc animationType:(CWDrawerAnimationTypeMask) configuration:conf];
         [vc setSelectIDBlock:^(NSString *typeId, NSString *bankId, NSString *incomeId) {
             LLBankDetailListChildVc * currentcChildVc = self.childViewControllers[self.scrollIndex];
-            currentcChildVc.dateType = [typeId integerValue];
+             currentcChildVc.dateType = [typeId integerValue];
              currentcChildVc.bankId = bankId;
              currentcChildVc.incomeId = incomeId;
              currentcChildVc.dateType = self.scrollIndex+1;
+             currentcChildVc.type = typeId;
         }];
-   
 
 }
 /// MARK: ---- 日历按钮的点击方法
