@@ -9,11 +9,14 @@
 #import "AddColorViewController.h"
 #import "AddColorCell.h"
 #import "LZAddColorsModel.h"
-
+#import "LLColorRegistModel.h"
 @interface AddColorViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic, strong) LZAddColorsModel *colorsmodel;
+@property(nonatomic ,strong)UIView * headerView;
+@property(nonatomic ,strong)UITextField * numColorFied;
+@property(nonatomic ,strong)NSMutableArray <LLColorRegistModel*>* dataModels;
 @end
 
 @implementation AddColorViewController
@@ -33,19 +36,21 @@
     
     
     self.myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight) style:UITableViewStyleGrouped];
+    [self.myTableView registerClass:[AddColorCell class] forCellReuseIdentifier:@"AddColorCellID"];
     self.myTableView .backgroundColor = LZHBackgroundColor;
     self.myTableView.sectionHeaderHeight = 10;
     self.myTableView.sectionFooterHeight = 0;
     self.myTableView .delegate = self;
     self.myTableView .dataSource = self;
     [self.view addSubview:self.myTableView];
+    self.myTableView.tableHeaderView = self.headerView;
 
 }
 
 #pragma mark ----- tableviewdelegate -----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return self.dataModels.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -67,49 +72,8 @@
 {
     static NSString *cellID = @"AddColorCellID";
     AddColorCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
-    if (cell == nil) {
-        
-        cell = [[AddColorCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
-        
-        self.colorsmodel = [[LZAddColorsModel alloc]init];
-        if (indexPath.row == 0) {
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color0 = result;
-            }];
-        }else if (indexPath.row == 1){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color1 = result;
-            }];
-        }else if (indexPath.row == 2){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color2 = result;
-            }];
-        }else if (indexPath.row == 3){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color3 = result;
-            }];
-        }else if (indexPath.row == 4){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color4 = result;
-            }];
-        }else if (indexPath.row == 5){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color5 = result;
-            }];
-        }else if (indexPath.row == 6){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color6 = result;
-            }];
-        }else if (indexPath.row == 7){
-            [cell setCellTitle:[NSString stringWithFormat:@"颜色%zd",indexPath.row %4 +1] WithReturnBlock:^(NSString *result) {
-                self.colorsmodel.color7 = result;
-            }];
-        }
-        
-    }
-
+    cell.titleLbl.text = self.dataModels[indexPath.row].leftStr;
+    cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
     return cell;
 }
 
@@ -117,80 +81,75 @@
 - (void)selectornavRightBtnClick
 {
 
-    NSMutableArray *muArray = [NSMutableArray array];
-    NSMutableArray *muArray1 = [NSMutableArray array];
-    for (int i = 0 ; i < 8; i++) {
-        if (i == 0 && self.colorsmodel.color0.length >0) {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color0 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color0];
-        }
-        else if (i == 1 && self.colorsmodel.color1.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color1 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color1];
-        }
-        else if (i == 2 && self.colorsmodel.color2.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color2 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color2];
-        }
-        else if (i == 3 && self.colorsmodel.color3.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color3 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color3];
-        }
-        else if (i == 4 && self.colorsmodel.color4.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color4 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color4];
-        }
-        else if (i == 5 && self.colorsmodel.color5.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color5 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color5];
-        }
-        else if (i == 6 && self.colorsmodel.color6.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color6 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color6];
-        }
-        else if (i == 7 && self.colorsmodel.color7.length >0)
-        {
-            NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"name"] = self.colorsmodel.color7 ? : @"";
-            [muArray addObject:param];
-            [muArray1 addObject:self.colorsmodel.color7];
-        }
-
-    }
-    
-
     if (self.ColorsArrayBlock) {
-        self.ColorsArrayBlock(muArray, muArray1);
+        //self.ColorsArrayBlock(muArray, muArray1);
     }
     
-    if (muArray.count > 0) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        BXS_Alert(@"请至少填写一个颜色");
-    }
+//    if (muArray.count > 0) {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else{
+//        BXS_Alert(@"请至少填写一个颜色");
+//    }
     
 }
+-(void)addColorBtnClick {
+    
+    if (![self.numColorFied.text integerValue]) {
+        [LLHudTools showWithMessage:@"请输入你要添加的颜色的数量"];
+        return;
+    }
+    self.dataModels = [NSMutableArray array];
+    for (int i = 0; i<[self.numColorFied.text integerValue]; i++) {
+        LLColorRegistModel * model = [LLColorRegistModel new];
+        model.leftStr = [NSString stringWithFormat:@"颜色%d",i+1];
+        model.rightPlaceholder = [NSString stringWithFormat:@"请输入#%d",i+1];
+        [self.dataModels addObject:model];
+    }
+    [self.myTableView reloadData];
+}
 
+/// MARK: ---- 懒加载
+
+
+-(UIView *)headerView {
+    if (!_headerView) {
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPWidth, 45)];
+        _headerView.backgroundColor = [UIColor whiteColor];
+        UILabel *leftLable = [UILabel new];
+        leftLable.textColor = [UIColor darkGrayColor];
+        leftLable.font = [UIFont systemFontOfSize:15];
+        leftLable.text = @"批量颜色";
+        [_headerView addSubview:leftLable];
+        [leftLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self->_headerView).offset(15);
+            make.centerY.equalTo(self->_headerView);
+        }];
+        
+        UIButton * addColorBtn = [UIButton new];
+        [addColorBtn addTarget:self action:@selector(addColorBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [addColorBtn setTitle:@"添 加" forState:UIControlStateNormal];
+        addColorBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [addColorBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
+        [_headerView addSubview:addColorBtn];
+        [addColorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self->_headerView).offset(-15);
+            make.centerY.equalTo(self->_headerView);
+            make.width.mas_equalTo(45);
+        }];
+        self.numColorFied = [UITextField new];
+        [_headerView addSubview:self.numColorFied];
+        self.numColorFied.placeholder = @"请输入要添加颜色的数量";
+        self.numColorFied.font = [UIFont systemFontOfSize:14];
+        //self.numColorFied.textAlignment = NSTextAlignmentCenter;
+        [self.numColorFied mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftLable.mas_right).offset(5);
+            make.centerY.equalTo(leftLable);
+            make.width.mas_equalTo(APPWidth - 30 - 45 - 5 -80);
+            make.height.mas_equalTo(35);
+        }];
+    }
+    return _headerView;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
