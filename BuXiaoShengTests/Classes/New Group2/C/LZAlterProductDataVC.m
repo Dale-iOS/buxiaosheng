@@ -510,6 +510,8 @@
             LLColorRegistModel * model = [LLColorRegistModel new];
             model.leftStr = [NSString stringWithFormat:@"颜色%zd",idx];
             model.rightStr = obj[@"name"];
+            model.id = obj[@"id"];
+            model.productId = obj[@"productId"];
             [muArray addObject:model];
         }];
 		//设置样式
@@ -789,13 +791,20 @@
 	}
 
 	//颜色数组转换成字符串
-	NSString *colors = [_colorArray mj_JSONString];
-
-
+    NSMutableArray *colorSaveAry = [NSMutableArray array];
+    [self.colorArray enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSDictionary *param = @{@"name":obj.rightStr,
+                                @"id":obj.id == nil ? @"" : obj.id,
+                                @"productId":obj.productId == nil ? @"" : obj.productId
+                                };
+        [colorSaveAry addObject:[param mj_JSONObject]];
+    }];
+    
 	NSDictionary * param = @{@"companyId":nil_string([BXSUser currentUser].companyId),
 							 @"alias":self.nicknameCell.contentTF.text,
 							 @"breadth":self.breadthCell.contentTF.text,
-							 @"colorItems":colors,
+							 @"colorItems":[colorSaveAry mj_JSONString],
 							 @"component":self.constituentCell.contentTF.text,
 							 @"groupId":_groupId,
 							 @"id":self.id,

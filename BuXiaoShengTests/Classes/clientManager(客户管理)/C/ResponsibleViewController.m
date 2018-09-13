@@ -116,7 +116,7 @@ static NSInteger const pageSize = 15;
 - (void)setupList
 {
     NSDictionary *param = @{@"companyId":[BXSUser currentUser].companyId,
-                            @"memberId":@"",
+                            @"memberId":[BXSUser currentUser].userId,
                             @"pageNo":@(self.pageIndex),
                             @"pageSize":@(pageSize),
                             };
@@ -223,7 +223,7 @@ static NSInteger const pageSize = 15;
                                 @"memberId":[BXSUser currentUser].userId,
                                 @"pageNo":@(self.pageIndex),
                                 @"pageSize":@(pageSize),
-//                                @"searchName":@""
+                                //                                @"searchName":@""
                                 
                                 };
         [BXSHttp requestGETWithAppURL:@"customer/list.do" param:param success:^(id response) {

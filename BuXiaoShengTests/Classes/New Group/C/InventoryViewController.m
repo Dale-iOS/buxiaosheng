@@ -293,9 +293,9 @@
         _model = [LZInventoryModel LLMJParse:baseModel.data];
         NSArray *tempAry = baseModel.data;
         if (tempAry.count >0) {
-            self.meterLbl.text = _model.totalRice;
-            self.codeLbl.text = _model.totalCode;
-            self.kgLbl.text = _model.totalKg;
+            self.meterLbl.text = [NSString stringWithFormat:@"%.1f",_model.totalRice.doubleValue];
+            self.codeLbl.text = [NSString stringWithFormat:@"%.1f",_model.totalCode.doubleValue];
+            self.kgLbl.text = [NSString stringWithFormat:@"%.1f",_model.totalKg.doubleValue];
             _listAry = _model.itemList;
             [self.tableView reloadData];
         }

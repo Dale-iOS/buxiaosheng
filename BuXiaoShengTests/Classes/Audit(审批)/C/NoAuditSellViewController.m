@@ -144,6 +144,7 @@ static NSInteger const pageSize = 15;
     return cell;
 }
 
+//同意
 - (void)didClickYesBtnInCell:(UITableViewCell *)cell{
     WEAKSELF;
     //设置警告框
@@ -160,9 +161,11 @@ static NSInteger const pageSize = 15;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         LZMarketModel *model = _lists[indexPath.row];
         
-        NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
-                                 @"approvalId":model.id,
-                                 @"orderId":model.orderId
+        NSDictionary * param = @{@"companyId":@([[BXSUser currentUser].companyId integerValue]),
+                                 @"approvalId":@([model.id integerValue]),
+                                 @"orderId":@([model.orderId integerValue]),
+                                 @"type":@(0),
+                                 @"bankId":@(0)
                                  };
         [BXSHttp requestGETWithAppURL:@"approval/need_agree.do" param:param success:^(id response) {
             LLBaseModel * baseModel = [LLBaseModel LLMJParse:response];
@@ -185,6 +188,7 @@ static NSInteger const pageSize = 15;
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+//拒绝
 - (void)didClickNoBtnInCell:(UITableViewCell *)cell{
     WEAKSELF;
     //设置警告框

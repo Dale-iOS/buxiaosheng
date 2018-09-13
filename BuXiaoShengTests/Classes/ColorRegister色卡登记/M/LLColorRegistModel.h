@@ -12,4 +12,6 @@
 @property(nonatomic ,copy)NSString * leftStr;
 @property(nonatomic ,copy)NSString * rightStr;
 @property(nonatomic ,copy)NSString * rightPlaceholder;
+@property(nonatomic ,copy)NSString * id;
+@property(nonatomic ,copy)NSString * productId;
 @end

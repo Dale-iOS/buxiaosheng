@@ -231,10 +231,12 @@
     self.bigPriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.bigPriceCell.titleLabel.text = @"销售大货价";
     self.bigPriceCell.contentTF.placeholder = @"请输入大货价";
+    self.bigPriceCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     
     self.dispersePriceCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.dispersePriceCell.titleLabel.text = @"销售散剪价";
     self.dispersePriceCell.contentTF.placeholder = @"请输入销售散剪价";
+    self.dispersePriceCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     
     self.constituentCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.constituentCell.titleLabel.text = @"成分";
@@ -247,7 +249,7 @@
     self.weightCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
     self.weightCell.titleLabel.text = @"克重";
     self.weightCell.contentTF.placeholder = @"请输入克重";
-
+    self.weightCell.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headerView.backgroundColor = LZHBackgroundColor;

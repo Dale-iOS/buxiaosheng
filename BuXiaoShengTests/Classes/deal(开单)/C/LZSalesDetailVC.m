@@ -36,9 +36,9 @@
 ///收款方式
 @property(nonatomic,strong)TextInputCell *wayCell;
 ///备注
-@property(nonatomic,strong)TextInputTextView *remarkTextView;
+@property(nonatomic,strong)TextInputCell *remarkTextView;
 ///仓库注意事项
-@property(nonatomic,strong)TextInputTextView *noticeTextView;
+@property(nonatomic,strong)TextInputCell *noticeTextView;
 @property(nonatomic,strong)LZSalesDetailModel *model;
 @property(nonatomic,strong)NSArray <LZSalesDetailItemListModel *> *lists;
 @property (nonatomic, strong) UIView *headerView;
@@ -141,7 +141,7 @@
     
     //收款方式
     self.wayCell = [[TextInputCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 44)];
-    self.wayCell.titleLabel.text = @"预收贷款";
+    self.wayCell.titleLabel.text = @"收款方式";
     self.wayCell.contentTF.enabled = NO;
     self.wayCell.lineView.hidden = YES;
     self.wayCell.contentTF.sd_layout
@@ -152,29 +152,29 @@
     
     
     //备注
-    self.remarkTextView = [[TextInputTextView alloc]init];
-    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 98);
+    self.remarkTextView = [[TextInputCell alloc]init];
+    self.remarkTextView.frame = CGRectMake(0, 0, APPWidth, 44);
     self.remarkTextView.titleLabel.text = @"备注";
     self.remarkTextView.lineView.hidden = YES;
     self.remarkTextView.userInteractionEnabled = NO;
-    self.remarkTextView.textView.sd_layout
-    .leftSpaceToView(self.remarkTextView, 100)
-    .topSpaceToView(self.remarkTextView, 7)
-    .widthIs(APPWidth -120 -15)
-    .heightIs(60);
+    self.remarkTextView.sd_layout
+    .topEqualToView(self.remarkTextView.titleLabel)
+    .leftSpaceToView(self.remarkTextView.titleLabel, -10)
+    .heightRatioToView(self.remarkTextView, 1)
+    .widthIs(LZHScale_WIDTH(270));
     
     
     //仓库注意事项
-    self.noticeTextView = [[TextInputTextView alloc]init];
-    self.noticeTextView.frame = CGRectMake(0, 0, APPWidth, 98);
+    self.noticeTextView = [[TextInputCell alloc]init];
+    self.noticeTextView.frame = CGRectMake(0, 0, APPWidth, 44);
     self.noticeTextView.titleLabel.text = @"仓库注意事项";
     self.noticeTextView.lineView.hidden = YES;
     self.noticeTextView.userInteractionEnabled = NO;
-    self.noticeTextView.textView.sd_layout
-    .leftSpaceToView(self.noticeTextView, 100)
-    .topSpaceToView(self.noticeTextView, 7)
-    .widthIs(APPWidth -120 -15)
-    .heightIs(60);
+    self.noticeTextView.sd_layout
+    .topEqualToView(self.noticeTextView.titleLabel)
+    .leftSpaceToView(self.noticeTextView.titleLabel, -10)
+    .heightRatioToView(self.noticeTextView, 1)
+    .widthIs(LZHScale_WIDTH(270));
     
     UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
     headview.backgroundColor = LZHBackgroundColor;
@@ -297,32 +297,32 @@
         self.orderCell.contentTF.text = _model.orderNo;
         self.advanceMoneyCell.contentTF.text = _model.deposit;
         self.wayCell.contentTF.text = _model.bankName;
-        self.remarkTextView.textView.text = _model.remark;
-        self.noticeTextView.textView.text = _model.matter;
-        
-        //更新第一部分
-        UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
-        headview.backgroundColor = LZHBackgroundColor;
-        LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-        if ([self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]) {
-            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell];
-        }else if ([self.remarkTextView.textView.text isEqualToString:@""] && ![self.noticeTextView.textView.text isEqualToString:@""]){
-            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.noticeTextView];
-        }else if (![self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]){
-            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView];
-        }else{
-            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView,self.noticeTextView];
-        }
-        item.sectionView = headview;
-        [self.dataSource replaceObjectAtIndex:0 withObject:item];
-        
-        //更新第二部分
-        _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
-        [_tableView reloadData];
-        LZHTableViewItem *item1 = [[LZHTableViewItem alloc]init];
-        item1.sectionRows = @[_headerView,_tableView];
-        item1.sectionView = headview;
-        [self.dataSource replaceObjectAtIndex:1 withObject:item1];
+        self.remarkTextView.contentTF.text = _model.remark;
+        self.noticeTextView.contentTF.text = _model.matter;
+        //
+        //        //更新第一部分
+        //        UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        //        headview.backgroundColor = LZHBackgroundColor;
+        //        LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+        //        if ([self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]) {
+        //            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell];
+        //        }else if ([self.remarkTextView.textView.text isEqualToString:@""] && ![self.noticeTextView.textView.text isEqualToString:@""]){
+        //            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.noticeTextView];
+        //        }else if (![self.remarkTextView.textView.text isEqualToString:@""] && [self.noticeTextView.textView.text isEqualToString:@""]){
+        //            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView];
+        //        }else{
+        //            item.sectionRows = @[_dateLbl,_lineView,self.nameCell,self.phoneCell,self.orderCell,self.advanceMoneyCell,self.wayCell,self.remarkTextView,self.noticeTextView];
+        //        }
+        //        item.sectionView = headview;
+        //        [self.dataSource replaceObjectAtIndex:0 withObject:item];
+        //
+        //        //更新第二部分
+        //        _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
+        //        [_tableView reloadData];
+        //        LZHTableViewItem *item1 = [[LZHTableViewItem alloc]init];
+        //        item1.sectionRows = @[_headerView,_tableView];
+        //        item1.sectionView = headview;
+        //        [self.dataSource replaceObjectAtIndex:1 withObject:item1];
         [self.myTableView reloadData];
         
     } failure:^(NSError *error) {

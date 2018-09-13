@@ -91,6 +91,9 @@
     if (!self.dataModels.count) {
         return;
     }
+    
+    //强制键盘收起
+    [self.view endEditing:YES];
     NSMutableArray * colorArr = [NSMutableArray array];
     [self.dataModels enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.rightStr) {
@@ -115,14 +118,14 @@
 -(void)addColorBtnClick {
     
     if (![self.numColorFied.text integerValue]) {
-        [LLHudTools showWithMessage:@"请输入你要添加的颜色的数量"];
+        [LLHudTools showWithMessage:@"请输入要添加颜色的数量"];
         return;
     }
     self.dataModels = [NSMutableArray array];
     for (int i = 0; i<[self.numColorFied.text integerValue]; i++) {
         LLColorRegistModel * model = [LLColorRegistModel new];
         model.leftStr = [NSString stringWithFormat:@"颜色%d",i+1];
-        model.rightPlaceholder = [NSString stringWithFormat:@"请输入#%d",i+1];
+        model.rightPlaceholder = [NSString stringWithFormat:@"请输入颜色#%d",i+1];
         [self.dataModels addObject:model];
     }
     [self.myTableView reloadData];
@@ -160,6 +163,7 @@
         [_headerView addSubview:self.numColorFied];
         self.numColorFied.placeholder = @"请输入要添加颜色的数量";
         self.numColorFied.font = [UIFont systemFontOfSize:14];
+        self.numColorFied.keyboardType = UIKeyboardTypeNumberPad;
         self.numColorFied.textAlignment = NSTextAlignmentCenter;
         [self.numColorFied mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftLable.mas_right).offset(5);

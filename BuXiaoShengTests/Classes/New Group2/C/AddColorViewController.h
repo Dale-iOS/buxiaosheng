@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+
 @class LLColorRegistModel;
 @interface AddColorViewController : BaseViewController
 
