@@ -17,7 +17,7 @@
 #import "LZChooseLabelVC.h"
 #import "LZProductDetailModel.h"
 #import "ToolsCollectionVC.h"
-
+#import "LLColorRegistModel.h"
 @interface LZAlterProductDataVC ()<LZHTableViewDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 {
     NSMutableArray *_array;
@@ -64,7 +64,7 @@
 
 ///添加颜色
 @property (nonatomic, strong) TextInputCell *addColorCell;
-@property(nonatomic,strong)NSArray *colorArray;//最后网络请求的颜色数据
+@property(nonatomic,strong)NSMutableArray <LLColorRegistModel*>*colorArray;//最后网络请求的颜色数据
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///备注
@@ -516,7 +516,7 @@
 			[muArray1 addObject:tempArray[i][@"name"]];
         }
 		//设置样式
-		[self updateClolorUI:muArray withMuColosArray:muArray1];
+        [self updateClolorUIWithMuColosArray:muArray];
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];
@@ -617,8 +617,8 @@
 {
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-    [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
-		[self updateClolorUI:muParamArray withMuColosArray:muColosArray];
+    [vc setColorsArrayBlock:^( NSMutableArray *muColosArray) {
+		[self updateClolorUIWithMuColosArray:muColosArray];
     }];
 }
 /**
@@ -626,14 +626,15 @@
  @param muParamArray (_colorArray)	 @[(name:x),(name:y),(name:z)]
  @param muColosArray (_array) 		 @[(x),(y),(z)]
  */
-- (void)updateClolorUI:(NSMutableArray *)muParamArray withMuColosArray:(NSMutableArray *)muColosArray{
-
+- (void)updateClolorUIWithMuColosArray:(NSMutableArray <LLColorRegistModel*>*)muColosArray{
+    
+    
 	//临时添加数据
-	NSMutableArray *tempMuArray = [_array mutableCopy];
-	[tempMuArray addObjectsFromArray:muColosArray];
-	_array = [tempMuArray copy];
-	_colorArray = [muParamArray copy];
-
+//    NSMutableArray *tempMuArray = [_array mutableCopy];
+//    [tempMuArray addObjectsFromArray:muColosArray];
+//    _array = [tempMuArray copy];
+//    _colorArray = [muParamArray copy];
+    [self.colorArray addObjectsFromArray:muColosArray];
 	//添加颜色
 	UIView *addColorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
 	addColorView.backgroundColor = [UIColor whiteColor];
@@ -674,7 +675,7 @@
 
 	int margin = 10;
 
-	for (int i = 0; i <_array.count ; i++) {
+	for (int i = 0; i <muColosArray.count ; i++) {
 		int page = i/col;
 		int index = i%col;
 
@@ -694,7 +695,7 @@
 		label.layer.borderColor = CD_Text33.CGColor;
 		//            label.layer.borderWidth = 1;
 
-		label.text = _array[i];
+		label.text = muColosArray[i].rightStr;
 		label.textAlignment = NSTextAlignmentCenter;
 
 		colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
@@ -847,5 +848,11 @@ static NSString * nil_string(NSString *str) {
 		_collectionVC.cTarget = self;
 	}
 	return _collectionVC;
+}
+-(NSMutableArray<LLColorRegistModel *> *)colorArray {
+    if (!_colorArray) {
+        _colorArray = [NSMutableArray array];
+    }
+    return _colorArray;
 }
 @end

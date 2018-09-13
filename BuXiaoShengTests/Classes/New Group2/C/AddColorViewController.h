@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-
+@class LLColorRegistModel;
 @interface AddColorViewController : BaseViewController
 
-@property (nonatomic,copy) void(^ColorsArrayBlock)(NSMutableArray *muParamArray,NSMutableArray *muColosArray);
-
+@property (nonatomic,copy) void(^ColorsArrayBlock)(NSMutableArray <LLColorRegistModel*>*muColosArray);
+// 0是正常  1位修改过来的
+@property(nonatomic ,assign)NSInteger  type;
+@property(nonatomic ,strong)NSMutableArray <LLColorRegistModel*>* dataModels;
 @end
 

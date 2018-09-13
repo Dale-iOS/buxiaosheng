@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LLColorRegistModel;
 @interface AddColorCell : UITableViewCell
 
 ///颜色
@@ -15,6 +15,8 @@
 
 ///颜色内容
 @property (nonatomic, strong) UITextField *contentTF;
+
+@property(nonatomic ,strong)LLColorRegistModel * model;
 
 /**
  设置cell信息

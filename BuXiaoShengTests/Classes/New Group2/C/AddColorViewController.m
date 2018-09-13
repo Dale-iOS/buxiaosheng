@@ -16,7 +16,7 @@
 @property (nonatomic, strong) LZAddColorsModel *colorsmodel;
 @property(nonatomic ,strong)UIView * headerView;
 @property(nonatomic ,strong)UITextField * numColorFied;
-@property(nonatomic ,strong)NSMutableArray <LLColorRegistModel*>* dataModels;
+
 @end
 
 @implementation AddColorViewController
@@ -31,7 +31,7 @@
 
 - (void)setupUI
 {
-    self.navigationItem.titleView = [Utility navTitleView:@"添加颜色"];
+    self.navigationItem.titleView =  [Utility navTitleView:self.type == 1 ?  @"修改颜色": @"添加颜色"];
     self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(selectornavRightBtnClick) title:@"确认"];
     
     
@@ -43,7 +43,10 @@
     self.myTableView .delegate = self;
     self.myTableView .dataSource = self;
     [self.view addSubview:self.myTableView];
-    self.myTableView.tableHeaderView = self.headerView;
+    if (self.type != 1) {
+         self.myTableView.tableHeaderView = self.headerView;
+    }
+   
 
 }
 
@@ -72,19 +75,36 @@
 {
     static NSString *cellID = @"AddColorCellID";
     AddColorCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.model = self.dataModels[indexPath.row];
     cell.titleLbl.text = self.dataModels[indexPath.row].leftStr;
-    cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
+     cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
+    if (self.dataModels[indexPath.row].rightStr) {
+        cell.contentTF.text = self.dataModels[indexPath.row].rightStr;
+    }
+   
     return cell;
 }
 
 //确认按钮
 - (void)selectornavRightBtnClick
 {
-
-    if (self.ColorsArrayBlock) {
-        //self.ColorsArrayBlock(muArray, muArray1);
+    if (!self.dataModels.count) {
+        return;
     }
-    
+    NSMutableArray * colorArr = [NSMutableArray array];
+    [self.dataModels enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.rightStr) {
+            [colorArr addObject:obj];
+        }
+    }];
+    if (!colorArr.count) {
+        [LLHudTools showWithMessage:@"请至少填写一个颜色"];
+        return;
+    }
+    if (self.ColorsArrayBlock) {
+        self.ColorsArrayBlock(colorArr);
+    }
+    [self.navigationController popViewControllerAnimated:true];
 //    if (muArray.count > 0) {
 //        [self.navigationController popViewControllerAnimated:YES];
 //    }else{
@@ -140,7 +160,7 @@
         [_headerView addSubview:self.numColorFied];
         self.numColorFied.placeholder = @"请输入要添加颜色的数量";
         self.numColorFied.font = [UIFont systemFontOfSize:14];
-        //self.numColorFied.textAlignment = NSTextAlignmentCenter;
+        self.numColorFied.textAlignment = NSTextAlignmentCenter;
         [self.numColorFied mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftLable.mas_right).offset(5);
             make.centerY.equalTo(leftLable);

@@ -7,7 +7,7 @@
 //
 
 #import "AddColorCell.h"
-
+#import "LLColorRegistModel.h"
 @interface AddColorCell()<UITextFieldDelegate>
 @end;
 
@@ -50,6 +50,8 @@
     if (contentTF == nil) {
         UITextField *tf = [[UITextField alloc]init];
         tf.placeholder = @"请输入颜色";
+        tf.delegate = self;
+        tf.returnKeyType = UIReturnKeyDone;
         tf.textColor = CD_Text33;
         tf.font = FONT(14);
         tf.delegate = self;
@@ -76,10 +78,21 @@
 
 -(void)textFieldChanging:(id)sender{
     if (_block) {
-        _block(self.contentTF.text);
+       // _block(self.contentTF.text);
+    }
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.text) {
+        self.model.rightStr = textField.text;
     }
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField.text) {
+        self.model.rightStr = textField.text;
+    }
+    return true;
+}
 //-(void)setCellInfo:(NSString*)title withInputDesc:(NSString*)desc withKeybordType:(NSInteger)type withText:(NSString *)text WithReturnBlock:(void (^)(NSString *))textFieldBlock{
 //    if (type==1) {
 //        self.contentTF.keyboardType = UIKeyboardTypeNumberPad;

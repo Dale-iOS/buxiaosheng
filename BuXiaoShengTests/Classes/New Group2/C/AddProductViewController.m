@@ -16,6 +16,7 @@
 #import "BRPickerView.h"
 #import "LZChooseLabelVC.h"
 #import "ToolsCollectionVC.h"
+#import "LLColorRegistModel.h"
 @interface AddProductViewController ()<LZHTableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 {
     NSArray *_array;
@@ -67,7 +68,7 @@
 
 ///添加颜色
 @property (nonatomic, strong) TextInputCell *addColorCell;
-@property(nonatomic,strong)NSArray *colorArray;//最后网络请求的颜色数据
+@property(nonatomic,strong)NSMutableArray <LLColorRegistModel*> *colorArray;//最后网络请求的颜色数据
 ///状态
 @property (nonatomic, strong) TextInputCell *stateCell;
 ///备注
@@ -520,14 +521,14 @@
     AddColorViewController *vc = [[AddColorViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
    WEAKSELF
-    [vc setColorsArrayBlock:^(NSMutableArray *muParamArray, NSMutableArray *muColosArray) {
+    [vc setColorsArrayBlock:^( NSMutableArray <LLColorRegistModel*> *muColosArray) {
 
         //临时添加数据
-        NSMutableArray *tempMuArray = [weakSelf.array mutableCopy];
-        [tempMuArray addObjectsFromArray:muColosArray];
-        weakSelf.array = [tempMuArray copy];
-        weakSelf.colorArray = [muParamArray copy];
-        
+//        NSMutableArray *tempMuArray = [weakSelf.array mutableCopy];
+//        [tempMuArray addObjectsFromArray:muColosArray];
+//        weakSelf.array = [tempMuArray copy];
+//        weakSelf.colorArray = [muParamArray copy];
+        [weakSelf.colorArray addObjectsFromArray:muColosArray];
         //添加颜色
         UIView *addColorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
         addColorView.backgroundColor = [UIColor whiteColor];
@@ -568,7 +569,7 @@
         
         int margin = 10;
         
-        for (int i = 0; i <weakSelf.array.count ; i++) {
+        for (int i = 0; i <weakSelf.colorArray.count ; i++) {
             int page = i/col;
             int index = i%col;
             
@@ -587,10 +588,10 @@
             
             label.layer.borderColor = CD_Text33.CGColor;
 //            label.layer.borderWidth = 1;
-            
-            label.text = weakSelf.array[i];
+            label.tag =  i;
+            label.text = weakSelf.colorArray[i].rightStr;
             label.textAlignment = NSTextAlignmentCenter;
-            
+            addGestureRecognizer(label, colorLableClick:)
             colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
             [colorsView addSubview:label];
         }
@@ -605,6 +606,19 @@
         [self.datasource replaceObjectAtIndex:2 withObject:item];
         [self.mainTabelView reloadData];
     }];
+}
+/// MARK: ---- 修改lable的值
+-(void)colorLableClick:(UIGestureRecognizer*)lable {
+    UILabel * tempLable = (UILabel *)lable.view;
+    AddColorViewController * colorVc = [AddColorViewController new];
+    colorVc.dataModels = [NSMutableArray arrayWithObject:self.colorArray[tempLable.tag]] ;
+    colorVc.ColorsArrayBlock = ^(NSMutableArray<LLColorRegistModel *> *muColosArray) {
+        tempLable.text = muColosArray.firstObject.rightStr;
+        [self.colorArray replaceObjectAtIndex:tempLable.tag withObject:muColosArray.firstObject];
+    };
+    colorVc.type = 1;
+    [self.navigationController pushViewController:colorVc animated:true];
+    
 }
 
 //右上角确认按钮事件
@@ -674,8 +688,12 @@
 	}
 
 	//颜色数组转换成字符串
-	NSString *colors = [_colorArray mj_JSONString];
-
+    NSMutableArray <NSDictionary*>* colorItems = [NSMutableArray array];
+    [self.colorArray enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary * dict = @{@"name":obj.rightStr};
+        [colorItems addObject:dict];
+    }];
+    NSString *colors = [colorItems mj_JSONString];
 
 	NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
 							 @"alias":self.nicknameCell.contentTF.text,
@@ -733,6 +751,12 @@
 	return _collectionVC;
 }
 
+-(NSMutableArray<LLColorRegistModel *> *)colorArray {
+    if (!_colorArray) {
+        _colorArray = [NSMutableArray array];
+    }
+    return _colorArray;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

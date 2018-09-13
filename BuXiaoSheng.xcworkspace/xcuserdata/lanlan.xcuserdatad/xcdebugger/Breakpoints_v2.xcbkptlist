@@ -20,13 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
-            timestampString = "557651593.033424"
+            timestampString = "558525078.552241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1000"
-            endingLineNumber = "1000"
-            landmarkName = "-refreshCollectionViewWithAddedAsset:image:"
-            landmarkType = "7">
+            startingLineNumber = "766"
+            endingLineNumber = "766">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,12 +34,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
-            timestampString = "557675002.04907"
+            timestampString = "558525078.552322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "847"
-            endingLineNumber = "847"
-            landmarkName = "-selectornavRightBtnClick"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
+            landmarkName = "-collectionVC"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,6 +72,54 @@
             startingLineNumber = "185"
             endingLineNumber = "185"
             landmarkName = "-didaffirmBtnInMonthCalendarWithDateStartStr:andEndStr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
+            timestampString = "558525078.5524271"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "519"
+            endingLineNumber = "519"
+            landmarkName = "-setupColorList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group2/C/LZAlterProductDataVC.m"
+            timestampString = "558525078.5524859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
+            landmarkName = "-setupColorList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
+            timestampString = "558525158.918503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
+            landmarkName = "-addColorCellTapAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

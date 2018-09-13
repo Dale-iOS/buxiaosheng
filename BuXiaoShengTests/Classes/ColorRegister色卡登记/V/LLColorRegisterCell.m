@@ -8,6 +8,7 @@
 
 #import "LLColorRegisterCell.h"
 #import "TextInputCell.h"
+#import "LLColorRegistModel.h"
 @implementation LLColorRegisterCell
 
 - (void)awakeFromNib {
