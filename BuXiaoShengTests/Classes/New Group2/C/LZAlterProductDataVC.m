@@ -506,15 +506,12 @@
         }
         NSArray *tempArray = baseModel.data;
 		NSMutableArray *muArray = [NSMutableArray array];
-		NSMutableArray *muArray1 = [NSMutableArray array];
-        for (int i = 0; i < tempArray.count; i++) {
-			NSMutableDictionary * param = [NSMutableDictionary dictionary];
-            param[@"id"] = tempArray[i][@"id"];
-            param[@"name"] = tempArray[i][@"name"];
-            param[@"productId"] = tempArray[i][@"productId"];
-			[muArray addObject:param];
-			[muArray1 addObject:tempArray[i][@"name"]];
-        }
+        [tempArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            LLColorRegistModel * model = [LLColorRegistModel new];
+            model.leftStr = [NSString stringWithFormat:@"颜色%zd",idx];
+            model.rightStr = obj[@"name"];
+            [muArray addObject:model];
+        }];
 		//设置样式
         [self updateClolorUIWithMuColosArray:muArray];
     } failure:^(NSError *error) {
@@ -675,7 +672,7 @@
 
 	int margin = 10;
 
-	for (int i = 0; i <muColosArray.count ; i++) {
+	for (int i = 0; i <self.colorArray.count ; i++) {
 		int page = i/col;
 		int index = i%col;
 
@@ -695,7 +692,7 @@
 		label.layer.borderColor = CD_Text33.CGColor;
 		//            label.layer.borderWidth = 1;
 
-		label.text = muColosArray[i].rightStr;
+		label.text = self.colorArray[i].rightStr;
 		label.textAlignment = NSTextAlignmentCenter;
 
 		colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
