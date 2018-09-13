@@ -691,10 +691,10 @@
 
 		label.layer.borderColor = CD_Text33.CGColor;
 		//            label.layer.borderWidth = 1;
-
+        label.tag = i;
 		label.text = self.colorArray[i].rightStr;
 		label.textAlignment = NSTextAlignmentCenter;
-
+        addGestureRecognizer(label, colorLableClick:)
 		colorsView.frame = CGRectMake(0, 0, APPWidth, (APPWidth *90 / 750)*5/14 +40*page + 20);
 		[colorsView addSubview:label];
 	}
@@ -708,6 +708,20 @@
 
 	[self.datasource replaceObjectAtIndex:2 withObject:item];
 	[self.mainTabelView reloadData];
+}
+
+/// MARK: ---- 修改lable的值
+-(void)colorLableClick:(UIGestureRecognizer*)lable {
+    UILabel * tempLable = (UILabel *)lable.view;
+    AddColorViewController * colorVc = [AddColorViewController new];
+    colorVc.dataModels = [NSMutableArray arrayWithObject:self.colorArray[tempLable.tag]] ;
+    colorVc.ColorsArrayBlock = ^(NSMutableArray<LLColorRegistModel *> *muColosArray) {
+        tempLable.text = muColosArray.firstObject.rightStr;
+        [self.colorArray replaceObjectAtIndex:tempLable.tag withObject:muColosArray.firstObject];
+    };
+    colorVc.type = 1;
+    [self.navigationController pushViewController:colorVc animated:true];
+    
 }
 //右上角确认按钮事件
 - (void)selectornavRightBtnClick
