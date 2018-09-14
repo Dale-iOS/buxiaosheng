@@ -521,6 +521,7 @@
 {
     
     AddColorViewController *vc = [[AddColorViewController alloc]init];
+    vc.dataModels = [self.colorArray mutableCopy];
     [self.navigationController pushViewController:vc animated:YES];
    WEAKSELF
     [vc setColorsArrayBlock:^( NSMutableArray <LLColorRegistModel*> *muColosArray) {

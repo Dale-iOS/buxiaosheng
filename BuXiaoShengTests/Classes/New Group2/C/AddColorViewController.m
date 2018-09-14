@@ -24,7 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.lastColorIndex = 0;
+    self.lastColorIndex = self.type == 0 ? self.dataModels.count : 0;
+    if (self.type == 0) {
+        [self.dataModels removeAllObjects];
+    }
     [self setupUI];
 }
 

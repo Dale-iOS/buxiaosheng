@@ -20,11 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
-            timestampString = "558525502.082881"
+            timestampString = "558584730.340434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "766"
-            endingLineNumber = "766">
+            startingLineNumber = "767"
+            endingLineNumber = "767"
+            landmarkName = "AddProductViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,22 +58,6 @@
             startingLineNumber = "185"
             endingLineNumber = "185"
             landmarkName = "-didaffirmBtnInMonthCalendarWithDateStartStr:andEndStr:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuXiaoShengTests/Classes/New Group2/C/AddProductViewController.m"
-            timestampString = "558525502.08331"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "533"
-            endingLineNumber = "533"
-            landmarkName = "-addColorCellTapAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
