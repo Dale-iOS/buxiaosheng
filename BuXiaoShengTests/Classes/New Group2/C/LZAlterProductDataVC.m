@@ -615,6 +615,8 @@
 - (void)addColorCellTapAction
 {
     AddColorViewController *vc = [[AddColorViewController alloc]init];
+    vc.type = 0;
+    vc.dataModels = [self.colorArray mutableCopy];
     [self.navigationController pushViewController:vc animated:YES];
     [vc setColorsArrayBlock:^( NSMutableArray *muColosArray) {
 		[self updateClolorUIWithMuColosArray:muColosArray];
