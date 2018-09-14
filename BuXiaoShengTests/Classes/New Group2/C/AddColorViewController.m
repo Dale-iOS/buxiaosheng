@@ -29,6 +29,10 @@
 }
 
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
 - (void)setupUI
 {
     self.navigationItem.titleView =  [Utility navTitleView:self.type == 1 ?  @"修改颜色": @"添加颜色"];
@@ -121,14 +125,15 @@
         [LLHudTools showWithMessage:@"请输入要添加颜色的数量"];
         return;
     }
-    self.dataModels = [NSMutableArray array];
-    for (int i = 0; i<[self.numColorFied.text integerValue]; i++) {
+    static NSInteger lastNumCount = 0;
+    for (NSInteger i = lastNumCount; i<[self.numColorFied.text integerValue] + lastNumCount ; i++) {
         LLColorRegistModel * model = [LLColorRegistModel new];
-        model.leftStr = [NSString stringWithFormat:@"颜色%d",i+1];
-        model.rightPlaceholder = [NSString stringWithFormat:@"请输入颜色#%d",i+1];
+        model.leftStr = [NSString stringWithFormat:@"颜色%ld",i+1];
+        model.rightPlaceholder = [NSString stringWithFormat:@"请输入颜色#%ld",i+1];
         [self.dataModels addObject:model];
     }
     [self.myTableView reloadData];
+    lastNumCount = [self.numColorFied.text integerValue];
 }
 
 /// MARK: ---- 懒加载
@@ -175,11 +180,12 @@
     return _headerView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+-(NSMutableArray<LLColorRegistModel *> *)dataModels {
+    if (!_dataModels) {
+        _dataModels = [NSMutableArray array];
+    }
+    return _dataModels;
 }
-
 
 
 @end
