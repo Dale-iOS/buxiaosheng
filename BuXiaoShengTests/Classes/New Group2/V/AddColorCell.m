@@ -83,7 +83,7 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.text.length) {
-        self.model.rightStr = [NSString stringWithFormat:@"#%zd%@",self.indexPath.row,textField.text];
+        self.model.rightStr = textField.text;
     }
 }
 

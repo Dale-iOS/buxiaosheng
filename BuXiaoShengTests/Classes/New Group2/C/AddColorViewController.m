@@ -16,7 +16,7 @@
 @property (nonatomic, strong) LZAddColorsModel *colorsmodel;
 @property(nonatomic ,strong)UIView * headerView;
 @property(nonatomic ,strong)UITextField * numColorFied;
-
+@property(nonatomic ,assign)NSInteger lastColorIndex;
 @end
 
 @implementation AddColorViewController
@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.lastColorIndex = 0;
     [self setupUI];
 }
 
@@ -96,18 +96,19 @@
     
     //强制键盘收起
     [self.view endEditing:YES];
-    NSMutableArray * colorArr = [NSMutableArray array];
-    [self.dataModels enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.rightStr) {
-            [colorArr addObject:obj];
-        }
-    }];
-    if (!colorArr.count) {
-        [LLHudTools showWithMessage:@"请至少填写一个颜色"];
-        return;
-    }
+//    NSMutableArray * colorArr = [NSMutableArray array];
+//    [self.dataModels enumerateObjectsUsingBlock:^(LLColorRegistModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSArray <NSString*> * colorStrArr = [obj.rightStr componentsSeparatedByString:@"#"];
+//        if (colorStrArr.count == 3) {
+//              [colorArr addObject:obj];
+//        }
+//    }];
+//    if (!colorArr.count) {
+//        [LLHudTools showWithMessage:@"请至少填写一个颜色"];
+//        return;
+//    }
     if (self.ColorsArrayBlock) {
-        self.ColorsArrayBlock(colorArr);
+        self.ColorsArrayBlock(self.dataModels);
     }
     [self.navigationController popViewControllerAnimated:true];
 //    if (muArray.count > 0) {
@@ -123,8 +124,7 @@
         [LLHudTools showWithMessage:@"请输入要添加颜色的数量"];
         return;
     }
-    static NSInteger lastNumCount = 0;
-    for (NSInteger i = lastNumCount; i<[self.numColorFied.text integerValue] + lastNumCount ; i++) {
+    for (NSInteger i = self.lastColorIndex; i<[self.numColorFied.text integerValue] + self.lastColorIndex ; i++) {
         LLColorRegistModel * model = [LLColorRegistModel new];
         model.leftStr = [NSString stringWithFormat:@"颜色%ld",i+1];
         //model.rightPlaceholder = [NSString stringWithFormat:@"#%ld",i+1];
@@ -132,7 +132,7 @@
         [self.dataModels addObject:model];
     }
     [self.myTableView reloadData];
-    lastNumCount = [self.numColorFied.text integerValue];
+    self.lastColorIndex = [self.numColorFied.text integerValue];
 }
 
 /// MARK: ---- 懒加载
