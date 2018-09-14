@@ -87,6 +87,7 @@
     cell.titleLbl.text = self.dataModels[indexPath.row].leftStr;
      //cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
     cell.contentTF.text = self.dataModels[indexPath.row].rightStr;
+    cell.contentTF.clearButtonMode = UITextFieldViewModeAlways;
     return cell;
 }
 
