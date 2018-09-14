@@ -129,7 +129,7 @@
     for (NSInteger i = lastNumCount; i<[self.numColorFied.text integerValue] + lastNumCount ; i++) {
         LLColorRegistModel * model = [LLColorRegistModel new];
         model.leftStr = [NSString stringWithFormat:@"颜色%ld",i+1];
-        model.rightPlaceholder = [NSString stringWithFormat:@"请输入颜色#%ld",i+1];
+        model.rightPlaceholder = [NSString stringWithFormat:@"#%ld",i+1];
         [self.dataModels addObject:model];
     }
     [self.myTableView reloadData];
