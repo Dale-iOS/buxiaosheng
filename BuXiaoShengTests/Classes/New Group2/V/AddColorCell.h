@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UITextField *contentTF;
 
 @property(nonatomic ,strong)LLColorRegistModel * model;
+@property(nonatomic ,strong)NSIndexPath * indexPath;
 
 /**
  设置cell信息

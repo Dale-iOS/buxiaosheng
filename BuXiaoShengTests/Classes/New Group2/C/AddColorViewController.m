@@ -79,13 +79,11 @@
 {
     static NSString *cellID = @"AddColorCellID";
     AddColorCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.indexPath = indexPath;
     cell.model = self.dataModels[indexPath.row];
     cell.titleLbl.text = self.dataModels[indexPath.row].leftStr;
-     cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
-    if (self.dataModels[indexPath.row].rightStr) {
-        cell.contentTF.text = self.dataModels[indexPath.row].rightStr;
-    }
-   
+     //cell.contentTF.placeholder = self.dataModels[indexPath.row].rightPlaceholder;
+    cell.contentTF.text = self.dataModels[indexPath.row].rightStr;
     return cell;
 }
 
@@ -129,7 +127,8 @@
     for (NSInteger i = lastNumCount; i<[self.numColorFied.text integerValue] + lastNumCount ; i++) {
         LLColorRegistModel * model = [LLColorRegistModel new];
         model.leftStr = [NSString stringWithFormat:@"颜色%ld",i+1];
-        model.rightPlaceholder = [NSString stringWithFormat:@"#%ld",i+1];
+        //model.rightPlaceholder = [NSString stringWithFormat:@"#%ld",i+1];
+        model.rightStr = [NSString stringWithFormat:@"#%ld",i+1];;
         [self.dataModels addObject:model];
     }
     [self.myTableView reloadData];
