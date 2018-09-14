@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LogEndCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *timeLB;
 
 @end

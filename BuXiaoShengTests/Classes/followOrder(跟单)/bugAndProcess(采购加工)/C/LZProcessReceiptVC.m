@@ -18,7 +18,7 @@
 #import "BaseTableVC+BXSTakePhoto.h"
 #import "ToolsCollectionVC.h"
 
-#define  SELECTAPPROVER @"选择人员"
+#define  SELECTAPPROVER @"选择审批人"
 #define  HADSELECTDBCELLID @"100200"
 
 @interface LZProcessReceiptVC ()<UITableViewDataSource,UITableViewDelegate>

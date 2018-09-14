@@ -21,7 +21,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7z-qr-bNA">
                         <rect key="frame" x="16" y="5" width="16" height="16"/>
-                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="95Y-Al-8kW"/>
                             <constraint firstAttribute="width" constant="16" id="jip-0Y-znn"/>
@@ -39,11 +39,11 @@
                             <constraint firstAttribute="height" constant="17" id="h9U-4C-d22"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAN-3T-yYa">
-                        <rect key="frame" x="23" y="21" width="2" height="25.5"/>
+                        <rect key="frame" x="23" y="24" width="2" height="22.5"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
@@ -56,20 +56,35 @@
                             <constraint firstAttribute="height" constant="16" id="ZaS-ih-Mes"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-蓝色" translatesAutoresizingMaskIntoConstraints="NO" id="24N-vJ-Fqd">
+                        <rect key="frame" x="13" y="2" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="7JK-qB-O88"/>
+                            <constraint firstAttribute="width" constant="22" id="pg0-h9-U3I"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="v7z-qr-bNA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="10a-zh-rAO"/>
-                    <constraint firstItem="IAN-3T-yYa" firstAttribute="top" secondItem="v7z-qr-bNA" secondAttribute="bottom" id="3OX-Fv-xRc"/>
                     <constraint firstItem="bIE-TU-9tJ" firstAttribute="leading" secondItem="v7z-qr-bNA" secondAttribute="trailing" constant="10" id="4a5-0f-chM"/>
+                    <constraint firstItem="24N-vJ-Fqd" firstAttribute="centerY" secondItem="v7z-qr-bNA" secondAttribute="centerY" id="4n3-Q6-7Ux"/>
                     <constraint firstItem="v7z-qr-bNA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="5Sw-y5-lVV"/>
                     <constraint firstItem="bIE-TU-9tJ" firstAttribute="top" secondItem="Ox5-Lh-4A8" secondAttribute="bottom" constant="2" id="5xg-oT-Aza"/>
                     <constraint firstItem="IAN-3T-yYa" firstAttribute="centerX" secondItem="v7z-qr-bNA" secondAttribute="centerX" id="6kM-H7-0fe"/>
+                    <constraint firstItem="24N-vJ-Fqd" firstAttribute="centerX" secondItem="v7z-qr-bNA" secondAttribute="centerX" id="GNY-Ip-H8M"/>
                     <constraint firstItem="Ox5-Lh-4A8" firstAttribute="leading" secondItem="v7z-qr-bNA" secondAttribute="trailing" constant="10" id="Jkt-la-D0i"/>
                     <constraint firstAttribute="bottom" secondItem="IAN-3T-yYa" secondAttribute="bottom" id="LP1-GO-CRn"/>
                     <constraint firstItem="Ox5-Lh-4A8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="TZC-r5-Dq1"/>
+                    <constraint firstItem="IAN-3T-yYa" firstAttribute="top" secondItem="24N-vJ-Fqd" secondAttribute="top" constant="22" id="g2B-Ub-kI4"/>
                     <constraint firstAttribute="bottom" secondItem="bIE-TU-9tJ" secondAttribute="bottom" constant="9.5" id="zdN-ux-oo8"/>
                 </constraints>
             </tableViewCellContentView>
@@ -80,4 +95,7 @@
             <point key="canvasLocation" x="67.5" y="121.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img-蓝色" width="22" height="22"/>
+    </resources>
 </document>

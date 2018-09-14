@@ -60,9 +60,17 @@
 
     
 //    AllOrderViewController *allVC = [[AllOrderViewController alloc]init];
+    
+    //待出库
     WaitOutOrderViewController *watiOutVC = [[WaitOutOrderViewController alloc]init];
+    
+//    已出库
     DidOutOrderViewController *didOutVC = [[DidOutOrderViewController alloc]init];
+    
+//    待出货
     ShipmentOrderViewController *shipmentVC = [[ShipmentOrderViewController alloc]init];
+    
+//    已交货
     DeliveryOrderViewController *deliveryVC = [[DeliveryOrderViewController alloc]init];
     
     NSArray *childArr = @[watiOutVC, didOutVC, shipmentVC, deliveryVC];

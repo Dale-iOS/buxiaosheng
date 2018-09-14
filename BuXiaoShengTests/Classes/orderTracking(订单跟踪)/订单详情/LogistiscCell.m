@@ -20,7 +20,7 @@
     _time1.text = [NSString stringWithFormat:@"预计到货时间：%@",logisticslModel.arrivalTime];
     _number.text = [NSString stringWithFormat:@"预计到货数量：%@",logisticslModel.number];
     _time2.text = logisticslModel.createTime;
-    _remark.text = @"房间积分就付款了圣诞节付";//logisticslModel.remark;
+    _remark.text = logisticslModel.remark;//logisticslModel.remark;
     
     CGSize strSize = [self sizeForString:self.remark.text font:[UIFont systemFontOfSize:14] maxWidth:self.width - 20 - 44];
     CGFloat h = 17+17+10+23.5+strSize.height;

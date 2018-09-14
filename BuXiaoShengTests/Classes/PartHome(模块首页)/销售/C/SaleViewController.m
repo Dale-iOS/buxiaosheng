@@ -16,6 +16,7 @@
 #import "FinancialCollectionViewCell.h"
 #import "BackOrderViewController.h"
 #import "LZHomeModel.h"
+#import "LLColorRegisterVc.h"
 
 @interface SaleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LZHTableViewDelegate>
 @property (nonatomic, weak) LZHTableView *mainTabelView;
@@ -158,7 +159,12 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }
-    
+    if ([model.paramsIos isEqualToString:@"colorcard"])
+    {   //色卡登记
+        LLColorRegisterVc *vc = [[LLColorRegisterVc alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 

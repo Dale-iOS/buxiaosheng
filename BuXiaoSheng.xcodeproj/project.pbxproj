@@ -92,8 +92,6 @@
 		3428B82221216851003F86D7 /* ColorHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3428B80D21216851003F86D7 /* ColorHeadCell.m */; };
 		3428B82321216851003F86D7 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3428B80E21216851003F86D7 /* CustomerCell.m */; };
 		3428B82421216851003F86D7 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3428B80E21216851003F86D7 /* CustomerCell.m */; };
-		3428B82521216851003F86D7 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B80F21216851003F86D7 /* CustomerCell.xib */; };
-		3428B82621216851003F86D7 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B80F21216851003F86D7 /* CustomerCell.xib */; };
 		3428B82721216851003F86D7 /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B81021216851003F86D7 /* ColorDetailCell.xib */; };
 		3428B82821216851003F86D7 /* ColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B81021216851003F86D7 /* ColorDetailCell.xib */; };
 		3428B83E2121685C003F86D7 /* ReimXiMaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B8292121685A003F86D7 /* ReimXiMaCollectionViewCell.xib */; };
@@ -104,8 +102,6 @@
 		3428B8432121685C003F86D7 /* ReimXiMaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3428B82C2121685A003F86D7 /* ReimXiMaCollectionViewCell.m */; };
 		3428B8442121685C003F86D7 /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B82D2121685A003F86D7 /* ReimDetailViewController.xib */; };
 		3428B8452121685C003F86D7 /* ReimDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B82D2121685A003F86D7 /* ReimDetailViewController.xib */; };
-		3428B8462121685C003F86D7 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B82F2121685A003F86D7 /* ReimCustomerCell.xib */; };
-		3428B8472121685C003F86D7 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B82F2121685A003F86D7 /* ReimCustomerCell.xib */; };
 		3428B8482121685C003F86D7 /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B8302121685A003F86D7 /* ReimColorsCell.xib */; };
 		3428B8492121685C003F86D7 /* ReimColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B8302121685A003F86D7 /* ReimColorsCell.xib */; };
 		3428B84A2121685C003F86D7 /* ReimColorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3428B8312121685A003F86D7 /* ReimColorDetailCell.xib */; };
@@ -1005,10 +1001,6 @@
 		FF02C3CB2148EDB200C3F7A5 /* JGPurchaseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C39B2148EDB100C3F7A5 /* JGPurchaseDetailCell.m */; };
 		FF02C3CC2148EDB200C3F7A5 /* JGPurchaseDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C39C2148EDB100C3F7A5 /* JGPurchaseDetailCell.xib */; };
 		FF02C3CD2148EDB200C3F7A5 /* JGPurchaseDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C39C2148EDB100C3F7A5 /* JGPurchaseDetailCell.xib */; };
-		FF02C3CE2148EDB200C3F7A5 /* LogEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C39E2148EDB100C3F7A5 /* LogEndCell.m */; };
-		FF02C3CF2148EDB200C3F7A5 /* LogEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C39E2148EDB100C3F7A5 /* LogEndCell.m */; };
-		FF02C3D02148EDB200C3F7A5 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C39F2148EDB100C3F7A5 /* LogEndCell.xib */; };
-		FF02C3D12148EDB200C3F7A5 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C39F2148EDB100C3F7A5 /* LogEndCell.xib */; };
 		FF02C3D22148EDB200C3F7A5 /* LogisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3A12148EDB100C3F7A5 /* LogisticsCell.m */; };
 		FF02C3D32148EDB200C3F7A5 /* LogisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3A12148EDB100C3F7A5 /* LogisticsCell.m */; };
 		FF02C3D42148EDB200C3F7A5 /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3A22148EDB100C3F7A5 /* LogisticsCell.xib */; };
@@ -1017,10 +1009,6 @@
 		FF02C3D72148EDB200C3F7A5 /* LogistiscCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3A42148EDB100C3F7A5 /* LogistiscCell.m */; };
 		FF02C3D82148EDB200C3F7A5 /* LogistiscCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3A52148EDB100C3F7A5 /* LogistiscCell.xib */; };
 		FF02C3D92148EDB200C3F7A5 /* LogistiscCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3A52148EDB100C3F7A5 /* LogistiscCell.xib */; };
-		FF02C3DA2148EDB200C3F7A5 /* LogStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3A72148EDB100C3F7A5 /* LogStartCell.m */; };
-		FF02C3DB2148EDB200C3F7A5 /* LogStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3A72148EDB100C3F7A5 /* LogStartCell.m */; };
-		FF02C3DC2148EDB200C3F7A5 /* LogStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3A82148EDB100C3F7A5 /* LogStartCell.xib */; };
-		FF02C3DD2148EDB200C3F7A5 /* LogStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3A82148EDB100C3F7A5 /* LogStartCell.xib */; };
 		FF02C3DE2148EDB200C3F7A5 /* LZTmpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3AA2148EDB100C3F7A5 /* LZTmpModel.m */; };
 		FF02C3DF2148EDB200C3F7A5 /* LZTmpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3AA2148EDB100C3F7A5 /* LZTmpModel.m */; };
 		FF02C3E02148EDB200C3F7A5 /* PurchaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3AC2148EDB100C3F7A5 /* PurchaseCollectionViewCell.m */; };
@@ -1047,8 +1035,6 @@
 		FF02C3F52148EDB200C3F7A5 /* OrderColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3BC2148EDB200C3F7A5 /* OrderColorsCell.xib */; };
 		FF02C3F62148EDB200C3F7A5 /* OrderCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3BE2148EDB200C3F7A5 /* OrderCustomerCell.m */; };
 		FF02C3F72148EDB200C3F7A5 /* OrderCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3BE2148EDB200C3F7A5 /* OrderCustomerCell.m */; };
-		FF02C3F82148EDB200C3F7A5 /* OrderCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3BF2148EDB200C3F7A5 /* OrderCustomerCell.xib */; };
-		FF02C3F92148EDB200C3F7A5 /* OrderCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3BF2148EDB200C3F7A5 /* OrderCustomerCell.xib */; };
 		FF02C3FA2148EDB200C3F7A5 /* OrderTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3C12148EDB200C3F7A5 /* OrderTotalCell.m */; };
 		FF02C3FB2148EDB200C3F7A5 /* OrderTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C3C12148EDB200C3F7A5 /* OrderTotalCell.m */; };
 		FF02C3FC2148EDB200C3F7A5 /* OrderTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C3C22148EDB200C3F7A5 /* OrderTotalCell.xib */; };
@@ -1101,8 +1087,6 @@
 		FF02C4572148FCE100C3F7A5 /* ReColorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C4422148FCE100C3F7A5 /* ReColorsCell.xib */; };
 		FF02C4582148FCE100C3F7A5 /* ReCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4442148FCE100C3F7A5 /* ReCustomerCell.m */; };
 		FF02C4592148FCE100C3F7A5 /* ReCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4442148FCE100C3F7A5 /* ReCustomerCell.m */; };
-		FF02C45A2148FCE100C3F7A5 /* ReCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C4452148FCE100C3F7A5 /* ReCustomerCell.xib */; };
-		FF02C45B2148FCE100C3F7A5 /* ReCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C4452148FCE100C3F7A5 /* ReCustomerCell.xib */; };
 		FF02C45C2148FCE100C3F7A5 /* ReTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4472148FCE100C3F7A5 /* ReTotalCell.m */; };
 		FF02C45D2148FCE100C3F7A5 /* ReTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4472148FCE100C3F7A5 /* ReTotalCell.m */; };
 		FF02C45E2148FCE100C3F7A5 /* ReTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF02C4482148FCE100C3F7A5 /* ReTotalCell.xib */; };
@@ -1159,6 +1143,22 @@
 		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 		FF4A8CB9213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
 		FF4A8CBA213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
+		FF8CDB91214B9D1B00056BE7 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */; };
+		FF8CDB92214B9D1B00056BE7 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */; };
+		FF8CDB93214B9D1B00056BE7 /* LogEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */; };
+		FF8CDB94214B9D1B00056BE7 /* LogEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */; };
+		FF8CDBA3214BA7D900056BE7 /* ReCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBA2214BA7D900056BE7 /* ReCustomerCell.xib */; };
+		FF8CDBA4214BA7D900056BE7 /* ReCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBA2214BA7D900056BE7 /* ReCustomerCell.xib */; };
+		FF8CDBA6214BA81700056BE7 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBA5214BA81700056BE7 /* CustomerCell.xib */; };
+		FF8CDBA7214BA81700056BE7 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBA5214BA81700056BE7 /* CustomerCell.xib */; };
+		FF8CDBAD214BA8F300056BE7 /* LogStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8CDBA9214BA8F300056BE7 /* LogStartCell.m */; };
+		FF8CDBAE214BA8F300056BE7 /* LogStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8CDBA9214BA8F300056BE7 /* LogStartCell.m */; };
+		FF8CDBB0214BAA2400056BE7 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBAF214BAA2400056BE7 /* ReimCustomerCell.xib */; };
+		FF8CDBB1214BAA2400056BE7 /* ReimCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBAF214BAA2400056BE7 /* ReimCustomerCell.xib */; };
+		FF8CDBB3214BAA6400056BE7 /* OrderCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBB2214BAA6400056BE7 /* OrderCustomerCell.xib */; };
+		FF8CDBB4214BAA6400056BE7 /* OrderCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBB2214BAA6400056BE7 /* OrderCustomerCell.xib */; };
+		FF8CDBB9214BADCD00056BE7 /* LogStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBB8214BADCC00056BE7 /* LogStartCell.xib */; };
+		FF8CDBBA214BADCD00056BE7 /* LogStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDBB8214BADCC00056BE7 /* LogStartCell.xib */; };
 		FFACE186213654C800F23395 /* LZAddProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE185213654C800F23395 /* LZAddProductVC.m */; };
 		FFACE187213654C800F23395 /* LZAddProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE185213654C800F23395 /* LZAddProductVC.m */; };
 		FFACE19021366B8800F23395 /* MPUploadMomentImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE18921366B8700F23395 /* MPUploadMomentImagesCell.m */; };
@@ -1293,7 +1293,6 @@
 		3428B80C21216851003F86D7 /* ColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorsCell.xib; sourceTree = "<group>"; };
 		3428B80D21216851003F86D7 /* ColorHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHeadCell.m; sourceTree = "<group>"; };
 		3428B80E21216851003F86D7 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
-		3428B80F21216851003F86D7 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
 		3428B81021216851003F86D7 /* ColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorDetailCell.xib; sourceTree = "<group>"; };
 		3428B8292121685A003F86D7 /* ReimXiMaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimXiMaCollectionViewCell.xib; sourceTree = "<group>"; };
 		3428B82A2121685A003F86D7 /* ReimColorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimColorDetailCell.m; sourceTree = "<group>"; };
@@ -1301,7 +1300,6 @@
 		3428B82C2121685A003F86D7 /* ReimXiMaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimXiMaCollectionViewCell.m; sourceTree = "<group>"; };
 		3428B82D2121685A003F86D7 /* ReimDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimDetailViewController.xib; sourceTree = "<group>"; };
 		3428B82E2121685A003F86D7 /* ReimColorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorDetailCell.h; sourceTree = "<group>"; };
-		3428B82F2121685A003F86D7 /* ReimCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimCustomerCell.xib; sourceTree = "<group>"; };
 		3428B8302121685A003F86D7 /* ReimColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorsCell.xib; sourceTree = "<group>"; };
 		3428B8312121685A003F86D7 /* ReimColorDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimColorDetailCell.xib; sourceTree = "<group>"; };
 		3428B8322121685B003F86D7 /* ReimColorHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimColorHeadCell.h; sourceTree = "<group>"; };
@@ -2386,18 +2384,12 @@
 		FF02C39A2148EDB100C3F7A5 /* JGPurchaseDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPurchaseDetailCell.h; sourceTree = "<group>"; };
 		FF02C39B2148EDB100C3F7A5 /* JGPurchaseDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPurchaseDetailCell.m; sourceTree = "<group>"; };
 		FF02C39C2148EDB100C3F7A5 /* JGPurchaseDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGPurchaseDetailCell.xib; sourceTree = "<group>"; };
-		FF02C39D2148EDB100C3F7A5 /* LogEndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEndCell.h; sourceTree = "<group>"; };
-		FF02C39E2148EDB100C3F7A5 /* LogEndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEndCell.m; sourceTree = "<group>"; };
-		FF02C39F2148EDB100C3F7A5 /* LogEndCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogEndCell.xib; sourceTree = "<group>"; };
 		FF02C3A02148EDB100C3F7A5 /* LogisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogisticsCell.h; sourceTree = "<group>"; };
 		FF02C3A12148EDB100C3F7A5 /* LogisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsCell.m; sourceTree = "<group>"; };
 		FF02C3A22148EDB100C3F7A5 /* LogisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
 		FF02C3A32148EDB100C3F7A5 /* LogistiscCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogistiscCell.h; sourceTree = "<group>"; };
 		FF02C3A42148EDB100C3F7A5 /* LogistiscCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogistiscCell.m; sourceTree = "<group>"; };
 		FF02C3A52148EDB100C3F7A5 /* LogistiscCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogistiscCell.xib; sourceTree = "<group>"; };
-		FF02C3A62148EDB100C3F7A5 /* LogStartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogStartCell.h; sourceTree = "<group>"; };
-		FF02C3A72148EDB100C3F7A5 /* LogStartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogStartCell.m; sourceTree = "<group>"; };
-		FF02C3A82148EDB100C3F7A5 /* LogStartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogStartCell.xib; sourceTree = "<group>"; };
 		FF02C3A92148EDB100C3F7A5 /* LZTmpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZTmpModel.h; sourceTree = "<group>"; };
 		FF02C3AA2148EDB100C3F7A5 /* LZTmpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZTmpModel.m; sourceTree = "<group>"; };
 		FF02C3AB2148EDB100C3F7A5 /* PurchaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2419,7 +2411,6 @@
 		FF02C3BC2148EDB200C3F7A5 /* OrderColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderColorsCell.xib; sourceTree = "<group>"; };
 		FF02C3BD2148EDB200C3F7A5 /* OrderCustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCustomerCell.h; sourceTree = "<group>"; };
 		FF02C3BE2148EDB200C3F7A5 /* OrderCustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCustomerCell.m; sourceTree = "<group>"; };
-		FF02C3BF2148EDB200C3F7A5 /* OrderCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCustomerCell.xib; sourceTree = "<group>"; };
 		FF02C3C02148EDB200C3F7A5 /* OrderTotalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTotalCell.h; sourceTree = "<group>"; };
 		FF02C3C12148EDB200C3F7A5 /* OrderTotalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTotalCell.m; sourceTree = "<group>"; };
 		FF02C3C22148EDB200C3F7A5 /* OrderTotalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTotalCell.xib; sourceTree = "<group>"; };
@@ -2461,7 +2452,6 @@
 		FF02C4422148FCE100C3F7A5 /* ReColorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReColorsCell.xib; sourceTree = "<group>"; };
 		FF02C4432148FCE100C3F7A5 /* ReCustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReCustomerCell.h; sourceTree = "<group>"; };
 		FF02C4442148FCE100C3F7A5 /* ReCustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReCustomerCell.m; sourceTree = "<group>"; };
-		FF02C4452148FCE100C3F7A5 /* ReCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReCustomerCell.xib; sourceTree = "<group>"; };
 		FF02C4462148FCE100C3F7A5 /* ReTotalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReTotalCell.h; sourceTree = "<group>"; };
 		FF02C4472148FCE100C3F7A5 /* ReTotalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReTotalCell.m; sourceTree = "<group>"; };
 		FF02C4482148FCE100C3F7A5 /* ReTotalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReTotalCell.xib; sourceTree = "<group>"; };
@@ -2509,6 +2499,16 @@
 		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
 		FF4A8CB7213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptSaveAlterModel.h; sourceTree = "<group>"; };
 		FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptSaveAlterModel.m; sourceTree = "<group>"; };
+		FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogEndCell.xib; sourceTree = "<group>"; };
+		FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEndCell.m; sourceTree = "<group>"; };
+		FF8CDB90214B9D1A00056BE7 /* LogEndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEndCell.h; sourceTree = "<group>"; };
+		FF8CDBA2214BA7D900056BE7 /* ReCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReCustomerCell.xib; sourceTree = "<group>"; };
+		FF8CDBA5214BA81700056BE7 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
+		FF8CDBA9214BA8F300056BE7 /* LogStartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogStartCell.m; sourceTree = "<group>"; };
+		FF8CDBAA214BA8F300056BE7 /* LogStartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogStartCell.h; sourceTree = "<group>"; };
+		FF8CDBAF214BAA2400056BE7 /* ReimCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReimCustomerCell.xib; sourceTree = "<group>"; };
+		FF8CDBB2214BAA6400056BE7 /* OrderCustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCustomerCell.xib; sourceTree = "<group>"; };
+		FF8CDBB8214BADCC00056BE7 /* LogStartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogStartCell.xib; sourceTree = "<group>"; };
 		FFACE184213654C800F23395 /* LZAddProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZAddProductVC.h; sourceTree = "<group>"; };
 		FFACE185213654C800F23395 /* LZAddProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZAddProductVC.m; sourceTree = "<group>"; };
 		FFACE18821366B8700F23395 /* MPUploadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUploadImageView.h; sourceTree = "<group>"; };
@@ -2716,7 +2716,7 @@
 				3428B80C21216851003F86D7 /* ColorsCell.xib */,
 				3428B80221216850003F86D7 /* CustomerCell.h */,
 				3428B80E21216851003F86D7 /* CustomerCell.m */,
-				3428B80F21216851003F86D7 /* CustomerCell.xib */,
+				FF8CDBA5214BA81700056BE7 /* CustomerCell.xib */,
 				3428B80121216850003F86D7 /* XiMaCollectionViewCell.h */,
 				3428B80421216850003F86D7 /* XiMaCollectionViewCell.m */,
 				3428B7FF2121684F003F86D7 /* XiMaCollectionViewCell.xib */,
@@ -2741,7 +2741,7 @@
 				3428B8302121685A003F86D7 /* ReimColorsCell.xib */,
 				3428B83D2121685C003F86D7 /* ReimCustomerCell.h */,
 				3428B83B2121685C003F86D7 /* ReimCustomerCell.m */,
-				3428B82F2121685A003F86D7 /* ReimCustomerCell.xib */,
+				FF8CDBAF214BAA2400056BE7 /* ReimCustomerCell.xib */,
 				3428B82B2121685A003F86D7 /* ReimDetailViewController.h */,
 				3428B8362121685B003F86D7 /* ReimDetailViewController.m */,
 				3428B82D2121685A003F86D7 /* ReimDetailViewController.xib */,
@@ -5613,18 +5613,18 @@
 				FF02C39A2148EDB100C3F7A5 /* JGPurchaseDetailCell.h */,
 				FF02C39B2148EDB100C3F7A5 /* JGPurchaseDetailCell.m */,
 				FF02C39C2148EDB100C3F7A5 /* JGPurchaseDetailCell.xib */,
-				FF02C39D2148EDB100C3F7A5 /* LogEndCell.h */,
-				FF02C39E2148EDB100C3F7A5 /* LogEndCell.m */,
-				FF02C39F2148EDB100C3F7A5 /* LogEndCell.xib */,
+				FF8CDBAA214BA8F300056BE7 /* LogStartCell.h */,
+				FF8CDBA9214BA8F300056BE7 /* LogStartCell.m */,
+				FF8CDBB8214BADCC00056BE7 /* LogStartCell.xib */,
+				FF8CDB90214B9D1A00056BE7 /* LogEndCell.h */,
+				FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */,
+				FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */,
 				FF02C3A02148EDB100C3F7A5 /* LogisticsCell.h */,
 				FF02C3A12148EDB100C3F7A5 /* LogisticsCell.m */,
 				FF02C3A22148EDB100C3F7A5 /* LogisticsCell.xib */,
 				FF02C3A32148EDB100C3F7A5 /* LogistiscCell.h */,
 				FF02C3A42148EDB100C3F7A5 /* LogistiscCell.m */,
 				FF02C3A52148EDB100C3F7A5 /* LogistiscCell.xib */,
-				FF02C3A62148EDB100C3F7A5 /* LogStartCell.h */,
-				FF02C3A72148EDB100C3F7A5 /* LogStartCell.m */,
-				FF02C3A82148EDB100C3F7A5 /* LogStartCell.xib */,
 				FF02C3A92148EDB100C3F7A5 /* LZTmpModel.h */,
 				FF02C3AA2148EDB100C3F7A5 /* LZTmpModel.m */,
 				FF02C3AB2148EDB100C3F7A5 /* PurchaseCollectionViewCell.h */,
@@ -5653,7 +5653,7 @@
 				FF02C3BC2148EDB200C3F7A5 /* OrderColorsCell.xib */,
 				FF02C3BD2148EDB200C3F7A5 /* OrderCustomerCell.h */,
 				FF02C3BE2148EDB200C3F7A5 /* OrderCustomerCell.m */,
-				FF02C3BF2148EDB200C3F7A5 /* OrderCustomerCell.xib */,
+				FF8CDBB2214BAA6400056BE7 /* OrderCustomerCell.xib */,
 				FF02C3C02148EDB200C3F7A5 /* OrderTotalCell.h */,
 				FF02C3C12148EDB200C3F7A5 /* OrderTotalCell.m */,
 				FF02C3C22148EDB200C3F7A5 /* OrderTotalCell.xib */,
@@ -5703,7 +5703,7 @@
 				FF02C4422148FCE100C3F7A5 /* ReColorsCell.xib */,
 				FF02C4432148FCE100C3F7A5 /* ReCustomerCell.h */,
 				FF02C4442148FCE100C3F7A5 /* ReCustomerCell.m */,
-				FF02C4452148FCE100C3F7A5 /* ReCustomerCell.xib */,
+				FF8CDBA2214BA7D900056BE7 /* ReCustomerCell.xib */,
 				FF02C4462148FCE100C3F7A5 /* ReTotalCell.h */,
 				FF02C4472148FCE100C3F7A5 /* ReTotalCell.m */,
 				FF02C4482148FCE100C3F7A5 /* ReTotalCell.xib */,
@@ -5886,10 +5886,7 @@
 			files = (
 				346C2260210E03D3004AAC88 /* LZSelectItemViewController.xib in Resources */,
 				3428B8442121685C003F86D7 /* ReimDetailViewController.xib in Resources */,
-				3428B8462121685C003F86D7 /* ReimCustomerCell.xib in Resources */,
-				FF02C3F82148EDB200C3F7A5 /* OrderCustomerCell.xib in Resources */,
 				FF02C3E22148EDB200C3F7A5 /* PurchaseCollectionViewCell.xib in Resources */,
-				FF02C45A2148FCE100C3F7A5 /* ReCustomerCell.xib in Resources */,
 				3453792021099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */,
 				3453791E21099CD300830DF8 /* LZGoodValueCell.xib in Resources */,
 				3428B81121216851003F86D7 /* XiMaCollectionViewCell.xib in Resources */,
@@ -5899,27 +5896,28 @@
 				34A92B20207DE86200572648 /* LaunchScreen.storyboard in Resources */,
 				FF02C4622148FCE100C3F7A5 /* ReXiMaCollectionViewCell.xib in Resources */,
 				FF3FA986212D6083009431DA /* TitleTableViewCell.xib in Resources */,
+				FF8CDB91214B9D1B00056BE7 /* LogEndCell.xib in Resources */,
 				FF02C4002148EDB200C3F7A5 /* OrderXiMaCollectionViewCell.xib in Resources */,
 				3428B85F2121794E003F86D7 /* ReimSubCell.xib in Resources */,
 				FF3FA982212D6083009431DA /* PinNameTableViewCell.xib in Resources */,
 				3428B8482121685C003F86D7 /* ReimColorsCell.xib in Resources */,
+				FF8CDBB3214BAA6400056BE7 /* OrderCustomerCell.xib in Resources */,
 				FF02C4272148FB6E00C3F7A5 /* NeedColorsCell.xib in Resources */,
 				2DF7A3902115A314009889DF /* LZPurchaseViewController.xib in Resources */,
 				348DF24A212964D800D3A76F /* BYCamera.bundle in Resources */,
 				3427A4F820CE507600369650 /* BRPickerView.bundle in Resources */,
 				FF02C4332148FB6E00C3F7A5 /* NeedXiMaCollectionViewCell.xib in Resources */,
-				FF02C3DC2148EDB200C3F7A5 /* LogStartCell.xib in Resources */,
 				FF02C44E2148FCE100C3F7A5 /* ReColorDetailCell.xib in Resources */,
-				FF02C3D02148EDB200C3F7A5 /* LogEndCell.xib in Resources */,
 				FF02C3F42148EDB200C3F7A5 /* OrderColorsCell.xib in Resources */,
 				FF02C3C82148EDB200C3F7A5 /* JGPurchaseCollectionViewCell.xib in Resources */,
 				3428B81321216851003F86D7 /* ColorHeadCell.xib in Resources */,
+				FF8CDBA3214BA7D900056BE7 /* ReCustomerCell.xib in Resources */,
 				2DF7A38E2115A314009889DF /* LZProcessViewController.xib in Resources */,
 				34A92B1D207DE86200572648 /* Assets.xcassets in Resources */,
 				346C2262210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
 				2DA8FAAE21115A71009F152C /* BackOrder.plist in Resources */,
+				FF8CDBA6214BA81700056BE7 /* CustomerCell.xib in Resources */,
 				FF02C42F2148FB6E00C3F7A5 /* NeedTotalCell.xib in Resources */,
-				3428B82521216851003F86D7 /* CustomerCell.xib in Resources */,
 				FF02C4232148FB6E00C3F7A5 /* NeedColorHeadCell.xib in Resources */,
 				3428B81F21216851003F86D7 /* ColorsCell.xib in Resources */,
 				FF3FA97A212D6083009431DA /* DibuTableViewCell.xib in Resources */,
@@ -5932,6 +5930,7 @@
 				FF02C41F2148FB6E00C3F7A5 /* NeedColorDetailCell.xib in Resources */,
 				FF02C4522148FCE100C3F7A5 /* ReColorHeadCell.xib in Resources */,
 				3428B82721216851003F86D7 /* ColorDetailCell.xib in Resources */,
+				FF8CDBB9214BADCD00056BE7 /* LogStartCell.xib in Resources */,
 				3428B8542121685C003F86D7 /* ReimColorHeadCell.xib in Resources */,
 				FF02C3FC2148EDB200C3F7A5 /* OrderTotalCell.xib in Resources */,
 				3428B81B21216851003F86D7 /* CheckDetailViewController.xib in Resources */,
@@ -5939,6 +5938,7 @@
 				FF3FA976212D6083009431DA /* ConsultViewController.xib in Resources */,
 				B50505E9209AB2DA00CE7E4D /* XLForm.bundle in Resources */,
 				2DF7A37C21156935009889DF /* LZDirectStorageBottomView.xib in Resources */,
+				FF8CDBB0214BAA2400056BE7 /* ReimCustomerCell.xib in Resources */,
 				FF02C3F02148EDB200C3F7A5 /* OrderColorHeadCell.xib in Resources */,
 				FF02C3E62148EDB200C3F7A5 /* PurchaseDetailCell.xib in Resources */,
 				34A82B9120A82FB400BFF1B0 /* JKSearchBar_ICON@2x.png in Resources */,
@@ -5956,31 +5956,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8CDBB4214BAA6400056BE7 /* OrderCustomerCell.xib in Resources */,
 				FF02C3CD2148EDB200C3F7A5 /* JGPurchaseDetailCell.xib in Resources */,
 				FF02C4282148FB6E00C3F7A5 /* NeedColorsCell.xib in Resources */,
 				3428B8492121685C003F86D7 /* ReimColorsCell.xib in Resources */,
-				FF02C45B2148FCE100C3F7A5 /* ReCustomerCell.xib in Resources */,
 				346C2263210E03D3004AAC88 /* BackOrderViewController.xib in Resources */,
-				3428B82621216851003F86D7 /* CustomerCell.xib in Resources */,
 				3428B83F2121685C003F86D7 /* ReimXiMaCollectionViewCell.xib in Resources */,
 				3453792121099CD300830DF8 /* LZBigGoodsHeadView.xib in Resources */,
 				FF02C42C2148FB6E00C3F7A5 /* NeedCustomerCell.xib in Resources */,
 				348DF257212964D800D3A76F /* ActionCell.xib in Resources */,
 				3428B81C21216851003F86D7 /* CheckDetailViewController.xib in Resources */,
+				FF8CDBB1214BAA2400056BE7 /* ReimCustomerCell.xib in Resources */,
 				3427A4F920CE507600369650 /* BRPickerView.bundle in Resources */,
 				FF02C3C92148EDB200C3F7A5 /* JGPurchaseCollectionViewCell.xib in Resources */,
 				3428B81221216851003F86D7 /* XiMaCollectionViewCell.xib in Resources */,
 				FF02C4532148FCE100C3F7A5 /* ReColorHeadCell.xib in Resources */,
 				FF02C3D92148EDB200C3F7A5 /* LogistiscCell.xib in Resources */,
+				FF8CDBBA214BADCD00056BE7 /* LogStartCell.xib in Resources */,
 				FF3FA97B212D6083009431DA /* DibuTableViewCell.xib in Resources */,
 				346C225B210E03D3004AAC88 /* LZAddItemViewController.xib in Resources */,
 				FF02C4242148FB6E00C3F7A5 /* NeedColorHeadCell.xib in Resources */,
 				FF3FA97F212D6083009431DA /* PinDetailTableViewCell.xib in Resources */,
 				3428B82021216851003F86D7 /* ColorsCell.xib in Resources */,
 				FF02C3F52148EDB200C3F7A5 /* OrderColorsCell.xib in Resources */,
-				FF02C3DD2148EDB200C3F7A5 /* LogStartCell.xib in Resources */,
 				FF02C3E32148EDB200C3F7A5 /* PurchaseCollectionViewCell.xib in Resources */,
 				FF02C3D52148EDB200C3F7A5 /* LogisticsCell.xib in Resources */,
+				FF8CDBA7214BA81700056BE7 /* CustomerCell.xib in Resources */,
 				3428B8452121685C003F86D7 /* ReimDetailViewController.xib in Resources */,
 				3428B8602121794E003F86D7 /* ReimSubCell.xib in Resources */,
 				FF02C45F2148FCE100C3F7A5 /* ReTotalCell.xib in Resources */,
@@ -5992,15 +5993,15 @@
 				FF02C3E72148EDB200C3F7A5 /* PurchaseDetailCell.xib in Resources */,
 				3428B81421216851003F86D7 /* ColorHeadCell.xib in Resources */,
 				3428B82821216851003F86D7 /* ColorDetailCell.xib in Resources */,
+				FF8CDBA4214BA7D900056BE7 /* ReCustomerCell.xib in Resources */,
 				3428B8552121685C003F86D7 /* ReimColorHeadCell.xib in Resources */,
-				3428B8472121685C003F86D7 /* ReimCustomerCell.xib in Resources */,
+				FF8CDB92214B9D1B00056BE7 /* LogEndCell.xib in Resources */,
 				FF02C44F2148FCE100C3F7A5 /* ReColorDetailCell.xib in Resources */,
 				346C2261210E03D3004AAC88 /* LZSelectItemViewController.xib in Resources */,
 				3453791F21099CD300830DF8 /* LZGoodValueCell.xib in Resources */,
 				FF02C4012148EDB200C3F7A5 /* OrderXiMaCollectionViewCell.xib in Resources */,
 				FF02C4202148FB6E00C3F7A5 /* NeedColorDetailCell.xib in Resources */,
 				FF3FA96F212D6083009431DA /* BackClothTableViewCell.xib in Resources */,
-				FF02C3F92148EDB200C3F7A5 /* OrderCustomerCell.xib in Resources */,
 				3417F991211E83B100FF29F8 /* testData.json in Resources */,
 				FF02C4572148FCE100C3F7A5 /* ReColorsCell.xib in Resources */,
 				FF02C3F12148EDB200C3F7A5 /* OrderColorHeadCell.xib in Resources */,
@@ -6010,7 +6011,6 @@
 				FF3FA983212D6083009431DA /* PinNameTableViewCell.xib in Resources */,
 				FF02C4342148FB6E00C3F7A5 /* NeedXiMaCollectionViewCell.xib in Resources */,
 				FF3FA987212D6083009431DA /* TitleTableViewCell.xib in Resources */,
-				FF02C3D12148EDB200C3F7A5 /* LogEndCell.xib in Resources */,
 				3428B84B2121685C003F86D7 /* ReimColorDetailCell.xib in Resources */,
 				FF02C3ED2148EDB200C3F7A5 /* OrderColorDetailCell.xib in Resources */,
 			);
@@ -6502,7 +6502,6 @@
 				34F6E76820BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
 				3465C9F220DC9A9700BAE415 /* FSCalendarScopeHandle.m in Sources */,
 				3479057B20C515C6008C835C /* LZOrderTrackingModel.m in Sources */,
-				FF02C3DA2148EDB200C3F7A5 /* LogStartCell.m in Sources */,
 				3465C9F620DC9A9700BAE415 /* FSCalendarDelegationFactory.m in Sources */,
 				3488D69A211855530061BA0C /* LZAuditDetailHeaderCell.m in Sources */,
 				34FB1F2E20BD5072004D18C2 /* LLWeekRangeCell.m in Sources */,
@@ -6613,6 +6612,7 @@
 				34EA5BB2208B1F010048CFE1 /* LGAlertViewHelper.m in Sources */,
 				34A92B18207DE86200572648 /* ViewController.m in Sources */,
 				346C2264210E03D3004AAC88 /* LLSalesDemandSideSlipVc.m in Sources */,
+				FF8CDB93214B9D1B00056BE7 /* LogEndCell.m in Sources */,
 				B50505D5209AB2DA00CE7E4D /* NSString+XLFormAdditions.m in Sources */,
 				A0D9D9ED213D376C006A5C80 /* LLWarehouseRightSildeVc.m in Sources */,
 				A04F6FFE2119913C00CFDE1C /* LLHomeChidVC.m in Sources */,
@@ -6638,6 +6638,7 @@
 				3420777120D3F4B5006EA057 /* LZArrearClientModel.m in Sources */,
 				B50505D1209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				344E4D60210EAF1E0031DCE8 /* UIViewExt.m in Sources */,
+				FF8CDBAD214BA8F300056BE7 /* LogStartCell.m in Sources */,
 				B56EF0EA20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				34E4D486211A9B9B00A6ADE9 /* LZCollectionCheckDetailVC.m in Sources */,
 				344358CE20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
@@ -6653,7 +6654,6 @@
 				343B17FF20A40B2300349A6D /* LoginModel.m in Sources */,
 				34494DF42091A76200BDB309 /* ClientNeedsViewController.m in Sources */,
 				347776FB2126ADFA00423A98 /* BXSMachiningProduuctCell.m in Sources */,
-				FF02C3CE2148EDB200C3F7A5 /* LogEndCell.m in Sources */,
 				344C487920D0C40400BEC002 /* LZProcurementCell.m in Sources */,
 				343747F6209460F600C64F4C /* SetHomeViewController.m in Sources */,
 				3452717220B2734A0001B65A /* AddColorCell.m in Sources */,
@@ -6916,7 +6916,6 @@
 				FFACE19121366B8800F23395 /* MPUploadMomentImagesCell.m in Sources */,
 				B5CF34FC20A574B30043D906 /* AlterBankViewController.m in Sources */,
 				B50505D4209AB2DA00CE7E4D /* NSPredicate+XLFormAdditions.m in Sources */,
-				FF02C3CF2148EDB200C3F7A5 /* LogEndCell.m in Sources */,
 				3475424820F5F3B1007F384B /* AuditTableViewCell.m in Sources */,
 				346C2257210E03D3004AAC88 /* LZBackOrderListsVC.m in Sources */,
 				3428B8592121685C003F86D7 /* ReimCustomerCell.m in Sources */,
@@ -6952,6 +6951,7 @@
 				FF3FA97D212D6083009431DA /* PinDetailTableViewCell.m in Sources */,
 				348DF2002129647300D3A76F /* LZProcessAskVC.m in Sources */,
 				348DF23D212964D800D3A76F /* BYPhotoSelect.m in Sources */,
+				FF8CDBAE214BA8F300056BE7 /* LogStartCell.m in Sources */,
 				FF02C3E52148EDB200C3F7A5 /* PurchaseDetailCell.m in Sources */,
 				B577CEA520AA90A70001B8B8 /* LLAddNewPeoleRoleModel.m in Sources */,
 				3453791B21099CD300830DF8 /* LZGoodsDetailCell.m in Sources */,
@@ -6975,6 +6975,7 @@
 				348DF237212964D800D3A76F /* XCFileManager.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				3471DCB320D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
+				FF8CDB94214B9D1B00056BE7 /* LogEndCell.m in Sources */,
 				34F8398C210092C000CDC8E2 /* LZSalesDetailCell.m in Sources */,
 				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
 				3420776820D3EC23006EA057 /* LZCheckReceiptModel.m in Sources */,
@@ -6995,7 +6996,6 @@
 				B50505B6209AB2DA00CE7E4D /* XLFormSelectorCell.m in Sources */,
 				34F6E76D20BFDD4300FABC5F /* LZInventoryDetailModel.m in Sources */,
 				3453791921099CD300830DF8 /* BigGoodsFootView.m in Sources */,
-				FF02C3DB2148EDB200C3F7A5 /* LogStartCell.m in Sources */,
 				343008DC2081ACA500447992 /* NowMonthViewController.m in Sources */,
 				B50505C8209AB2DA00CE7E4D /* XLFormDescriptor.m in Sources */,
 				3475424720F5F357007F384B /* ArrearsNameTextInputCell.m in Sources */,

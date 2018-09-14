@@ -18,7 +18,7 @@
 #import "LZPurchaseReceiptDataModel.h"
 #import "LZPurchaseReceiptSaveModel.h"
 #import "ToolsCollectionVC.h"
-#define  SELECTAPPROVER @"选择人员"
+#define  SELECTAPPROVER @"选择审批人"
 @interface LZPurchaseReceiptVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)BXSMachiningBottomView *bottomView;
 @property (strong,nonatomic)NSMutableArray *allCodeArray;
@@ -344,10 +344,7 @@
     ConItem *conItemRealpayPrice = self.bDataArray[0][1];//实付金额
     ConItem *conItemRemarke = self.bDataArray[0][4];//备注
     
-    if ([BXSTools stringIsNullOrEmpty:conItemBankId.id]) {
-        BXS_Alert(@"请选择收款方式");
-        return;
-    }
+    
     
     if ([BXSTools stringIsNullOrEmpty:conItemCopewithPrice.contenText]) {
         BXS_Alert(@"请输入应付金额");
@@ -364,9 +361,14 @@
         return;
     }
     
+    if ([BXSTools stringIsNullOrEmpty:conItemBankId.id] && conItemRealpayPrice.contenText.integerValue != 0) {
+        BXS_Alert(@"请选择收款方式");
+        return;
+    }
+    
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
                              @"approverId":self.selectApprover.id,
-                             @"bankId":conItemBankId.id,
+                             @"bankId":conItemRealpayPrice.contenText.integerValue == 0 ? @(0) : conItemBankId.id,
                              @"buyId":self.dataModel.buyId,
                              @"copewithPrice":conItemCopewithPrice.contenText,
                              @"factoryId":self.dataModel.factoryId,

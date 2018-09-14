@@ -20,7 +20,7 @@
 #import "LZPurchaseReceiptSaveAlterModel.h"
 #import "ToolsCollectionVC.h"
 
-#define  SELECTAPPROVER @"选择人员"
+#define  SELECTAPPROVER @"选择审批人"
 @interface LZPurchaseReceiptDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSString *_buyOrderItemIds;
