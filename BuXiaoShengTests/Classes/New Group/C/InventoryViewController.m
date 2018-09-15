@@ -12,6 +12,7 @@
 #import "InventoryDetailViewController.h"
 #import "LZInventoryModel.h"
 #import "LZSearchWarehouseVC.h"
+#import "LZWarehouseShiftVC.h"
 @interface InventoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 ///总米数
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UILabel *kgLbl;
 @property(nonatomic,strong)LZInventoryModel *model;
 @property(nonatomic,strong)NSArray <LZInventoryListModel*> *listAry;
+@property (nonatomic, strong) UIButton *changeBtn;//库存互转按钮
 @end
 
 
@@ -179,7 +181,7 @@
     .heightIs(14)
     .rightSpaceToView(totalKgLbl, 0);
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, bgBlueView.height -20, APPWidth -30, APPHeight -bgBlueView.height+20 -50) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -188,6 +190,18 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+    self.changeBtn = [[UIButton alloc]init];
+    [self.changeBtn setBackgroundColor:[UIColor whiteColor]];
+    [self.changeBtn setTitle:@"仓库互转" forState:UIControlStateNormal];
+    [self.changeBtn setTitleColor:LZAppBlueColor forState:UIControlStateNormal];
+    self.changeBtn.titleLabel.font = FONT(15);
+    [self.changeBtn addTarget:self action:@selector(changeBtnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.changeBtn];
+    self.changeBtn.sd_layout
+    .topSpaceToView(self.tableView, 0)
+    .leftEqualToView(self.view)
+    .rightEqualToView(self.view)
+    .heightIs(50);
     
 }
 
@@ -316,6 +330,12 @@
 - (void)rightButtonClick
 {
     LZSearchWarehouseVC *vc = [[LZSearchWarehouseVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//点击仓库互转按钮点击事件
+- (void)changeBtnClickAction{
+    LZWarehouseShiftVC *vc = [[LZWarehouseShiftVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

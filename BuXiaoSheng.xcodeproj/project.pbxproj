@@ -1143,6 +1143,8 @@
 		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 		FF4A8CB9213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
 		FF4A8CBA213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
+		FF4C3980214CE47500A1FC49 /* LZWarehouseShiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4C397F214CE47500A1FC49 /* LZWarehouseShiftVC.m */; };
+		FF4C3981214CE47500A1FC49 /* LZWarehouseShiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4C397F214CE47500A1FC49 /* LZWarehouseShiftVC.m */; };
 		FF8CDB91214B9D1B00056BE7 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */; };
 		FF8CDB92214B9D1B00056BE7 /* LogEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */; };
 		FF8CDB93214B9D1B00056BE7 /* LogEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */; };
@@ -2499,6 +2501,8 @@
 		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
 		FF4A8CB7213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptSaveAlterModel.h; sourceTree = "<group>"; };
 		FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptSaveAlterModel.m; sourceTree = "<group>"; };
+		FF4C397E214CE47500A1FC49 /* LZWarehouseShiftVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWarehouseShiftVC.h; sourceTree = "<group>"; };
+		FF4C397F214CE47500A1FC49 /* LZWarehouseShiftVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZWarehouseShiftVC.m; sourceTree = "<group>"; };
 		FF8CDB8E214B9D1A00056BE7 /* LogEndCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogEndCell.xib; sourceTree = "<group>"; };
 		FF8CDB8F214B9D1A00056BE7 /* LogEndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEndCell.m; sourceTree = "<group>"; };
 		FF8CDB90214B9D1A00056BE7 /* LogEndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEndCell.h; sourceTree = "<group>"; };
@@ -5208,6 +5212,8 @@
 			children = (
 				347C309420A299030078BB69 /* InventoryViewController.h */,
 				347C309520A299030078BB69 /* InventoryViewController.m */,
+				FF4C397E214CE47500A1FC49 /* LZWarehouseShiftVC.h */,
+				FF4C397F214CE47500A1FC49 /* LZWarehouseShiftVC.m */,
 				347C309D20A2C5AF0078BB69 /* InventoryDetailViewController.h */,
 				347C309E20A2C5AF0078BB69 /* InventoryDetailViewController.m */,
 				34F6E76F20C0359B00FABC5F /* LZSearchWarehouseVC.h */,
@@ -6591,6 +6597,7 @@
 				346B6AD9208D981700F4B054 /* ProcessorsViewController.m in Sources */,
 				34F4B48F20BBAE650017003E /* LZClientDemandModel.m in Sources */,
 				3420775320D39532006EA057 /* LZArrearClientCell.m in Sources */,
+				FF4C3980214CE47500A1FC49 /* LZWarehouseShiftVC.m in Sources */,
 				340E208820FC8CB800E2602D /* LZSalesDemandVC.m in Sources */,
 				34A92B65207DF0F800572648 /* LoginViewController.m in Sources */,
 				34528E912089CA9F004CD04B /* PagingTableViewCell.m in Sources */,
@@ -6975,6 +6982,7 @@
 				348DF237212964D800D3A76F /* XCFileManager.m in Sources */,
 				B50505E0209AB2DA00CE7E4D /* XLFormTextView.m in Sources */,
 				3471DCB320D77BB9002052EE /* LZShipmentBigBoardView.m in Sources */,
+				FF4C3981214CE47500A1FC49 /* LZWarehouseShiftVC.m in Sources */,
 				FF8CDB94214B9D1B00056BE7 /* LogEndCell.m in Sources */,
 				34F8398C210092C000CDC8E2 /* LZSalesDetailCell.m in Sources */,
 				B577CEA920AAAC4F0001B8B8 /* LLAddNewsPeopleCollectionViewCell.m in Sources */,
