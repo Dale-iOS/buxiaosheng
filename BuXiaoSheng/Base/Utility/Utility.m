@@ -117,7 +117,11 @@
     btn.frame = CGRectMake(0, 0, 31, 44);
     [btn setTitle:string forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+    btn.titleLabel.textAlignment = NSTextAlignmentRight;
     btn.titleLabel.font = FONT(15);
+    if (btn.titleLabel.text.length >2) {
+       btn.titleLabel.numberOfLines = 2;
+    }
     [btn addTarget:_target action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;

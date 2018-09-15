@@ -40,7 +40,12 @@
     _tableView.separatorStyle = NO;
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(LLNavViewHeight +10);
+        if (!IPHONEX) {
+            make.top.equalTo(self.view).offset(10);
+        }else{
+            make.top.equalTo(self.view).offset(LLNavViewHeight +10);
+        }
+        
         make.left.and.right.and.bottom.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];

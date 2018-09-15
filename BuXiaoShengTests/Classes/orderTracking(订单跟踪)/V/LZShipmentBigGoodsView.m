@@ -250,7 +250,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     [_tableView reloadData];
 }
 
-
+#pragma mark --- 拼接上传的数据 ---
 ///提交按钮点击事件
 - (void)didClickSubmitAction
 {
@@ -345,6 +345,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
                 BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
                 
+                //拼接产品cell内容
                 for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
                     ItemList *itemListModel = batchNumberListModel.itemList[k];
                     LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];

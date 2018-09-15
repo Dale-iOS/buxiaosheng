@@ -38,12 +38,13 @@
 - (void)setupUI
 {
     self.navigationItem.titleView = [Utility navTitleView:@"组织架构"];
-    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.titleLabel.font = FONT(15);
-    [navRightBtn setTitle:@"部门管理" forState:UIControlStateNormal];
-    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
-    [navRightBtn addTarget:self action:@selector(navRightClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(navRightClick) title:@"部门管理"];
+//    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    navRightBtn.titleLabel.font = FONT(15);
+//    [navRightBtn setTitle:@"部门管理" forState:UIControlStateNormal];
+//    [navRightBtn setTitleColor:[UIColor colorWithHexString:@"#3d9bfa"] forState:UIControlStateNormal];
+//    [navRightBtn addTarget:self action:@selector(navRightClick) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
     
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPHeight -49, APPWidth, 49)];
     bottomView.backgroundColor = [UIColor whiteColor];
