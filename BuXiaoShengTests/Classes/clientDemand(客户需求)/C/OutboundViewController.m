@@ -134,7 +134,12 @@
         
         UIView *bottomView = [self setupBottomView];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.equalTo(self.view);
+            if (!IPHONEX) {
+                make.top.equalTo(self.view).mas_offset(LLNavViewHeight);
+            }else{
+                make.top.equalTo(self.view);
+            }
+            make.left.right.equalTo(self.view);
             make.bottom.equalTo(bottomView.mas_top);
         }];
     }

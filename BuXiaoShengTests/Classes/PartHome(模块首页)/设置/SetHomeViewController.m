@@ -85,10 +85,17 @@
     
     [self.view addSubview:self.mainTabelView];
     self.mainTabelView.delegate = self;
-    [self setupSectionOne];
-    [self setupSectionTwo];
-    [self setupSectionThree];
-    [self setupSectionFour];
+    if ([BXSUser currentUser].type.integerValue == 1) {
+        //老板
+        [self setupSectionOne];
+        [self setupSectionTwo];
+        [self setupSectionThree];
+        [self setupSectionFour];
+    }else{
+        //员工
+        [self setupSectionWorker];
+    }
+    
     self.mainTabelView.dataSoure = self.datasource;
     
     //退出按钮底view
@@ -266,7 +273,37 @@
     [self.datasource addObject:item];
 }
 
-
+- (void)setupSectionWorker{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+    headerView.backgroundColor = LZHBackgroundColor;
+    
+    //科目
+    self.subjectCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.subjectCell.iconImageView.image = IMAGE(@"subject");
+    self.subjectCell.titleLabel.text = @"科目";
+    UITapGestureRecognizer *subjectCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subjectCellTapAction)];
+    [self.subjectCell addGestureRecognizer:subjectCellTap];
+    
+    //产品资料
+    self.productCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.productCell.iconImageView.image = IMAGE(@"product");
+    self.productCell.titleLabel.text = @"产品资料";
+    UITapGestureRecognizer *productCellTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(productCellTapAction)];
+    [self.productCell addGestureRecognizer:productCellTap];
+    
+    //版本号
+    self.versionCell = [[SettingCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+    self.versionCell.iconImageView.image = IMAGE(@"versionNum");
+    self.versionCell.titleLabel.text = @"版本号";
+    self.versionCell.rigthLabel.hidden = NO;
+    self.versionCell.rigthLabel.text = appVersion;
+    
+    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+    item.sectionRows = @[self.subjectCell,self.productCell,self.versionCell];
+    item.canSelected = NO;
+    item.sectionView = headerView;
+    [self.datasource addObject:item];
+}
 
 #pragma mark ------ 点击事件 --------
 //店铺
