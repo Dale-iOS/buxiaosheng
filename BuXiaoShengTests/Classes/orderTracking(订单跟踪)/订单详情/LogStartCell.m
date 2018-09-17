@@ -19,7 +19,7 @@
 - (void)setDetailModel:(LZPurchasingInfoDetailModel *)detailModel
 {
     _detailModel = detailModel;
-    WMLineView *line = [[WMLineView alloc] initWithFrame:self.line.frame withLineLength:5 withLineSpacing:3 withLineColor:[UIColor lightGrayColor]];
+    WMLineView *line = [[WMLineView alloc] initWithFrame:self.line.frame withLineLength:5 withLineSpacing:3 withLineColor:LZHBackgroundColor];
     [self.contentView addSubview:line];
 }
 

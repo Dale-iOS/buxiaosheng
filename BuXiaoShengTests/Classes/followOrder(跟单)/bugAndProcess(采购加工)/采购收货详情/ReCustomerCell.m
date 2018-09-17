@@ -20,10 +20,10 @@
 {
     _dataModel = dataModel;
     self.addressLB.text = dataModel.address;
-    self.arrearsPriceLB.text =dataModel.arrearsPrice;
+    self.arrearsPriceLB.text =dataModel.copewithPrice;
     self.bankNameLB.text = dataModel.bankName;
     self.contactNameLB.text = dataModel.contactName;
-    self.copewithPriceLB.text = dataModel.copewithPrice;
+    self.copewithPriceLB.text = dataModel.arrearsPrice;
     self.factoryNameLB.text = dataModel.factoryName;
     self.factoryNoLB.text = dataModel.factoryNo;
     self.orderNoLB.text = dataModel.orderNo;

@@ -7,12 +7,16 @@
 //
 
 #import "LogEndCell.h"
-
 @implementation LogEndCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+
+- (void)setModel:(LZPurchasingInfoDetailModel *)model{
+    _model = model;
+    self.timeLB.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:model.createTime]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

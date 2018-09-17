@@ -17,9 +17,9 @@
 - (void)setLogisticslModel:(LZPurchasingInfoDetaiLogisticslModel *)logisticslModel
 {
     _logisticslModel = logisticslModel;
-    _time1.text = [NSString stringWithFormat:@"预计到货时间：%@",logisticslModel.arrivalTime];
+    _time1.text = [NSString stringWithFormat:@"预计到货时间：%@",[BXSTools stringFromTData:logisticslModel.arrivalTime]];
     _number.text = [NSString stringWithFormat:@"预计到货数量：%@",logisticslModel.number];
-    _time2.text = logisticslModel.createTime;
+    _time2.text = [BXSTools stringFromTimestamp:[BXSTools getTimeStrWithString:logisticslModel.createTime]];
     _remark.text = logisticslModel.remark;//logisticslModel.remark;
     
     CGSize strSize = [self sizeForString:self.remark.text font:[UIFont systemFontOfSize:14] maxWidth:self.width - 20 - 44];

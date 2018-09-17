@@ -70,8 +70,8 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _infoDataArray = [LZPurchasingInfoDetailModel LLMJParse:baseModel.data];
-        _detailModel = _infoDataArray.firstObject;
+        self.infoDataArray = [LZPurchasingInfoDetailModel LLMJParse:baseModel.data];
+        self.detailModel = self.infoDataArray.firstObject;
         
         [self getProductLogistics];
     } failure:^(NSError *error) {
@@ -91,7 +91,7 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        _logisticsDataArray = [LZPurchasingInfoDetaiLogisticslModel LLMJParse:baseModel.data];
+       self.logisticsDataArray = [LZPurchasingInfoDetaiLogisticslModel LLMJParse:baseModel.data];
         
         [self.myTableView reloadData];
     } failure:^(NSError *error) {
@@ -152,6 +152,7 @@
                     cell = [[[NSBundle mainBundle] loadNibNamed:@"LogEndCell" owner:self options:nil] lastObject];
                     
                 }
+                cell.model = self.detailModel;
                 return cell;
             }else
             {
@@ -173,6 +174,7 @@
                     cell = [[[NSBundle mainBundle] loadNibNamed:@"LogEndCell" owner:self options:nil] lastObject];
                     
                 }
+                cell.model = self.detailModel;
                 return cell;
             }else
             {

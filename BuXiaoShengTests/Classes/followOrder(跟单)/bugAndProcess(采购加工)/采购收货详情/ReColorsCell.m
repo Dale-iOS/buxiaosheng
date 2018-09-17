@@ -22,12 +22,22 @@
     _productModel = productModel;
     self.ProductName.text = productModel.productName;
     self.houseNum.text = productModel.houseNum;
-    self.total.text = productModel.totalNumber;
-    self.labelNum.text = productModel.receivableAmount;
+    self.total.text = productModel.total;
+    self.labelNum.text = productModel.houseNum;
     self.refundAmount.text = productModel.buyNum;
     self.settlementNum.text = productModel.settlementNum;
 #warning 本单应付金额还没有计算
-    //self.yfLb = 
+    for (int i = 0; i <productModel.colorList.count; i++) {
+        LZPurchaseReceivingListDetailProductColorListModel *colorModel = productModel.colorList[i];
+        //本单应收金额计算
+        NSInteger shouldPrice = 0;
+        for (int j = 0; j < colorModel.valList.count; j++) {
+            LZPurchaseReceivingListDetailProductValListModel *vaListModel = colorModel.valList[j];
+            shouldPrice += colorModel.price.integerValue * vaListModel.value.integerValue;
+        }
+        self.yfLb.text = [NSString stringWithFormat:@"%ld",shouldPrice];
+    }
+    
     [self loadContactData];
 }
 

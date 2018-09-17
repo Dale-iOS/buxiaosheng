@@ -36,8 +36,8 @@
     _colorListModel = colorListModel;
     _productColorNameLabel.text = colorListModel.productColorName;
     _unitNameLabel.text = colorListModel.unitName;
-    _priceLabel.text = colorListModel.price;
-    _totalLabel.text = colorListModel.total;
+    _priceLabel.text = colorListModel.total;
+    _totalLabel.text = colorListModel.price;
     _valList = colorListModel.valList;
     [self.collectionView reloadData];
 }
