@@ -23,8 +23,13 @@
 {
     _productModel = productModel;
     self.productNameLabel.text = productModel.productName;
-    self.totalNumber.text = productModel.totalNumber;
     
+    //假如细码值有小数，就只保留一位小数
+    if ([productModel.totalNumber containsString:@"."]) {
+        self.totalNumber.text = [NSString stringWithFormat:@"%.1f",productModel.totalNumber.doubleValue];
+    }else{
+        self.totalNumber.text = productModel.totalNumber;
+    }
     [self loadContactData];
 }
 

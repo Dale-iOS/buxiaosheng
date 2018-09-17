@@ -36,5 +36,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *outNumberLB;
 @property (weak, nonatomic) IBOutlet UILabel *totalLB;
 @property (weak, nonatomic) IBOutlet UILabel *createTimeLB;
+@property (weak, nonatomic) IBOutlet UILabel *settlementLabel;
 
 @end

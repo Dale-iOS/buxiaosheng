@@ -258,7 +258,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     
     //没假单,只有真单
     NSMutableArray *productListMuAry = [NSMutableArray array];
-    NSMutableArray *itemListMuAry = [NSMutableArray array];
+    
     //真单数据
     NSArray *tureAry = _dataSource[0];
     for (int i = 0; i < _dataList.count; i++) {
@@ -269,16 +269,23 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
         LZSaveOrderProductListModel.total = bigGoodsAndBoardModel.total;
         LZSaveOrderProductListModel.number = bigGoodsAndBoardModel.number;
         LZSaveOrderProductListModel.price = bigGoodsAndBoardModel.price;
-        for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
-            BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
-            for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
-                ItemList *itemListModel = batchNumberListModel.itemList[k];
-                LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
-                LZSaveOrderItemListModel.value = itemListModel.value;
-                LZSaveOrderItemListModel.total = itemListModel.total;
-                [itemListMuAry addObject:LZSaveOrderItemListModel];
-            }
-        }
+        
+        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+        LZSaveOrderItemListModel.value = LZSaveOrderProductListModel.number;
+        LZSaveOrderItemListModel.total = LZSaveOrderProductListModel.total;
+        [itemListMuAry addObject:LZSaveOrderItemListModel];
+//        for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
+//            BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
+//
+//            for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
+//                ItemList *itemListModel = batchNumberListModel.itemList[k];
+//                LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+//                LZSaveOrderItemListModel.value = itemListModel.value;
+//                LZSaveOrderItemListModel.total = itemListModel.total;
+//                [itemListMuAry addObject:LZSaveOrderItemListModel];
+//            }
+//        }
         LZSaveOrderProductListModel.itemList = [itemListMuAry copy];
         [productListMuAry addObject:LZSaveOrderProductListModel];
     }
@@ -328,7 +335,7 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
     if (_dataSource.count == 3){
         //有假单
         NSMutableArray *productListMuAry = [NSMutableArray array];
-        NSMutableArray *itemListMuAry = [NSMutableArray array];
+        
         
         //真单数据
         NSArray *falseAry = _dataSource[1];
@@ -342,18 +349,24 @@ static NSString * const LZGoodsDetailCellID = @"LZGoodsDetailCell";
             LZSaveOrderProductListModel.number = bigGoodsAndBoardModel.number;
             LZSaveOrderProductListModel.price = bigGoodsAndBoardModel.price;
             
-            for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
-                BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
-                
-                //拼接产品cell内容
-                for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
-                    ItemList *itemListModel = batchNumberListModel.itemList[k];
-                    LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
-                    LZSaveOrderItemListModel.value = itemListModel.value;
-                    LZSaveOrderItemListModel.total = itemListModel.total;
-                    [itemListMuAry addObject:LZSaveOrderItemListModel];
-                }
-            }
+            NSMutableArray *itemListMuAry = [NSMutableArray array];
+            LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+            LZSaveOrderItemListModel.value = LZSaveOrderProductListModel.number;
+            LZSaveOrderItemListModel.total = LZSaveOrderProductListModel.total;
+            [itemListMuAry addObject:LZSaveOrderItemListModel];
+            
+//            for (int j = 0; j < bigGoodsAndBoardModel.batchNumberList.count; j++) {
+//                BatchNumberList *batchNumberListModel = bigGoodsAndBoardModel.batchNumberList[j];
+//
+//                //拼接产品cell内容
+//                for (int k = 0; k <batchNumberListModel.itemList.count; k++) {
+//                    ItemList *itemListModel = batchNumberListModel.itemList[k];
+//                    LZSaveOrderItemList *LZSaveOrderItemListModel = [LZSaveOrderItemList new];
+//                    LZSaveOrderItemListModel.value = itemListModel.value;
+//                    LZSaveOrderItemListModel.total = itemListModel.total;
+//                    [itemListMuAry addObject:LZSaveOrderItemListModel];
+//                }
+//            }
             
             LZSaveOrderProductListModel.itemList = [itemListMuAry copy];
             [productListMuAry addObject:LZSaveOrderProductListModel];
