@@ -11,32 +11,32 @@
 #import "LLColorRegistModel.h"
 #import "LLColorRegisterCell.h"
 #import "TZImagePickerController.h"
-@interface LLColorRegisterVc ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+#import "ToolsCollectionVC.h"
+@interface LLColorRegisterVc ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 @property(nonatomic ,strong)UITableView * tableView;
 @property(nonatomic ,strong)UIView * tableHeaderView;
 @property(nonatomic ,strong)UIView * tableFooterView;
 //备注
 @property(nonatomic ,strong)TextInputCell * remakView;
-//图片添加view
-@property(nonatomic ,strong)UICollectionView * photoAddCollectionView;
+
 @property(nonatomic ,strong)NSMutableArray<LLColorRegistModel*> * modelDatas;
-@property(nonatomic ,strong)NSMutableArray <UIImage *> * imgsArray;
 
 @property(nonatomic ,assign)NSInteger seletedImageIndex;
-
+@property(nonatomic,strong)ToolsCollectionVC * collectionVC;
+@property (nonatomic,copy)NSString * imageUrl;
+@property (nonatomic, strong) UIView *ViImage;
+@property (nonatomic, strong) UILabel *labImage;
 @end
 
 @implementation LLColorRegisterVc
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setupUI {
@@ -100,99 +100,6 @@
       
     }];
     [self.tableView reloadData];
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.imgsArray.count;
-}
-
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LLColorRegisterImageCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LLColorRegisterImageCell" forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.image = self.imgsArray[indexPath.row];
-    WEAKSELF
-    cell.block = ^(LLColorRegisterImageCell *cell) {
-        [weakSelf.imgsArray replaceObjectAtIndex:cell.indexPath.row withObject:[UIImage imageNamed:@"add_image"]];
-        [collectionView reloadItemsAtIndexPaths:@[cell.indexPath]];
-    };
-    return cell;
-}
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 10, 0, 10);
-}
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.seletedImageIndex = indexPath.row;
-    UIAlertController * alterVc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-      WEAKSELF
-    UIAlertAction * takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf takePhoto:1];
-    }];
-    UIAlertAction * photoLib = [UIAlertAction actionWithTitle:@"从手机相册中选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-         [weakSelf takePhoto:2];
-    }];
-    UIAlertAction * canle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
-    [alterVc addAction:takePhoto];
-    [alterVc addAction:photoLib];
-     [alterVc addAction:canle];
-    [self.navigationController presentViewController:alterVc animated:true completion:nil];
-}
-//选择完成回调函数
- - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-         //获取图片
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-     NSData * picData = UIImageJPEGRepresentation(image, 0.5);
-     UIImage * newImg = [[UIImage alloc] initWithData:picData];
-     [self dismissViewControllerAnimated:true completion:^{
-         [self.imgsArray replaceObjectAtIndex:self.seletedImageIndex withObject:newImg];
-         [self.photoAddCollectionView reloadData];
-     }];
-     
-        
-     }
-
- //用户取消选择
- - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-         [self dismissViewControllerAnimated:YES completion:nil];
-     }
-/// MARK: ---- 选择相册和拍照的方法 1 拍照 2 相册
--(void)takePhoto:(NSInteger)index {
-   
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]&&index ==1 ) {
-        UIAlertController * alertC = [UIAlertController alertControllerWithTitle:@"摄像头访问受限" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alertC animated:YES completion:nil];
-        UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alertC addAction:action];
-        return;
-    }
-        /// 用户是否允许摄像头使用
-        NSString * mediaType = AVMediaTypeVideo;
-        AVAuthorizationStatus  authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-        /// 不允许弹出提示框
-        if (authorizationStatus == AVAuthorizationStatusRestricted|| authorizationStatus == AVAuthorizationStatusDenied) {
-            NSString *message = [NSString stringWithFormat:[NSBundle tz_localizedStringForKey:@"Please allow %@ to access your camera in \"Settings -> Privacy -> Camera\""],appName];
-            UIAlertController * alertC = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }];
-            [alertC addAction:action];
-            [self presentViewController:alertC animated:YES completion:nil];
-           
-            return;
-        }
-  
-        
-    //初始化UIImagePickerController类
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-    picker.allowsEditing = true;
-    //判断数据来源为相册
-    picker.sourceType = index ==2 ? UIImagePickerControllerSourceTypeSavedPhotosAlbum:UIImagePickerControllerSourceTypeCamera;
-      //设置代理
-       picker.delegate = self;
-        //打开相册
-     [self presentViewController:picker animated:YES completion:nil];
 }
 /// MARK: ---- 导航右边按钮的点击
 -(void)rightBarButtonItemClick {
@@ -269,41 +176,44 @@
             make.top.equalTo(addItemView.mas_bottom).offset( 10);
             make.height.mas_equalTo(100);
         }];
-        
-        UIView * photoView = [UIView new];
-        [_tableFooterView addSubview:photoView];
-        photoView.backgroundColor = [UIColor whiteColor];
-        [photoView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self->_tableFooterView);
-            make.top.equalTo(remakView.mas_bottom).offset(10);
-        }];
-        //图片
-        UILabel * photoLable = [UILabel new];
-        [photoView addSubview:photoLable];
-        photoLable.text = @"图片";
-        photoLable.textColor = CD_Text33;
-        photoLable.font = FONT(14);
-        [photoLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(photoView).offset(15);
-            make.top.equalTo(photoView).offset(15);
-        }];
-        UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
-        layout.itemSize = CGSizeMake(60, 60);
-        layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
-        self.photoAddCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        self.photoAddCollectionView.backgroundColor = [UIColor whiteColor];
-        [photoView addSubview:self.photoAddCollectionView];
-        self.photoAddCollectionView.delegate = self;
-        self.photoAddCollectionView.dataSource = self;
-        [self.photoAddCollectionView registerClass:[LLColorRegisterImageCell class] forCellWithReuseIdentifier:@"LLColorRegisterImageCell"];
-        [self.photoAddCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(photoView);
-            make.top.equalTo(photoLable .mas_bottom).offset(10);
-            make.height.mas_equalTo(80);
-        }];
+
+		self.ViImage = [[UIView alloc]init];
+		self.ViImage.backgroundColor = [UIColor whiteColor];
+		[_tableFooterView addSubview:self.ViImage];
+		self.ViImage.sd_layout
+		.leftSpaceToView(self.tableFooterView, 0)
+		.topSpaceToView(self.remakView, 9)
+		.widthIs(APPWidth)
+		.heightIs(132);//这个高度根据屏幕尺寸去算-->这个高度为 图片的lable和collection高的总和
+		//设置图片信息
+		[self setupImageView];
     }
     return _tableFooterView;
+}
+/**
+ 设置图片
+ */
+- (void)setupImageView{
+	//图片
+	self.labImage =[[UILabel alloc]initWithFrame:CGRectMake(10, 0, APPWidth, 28)];
+	self.labImage.textColor = CD_Text33;
+	self.labImage.font = FONT(14);
+	self.labImage.text = @"图片";
+	self.labImage.backgroundColor = [UIColor whiteColor];
+	[self.ViImage addSubview:self.labImage];
+
+	//Collection
+	CGRect tFrame =CGRectMake(0, 28, APPWidth, 104);//这个高度根据屏幕去算的暂时写死
+	_collectionVC = [[ToolsCollectionVC alloc]init];
+	self.collectionVC.maxCountTF = @"5";//最多选择5张
+	_collectionVC.columnNumberTF = @"4";
+	_collectionVC.view.frame = tFrame;
+	_collectionVC.view.backgroundColor = [UIColor whiteColor];
+	[self addChildViewController:_collectionVC];
+	[self.ViImage addSubview:_collectionVC.view];
+	[_collectionVC didMoveToParentViewController:self];
+	[self.collectionVC setupMainCollectionViewWithFrame:CGRectMake(0, 0, APPWidth, 104)];
+	[self.collectionVC.view addSubview:self.collectionVC.mainCollectionView];
 }
 -(NSMutableArray<LLColorRegistModel *> *)modelDatas {
     if (!_modelDatas) {
@@ -316,24 +226,4 @@
     }
     return _modelDatas;
 }
--(NSMutableArray<UIImage *> *)imgsArray {
-    if (!_imgsArray) {
-        _imgsArray = [NSMutableArray array];
-        for (int i = 0; i<5; i++) {
-            UIImage * image = [UIImage imageNamed:@"add_image"];
-            [_imgsArray addObject:image];
-        }
-    }
-    return _imgsArray;
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
