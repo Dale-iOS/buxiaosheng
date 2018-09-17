@@ -4,7 +4,7 @@
 //
 //  Created by 罗镇浩 on 2018/4/18.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  财务页面 财务首页
 
 #import "FinancialViewController.h"
 #import "DataSource.h"
@@ -175,7 +175,7 @@
     self.datasource = [NSMutableArray array];
     
     [self setSectionOne];
-    [self setSectionTwo];
+//    [self setSectionTwo];
     [self setSectionThree];
     
     self.mainTabelView.dataSoure = self.datasource;
@@ -196,24 +196,24 @@
     [self.datasource addObject:item];
 }
 
-- (void)setSectionTwo
-{
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
-    headerView.backgroundColor = LZHBackgroundColor;
-    
-    self.bankCell = [[LZDetailCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
-    self.bankCell.leftIMV.image = IMAGE(@"cashbank");
-    self.bankCell.titleLabel.text = @"现金银行";
-    self.bankCell.backgroundColor = [UIColor whiteColor];
-    UITapGestureRecognizer *tapBenkCell = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBenkCellClick)];
-    [self.bankCell addGestureRecognizer:tapBenkCell];
-
-    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
-    item.sectionRows = @[self.bankCell];
-    item.canSelected = YES;
-    item.sectionView = headerView;
-    [self.datasource addObject:item];
-}
+//- (void)setSectionTwo
+//{
+//    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 0.5)];
+//    headerView.backgroundColor = LZHBackgroundColor;
+//
+//    self.bankCell = [[LZDetailCell alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 49)];
+//    self.bankCell.leftIMV.image = IMAGE(@"cashbank");
+//    self.bankCell.titleLabel.text = @"现金银行";
+//    self.bankCell.backgroundColor = [UIColor whiteColor];
+//    UITapGestureRecognizer *tapBenkCell = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBenkCellClick)];
+//    [self.bankCell addGestureRecognizer:tapBenkCell];
+//
+//    LZHTableViewItem *item = [[LZHTableViewItem alloc]init];
+//    item.sectionRows = @[self.bankCell];
+//    item.canSelected = YES;
+//    item.sectionView = headerView;
+//    [self.datasource addObject:item];
+//}
 
 - (void)setSectionThree
 {
@@ -279,12 +279,14 @@
             return ;
         }
         self.buttons = [LZHomeModel LLMJParse:baseModel.data];
-//        if (self.buttons.count <5) {
-//            self.collectView.frame = CGRectMake(0, 0, APPWidth, 110);
-//        }else
-//        {
-//            self.collectView.frame = CGRectMake(0, 0, APPWidth, 220);
-//        }
+
+//        collectView行数
+        NSInteger count = self.buttons.count;
+        NSInteger line = count%4 ? count/4+1 :count/4;
+        if (self.buttons.count == 0) {
+            line = 0;
+        }
+        self.collectView.frame = CGRectMake(0,10, APPWidth, line *100);
         [self.collectView reloadData];
         [self.mainTabelView reloadData];
         

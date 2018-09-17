@@ -81,12 +81,13 @@
             return ;
         }
         self.buttons = [LZHomeModel LLMJParse:baseModel.data];
-        //        if (self.buttons.count <5) {
-        //            self.collectView.frame = CGRectMake(0, 20, APPWidth, 110);
-        //        }else
-        //        {
-        //            self.collectView.frame = CGRectMake(0, 20, APPWidth, 220);
-        //        }
+        //        collectView行数
+        NSInteger count = self.buttons.count;
+        NSInteger line = count%4 ? count/4+1 :count/4;
+        if (self.buttons.count == 0) {
+            line = 0;
+        }
+        self.collectView.frame = CGRectMake(0,10, APPWidth, line *100);
         [self.collectView reloadData];
         [self.mainTabelView reloadData];
         
