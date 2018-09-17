@@ -65,8 +65,7 @@
     [self loadBottomData];
     [self setupSelectData];
     [self setupData];
-    
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -560,10 +559,11 @@
     .addSubviews(@[cView])
     .showInWindow();
     
-    
+    //侧栏修改细码值和入库数量和结算数量
     WEAKSELF;
     cView.clickChangeBlock = ^{
-        [weakSelf CalculationFindCodeData];
+//        [weakSelf CalculationFindCodeData];
+        [weakSelf sidebarCalculationFindCodeData];
         [weakSelf.mainTable reloadData];
     };
     
@@ -784,10 +784,35 @@
         ConItem *item1 = model.dataArray[0][1];
         item1.contenText = [NSString stringWithFormat:@"%ld",model.findCodeArray.count];
         
-        ConItem *citem = model.dataArray[1][4];
-        ConItem *kuItem = model.dataArray[1][5];
-        ConItem *jItem = model.dataArray[1][6];
+        ConItem *citem = model.dataArray[1][4];//采购数量
+        ConItem *kuItem = model.dataArray[1][5];//入库数量
+        ConItem *jItem = model.dataArray[1][6];//结算数量
         citem.contenText = kuItem.contenText = jItem.contenText = item.contenText;
+    }
+    
+    [self setPerItem];
+    [self getBottomData];
+    
+}
+
+/// 侧栏改变点击确定后的方法
+- (void)sidebarCalculationFindCodeData {
+    
+    for (BXSAllCodeModel *model in self.allCodeArray) {
+        
+        CGFloat allCode = 0.0f;
+        for (LZFindCodeModel *codeModel in model.findCodeArray) {
+            allCode += [codeModel.code floatValue];
+        }
+        ConItem *item = model.dataArray[0][0];
+        item.contenText = [NSString stringWithFormat:@"%.1f",allCode];
+        
+        ConItem *item1 = model.dataArray[0][1];
+        item1.contenText = [NSString stringWithFormat:@"%ld",model.findCodeArray.count];
+        
+        ConItem *kuItem = model.dataArray[1][5];//入库数量
+        ConItem *jItem = model.dataArray[1][6];//结算数量
+        kuItem.contenText = jItem.contenText = item.contenText;
     }
     
     [self setPerItem];

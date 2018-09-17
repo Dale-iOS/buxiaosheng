@@ -12,7 +12,14 @@
 
 -(void)setModel:(LLOutboundRightDetailModel *)model {
     _model = model;
-    _totalCount.text = model.value;
+    
+    //假如细码值有小数，就只保留一位小数
+    if ([model.value containsString:@"."]) {
+        _totalCount.text = [NSString stringWithFormat:@"%.1f",model.value.doubleValue];
+    }else{
+        _totalCount.text = model.value;
+    }
+
     model.seleted ? (self.contentView.layer.borderColor = LZAppBlueColor.CGColor) : (self.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor);
     model.seleted ? (_totalCount.textColor = LZAppBlueColor) : (_totalCount.textColor= [UIColor lightGrayColor]);
 }

@@ -4,7 +4,7 @@
 //
 //  Created by lanlan on 2018/9/7.
 //  Copyright © 2018年 BuXiaoSheng. All rights reserved.
-//
+//  色卡登记页面
 
 #import "LLColorRegisterVc.h"
 #import "TextInputCell.h"

@@ -41,7 +41,7 @@
     [self.contentView addSubview:_bgView];
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.contentView);
-        make.height.mas_equalTo(20);
+        make.height.mas_equalTo(10);
     }];
     self.contentView.backgroundColor = [UIColor whiteColor];
     _nameLable = [UILabel new];
@@ -101,6 +101,18 @@
     [_foldingBtn layoutIfNeeded];
     _foldingBtn.titleEdgeInsets = UIEdgeInsetsMake(0,  -(_foldingBtn.titleLabel.frame.origin.x), 0, 0);
     
+    //整个view都给点击，点击效果和点中左边圆圈一样
+    UIButton *selectViewBtn = [[UIButton alloc]init];
+    [selectViewBtn setBackgroundColor:[UIColor clearColor]];
+    [selectViewBtn addTarget:self action:@selector(checkoutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:selectViewBtn];
+    [selectViewBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self);
+        make.top.mas_equalTo(self).offset(10);
+        make.height.mas_offset(80);
+        make.right.mas_equalTo(self->_foldingBtn.mas_left);
+        
+    }];
     
     UIView * _headView = [[UIView alloc]init];
     _headView.backgroundColor = [UIColor colorWithHexString:@"#f9f9f9"];
