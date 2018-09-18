@@ -25,4 +25,5 @@
 ///画底部的线
 @property (nonatomic, strong) UIView *lineView;
 
+@property (copy, nonatomic)void (^clickProductNameBlcok)(UITextField *nameTF);
 @end

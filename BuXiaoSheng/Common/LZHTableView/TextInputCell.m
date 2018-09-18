@@ -8,7 +8,7 @@
 
 #import "TextInputCell.h"
 
-@interface TextInputCell()
+@interface TextInputCell()<UITextFieldDelegate>
 @end
 
 @implementation TextInputCell
@@ -144,6 +144,17 @@
     .widthRatioToView(self, 1)
     .leftSpaceToView(self, 0)
     .heightIs(1);
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.contentTF) {
+        self.contentTF.text = textField.text;
+        if (_clickProductNameBlcok) {
+            _clickProductNameBlcok(self.contentTF);
+        }
+    }
+    return YES;
 }
 
 @end

@@ -3786,14 +3786,14 @@
 			path = M;
 			sourceTree = "<group>";
 		};
-		3475420520F5AB7E007F384B /* ColorRegister色卡登记 */ = {
+		3475420520F5AB7E007F384B /* ColorRegister(色卡登记) */ = {
 			isa = PBXGroup;
 			children = (
 				3475424F20F5F596007F384B /* M */,
 				3475420720F5AB8C007F384B /* V */,
 				3475420620F5AB88007F384B /* C */,
 			);
-			path = "ColorRegister色卡登记";
+			path = "ColorRegister(色卡登记)";
 			sourceTree = "<group>";
 		};
 		3475420620F5AB88007F384B /* C */ = {
@@ -5288,7 +5288,7 @@
 				3479056520C50930008C835C /* assign(指派发货) */,
 				3475420020F5A8D9007F384B /* followOrder(跟单) */,
 				34F6E76220BFCE9200FABC5F /* inventory(库存) */,
-				3475420520F5AB7E007F384B /* ColorRegister色卡登记 */,
+				3475420520F5AB7E007F384B /* ColorRegister(色卡登记) */,
 				34EA48F320CFAA560086FF79 /* StockTracking(备货跟踪) */,
 				3475420A20F5AD5C007F384B /* warehouse(仓库) */,
 				3450B02420E0DEA000429570 /* bank(现金银行) */,
@@ -7336,6 +7336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7366,6 +7367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = BuXiaoSheng/BuXiaoSheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

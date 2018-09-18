@@ -316,13 +316,17 @@
         //        item.sectionView = headview;
         //        [self.dataSource replaceObjectAtIndex:0 withObject:item];
         //
-        //        //更新第二部分
-        //        _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
-        //        [_tableView reloadData];
-        //        LZHTableViewItem *item1 = [[LZHTableViewItem alloc]init];
-        //        item1.sectionRows = @[_headerView,_tableView];
-        //        item1.sectionView = headview;
-        //        [self.dataSource replaceObjectAtIndex:1 withObject:item1];
+                //更新第二部分
+        UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
+        headview.backgroundColor = LZHBackgroundColor;
+        _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);
+        [_tableView reloadData];
+        LZHTableViewItem *item1 = [[LZHTableViewItem alloc]init];
+        item1.sectionRows = @[_headerView,_tableView];
+        item1.sectionView = headview;
+        [self.dataSource replaceObjectAtIndex:1 withObject:item1];
+        
+        [_tableView reloadData];
         [self.myTableView reloadData];
         
     } failure:^(NSError *error) {

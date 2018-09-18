@@ -16,6 +16,8 @@
 @property(nonatomic ,strong)UITableView * tableView;
 @property(nonatomic ,strong)UIView * tableHeaderView;
 @property(nonatomic ,strong)UIView * tableFooterView;
+@property (nonatomic, strong) TextInputCell *nameCell;//客户名称
+@property (nonatomic, strong) TextInputCell *mobileCell;//手机号码
 //备注
 @property(nonatomic ,strong)TextInputCell * remakView;
 
@@ -26,6 +28,8 @@
 @property (nonatomic,copy)NSString * imageUrl;
 @property (nonatomic, strong) UIView *ViImage;
 @property (nonatomic, strong) UILabel *labImage;
+///确认按钮
+@property (nonatomic, strong) UIButton *saveBtn;
 @end
 
 @implementation LLColorRegisterVc
@@ -40,14 +44,30 @@
 }
 
 -(void)setupUI {
-    self.title = @"色卡登记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClick)];
+    self.navigationItem.titleView = [Utility navTitleView:@"色卡登记"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(rightBarButtonItemClick) image:IMAGE(@"new_lists")];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+//        make.edges.equalTo(self.view);
+        make.left.top.right.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view).offset(-45);
     }];
     self.tableView.tableHeaderView = self.tableHeaderView;
     self.tableView.tableFooterView = self.tableFooterView;
+    
+    //保存按钮
+    self.saveBtn = [[UIButton alloc]init];;
+//    self.saveBtn.frame = CGRectMake(0, APPHeight - 44, APPWidth, 44);
+    self.saveBtn.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:155.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
+    [self.saveBtn setTitle:@"提 交" forState:UIControlStateNormal];
+    [self.saveBtn addTarget:self action:@selector(saveBtnOnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    //    self.nextBtn.titleLabel.text = @"下一步";
+    self.saveBtn.titleLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:self.saveBtn];
+    [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.tableView.mas_bottom);
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.modelDatas.count;
@@ -105,6 +125,10 @@
 -(void)rightBarButtonItemClick {
     
 }
+//提交按钮点击事件
+- (void)saveBtnOnClickAction{
+    
+}
 /// MARK: ---- 新增一条的点击
 -(void)addItemBtnClick {
     //默认进来初始化一条数据
@@ -159,7 +183,7 @@
         }];
         UIButton * addItemBtn = [UIButton new];
         [addItemView addSubview:addItemBtn];
-        [addItemBtn setBackgroundImage:[UIImage imageNamed:@"addbtn"] forState:UIControlStateNormal];
+        [addItemBtn setBackgroundImage:[UIImage imageNamed:@"addProduct"] forState:UIControlStateNormal];
         [addItemBtn addTarget:self action:@selector(addItemBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [addItemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(addItemView);
