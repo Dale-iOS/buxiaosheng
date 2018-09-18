@@ -316,7 +316,8 @@
         //        item.sectionView = headview;
         //        [self.dataSource replaceObjectAtIndex:0 withObject:item];
         //
-                //更新第二部分
+        
+        //更新第二部分
         UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, 10)];
         headview.backgroundColor = LZHBackgroundColor;
         _tableView.frame = CGRectMake(0, 0, APPWidth, 44 *_lists.count);

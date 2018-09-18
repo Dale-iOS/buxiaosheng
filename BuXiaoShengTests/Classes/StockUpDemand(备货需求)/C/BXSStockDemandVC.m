@@ -9,7 +9,7 @@
 #import "BXSStockDemandVC.h"
 #import "BXSStockPurchaseVC.h"//采购
 #import "BXSStockMachiningVC.h"//加工
-
+#import "LZStockDemandListVC.h"
 
 
 @interface BXSStockDemandVC ()<UIScrollViewDelegate>
@@ -30,6 +30,7 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [Utility navTitleView:@"备货需求"];
+    self.navigationItem.rightBarButtonItem = [Utility navButton:self action:@selector(rightBarButtonItemClick) image:IMAGE(@"new_lists")];
     //self.navigationController.navigationBar的设置是全局的，一个页面设置了透明度，整个项目的页面都会变，把下面这句去掉
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setupUI];
@@ -127,7 +128,11 @@
     return _containerView;
 }
 
-
+#pragma mark --- 点击事件 ---
+- (void)rightBarButtonItemClick{
+    LZStockDemandListVC *vc = [[LZStockDemandListVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

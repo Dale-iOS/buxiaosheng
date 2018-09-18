@@ -1141,6 +1141,10 @@
 		FF3FA98B212D6083009431DA /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA96B212D6083009431DA /* WMTextView.m */; };
 		FF3FA98E212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
 		FF3FA98F212D6187009431DA /* LZPurchaseReceiptDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */; };
+		FF4556B12150E29C00DD27B7 /* LZStockDemandListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4556B02150E29C00DD27B7 /* LZStockDemandListVC.m */; };
+		FF4556B22150E29C00DD27B7 /* LZStockDemandListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4556B02150E29C00DD27B7 /* LZStockDemandListVC.m */; };
+		FF4556B52150E46600DD27B7 /* LZStockDemandListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4556B42150E46600DD27B7 /* LZStockDemandListCell.m */; };
+		FF4556B62150E46600DD27B7 /* LZStockDemandListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4556B42150E46600DD27B7 /* LZStockDemandListCell.m */; };
 		FF4A8CB9213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
 		FF4A8CBA213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */; };
 		FF4C3980214CE47500A1FC49 /* LZWarehouseShiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4C397F214CE47500A1FC49 /* LZWarehouseShiftVC.m */; };
@@ -1171,6 +1175,12 @@
 		FFACE19521366B8800F23395 /* MPPictureBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE18C21366B8800F23395 /* MPPictureBrowseViewController.m */; };
 		FFACE19621366B8800F23395 /* ETZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE18E21366B8800F23395 /* ETZoomScrollView.m */; };
 		FFACE19721366B8800F23395 /* ETZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFACE18E21366B8800F23395 /* ETZoomScrollView.m */; };
+		FFB876462150F08D0015155A /* LZStockDemandListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB876452150F08D0015155A /* LZStockDemandListModel.m */; };
+		FFB876472150F08D0015155A /* LZStockDemandListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB876452150F08D0015155A /* LZStockDemandListModel.m */; };
+		FFB8764A2150F95C0015155A /* LZStockDemandListDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB876492150F95C0015155A /* LZStockDemandListDetailVC.m */; };
+		FFB8764B2150F95C0015155A /* LZStockDemandListDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB876492150F95C0015155A /* LZStockDemandListDetailVC.m */; };
+		FFB8764E21511E990015155A /* LZStockProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB8764D21511E990015155A /* LZStockProductListVC.m */; };
+		FFB8764F21511E990015155A /* LZStockProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB8764D21511E990015155A /* LZStockProductListVC.m */; };
 		FFC1A52A212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */; };
 		FFC1A52B212E918800DECCB7 /* LZOrderTrackingListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */; };
 		FFC1A52E212E945A00DECCB7 /* LZOrderTrackingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC1A52D212E945A00DECCB7 /* LZOrderTrackingListCell.m */; };
@@ -2499,6 +2509,10 @@
 		FF3FA96B212D6083009431DA /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
 		FF3FA98C212D6187009431DA /* LZPurchaseReceiptDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptDetailModel.h; sourceTree = "<group>"; };
 		FF3FA98D212D6187009431DA /* LZPurchaseReceiptDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptDetailModel.m; sourceTree = "<group>"; };
+		FF4556AF2150E29C00DD27B7 /* LZStockDemandListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockDemandListVC.h; sourceTree = "<group>"; };
+		FF4556B02150E29C00DD27B7 /* LZStockDemandListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockDemandListVC.m; sourceTree = "<group>"; };
+		FF4556B32150E46600DD27B7 /* LZStockDemandListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockDemandListCell.h; sourceTree = "<group>"; };
+		FF4556B42150E46600DD27B7 /* LZStockDemandListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockDemandListCell.m; sourceTree = "<group>"; };
 		FF4A8CB7213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceiptSaveAlterModel.h; sourceTree = "<group>"; };
 		FF4A8CB8213FD82A007D26B9 /* LZPurchaseReceiptSaveAlterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceiptSaveAlterModel.m; sourceTree = "<group>"; };
 		FF4C397E214CE47500A1FC49 /* LZWarehouseShiftVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZWarehouseShiftVC.h; sourceTree = "<group>"; };
@@ -2523,6 +2537,12 @@
 		FFACE18D21366B8800F23395 /* MPUploadMomentImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUploadMomentImagesCell.h; sourceTree = "<group>"; };
 		FFACE18E21366B8800F23395 /* ETZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETZoomScrollView.m; sourceTree = "<group>"; };
 		FFACE18F21366B8800F23395 /* MPPictureBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPictureBrowseViewController.h; sourceTree = "<group>"; };
+		FFB876442150F08D0015155A /* LZStockDemandListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockDemandListModel.h; sourceTree = "<group>"; };
+		FFB876452150F08D0015155A /* LZStockDemandListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockDemandListModel.m; sourceTree = "<group>"; };
+		FFB876482150F95C0015155A /* LZStockDemandListDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockDemandListDetailVC.h; sourceTree = "<group>"; };
+		FFB876492150F95C0015155A /* LZStockDemandListDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockDemandListDetailVC.m; sourceTree = "<group>"; };
+		FFB8764C21511E990015155A /* LZStockProductListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockProductListVC.h; sourceTree = "<group>"; };
+		FFB8764D21511E990015155A /* LZStockProductListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockProductListVC.m; sourceTree = "<group>"; };
 		FFC1A528212E918800DECCB7 /* LZOrderTrackingListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListVC.h; sourceTree = "<group>"; };
 		FFC1A529212E918800DECCB7 /* LZOrderTrackingListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZOrderTrackingListVC.m; sourceTree = "<group>"; };
 		FFC1A52C212E945A00DECCB7 /* LZOrderTrackingListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZOrderTrackingListCell.h; sourceTree = "<group>"; };
@@ -4973,7 +4993,7 @@
 		34DD05A92127CC040002AF6C /* StockUpDemand(备货需求) */ = {
 			isa = PBXGroup;
 			children = (
-				34DD05AC2127CC770002AF6C /* M */,
+				FFB876432150EFD60015155A /* M */,
 				34DD05AB2127CC730002AF6C /* V */,
 				34DD05AA2127CC630002AF6C /* C */,
 			);
@@ -4985,6 +5005,12 @@
 			children = (
 				34DD05AF2127CE270002AF6C /* BXSStockDemandVC.h */,
 				34DD05AE2127CE270002AF6C /* BXSStockDemandVC.m */,
+				FF4556AF2150E29C00DD27B7 /* LZStockDemandListVC.h */,
+				FF4556B02150E29C00DD27B7 /* LZStockDemandListVC.m */,
+				FFB876482150F95C0015155A /* LZStockDemandListDetailVC.h */,
+				FFB876492150F95C0015155A /* LZStockDemandListDetailVC.m */,
+				FFB8764C21511E990015155A /* LZStockProductListVC.h */,
+				FFB8764D21511E990015155A /* LZStockProductListVC.m */,
 				34DD05AD2127CE270002AF6C /* BXSStockMachiningVC.h */,
 				34DD05B02127CE280002AF6C /* BXSStockMachiningVC.m */,
 				34DD05B12127CE280002AF6C /* BXSStockPurchaseVC.h */,
@@ -5000,15 +5026,10 @@
 				34DD05BC2127CE310002AF6C /* BXSStockMachiningProductCell.m */,
 				34DD05BA2127CE300002AF6C /* BXSStockProductCell.h */,
 				34DD05BB2127CE310002AF6C /* BXSStockProductCell.m */,
+				FF4556B32150E46600DD27B7 /* LZStockDemandListCell.h */,
+				FF4556B42150E46600DD27B7 /* LZStockDemandListCell.m */,
 			);
 			path = V;
-			sourceTree = "<group>";
-		};
-		34DD05AC2127CC770002AF6C /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
 			sourceTree = "<group>";
 		};
 		34E49B1520A57F3D0074F454 /* QQTagView */ = {
@@ -5769,6 +5790,15 @@
 			path = pic;
 			sourceTree = "<group>";
 		};
+		FFB876432150EFD60015155A /* M */ = {
+			isa = PBXGroup;
+			children = (
+				FFB876442150F08D0015155A /* LZStockDemandListModel.h */,
+				FFB876452150F08D0015155A /* LZStockDemandListModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6210,6 +6240,7 @@
 				343008E52081ACF900447992 /* NowMonthViewController.m in Sources */,
 				3455F68E20CA7CB600579521 /* LZDyeView.m in Sources */,
 				A01690BB2119DA8500A7D8F9 /* MFPageView.m in Sources */,
+				FFB876462150F08D0015155A /* LZStockDemandListModel.m in Sources */,
 				343008E42081ACF400447992 /* NowDayViewController.m in Sources */,
 				344F22A5208F403D009ADA33 /* DocumentBankDetailViewController.m in Sources */,
 				348DF1A32129645D00D3A76F /* BXSAllCodeModel.m in Sources */,
@@ -6371,6 +6402,7 @@
 				3467BA4920ECAE6C004C0B24 /* LZVisitRecordDetailVC.m in Sources */,
 				A0D9D9F0213D422F006A5C80 /* LLWarehouseSlideLeftCell.m in Sources */,
 				FF02C3E02148EDB200C3F7A5 /* PurchaseCollectionViewCell.m in Sources */,
+				FF4556B52150E46600DD27B7 /* LZStockDemandListCell.m in Sources */,
 				343747EF2094207F00C64F4C /* StockTrackingCell.m in Sources */,
 				3428B8582121685C003F86D7 /* ReimCustomerCell.m in Sources */,
 				34494DF120917A8100BDB309 /* WarehouserTableViewCell.m in Sources */,
@@ -6451,6 +6483,7 @@
 				348DF250212964D800D3A76F /* BYCameraBottomTool.m in Sources */,
 				B58BF72820A2D72100A8B92B /* BXSHttp.m in Sources */,
 				B5CF350320A58DED0043D906 /* LLFactoryModel.m in Sources */,
+				FFB8764A2150F95C0015155A /* LZStockDemandListDetailVC.m in Sources */,
 				342398EF20FB42C9002B81E1 /* BaseTableCell.m in Sources */,
 				34F83983210079CA00CDC8E2 /* LZSalesDetailVC.m in Sources */,
 				345E7484208368A6004B49B3 /* OrderTableViewCell.m in Sources */,
@@ -6611,6 +6644,7 @@
 				344F22A2208F25C1009ADA33 /* BankDetailListTableViewCell.m in Sources */,
 				3440802F2087367F00FD36B8 /* DataSource.m in Sources */,
 				348DF1DB2129646900D3A76F /* LZBugAndProcessBssView.m in Sources */,
+				FF4556B12150E29C00DD27B7 /* LZStockDemandListVC.m in Sources */,
 				3427A4F620CE507600369650 /* BRAddressModel.m in Sources */,
 				347C5FDF211C6DF00064D403 /* LZNetHelp.m in Sources */,
 				3455F69A20CAC8A500579521 /* LZClientReceiptCell.m in Sources */,
@@ -6688,6 +6722,7 @@
 				3465CA0820DCB00300BAE415 /* LZChooseCalendarVC.m in Sources */,
 				FF3FA96C212D6083009431DA /* BackClothTableViewCell.m in Sources */,
 				346C2277210E03DA004AAC88 /* ZWCustomPopView.m in Sources */,
+				FFB8764E21511E990015155A /* LZStockProductListVC.m in Sources */,
 				34F6100B20A9A38A009A29A5 /* LZCompanyModel.m in Sources */,
 				34EA5BCF208B383C0048CFE1 /* UIView+LLXAlertPop.m in Sources */,
 				344C488120D0E9DA00BEC002 /* LZNoBackOrderCell.m in Sources */,
@@ -6741,6 +6776,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4556B22150E29C00DD27B7 /* LZStockDemandListVC.m in Sources */,
 				B50505D2209AB2DA00CE7E4D /* NSObject+XLFormAdditions.m in Sources */,
 				B5B07514209C293E00FD53DC /* LLProcessTitleDetailCell.m in Sources */,
 				34F6E76920BFCEC900FABC5F /* LZInventoryModel.m in Sources */,
@@ -6794,6 +6830,7 @@
 				344C488620D0EB7E00BEC002 /* LZNoBackOrderModel.m in Sources */,
 				3461107820C11B940080579F /* HXTagsView.m in Sources */,
 				3468B05820EB8350003726ED /* LZChooseBankTypeVC.m in Sources */,
+				FFB8764B2150F95C0015155A /* LZStockDemandListDetailVC.m in Sources */,
 				346E02322110567B005D4D50 /* LZBackOrderSaveModel.m in Sources */,
 				FF3FA98B212D6083009431DA /* WMTextView.m in Sources */,
 				B50505AE209AB2DA00CE7E4D /* XLFormInlineSelectorCell.m in Sources */,
@@ -6807,6 +6844,7 @@
 				348DF1D82129646900D3A76F /* LZPurchaseAskCell.m in Sources */,
 				FF3FA981212D6083009431DA /* PinNameTableViewCell.m in Sources */,
 				348DF198212945C800D3A76F /* UIButton+WM.m in Sources */,
+				FFB876472150F08D0015155A /* LZStockDemandListModel.m in Sources */,
 				B50505E4209AB2DA00CE7E4D /* XLFormValidationStatus.m in Sources */,
 				346C2274210E03DA004AAC88 /* LZBackOrderLIstsCell.m in Sources */,
 				B50505C0209AB2DA00CE7E4D /* XLFormTextViewCell.m in Sources */,
@@ -7086,6 +7124,7 @@
 				B50505CC209AB2DA00CE7E4D /* XLFormSectionDescriptor.m in Sources */,
 				B5B07518209C295900FD53DC /* LLProcessCell.m in Sources */,
 				348DF1D62129646900D3A76F /* LLDyeingSectionView.m in Sources */,
+				FF4556B62150E46600DD27B7 /* LZStockDemandListCell.m in Sources */,
 				34F6E77620C03EAC00FABC5F /* LZInventoryDetailCell.m in Sources */,
 				FF02C4592148FCE100C3F7A5 /* ReCustomerCell.m in Sources */,
 				348DF255212964D800D3A76F /* YLActionSheet.m in Sources */,
@@ -7098,6 +7137,7 @@
 				34DD05BE2127CE310002AF6C /* BXSStockProductCell.m in Sources */,
 				348DF1DC2129646900D3A76F /* LZBugAndProcessBssView.m in Sources */,
 				348DF1E02129646900D3A76F /* BXSAddFindCodeView.m in Sources */,
+				FFB8764F21511E990015155A /* LZStockProductListVC.m in Sources */,
 				348DF2022129647300D3A76F /* LZProcessReceiptVC.m in Sources */,
 				347C5FDC211C208F0064D403 /* LZSaleDetailVC.m in Sources */,
 				344E4D39210EAD4D0031DCE8 /* ConCell.m in Sources */,
@@ -7380,8 +7420,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shenyue.BuXiaoSheng.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b496e5ca-0e8f-42fd-8aa6-cadb078fbb18";
-				PROVISIONING_PROFILE_SPECIFIER = BXS_AdHoc;
+				PROVISIONING_PROFILE = "3c9c86a2-2298-436a-bae7-5a7cb0db0472";
+				PROVISIONING_PROFILE_SPECIFIER = BXS_DIS;
 				SWIFT_OBJC_BRIDGING_HEADER = "BuXiaoSheng/BuXiaoSheng-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
