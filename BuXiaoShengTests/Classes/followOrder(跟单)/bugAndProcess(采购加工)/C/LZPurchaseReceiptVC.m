@@ -355,13 +355,18 @@
         return;
     }
     
-    if ([BXSTools stringIsNullOrEmpty:conItemRealpayPrice.contenText]) {
-        BXS_Alert(@"请输入实付金额");
-        return;
-    }
+//    if ([BXSTools stringIsNullOrEmpty:conItemRealpayPrice.contenText]) {
+//        BXS_Alert(@"请输入实付金额");
+//        return;
+//    }
     
     if ([BXSTools stringIsNullOrEmpty:conItemBankId.id] && conItemRealpayPrice.contenText.integerValue != 0) {
         BXS_Alert(@"请选择收款方式");
+        return;
+    }
+    
+    if (![BXSTools stringIsNullOrEmpty:conItemBankId.id] && conItemRealpayPrice.contenText == nil) {
+        BXS_Alert(@"请输入实付金额");
         return;
     }
     
@@ -376,7 +381,7 @@
 							 @"imgs":self.urlImageStr == nil ? @"" :self.urlImageStr,
                              @"productItems":[saveMuAry mj_JSONString],
                              @"purchaseType":@(0),
-                             @"realpayPrice":conItemRealpayPrice.contenText,
+                             @"realpayPrice":conItemRealpayPrice.contenText == nil ? @(0) : conItemRealpayPrice.contenText,
                              @"remark":conItemRemarke.contenText == nil ? @"" :conItemRemarke.contenText
                              };
     [BXSHttp requestPOSTWithAppURL:@"documentary/add_collect.do" param:param success:^(id response) {

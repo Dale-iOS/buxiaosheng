@@ -16,6 +16,7 @@
 #import "LLMonthCalendarVc.h"
 #import "LLQuarterCalendarVc.h"
 #import "SGPagingView.h"
+#import "LZPurchaseReceivingListVC.h"
 
 static NSInteger const pageSize = 15;
 
@@ -357,6 +358,11 @@ static NSInteger const pageSize = 15;
 //点击备货列表按钮
 - (void)didstockListBtnInCell:(UITableViewCell *)cell{
     
+    NSIndexPath *indexP = [self.tableView indexPathForCell:cell];
+    LZStockDemandListModel *model = _lists[indexP.row];
+    LZPurchaseReceivingListVC *vc = [[LZPurchaseReceivingListVC alloc]init];
+    vc.buyId = model.buyId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter && Setter
