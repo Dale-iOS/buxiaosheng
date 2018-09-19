@@ -7,9 +7,10 @@
 //  备货需求采购详情
 
 #import "LZStockDemandListDetailVC.h"
+#import "LZStockDemandListDetailModel.h"
 
 @interface LZStockDemandListDetailVC ()
-
+@property (nonatomic, strong) LZStockDemandListDetailModel *model;
 @end
 
 @implementation LZStockDemandListDetailVC
@@ -24,6 +25,8 @@
     self.navigationItem.titleView = [Utility navTitleView:@"备货需求采购详情"];
 }
 
+//备货需求列表详情
+//http://www.buxiaosheng.com:8083/workspace/myWorkspace.do?projectId=2#
 #pragma mark --- 网络请求 ---
 - (void)getDetailData{
     NSDictionary * param = @{@"companyId":[BXSUser currentUser].companyId,
@@ -35,7 +38,8 @@
             [LLHudTools showWithMessage:baseModel.msg];
             return ;
         }
-        
+        _model = [LZStockDemandListDetailModel LLMJParse:baseModel.data];
+        NSLog(@"123");
     } failure:^(NSError *error) {
         BXS_Alert(LLLoadErrorMessage);
     }];

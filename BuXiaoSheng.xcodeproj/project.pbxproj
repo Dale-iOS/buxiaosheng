@@ -1107,6 +1107,8 @@
 		FF02C4772148FDF600C3F7A5 /* LZPurchaseReceivingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4742148FDF600C3F7A5 /* LZPurchaseReceivingListModel.m */; };
 		FF02C47A2148FE5300C3F7A5 /* LZPurchaseReceivingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4792148FE5300C3F7A5 /* LZPurchaseReceivingListCell.m */; };
 		FF02C47B2148FE5300C3F7A5 /* LZPurchaseReceivingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF02C4792148FE5300C3F7A5 /* LZPurchaseReceivingListCell.m */; };
+		FF22B0BB215239000056E346 /* LZStockDemandListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF22B0BA215239000056E346 /* LZStockDemandListDetailModel.m */; };
+		FF22B0BC215239000056E346 /* LZStockDemandListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF22B0BA215239000056E346 /* LZStockDemandListDetailModel.m */; };
 		FF3FA96C212D6083009431DA /* BackClothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA954212D6083009431DA /* BackClothTableViewCell.m */; };
 		FF3FA96D212D6083009431DA /* BackClothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3FA954212D6083009431DA /* BackClothTableViewCell.m */; };
 		FF3FA96E212D6083009431DA /* BackClothTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */; };
@@ -2482,6 +2484,8 @@
 		FF02C4752148FDF600C3F7A5 /* LZPurchaseReceivingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceivingListModel.h; sourceTree = "<group>"; };
 		FF02C4782148FE5300C3F7A5 /* LZPurchaseReceivingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZPurchaseReceivingListCell.h; sourceTree = "<group>"; };
 		FF02C4792148FE5300C3F7A5 /* LZPurchaseReceivingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZPurchaseReceivingListCell.m; sourceTree = "<group>"; };
+		FF22B0B9215239000056E346 /* LZStockDemandListDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZStockDemandListDetailModel.h; sourceTree = "<group>"; };
+		FF22B0BA215239000056E346 /* LZStockDemandListDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZStockDemandListDetailModel.m; sourceTree = "<group>"; };
 		FF3FA953212D6083009431DA /* BackClothTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackClothTableViewCell.h; sourceTree = "<group>"; };
 		FF3FA954212D6083009431DA /* BackClothTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackClothTableViewCell.m; sourceTree = "<group>"; };
 		FF3FA955212D6083009431DA /* BackClothTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackClothTableViewCell.xib; sourceTree = "<group>"; };
@@ -5795,6 +5799,8 @@
 			children = (
 				FFB876442150F08D0015155A /* LZStockDemandListModel.h */,
 				FFB876452150F08D0015155A /* LZStockDemandListModel.m */,
+				FF22B0B9215239000056E346 /* LZStockDemandListDetailModel.h */,
+				FF22B0BA215239000056E346 /* LZStockDemandListDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -6682,6 +6688,7 @@
 				FF8CDBAD214BA8F300056BE7 /* LogStartCell.m in Sources */,
 				B56EF0EA20E1EB1E000A829F /* LLWelcomeCollectionViewCell.m in Sources */,
 				34E4D486211A9B9B00A6ADE9 /* LZCollectionCheckDetailVC.m in Sources */,
+				FF22B0BB215239000056E346 /* LZStockDemandListDetailModel.m in Sources */,
 				344358CE20EF1FDA004A5E6E /* LZCollectionCheckModel.m in Sources */,
 				B531EF4520BFBDB90028F18B /* LLOutboundFooterView.m in Sources */,
 				348DF1CF2129646900D3A76F /* BXSPurchaChangeWarehousingView.m in Sources */,
@@ -7118,6 +7125,7 @@
 				34EE88D520CBB1440060D00B /* LZClientReceiptModel.m in Sources */,
 				3465C9ED20DC9A9600BAE415 /* FSCalendarDelegationProxy.m in Sources */,
 				346C225D210E03D3004AAC88 /* LZAddItemViewController.m in Sources */,
+				FF22B0BC215239000056E346 /* LZStockDemandListDetailModel.m in Sources */,
 				FFC1A537212EA75400DECCB7 /* LZOutboundSelectModel.m in Sources */,
 				B50505D8209AB2DA00CE7E4D /* UIView+XLFormAdditions.m in Sources */,
 				347C5FE0211C6DF00064D403 /* LZNetHelp.m in Sources */,
