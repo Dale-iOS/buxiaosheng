@@ -67,7 +67,7 @@
 {
     if (!mainTabelView) {
         
-        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -49)];
+        LZHTableView *tableView = [[LZHTableView alloc]initWithFrame:CGRectMake(0, 0, APPWidth, APPHeight -IPHONEX_MARGIN_BOTTOM/3*1 -50)];
         //        tableView.tableView.allowsSelection = YES;
         //        tableView.tableHeaderView = self.headView;
         tableView.backgroundColor = LZHBackgroundColor;
@@ -120,7 +120,7 @@
         make.left.mas_equalTo(self.view).offset(20);
         make.right.mas_equalTo(self.view).offset(-20);
         make.height.mas_offset(50);
-        make.bottom.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view).offset(-IPHONEX_MARGIN_BOTTOM/3*1);
     }];
     
 //    [bottomView addSubview:self.changeUserBtn];
