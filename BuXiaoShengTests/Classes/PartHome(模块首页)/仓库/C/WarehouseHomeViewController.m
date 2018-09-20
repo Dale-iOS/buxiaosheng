@@ -464,7 +464,9 @@ static NSInteger const pageSize = 15;
         vc.orderNo = model.orderNo;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (model.type.integerValue == 0){
+        //销售出售
         LZOutOrderDetailVC *vc = [[LZOutOrderDetailVC alloc]init];
+        vc.title = @"仓库出库详情";
         vc.orderId = model.orderNo;
         [self.navigationController pushViewController:vc animated:YES];
     }
