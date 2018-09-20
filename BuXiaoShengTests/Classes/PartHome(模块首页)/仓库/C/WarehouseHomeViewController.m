@@ -22,7 +22,10 @@
 #import "LZDirectStorageVC.h"//直接入库
 #import "BXSStockDemandVC.h"//备货需求
 //#import "AlterPassworddViewController.h"
-#import "LLColorRegisterVc.h"
+//#import "LLColorRegisterVc.h"
+#import "LZPurchaseReceivingListDetailVC.h"
+#import "LZOutOrderDetailVC.h"
+
 static NSInteger const pageSize = 15;
 @interface WarehouseHomeViewController ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 {
@@ -451,6 +454,21 @@ static NSInteger const pageSize = 15;
     }
     cell.model = _lists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LZCheckReceiptModel *model = _lists[indexPath.row];
+    if (model.type.integerValue == 3) {
+        //采购入库
+        LZPurchaseReceivingListDetailVC *vc = [[LZPurchaseReceivingListDetailVC alloc]init];
+        vc.orderNo = model.orderNo;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (model.type.integerValue == 0){
+        LZOutOrderDetailVC *vc = [[LZOutOrderDetailVC alloc]init];
+        vc.orderId = model.orderNo;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
  //点击选择日期按钮
